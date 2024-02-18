@@ -1,0 +1,84 @@
+{
+    // Place your dart_isoxml workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+    // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+    // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+    // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+    // Placeholders with the same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"scope": "javascript,typescript",
+    // 	"prefix": "log",
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
+
+    "iso11783 element": {
+        "prefix": "ISO11783 Element",
+        "body": [
+            "@annotation.XmlRootElement(name: )",
+            "@annotation.XmlSerializable(createMixin: true)",
+            "class $1 extends Iso11783Element with _$$1XmlSerializableMixin {",
+            "factory $1(){return $1._();}",
+            "",
+            "const $1._():super(tag: Iso11783Tag., description: '$1');",
+            "",
+            "factory $1.fromXmlElement(XmlElement element)=>_$$1FromXmlElement(element);",
+            "}"
+        ],
+        "description": "Creates a subclass of the ISO11783Element class, with xml_serializable basics in place."
+    },
+    "default factory doc": {
+        "prefix": "Default factory doc",
+        "body": [
+            "/// Default factory for creating a [$1] with verified",
+            "/// arguments."
+        ]
+    },
+    "private constructor doc": {
+        "prefix": "Private constructur doc",
+        "body": [
+            "/// Private constructor that is called after having verified all the arguments",
+            "/// in the default factory."
+        ]
+    },
+    "from xml element doc": {
+        "prefix": "fromXmlElement doc",
+        "body": ["/// Creates a [$1] from [element]."]
+    },
+    "ddi doc": {
+        "prefix": "DDI doc",
+        "body": [
+            "/// A unique Data Dictionary Identifier which identifies a",
+            "/// [ProcessDataVariable].",
+            "///",
+            "/// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)",
+            "/// in the ISO11783-11 online database."
+        ]
+    },
+    "id doc": {
+        "prefix": "ID doc",
+        "body": [
+            "/// Unique identifier for this $1.",
+            "///",
+            "/// Records generated on MICS have negative IDs."
+        ]
+    },
+    "id ref doc": {
+        "prefix": "ID ref doc",
+        "body": ["/// Reference to a [$1]."]
+    },
+    "id ref pattern doc": {
+        "prefix": "ID ref pattern doc",
+        "body": [
+            "/// Regular expression matching pattern for the [id] of [$1]s."
+        ]
+    },
+    "designator doc": {
+        "prefix": "Designator doc",
+        "body": ["/// Name of the $1, description or comment."]
+    }
+}

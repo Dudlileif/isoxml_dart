@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ISO11783_TaskData VersionMajor="3" VersionMinor="0" ManagementSoftwareManufacturer="CropSat" ManagementSoftwareVersion="1.0.0" TaskControllerManufacturer="CropSat" TaskControllerVersion="1.1.0" DataTransferOrigin="1">
+    <PFD A="PFD1" C="Test" D="0" />
+    <VPN A="VPN1" B="0" C="0.01" D="0" E="kg/ha" />
+    <TSK A="TSK1" B="Test" E="PFD1" G="1" H="1">
+        <GRD A="63.5778245071075" B="10.6971399036477" C="9.07128924685662E-05" D="0.00020141635229684" E="33" F="38" G="GRD00001" H="0" I="2" J="2" />
+        <TZN A="0" B="Empty">
+            <PDV A="0006" B="0" E="VPN1" />
+        </TZN>
+        <TZN A="1" B="Default">
+            <PDV A="0006" B="0" E="VPN1" />
+        </TZN>
+        <TZN A="2" B="Precision application">
+            <PDV A="0006" B="0" E="VPN1" />
+        </TZN>
+    </TSK>
+</ISO11783_TaskData>

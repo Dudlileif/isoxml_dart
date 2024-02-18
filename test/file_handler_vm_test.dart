@@ -1,0 +1,99 @@
+// Copyright 2024 Gaute Hagen. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+@TestOn('vm')
+import 'dart:io';
+
+import 'package:collection/collection.dart';
+import 'package:isoxml/isoxml.dart';
+import 'package:test/test.dart';
+
+void main() async {
+  final taskDataFolder = TaskDataFileHandler.loadDirectory(
+    '${Directory.current.path}/test/data_files/folder_test',
+  );
+  final taskDataZip = TaskDataFileHandler.loadZip(
+    '${Directory.current.path}/test/data_files/zip_test.zip',
+  );
+
+  test(
+    'Check that zip and folder data is the same',
+    () => expect(
+      taskDataZip,
+      taskDataFolder,
+    ),
+  );
+
+  test(
+    'Check that time log export bytes equals import bytes',
+    () => expect(
+      taskDataFolder?.tasks?.first.timeLogs?.first.byteData.toString(),
+      taskDataFolder?.tasks?.first.timeLogs?.first.recordsToBytes().toString(),
+    ),
+  );
+
+  group('Test grid loading', () {
+    final taskDataWithGrid1Zip = TaskDataFileHandler.loadDirectory(
+      '${Directory.current.path}/test/data_files/grid/type_1',
+    );
+    final grid1 = taskDataWithGrid1Zip?.tasks?.first.grid;
+    test(
+      'Check that grid type 1 size is correct with 6 TZNs.',
+      () {
+        expect(
+          (
+            grid1?.treatmentZoneCodeGrid?.length,
+            grid1?.treatmentZoneCodeGrid?.elementAt(0).length,
+            const SetEquality<int>().equals(
+              grid1?.treatmentZoneCodeGrid?.flattened
+                  .toSet()
+                  .sorted((a, b) => a.compareTo(b))
+                  .toSet(),
+              {0, 1, 2, 3, 4, 5},
+            )
+          ),
+          (38, 33, true),
+        );
+      },
+    );
+
+    test(
+      'Check that grid type 1 export bytes equals import bytes.',
+      () {
+        expect(
+          grid1?.gridToBytes()?.toString(),
+          grid1?.byteData.toString(),
+        );
+      },
+    );
+
+    final taskDataWithGrid2Zip = TaskDataFileHandler.loadDirectory(
+      '${Directory.current.path}/test/data_files/grid/type_2',
+    );
+    final grid2 = taskDataWithGrid2Zip?.tasks?.first.grid;
+    test(
+      'Check that grid type 2 size is correct with 1 PDV.',
+      () {
+        expect(
+          (
+            grid2?.processDataValueGrid?.length,
+            grid2?.processDataValueGrid?.elementAt(0).length,
+            grid2?.processDataValueGrid?.elementAt(0).elementAt(0).length,
+            grid2?.treatmentZoneCode,
+          ),
+          (38, 33, 1, 2),
+        );
+      },
+    );
+    test(
+      'Check that grid type 2 export bytes equals import bytes.',
+      () {
+        expect(
+          grid2?.gridToBytes()?.toString(),
+          grid2?.byteData.toString(),
+        );
+      },
+    );
+  });
+}

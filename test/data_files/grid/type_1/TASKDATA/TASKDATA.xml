@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ISO11783_TaskData VersionMajor="3" VersionMinor="0" ManagementSoftwareManufacturer="CropSat" ManagementSoftwareVersion="1.0.0" TaskControllerManufacturer="CropSat" TaskControllerVersion="1.1.0" DataTransferOrigin="1">
+    <PFD A="PFD1" C="Test" D="0" />
+    <VPN A="VPN1" B="0" C="1" D="0" E="kg/ha" />
+    <TSK A="TSK1" B="Test" E="PFD1" G="1" H="1">
+        <GRD A="63.5778245071075" B="10.6971399036477" C="9.07128924685662E-05" D="0.00020141635229684" E="33" F="38" G="GRD00001" H="0" I="1"/>
+        <TZN A="0" B="No rate">
+            <PDV A="0006" B="0" E="VPN1" />
+        </TZN>
+        <TZN A="1" B="20% rate">
+            <PDV A="0006" B="10" E="VPN1" />
+        </TZN>
+        <TZN A="2" B="40% rate">
+            <PDV A="0006" B="20" E="VPN1" />
+        </TZN>
+        <TZN A="3" B="60% rate">
+            <PDV A="0006" B="30" E="VPN1" />
+        </TZN>
+        <TZN A="4" B="80% rate">
+            <PDV A="0006" B="40" E="VPN1" />
+        </TZN>
+        <TZN A="5" B="Full rate">
+            <PDV A="0006" B="50" E="VPN1" />
+        </TZN>
+    </TSK>
+</ISO11783_TaskData>
