@@ -3,17 +3,19 @@
 // license that can be found in the LICENSE file.
 
 @TestOn('vm')
+library;
+
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:isoxml/isoxml.dart';
+import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  final taskDataFolder = TaskDataFileHandler.loadDirectory(
+  final taskDataFolder = await TaskDataFileHandler.loadDirectory(
     '${Directory.current.path}/test/data_files/folder_test',
   );
-  final taskDataZip = TaskDataFileHandler.loadZip(
+  final taskDataZip = await TaskDataFileHandler.loadZip(
     '${Directory.current.path}/test/data_files/zip_test.zip',
   );
 
@@ -32,12 +34,18 @@ void main() async {
       taskDataFolder?.tasks?.first.timeLogs?.first.recordsToBytes().toString(),
     ),
   );
+  
+  final taskDataWithGrid1 = await TaskDataFileHandler.loadDirectory(
+    '${Directory.current.path}/test/data_files/grid/type_1',
+  );
+  final grid1 = taskDataWithGrid1?.tasks?.first.grid;
+
+  final taskDataWithGrid2 = await TaskDataFileHandler.loadDirectory(
+    '${Directory.current.path}/test/data_files/grid/type_2',
+  );
+  final grid2 = taskDataWithGrid2?.tasks?.first.grid;
 
   group('Test grid loading', () {
-    final taskDataWithGrid1Zip = TaskDataFileHandler.loadDirectory(
-      '${Directory.current.path}/test/data_files/grid/type_1',
-    );
-    final grid1 = taskDataWithGrid1Zip?.tasks?.first.grid;
     test(
       'Check that grid type 1 size is correct with 6 TZNs.',
       () {
@@ -68,10 +76,6 @@ void main() async {
       },
     );
 
-    final taskDataWithGrid2Zip = TaskDataFileHandler.loadDirectory(
-      '${Directory.current.path}/test/data_files/grid/type_2',
-    );
-    final grid2 = taskDataWithGrid2Zip?.tasks?.first.grid;
     test(
       'Check that grid type 2 size is correct with 1 PDV.',
       () {

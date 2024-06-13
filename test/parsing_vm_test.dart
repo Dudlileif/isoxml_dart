@@ -3,10 +3,11 @@
 // license that can be found in the LICENSE file.
 
 @TestOn('vm')
+library;
 
 import 'dart:io';
 
-import 'package:isoxml/isoxml.dart';
+import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
@@ -44,7 +45,7 @@ void main() async {
         AttachedFile(
           filenameWithExtension: 'TEST1234.BIN',
           preserve: Preserve.preserve,
-          manufacturerGLN: Uri.parse('0614141000111'),
+          manufacturerGLN: '0614141000111',
           fileType: 128,
           fileVersion: 'V1',
           fileLength: 400,

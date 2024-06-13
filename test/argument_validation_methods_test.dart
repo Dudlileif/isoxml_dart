@@ -2,7 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:isoxml/isoxml.dart';
+import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:isoxml_dart/src/iso_11783_xml_elements/argument_validation.dart';
 import 'package:test/test.dart';
 
 void main() {

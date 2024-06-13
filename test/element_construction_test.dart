@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:isoxml/isoxml.dart';
+import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
@@ -190,8 +190,8 @@ void main() {
             XmlElement(XmlName('BSN'), [
               XmlAttribute(XmlName('A'), 'BSN1'),
               XmlAttribute(XmlName('B'), 'BaseStation'),
-              XmlAttribute(XmlName('C'), '60'),
-              XmlAttribute(XmlName('D'), '10'),
+              XmlAttribute(XmlName('C'), '60.0'),
+              XmlAttribute(XmlName('D'), '10.0'),
               XmlAttribute(XmlName('E'), '95'),
             ]),
           ]),
@@ -227,7 +227,7 @@ void main() {
             XmlAttribute(XmlName('A'), 'DVC00001'),
           ]),
         ).elementType,
-        Iso11783Tag.device,
+        Iso11783XmlTag.device,
       ),
     );
   });
@@ -536,13 +536,38 @@ void main() {
     });
   });
 
+  group('TaskControllerCapabilites', () {
+    test('.fromXmlElement', () {
+      Object? error;
+      try {
+        final tcc = TaskControllerCapabilities.fromXmlElement(
+          XmlElement(
+            XmlName.fromString('TCC'),
+            [
+              XmlAttribute(XmlName.fromString('A'), 'A0008F000F300DDD'),
+              XmlAttribute(XmlName.fromString('B'), 'isoxml_dart'),
+              XmlAttribute(XmlName.fromString('C'), '4'),
+              XmlAttribute(XmlName.fromString('D'), '63'),
+              XmlAttribute(XmlName.fromString('E'), '1'),
+              XmlAttribute(XmlName.fromString('F'), '2'),
+              XmlAttribute(XmlName.fromString('G'), '3'),
+            ],
+          ),
+        );
+        expect(tcc.capabilities, ProvidedCapability.values);
+      } catch (e) {
+        error = e;
+      }
+      expect(error, null);
+    });
+  });
   group('TimeLog', () {
     test('.fromXmlElement', () {
       Object? error;
       try {
         TimeLog.fromXmlElement(
           XmlElement(
-            XmlName.fromString('PDV'),
+            XmlName.fromString('TLG'),
             [
               XmlAttribute(XmlName.fromString('A'), 'TLG00010'),
               XmlAttribute(XmlName.fromString('B'), '123'),
@@ -563,7 +588,7 @@ void main() {
       try {
         TreatmentZone.fromXmlElement(
           XmlElement(
-            XmlName.fromString('PDV'),
+            XmlName.fromString('TZN'),
             [
               XmlAttribute(XmlName.fromString('A'), '102'),
               XmlAttribute(XmlName.fromString('B'), 'Zone designator'),
