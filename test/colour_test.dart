@@ -245,13 +245,14 @@ void main() {
       0xFFFFFFFF,
     ];
     test('Default palette', () {
-      final palette = Iso11783Colour();
-      expect(List.generate(256, palette.fromIndex), [
+      final colours = Iso11783Colour();
+      expect(List.generate(256, colours.fromIndex), [
         ...firstColours,
         ...webSafeColours,
         ...Iso11783Colour.defaultProprietaryColours
             .map((value) => (0xFF << 24) + value),
       ]);
+      expect(colours.palette(), List.generate(256, colours.fromIndex));
     });
 
     test('Proprietary palette', () {
@@ -263,12 +264,13 @@ void main() {
         return (r << 16) + (g << 8) + b;
       });
 
-      final palette = Iso11783Colour(proprietaryColours: proprietaryColours);
-      expect(List.generate(256, palette.fromIndex), [
+      final colours = Iso11783Colour(proprietaryColours: proprietaryColours);
+      expect(List.generate(256, colours.fromIndex), [
         ...firstColours,
         ...webSafeColours,
         ...proprietaryColours.map((value) => (0xFF << 24) + value),
       ]);
+      expect(colours.palette(), List.generate(256, colours.fromIndex));
     });
   });
 

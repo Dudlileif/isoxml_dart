@@ -25,6 +25,19 @@ class Iso11783Colour {
   /// indices 232-255.
   final List<int> proprietaryColours;
 
+  /// The whole 256 colour palette.
+  List<int> palette({bool withAlpha = true, int alpha = 0xFF}) {
+    final colours = [
+      ...firstColours,
+      ...webSafeColours,
+      ...proprietaryColours,
+    ];
+    if (withAlpha) {
+      return colours.map((colour) => (alpha << 24) + colour).toList();
+    }
+    return colours;
+  }
+
   /// Returns (A)RGB values for [index] of the 256 possible colours, where
   /// the 0-15 first are specified colours, the 16-231 are gradually increasing
   /// each channel value, whilst 232-255 are mapped to the [proprietaryColours].
