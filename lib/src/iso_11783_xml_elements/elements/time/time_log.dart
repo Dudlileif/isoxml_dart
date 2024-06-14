@@ -58,14 +58,18 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const TimeLog._({
+  TimeLog._({
     required this.filename,
     required this.type,
     required this.byteData,
     this.fileLength,
     this.header,
-    this.records,
-  }) : super(tag: Iso11783XmlTag.timeLog, description: 'TimeLog');
+    List<Time>? records,
+  }) : super(tag: Iso11783XmlTag.timeLog, description: 'TimeLog') {
+    if (records != null) {
+      this.records.addAll(records);
+    }
+  }
 
   /// Creates a [TimeLog] from [element].
   factory TimeLog.fromXmlElement(XmlElement element) =>
@@ -80,7 +84,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   /// Byte length of the [TimeLog] file.
   @annotation.XmlAttribute(name: 'B')
-  final int? fileLength;
+  int? fileLength;
 
   /// Which type the [TimeLog] file is.
   ///
@@ -91,13 +95,13 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
   /// Byte data from the file at [filename].
   ///
   /// Can be empty if the external file is not loaded.
-  final Uint8List byteData;
+  Uint8List byteData;
 
   /// A header that describes the data format in the [byteData].
-  final TimeLogHeader? header;
+  TimeLogHeader? header;
 
   /// Logged [Time] records for this.
-  final List<Time>? records;
+  final List<Time> records = [];
 
   @override
   List<Object?> get props => super.props
@@ -110,12 +114,8 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   /// Returns [byteData] parsed with [header] to a log of [Time] records.
   List<Time>? parseData() {
-    if (this.records != null) {
-      return this.records;
-    }
-    List<Time>? records;
+    records.clear();
     if (byteData.isNotEmpty && header != null) {
-      records = [];
       var currentOffset = 0;
       final data = byteData.buffer.asByteData(0, byteData.lengthInBytes);
 
@@ -215,19 +215,17 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
             final pdv = data.getInt32(currentOffset, Endian.little);
             currentOffset += 4;
 
-            final headerDataLogValue = header!.dataLogValues?.elementAt(dlvN);
-            if (headerDataLogValue != null) {
-              dataLogValues.add(
-                DataLogValue(
-                  processDataDDI: headerDataLogValue.processDataDDI,
-                  processDataValue: pdv,
-                  deviceElementIdRef: headerDataLogValue.deviceElementIdRef,
-                  pgn: headerDataLogValue.pgn,
-                  pgnStartBit: headerDataLogValue.pgnStartBit,
-                  pgnStopBit: headerDataLogValue.pgnStopBit,
-                ),
-              );
-            }
+            final headerDataLogValue = header!.dataLogValues.elementAt(dlvN);
+            dataLogValues.add(
+              DataLogValue(
+                processDataDDI: headerDataLogValue.processDataDDI,
+                processDataValue: pdv,
+                deviceElementIdRef: headerDataLogValue.deviceElementIdRef,
+                pgn: headerDataLogValue.pgn,
+                pgnStartBit: headerDataLogValue.pgnStartBit,
+                pgnStopBit: headerDataLogValue.pgnStopBit,
+              ),
+            );
           }
         }
 
@@ -247,10 +245,10 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
   /// Converts [records] to bytes ready to be saved as a `TLG-----.BIN`
   /// file.
   Uint8List? recordsToBytes() {
-    if (records != null && header != null) {
-      final byteData = Uint8List(records!.length * header!.byteLength);
+    if (header != null) {
+      final byteData = Uint8List(records.length * header!.byteLength);
       var currentOffset = 0;
-      for (final record in records!) {
+      for (final record in records) {
         final bytes = header!.recordToBytes(record);
         byteData.setRange(
           currentOffset,

@@ -93,10 +93,10 @@ class ProcessDataVariable extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ProcessDataVariable._({
+  ProcessDataVariable._({
     required this.ddi,
     required this.value,
-    this.processDataVariables,
+    List<ProcessDataVariable>? processDataVariables,
     this.productIdRef,
     this.deviceElementIdRef,
     this.valuePresentationIdRef,
@@ -105,15 +105,43 @@ class ProcessDataVariable extends Iso11783Element
   }) : super(
           tag: Iso11783XmlTag.processDataVariable,
           description: 'ProcessDataVariable',
-        );
+        ) {
+    if (processDataVariables != null) {
+      this.processDataVariables.addAll(processDataVariables);
+    }
+  }
 
   /// Creates a [ProcessDataVariable] from [element].
-  factory ProcessDataVariable.fromXmlElement(XmlElement element) =>
-      _$ProcessDataVariableFromXmlElement(element);
+  factory ProcessDataVariable.fromXmlElement(XmlElement element) {
+    final processDataVariables = element.getElements('PDV');
+    final ddi = element.getAttribute('A')!;
+    final value = element.getAttribute('B')!;
+    final productIdRef = element.getAttribute('C');
+    final deviceElementIdRef = element.getAttribute('D');
+    final valuePresentationIdRef = element.getAttribute('E');
+    final actualCulturalPracticeValue = element.getAttribute('F');
+    final elementTypeInstanceValue = element.getAttribute('G');
+    return ProcessDataVariable(
+      processDataVariables: processDataVariables
+          ?.map(ProcessDataVariable.fromXmlElement)
+          .toList(),
+      ddi: ddi,
+      value: int.parse(value),
+      productIdRef: productIdRef,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      actualCulturalPracticeValue: actualCulturalPracticeValue != null
+          ? int.parse(actualCulturalPracticeValue)
+          : null,
+      elementTypeInstanceValue: elementTypeInstanceValue != null
+          ? int.parse(elementTypeInstanceValue)
+          : null,
+    );
+  }
 
   /// A list of child [ProcessDataVariable]s.
   @annotation.XmlElement(name: 'PDV')
-  final List<ProcessDataVariable>? processDataVariables;
+  final List<ProcessDataVariable> processDataVariables = [];
 
   /// A unique Data Dictionary Identifier which identifies this.
   ///

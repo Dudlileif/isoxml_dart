@@ -13,6 +13,7 @@
 * ~~Add ISO 11783-6 colour palette~~
 * Add a registry within TaskData to ensure no duplicates (ids) and access to all ids/elements from anywhere.
 * Add capabilty to TimeLog to write/append to binary file when items are added.
+* Implement Point binary file
 * Improve tests
 * Add example(s)
 

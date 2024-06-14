@@ -152,7 +152,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Grid._({
+  Grid._({
     required this.minimumNorthPosition,
     required this.minimumEastPosition,
     required this.cellNorthSize,
@@ -179,27 +179,27 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
 
   /// Minimum north position of the grid, format: WGS84 latitude
   @annotation.XmlAttribute(name: 'A')
-  final double minimumNorthPosition;
+  double minimumNorthPosition;
 
   /// Minimum east position of the grid, format: WGS84 longitude
   @annotation.XmlAttribute(name: 'B')
-  final double minimumEastPosition;
+  double minimumEastPosition;
 
   /// North direction grid size, format: WGS84 latitude
   @annotation.XmlAttribute(name: 'C')
-  final double cellNorthSize;
+  double cellNorthSize;
 
   /// East direction grid size, format: WGS84 longitude
   @annotation.XmlAttribute(name: 'D')
-  final double cellEastSize;
+  double cellEastSize;
 
   /// Number of gridcells in the east direction.
   @annotation.XmlAttribute(name: 'E')
-  final int maximumColumn;
+  int maximumColumn;
 
   /// Number of gridcells in the north direction.
   @annotation.XmlAttribute(name: 'F')
-  final int maximumRow;
+  int maximumRow;
 
   /// The name of the binary `GRD-----.bin` file.
   @annotation.XmlAttribute(name: 'G')
@@ -207,7 +207,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
 
   /// The length of the binary `GRD-----.bin` file in bytes.
   @annotation.XmlAttribute(name: 'H')
-  final int? fileLength;
+  int? fileLength;
 
   /// Which type of values the grid contains.
   @annotation.XmlAttribute(name: 'I')
@@ -215,25 +215,25 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
 
   /// [TreatmentZone] code when using [type] is [GridType.two].
   @annotation.XmlAttribute(name: 'J')
-  final int? treatmentZoneCode;
+  int? treatmentZoneCode;
 
   /// Byte data from the file at [fileName].
   ///
   /// Can be empty if the external file is not loaded.
-  final Uint8List byteData;
+  Uint8List byteData;
 
   /// Parsed list of [TreatmentZone.code]s for the grid cells.
   ///
   /// Access grid value with `treatmentZoneCodeGrid[y][x]`.
   ///
   /// Value is only set if [type]==[GridType.one] and [byteData] is not empty.
-  final List<List<int>>? treatmentZoneCodeGrid;
+  List<List<int>>? treatmentZoneCodeGrid;
 
   /// Count of [ProcessDataVariable]s the [TreatmentZone] with
   /// [TreatmentZone.code]==[treatmentZoneCode] has.
   ///
   /// Value is only set if [type]==[GridType.two] and [treatmentZoneCode]!=null.
-  final int? numberOfProcessDataVariables;
+  int? numberOfProcessDataVariables;
 
   /// Parsed list of [ProcessDataVariable.value]s for the
   /// [ProcessDataVariable]s in the [TreatmentZone] corresponding with
@@ -243,7 +243,35 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
   ///
   /// Value is only set if [type]==[GridType.two] and [treatmentZoneCode]!=null
   /// and [byteData] is not empty.
-  final List<List<List<int>>>? processDataValueGrid;
+  List<List<List<int>>>? processDataValueGrid;
+
+  /// Parses [byteData] to fill [treatmentZoneCodeGrid] or
+  /// [processDataValueGrid].
+  void parseData() {
+    if (type == GridType.one && treatmentZoneCodeGrid == null) {
+      treatmentZoneCodeGrid = List.generate(
+        maximumRow,
+        (y) => List.generate(
+          maximumColumn,
+          (x) => byteData[maximumColumn * y + x],
+        ),
+      );
+    } else if (type == GridType.two && numberOfProcessDataVariables != null) {
+      final data = byteData.buffer.asByteData(0, byteData.lengthInBytes);
+      var currentOffset = 0;
+      processDataValueGrid = List.generate(
+        maximumRow,
+        (y) => List.generate(
+          maximumColumn,
+          (x) => List.generate(numberOfProcessDataVariables!, (z) {
+            final value = data.getInt32(currentOffset, Endian.little);
+            currentOffset += 4;
+            return value;
+          }),
+        ),
+      );
+    }
+  }
 
   @override
   List<Object?> get props => super.props

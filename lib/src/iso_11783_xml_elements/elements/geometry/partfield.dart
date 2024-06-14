@@ -98,44 +98,86 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Partfield._({
+  Partfield._({
     required this.id,
     required this.designator,
     required this.area,
-    this.lineStrings,
-    this.polygons,
-    this.points,
-    this.guidanceGroups,
+    List<LineString>? lineStrings,
+    List<Polygon>? polygons,
+    List<Point>? points,
+    List<GuidanceGroup>? guidanceGroups,
     this.code,
     this.customerIdRef,
     this.farmIdRef,
     this.cropTypeIdRef,
     this.cropVarietyIdRef,
     this.fieldIdRef,
-  }) : super(tag: Iso11783XmlTag.partfield, description: 'Partfield');
+  }) : super(tag: Iso11783XmlTag.partfield, description: 'Partfield') {
+    if (lineStrings != null) {
+      this.lineStrings.addAll(lineStrings);
+    }
+    if (polygons != null) {
+      this.polygons.addAll(polygons);
+    }
+    if (points != null) {
+      this.points.addAll(points);
+    }
+    if (guidanceGroups != null) {
+      this.guidanceGroups.addAll(guidanceGroups);
+    }
+  }
 
   /// Creates a [Partfield] from [element].
-  factory Partfield.fromXmlElement(XmlElement element) =>
-      _$PartfieldFromXmlElement(element);
+  factory Partfield.fromXmlElement(XmlElement element) {
+    final polygons = element.getElements('PLN');
+    final points = element.getElements('PNT');
+    final lineStrings = element.getElements('LSG');
+    final guidanceGroups = element.getElements('GGP');
+    final id = element.getAttribute('A')!;
+    final code = element.getAttribute('B');
+    final designator = element.getAttribute('C')!;
+    final area = element.getAttribute('D')!;
+    final customerIdRef = element.getAttribute('E');
+    final farmIdRef = element.getAttribute('F');
+    final cropTypeIdRef = element.getAttribute('G');
+    final cropVarietyIdRef = element.getAttribute('H');
+    final fieldIdRef = element.getAttribute('I');
+    return Partfield(
+      polygons: polygons?.map(Polygon.fromXmlElement).toList(),
+      points: points?.map(Point.fromXmlElement).toList(),
+      lineStrings: lineStrings?.map(LineString.fromXmlElement).toList(),
+      guidanceGroups:
+          guidanceGroups?.map(GuidanceGroup.fromXmlElement).toList(),
+      id: id,
+      code: code,
+      designator: designator,
+      area: int.parse(area),
+      customerIdRef: customerIdRef,
+      farmIdRef: farmIdRef,
+      cropTypeIdRef: cropTypeIdRef,
+      cropVarietyIdRef: cropVarietyIdRef,
+      fieldIdRef: fieldIdRef,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Partfield]s.
   static const idRefPattern = '(PFD|PFD-)([0-9])+';
 
   /// A list of [Polygon]s that this is made of.
   @annotation.XmlElement(name: 'PLN')
-  final List<Polygon>? polygons;
+  final List<Polygon> polygons = [];
 
   /// A list of [Point]s that this is made of.
   @annotation.XmlElement(name: 'PNT')
-  final List<Point>? points;
+  final List<Point> points = [];
 
   /// A list of [LineString] that this is made of.
   @annotation.XmlElement(name: 'LSG')
-  final List<LineString>? lineStrings;
+  final List<LineString> lineStrings = [];
 
   /// A list of [GuidanceGroup]s for use in this.
   @annotation.XmlElement(name: 'GGP')
-  final List<GuidanceGroup>? guidanceGroups;
+  final List<GuidanceGroup> guidanceGroups = [];
 
   /// Unique identifier for this partfield.
   ///
@@ -153,27 +195,27 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
 
   /// The size of this in m².
   @annotation.XmlAttribute(name: 'D')
-  final int area;
+  int area;
 
   /// Reference to a [Customer].
   @annotation.XmlAttribute(name: 'E')
-  final String? customerIdRef;
+  String? customerIdRef;
 
   /// Reference to a [Farm].
   @annotation.XmlAttribute(name: 'F')
-  final String? farmIdRef;
+  String? farmIdRef;
 
   /// Reference to a [CropType].
   @annotation.XmlAttribute(name: 'G')
-  final String? cropTypeIdRef;
+  String? cropTypeIdRef;
 
   /// Reference to a [CropVariety].
   @annotation.XmlAttribute(name: 'H')
-  final String? cropVarietyIdRef;
+  String? cropVarietyIdRef;
 
   /// Reference to a parent [Partfield].
   @annotation.XmlAttribute(name: 'I')
-  final String? fieldIdRef;
+  String? fieldIdRef;
 
   @override
   List<Object?> get props => super.props

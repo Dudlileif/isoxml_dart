@@ -46,24 +46,49 @@ class CodedComment extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CodedComment._({
+  CodedComment._({
     required this.id,
     required this.designator,
     required this.scope,
-    this.listValues,
+    List<CodedCommentListValue>? listValues,
     this.groupIdRef,
-  }) : super(tag: Iso11783XmlTag.codedComment, description: 'CodedComment');
+  }) : super(tag: Iso11783XmlTag.codedComment, description: 'CodedComment') {
+    if (listValues != null) {
+      this.listValues.addAll(listValues);
+    }
+  }
 
   /// Creates a [CodedComment] from [element].
-  factory CodedComment.fromXmlElement(XmlElement element) =>
-      _$CodedCommentFromXmlElement(element);
+  factory CodedComment.fromXmlElement(XmlElement element) {
+    final listValues = element.getElements('CCL');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final scope = element.getAttribute('C')!;
+    final groupIdRef = element.getAttribute('D');
+    return CodedComment(
+      listValues:
+          listValues?.map(CodedCommentListValue.fromXmlElement).toList(),
+      id: id,
+      designator: designator,
+      scope: $CodedCommmentScopeEnumMap.entries
+          .singleWhere(
+            (codedCommmentScopeEnumMapEntry) =>
+                codedCommmentScopeEnumMapEntry.value == scope,
+            orElse: () => throw ArgumentError(
+              '''`$scope` is not one of the supported values: ${$CodedCommmentScopeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      groupIdRef: groupIdRef,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [CodedComment]s.
   static const String idRefPattern = '(CCT|CCT-)([0-9])+';
 
   /// List of [CodedCommentListValue]s for this comment.
   @annotation.XmlElement(name: 'CCL')
-  final List<CodedCommentListValue>? listValues;
+  final List<CodedCommentListValue> listValues = [];
 
   /// Unique identifier for this comment.
   ///
@@ -77,11 +102,11 @@ class CodedComment extends Iso11783Element
 
   /// Where this comment should be used/applies.
   @annotation.XmlAttribute(name: 'C')
-  final CodedCommmentScope scope;
+  CodedCommmentScope scope;
 
   /// A reference to a [CodedCommentGroup] that this comment is a part of.
   @annotation.XmlAttribute(name: 'D')
-  final String? groupIdRef;
+  String? groupIdRef;
 
   @override
   List<Object?> get props => super.props

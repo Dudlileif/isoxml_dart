@@ -43,27 +43,41 @@ class GuidanceAllocation extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const GuidanceAllocation._({
-    required this.allocationStamps,
+  GuidanceAllocation._({
+    required List<AllocationStamp> allocationStamps,
     required this.groupIdRef,
-    this.shifts,
+    List<GuidanceShift>? shifts,
   }) : super(
           tag: Iso11783XmlTag.guidanceAllocation,
           description: 'GuidanceAllocation',
           onlyVersion4AndAbove: true,
-        );
+        ) {
+    this.allocationStamps.addAll(allocationStamps);
+    if (shifts != null) {
+      this.shifts.addAll(shifts);
+    }
+  }
 
   /// Creates a [GuidanceAllocation] from [element].
-  factory GuidanceAllocation.fromXmlElement(XmlElement element) =>
-      _$GuidanceAllocationFromXmlElement(element);
+  factory GuidanceAllocation.fromXmlElement(XmlElement element) {
+    final allocationStamps = element.getElements('ASP')!;
+    final shifts = element.getElements('GST');
+    final groupIdRef = element.getAttribute('A')!;
+    return GuidanceAllocation(
+      allocationStamps:
+          allocationStamps.map(AllocationStamp.fromXmlElement).toList(),
+      shifts: shifts?.map(GuidanceShift.fromXmlElement).toList(),
+      groupIdRef: groupIdRef,
+    );
+  }
 
   /// A list of [AllocationStamp]s for this.
   @annotation.XmlElement(name: 'ASP')
-  final List<AllocationStamp> allocationStamps;
+  final List<AllocationStamp> allocationStamps = [];
 
   /// A list of [GuidanceShift]s for this.
   @annotation.XmlElement(name: 'GST')
-  final List<GuidanceShift>? shifts;
+  final List<GuidanceShift> shifts = [];
 
   /// Reference to a [GuidanceGroup].
   @annotation.XmlAttribute(name: 'A')

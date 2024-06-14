@@ -62,25 +62,46 @@ class TreatmentZone extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const TreatmentZone._({
+  TreatmentZone._({
     required this.code,
-    this.polygons,
-    this.processDataVariables,
+    List<Polygon>? polygons,
+    List<ProcessDataVariable>? processDataVariables,
     this.designator,
     this.colour,
-  }) : super(tag: Iso11783XmlTag.treatmentZone, description: 'TreatmentZone');
+  }) : super(tag: Iso11783XmlTag.treatmentZone, description: 'TreatmentZone') {
+    if (polygons != null) {
+      this.polygons.addAll(polygons);
+    }
+    if (processDataVariables != null) {
+      this.processDataVariables.addAll(processDataVariables);
+    }
+  }
 
   /// Creates a [TreatmentZone] from [element].
-  factory TreatmentZone.fromXmlElement(XmlElement element) =>
-      _$TreatmentZoneFromXmlElement(element);
+  factory TreatmentZone.fromXmlElement(XmlElement element) {
+    final polygons = element.getElements('PLN');
+    final processDataVariables = element.getElements('PDV');
+    final code = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final colour = element.getAttribute('C');
+    return TreatmentZone(
+      polygons: polygons?.map(Polygon.fromXmlElement).toList(),
+      processDataVariables: processDataVariables
+          ?.map(ProcessDataVariable.fromXmlElement)
+          .toList(),
+      code: int.parse(code),
+      designator: designator,
+      colour: colour != null ? int.parse(colour) : null,
+    );
+  }
 
   /// A list of [Polygon]s for this.
   @annotation.XmlElement(name: 'PLN')
-  final List<Polygon>? polygons;
+  final List<Polygon> polygons = [];
 
   /// A list of [ProcessDataVariable]s for this.
   @annotation.XmlElement(name: 'PDV')
-  final List<ProcessDataVariable>? processDataVariables;
+  final List<ProcessDataVariable> processDataVariables = [];
 
   /// A unique [TreatmentZone] code inside a single [Task].
   @annotation.XmlAttribute(name: 'A')

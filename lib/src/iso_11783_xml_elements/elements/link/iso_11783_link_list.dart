@@ -58,7 +58,7 @@ class Iso11783LinkList extends Iso11783Element
       managementSoftwareManufacturer: managementSoftwareManufacturer,
       managementSoftwareVersion: managementSoftwareVersion,
       dataTransferOrigin: dataTransferOrigin,
-      linkGroups: linkGroups,
+      linkGroups: linkGroups ?? const [],
       taskControllerManufacturer: taskControllerManufacturer,
       taskControllerVersion: taskControllerVersion,
       fileVersion: fileVersion,
@@ -67,13 +67,13 @@ class Iso11783LinkList extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Iso11783LinkList._({
+  Iso11783LinkList._({
     required this.versionMajor,
     required this.versionMinor,
     required this.managementSoftwareManufacturer,
     required this.managementSoftwareVersion,
     required this.dataTransferOrigin,
-    this.linkGroups,
+    List<LinkGroup>? linkGroups,
     this.taskControllerManufacturer,
     this.taskControllerVersion,
     this.fileVersion,
@@ -81,11 +81,62 @@ class Iso11783LinkList extends Iso11783Element
           tag: Iso11783XmlTag.linkList,
           description: 'ISO 11783 Link List File',
           onlyVersion4AndAbove: true,
-        );
+        ) {
+    if (linkGroups != null) {
+      this.linkGroups.addAll(linkGroups);
+    }
+  }
 
   /// Creates an [Iso11783LinkList] from [element].
-  factory Iso11783LinkList.fromXmlElement(XmlElement element) =>
-      _$Iso11783LinkListFromXmlElement(element);
+  factory Iso11783LinkList.fromXmlElement(XmlElement element) {
+    final linkGroups = element.getElements('LGP');
+    final versionMajor = element.getAttribute('VersionMajor')!;
+    final versionMinor = element.getAttribute('VersionMinor')!;
+    final managementSoftwareManufacturer =
+        element.getAttribute('ManagementSoftwareManufacturer')!;
+    final managementSoftwareVersion =
+        element.getAttribute('ManagementSoftwareVersion')!;
+    final taskControllerManufacturer =
+        element.getAttribute('TaskControllerManufacturer');
+    final taskControllerVersion = element.getAttribute('TaskControllerVersion');
+    final fileVersion = element.getAttribute('FileVersion');
+    final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
+    return Iso11783LinkList(
+      linkGroups: linkGroups?.map(LinkGroup.fromXmlElement).toList(),
+      versionMajor: $VersionMajorEnumMap.entries
+          .singleWhere(
+            (versionMajorEnumMapEntry) =>
+                versionMajorEnumMapEntry.value == versionMajor,
+            orElse: () => throw ArgumentError(
+              '''`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      versionMinor: $VersionMinorEnumMap.entries
+          .singleWhere(
+            (versionMinorEnumMapEntry) =>
+                versionMinorEnumMapEntry.value == versionMinor,
+            orElse: () => throw ArgumentError(
+              '''`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      managementSoftwareManufacturer: managementSoftwareManufacturer,
+      managementSoftwareVersion: managementSoftwareVersion,
+      taskControllerManufacturer: taskControllerManufacturer,
+      taskControllerVersion: taskControllerVersion,
+      fileVersion: fileVersion,
+      dataTransferOrigin: $DataTransferOriginEnumMap.entries
+          .singleWhere(
+            (dataTransferOriginEnumMapEntry) =>
+                dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
+            orElse: () => throw ArgumentError(
+              '''`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+    );
+  }
 
   /// Creates an [Iso11783LinkList] from [document].
   static Iso11783LinkList? fromXmlDocument(XmlDocument document) {
@@ -98,7 +149,7 @@ class Iso11783LinkList extends Iso11783Element
 
   /// A list of [LinkGroup]s of this.
   @annotation.XmlElement(name: 'LGP')
-  final List<LinkGroup>? linkGroups;
+  final List<LinkGroup> linkGroups = [];
 
   /// Major version of the standard.
   @annotation.XmlAttribute(name: 'VersionMajor')

@@ -19,7 +19,7 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
     required String clientNAME,
     required String structureLabel,
     required String localizationLabel,
-    required List<DeviceElement> elements,
+    required List<DeviceElement>? elements,
     List<DeviceProperty>? properties,
     List<DeviceProcessData>? processData,
     List<DeviceValuePresentation>? valuePresentations,
@@ -51,7 +51,7 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
       ArgumentValidation.checkStringLength(designator);
     }
 
-    if (elements.isEmpty) {
+    if (elements!.isEmpty) {
       throw ArgumentError.value(
         elements,
         'elements',
@@ -68,31 +68,70 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
       softwareVersion: softwareVersion,
       serialNumber: serialNumber,
       elements: elements,
-      properties: properties,
-      processData: processData,
-      valuePresentations: valuePresentations,
+      properties: properties ?? const [],
+      processData: processData ?? const [],
+      valuePresentations: valuePresentations ?? const [],
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Device._({
+  Device._({
     required this.id,
     required this.clientNAME,
     required this.structureLabel,
     required this.localizationLabel,
-    required this.elements,
-    this.properties,
-    this.processData,
-    this.valuePresentations,
+    required List<DeviceElement>? elements,
+    List<DeviceProperty>? properties,
+    List<DeviceProcessData>? processData,
+    List<DeviceValuePresentation>? valuePresentations,
     this.designator,
     this.softwareVersion,
     this.serialNumber,
-  }) : super(tag: Iso11783XmlTag.device, description: 'Device');
+  }) : super(tag: Iso11783XmlTag.device, description: 'Device') {
+    if (elements != null) {
+      this.elements.addAll(elements);
+    }
+    if (properties != null) {
+      this.properties.addAll(properties);
+    }
+    if (processData != null) {
+      this.processData.addAll(processData);
+    }
+    if (valuePresentations != null) {
+      this.valuePresentations.addAll(valuePresentations);
+    }
+  }
 
   /// Creates a [Device] from [element].
-  factory Device.fromXmlElement(XmlElement element) =>
-      _$DeviceFromXmlElement(element);
+  factory Device.fromXmlElement(XmlElement element) {
+    final elements = element.getElements('DET')!;
+    final processData = element.getElements('DPD');
+    final properties = element.getElements('DPT');
+    final valuePresentations = element.getElements('DVP');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final softwareVersion = element.getAttribute('C');
+    final clientNAME = element.getAttribute('D')!;
+    final serialNumber = element.getAttribute('E');
+    final structureLabel = element.getAttribute('F')!;
+    final localizationLabel = element.getAttribute('G')!;
+    return Device(
+      elements: elements.map(DeviceElement.fromXmlElement).toList(),
+      processData: processData?.map(DeviceProcessData.fromXmlElement).toList(),
+      properties: properties?.map(DeviceProperty.fromXmlElement).toList(),
+      valuePresentations: valuePresentations
+          ?.map(DeviceValuePresentation.fromXmlElement)
+          .toList(),
+      id: id,
+      designator: designator,
+      softwareVersion: softwareVersion,
+      clientNAME: clientNAME,
+      serialNumber: serialNumber,
+      structureLabel: structureLabel,
+      localizationLabel: localizationLabel,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Device]s.
   static const idRefPattern = '(DVC|DVC-)([0-9])+';
@@ -107,19 +146,19 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
 
   /// A list of the [DeviceElement]s of this.
   @annotation.XmlElement(name: 'DET')
-  final List<DeviceElement> elements;
+  final List<DeviceElement> elements = [];
 
   /// A list of the [DeviceProcessData]s of this.
   @annotation.XmlElement(name: 'DPD')
-  final List<DeviceProcessData>? processData;
+  final List<DeviceProcessData> processData = [];
 
   /// A list of the [DeviceProperty]s of this.
   @annotation.XmlElement(name: 'DPT')
-  final List<DeviceProperty>? properties;
+  final List<DeviceProperty> properties = [];
 
   /// A list of the [DeviceValuePresentation]s of this.
   @annotation.XmlElement(name: 'DVP')
-  final List<DeviceValuePresentation>? valuePresentations;
+  final List<DeviceValuePresentation> valuePresentations = [];
 
   /// Unique identifier for this device.
   ///

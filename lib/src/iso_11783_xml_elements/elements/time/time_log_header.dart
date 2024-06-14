@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 part of '../../iso_11783_element.dart';
-  
+
 /// An element used exclusively in `TLG-----.XML` files to denote the binary
 /// format of [Time] records in the `TLG-----.BIN' files.
 ///
@@ -15,12 +15,16 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 class TimeLogHeader {
   /// Default constructor.
-  const TimeLogHeader({
+  TimeLogHeader({
     required this.type,
     this.start,
     this.position,
-    this.dataLogValues,
-  });
+    List<TimeLogHeaderDataLogValue>? dataLogValues,
+  }) {
+    if (dataLogValues != null) {
+      this.dataLogValues.addAll(dataLogValues);
+    }
+  }
 
   /// Creates a [TimeLogHeader] from [document].
   factory TimeLogHeader.fromXmlDocument(XmlDocument document) =>
@@ -57,12 +61,12 @@ class TimeLogHeader {
 
   /// A template for which [Position] attributes are used in the
   /// log.
-  @annotation.XmlElement(name: 'PTN')
+  @annotation.XmlElement(name: 'PTN', includeIfNull: false)
   final TimeLogHeaderPosition? position;
 
   /// A template for which [DataLogValue]s' attributes are used in the log.
   @annotation.XmlElement(name: 'DLV')
-  final List<TimeLogHeaderDataLogValue>? dataLogValues;
+  final List<TimeLogHeaderDataLogValue> dataLogValues = [];
 
   /// The starting time of the records, should be null.
   @annotation.XmlAttribute(name: 'A')
@@ -81,11 +85,7 @@ class TimeLogHeader {
     if (position != null) {
       length += position!.byteLength;
     }
-    if (dataLogValues != null) {
-      length += 1 + dataLogValues!.length * 5;
-    }
-
-    return length;
+    return length + 1 + dataLogValues.length * 5;
   }
 
   /// Converts the [record]to bytes according to the read parameters.
@@ -110,8 +110,8 @@ class TimeLogHeader {
       currentOffset += 2;
     }
 
-    final recordPosition = record.positions?.first;
-    if (recordPosition != null && position != null) {
+    final recordPosition = record.positions.first;
+    if (position != null) {
       bytes.setRange(
         currentOffset,
         currentOffset + position!.byteLength,
@@ -120,28 +120,26 @@ class TimeLogHeader {
       currentOffset += position!.byteLength;
     }
     final byteData = bytes.buffer.asByteData(0, bytes.lengthInBytes)
-      ..setUint8(currentOffset, record.dataLogValues?.length ?? 0);
+      ..setUint8(currentOffset, record.dataLogValues.length);
     currentOffset++;
-    if (dataLogValues != null && record.dataLogValues != null) {
-      for (final dataLogValue in record.dataLogValues!) {
-        byteData.setUint8(
-          currentOffset,
-          dataLogValues!.indexWhere(
-            (element) =>
-                element.processDataDDI == dataLogValue.processDataDDI &&
-                element.deviceElementIdRef == dataLogValue.deviceElementIdRef,
-          ),
-        );
-        currentOffset++;
-        byteData.setInt32(
-          currentOffset,
-          dataLogValue.processDataValue,
-          Endian.little,
-        );
-        currentOffset += 4;
-      }
+    for (final dataLogValue in record.dataLogValues) {
+      byteData.setUint8(
+        currentOffset,
+        dataLogValues.indexWhere(
+          (element) =>
+              element.processDataDDI == dataLogValue.processDataDDI &&
+              element.deviceElementIdRef == dataLogValue.deviceElementIdRef,
+        ),
+      );
+      currentOffset++;
+      byteData.setInt32(
+        currentOffset,
+        dataLogValue.processDataValue,
+        Endian.little,
+      );
+      currentOffset += 4;
     }
-
+  
     return Uint8List.sublistView(bytes, 0, currentOffset);
   }
 
@@ -152,8 +150,7 @@ class TimeLogHeader {
       [...namespaces.toXmlAttributes()],
       [
         if (position != null) position!.toXmlElement(),
-        if (dataLogValues != null)
-          ...dataLogValues!.map((e) => e.toXmlElement()),
+        ...dataLogValues.map((e) => e.toXmlElement()),
       ],
     )
       ..setAttribute('A', start?.toString() ?? '')

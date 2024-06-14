@@ -51,24 +51,48 @@ class AllocationStamp extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const AllocationStamp._({
+  AllocationStamp._({
     required this.start,
     required this.type,
     this.stop,
     this.duration,
-    this.position,
+    List<Position>? position,
   }) : super(
           tag: Iso11783XmlTag.allocationStamp,
           description: 'AllocationStamp',
-        );
+        ) {
+    if (position != null) {
+      this.position.addAll(position);
+    }
+  }
 
   /// Creates an [AllocationStamp] from [element].
-  factory AllocationStamp.fromXmlElement(XmlElement element) =>
-      _$AllocationStampFromXmlElement(element);
+  factory AllocationStamp.fromXmlElement(XmlElement element) {
+    final position = element.getElements('PTN');
+    final start = element.getAttribute('A')!;
+    final stop = element.getAttribute('B');
+    final duration = element.getAttribute('C');
+    final type = element.getAttribute('D')!;
+    return AllocationStamp(
+      position: position?.map(Position.fromXmlElement).toList(),
+      start: DateTime.parse(start),
+      stop: stop != null ? DateTime.parse(stop) : null,
+      duration: duration != null ? int.parse(duration) : null,
+      type: $AllocationStampTypeEnumMap.entries
+          .singleWhere(
+            (allocationStampTypeEnumMapEntry) =>
+                allocationStampTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$AllocationStampTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+    );
+  }
 
   /// Optional position for where the stamp was planned/effective.
   @annotation.XmlElement(name: 'PTN')
-  final List<Position>? position;
+  final List<Position> position = [];
 
   /// Start time.
   @annotation.XmlAttribute(name: 'A')

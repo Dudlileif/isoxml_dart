@@ -72,7 +72,7 @@ class CommentAllocation extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CommentAllocation._({
+  CommentAllocation._({
     this.allocationStamp,
     this.codedCommentIdRef,
     this.codedCommentListValueIdRef,
@@ -88,19 +88,19 @@ class CommentAllocation extends Iso11783Element
 
   /// [AllocationStamp] for specifying the position and time of this allocation.
   @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  AllocationStamp? allocationStamp;
 
   /// A reference to the id of the [CodedComment] we allocated.
   @annotation.XmlAttribute(name: 'A')
-  final String? codedCommentIdRef;
+  String? codedCommentIdRef;
 
   /// A reference to the id of the [CodedCommentListValue] we allocated.
   @annotation.XmlAttribute(name: 'B')
-  final String? codedCommentListValueIdRef;
+  String? codedCommentListValueIdRef;
 
   /// A text comment specified by the operator.
   @annotation.XmlAttribute(name: 'C')
-  final String? freeCommentText;
+  String? freeCommentText;
 
   @override
   List<Object?> get props => super.props

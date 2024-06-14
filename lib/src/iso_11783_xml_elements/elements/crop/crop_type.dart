@@ -42,23 +42,37 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CropType._({
+  CropType._({
     required this.id,
     required this.designator,
-    this.varieties,
+    List<CropVariety>? varieties,
     this.productGroupIdRef,
-  }) : super(tag: Iso11783XmlTag.cropType, description: 'CropType');
+  }) : super(tag: Iso11783XmlTag.cropType, description: 'CropType') {
+    if (varieties != null) {
+      this.varieties.addAll(varieties);
+    }
+  }
 
   /// Creates a [CropType] from [element].
-  factory CropType.fromXmlElement(XmlElement element) =>
-      _$CropTypeFromXmlElement(element);
+  factory CropType.fromXmlElement(XmlElement element) {
+    final varieties = element.getElements('CVT');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final productGroupIdRef = element.getAttribute('C');
+    return CropType(
+      varieties: varieties?.map(CropVariety.fromXmlElement).toList(),
+      id: id,
+      designator: designator,
+      productGroupIdRef: productGroupIdRef,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [CropType]s.
   static const idRefPattern = '(CTP|CTP-)([0-9])+';
 
   /// A list of different varieties of this crop.
   @annotation.XmlElement(name: 'CVT')
-  final List<CropVariety>? varieties;
+  final List<CropVariety> varieties = [];
 
   /// Unique identifier for this crop type.
   ///

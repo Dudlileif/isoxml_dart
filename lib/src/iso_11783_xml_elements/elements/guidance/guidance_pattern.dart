@@ -125,8 +125,8 @@ class GuidancePattern extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const GuidancePattern._({
-    required this.lineStrings,
+  GuidancePattern._({
+    required List<LineString> lineStrings,
     required this.id,
     required this.type,
     this.boundaryPolygon,
@@ -147,7 +147,9 @@ class GuidancePattern extends Iso11783Element
           tag: Iso11783XmlTag.guidancePattern,
           description: 'GuidancePattern',
           onlyVersion4AndAbove: true,
-        );
+        ) {
+    this.lineStrings.addAll(lineStrings);
+  }
 
   /// Creates a [GuidancePattern] from [element].
   factory GuidancePattern.fromXmlElement(XmlElement element) =>
@@ -165,7 +167,7 @@ class GuidancePattern extends Iso11783Element
   /// The separation spacing between the paths for each [LineString] pattern
   /// is the [LineString.width] parameter.
   @annotation.XmlElement(name: 'LSG')
-  final List<LineString> lineStrings;
+  final List<LineString> lineStrings = [];
 
   /// Unique identifier for this guidance pattern.
   ///

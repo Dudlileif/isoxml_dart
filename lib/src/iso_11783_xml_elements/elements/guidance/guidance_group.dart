@@ -36,27 +36,43 @@ class GuidanceGroup extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const GuidanceGroup._({
+  GuidanceGroup._({
     required this.id,
-    this.patterns,
+    List<GuidancePattern>? patterns,
     this.boundaryPolygon,
     this.designator,
   }) : super(
           tag: Iso11783XmlTag.guidanceGroup,
           description: 'GuidanceGroup',
           onlyVersion4AndAbove: true,
-        );
+        ) {
+    if (patterns != null) {
+      this.patterns.addAll(patterns);
+    }
+  }
 
   /// Creates a [GuidanceGroup] from [element].
-  factory GuidanceGroup.fromXmlElement(XmlElement element) =>
-      _$GuidanceGroupFromXmlElement(element);
+  factory GuidanceGroup.fromXmlElement(XmlElement element) {
+    final patterns = element.getElements('GPN');
+    final boundaryPolygon = element.getElement('PLN');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    return GuidanceGroup(
+      patterns: patterns?.map(GuidancePattern.fromXmlElement).toList(),
+      boundaryPolygon: boundaryPolygon != null
+          ? Polygon.fromXmlElement(boundaryPolygon)
+          : null,
+      id: id,
+      designator: designator,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [GuidanceGroup]s.
   static const idRefPattern = '(GGP|GGP-)([0-9])+';
 
   /// A list of [GuidancePattern]s for this.
   @annotation.XmlElement(name: 'GPN')
-  final List<GuidancePattern>? patterns;
+  final List<GuidancePattern> patterns = [];
 
   /// Boundary [Polygon] for this.
   @annotation.XmlElement(name: 'PLN', includeIfNull: false)

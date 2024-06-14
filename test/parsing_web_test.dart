@@ -53,25 +53,25 @@ void main() {
       'Check task data element count for each type',
       () => expect(
         (
-          taskData.attachedFiles?.length,
-          taskData.baseStations?.length,
-          taskData.codedCommentGroups?.length,
-          taskData.codedComments?.length,
-          taskData.colourLegends?.length,
-          taskData.cropTypes?.length,
-          taskData.culturalPractices?.length,
-          taskData.customers?.length,
-          taskData.devices?.length,
-          taskData.externalFileReferences?.length,
-          taskData.farms?.length,
-          taskData.operationTechniques?.length,
-          taskData.partfields?.length,
-          taskData.products?.length,
-          taskData.productGroups?.length,
-          taskData.tasks?.length,
-          taskData.taskControllerCapabilities?.length,
-          taskData.valuePresentations?.length,
-          taskData.workers?.length,
+          taskData.attachedFiles.length,
+          taskData.baseStations.length,
+          taskData.codedCommentGroups.length,
+          taskData.codedComments.length,
+          taskData.colourLegends.length,
+          taskData.cropTypes.length,
+          taskData.culturalPractices.length,
+          taskData.customers.length,
+          taskData.devices.length,
+          taskData.externalFileReferences.length,
+          taskData.farms.length,
+          taskData.operationTechniques.length,
+          taskData.partfields.length,
+          taskData.products.length,
+          taskData.productGroups.length,
+          taskData.tasks.length,
+          taskData.taskControllerCapabilities.length,
+          taskData.valuePresentations.length,
+          taskData.workers.length,
         ),
         (1, 1, 1, 1, 1, 1, 1, 1, 2, null, 1, 1, 2, 3, 1, 1, 1, 1, 1),
       ),
@@ -80,7 +80,7 @@ void main() {
     test(
       'Check the attached file attributes',
       () {
-        final attachedFile = taskData.attachedFiles!.first;
+        final attachedFile = taskData.attachedFiles.first;
         expect(
           (
             attachedFile.filenameWithExtension,
@@ -105,7 +105,7 @@ void main() {
     test(
       'Check the base station attributes',
       () {
-        final baseStation = taskData.baseStations!.first;
+        final baseStation = taskData.baseStations.first;
         expect(
           (
             baseStation.id,
@@ -128,7 +128,7 @@ void main() {
     test(
       'Check the coded comment attributes and children list elements',
       () {
-        final codedComment = taskData.codedComments!.first;
+        final codedComment = taskData.codedComments.first;
         expect(
           (
             codedComment.id,
@@ -136,14 +136,14 @@ void main() {
             codedComment.scope,
             codedComment.groupIdRef,
             (
-              codedComment.listValues?.first.id,
-              codedComment.listValues?.elementAt(1).id,
-              codedComment.listValues?.elementAt(2).id
+              codedComment.listValues.first.id,
+              codedComment.listValues.elementAt(1).id,
+              codedComment.listValues.elementAt(2).id
             ),
             (
-              codedComment.listValues?.first.designator,
-              codedComment.listValues?.elementAt(1).designator,
-              codedComment.listValues?.elementAt(2).designator
+              codedComment.listValues.first.designator,
+              codedComment.listValues.elementAt(1).designator,
+              codedComment.listValues.elementAt(2).designator
             ),
           ),
           (
@@ -161,7 +161,7 @@ void main() {
     test(
       'Check the coded comment group attributes',
       () {
-        final codedCommentGroup = taskData.codedCommentGroups!.first;
+        final codedCommentGroup = taskData.codedCommentGroups.first;
         expect(
           (codedCommentGroup.id, codedCommentGroup.designator),
           ('CCG1', 'InternetMemes'),
@@ -172,7 +172,7 @@ void main() {
     test(
       'Check the colour legend attributes and child range elemens',
       () {
-        final colourLegend = taskData.colourLegends!.first;
+        final colourLegend = taskData.colourLegends.first;
         expect(
           (
             colourLegend.id,
@@ -210,20 +210,20 @@ void main() {
     test(
       'Check the crop type attributes and child varieties elements',
       () {
-        final cropType = taskData.cropTypes!.first;
+        final cropType = taskData.cropTypes.first;
         expect(
           (
             cropType.id,
             cropType.designator,
             cropType.productGroupIdRef,
-            (cropType.varieties?.first.id, cropType.varieties?.last.id),
+            (cropType.varieties.first.id, cropType.varieties.last.id),
             (
-              cropType.varieties?.first.designator,
-              cropType.varieties?.last.designator
+              cropType.varieties.first.designator,
+              cropType.varieties.last.designator
             ),
             (
-              cropType.varieties?.first.productIdRef,
-              cropType.varieties?.last.productIdRef
+              cropType.varieties.first.productIdRef,
+              cropType.varieties.last.productIdRef
             ),
           ),
           (
@@ -241,13 +241,13 @@ void main() {
     test(
       '''Check the cultural practice attribues and operation technique id reference''',
       () {
-        final culturalPractice = taskData.culturalPractices!.first;
+        final culturalPractice = taskData.culturalPractices.first;
         expect(
           (
             culturalPractice.id,
             culturalPractice.designator,
             culturalPractice
-                .operationTechniqueReferences?.first.operationTechniqueIdRef,
+                .operationTechniqueReferences.first.operationTechniqueIdRef,
           ),
           ('CPC1', 'Drilling', 'OTQ1'),
         );
@@ -257,7 +257,7 @@ void main() {
     test(
       'Check the customer attributes',
       () {
-        final customer = taskData.customers!.first;
+        final customer = taskData.customers.first;
         expect(
           (
             customer.id,
@@ -296,7 +296,7 @@ void main() {
     group('Test device elements', () {
       test(
         'Check the count of device elements',
-        () => expect(taskData.devices?.length, 2),
+        () => expect(taskData.devices.length, 2),
       );
       final deviceAttributes = [
         (
@@ -319,7 +319,7 @@ void main() {
         ),
       ];
 
-      for (final (deviceIndex, device) in taskData.devices!.indexed) {
+      for (final (deviceIndex, device) in taskData.devices.indexed) {
         group('Test device${deviceIndex + 1}', () {
           test(
             'Check device attributes',
@@ -379,7 +379,7 @@ void main() {
                 test(
                   '''Check device element${index + 1} count of $DeviceObjectReference children''',
                   () => expect(
-                    element.objectReferences?.length,
+                    element.objectReferences.length,
                     [2, 1, 2][index],
                   ),
                 );
@@ -387,10 +387,10 @@ void main() {
                   '''Check device element${index + 1} $DeviceObjectReference children attributes''',
                   () => expect(
                     switch (index) {
-                      1 => element.objectReferences?.first.objectId,
+                      1 => element.objectReferences.first.objectId,
                       _ => (
-                          element.objectReferences?.first.objectId,
-                          element.objectReferences?.last.objectId
+                          element.objectReferences.first.objectId,
+                          element.objectReferences.last.objectId
                         )
                     },
                     switch (index) {
@@ -405,12 +405,12 @@ void main() {
           );
           test(
             'Check count of $DeviceProcessData children',
-            () => expect(device.processData?.length, 2),
+            () => expect(device.processData.length, 2),
           );
           group(
             'Test $DeviceProcessData children',
             () {
-              for (final (index, processData) in device.processData!.indexed) {
+              for (final (index, processData) in device.processData.indexed) {
                 test(
                   '''Check process data${index + 1} attributes''',
                   () => expect(
@@ -440,12 +440,12 @@ void main() {
           );
           test(
             'Check count of $DeviceProperty children',
-            () => expect(device.properties?.length, 3),
+            () => expect(device.properties.length, 3),
           );
           group(
             'Test $DeviceProperty children',
             () {
-              for (final (index, property) in device.properties!.indexed) {
+              for (final (index, property) in device.properties.indexed) {
                 test(
                   '''Check property${index + 1} attributes''',
                   () => expect(
@@ -471,13 +471,13 @@ void main() {
 
           test(
             'Check count of $ValuePresentation children',
-            () => expect(device.valuePresentations?.length, 2),
+            () => expect(device.valuePresentations.length, 2),
           );
           group(
             'Test $ValuePresentation children',
             () {
               for (final (index, valuePresentation)
-                  in device.valuePresentations!.indexed) {
+                  in device.valuePresentations.indexed) {
                 test(
                   '''Check valuePresentation${index + 1} attributes''',
                   () => expect(
@@ -505,7 +505,7 @@ void main() {
     });
 
     test('Check the farm attributes', () {
-      final farm = taskData.farms!.first;
+      final farm = taskData.farms.first;
 
       expect(
         (
@@ -534,7 +534,7 @@ void main() {
     });
 
     test('Check the operation technique attributes', () {
-      final operationTechnique = taskData.operationTechniques!.first;
+      final operationTechnique = taskData.operationTechniques.first;
       expect(
         (operationTechnique.id, operationTechnique.designator),
         ('OTQ1', 'Deep Drilling'),
@@ -544,9 +544,9 @@ void main() {
     group('Test partfield elements', () {
       test(
         'Check the count of $Partfield elments',
-        () => expect(taskData.partfields?.length, 2),
+        () => expect(taskData.partfields.length, 2),
       );
-      for (final (index, partfield) in taskData.partfields!.indexed) {
+      for (final (index, partfield) in taskData.partfields.indexed) {
         group('Test partfield${index + 1}', () {
           test(
             'Check partfield${index + 1} attributes',
@@ -577,8 +577,8 @@ void main() {
           );
           if (index == 1) {
             group('Test partfield2 children elements', () {
-              final partfield = taskData.partfields!.last;
-              final fieldBorder = partfield.polygons!.first;
+              final partfield = taskData.partfields.last;
+              final fieldBorder = partfield.polygons.first;
               test(
                 'Check $Polygon attributes',
                 () => expect(
@@ -599,7 +599,7 @@ void main() {
                 ),
               );
 
-              final borderLineString = fieldBorder.lineStrings!.first;
+              final borderLineString = fieldBorder.lineStrings.first;
               test(
                 'Check polygon child $LineString attributes ',
                 () => expect(
@@ -663,7 +663,7 @@ void main() {
               );
 
               test('Check entry point attributes', () {
-                final entryPoint = partfield.points!.first;
+                final entryPoint = partfield.points.first;
                 expect(
                   (
                     entryPoint.type,
@@ -691,7 +691,7 @@ void main() {
               });
 
               group('Test outer linestring element', () {
-                final outerLineString = partfield.lineStrings!.first;
+                final outerLineString = partfield.lineStrings.first;
                 test(
                   'Check outer linestring attributes',
                   () => expect(
@@ -756,7 +756,7 @@ void main() {
               });
 
               group('Test guidance group element', () {
-                final guidanceGroup = partfield.guidanceGroups!.first;
+                final guidanceGroup = partfield.guidanceGroups.first;
                 test(
                   'Check guidance group attributes',
                   () => expect(
@@ -766,7 +766,7 @@ void main() {
                 );
 
                 group('Test guidance pattern element', () {
-                  final guidancePattern = guidanceGroup.patterns!.first;
+                  final guidancePattern = guidanceGroup.patterns.first;
 
                   test(
                     'Check guidance pattern attributes',
@@ -830,7 +830,7 @@ void main() {
                   );
 
                   final guidanceBorderLineString =
-                      guidanceFieldBorder.lineStrings!.first;
+                      guidanceFieldBorder.lineStrings.first;
                   test(
                     '''Check guidance pattern field border polygon linestring attributes''',
                     () => expect(
@@ -971,7 +971,7 @@ void main() {
                   );
 
                   final guidanceGroupPolygonLineString =
-                      guidanceGroupPolygon.lineStrings!.first;
+                      guidanceGroupPolygon.lineStrings.first;
                   test(
                     'Check polygon linestring attributes',
                     () => expect(
@@ -1044,9 +1044,9 @@ void main() {
     group('Test product elements', () {
       test(
         'Check the number of product children',
-        () => expect(taskData.products?.length, 3),
+        () => expect(taskData.products.length, 3),
       );
-      for (final (index, product) in taskData.products!.indexed) {
+      for (final (index, product) in taskData.products.indexed) {
         test(
           'Check product${index + 1} attributes',
           () => expect(
@@ -1079,15 +1079,15 @@ void main() {
           ),
         );
       }
-      final product = taskData.products!.elementAt(2);
+      final product = taskData.products.elementAt(2);
       test(
         'Check product2 number of relation children',
-        () => expect(product.relations?.length, 2),
+        () => expect(product.relations.length, 2),
       );
       group(
         'Test product2 relation children',
         () {
-          for (final (index, relation) in product.relations!.indexed) {
+          for (final (index, relation) in product.relations.indexed) {
             test(
               'Check relation${index + 1} attributes',
               () => expect(
@@ -1101,7 +1101,7 @@ void main() {
     });
 
     test('Check product group attributes', () {
-      final productGroup = taskData.productGroups!.first;
+      final productGroup = taskData.productGroups.first;
 
       expect(
         (productGroup.id, productGroup.designator, productGroup.type),
@@ -1114,7 +1114,7 @@ void main() {
     });
 
     group('Test task element', () {
-      final task = taskData.tasks!.first;
+      final task = taskData.tasks.first;
       test(
         'Check task attributions',
         () => expect(
@@ -1148,16 +1148,16 @@ void main() {
       group('Test comment allocation elements', () {
         test(
           'Check number of comment allocation elements',
-          () => expect(task.commentAllocations?.length, 3),
+          () => expect(task.commentAllocations.length, 3),
         );
 
         test(
           "Check comment allocation elements' attributes",
           () => expect(
             (
-              task.commentAllocations!.first.codedCommentIdRef,
-              task.commentAllocations!.elementAt(1).codedCommentListValueIdRef,
-              task.commentAllocations!.elementAt(2).freeCommentText
+              task.commentAllocations.first.codedCommentIdRef,
+              task.commentAllocations.elementAt(1).codedCommentListValueIdRef,
+              task.commentAllocations.elementAt(2).freeCommentText
             ),
             ('CCT1', 'CCL1', 'Driver wrote this'),
           ),
@@ -1166,7 +1166,7 @@ void main() {
           "Test comment allocations' child allocation stamps",
           () {
             for (final (index, commentAllocation)
-                in task.commentAllocations!.indexed) {
+                in task.commentAllocations.indexed) {
               group('Test comment allocation${index + 1} allocation stamp', () {
                 final stamp = commentAllocation.allocationStamp!;
                 test(
@@ -1182,13 +1182,13 @@ void main() {
                 );
                 test(
                   'Check stamp number of position children',
-                  () => expect(stamp.position?.length, 2),
+                  () => expect(stamp.position.length, 2),
                 );
 
                 group(
                   'Test stamp position elements',
                   () {
-                    for (final (index, position) in stamp.position!.indexed) {
+                    for (final (index, position) in stamp.position.indexed) {
                       test(
                         'Check position${index + 1} attributes',
                         () => expect(
@@ -1228,14 +1228,14 @@ void main() {
       group('Test device allocation elements', () {
         test(
           'Check number of device allocation elements',
-          () => expect(task.deviceAllocations?.length, 2),
+          () => expect(task.deviceAllocations.length, 2),
         );
 
         group(
           "Test device allocations' attributes and child allocation stamps",
           () {
             for (final (index, deviceAllocation)
-                in task.deviceAllocations!.indexed) {
+                in task.deviceAllocations.indexed) {
               group('Test device allocation elements${index + 1}', () {
                 test(
                   'Check device allocation${index + 1} attributes',
@@ -1264,12 +1264,12 @@ void main() {
                 );
                 test(
                   'Check number of position elements',
-                  () => expect(stamp.position?.length, 2),
+                  () => expect(stamp.position.length, 2),
                 );
                 group(
                   'Test position elements',
                   () {
-                    for (final (index, position) in stamp.position!.indexed) {
+                    for (final (index, position) in stamp.position.indexed) {
                       test(
                         'Check position${index + 1} attributes',
                         () => expect(
@@ -1309,13 +1309,13 @@ void main() {
       group('Test data log trigger elements', () {
         test(
           'Check number of data log trigger elements',
-          () => expect(task.dataLogTriggers?.length, 3),
+          () => expect(task.dataLogTriggers.length, 3),
         );
         group(
           "Test data log trigger elements' attributes",
           () {
             for (final (index, dataLogTrigger)
-                in task.dataLogTriggers!.indexed) {
+                in task.dataLogTriggers.indexed) {
               test(
                 'Check data log trigger${index + 1} attributes',
                 () => expect(
@@ -1355,7 +1355,7 @@ void main() {
       });
 
       group('Test guidance allocation element', () {
-        final guidanceAllocation = task.guidanceAllocations!.first;
+        final guidanceAllocation = task.guidanceAllocations.first;
         test(
           'Check guidance allocation attributes',
           () => expect(guidanceAllocation.groupIdRef, 'GGP1'),
@@ -1371,7 +1371,7 @@ void main() {
         });
 
         group('Test guidance shift element', () {
-          final guidanceShift = guidanceAllocation.shifts!.first;
+          final guidanceShift = guidanceAllocation.shifts.first;
 
           test(
             'Check guidance shift attributes',
@@ -1420,9 +1420,9 @@ void main() {
       group('Test product allocation elements', () {
         test(
           'Check number of product allocation elements',
-          () => expect(task.productAllocations?.length, 2),
+          () => expect(task.productAllocations.length, 2),
         );
-        for (final (index, allocation) in task.productAllocations!.indexed) {
+        for (final (index, allocation) in task.productAllocations.indexed) {
           group('Test product allocation${index + 1}', () {
             test(
               'Check product allocation attributes',
@@ -1470,9 +1470,9 @@ void main() {
       group('Test time elements', () {
         test(
           'Check number of time elements',
-          () => expect(task.times?.length, 2),
+          () => expect(task.times.length, 2),
         );
-        for (final (index, time) in task.times!.indexed) {
+        for (final (index, time) in task.times.indexed) {
           group('Test time${index + 1}', () {
             test(
               'Check time attributes',
@@ -1489,13 +1489,13 @@ void main() {
             if (index != 0) {
               test(
                 'Check number of position elements',
-                () => expect(time.positions?.length, 2),
+                () => expect(time.positions.length, 2),
               );
               group(
                 'Test position elements',
                 () {
                   for (final (positionIndex, position)
-                      in time.positions!.indexed) {
+                      in time.positions.indexed) {
                     test(
                       'Check position${positionIndex + 1} attributes',
                       () => expect(
@@ -1530,10 +1530,10 @@ void main() {
               group('Test data log value elements', () {
                 test(
                   'Check number of data log value elements',
-                  () => expect(time.dataLogValues?.length, 2),
+                  () => expect(time.dataLogValues.length, 2),
                 );
                 for (final (dataLogValueIndex, dataLogValue)
-                    in time.dataLogValues!.indexed) {
+                    in time.dataLogValues.indexed) {
                   test(
                     'Check data log value${dataLogValueIndex + 1} attributes',
                     () => expect(
@@ -1565,10 +1565,10 @@ void main() {
       group('Test worker allocation elements', () {
         test(
           'Check number of worker allocation elements',
-          () => expect(task.workerAllocations?.length, 2),
+          () => expect(task.workerAllocations.length, 2),
         );
         for (final (index, workerAllocation)
-            in task.workerAllocations!.indexed) {
+            in task.workerAllocations.indexed) {
           group('Test worker allocation${index + 1}', () {
             test(
               'Check worker allocation attributes',
@@ -1592,13 +1592,13 @@ void main() {
 
               test(
                 'Check number of position elements',
-                () => expect(stamp.position?.length, 2),
+                () => expect(stamp.position.length, 2),
               );
               group(
                 'Test position elements',
                 () {
                   for (final (positionIndex, position)
-                      in stamp.position!.indexed) {
+                      in stamp.position.indexed) {
                     test(
                       'Check position${positionIndex + 1} attributes',
                       () => expect(
@@ -1637,7 +1637,7 @@ void main() {
 
     test('Check task data controller attributes', () {
       final taskControllerCapabilities =
-          taskData.taskControllerCapabilities!.first;
+          taskData.taskControllerCapabilities.first;
 
       expect(
         (
@@ -1654,7 +1654,7 @@ void main() {
     });
 
     test('Check value presentation attributes', () {
-      final valuePresentation = taskData.valuePresentations!.first;
+      final valuePresentation = taskData.valuePresentations.first;
       expect(
         (
           valuePresentation.id,
@@ -1669,9 +1669,8 @@ void main() {
     });
 
     test('Check worker attributes', () {
-      final worker = taskData.workers?.first;
+      final worker = taskData.workers.first;
       expect(worker.runtimeType, Worker);
-      worker!;
       expect(
         (
           worker.id,

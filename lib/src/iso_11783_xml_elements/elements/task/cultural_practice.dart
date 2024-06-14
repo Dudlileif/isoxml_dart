@@ -40,25 +40,39 @@ class CulturalPractice extends Iso11783Element
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CulturalPractice._({
+  CulturalPractice._({
     required this.id,
     required this.designator,
-    this.operationTechniqueReferences,
+    List<OperationTechniqueReference>? operationTechniqueReferences,
   }) : super(
           tag: Iso11783XmlTag.culturalPractice,
-          description: 'CulturalPractiry',
-        );
+          description: 'CulturalPractice',
+        ) {
+    if (operationTechniqueReferences != null) {
+      this.operationTechniqueReferences.addAll(operationTechniqueReferences);
+    }
+  }
 
   /// Creates a [CulturalPractice] from [element].
-  factory CulturalPractice.fromXmlElement(XmlElement element) =>
-      _$CulturalPracticeFromXmlElement(element);
+  factory CulturalPractice.fromXmlElement(XmlElement element) {
+    final operationTechniqueReferences = element.getElements('OTR');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    return CulturalPractice(
+      operationTechniqueReferences: operationTechniqueReferences
+          ?.map(OperationTechniqueReference.fromXmlElement)
+          .toList(),
+      id: id,
+      designator: designator,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [CulturalPractice]s.
   static const idRefPattern = '(CPC|CPC-)([0-9])+';
 
   /// A list of references to the available [OperationTechnique]s for this.
   @annotation.XmlElement(name: 'OTR')
-  final List<OperationTechniqueReference>? operationTechniqueReferences;
+  final List<OperationTechniqueReference> operationTechniqueReferences = [];
 
   /// Unique identifier for this cultural practice.
   ///
@@ -69,6 +83,7 @@ class CulturalPractice extends Iso11783Element
   /// Name of the cultural practice, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
+  
   @override
   List<Object?> get props => super.props
     ..addAll([

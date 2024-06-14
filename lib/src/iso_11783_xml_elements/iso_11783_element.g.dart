@@ -1349,7 +1349,7 @@ abstract class _$DeviceCWProxy {
 
   Device localizationLabel(String localizationLabel);
 
-  Device elements(List<DeviceElement> elements);
+  Device elements(List<DeviceElement>? elements);
 
   Device properties(List<DeviceProperty>? properties);
 
@@ -1405,7 +1405,7 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
       this(localizationLabel: localizationLabel);
 
   @override
-  Device elements(List<DeviceElement> elements) => this(elements: elements);
+  Device elements(List<DeviceElement>? elements) => this(elements: elements);
 
   @override
   Device properties(List<DeviceProperty>? properties) =>
@@ -1471,10 +1471,10 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
           ? _value.localizationLabel
           // ignore: cast_nullable_to_non_nullable
           : localizationLabel as String,
-      elements: elements == const $CopyWithPlaceholder() || elements == null
+      elements: elements == const $CopyWithPlaceholder()
           ? _value.elements
           // ignore: cast_nullable_to_non_nullable
-          : elements as List<DeviceElement>,
+          : elements as List<DeviceElement>?,
       properties: properties == const $CopyWithPlaceholder()
           ? _value.properties
           // ignore: cast_nullable_to_non_nullable
@@ -3001,11 +3001,11 @@ extension $PartfieldCopyWith on Partfield {
 }
 
 abstract class _$PointCWProxy {
-  Point type(PointType type);
+  Point type(PointType? type);
 
-  Point north(double north);
+  Point north(double? north);
 
-  Point east(double east);
+  Point east(double? east);
 
   Point up(int? up);
 
@@ -3022,6 +3022,12 @@ abstract class _$PointCWProxy {
   Point filename(String? filename);
 
   Point fileLength(int? fileLength);
+
+  Point binaryHeaderOptions(PointBinaryHeaderOptions? binaryHeaderOptions);
+
+  Point byteData(Uint8List? byteData);
+
+  Point binaryPoints(List<Point>? binaryPoints);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Point(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -3041,6 +3047,9 @@ abstract class _$PointCWProxy {
     double? verticalAccuracy,
     String? filename,
     int? fileLength,
+    PointBinaryHeaderOptions? binaryHeaderOptions,
+    Uint8List? byteData,
+    List<Point>? binaryPoints,
   });
 }
 
@@ -3051,13 +3060,13 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
   final Point _value;
 
   @override
-  Point type(PointType type) => this(type: type);
+  Point type(PointType? type) => this(type: type);
 
   @override
-  Point north(double north) => this(north: north);
+  Point north(double? north) => this(north: north);
 
   @override
-  Point east(double east) => this(east: east);
+  Point east(double? east) => this(east: east);
 
   @override
   Point up(int? up) => this(up: up);
@@ -3086,6 +3095,17 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
   Point fileLength(int? fileLength) => this(fileLength: fileLength);
 
   @override
+  Point binaryHeaderOptions(PointBinaryHeaderOptions? binaryHeaderOptions) =>
+      this(binaryHeaderOptions: binaryHeaderOptions);
+
+  @override
+  Point byteData(Uint8List? byteData) => this(byteData: byteData);
+
+  @override
+  Point binaryPoints(List<Point>? binaryPoints) =>
+      this(binaryPoints: binaryPoints);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Point(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -3105,20 +3125,23 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
     Object? verticalAccuracy = const $CopyWithPlaceholder(),
     Object? filename = const $CopyWithPlaceholder(),
     Object? fileLength = const $CopyWithPlaceholder(),
+    Object? binaryHeaderOptions = const $CopyWithPlaceholder(),
+    Object? byteData = const $CopyWithPlaceholder(),
+    Object? binaryPoints = const $CopyWithPlaceholder(),
   }) {
     return Point(
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
-          : type as PointType,
-      north: north == const $CopyWithPlaceholder() || north == null
+          : type as PointType?,
+      north: north == const $CopyWithPlaceholder()
           ? _value.north
           // ignore: cast_nullable_to_non_nullable
-          : north as double,
-      east: east == const $CopyWithPlaceholder() || east == null
+          : north as double?,
+      east: east == const $CopyWithPlaceholder()
           ? _value.east
           // ignore: cast_nullable_to_non_nullable
-          : east as double,
+          : east as double?,
       up: up == const $CopyWithPlaceholder()
           ? _value.up
           // ignore: cast_nullable_to_non_nullable
@@ -3151,6 +3174,18 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
           ? _value.fileLength
           // ignore: cast_nullable_to_non_nullable
           : fileLength as int?,
+      binaryHeaderOptions: binaryHeaderOptions == const $CopyWithPlaceholder()
+          ? _value.binaryHeaderOptions
+          // ignore: cast_nullable_to_non_nullable
+          : binaryHeaderOptions as PointBinaryHeaderOptions?,
+      byteData: byteData == const $CopyWithPlaceholder()
+          ? _value.byteData
+          // ignore: cast_nullable_to_non_nullable
+          : byteData as Uint8List?,
+      binaryPoints: binaryPoints == const $CopyWithPlaceholder()
+          ? _value.binaryPoints
+          // ignore: cast_nullable_to_non_nullable
+          : binaryPoints as List<Point>?,
     );
   }
 }
@@ -3164,7 +3199,7 @@ extension $PointCopyWith on Point {
 abstract class _$PolygonCWProxy {
   Polygon type(PolygonType type);
 
-  Polygon lineStrings(List<LineString>? lineStrings);
+  Polygon lineStrings(List<LineString> lineStrings);
 
   Polygon designator(String? designator);
 
@@ -3200,7 +3235,7 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
   Polygon type(PolygonType type) => this(type: type);
 
   @override
-  Polygon lineStrings(List<LineString>? lineStrings) =>
+  Polygon lineStrings(List<LineString> lineStrings) =>
       this(lineStrings: lineStrings);
 
   @override
@@ -3236,10 +3271,11 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as PolygonType,
-      lineStrings: lineStrings == const $CopyWithPlaceholder()
-          ? _value.lineStrings
-          // ignore: cast_nullable_to_non_nullable
-          : lineStrings as List<LineString>?,
+      lineStrings:
+          lineStrings == const $CopyWithPlaceholder() || lineStrings == null
+              ? _value.lineStrings
+              // ignore: cast_nullable_to_non_nullable
+              : lineStrings as List<LineString>,
       designator: designator == const $CopyWithPlaceholder()
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
@@ -7442,8 +7478,9 @@ const $PointTypeEnumMap = {
   PointType.guidanceReferenceA: '6',
   PointType.guidanceReferenceB: '7',
   PointType.guidanceReferenceCenter: '8',
-  PointType.partfieldReferencePoint: '9',
-  PointType.homebase: '10'
+  PointType.guidancePoint: '9',
+  PointType.partfieldReferencePoint: '10',
+  PointType.homebase: '11'
 };
 
 const $PolygonTypeEnumMap = {
@@ -7584,12 +7621,10 @@ void _$AllocationStampBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final position = instance.position;
   final positionSerialized = position;
-  if (positionSerialized != null) {
-    for (final value in positionSerialized) {
-      builder.element('PTN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in positionSerialized) {
+    builder.element('PTN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -7618,13 +7653,13 @@ void _$AllocationStampBuildXmlElement(
 }
 
 AllocationStamp _$AllocationStampFromXmlElement(XmlElement element) {
-  final position = element.getElements('PTN');
+  final position = element.getElements('PTN')!;
   final start = element.getAttribute('A')!;
   final stop = element.getAttribute('B');
   final duration = element.getAttribute('C');
   final type = element.getAttribute('D')!;
   return AllocationStamp(
-      position: position?.map((e) => Position.fromXmlElement(e)).toList(),
+      position: position.map((e) => Position.fromXmlElement(e)).toList(),
       start: DateTime.parse(start),
       stop: stop != null ? DateTime.parse(stop) : null,
       duration: duration != null ? int.parse(duration) : null,
@@ -7672,13 +7707,11 @@ List<XmlNode> _$AllocationStampToXmlChildren(AllocationStamp instance,
   final children = <XmlNode>[];
   final position = instance.position;
   final positionSerialized = position;
-  final positionConstructed = positionSerialized?.map((e) => XmlElement(
+  final positionConstructed = positionSerialized.map((e) => XmlElement(
       XmlName('PTN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (positionConstructed != null) {
-    children.addAll(positionConstructed);
-  }
+  children.addAll(positionConstructed);
   return children;
 }
 
@@ -7828,12 +7861,10 @@ void _$CodedCommentBuildXmlChildren(CodedComment instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final listValues = instance.listValues;
   final listValuesSerialized = listValues;
-  if (listValuesSerialized != null) {
-    for (final value in listValuesSerialized) {
-      builder.element('CCL', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in listValuesSerialized) {
+    builder.element('CCL', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -7859,14 +7890,14 @@ void _$CodedCommentBuildXmlElement(CodedComment instance, XmlBuilder builder,
 }
 
 CodedComment _$CodedCommentFromXmlElement(XmlElement element) {
-  final listValues = element.getElements('CCL');
+  final listValues = element.getElements('CCL')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   final scope = element.getAttribute('C')!;
   final groupIdRef = element.getAttribute('D');
   return CodedComment(
       listValues: listValues
-          ?.map((e) => CodedCommentListValue.fromXmlElement(e))
+          .map((e) => CodedCommentListValue.fromXmlElement(e))
           .toList(),
       id: id,
       designator: designator,
@@ -7912,13 +7943,11 @@ List<XmlNode> _$CodedCommentToXmlChildren(CodedComment instance,
   final children = <XmlNode>[];
   final listValues = instance.listValues;
   final listValuesSerialized = listValues;
-  final listValuesConstructed = listValuesSerialized?.map((e) => XmlElement(
+  final listValuesConstructed = listValuesSerialized.map((e) => XmlElement(
       XmlName('CCL'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (listValuesConstructed != null) {
-    children.addAll(listValuesConstructed);
-  }
+  children.addAll(listValuesConstructed);
   return children;
 }
 
@@ -8455,12 +8484,10 @@ void _$CropTypeBuildXmlChildren(CropType instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final varieties = instance.varieties;
   final varietiesSerialized = varieties;
-  if (varietiesSerialized != null) {
-    for (final value in varietiesSerialized) {
-      builder.element('CVT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in varietiesSerialized) {
+    builder.element('CVT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -8483,12 +8510,12 @@ void _$CropTypeBuildXmlElement(CropType instance, XmlBuilder builder,
 }
 
 CropType _$CropTypeFromXmlElement(XmlElement element) {
-  final varieties = element.getElements('CVT');
+  final varieties = element.getElements('CVT')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   final productGroupIdRef = element.getAttribute('C');
   return CropType(
-      varieties: varieties?.map((e) => CropVariety.fromXmlElement(e)).toList(),
+      varieties: varieties.map((e) => CropVariety.fromXmlElement(e)).toList(),
       id: id,
       designator: designator,
       productGroupIdRef: productGroupIdRef);
@@ -8522,13 +8549,11 @@ List<XmlNode> _$CropTypeToXmlChildren(CropType instance,
   final children = <XmlNode>[];
   final varieties = instance.varieties;
   final varietiesSerialized = varieties;
-  final varietiesConstructed = varietiesSerialized?.map((e) => XmlElement(
+  final varietiesConstructed = varietiesSerialized.map((e) => XmlElement(
       XmlName('CVT'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (varietiesConstructed != null) {
-    children.addAll(varietiesConstructed);
-  }
+  children.addAll(varietiesConstructed);
   return children;
 }
 
@@ -9301,30 +9326,24 @@ void _$DeviceBuildXmlChildren(Device instance, XmlBuilder builder,
   }
   final processData = instance.processData;
   final processDataSerialized = processData;
-  if (processDataSerialized != null) {
-    for (final value in processDataSerialized) {
-      builder.element('DPD', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in processDataSerialized) {
+    builder.element('DPD', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final properties = instance.properties;
   final propertiesSerialized = properties;
-  if (propertiesSerialized != null) {
-    for (final value in propertiesSerialized) {
-      builder.element('DPT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in propertiesSerialized) {
+    builder.element('DPT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  if (valuePresentationsSerialized != null) {
-    for (final value in valuePresentationsSerialized) {
-      builder.element('DVP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in valuePresentationsSerialized) {
+    builder.element('DVP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -9364,9 +9383,9 @@ void _$DeviceBuildXmlElement(Device instance, XmlBuilder builder,
 
 Device _$DeviceFromXmlElement(XmlElement element) {
   final elements = element.getElements('DET')!;
-  final processData = element.getElements('DPD');
-  final properties = element.getElements('DPT');
-  final valuePresentations = element.getElements('DVP');
+  final processData = element.getElements('DPD')!;
+  final properties = element.getElements('DPT')!;
+  final valuePresentations = element.getElements('DVP')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   final softwareVersion = element.getAttribute('C');
@@ -9377,11 +9396,11 @@ Device _$DeviceFromXmlElement(XmlElement element) {
   return Device(
       elements: elements.map((e) => DeviceElement.fromXmlElement(e)).toList(),
       processData:
-          processData?.map((e) => DeviceProcessData.fromXmlElement(e)).toList(),
+          processData.map((e) => DeviceProcessData.fromXmlElement(e)).toList(),
       properties:
-          properties?.map((e) => DeviceProperty.fromXmlElement(e)).toList(),
+          properties.map((e) => DeviceProperty.fromXmlElement(e)).toList(),
       valuePresentations: valuePresentations
-          ?.map((e) => DeviceValuePresentation.fromXmlElement(e))
+          .map((e) => DeviceValuePresentation.fromXmlElement(e))
           .toList(),
       id: id,
       designator: designator,
@@ -9453,30 +9472,24 @@ List<XmlNode> _$DeviceToXmlChildren(Device instance,
   children.addAll(elementsConstructed);
   final processData = instance.processData;
   final processDataSerialized = processData;
-  final processDataConstructed = processDataSerialized?.map((e) => XmlElement(
+  final processDataConstructed = processDataSerialized.map((e) => XmlElement(
       XmlName('DPD'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (processDataConstructed != null) {
-    children.addAll(processDataConstructed);
-  }
+  children.addAll(processDataConstructed);
   final properties = instance.properties;
   final propertiesSerialized = properties;
-  final propertiesConstructed = propertiesSerialized?.map((e) => XmlElement(
+  final propertiesConstructed = propertiesSerialized.map((e) => XmlElement(
       XmlName('DPT'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (propertiesConstructed != null) {
-    children.addAll(propertiesConstructed);
-  }
+  children.addAll(propertiesConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized?.map((e) =>
+  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
       XmlElement(XmlName('DVP'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (valuePresentationsConstructed != null) {
-    children.addAll(valuePresentationsConstructed);
-  }
+  children.addAll(valuePresentationsConstructed);
   return children;
 }
 
@@ -9643,12 +9656,10 @@ void _$DeviceElementBuildXmlChildren(DeviceElement instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final objectReferences = instance.objectReferences;
   final objectReferencesSerialized = objectReferences;
-  if (objectReferencesSerialized != null) {
-    for (final value in objectReferencesSerialized) {
-      builder.element('DOR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in objectReferencesSerialized) {
+    builder.element('DOR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -9680,7 +9691,7 @@ void _$DeviceElementBuildXmlElement(DeviceElement instance, XmlBuilder builder,
 }
 
 DeviceElement _$DeviceElementFromXmlElement(XmlElement element) {
-  final objectReferences = element.getElements('DOR');
+  final objectReferences = element.getElements('DOR')!;
   final id = element.getAttribute('A')!;
   final objectId = element.getAttribute('B')!;
   final type = element.getAttribute('C')!;
@@ -9689,7 +9700,7 @@ DeviceElement _$DeviceElementFromXmlElement(XmlElement element) {
   final parentObjectId = element.getAttribute('F')!;
   return DeviceElement(
       objectReferences: objectReferences
-          ?.map((e) => DeviceObjectReference.fromXmlElement(e))
+          .map((e) => DeviceObjectReference.fromXmlElement(e))
           .toList(),
       id: id,
       objectId: int.parse(objectId),
@@ -9745,12 +9756,10 @@ List<XmlNode> _$DeviceElementToXmlChildren(DeviceElement instance,
   final children = <XmlNode>[];
   final objectReferences = instance.objectReferences;
   final objectReferencesSerialized = objectReferences;
-  final objectReferencesConstructed = objectReferencesSerialized?.map((e) =>
+  final objectReferencesConstructed = objectReferencesSerialized.map((e) =>
       XmlElement(XmlName('DOR'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (objectReferencesConstructed != null) {
-    children.addAll(objectReferencesConstructed);
-  }
+  children.addAll(objectReferencesConstructed);
   return children;
 }
 
@@ -10392,156 +10401,122 @@ void _$ExternalFileContentsBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  if (attachedFilesSerialized != null) {
-    for (final value in attachedFilesSerialized) {
-      builder.element('AFE', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in attachedFilesSerialized) {
+    builder.element('AFE', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  if (baseStationsSerialized != null) {
-    for (final value in baseStationsSerialized) {
-      builder.element('BSN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in baseStationsSerialized) {
+    builder.element('BSN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  if (codedCommentsSerialized != null) {
-    for (final value in codedCommentsSerialized) {
-      builder.element('CCT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in codedCommentsSerialized) {
+    builder.element('CCT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  if (codedCommentGroupsSerialized != null) {
-    for (final value in codedCommentGroupsSerialized) {
-      builder.element('CCG', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in codedCommentGroupsSerialized) {
+    builder.element('CCG', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  if (colourLegendsSerialized != null) {
-    for (final value in colourLegendsSerialized) {
-      builder.element('CLD', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in colourLegendsSerialized) {
+    builder.element('CLD', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  if (cropTypesSerialized != null) {
-    for (final value in cropTypesSerialized) {
-      builder.element('CTP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in cropTypesSerialized) {
+    builder.element('CTP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  if (culturalPracticesSerialized != null) {
-    for (final value in culturalPracticesSerialized) {
-      builder.element('CPC', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in culturalPracticesSerialized) {
+    builder.element('CPC', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final customers = instance.customers;
   final customersSerialized = customers;
-  if (customersSerialized != null) {
-    for (final value in customersSerialized) {
-      builder.element('CTR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in customersSerialized) {
+    builder.element('CTR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final devices = instance.devices;
   final devicesSerialized = devices;
-  if (devicesSerialized != null) {
-    for (final value in devicesSerialized) {
-      builder.element('DVC', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in devicesSerialized) {
+    builder.element('DVC', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final farms = instance.farms;
   final farmsSerialized = farms;
-  if (farmsSerialized != null) {
-    for (final value in farmsSerialized) {
-      builder.element('FRM', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in farmsSerialized) {
+    builder.element('FRM', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
-  if (operationTechniquesSerialized != null) {
-    for (final value in operationTechniquesSerialized) {
-      builder.element('OTQ', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in operationTechniquesSerialized) {
+    builder.element('OTQ', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  if (partfieldsSerialized != null) {
-    for (final value in partfieldsSerialized) {
-      builder.element('PFD', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in partfieldsSerialized) {
+    builder.element('PFD', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final products = instance.products;
   final productsSerialized = products;
-  if (productsSerialized != null) {
-    for (final value in productsSerialized) {
-      builder.element('PDT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in productsSerialized) {
+    builder.element('PDT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  if (productGroupsSerialized != null) {
-    for (final value in productGroupsSerialized) {
-      builder.element('PGP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in productGroupsSerialized) {
+    builder.element('PGP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  if (tasksSerialized != null) {
-    for (final value in tasksSerialized) {
-      builder.element('TSK', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in tasksSerialized) {
+    builder.element('TSK', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  if (valuePresentationsSerialized != null) {
-    for (final value in valuePresentationsSerialized) {
-      builder.element('VPN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in valuePresentationsSerialized) {
+    builder.element('VPN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final workers = instance.workers;
   final workersSerialized = workers;
-  if (workersSerialized != null) {
-    for (final value in workersSerialized) {
-      builder.element('WKR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in workersSerialized) {
+    builder.element('WKR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
 }
 
@@ -10554,54 +10529,54 @@ void _$ExternalFileContentsBuildXmlElement(
 }
 
 ExternalFileContents _$ExternalFileContentsFromXmlElement(XmlElement element) {
-  final attachedFiles = element.getElements('AFE');
-  final baseStations = element.getElements('BSN');
-  final codedComments = element.getElements('CCT');
-  final codedCommentGroups = element.getElements('CCG');
-  final colourLegends = element.getElements('CLD');
-  final cropTypes = element.getElements('CTP');
-  final culturalPractices = element.getElements('CPC');
-  final customers = element.getElements('CTR');
-  final devices = element.getElements('DVC');
-  final farms = element.getElements('FRM');
-  final operationTechniques = element.getElements('OTQ');
-  final partfields = element.getElements('PFD');
-  final products = element.getElements('PDT');
-  final productGroups = element.getElements('PGP');
-  final tasks = element.getElements('TSK');
-  final valuePresentations = element.getElements('VPN');
-  final workers = element.getElements('WKR');
+  final attachedFiles = element.getElements('AFE')!;
+  final baseStations = element.getElements('BSN')!;
+  final codedComments = element.getElements('CCT')!;
+  final codedCommentGroups = element.getElements('CCG')!;
+  final colourLegends = element.getElements('CLD')!;
+  final cropTypes = element.getElements('CTP')!;
+  final culturalPractices = element.getElements('CPC')!;
+  final customers = element.getElements('CTR')!;
+  final devices = element.getElements('DVC')!;
+  final farms = element.getElements('FRM')!;
+  final operationTechniques = element.getElements('OTQ')!;
+  final partfields = element.getElements('PFD')!;
+  final products = element.getElements('PDT')!;
+  final productGroups = element.getElements('PGP')!;
+  final tasks = element.getElements('TSK')!;
+  final valuePresentations = element.getElements('VPN')!;
+  final workers = element.getElements('WKR')!;
   return ExternalFileContents(
       attachedFiles:
-          attachedFiles?.map((e) => AttachedFile.fromXmlElement(e)).toList(),
+          attachedFiles.map((e) => AttachedFile.fromXmlElement(e)).toList(),
       baseStations:
-          baseStations?.map((e) => BaseStation.fromXmlElement(e)).toList(),
+          baseStations.map((e) => BaseStation.fromXmlElement(e)).toList(),
       codedComments:
-          codedComments?.map((e) => CodedComment.fromXmlElement(e)).toList(),
+          codedComments.map((e) => CodedComment.fromXmlElement(e)).toList(),
       codedCommentGroups: codedCommentGroups
-          ?.map((e) => CodedCommentGroup.fromXmlElement(e))
+          .map((e) => CodedCommentGroup.fromXmlElement(e))
           .toList(),
       colourLegends:
-          colourLegends?.map((e) => ColourLegend.fromXmlElement(e)).toList(),
-      cropTypes: cropTypes?.map((e) => CropType.fromXmlElement(e)).toList(),
+          colourLegends.map((e) => ColourLegend.fromXmlElement(e)).toList(),
+      cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
       culturalPractices: culturalPractices
-          ?.map((e) => CulturalPractice.fromXmlElement(e))
+          .map((e) => CulturalPractice.fromXmlElement(e))
           .toList(),
-      customers: customers?.map((e) => Customer.fromXmlElement(e)).toList(),
-      devices: devices?.map((e) => Device.fromXmlElement(e)).toList(),
-      farms: farms?.map((e) => Farm.fromXmlElement(e)).toList(),
+      customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
+      devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
+      farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
       operationTechniques: operationTechniques
-          ?.map((e) => OperationTechnique.fromXmlElement(e))
+          .map((e) => OperationTechnique.fromXmlElement(e))
           .toList(),
-      partfields: partfields?.map((e) => Partfield.fromXmlElement(e)).toList(),
-      products: products?.map((e) => Product.fromXmlElement(e)).toList(),
+      partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
+      products: products.map((e) => Product.fromXmlElement(e)).toList(),
       productGroups:
-          productGroups?.map((e) => ProductGroup.fromXmlElement(e)).toList(),
-      tasks: tasks?.map((e) => Task.fromXmlElement(e)).toList(),
+          productGroups.map((e) => ProductGroup.fromXmlElement(e)).toList(),
+      tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
       valuePresentations: valuePresentations
-          ?.map((e) => ValuePresentation.fromXmlElement(e))
+          .map((e) => ValuePresentation.fromXmlElement(e))
           .toList(),
-      workers: workers?.map((e) => Worker.fromXmlElement(e)).toList());
+      workers: workers.map((e) => Worker.fromXmlElement(e)).toList());
 }
 
 List<XmlAttribute> _$ExternalFileContentsToXmlAttributes(
@@ -10616,151 +10591,117 @@ List<XmlNode> _$ExternalFileContentsToXmlChildren(ExternalFileContents instance,
   final children = <XmlNode>[];
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  final attachedFilesConstructed = attachedFilesSerialized?.map((e) =>
+  final attachedFilesConstructed = attachedFilesSerialized.map((e) =>
       XmlElement(XmlName('AFE'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (attachedFilesConstructed != null) {
-    children.addAll(attachedFilesConstructed);
-  }
+  children.addAll(attachedFilesConstructed);
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  final baseStationsConstructed = baseStationsSerialized?.map((e) => XmlElement(
+  final baseStationsConstructed = baseStationsSerialized.map((e) => XmlElement(
       XmlName('BSN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (baseStationsConstructed != null) {
-    children.addAll(baseStationsConstructed);
-  }
+  children.addAll(baseStationsConstructed);
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  final codedCommentsConstructed = codedCommentsSerialized?.map((e) =>
+  final codedCommentsConstructed = codedCommentsSerialized.map((e) =>
       XmlElement(XmlName('CCT'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (codedCommentsConstructed != null) {
-    children.addAll(codedCommentsConstructed);
-  }
+  children.addAll(codedCommentsConstructed);
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  final codedCommentGroupsConstructed = codedCommentGroupsSerialized?.map((e) =>
+  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map((e) =>
       XmlElement(XmlName('CCG'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (codedCommentGroupsConstructed != null) {
-    children.addAll(codedCommentGroupsConstructed);
-  }
+  children.addAll(codedCommentGroupsConstructed);
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  final colourLegendsConstructed = colourLegendsSerialized?.map((e) =>
+  final colourLegendsConstructed = colourLegendsSerialized.map((e) =>
       XmlElement(XmlName('CLD'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (colourLegendsConstructed != null) {
-    children.addAll(colourLegendsConstructed);
-  }
+  children.addAll(colourLegendsConstructed);
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  final cropTypesConstructed = cropTypesSerialized?.map((e) => XmlElement(
+  final cropTypesConstructed = cropTypesSerialized.map((e) => XmlElement(
       XmlName('CTP'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (cropTypesConstructed != null) {
-    children.addAll(cropTypesConstructed);
-  }
+  children.addAll(cropTypesConstructed);
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  final culturalPracticesConstructed = culturalPracticesSerialized?.map((e) =>
+  final culturalPracticesConstructed = culturalPracticesSerialized.map((e) =>
       XmlElement(XmlName('CPC'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (culturalPracticesConstructed != null) {
-    children.addAll(culturalPracticesConstructed);
-  }
+  children.addAll(culturalPracticesConstructed);
   final customers = instance.customers;
   final customersSerialized = customers;
-  final customersConstructed = customersSerialized?.map((e) => XmlElement(
+  final customersConstructed = customersSerialized.map((e) => XmlElement(
       XmlName('CTR'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (customersConstructed != null) {
-    children.addAll(customersConstructed);
-  }
+  children.addAll(customersConstructed);
   final devices = instance.devices;
   final devicesSerialized = devices;
-  final devicesConstructed = devicesSerialized?.map((e) => XmlElement(
+  final devicesConstructed = devicesSerialized.map((e) => XmlElement(
       XmlName('DVC'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (devicesConstructed != null) {
-    children.addAll(devicesConstructed);
-  }
+  children.addAll(devicesConstructed);
   final farms = instance.farms;
   final farmsSerialized = farms;
-  final farmsConstructed = farmsSerialized?.map((e) => XmlElement(
+  final farmsConstructed = farmsSerialized.map((e) => XmlElement(
       XmlName('FRM'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (farmsConstructed != null) {
-    children.addAll(farmsConstructed);
-  }
+  children.addAll(farmsConstructed);
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
-  final operationTechniquesConstructed = operationTechniquesSerialized?.map(
+  final operationTechniquesConstructed = operationTechniquesSerialized.map(
       (e) => XmlElement(
           XmlName('OTQ'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (operationTechniquesConstructed != null) {
-    children.addAll(operationTechniquesConstructed);
-  }
+  children.addAll(operationTechniquesConstructed);
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  final partfieldsConstructed = partfieldsSerialized?.map((e) => XmlElement(
+  final partfieldsConstructed = partfieldsSerialized.map((e) => XmlElement(
       XmlName('PFD'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (partfieldsConstructed != null) {
-    children.addAll(partfieldsConstructed);
-  }
+  children.addAll(partfieldsConstructed);
   final products = instance.products;
   final productsSerialized = products;
-  final productsConstructed = productsSerialized?.map((e) => XmlElement(
+  final productsConstructed = productsSerialized.map((e) => XmlElement(
       XmlName('PDT'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (productsConstructed != null) {
-    children.addAll(productsConstructed);
-  }
+  children.addAll(productsConstructed);
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  final productGroupsConstructed = productGroupsSerialized?.map((e) =>
+  final productGroupsConstructed = productGroupsSerialized.map((e) =>
       XmlElement(XmlName('PGP'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (productGroupsConstructed != null) {
-    children.addAll(productGroupsConstructed);
-  }
+  children.addAll(productGroupsConstructed);
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  final tasksConstructed = tasksSerialized?.map((e) => XmlElement(
+  final tasksConstructed = tasksSerialized.map((e) => XmlElement(
       XmlName('TSK'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (tasksConstructed != null) {
-    children.addAll(tasksConstructed);
-  }
+  children.addAll(tasksConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized?.map((e) =>
+  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
       XmlElement(XmlName('VPN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (valuePresentationsConstructed != null) {
-    children.addAll(valuePresentationsConstructed);
-  }
+  children.addAll(valuePresentationsConstructed);
   final workers = instance.workers;
   final workersSerialized = workers;
-  final workersConstructed = workersSerialized?.map((e) => XmlElement(
+  final workersConstructed = workersSerialized.map((e) => XmlElement(
       XmlName('WKR'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (workersConstructed != null) {
-    children.addAll(workersConstructed);
-  }
+  children.addAll(workersConstructed);
   return children;
 }
 
@@ -11247,39 +11188,31 @@ void _$PartfieldBuildXmlChildren(Partfield instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  if (polygonsSerialized != null) {
-    for (final value in polygonsSerialized) {
-      builder.element('PLN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in polygonsSerialized) {
+    builder.element('PLN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final points = instance.points;
   final pointsSerialized = points;
-  if (pointsSerialized != null) {
-    for (final value in pointsSerialized) {
-      builder.element('PNT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in pointsSerialized) {
+    builder.element('PNT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  if (lineStringsSerialized != null) {
-    for (final value in lineStringsSerialized) {
-      builder.element('LSG', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in lineStringsSerialized) {
+    builder.element('LSG', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final guidanceGroups = instance.guidanceGroups;
   final guidanceGroupsSerialized = guidanceGroups;
-  if (guidanceGroupsSerialized != null) {
-    for (final value in guidanceGroupsSerialized) {
-      builder.element('GGP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in guidanceGroupsSerialized) {
+    builder.element('GGP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -11330,10 +11263,10 @@ void _$PartfieldBuildXmlElement(Partfield instance, XmlBuilder builder,
 }
 
 Partfield _$PartfieldFromXmlElement(XmlElement element) {
-  final polygons = element.getElements('PLN');
-  final points = element.getElements('PNT');
-  final lineStrings = element.getElements('LSG');
-  final guidanceGroups = element.getElements('GGP');
+  final polygons = element.getElements('PLN')!;
+  final points = element.getElements('PNT')!;
+  final lineStrings = element.getElements('LSG')!;
+  final guidanceGroups = element.getElements('GGP')!;
   final id = element.getAttribute('A')!;
   final code = element.getAttribute('B');
   final designator = element.getAttribute('C')!;
@@ -11344,12 +11277,12 @@ Partfield _$PartfieldFromXmlElement(XmlElement element) {
   final cropVarietyIdRef = element.getAttribute('H');
   final fieldIdRef = element.getAttribute('I');
   return Partfield(
-      polygons: polygons?.map((e) => Polygon.fromXmlElement(e)).toList(),
-      points: points?.map((e) => Point.fromXmlElement(e)).toList(),
+      polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
+      points: points.map((e) => Point.fromXmlElement(e)).toList(),
       lineStrings:
-          lineStrings?.map((e) => LineString.fromXmlElement(e)).toList(),
+          lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
       guidanceGroups:
-          guidanceGroups?.map((e) => GuidanceGroup.fromXmlElement(e)).toList(),
+          guidanceGroups.map((e) => GuidanceGroup.fromXmlElement(e)).toList(),
       id: id,
       code: code,
       designator: designator,
@@ -11433,39 +11366,31 @@ List<XmlNode> _$PartfieldToXmlChildren(Partfield instance,
   final children = <XmlNode>[];
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  final polygonsConstructed = polygonsSerialized?.map((e) => XmlElement(
+  final polygonsConstructed = polygonsSerialized.map((e) => XmlElement(
       XmlName('PLN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (polygonsConstructed != null) {
-    children.addAll(polygonsConstructed);
-  }
+  children.addAll(polygonsConstructed);
   final points = instance.points;
   final pointsSerialized = points;
-  final pointsConstructed = pointsSerialized?.map((e) => XmlElement(
+  final pointsConstructed = pointsSerialized.map((e) => XmlElement(
       XmlName('PNT'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (pointsConstructed != null) {
-    children.addAll(pointsConstructed);
-  }
+  children.addAll(pointsConstructed);
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  final lineStringsConstructed = lineStringsSerialized?.map((e) => XmlElement(
+  final lineStringsConstructed = lineStringsSerialized.map((e) => XmlElement(
       XmlName('LSG'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (lineStringsConstructed != null) {
-    children.addAll(lineStringsConstructed);
-  }
+  children.addAll(lineStringsConstructed);
   final guidanceGroups = instance.guidanceGroups;
   final guidanceGroupsSerialized = guidanceGroups;
-  final guidanceGroupsConstructed = guidanceGroupsSerialized?.map((e) =>
+  final guidanceGroupsConstructed = guidanceGroupsSerialized.map((e) =>
       XmlElement(XmlName('GGP'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (guidanceGroupsConstructed != null) {
-    children.addAll(guidanceGroupsConstructed);
-  }
+  children.addAll(guidanceGroupsConstructed);
   return children;
 }
 
@@ -11505,19 +11430,25 @@ mixin _$PartfieldXmlSerializableMixin {
 void _$PointBuildXmlChildren(Point instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final type = instance.type;
-  final typeSerialized = $PointTypeEnumMap[type]!;
-  builder.attribute('A', typeSerialized);
+  final typeSerialized = type != null ? $PointTypeEnumMap[type]! : null;
+  if (typeSerialized != null) {
+    builder.attribute('A', typeSerialized);
+  }
   final designator = instance.designator;
   final designatorSerialized = designator;
   if (designatorSerialized != null) {
     builder.attribute('B', designatorSerialized);
   }
   final north = instance.north;
-  final northSerialized = north.toString();
-  builder.attribute('C', northSerialized);
+  final northSerialized = north?.toString();
+  if (northSerialized != null) {
+    builder.attribute('C', northSerialized);
+  }
   final east = instance.east;
-  final eastSerialized = east.toString();
-  builder.attribute('D', eastSerialized);
+  final eastSerialized = east?.toString();
+  if (eastSerialized != null) {
+    builder.attribute('D', eastSerialized);
+  }
   final up = instance.up;
   final upSerialized = up?.toString();
   if (upSerialized != null) {
@@ -11563,10 +11494,10 @@ void _$PointBuildXmlElement(Point instance, XmlBuilder builder,
 }
 
 Point _$PointFromXmlElement(XmlElement element) {
-  final type = element.getAttribute('A')!;
+  final type = element.getAttribute('A');
   final designator = element.getAttribute('B');
-  final north = element.getAttribute('C')!;
-  final east = element.getAttribute('D')!;
+  final north = element.getAttribute('C');
+  final east = element.getAttribute('D');
   final up = element.getAttribute('E');
   final colour = element.getAttribute('F');
   final id = element.getAttribute('G');
@@ -11575,15 +11506,18 @@ Point _$PointFromXmlElement(XmlElement element) {
   final filename = element.getAttribute('J');
   final fileLength = element.getAttribute('K');
   return Point(
-      type: $PointTypeEnumMap.entries
-          .singleWhere(
-              (pointTypeEnumMapEntry) => pointTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$PointTypeEnumMap.values.join(', ')}'))
-          .key,
+      type: type != null
+          ? $PointTypeEnumMap.entries
+              .singleWhere(
+                  (pointTypeEnumMapEntry) =>
+                      pointTypeEnumMapEntry.value == type,
+                  orElse: () => throw ArgumentError(
+                      '`$type` is not one of the supported values: ${$PointTypeEnumMap.values.join(', ')}'))
+              .key
+          : null,
       designator: designator,
-      north: double.parse(north),
-      east: double.parse(east),
+      north: north != null ? double.parse(north) : null,
+      east: east != null ? double.parse(east) : null,
       up: up != null ? int.parse(up) : null,
       colour: colour != null ? int.parse(colour) : null,
       id: id,
@@ -11599,9 +11533,13 @@ List<XmlAttribute> _$PointToXmlAttributes(Point instance,
     {Map<String, String?> namespaces = const {}}) {
   final attributes = <XmlAttribute>[];
   final type = instance.type;
-  final typeSerialized = $PointTypeEnumMap[type]!;
-  final typeConstructed = XmlAttribute(XmlName('A'), typeSerialized);
-  attributes.add(typeConstructed);
+  final typeSerialized = type != null ? $PointTypeEnumMap[type]! : null;
+  final typeConstructed = typeSerialized != null
+      ? XmlAttribute(XmlName('A'), typeSerialized)
+      : null;
+  if (typeConstructed != null) {
+    attributes.add(typeConstructed);
+  }
   final designator = instance.designator;
   final designatorSerialized = designator;
   final designatorConstructed = designatorSerialized != null
@@ -11611,13 +11549,21 @@ List<XmlAttribute> _$PointToXmlAttributes(Point instance,
     attributes.add(designatorConstructed);
   }
   final north = instance.north;
-  final northSerialized = north.toString();
-  final northConstructed = XmlAttribute(XmlName('C'), northSerialized);
-  attributes.add(northConstructed);
+  final northSerialized = north?.toString();
+  final northConstructed = northSerialized != null
+      ? XmlAttribute(XmlName('C'), northSerialized)
+      : null;
+  if (northConstructed != null) {
+    attributes.add(northConstructed);
+  }
   final east = instance.east;
-  final eastSerialized = east.toString();
-  final eastConstructed = XmlAttribute(XmlName('D'), eastSerialized);
-  attributes.add(eastConstructed);
+  final eastSerialized = east?.toString();
+  final eastConstructed = eastSerialized != null
+      ? XmlAttribute(XmlName('D'), eastSerialized)
+      : null;
+  if (eastConstructed != null) {
+    attributes.add(eastConstructed);
+  }
   final up = instance.up;
   final upSerialized = up?.toString();
   final upConstructed =
@@ -11692,36 +11638,14 @@ XmlElement _$PointToXmlElement(Point instance,
       instance.toXmlChildren(namespaces: namespaces));
 }
 
-mixin _$PointXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PointBuildXmlChildren(this as Point, builder, namespaces: namespaces);
-
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PointBuildXmlElement(this as Point, builder, namespaces: namespaces);
-
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$PointToXmlAttributes(this as Point, namespaces: namespaces);
-
-  List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$PointToXmlChildren(this as Point, namespaces: namespaces);
-
-  XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$PointToXmlElement(this as Point, namespaces: namespaces);
-}
-
 void _$PolygonBuildXmlChildren(Polygon instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  if (lineStringsSerialized != null) {
-    for (final value in lineStringsSerialized) {
-      builder.element('LSG', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in lineStringsSerialized) {
+    builder.element('LSG', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final type = instance.type;
   final typeSerialized = $PolygonTypeEnumMap[type]!;
@@ -11756,7 +11680,7 @@ void _$PolygonBuildXmlElement(Polygon instance, XmlBuilder builder,
 }
 
 Polygon _$PolygonFromXmlElement(XmlElement element) {
-  final lineStrings = element.getElements('LSG');
+  final lineStrings = element.getElements('LSG')!;
   final type = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   final area = element.getAttribute('C');
@@ -11764,7 +11688,7 @@ Polygon _$PolygonFromXmlElement(XmlElement element) {
   final id = element.getAttribute('E');
   return Polygon(
       lineStrings:
-          lineStrings?.map((e) => LineString.fromXmlElement(e)).toList(),
+          lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
       type: $PolygonTypeEnumMap.entries
           .singleWhere(
               (polygonTypeEnumMapEntry) =>
@@ -11824,13 +11748,11 @@ List<XmlNode> _$PolygonToXmlChildren(Polygon instance,
   final children = <XmlNode>[];
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  final lineStringsConstructed = lineStringsSerialized?.map((e) => XmlElement(
+  final lineStringsConstructed = lineStringsSerialized.map((e) => XmlElement(
       XmlName('LSG'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (lineStringsConstructed != null) {
-    children.addAll(lineStringsConstructed);
-  }
+  children.addAll(lineStringsConstructed);
   return children;
 }
 
@@ -12062,12 +11984,10 @@ void _$GuidanceAllocationBuildXmlChildren(
   }
   final shifts = instance.shifts;
   final shiftsSerialized = shifts;
-  if (shiftsSerialized != null) {
-    for (final value in shiftsSerialized) {
-      builder.element('GST', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in shiftsSerialized) {
+    builder.element('GST', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
@@ -12084,13 +12004,13 @@ void _$GuidanceAllocationBuildXmlElement(
 
 GuidanceAllocation _$GuidanceAllocationFromXmlElement(XmlElement element) {
   final allocationStamps = element.getElements('ASP')!;
-  final shifts = element.getElements('GST');
+  final shifts = element.getElements('GST')!;
   final groupIdRef = element.getAttribute('A')!;
   return GuidanceAllocation(
       allocationStamps: allocationStamps
           .map((e) => AllocationStamp.fromXmlElement(e))
           .toList(),
-      shifts: shifts?.map((e) => GuidanceShift.fromXmlElement(e)).toList(),
+      shifts: shifts.map((e) => GuidanceShift.fromXmlElement(e)).toList(),
       groupIdRef: groupIdRef);
 }
 
@@ -12117,13 +12037,11 @@ List<XmlNode> _$GuidanceAllocationToXmlChildren(GuidanceAllocation instance,
   children.addAll(allocationStampsConstructed);
   final shifts = instance.shifts;
   final shiftsSerialized = shifts;
-  final shiftsConstructed = shiftsSerialized?.map((e) => XmlElement(
+  final shiftsConstructed = shiftsSerialized.map((e) => XmlElement(
       XmlName('GST'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (shiftsConstructed != null) {
-    children.addAll(shiftsConstructed);
-  }
+  children.addAll(shiftsConstructed);
   return children;
 }
 
@@ -12167,12 +12085,10 @@ void _$GuidanceGroupBuildXmlChildren(GuidanceGroup instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final patterns = instance.patterns;
   final patternsSerialized = patterns;
-  if (patternsSerialized != null) {
-    for (final value in patternsSerialized) {
-      builder.element('GPN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in patternsSerialized) {
+    builder.element('GPN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
@@ -12200,13 +12116,12 @@ void _$GuidanceGroupBuildXmlElement(GuidanceGroup instance, XmlBuilder builder,
 }
 
 GuidanceGroup _$GuidanceGroupFromXmlElement(XmlElement element) {
-  final patterns = element.getElements('GPN');
+  final patterns = element.getElements('GPN')!;
   final boundaryPolygon = element.getElement('PLN');
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   return GuidanceGroup(
-      patterns:
-          patterns?.map((e) => GuidancePattern.fromXmlElement(e)).toList(),
+      patterns: patterns.map((e) => GuidancePattern.fromXmlElement(e)).toList(),
       boundaryPolygon: boundaryPolygon != null
           ? Polygon.fromXmlElement(boundaryPolygon)
           : null,
@@ -12237,13 +12152,11 @@ List<XmlNode> _$GuidanceGroupToXmlChildren(GuidanceGroup instance,
   final children = <XmlNode>[];
   final patterns = instance.patterns;
   final patternsSerialized = patterns;
-  final patternsConstructed = patternsSerialized?.map((e) => XmlElement(
+  final patternsConstructed = patternsSerialized.map((e) => XmlElement(
       XmlName('GPN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (patternsConstructed != null) {
-    children.addAll(patternsConstructed);
-  }
+  children.addAll(patternsConstructed);
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
   final boundaryPolygonConstructed = boundaryPolygonSerialized != null
@@ -12813,12 +12726,10 @@ void _$Iso11783LinkListBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final linkGroups = instance.linkGroups;
   final linkGroupsSerialized = linkGroups;
-  if (linkGroupsSerialized != null) {
-    for (final value in linkGroupsSerialized) {
-      builder.element('LGP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in linkGroupsSerialized) {
+    builder.element('LGP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
@@ -12867,7 +12778,7 @@ void _$Iso11783LinkListBuildXmlElement(
 }
 
 Iso11783LinkList _$Iso11783LinkListFromXmlElement(XmlElement element) {
-  final linkGroups = element.getElements('LGP');
+  final linkGroups = element.getElements('LGP')!;
   final versionMajor = element.getAttribute('VersionMajor')!;
   final versionMinor = element.getAttribute('VersionMinor')!;
   final managementSoftwareManufacturer =
@@ -12880,7 +12791,7 @@ Iso11783LinkList _$Iso11783LinkListFromXmlElement(XmlElement element) {
   final fileVersion = element.getAttribute('FileVersion');
   final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
   return Iso11783LinkList(
-      linkGroups: linkGroups?.map((e) => LinkGroup.fromXmlElement(e)).toList(),
+      linkGroups: linkGroups.map((e) => LinkGroup.fromXmlElement(e)).toList(),
       versionMajor: $VersionMajorEnumMap.entries
           .singleWhere(
               (versionMajorEnumMapEntry) =>
@@ -12978,13 +12889,11 @@ List<XmlNode> _$Iso11783LinkListToXmlChildren(Iso11783LinkList instance,
   final children = <XmlNode>[];
   final linkGroups = instance.linkGroups;
   final linkGroupsSerialized = linkGroups;
-  final linkGroupsConstructed = linkGroupsSerialized?.map((e) => XmlElement(
+  final linkGroupsConstructed = linkGroupsSerialized.map((e) => XmlElement(
       XmlName('LGP'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (linkGroupsConstructed != null) {
-    children.addAll(linkGroupsConstructed);
-  }
+  children.addAll(linkGroupsConstructed);
   return children;
 }
 
@@ -13117,12 +13026,10 @@ void _$LinkGroupBuildXmlChildren(LinkGroup instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final links = instance.links;
   final linksSerialized = links;
-  if (linksSerialized != null) {
-    for (final value in linksSerialized) {
-      builder.element('LNK', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in linksSerialized) {
+    builder.element('LNK', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -13155,14 +13062,14 @@ void _$LinkGroupBuildXmlElement(LinkGroup instance, XmlBuilder builder,
 }
 
 LinkGroup _$LinkGroupFromXmlElement(XmlElement element) {
-  final links = element.getElements('LNK');
+  final links = element.getElements('LNK')!;
   final id = element.getAttribute('A')!;
   final type = element.getAttribute('B')!;
   final manufacturerGLN = element.getAttribute('C');
   final namespace = element.getAttribute('D');
   final designator = element.getAttribute('E');
   return LinkGroup(
-      links: links?.map((e) => Link.fromXmlElement(e)).toList(),
+      links: links.map((e) => Link.fromXmlElement(e)).toList(),
       id: id,
       type: $LinkGroupTypeEnumMap.entries
           .singleWhere(
@@ -13219,13 +13126,11 @@ List<XmlNode> _$LinkGroupToXmlChildren(LinkGroup instance,
   final children = <XmlNode>[];
   final links = instance.links;
   final linksSerialized = links;
-  final linksConstructed = linksSerialized?.map((e) => XmlElement(
+  final linksConstructed = linksSerialized.map((e) => XmlElement(
       XmlName('LNK'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (linksConstructed != null) {
-    children.addAll(linksConstructed);
-  }
+  children.addAll(linksConstructed);
   return children;
 }
 
@@ -13533,12 +13438,10 @@ void _$ProductBuildXmlChildren(Product instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final relations = instance.relations;
   final relationsSerialized = relations;
-  if (relationsSerialized != null) {
-    for (final value in relationsSerialized) {
-      builder.element('PRN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in relationsSerialized) {
+    builder.element('PRN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -13596,7 +13499,7 @@ void _$ProductBuildXmlElement(Product instance, XmlBuilder builder,
 }
 
 Product _$ProductFromXmlElement(XmlElement element) {
-  final relations = element.getElements('PRN');
+  final relations = element.getElements('PRN')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   final groupIdRef = element.getAttribute('C');
@@ -13609,7 +13512,7 @@ Product _$ProductFromXmlElement(XmlElement element) {
   final densityVolumePerCount = element.getAttribute('J');
   return Product(
       relations:
-          relations?.map((e) => ProductRelation.fromXmlElement(e)).toList(),
+          relations.map((e) => ProductRelation.fromXmlElement(e)).toList(),
       id: id,
       designator: designator,
       groupIdRef: groupIdRef,
@@ -13723,13 +13626,11 @@ List<XmlNode> _$ProductToXmlChildren(Product instance,
   final children = <XmlNode>[];
   final relations = instance.relations;
   final relationsSerialized = relations;
-  final relationsConstructed = relationsSerialized?.map((e) => XmlElement(
+  final relationsConstructed = relationsSerialized.map((e) => XmlElement(
       XmlName('PRN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (relationsConstructed != null) {
-    children.addAll(relationsConstructed);
-  }
+  children.addAll(relationsConstructed);
   return children;
 }
 
@@ -14823,12 +14724,10 @@ void _$CulturalPracticeBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final operationTechniqueReferences = instance.operationTechniqueReferences;
   final operationTechniqueReferencesSerialized = operationTechniqueReferences;
-  if (operationTechniqueReferencesSerialized != null) {
-    for (final value in operationTechniqueReferencesSerialized) {
-      builder.element('OTR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in operationTechniqueReferencesSerialized) {
+    builder.element('OTR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -14847,12 +14746,12 @@ void _$CulturalPracticeBuildXmlElement(
 }
 
 CulturalPractice _$CulturalPracticeFromXmlElement(XmlElement element) {
-  final operationTechniqueReferences = element.getElements('OTR');
+  final operationTechniqueReferences = element.getElements('OTR')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   return CulturalPractice(
       operationTechniqueReferences: operationTechniqueReferences
-          ?.map((e) => OperationTechniqueReference.fromXmlElement(e))
+          .map((e) => OperationTechniqueReference.fromXmlElement(e))
           .toList(),
       id: id,
       designator: designator);
@@ -14879,13 +14778,11 @@ List<XmlNode> _$CulturalPracticeToXmlChildren(CulturalPractice instance,
   final operationTechniqueReferences = instance.operationTechniqueReferences;
   final operationTechniqueReferencesSerialized = operationTechniqueReferences;
   final operationTechniqueReferencesConstructed =
-      operationTechniqueReferencesSerialized?.map((e) => XmlElement(
+      operationTechniqueReferencesSerialized.map((e) => XmlElement(
           XmlName('OTR'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (operationTechniqueReferencesConstructed != null) {
-    children.addAll(operationTechniqueReferencesConstructed);
-  }
+  children.addAll(operationTechniqueReferencesConstructed);
   return children;
 }
 
@@ -14929,48 +14826,38 @@ void _$TaskBuildXmlChildren(Task instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final commentAllocations = instance.commentAllocations;
   final commentAllocationsSerialized = commentAllocations;
-  if (commentAllocationsSerialized != null) {
-    for (final value in commentAllocationsSerialized) {
-      builder.element('CAN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in commentAllocationsSerialized) {
+    builder.element('CAN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final controlAssignments = instance.controlAssignments;
   final controlAssignmentsSerialized = controlAssignments;
-  if (controlAssignmentsSerialized != null) {
-    for (final value in controlAssignmentsSerialized) {
-      builder.element('CAT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in controlAssignmentsSerialized) {
+    builder.element('CAT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final connections = instance.connections;
   final connectionsSerialized = connections;
-  if (connectionsSerialized != null) {
-    for (final value in connectionsSerialized) {
-      builder.element('CNN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in connectionsSerialized) {
+    builder.element('CNN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final deviceAllocations = instance.deviceAllocations;
   final deviceAllocationsSerialized = deviceAllocations;
-  if (deviceAllocationsSerialized != null) {
-    for (final value in deviceAllocationsSerialized) {
-      builder.element('DAN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in deviceAllocationsSerialized) {
+    builder.element('DAN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final dataLogTriggers = instance.dataLogTriggers;
   final dataLogTriggersSerialized = dataLogTriggers;
-  if (dataLogTriggersSerialized != null) {
-    for (final value in dataLogTriggersSerialized) {
-      builder.element('DLT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in dataLogTriggersSerialized) {
+    builder.element('DLT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final grid = instance.grid;
   final gridSerialized = grid;
@@ -14981,65 +14868,53 @@ void _$TaskBuildXmlChildren(Task instance, XmlBuilder builder,
   }
   final guidanceAllocations = instance.guidanceAllocations;
   final guidanceAllocationsSerialized = guidanceAllocations;
-  if (guidanceAllocationsSerialized != null) {
-    for (final value in guidanceAllocationsSerialized) {
-      builder.element('GAN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in guidanceAllocationsSerialized) {
+    builder.element('GAN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final operationTechniquePractice = instance.operationTechniquePractice;
   final operationTechniquePracticeSerialized = operationTechniquePractice;
-  builder.element('OTP', nest: () {
-    if (operationTechniquePracticeSerialized != null) {
+  if (operationTechniquePracticeSerialized != null) {
+    builder.element('OTP', nest: () {
       operationTechniquePracticeSerialized.buildXmlChildren(builder,
           namespaces: namespaces);
-    }
-  });
+    });
+  }
   final productAllocations = instance.productAllocations;
   final productAllocationsSerialized = productAllocations;
-  if (productAllocationsSerialized != null) {
-    for (final value in productAllocationsSerialized) {
-      builder.element('PAN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in productAllocationsSerialized) {
+    builder.element('PAN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final times = instance.times;
   final timesSerialized = times;
-  if (timesSerialized != null) {
-    for (final value in timesSerialized) {
-      builder.element('TIM', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in timesSerialized) {
+    builder.element('TIM', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final timeLogs = instance.timeLogs;
   final timeLogsSerialized = timeLogs;
-  if (timeLogsSerialized != null) {
-    for (final value in timeLogsSerialized) {
-      builder.element('TLG', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in timeLogsSerialized) {
+    builder.element('TLG', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final treatmentZones = instance.treatmentZones;
   final treatmentZonesSerialized = treatmentZones;
-  if (treatmentZonesSerialized != null) {
-    for (final value in treatmentZonesSerialized) {
-      builder.element('TZN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in treatmentZonesSerialized) {
+    builder.element('TZN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final workerAllocations = instance.workerAllocations;
   final workerAllocationsSerialized = workerAllocations;
-  if (workerAllocationsSerialized != null) {
-    for (final value in workerAllocationsSerialized) {
-      builder.element('WAN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in workerAllocationsSerialized) {
+    builder.element('WAN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final id = instance.id;
   final idSerialized = id;
@@ -15100,19 +14975,19 @@ void _$TaskBuildXmlElement(Task instance, XmlBuilder builder,
 }
 
 Task _$TaskFromXmlElement(XmlElement element) {
-  final commentAllocations = element.getElements('CAN');
-  final controlAssignments = element.getElements('CAT');
-  final connections = element.getElements('CNN');
-  final deviceAllocations = element.getElements('DAN');
-  final dataLogTriggers = element.getElements('DLT');
+  final commentAllocations = element.getElements('CAN')!;
+  final controlAssignments = element.getElements('CAT')!;
+  final connections = element.getElements('CNN')!;
+  final deviceAllocations = element.getElements('DAN')!;
+  final dataLogTriggers = element.getElements('DLT')!;
   final grid = element.getElement('GRD');
-  final guidanceAllocations = element.getElements('GAN');
+  final guidanceAllocations = element.getElements('GAN')!;
   final operationTechniquePractice = element.getElement('OTP');
-  final productAllocations = element.getElements('PAN');
-  final times = element.getElements('TIM');
-  final timeLogs = element.getElements('TLG');
-  final treatmentZones = element.getElements('TZN');
-  final workerAllocations = element.getElements('WAN');
+  final productAllocations = element.getElements('PAN')!;
+  final times = element.getElements('TIM')!;
+  final timeLogs = element.getElements('TLG')!;
+  final treatmentZones = element.getElements('TZN')!;
+  final workerAllocations = element.getElements('WAN')!;
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   final customerIdRef = element.getAttribute('C');
@@ -15125,36 +15000,35 @@ Task _$TaskFromXmlElement(XmlElement element) {
   final outOfFieldTreatmentZoneCode = element.getAttribute('J');
   return Task(
       commentAllocations: commentAllocations
-          ?.map((e) => CommentAllocation.fromXmlElement(e))
+          .map((e) => CommentAllocation.fromXmlElement(e))
           .toList(),
       controlAssignments: controlAssignments
-          ?.map((e) => ControlAssignment.fromXmlElement(e))
+          .map((e) => ControlAssignment.fromXmlElement(e))
           .toList(),
       connections:
-          connections?.map((e) => Connection.fromXmlElement(e)).toList(),
+          connections.map((e) => Connection.fromXmlElement(e)).toList(),
       deviceAllocations: deviceAllocations
-          ?.map((e) => DeviceAllocation.fromXmlElement(e))
+          .map((e) => DeviceAllocation.fromXmlElement(e))
           .toList(),
-      dataLogTriggers: dataLogTriggers
-          ?.map((e) => DataLogTrigger.fromXmlElement(e))
-          .toList(),
+      dataLogTriggers:
+          dataLogTriggers.map((e) => DataLogTrigger.fromXmlElement(e)).toList(),
       grid: grid != null ? Grid.fromXmlElement(grid) : null,
       guidanceAllocations: guidanceAllocations
-          ?.map((e) => GuidanceAllocation.fromXmlElement(e))
+          .map((e) => GuidanceAllocation.fromXmlElement(e))
           .toList(),
       operationTechniquePractice: operationTechniquePractice != null
           ? OperationTechniquePractice.fromXmlElement(
               operationTechniquePractice)
           : null,
       productAllocations: productAllocations
-          ?.map((e) => ProductAllocation.fromXmlElement(e))
+          .map((e) => ProductAllocation.fromXmlElement(e))
           .toList(),
-      times: times?.map((e) => Time.fromXmlElement(e)).toList(),
-      timeLogs: timeLogs?.map((e) => TimeLog.fromXmlElement(e)).toList(),
+      times: times.map((e) => Time.fromXmlElement(e)).toList(),
+      timeLogs: timeLogs.map((e) => TimeLog.fromXmlElement(e)).toList(),
       treatmentZones:
-          treatmentZones?.map((e) => TreatmentZone.fromXmlElement(e)).toList(),
+          treatmentZones.map((e) => TreatmentZone.fromXmlElement(e)).toList(),
       workerAllocations: workerAllocations
-          ?.map((e) => WorkerAllocation.fromXmlElement(e))
+          .map((e) => WorkerAllocation.fromXmlElement(e))
           .toList(),
       id: id,
       designator: designator,
@@ -15270,45 +15144,35 @@ List<XmlNode> _$TaskToXmlChildren(Task instance,
   final children = <XmlNode>[];
   final commentAllocations = instance.commentAllocations;
   final commentAllocationsSerialized = commentAllocations;
-  final commentAllocationsConstructed = commentAllocationsSerialized?.map((e) =>
+  final commentAllocationsConstructed = commentAllocationsSerialized.map((e) =>
       XmlElement(XmlName('CAN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (commentAllocationsConstructed != null) {
-    children.addAll(commentAllocationsConstructed);
-  }
+  children.addAll(commentAllocationsConstructed);
   final controlAssignments = instance.controlAssignments;
   final controlAssignmentsSerialized = controlAssignments;
-  final controlAssignmentsConstructed = controlAssignmentsSerialized?.map((e) =>
+  final controlAssignmentsConstructed = controlAssignmentsSerialized.map((e) =>
       XmlElement(XmlName('CAT'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (controlAssignmentsConstructed != null) {
-    children.addAll(controlAssignmentsConstructed);
-  }
+  children.addAll(controlAssignmentsConstructed);
   final connections = instance.connections;
   final connectionsSerialized = connections;
-  final connectionsConstructed = connectionsSerialized?.map((e) => XmlElement(
+  final connectionsConstructed = connectionsSerialized.map((e) => XmlElement(
       XmlName('CNN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (connectionsConstructed != null) {
-    children.addAll(connectionsConstructed);
-  }
+  children.addAll(connectionsConstructed);
   final deviceAllocations = instance.deviceAllocations;
   final deviceAllocationsSerialized = deviceAllocations;
-  final deviceAllocationsConstructed = deviceAllocationsSerialized?.map((e) =>
+  final deviceAllocationsConstructed = deviceAllocationsSerialized.map((e) =>
       XmlElement(XmlName('DAN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (deviceAllocationsConstructed != null) {
-    children.addAll(deviceAllocationsConstructed);
-  }
+  children.addAll(deviceAllocationsConstructed);
   final dataLogTriggers = instance.dataLogTriggers;
   final dataLogTriggersSerialized = dataLogTriggers;
-  final dataLogTriggersConstructed = dataLogTriggersSerialized?.map((e) =>
+  final dataLogTriggersConstructed = dataLogTriggersSerialized.map((e) =>
       XmlElement(XmlName('DLT'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (dataLogTriggersConstructed != null) {
-    children.addAll(dataLogTriggersConstructed);
-  }
+  children.addAll(dataLogTriggersConstructed);
   final grid = instance.grid;
   final gridSerialized = grid;
   final gridConstructed = gridSerialized != null
@@ -15322,67 +15186,58 @@ List<XmlNode> _$TaskToXmlChildren(Task instance,
   }
   final guidanceAllocations = instance.guidanceAllocations;
   final guidanceAllocationsSerialized = guidanceAllocations;
-  final guidanceAllocationsConstructed = guidanceAllocationsSerialized?.map(
+  final guidanceAllocationsConstructed = guidanceAllocationsSerialized.map(
       (e) => XmlElement(
           XmlName('GAN'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (guidanceAllocationsConstructed != null) {
-    children.addAll(guidanceAllocationsConstructed);
-  }
+  children.addAll(guidanceAllocationsConstructed);
   final operationTechniquePractice = instance.operationTechniquePractice;
   final operationTechniquePracticeSerialized = operationTechniquePractice;
-  final operationTechniquePracticeConstructed = XmlElement(
-      XmlName('OTP'),
-      operationTechniquePracticeSerialized?.toXmlAttributes(
-              namespaces: namespaces) ??
-          [],
-      operationTechniquePracticeSerialized?.toXmlChildren(
-              namespaces: namespaces) ??
-          []);
-  children.add(operationTechniquePracticeConstructed);
+  final operationTechniquePracticeConstructed =
+      operationTechniquePracticeSerialized != null
+          ? XmlElement(
+              XmlName('OTP'),
+              operationTechniquePracticeSerialized.toXmlAttributes(
+                  namespaces: namespaces),
+              operationTechniquePracticeSerialized.toXmlChildren(
+                  namespaces: namespaces))
+          : null;
+  if (operationTechniquePracticeConstructed != null) {
+    children.add(operationTechniquePracticeConstructed);
+  }
   final productAllocations = instance.productAllocations;
   final productAllocationsSerialized = productAllocations;
-  final productAllocationsConstructed = productAllocationsSerialized?.map((e) =>
+  final productAllocationsConstructed = productAllocationsSerialized.map((e) =>
       XmlElement(XmlName('PAN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (productAllocationsConstructed != null) {
-    children.addAll(productAllocationsConstructed);
-  }
+  children.addAll(productAllocationsConstructed);
   final times = instance.times;
   final timesSerialized = times;
-  final timesConstructed = timesSerialized?.map((e) => XmlElement(
+  final timesConstructed = timesSerialized.map((e) => XmlElement(
       XmlName('TIM'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (timesConstructed != null) {
-    children.addAll(timesConstructed);
-  }
+  children.addAll(timesConstructed);
   final timeLogs = instance.timeLogs;
   final timeLogsSerialized = timeLogs;
-  final timeLogsConstructed = timeLogsSerialized?.map((e) => XmlElement(
+  final timeLogsConstructed = timeLogsSerialized.map((e) => XmlElement(
       XmlName('TLG'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (timeLogsConstructed != null) {
-    children.addAll(timeLogsConstructed);
-  }
+  children.addAll(timeLogsConstructed);
   final treatmentZones = instance.treatmentZones;
   final treatmentZonesSerialized = treatmentZones;
-  final treatmentZonesConstructed = treatmentZonesSerialized?.map((e) =>
+  final treatmentZonesConstructed = treatmentZonesSerialized.map((e) =>
       XmlElement(XmlName('TZN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (treatmentZonesConstructed != null) {
-    children.addAll(treatmentZonesConstructed);
-  }
+  children.addAll(treatmentZonesConstructed);
   final workerAllocations = instance.workerAllocations;
   final workerAllocationsSerialized = workerAllocations;
-  final workerAllocationsConstructed = workerAllocationsSerialized?.map((e) =>
+  final workerAllocationsConstructed = workerAllocationsSerialized.map((e) =>
       XmlElement(XmlName('WAN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (workerAllocationsConstructed != null) {
-    children.addAll(workerAllocationsConstructed);
-  }
+  children.addAll(workerAllocationsConstructed);
   return children;
 }
 
@@ -15578,174 +15433,136 @@ void _$Iso11783TaskDataBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  if (attachedFilesSerialized != null) {
-    for (final value in attachedFilesSerialized) {
-      builder.element('AFE', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in attachedFilesSerialized) {
+    builder.element('AFE', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  if (baseStationsSerialized != null) {
-    for (final value in baseStationsSerialized) {
-      builder.element('BSN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in baseStationsSerialized) {
+    builder.element('BSN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  if (codedCommentsSerialized != null) {
-    for (final value in codedCommentsSerialized) {
-      builder.element('CCT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in codedCommentsSerialized) {
+    builder.element('CCT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  if (codedCommentGroupsSerialized != null) {
-    for (final value in codedCommentGroupsSerialized) {
-      builder.element('CCG', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in codedCommentGroupsSerialized) {
+    builder.element('CCG', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  if (colourLegendsSerialized != null) {
-    for (final value in colourLegendsSerialized) {
-      builder.element('CLD', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in colourLegendsSerialized) {
+    builder.element('CLD', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  if (cropTypesSerialized != null) {
-    for (final value in cropTypesSerialized) {
-      builder.element('CTP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in cropTypesSerialized) {
+    builder.element('CTP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  if (culturalPracticesSerialized != null) {
-    for (final value in culturalPracticesSerialized) {
-      builder.element('CPC', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in culturalPracticesSerialized) {
+    builder.element('CPC', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final customers = instance.customers;
   final customersSerialized = customers;
-  if (customersSerialized != null) {
-    for (final value in customersSerialized) {
-      builder.element('CTR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in customersSerialized) {
+    builder.element('CTR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final devices = instance.devices;
   final devicesSerialized = devices;
-  if (devicesSerialized != null) {
-    for (final value in devicesSerialized) {
-      builder.element('DVC', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in devicesSerialized) {
+    builder.element('DVC', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final farms = instance.farms;
   final farmsSerialized = farms;
-  if (farmsSerialized != null) {
-    for (final value in farmsSerialized) {
-      builder.element('FRM', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in farmsSerialized) {
+    builder.element('FRM', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
-  if (operationTechniquesSerialized != null) {
-    for (final value in operationTechniquesSerialized) {
-      builder.element('OTQ', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in operationTechniquesSerialized) {
+    builder.element('OTQ', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  if (partfieldsSerialized != null) {
-    for (final value in partfieldsSerialized) {
-      builder.element('PFD', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in partfieldsSerialized) {
+    builder.element('PFD', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final products = instance.products;
   final productsSerialized = products;
-  if (productsSerialized != null) {
-    for (final value in productsSerialized) {
-      builder.element('PDT', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in productsSerialized) {
+    builder.element('PDT', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  if (productGroupsSerialized != null) {
-    for (final value in productGroupsSerialized) {
-      builder.element('PGP', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in productGroupsSerialized) {
+    builder.element('PGP', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  if (tasksSerialized != null) {
-    for (final value in tasksSerialized) {
-      builder.element('TSK', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in tasksSerialized) {
+    builder.element('TSK', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final taskControllerCapabilities = instance.taskControllerCapabilities;
   final taskControllerCapabilitiesSerialized = taskControllerCapabilities;
-  if (taskControllerCapabilitiesSerialized != null) {
-    for (final value in taskControllerCapabilitiesSerialized) {
-      builder.element('TCC', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in taskControllerCapabilitiesSerialized) {
+    builder.element('TCC', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  if (valuePresentationsSerialized != null) {
-    for (final value in valuePresentationsSerialized) {
-      builder.element('VPN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in valuePresentationsSerialized) {
+    builder.element('VPN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final workers = instance.workers;
   final workersSerialized = workers;
-  if (workersSerialized != null) {
-    for (final value in workersSerialized) {
-      builder.element('WKR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in workersSerialized) {
+    builder.element('WKR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final externalFileReferences = instance.externalFileReferences;
   final externalFileReferencesSerialized = externalFileReferences;
-  if (externalFileReferencesSerialized != null) {
-    for (final value in externalFileReferencesSerialized) {
-      builder.element('XFR', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in externalFileReferencesSerialized) {
+    builder.element('XFR', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
@@ -15794,25 +15611,25 @@ void _$Iso11783TaskDataBuildXmlElement(
 }
 
 Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
-  final attachedFiles = element.getElements('AFE');
-  final baseStations = element.getElements('BSN');
-  final codedComments = element.getElements('CCT');
-  final codedCommentGroups = element.getElements('CCG');
-  final colourLegends = element.getElements('CLD');
-  final cropTypes = element.getElements('CTP');
-  final culturalPractices = element.getElements('CPC');
-  final customers = element.getElements('CTR');
-  final devices = element.getElements('DVC');
-  final farms = element.getElements('FRM');
-  final operationTechniques = element.getElements('OTQ');
-  final partfields = element.getElements('PFD');
-  final products = element.getElements('PDT');
-  final productGroups = element.getElements('PGP');
-  final tasks = element.getElements('TSK');
-  final taskControllerCapabilities = element.getElements('TCC');
-  final valuePresentations = element.getElements('VPN');
-  final workers = element.getElements('WKR');
-  final externalFileReferences = element.getElements('XFR');
+  final attachedFiles = element.getElements('AFE')!;
+  final baseStations = element.getElements('BSN')!;
+  final codedComments = element.getElements('CCT')!;
+  final codedCommentGroups = element.getElements('CCG')!;
+  final colourLegends = element.getElements('CLD')!;
+  final cropTypes = element.getElements('CTP')!;
+  final culturalPractices = element.getElements('CPC')!;
+  final customers = element.getElements('CTR')!;
+  final devices = element.getElements('DVC')!;
+  final farms = element.getElements('FRM')!;
+  final operationTechniques = element.getElements('OTQ')!;
+  final partfields = element.getElements('PFD')!;
+  final products = element.getElements('PDT')!;
+  final productGroups = element.getElements('PGP')!;
+  final tasks = element.getElements('TSK')!;
+  final taskControllerCapabilities = element.getElements('TCC')!;
+  final valuePresentations = element.getElements('VPN')!;
+  final workers = element.getElements('WKR')!;
+  final externalFileReferences = element.getElements('XFR')!;
   final versionMajor = element.getAttribute('VersionMajor')!;
   final versionMinor = element.getAttribute('VersionMinor')!;
   final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
@@ -15826,40 +15643,40 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
   final language = element.getAttribute('lang');
   return Iso11783TaskData(
       attachedFiles:
-          attachedFiles?.map((e) => AttachedFile.fromXmlElement(e)).toList(),
+          attachedFiles.map((e) => AttachedFile.fromXmlElement(e)).toList(),
       baseStations:
-          baseStations?.map((e) => BaseStation.fromXmlElement(e)).toList(),
+          baseStations.map((e) => BaseStation.fromXmlElement(e)).toList(),
       codedComments:
-          codedComments?.map((e) => CodedComment.fromXmlElement(e)).toList(),
+          codedComments.map((e) => CodedComment.fromXmlElement(e)).toList(),
       codedCommentGroups: codedCommentGroups
-          ?.map((e) => CodedCommentGroup.fromXmlElement(e))
+          .map((e) => CodedCommentGroup.fromXmlElement(e))
           .toList(),
       colourLegends:
-          colourLegends?.map((e) => ColourLegend.fromXmlElement(e)).toList(),
-      cropTypes: cropTypes?.map((e) => CropType.fromXmlElement(e)).toList(),
+          colourLegends.map((e) => ColourLegend.fromXmlElement(e)).toList(),
+      cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
       culturalPractices: culturalPractices
-          ?.map((e) => CulturalPractice.fromXmlElement(e))
+          .map((e) => CulturalPractice.fromXmlElement(e))
           .toList(),
-      customers: customers?.map((e) => Customer.fromXmlElement(e)).toList(),
-      devices: devices?.map((e) => Device.fromXmlElement(e)).toList(),
-      farms: farms?.map((e) => Farm.fromXmlElement(e)).toList(),
+      customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
+      devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
+      farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
       operationTechniques: operationTechniques
-          ?.map((e) => OperationTechnique.fromXmlElement(e))
+          .map((e) => OperationTechnique.fromXmlElement(e))
           .toList(),
-      partfields: partfields?.map((e) => Partfield.fromXmlElement(e)).toList(),
-      products: products?.map((e) => Product.fromXmlElement(e)).toList(),
+      partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
+      products: products.map((e) => Product.fromXmlElement(e)).toList(),
       productGroups:
-          productGroups?.map((e) => ProductGroup.fromXmlElement(e)).toList(),
-      tasks: tasks?.map((e) => Task.fromXmlElement(e)).toList(),
+          productGroups.map((e) => ProductGroup.fromXmlElement(e)).toList(),
+      tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
       taskControllerCapabilities: taskControllerCapabilities
-          ?.map((e) => TaskControllerCapabilities.fromXmlElement(e))
+          .map((e) => TaskControllerCapabilities.fromXmlElement(e))
           .toList(),
       valuePresentations: valuePresentations
-          ?.map((e) => ValuePresentation.fromXmlElement(e))
+          .map((e) => ValuePresentation.fromXmlElement(e))
           .toList(),
-      workers: workers?.map((e) => Worker.fromXmlElement(e)).toList(),
+      workers: workers.map((e) => Worker.fromXmlElement(e)).toList(),
       externalFileReferences: externalFileReferences
-          ?.map((e) => ExternalFileReference.fromXmlElement(e))
+          .map((e) => ExternalFileReference.fromXmlElement(e))
           .toList(),
       versionMajor: $VersionMajorEnumMap.entries
           .singleWhere(
@@ -15958,171 +15775,133 @@ List<XmlNode> _$Iso11783TaskDataToXmlChildren(Iso11783TaskData instance,
   final children = <XmlNode>[];
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  final attachedFilesConstructed = attachedFilesSerialized?.map((e) =>
+  final attachedFilesConstructed = attachedFilesSerialized.map((e) =>
       XmlElement(XmlName('AFE'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (attachedFilesConstructed != null) {
-    children.addAll(attachedFilesConstructed);
-  }
+  children.addAll(attachedFilesConstructed);
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  final baseStationsConstructed = baseStationsSerialized?.map((e) => XmlElement(
+  final baseStationsConstructed = baseStationsSerialized.map((e) => XmlElement(
       XmlName('BSN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (baseStationsConstructed != null) {
-    children.addAll(baseStationsConstructed);
-  }
+  children.addAll(baseStationsConstructed);
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  final codedCommentsConstructed = codedCommentsSerialized?.map((e) =>
+  final codedCommentsConstructed = codedCommentsSerialized.map((e) =>
       XmlElement(XmlName('CCT'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (codedCommentsConstructed != null) {
-    children.addAll(codedCommentsConstructed);
-  }
+  children.addAll(codedCommentsConstructed);
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  final codedCommentGroupsConstructed = codedCommentGroupsSerialized?.map((e) =>
+  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map((e) =>
       XmlElement(XmlName('CCG'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (codedCommentGroupsConstructed != null) {
-    children.addAll(codedCommentGroupsConstructed);
-  }
+  children.addAll(codedCommentGroupsConstructed);
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  final colourLegendsConstructed = colourLegendsSerialized?.map((e) =>
+  final colourLegendsConstructed = colourLegendsSerialized.map((e) =>
       XmlElement(XmlName('CLD'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (colourLegendsConstructed != null) {
-    children.addAll(colourLegendsConstructed);
-  }
+  children.addAll(colourLegendsConstructed);
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  final cropTypesConstructed = cropTypesSerialized?.map((e) => XmlElement(
+  final cropTypesConstructed = cropTypesSerialized.map((e) => XmlElement(
       XmlName('CTP'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (cropTypesConstructed != null) {
-    children.addAll(cropTypesConstructed);
-  }
+  children.addAll(cropTypesConstructed);
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  final culturalPracticesConstructed = culturalPracticesSerialized?.map((e) =>
+  final culturalPracticesConstructed = culturalPracticesSerialized.map((e) =>
       XmlElement(XmlName('CPC'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (culturalPracticesConstructed != null) {
-    children.addAll(culturalPracticesConstructed);
-  }
+  children.addAll(culturalPracticesConstructed);
   final customers = instance.customers;
   final customersSerialized = customers;
-  final customersConstructed = customersSerialized?.map((e) => XmlElement(
+  final customersConstructed = customersSerialized.map((e) => XmlElement(
       XmlName('CTR'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (customersConstructed != null) {
-    children.addAll(customersConstructed);
-  }
+  children.addAll(customersConstructed);
   final devices = instance.devices;
   final devicesSerialized = devices;
-  final devicesConstructed = devicesSerialized?.map((e) => XmlElement(
+  final devicesConstructed = devicesSerialized.map((e) => XmlElement(
       XmlName('DVC'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (devicesConstructed != null) {
-    children.addAll(devicesConstructed);
-  }
+  children.addAll(devicesConstructed);
   final farms = instance.farms;
   final farmsSerialized = farms;
-  final farmsConstructed = farmsSerialized?.map((e) => XmlElement(
+  final farmsConstructed = farmsSerialized.map((e) => XmlElement(
       XmlName('FRM'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (farmsConstructed != null) {
-    children.addAll(farmsConstructed);
-  }
+  children.addAll(farmsConstructed);
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
-  final operationTechniquesConstructed = operationTechniquesSerialized?.map(
+  final operationTechniquesConstructed = operationTechniquesSerialized.map(
       (e) => XmlElement(
           XmlName('OTQ'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (operationTechniquesConstructed != null) {
-    children.addAll(operationTechniquesConstructed);
-  }
+  children.addAll(operationTechniquesConstructed);
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  final partfieldsConstructed = partfieldsSerialized?.map((e) => XmlElement(
+  final partfieldsConstructed = partfieldsSerialized.map((e) => XmlElement(
       XmlName('PFD'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (partfieldsConstructed != null) {
-    children.addAll(partfieldsConstructed);
-  }
+  children.addAll(partfieldsConstructed);
   final products = instance.products;
   final productsSerialized = products;
-  final productsConstructed = productsSerialized?.map((e) => XmlElement(
+  final productsConstructed = productsSerialized.map((e) => XmlElement(
       XmlName('PDT'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (productsConstructed != null) {
-    children.addAll(productsConstructed);
-  }
+  children.addAll(productsConstructed);
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  final productGroupsConstructed = productGroupsSerialized?.map((e) =>
+  final productGroupsConstructed = productGroupsSerialized.map((e) =>
       XmlElement(XmlName('PGP'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (productGroupsConstructed != null) {
-    children.addAll(productGroupsConstructed);
-  }
+  children.addAll(productGroupsConstructed);
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  final tasksConstructed = tasksSerialized?.map((e) => XmlElement(
+  final tasksConstructed = tasksSerialized.map((e) => XmlElement(
       XmlName('TSK'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (tasksConstructed != null) {
-    children.addAll(tasksConstructed);
-  }
+  children.addAll(tasksConstructed);
   final taskControllerCapabilities = instance.taskControllerCapabilities;
   final taskControllerCapabilitiesSerialized = taskControllerCapabilities;
   final taskControllerCapabilitiesConstructed =
-      taskControllerCapabilitiesSerialized?.map((e) => XmlElement(
+      taskControllerCapabilitiesSerialized.map((e) => XmlElement(
           XmlName('TCC'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (taskControllerCapabilitiesConstructed != null) {
-    children.addAll(taskControllerCapabilitiesConstructed);
-  }
+  children.addAll(taskControllerCapabilitiesConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized?.map((e) =>
+  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
       XmlElement(XmlName('VPN'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (valuePresentationsConstructed != null) {
-    children.addAll(valuePresentationsConstructed);
-  }
+  children.addAll(valuePresentationsConstructed);
   final workers = instance.workers;
   final workersSerialized = workers;
-  final workersConstructed = workersSerialized?.map((e) => XmlElement(
+  final workersConstructed = workersSerialized.map((e) => XmlElement(
       XmlName('WKR'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (workersConstructed != null) {
-    children.addAll(workersConstructed);
-  }
+  children.addAll(workersConstructed);
   final externalFileReferences = instance.externalFileReferences;
   final externalFileReferencesSerialized = externalFileReferences;
   final externalFileReferencesConstructed =
-      externalFileReferencesSerialized?.map((e) => XmlElement(
+      externalFileReferencesSerialized.map((e) => XmlElement(
           XmlName('XFR'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (externalFileReferencesConstructed != null) {
-    children.addAll(externalFileReferencesConstructed);
-  }
+  children.addAll(externalFileReferencesConstructed);
   return children;
 }
 
@@ -16264,21 +16043,17 @@ void _$TimeBuildXmlChildren(Time instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final positions = instance.positions;
   final positionsSerialized = positions;
-  if (positionsSerialized != null) {
-    for (final value in positionsSerialized) {
-      builder.element('PTN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in positionsSerialized) {
+    builder.element('PTN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final dataLogValues = instance.dataLogValues;
   final dataLogValuesSerialized = dataLogValues;
-  if (dataLogValuesSerialized != null) {
-    for (final value in dataLogValuesSerialized) {
-      builder.element('DLV', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in dataLogValuesSerialized) {
+    builder.element('DLV', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -16306,16 +16081,16 @@ void _$TimeBuildXmlElement(Time instance, XmlBuilder builder,
 }
 
 Time _$TimeFromXmlElement(XmlElement element) {
-  final positions = element.getElements('PTN');
-  final dataLogValues = element.getElements('DLV');
+  final positions = element.getElements('PTN')!;
+  final dataLogValues = element.getElements('DLV')!;
   final start = element.getAttribute('A')!;
   final stop = element.getAttribute('B');
   final duration = element.getAttribute('C');
   final type = element.getAttribute('D')!;
   return Time(
-      positions: positions?.map((e) => Position.fromXmlElement(e)).toList(),
+      positions: positions.map((e) => Position.fromXmlElement(e)).toList(),
       dataLogValues:
-          dataLogValues?.map((e) => DataLogValue.fromXmlElement(e)).toList(),
+          dataLogValues.map((e) => DataLogValue.fromXmlElement(e)).toList(),
       start: DateTime.parse(start),
       stop: stop != null ? DateTime.parse(stop) : null,
       duration: duration != null ? int.parse(duration) : null,
@@ -16362,21 +16137,17 @@ List<XmlNode> _$TimeToXmlChildren(Time instance,
   final children = <XmlNode>[];
   final positions = instance.positions;
   final positionsSerialized = positions;
-  final positionsConstructed = positionsSerialized?.map((e) => XmlElement(
+  final positionsConstructed = positionsSerialized.map((e) => XmlElement(
       XmlName('PTN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (positionsConstructed != null) {
-    children.addAll(positionsConstructed);
-  }
+  children.addAll(positionsConstructed);
   final dataLogValues = instance.dataLogValues;
   final dataLogValuesSerialized = dataLogValues;
-  final dataLogValuesConstructed = dataLogValuesSerialized?.map((e) =>
+  final dataLogValuesConstructed = dataLogValuesSerialized.map((e) =>
       XmlElement(XmlName('DLV'), e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (dataLogValuesConstructed != null) {
-    children.addAll(dataLogValuesConstructed);
-  }
+  children.addAll(dataLogValuesConstructed);
   return children;
 }
 
@@ -16515,12 +16286,10 @@ void _$ProcessDataVariableBuildXmlChildren(
     {Map<String, String> namespaces = const {}}) {
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
-  if (processDataVariablesSerialized != null) {
-    for (final value in processDataVariablesSerialized) {
-      builder.element('PDV', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in processDataVariablesSerialized) {
+    builder.element('PDV', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final ddi = instance.ddi;
   final ddiSerialized = ddi;
@@ -16566,7 +16335,7 @@ void _$ProcessDataVariableBuildXmlElement(
 }
 
 ProcessDataVariable _$ProcessDataVariableFromXmlElement(XmlElement element) {
-  final processDataVariables = element.getElements('PDV');
+  final processDataVariables = element.getElements('PDV')!;
   final ddi = element.getAttribute('A')!;
   final value = element.getAttribute('B')!;
   final productIdRef = element.getAttribute('C');
@@ -16576,7 +16345,7 @@ ProcessDataVariable _$ProcessDataVariableFromXmlElement(XmlElement element) {
   final elementTypeInstanceValue = element.getAttribute('G');
   return ProcessDataVariable(
       processDataVariables: processDataVariables
-          ?.map((e) => ProcessDataVariable.fromXmlElement(e))
+          .map((e) => ProcessDataVariable.fromXmlElement(e))
           .toList(),
       ddi: ddi,
       value: int.parse(value),
@@ -16656,14 +16425,12 @@ List<XmlNode> _$ProcessDataVariableToXmlChildren(ProcessDataVariable instance,
   final children = <XmlNode>[];
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
-  final processDataVariablesConstructed = processDataVariablesSerialized?.map(
+  final processDataVariablesConstructed = processDataVariablesSerialized.map(
       (e) => XmlElement(
           XmlName('PDV'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (processDataVariablesConstructed != null) {
-    children.addAll(processDataVariablesConstructed);
-  }
+  children.addAll(processDataVariablesConstructed);
   return children;
 }
 
@@ -16708,21 +16475,17 @@ void _$TreatmentZoneBuildXmlChildren(TreatmentZone instance, XmlBuilder builder,
     {Map<String, String> namespaces = const {}}) {
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  if (polygonsSerialized != null) {
-    for (final value in polygonsSerialized) {
-      builder.element('PLN', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in polygonsSerialized) {
+    builder.element('PLN', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
-  if (processDataVariablesSerialized != null) {
-    for (final value in processDataVariablesSerialized) {
-      builder.element('PDV', nest: () {
-        value.buildXmlChildren(builder, namespaces: namespaces);
-      });
-    }
+  for (final value in processDataVariablesSerialized) {
+    builder.element('PDV', nest: () {
+      value.buildXmlChildren(builder, namespaces: namespaces);
+    });
   }
   final code = instance.code;
   final codeSerialized = code.toString();
@@ -16747,15 +16510,15 @@ void _$TreatmentZoneBuildXmlElement(TreatmentZone instance, XmlBuilder builder,
 }
 
 TreatmentZone _$TreatmentZoneFromXmlElement(XmlElement element) {
-  final polygons = element.getElements('PLN');
-  final processDataVariables = element.getElements('PDV');
+  final polygons = element.getElements('PLN')!;
+  final processDataVariables = element.getElements('PDV')!;
   final code = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   final colour = element.getAttribute('C');
   return TreatmentZone(
-      polygons: polygons?.map((e) => Polygon.fromXmlElement(e)).toList(),
+      polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
       processDataVariables: processDataVariables
-          ?.map((e) => ProcessDataVariable.fromXmlElement(e))
+          .map((e) => ProcessDataVariable.fromXmlElement(e))
           .toList(),
       code: int.parse(code),
       designator: designator,
@@ -16793,23 +16556,19 @@ List<XmlNode> _$TreatmentZoneToXmlChildren(TreatmentZone instance,
   final children = <XmlNode>[];
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  final polygonsConstructed = polygonsSerialized?.map((e) => XmlElement(
+  final polygonsConstructed = polygonsSerialized.map((e) => XmlElement(
       XmlName('PLN'),
       e.toXmlAttributes(namespaces: namespaces),
       e.toXmlChildren(namespaces: namespaces)));
-  if (polygonsConstructed != null) {
-    children.addAll(polygonsConstructed);
-  }
+  children.addAll(polygonsConstructed);
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
-  final processDataVariablesConstructed = processDataVariablesSerialized?.map(
+  final processDataVariablesConstructed = processDataVariablesSerialized.map(
       (e) => XmlElement(
           XmlName('PDV'),
           e.toXmlAttributes(namespaces: namespaces),
           e.toXmlChildren(namespaces: namespaces)));
-  if (processDataVariablesConstructed != null) {
-    children.addAll(processDataVariablesConstructed);
-  }
+  children.addAll(processDataVariablesConstructed);
   return children;
 }
 

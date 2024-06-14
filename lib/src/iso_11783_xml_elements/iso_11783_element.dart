@@ -86,7 +86,7 @@ part 'iso_11783_element.g.dart';
 /// Some elements are not available in earlier versions of the standard,
 /// these have the [onlyVersion4AndAbove] parameter set to true, which can be
 /// used to filter them out if exporting to an older version.
-sealed class Iso11783Element extends Equatable {
+sealed class Iso11783Element with EquatableMixin {
   const Iso11783Element({
     required this.tag,
     required this.description,

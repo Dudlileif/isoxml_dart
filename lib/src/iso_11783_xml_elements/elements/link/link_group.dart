@@ -60,10 +60,10 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const LinkGroup._({
+  LinkGroup._({
     required this.id,
     required this.type,
-    this.links,
+    List<Link>? links,
     this.manufacturerGLN,
     this.namespace,
     this.designator,
@@ -71,18 +71,44 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
           tag: Iso11783XmlTag.linkGroup,
           description: 'LinkGroup',
           onlyVersion4AndAbove: true,
-        );
+        ) {
+    if (links != null) {
+      this.links.addAll(links);
+    }
+  }
 
   /// Creates a [LinkGroup] from [element].
-  factory LinkGroup.fromXmlElement(XmlElement element) =>
-      _$LinkGroupFromXmlElement(element);
+  factory LinkGroup.fromXmlElement(XmlElement element) {
+    final links = element.getElements('LNK');
+    final id = element.getAttribute('A')!;
+    final type = element.getAttribute('B')!;
+    final manufacturerGLN = element.getAttribute('C');
+    final namespace = element.getAttribute('D');
+    final designator = element.getAttribute('E');
+    return LinkGroup(
+      links: links?.map(Link.fromXmlElement).toList(),
+      id: id,
+      type: $LinkGroupTypeEnumMap.entries
+          .singleWhere(
+            (linkGroupTypeEnumMapEntry) =>
+                linkGroupTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$LinkGroupTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      manufacturerGLN: manufacturerGLN,
+      namespace: namespace,
+      designator: designator,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [LinkGroup]s.
   static const idRefPattern = '(LGP|LGP-)([0-9])+';
 
   /// A list of the [Link]s in this.
   @annotation.XmlElement(name: 'LNK')
-  final List<Link>? links;
+  final List<Link> links = [];
 
   /// Unique identifier for this link group.
   ///

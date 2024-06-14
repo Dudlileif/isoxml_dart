@@ -69,34 +69,23 @@ class TaskDataFileHandler {
       if (taskDataFile == null) {
         return null;
       }
-      var taskData = Iso11783TaskData.fromXmlDocument(
+      final taskData = Iso11783TaskData.fromXmlDocument(
         XmlDocument.parse(await taskDataFile.readAsString()),
       );
       if (taskData == null) {
         return null;
       }
-      if (taskData.externalFileReferences != null) {
-        for (final externalFile in taskData.externalFileReferences!) {
-          final archiveFile = files.firstWhereOrNull(
-            (element) => element.path
-                .toUpperCase()
-                .endsWith('${externalFile.filename}.XML'),
+      for (final externalFile in taskData.externalFileReferences) {
+        final archiveFile = files.firstWhereOrNull(
+          (element) => element.path
+              .toUpperCase()
+              .endsWith('${externalFile.filename}.XML'),
+        );
+        if (archiveFile != null) {
+          final contents = ExternalFileContents.fromXmlDocument(
+            XmlDocument.parse(await archiveFile.readAsString()),
           );
-          if (archiveFile != null) {
-            final contents = ExternalFileContents.fromXmlDocument(
-              XmlDocument.parse(await archiveFile.readAsString()),
-            );
-            contents?.contents.forEach(
-              (element) {
-                {
-                  final updated = taskData!.addTopLevelElement(element);
-                  if (updated != null) {
-                    taskData = updated;
-                  }
-                }
-              },
-            );
-          }
+          contents?.contents.forEach(taskData.addTopLevelElement);
         }
       }
       Iso11783LinkList? linkList;
@@ -109,67 +98,46 @@ class TaskDataFileHandler {
         );
       }
 
-      if (taskData?.tasks != null) {
-        final tasksWithData = <Task>[];
-        for (final task in taskData!.tasks!) {
-          Grid? grid;
-          List<TimeLog>? timeLogs;
-          if (task.grid != null) {
-            final dataFile = files.firstWhereOrNull(
-              (file) => file.path
-                  .toUpperCase()
-                  .endsWith('${task.grid!.fileName}.BIN'),
-            );
-            final byteData = await dataFile?.readAsBytes();
-            final numberOfProcessDataVariables = task.grid?.type == GridType.two
+      for (final task in taskData.tasks) {
+        if (task.grid != null) {
+          final dataFile = files.firstWhereOrNull(
+            (file) =>
+                file.path.toUpperCase().endsWith('${task.grid!.fileName}.BIN'),
+          );
+          task.grid!
+            ..byteData = await dataFile?.readAsBytes() ?? task.grid!.byteData
+            ..numberOfProcessDataVariables = task.grid!.type == GridType.two
                 ? task.treatmentZones
-                    ?.firstWhereOrNull(
+                    .firstWhereOrNull(
                       (element) => element.code == task.grid?.treatmentZoneCode,
                     )
                     ?.processDataVariables
-                    ?.length
-                : null;
-            grid = task.grid!.copyWith(
-              byteData: byteData,
-              numberOfProcessDataVariables: numberOfProcessDataVariables,
+                    .length
+                : null
+            ..parseData();
+        }
+        for (final timeLog in task.timeLogs) {
+          final headerFile = files.firstWhereOrNull(
+            (file) =>
+                file.path.toUpperCase().endsWith('${timeLog.filename}.XML'),
+          );
+          final headerString = await headerFile?.readAsString();
+          if (headerString != null) {
+            timeLog.header = TimeLogHeader.fromXmlDocument(
+              XmlDocument.parse(await headerFile!.readAsString()),
             );
           }
-          if (task.timeLogs != null) {
-            timeLogs = [];
-            for (final timeLog in task.timeLogs!) {
-              final headerFile = files.firstWhereOrNull(
-                (file) =>
-                    file.path.toUpperCase().endsWith('${timeLog.filename}.XML'),
-              );
-              final headerString = await headerFile?.readAsString();
-              TimeLogHeader? header;
-              if (headerString != null) {
-                header = TimeLogHeader.fromXmlDocument(
-                  XmlDocument.parse(await headerFile!.readAsString()),
-                );
-              }
-              final dataFile = files.firstWhereOrNull(
-                (file) =>
-                    file.path.toUpperCase().endsWith('${timeLog.filename}.BIN'),
-              );
-              final byteData = await dataFile?.readAsBytes();
-
-              timeLogs.add(
-                timeLog.copyWith(
-                  header: header,
-                  byteData: byteData,
-                  records: timeLog
-                      .copyWith(byteData: byteData, header: header)
-                      .parseData(),
-                ),
-              );
-            }
-          }
-          tasksWithData.add(task.copyWith(grid: grid, timeLogs: timeLogs));
+          final dataFile = files.firstWhereOrNull(
+            (file) =>
+                file.path.toUpperCase().endsWith('${timeLog.filename}.BIN'),
+          );
+          timeLog
+            ..byteData = await dataFile?.readAsBytes() ?? timeLog.byteData
+            ..parseData();
         }
-        taskData = taskData?.copyWith.tasks(tasksWithData);
       }
-      return taskData?.copyWith.linkList(linkList);
+
+      return taskData.copyWith.linkList(linkList);
     }
     return null;
   }
@@ -240,38 +208,33 @@ class TaskDataFileHandler {
         );
       }
 
-      if (taskData.tasks != null) {
-        for (final task in taskData.tasks!) {
-          if (task.grid != null) {
-            final bytes = task.grid!.gridToBytes();
-            if (bytes != null && bytes.isNotEmpty) {
-              final file = File('$path/TASKDATA/${task.grid!.fileName}.BIN');
-              await file.create(recursive: true);
-              await file.writeAsBytes(
-                bytes,
-              );
-            }
+      for (final task in taskData.tasks) {
+        if (task.grid != null) {
+          final bytes = task.grid!.gridToBytes();
+          if (bytes != null && bytes.isNotEmpty) {
+            final file = File('$path/TASKDATA/${task.grid!.fileName}.BIN');
+            await file.create(recursive: true);
+            await file.writeAsBytes(
+              bytes,
+            );
           }
-          if (task.timeLogs != null) {
-            for (final timeLog in task.timeLogs!) {
-              final bytes = timeLog.recordsToBytes();
-              if (bytes != null && bytes.isNotEmpty && timeLog.header != null) {
-                final binaryFile =
-                    File('$path/TASKDATA/${timeLog.filename}.BIN');
-                await binaryFile.create(recursive: true);
-                await binaryFile.writeAsBytes(
-                  bytes,
-                );
-                final headerFileile =
-                    File('$path/TASKDATA/${timeLog.filename}.XML');
-                await headerFileile.create(recursive: true);
-                await headerFileile.writeAsString(
-                  timeLog.header!
-                      .toXmlDocument()
-                      .toXmlString(pretty: true, indent: '    '),
-                );
-              }
-            }
+        }
+        for (final timeLog in task.timeLogs) {
+          final bytes = timeLog.recordsToBytes();
+          if (bytes != null && bytes.isNotEmpty && timeLog.header != null) {
+            final binaryFile = File('$path/TASKDATA/${timeLog.filename}.BIN');
+            await binaryFile.create(recursive: true);
+            await binaryFile.writeAsBytes(
+              bytes,
+            );
+            final headerFileile =
+                File('$path/TASKDATA/${timeLog.filename}.XML');
+            await headerFileile.create(recursive: true);
+            await headerFileile.writeAsString(
+              timeLog.header!
+                  .toXmlDocument()
+                  .toXmlString(pretty: true, indent: '    '),
+            );
           }
         }
       }

@@ -21,7 +21,7 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
   /// arguments.
   factory Polygon({
     required PolygonType type,
-    List<LineString>? lineStrings,
+    required List<LineString> lineStrings,
     String? designator,
     int? area,
     int? colour,
@@ -61,14 +61,16 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Polygon._({
+  Polygon._({
     required this.type,
-    this.lineStrings,
+    required List<LineString> lineStrings,
     this.designator,
     this.area,
     this.colour,
     this.id,
-  }) : super(tag: Iso11783XmlTag.polygon, description: 'Polygon');
+  }) : super(tag: Iso11783XmlTag.polygon, description: 'Polygon') {
+    this.lineStrings.addAll(lineStrings);
+  }
 
   /// Creates a [Polygon] from [element].
   factory Polygon.fromXmlElement(XmlElement element) =>
@@ -79,7 +81,7 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
 
   /// The line strins that makes up this polygon.
   @annotation.XmlElement(name: 'LSG')
-  final List<LineString>? lineStrings;
+  final List<LineString> lineStrings = [];
 
   /// Which type of polygon this is.
   @annotation.XmlAttribute(name: 'A')

@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'dart:typed_data';
+
 import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
 import 'package:xml/xml.dart';
@@ -306,6 +308,75 @@ void main() {
         error = e;
       }
       expect(error, isArgumentError);
+    });
+
+    test('binary', () {
+      final data = ByteData(100);
+      var offset = 0;
+      data.setUint8(offset, 0x1);
+      offset++;
+
+      data.setInt64(
+        offset,
+        (63.58 * 1e16).round(),
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt64(
+        offset,
+        (11.21 * 1e16).round(),
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt32(offset, (96 * 1e3).round(), Endian.little);
+      offset += 4;
+
+      data.setUint8(offset, 0x5);
+      offset++;
+
+      data.setInt64(
+        offset,
+        (63.5 * 1e16).round(),
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt64(
+        offset,
+        (11.2 * 1e16).round(),
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt32(offset, (90 * 1e3).round(), Endian.little);
+      offset += 4;
+      final byteData = data.buffer.asUint8List(0, offset);
+
+      final point = Point(
+        binaryHeaderOptions: const PointBinaryHeaderOptions(
+          readType: true,
+          readNorth: true,
+          readEast: true,
+          readUp: true,
+        ),
+        byteData: byteData,
+        filename: 'PNT00001',
+      );
+      expect(point.binaryPointsBytes, byteData);
+      expect(
+        point,
+        Point.fromXmlElement(
+          XmlElement(XmlName('PNT'), [
+            XmlAttribute(XmlName('A'), ''),
+            XmlAttribute(XmlName('C'), ''),
+            XmlAttribute(XmlName('D'), ''),
+            XmlAttribute(XmlName('E'), ''),
+            XmlAttribute(XmlName('J'), 'PNT00001'),
+          ]),
+        ).copyWith(byteData: byteData),
+      );
     });
   });
 
@@ -651,4 +722,5 @@ void main() {
       });
     }
   });
+
 }

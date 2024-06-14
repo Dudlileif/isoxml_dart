@@ -59,26 +59,54 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Time._({
+  Time._({
     required this.start,
     required this.type,
-    this.positions,
-    this.dataLogValues,
+    List<Position>? positions,
+    List<DataLogValue>? dataLogValues,
     this.stop,
     this.duration,
-  }) : super(tag: Iso11783XmlTag.time, description: 'Time');
+  }) : super(tag: Iso11783XmlTag.time, description: 'Time') {
+    if (positions != null) {
+      this.positions.addAll(positions);
+    }
+    if (dataLogValues != null) {
+      this.dataLogValues.addAll(dataLogValues);
+    }
+  }
 
   /// Creates a [Time] from [element].
-  factory Time.fromXmlElement(XmlElement element) =>
-      _$TimeFromXmlElement(element);
+  factory Time.fromXmlElement(XmlElement element) {
+    final positions = element.getElements('PTN');
+    final dataLogValues = element.getElements('DLV');
+    final start = element.getAttribute('A')!;
+    final stop = element.getAttribute('B');
+    final duration = element.getAttribute('C');
+    final type = element.getAttribute('D')!;
+    return Time(
+      positions: positions?.map(Position.fromXmlElement).toList(),
+      dataLogValues: dataLogValues?.map(DataLogValue.fromXmlElement).toList(),
+      start: DateTime.parse(start),
+      stop: stop != null ? DateTime.parse(stop) : null,
+      duration: duration != null ? int.parse(duration) : null,
+      type: $TimeTypeEnumMap.entries
+          .singleWhere(
+            (timeTypeEnumMapEntry) => timeTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+    );
+  }
 
   /// A list of up to 2 [Position]s for this.
   @annotation.XmlElement(name: 'PTN')
-  final List<Position>? positions;
+  final List<Position> positions = [];
 
   /// A list of [DataLogValue]s that was recorded with this time.
   @annotation.XmlElement(name: 'DLV')
-  final List<DataLogValue>? dataLogValues;
+  final List<DataLogValue> dataLogValues = [];
 
   /// Time of start.
   @annotation.XmlAttribute(name: 'A')
@@ -86,11 +114,11 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
 
   /// Time of stop.
   @annotation.XmlAttribute(name: 'B')
-  final DateTime? stop;
+  DateTime? stop;
 
   /// Time betwen [start] and [stop] in number of seconds.
   @annotation.XmlAttribute(name: 'C')
-  final int? duration;
+  int? duration;
 
   /// Which type this is.
   @annotation.XmlAttribute(name: 'D')

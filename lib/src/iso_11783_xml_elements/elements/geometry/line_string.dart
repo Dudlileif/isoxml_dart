@@ -72,15 +72,17 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const LineString._({
-    required this.points,
+  LineString._({
+    required List<Point> points,
     required this.type,
     this.designator,
     this.width,
     this.length,
     this.colour,
     this.id,
-  }) : super(tag: Iso11783XmlTag.lineString, description: 'LineString');
+  }) : super(tag: Iso11783XmlTag.lineString, description: 'LineString') {
+    this.points.addAll(points);
+  }
 
   /// Creates a [LineString] from [element].
   factory LineString.fromXmlElement(XmlElement element) =>
@@ -91,7 +93,7 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
 
   /// The positions along this.
   @annotation.XmlElement(name: 'PNT')
-  final List<Point> points;
+  final List<Point> points = [];
 
   /// Which type of line string this is.
   @annotation.XmlAttribute(name: 'A')

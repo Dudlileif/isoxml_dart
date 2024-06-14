@@ -123,10 +123,10 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Product._({
+  Product._({
     required this.id,
     required this.designator,
-    this.relations,
+    List<ProductRelation>? relations,
     this.groupIdRef,
     this.valuePresentationIdRef,
     this.quantityDDI,
@@ -135,11 +135,55 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
     this.densityMassPerVolume,
     this.densityMassPerCount,
     this.densityVolumePerCount,
-  }) : super(tag: Iso11783XmlTag.product, description: 'Product');
+  }) : super(tag: Iso11783XmlTag.product, description: 'Product') {
+    if (relations != null) {
+      this.relations.addAll(relations);
+    }
+  }
 
   /// Creates a [Product] from [element].
-  factory Product.fromXmlElement(XmlElement element) =>
-      _$ProductFromXmlElement(element);
+  factory Product.fromXmlElement(XmlElement element) {
+    final relations = element.getElements('PRN');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final groupIdRef = element.getAttribute('C');
+    final valuePresentationIdRef = element.getAttribute('D');
+    final quantityDDI = element.getAttribute('E');
+    final type = element.getAttribute('F');
+    final mixtureRecipeQuantity = element.getAttribute('G');
+    final densityMassPerVolume = element.getAttribute('H');
+    final densityMassPerCount = element.getAttribute('I');
+    final densityVolumePerCount = element.getAttribute('J');
+    return Product(
+      relations: relations?.map(ProductRelation.fromXmlElement).toList(),
+      id: id,
+      designator: designator,
+      groupIdRef: groupIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      quantityDDI: quantityDDI,
+      type: type != null
+          ? $ProductTypeEnumMap.entries
+              .singleWhere(
+                (productTypeEnumMapEntry) =>
+                    productTypeEnumMapEntry.value == type,
+                orElse: () => throw ArgumentError(
+                  '''`$type` is not one of the supported values: ${$ProductTypeEnumMap.values.join(', ')}''',
+                ),
+              )
+              .key
+          : null,
+      mixtureRecipeQuantity: mixtureRecipeQuantity != null
+          ? int.parse(mixtureRecipeQuantity)
+          : null,
+      densityMassPerVolume:
+          densityMassPerVolume != null ? int.parse(densityMassPerVolume) : null,
+      densityMassPerCount:
+          densityMassPerCount != null ? int.parse(densityMassPerCount) : null,
+      densityVolumePerCount: densityVolumePerCount != null
+          ? int.parse(densityVolumePerCount)
+          : null,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Product]s.
   static const idRefPattern = '(PDT|PDT-)([0-9])+';
@@ -147,7 +191,7 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   /// A list of [ProductRelation]s to other [Product]s that are used in this
   /// mixture, if there are any.
   @annotation.XmlElement(name: 'PRN')
-  final List<ProductRelation>? relations;
+  final List<ProductRelation> relations = [];
 
   /// Unique identifier for this product.
   ///

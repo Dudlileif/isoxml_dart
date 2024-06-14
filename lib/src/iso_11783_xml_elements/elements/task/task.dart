@@ -125,22 +125,22 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Task._({
+  Task._({
     required this.id,
     required this.status,
-    this.treatmentZones,
-    this.times,
+    List<TreatmentZone>? treatmentZones,
+    List<Time>? times,
     this.operationTechniquePractice,
-    this.workerAllocations,
-    this.deviceAllocations,
-    this.connections,
-    this.productAllocations,
-    this.dataLogTriggers,
-    this.commentAllocations,
-    this.timeLogs,
+    List<WorkerAllocation>? workerAllocations,
+    List<DeviceAllocation>? deviceAllocations,
+    List<Connection>? connections,
+    List<ProductAllocation>? productAllocations,
+    List<DataLogTrigger>? dataLogTriggers,
+    List<CommentAllocation>? commentAllocations,
+    List<TimeLog>? timeLogs,
     this.grid,
-    this.controlAssignments,
-    this.guidanceAllocations,
+    List<ControlAssignment>? controlAssignments,
+    List<GuidanceAllocation>? guidanceAllocations,
     this.designator,
     this.customerIdRef,
     this.farmIdRef,
@@ -149,66 +149,173 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     this.defaultTreatmentZoneCode,
     this.positionLostTreatmentZoneCode,
     this.outOfFieldTreatmentZoneCode,
-  }) : super(tag: Iso11783XmlTag.task, description: 'Task');
+  }) : super(tag: Iso11783XmlTag.task, description: 'Task') {
+    if (treatmentZones != null) {
+      this.treatmentZones.addAll(treatmentZones);
+    }
+    if (times != null) {
+      this.times.addAll(times);
+    }
+    if (workerAllocations != null) {
+      this.workerAllocations.addAll(workerAllocations);
+    }
+    if (deviceAllocations != null) {
+      this.deviceAllocations.addAll(deviceAllocations);
+    }
+    if (connections != null) {
+      this.connections.addAll(connections);
+    }
+    if (productAllocations != null) {
+      this.productAllocations.addAll(productAllocations);
+    }
+    if (dataLogTriggers != null) {
+      this.dataLogTriggers.addAll(dataLogTriggers);
+    }
+    if (commentAllocations != null) {
+      this.commentAllocations.addAll(commentAllocations);
+    }
+    if (timeLogs != null) {
+      this.timeLogs.addAll(timeLogs);
+    }
+    if (controlAssignments != null) {
+      this.controlAssignments.addAll(controlAssignments);
+    }
+    if (guidanceAllocations != null) {
+      this.guidanceAllocations.addAll(guidanceAllocations);
+    }
+  }
 
   /// Creates a [Task] from [element].
-  factory Task.fromXmlElement(XmlElement element) =>
-      _$TaskFromXmlElement(element);
+  factory Task.fromXmlElement(XmlElement element) {
+    final commentAllocations = element.getElements('CAN');
+    final controlAssignments = element.getElements('CAT');
+    final connections = element.getElements('CNN');
+    final deviceAllocations = element.getElements('DAN');
+    final dataLogTriggers = element.getElements('DLT');
+    final grid = element.getElement('GRD');
+    final guidanceAllocations = element.getElements('GAN');
+    final operationTechniquePractice = element.getElement('OTP');
+    final productAllocations = element.getElements('PAN');
+    final times = element.getElements('TIM');
+    final timeLogs = element.getElements('TLG');
+    final treatmentZones = element.getElements('TZN');
+    final workerAllocations = element.getElements('WAN');
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final customerIdRef = element.getAttribute('C');
+    final farmIdRef = element.getAttribute('D');
+    final partfieldIdRef = element.getAttribute('E');
+    final responsibleWorkerIdRef = element.getAttribute('F');
+    final status = element.getAttribute('G');
+    final defaultTreatmentZoneCode = element.getAttribute('H');
+    final positionLostTreatmentZoneCode = element.getAttribute('I');
+    final outOfFieldTreatmentZoneCode = element.getAttribute('J');
+    return Task(
+      commentAllocations:
+          commentAllocations?.map(CommentAllocation.fromXmlElement).toList(),
+      controlAssignments:
+          controlAssignments?.map(ControlAssignment.fromXmlElement).toList(),
+      connections: connections?.map(Connection.fromXmlElement).toList(),
+      deviceAllocations:
+          deviceAllocations?.map(DeviceAllocation.fromXmlElement).toList(),
+      dataLogTriggers:
+          dataLogTriggers?.map(DataLogTrigger.fromXmlElement).toList(),
+      grid: grid != null ? Grid.fromXmlElement(grid) : null,
+      guidanceAllocations:
+          guidanceAllocations?.map(GuidanceAllocation.fromXmlElement).toList(),
+      operationTechniquePractice: operationTechniquePractice != null
+          ? OperationTechniquePractice.fromXmlElement(
+              operationTechniquePractice,
+            )
+          : null,
+      productAllocations:
+          productAllocations?.map(ProductAllocation.fromXmlElement).toList(),
+      times: times?.map(Time.fromXmlElement).toList(),
+      timeLogs: timeLogs?.map(TimeLog.fromXmlElement).toList(),
+      treatmentZones:
+          treatmentZones?.map(TreatmentZone.fromXmlElement).toList(),
+      workerAllocations:
+          workerAllocations?.map(WorkerAllocation.fromXmlElement).toList(),
+      id: id,
+      designator: designator,
+      customerIdRef: customerIdRef,
+      farmIdRef: farmIdRef,
+      partfieldIdRef: partfieldIdRef,
+      responsibleWorkerIdRef: responsibleWorkerIdRef,
+      status: $TaskStatusEnumMap.entries
+          .singleWhere(
+            (taskStatusEnumMapEntry) => taskStatusEnumMapEntry.value == status,
+            orElse: () => throw ArgumentError(
+              '''`$status` is not one of the supported values: ${$TaskStatusEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      defaultTreatmentZoneCode: defaultTreatmentZoneCode != null
+          ? int.parse(defaultTreatmentZoneCode)
+          : null,
+      positionLostTreatmentZoneCode: positionLostTreatmentZoneCode != null
+          ? int.parse(positionLostTreatmentZoneCode)
+          : null,
+      outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode != null
+          ? int.parse(outOfFieldTreatmentZoneCode)
+          : null,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Task]s.
   static const idRefPattern = '(TSK|TSK-)([0-9])+';
 
   /// A list of [CommentAllocation] for this.
-  @annotation.XmlElement(name: 'CAN', includeIfNull: false)
-  final List<CommentAllocation>? commentAllocations;
+  @annotation.XmlElement(name: 'CAN')
+  final List<CommentAllocation> commentAllocations = [];
 
   /// A list of [ControlAssignment]s for this.
   @annotation.XmlElement(name: 'CAT')
-  final List<ControlAssignment>? controlAssignments;
+  final List<ControlAssignment> controlAssignments = [];
 
   /// A list of [Connection] for this.
   @annotation.XmlElement(name: 'CNN')
-  final List<Connection>? connections;
+  final List<Connection> connections = [];
 
   /// A list of [DeviceAllocation] for this.
   @annotation.XmlElement(name: 'DAN')
-  final List<DeviceAllocation>? deviceAllocations;
+  final List<DeviceAllocation> deviceAllocations = [];
 
   /// A list of [DataLogTrigger] for this.
   @annotation.XmlElement(name: 'DLT')
-  final List<DataLogTrigger>? dataLogTriggers;
+  final List<DataLogTrigger> dataLogTriggers = [];
 
   /// The [Grid] for this.
   @annotation.XmlElement(name: 'GRD', includeIfNull: false)
-  final Grid? grid;
+  Grid? grid;
 
   /// A list of [GuidanceAllocation]s for this.
   @annotation.XmlElement(name: 'GAN')
-  final List<GuidanceAllocation>? guidanceAllocations;
+  final List<GuidanceAllocation> guidanceAllocations = [];
 
   /// The [OperationTechniquePractice] for this.
-  @annotation.XmlElement(name: 'OTP')
+  @annotation.XmlElement(name: 'OTP', includeIfNull: false)
   final OperationTechniquePractice? operationTechniquePractice;
 
   /// A list of [ProductAllocation] for this.
   @annotation.XmlElement(name: 'PAN')
-  final List<ProductAllocation>? productAllocations;
+  final List<ProductAllocation> productAllocations = [];
 
   /// A list of [Time] for this.
   @annotation.XmlElement(name: 'TIM')
-  final List<Time>? times;
+  final List<Time> times = [];
 
   /// A list of [TimeLog] for this.
   @annotation.XmlElement(name: 'TLG')
-  final List<TimeLog>? timeLogs;
+  final List<TimeLog> timeLogs = [];
 
   /// A list of [TreatmentZone] for this.
   @annotation.XmlElement(name: 'TZN')
-  final List<TreatmentZone>? treatmentZones;
+  final List<TreatmentZone> treatmentZones = [];
 
   /// A list of [WorkerAllocation] for this.
   @annotation.XmlElement(name: 'WAN')
-  final List<WorkerAllocation>? workerAllocations;
+  final List<WorkerAllocation> workerAllocations = [];
 
   /// Unique identifier for this task.
   ///
@@ -218,39 +325,39 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
 
   /// Name of the task, description or comment.
   @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? designator;
 
   /// Reference to a [Customer].
   @annotation.XmlAttribute(name: 'C')
-  final String? customerIdRef;
+  String? customerIdRef;
 
   /// Reference to a [Farm].
   @annotation.XmlAttribute(name: 'D')
-  final String? farmIdRef;
+  String? farmIdRef;
 
   /// Reference to a [Partfield].
   @annotation.XmlAttribute(name: 'E')
-  final String? partfieldIdRef;
+  String? partfieldIdRef;
 
   /// Reference to a [Worker].
   @annotation.XmlAttribute(name: 'F')
-  final String? responsibleWorkerIdRef;
+  String? responsibleWorkerIdRef;
 
   /// What the state of this is.
   @annotation.XmlAttribute(name: 'G')
-  final TaskStatus status;
+  TaskStatus status;
 
   /// Default [TreatmentZone.code].
   @annotation.XmlAttribute(name: 'H')
-  final int? defaultTreatmentZoneCode;
+  int? defaultTreatmentZoneCode;
 
   /// Position lost [TreatmentZone.code].
   @annotation.XmlAttribute(name: 'I')
-  final int? positionLostTreatmentZoneCode;
+  int? positionLostTreatmentZoneCode;
 
   /// Out of field [TreatmentZone.code].
   @annotation.XmlAttribute(name: 'J')
-  final int? outOfFieldTreatmentZoneCode;
+  int? outOfFieldTreatmentZoneCode;
 
   @override
   List<Object?> get props => super.props

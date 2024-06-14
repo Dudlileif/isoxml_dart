@@ -53,26 +53,55 @@ class DeviceElement extends Iso11783Element
       type: type,
       number: number,
       parentObjectId: parentObjectId,
-      objectReferences: objectReferences,
+      objectReferences: objectReferences ?? const [],
       designator: designator,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DeviceElement._({
+  DeviceElement._({
     required this.id,
     required this.objectId,
     required this.type,
     required this.number,
     required this.parentObjectId,
-    this.objectReferences,
+    List<DeviceObjectReference>? objectReferences,
     this.designator,
-  }) : super(tag: Iso11783XmlTag.deviceElement, description: 'DeviceElement');
+  }) : super(tag: Iso11783XmlTag.deviceElement, description: 'DeviceElement') {
+    if (objectReferences != null) {
+      this.objectReferences.addAll(objectReferences);
+    }
+  }
 
   /// Creates a [DeviceElement] from [element].
-  factory DeviceElement.fromXmlElement(XmlElement element) =>
-      _$DeviceElementFromXmlElement(element);
+  factory DeviceElement.fromXmlElement(XmlElement element) {
+    final objectReferences = element.getElements('DOR');
+    final id = element.getAttribute('A')!;
+    final objectId = element.getAttribute('B')!;
+    final type = element.getAttribute('C')!;
+    final designator = element.getAttribute('D');
+    final number = element.getAttribute('E')!;
+    final parentObjectId = element.getAttribute('F')!;
+    return DeviceElement(
+      objectReferences:
+          objectReferences?.map(DeviceObjectReference.fromXmlElement).toList(),
+      id: id,
+      objectId: int.parse(objectId),
+      type: $DeviceElementTypeEnumMap.entries
+          .singleWhere(
+            (deviceElementTypeEnumMapEntry) =>
+                deviceElementTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$DeviceElementTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      designator: designator,
+      number: int.parse(number),
+      parentObjectId: int.parse(parentObjectId),
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [DeviceElement]s.
   static const idRefPattern = '(DET|DET-)([0-9])+';
@@ -80,7 +109,7 @@ class DeviceElement extends Iso11783Element
   /// A list of [DeviceObjectReference]s that describes references to
   /// [DeviceProcessData] or [DeviceProperty] elements.
   @annotation.XmlElement(name: 'DOR')
-  final List<DeviceObjectReference>? objectReferences;
+  final List<DeviceObjectReference> objectReferences = [];
 
   /// Unique identifier for this device element.
   ///
