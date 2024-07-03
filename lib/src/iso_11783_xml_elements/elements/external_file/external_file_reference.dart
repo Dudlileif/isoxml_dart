@@ -10,9 +10,9 @@ part of '../../iso_11783_element.dart';
 /// The external file can only include top level XML elements. Top level XML
 /// elements are the elements that can be included in XML element
 /// `ISO11783_TaskData` ([Iso11783TaskData]), see
-/// [Iso11783XmlTag.tagsThatCanBeExternal]. Inside an external XML file, only a
-/// single type of XML element can be specified per file. There shall be no
-/// recursive use of XFR elements, and no recursive use XFC elements.
+/// [Iso11783ElementType.tagsThatCanBeExternal]. Inside an external XML file,
+/// only a single type of XML element can be specified per file. There shall be
+/// no recursive use of XFR elements, and no recursive use XFC elements.
 @CopyWith()
 @annotation.XmlRootElement(name: 'XFR')
 @annotation.XmlSerializable(createMixin: true)
@@ -43,7 +43,7 @@ class ExternalFileReference extends Iso11783Element
     required this.filename,
     this.filetype,
   }) : super(
-          tag: Iso11783XmlTag.externalFileReference,
+          elementType: Iso11783ElementType.externalFileReference,
           description: 'ExternalFileReference',
         );
 
@@ -53,7 +53,7 @@ class ExternalFileReference extends Iso11783Element
 
   /// Regular expression matching pattern for the filenames of external files.
   static const filenamePattern =
-      '''(AFE|BSN|CCG|CCT|CLD|CPC|CTP|CTR|DVC|FRM|OTQ|PDT|PFD|PGP|TSK|VPN|WKR)[0-9][0-9][0-9][0-9][0-9]''';
+      '''(AFE|BSN|CCG|CCT|CLD|CPC|CTP|CTR|DVC|FRM|OTQ|PDT|PFD|PGP|TSK|VPN|WKR)[0-9]{5}''';
 
   /// Filename of the external file.
   @annotation.XmlAttribute(name: 'A')
@@ -66,8 +66,9 @@ class ExternalFileReference extends Iso11783Element
   final FileType? filetype;
 
   /// Which type of element this file's content is.
-  Iso11783XmlTag get elementType => Iso11783XmlTag.values
-      .firstWhere((element) => element.name == filename.substring(0, 3));
+  @override
+  Iso11783ElementType get elementType => Iso11783ElementType.values
+      .firstWhere((element) => element.xmlTag == filename.substring(0, 3));
 
   @override
   List<Object?> get props => super.props

@@ -23,7 +23,7 @@ class ProductGroup extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
@@ -40,19 +40,26 @@ class ProductGroup extends Iso11783Element
     required this.id,
     required this.designator,
     this.type,
-  }) : super(tag: Iso11783XmlTag.productGroup, description: 'ProductGroup');
+  }) : super(
+          elementType: Iso11783ElementType.productGroup,
+          description: 'ProductGroup',
+        );
 
   /// Creates a [ProductGroup] from [element].
   factory ProductGroup.fromXmlElement(XmlElement element) =>
       _$ProductGroupFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [ProductGroup]s.
-  static const idRefPattern = '(PGP|PGP-)([0-9])+';
+  static const staticIdRefPattern = '(PGP|PGP-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this product group.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
 
   /// Name of the product group, description or comment.
@@ -70,6 +77,8 @@ class ProductGroup extends Iso11783Element
       designator,
       type,
     ]);
+
+
 }
 
 /// An enumerator for which type a [ProductGroup] is.

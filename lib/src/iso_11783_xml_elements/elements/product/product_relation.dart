@@ -19,7 +19,7 @@ class ProductRelation extends Iso11783Element
   }) {
     ArgumentValidation.checkId(
       id: productIdRef,
-      idRefPattern: Product.idRefPattern,
+      idRefPattern: Product.staticIdRefPattern,
       idName: 'productIdRef',
     );
     ArgumentValidation.checkValueInRange(
@@ -41,7 +41,7 @@ class ProductRelation extends Iso11783Element
     required this.productIdRef,
     required this.quantityValue,
   }) : super(
-          tag: Iso11783XmlTag.productRelation,
+          elementType: Iso11783ElementType.productRelation,
           description: 'ProductRelation',
           onlyVersion4AndAbove: true,
         );

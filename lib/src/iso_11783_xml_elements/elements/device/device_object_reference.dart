@@ -28,7 +28,7 @@ class DeviceObjectReference extends Iso11783Element
   /// in the default factory.
   const DeviceObjectReference._({required this.objectId})
       : super(
-          tag: Iso11783XmlTag.deviceObjectReference,
+          elementType: Iso11783ElementType.deviceObjectReference,
           description: 'DeviceObjectReference',
         );
 

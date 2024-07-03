@@ -24,7 +24,7 @@ class ColourLegend extends Iso11783Element
     if (ranges.isEmpty) {
       throw ArgumentError.value(ranges, 'ranges', "List can't be empty");
     }
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
 
     if (defaultColour != null) {
       ArgumentValidation.checkValueInRange(
@@ -48,14 +48,20 @@ class ColourLegend extends Iso11783Element
     required this.ranges,
     required this.id,
     this.defaultColour,
-  }) : super(tag: Iso11783XmlTag.colourLegend, description: 'ColourLegend');
+  }) : super(
+          elementType: Iso11783ElementType.colourLegend,
+          description: 'ColourLegend',
+        );
 
   /// Creates a [ColourLegend] from [element].
   factory ColourLegend.fromXmlElement(XmlElement element) =>
       _$ColourLegendFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [ColourLegend]s.
-  static const idRefPattern = '(CLD|CLD-)([0-9])+';
+  static const staticIdRefPattern = '(CLD|CLD-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [ColourRange]s that are used with this.
   @annotation.XmlElement(name: 'CRG')
@@ -64,12 +70,23 @@ class ColourLegend extends Iso11783Element
   /// Unique identifier for this colour legend.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
+
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// Default colour to fall back to if a value is not in any of the [ranges].
   @annotation.XmlAttribute(name: 'B')
   final int? defaultColour;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in ranges.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+      ];
+
   @override
   List<Object?> get props => super.props
     ..addAll([

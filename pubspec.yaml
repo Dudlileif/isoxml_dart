@@ -21,5 +21,5 @@ dev_dependencies:
   copy_with_extension_gen: ^5.0.4
   http: ^1.2.1
   test: ^1.25.7
-  very_good_analysis: ^5.1.0
+  very_good_analysis: ^6.0.0
   xml_serializable: ^2.5.0

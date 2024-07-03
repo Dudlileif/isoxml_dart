@@ -20,7 +20,7 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
     String? namespace,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (manufacturerGLN != null) {
       ArgumentValidation.checkStringLength(
         manufacturerGLN,
@@ -68,7 +68,7 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
     this.namespace,
     this.designator,
   }) : super(
-          tag: Iso11783XmlTag.linkGroup,
+          elementType: Iso11783ElementType.linkGroup,
           description: 'LinkGroup',
           onlyVersion4AndAbove: true,
         ) {
@@ -104,7 +104,10 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [LinkGroup]s.
-  static const idRefPattern = '(LGP|LGP-)([0-9])+';
+  static const staticIdRefPattern = '(LGP|LGP-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of the [Link]s in this.
   @annotation.XmlElement(name: 'LNK')
@@ -113,8 +116,10 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
   /// Unique identifier for this link group.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// What type of identifiers/[Link.value]s are used with the [links].
   @annotation.XmlAttribute(name: 'B')
@@ -140,6 +145,11 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
   final String? designator;
 
   @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a in links.map((e) => e.selfWithRecursiveChildren)) ...a,
+      ];
+
+  @override
   List<Object?> get props => super.props
     ..addAll([
       links,
@@ -149,6 +159,7 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
       namespace,
       designator,
     ]);
+
 }
 
 /// An enumerator for which type of external object key a [LinkGroup] uses.

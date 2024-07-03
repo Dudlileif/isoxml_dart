@@ -21,7 +21,7 @@ class WorkerAllocation extends Iso11783Element
   }) {
     ArgumentValidation.checkId(
       id: workerIdRef,
-      idRefPattern: Worker.idRefPattern,
+      idRefPattern: Worker.staticIdRefPattern,
       idName: 'workerIdRef',
     );
     return WorkerAllocation._(
@@ -36,7 +36,7 @@ class WorkerAllocation extends Iso11783Element
     required this.workerIdRef,
     this.allocationStamp,
   }) : super(
-          tag: Iso11783XmlTag.workerAllocation,
+          elementType: Iso11783ElementType.workerAllocation,
           description: 'WorkerAllocation',
         );
 
@@ -51,6 +51,10 @@ class WorkerAllocation extends Iso11783Element
   /// Reference to a [Worker].
   @annotation.XmlAttribute(name: 'A')
   final String workerIdRef;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

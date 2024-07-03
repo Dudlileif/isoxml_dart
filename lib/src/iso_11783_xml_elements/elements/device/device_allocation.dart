@@ -44,7 +44,7 @@ class DeviceAllocation extends Iso11783Element
     if (deviceIdRef != null) {
       ArgumentValidation.checkId(
         id: deviceIdRef,
-        idRefPattern: Device.idRefPattern,
+        idRefPattern: Device.staticIdRefPattern,
         idName: 'deviceIdRef',
       );
     }
@@ -65,7 +65,7 @@ class DeviceAllocation extends Iso11783Element
     this.deviceIdRef,
     this.allocationStamp,
   }) : super(
-          tag: Iso11783XmlTag.deviceAllocation,
+          elementType: Iso11783ElementType.deviceAllocation,
           description: 'DeviceAllocation',
         );
 
@@ -94,6 +94,10 @@ class DeviceAllocation extends Iso11783Element
   /// Reference to a [Device].
   @annotation.XmlAttribute(name: 'C')
   final String? deviceIdRef;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

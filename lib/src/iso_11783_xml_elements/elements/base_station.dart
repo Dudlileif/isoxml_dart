@@ -22,7 +22,7 @@ class BaseStation extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     ArgumentValidation.checkValueInRange(
@@ -62,7 +62,7 @@ class BaseStation extends Iso11783Element
     required this.east,
     required this.up,
   }) : super(
-          tag: Iso11783XmlTag.baseStation,
+          elementType: Iso11783ElementType.baseStation,
           description: 'BaseStation',
           onlyVersion4AndAbove: true,
         );
@@ -84,11 +84,15 @@ class BaseStation extends Iso11783Element
   }
 
   /// Regular expression matching pattern for the [id] of [BaseStation]s.
-  static const String idRefPattern = '(BSN|BSN-)([0-9])+';
+  static const String staticIdRefPattern = '(BSN|BSN-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this base station.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 

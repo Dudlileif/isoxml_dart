@@ -65,7 +65,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
     this.fileLength,
     this.header,
     List<Time>? records,
-  }) : super(tag: Iso11783XmlTag.timeLog, description: 'TimeLog') {
+  }) : super(elementType: Iso11783ElementType.timeLog, description: 'TimeLog') {
     if (records != null) {
       this.records.addAll(records);
     }
@@ -76,7 +76,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
       _$TimeLogFromXmlElement(element);
 
   /// Regular expression matching pattern for the [filename] of this.
-  static const fileNamePattern = 'TLG[0-9][0-9][0-9][0-9][0-9]';
+  static const fileNamePattern = 'TLG[0-9]{5}';
 
   /// Unique name for the [TimeLog] file.
   @annotation.XmlAttribute(name: 'A')
@@ -102,6 +102,11 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   /// Logged [Time] records for this.
   final List<Time> records = [];
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a in records.map((e) => e.selfWithRecursiveChildren)) ...a,
+      ];
 
   @override
   List<Object?> get props => super.props

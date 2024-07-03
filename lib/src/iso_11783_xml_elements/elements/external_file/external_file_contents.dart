@@ -34,7 +34,7 @@ class ExternalFileContents extends Iso11783Element
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
   }) : super(
-          tag: Iso11783XmlTag.externalFileContents,
+          elementType: Iso11783ElementType.externalFileContents,
           description: 'ExternalFileContents',
         ) {
     if (attachedFiles != null) {
@@ -137,7 +137,7 @@ class ExternalFileContents extends Iso11783Element
   /// Creates an [ExternalFileContents] from [document].
   static ExternalFileContents? fromXmlDocument(XmlDocument document) {
     final element =
-        document.getElement(Iso11783XmlTag.externalFileContents.name);
+        document.getElement(Iso11783ElementType.externalFileContents.xmlTag);
     if (element == null) {
       return null;
     }
@@ -216,12 +216,13 @@ class ExternalFileContents extends Iso11783Element
   XmlDocument toXmlDocument() {
     final builder = XmlBuilder()
       ..processing('xml', 'version="1.0" encoding="UTF-8"');
-    builder.element(tag.name, nest: () => buildXmlChildren(builder));
+    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
     return builder.buildDocument();
   }
 
   /// Iterable with all the children elements of this.
   Iterable<Iso11783Element> get contents => [
+        for (final list in [
         attachedFiles,
         baseStations,
         codedComments,
@@ -239,7 +240,17 @@ class ExternalFileContents extends Iso11783Element
         tasks,
         valuePresentations,
         workers,
-      ].flattened;
+        ])
+          ...list,
+      ];
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in contents.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

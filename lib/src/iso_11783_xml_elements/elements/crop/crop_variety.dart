@@ -22,13 +22,13 @@ class CropVariety extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     if (productIdRef != null) {
       ArgumentValidation.checkId(
         id: productIdRef,
-        idRefPattern: Product.idRefPattern,
+        idRefPattern: Product.staticIdRefPattern,
         idName: 'productIdRef',
       );
     }
@@ -45,18 +45,25 @@ class CropVariety extends Iso11783Element
     required this.id,
     required this.designator,
     this.productIdRef,
-  }) : super(tag: Iso11783XmlTag.cropVariety, description: 'CropVariety');
+  }) : super(
+          elementType: Iso11783ElementType.cropVariety,
+          description: 'CropVariety',
+        );
 
   /// Creates a [CropVariety] from [element].
   factory CropVariety.fromXmlElement(XmlElement element) =>
       _$CropVarietyFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [CropVariety]s.
-  static const idRefPattern = '(CVT|CVT-)([0-9])+';
+  static const staticIdRefPattern = '(CVT|CVT-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this crop variety.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 

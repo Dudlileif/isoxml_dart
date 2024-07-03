@@ -67,7 +67,7 @@ class AttachedFile extends Iso11783Element
     this.fileVersion,
     this.fileLength,
   }) : super(
-          tag: Iso11783XmlTag.attachedFile,
+          elementType: Iso11783ElementType.attachedFile,
           description: 'AttachedFile',
           onlyVersion4AndAbove: true,
         );

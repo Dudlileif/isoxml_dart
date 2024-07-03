@@ -31,7 +31,7 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     ArgumentValidation.checkValueInRange(
@@ -46,35 +46,35 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     if (customerIdRef != null) {
       ArgumentValidation.checkId(
         id: customerIdRef,
-        idRefPattern: Customer.idRefPattern,
+        idRefPattern: Customer.staticIdRefPattern,
         idName: 'customerIdRef',
       );
     }
     if (farmIdRef != null) {
       ArgumentValidation.checkId(
         id: farmIdRef,
-        idRefPattern: Farm.idRefPattern,
+        idRefPattern: Farm.staticIdRefPattern,
         idName: 'farmIdRef',
       );
     }
     if (cropTypeIdRef != null) {
       ArgumentValidation.checkId(
         id: cropTypeIdRef,
-        idRefPattern: CropType.idRefPattern,
+        idRefPattern: CropType.staticIdRefPattern,
         idName: 'cropTypeIdRef',
       );
     }
     if (cropVarietyIdRef != null) {
       ArgumentValidation.checkId(
         id: cropVarietyIdRef,
-        idRefPattern: CropVariety.idRefPattern,
+        idRefPattern: CropVariety.staticIdRefPattern,
         idName: 'cropVarietyIdRef',
       );
     }
     if (fieldIdRef != null) {
       ArgumentValidation.checkId(
         id: fieldIdRef,
-        idRefPattern: idRefPattern,
+        idRefPattern: staticIdRefPattern,
         idName: 'fieldIdRef',
       );
     }
@@ -112,7 +112,10 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     this.cropTypeIdRef,
     this.cropVarietyIdRef,
     this.fieldIdRef,
-  }) : super(tag: Iso11783XmlTag.partfield, description: 'Partfield') {
+  }) : super(
+          elementType: Iso11783ElementType.partfield,
+          description: 'Partfield',
+        ) {
     if (lineStrings != null) {
       this.lineStrings.addAll(lineStrings);
     }
@@ -161,7 +164,10 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [Partfield]s.
-  static const idRefPattern = '(PFD|PFD-)([0-9])+';
+  static const staticIdRefPattern = '(PFD|PFD-)[0-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [Polygon]s that this is made of.
   @annotation.XmlElement(name: 'PLN')
@@ -182,8 +188,10 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   /// Unique identifier for this partfield.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// Partfield number from the FMIS.
   @annotation.XmlAttribute(name: 'B')
@@ -218,6 +226,26 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   String? fieldIdRef;
 
   @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in polygons.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a
+              in guidanceGroups.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+
+  @override
   List<Object?> get props => super.props
     ..addAll([
       polygons,
@@ -234,4 +262,6 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
       cropVarietyIdRef,
       fieldIdRef,
     ]);
+
+
 }

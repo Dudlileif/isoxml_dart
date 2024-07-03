@@ -73,7 +73,7 @@ class Point extends Iso11783Element {
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     }
     if (horizontalAccuracy != null) {
       ArgumentValidation.checkValueInRange(
@@ -144,7 +144,7 @@ class Point extends Iso11783Element {
     this.binaryHeaderOptions,
     this.byteData,
     List<Point>? binaryPoints,
-  }) : super(tag: Iso11783XmlTag.point, description: 'Point') {
+  }) : super(elementType: Iso11783ElementType.point, description: 'Point') {
     if (binaryPoints != null) {
       this.binaryPoints.addAll(binaryPoints);
     }
@@ -211,7 +211,10 @@ class Point extends Iso11783Element {
   }
 
   /// Regular expression matching pattern for the [id] of [Point]s.
-  static const idRefPattern = '(PNT|PNT-)([0-9])+';
+  static const staticIdRefPattern = '(PNT|PNT-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Regular expression matching pattern for filenames for [Point]s.
   static const filenamePattern = 'PNT([0-9]){5}';
@@ -246,8 +249,10 @@ class Point extends Iso11783Element {
   /// Unique identifier for this point.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'G')
   final String? id;
+
 
   /// Horizontal accuracy, (RMS error) in meters.
   @annotation.XmlAttribute(name: 'H')

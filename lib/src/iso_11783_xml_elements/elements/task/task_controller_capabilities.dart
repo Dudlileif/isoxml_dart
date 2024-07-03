@@ -79,7 +79,7 @@ class TaskControllerCapabilities extends Iso11783Element
     required this.numberOfSectionsSectionControl,
     required this.numberOfControlChannels,
   }) : super(
-          tag: Iso11783XmlTag.taskControllerCapabilities,
+          elementType: Iso11783ElementType.taskControllerCapabilities,
           description: 'TaskControllerCapabilities',
           onlyVersion4AndAbove: true,
         );

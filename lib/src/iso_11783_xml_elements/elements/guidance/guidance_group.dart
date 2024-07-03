@@ -21,7 +21,7 @@ class GuidanceGroup extends Iso11783Element
     Polygon? boundaryPolygon,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
     }
@@ -42,7 +42,7 @@ class GuidanceGroup extends Iso11783Element
     this.boundaryPolygon,
     this.designator,
   }) : super(
-          tag: Iso11783XmlTag.guidanceGroup,
+          elementType: Iso11783ElementType.guidanceGroup,
           description: 'GuidanceGroup',
           onlyVersion4AndAbove: true,
         ) {
@@ -68,7 +68,10 @@ class GuidanceGroup extends Iso11783Element
   }
 
   /// Regular expression matching pattern for the [id] of [GuidanceGroup]s.
-  static const idRefPattern = '(GGP|GGP-)([0-9])+';
+  static const staticIdRefPattern = '(GGP|GGP-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [GuidancePattern]s for this.
   @annotation.XmlElement(name: 'GPN')
@@ -81,12 +84,23 @@ class GuidanceGroup extends Iso11783Element
   /// Unique identifier for this guidance group.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
   /// Name of the guidance group, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String? designator;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in patterns.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        if (boundaryPolygon != null)
+          ...boundaryPolygon!.selfWithRecursiveChildren,
+      ];
 
   @override
   List<Object?> get props => super.props

@@ -58,7 +58,7 @@ class AllocationStamp extends Iso11783Element
     this.duration,
     List<Position>? position,
   }) : super(
-          tag: Iso11783XmlTag.allocationStamp,
+          elementType: Iso11783ElementType.allocationStamp,
           description: 'AllocationStamp',
         ) {
     if (position != null) {
@@ -110,6 +110,14 @@ class AllocationStamp extends Iso11783Element
   /// or [AllocationStampType.effective] has already happened.
   @annotation.XmlAttribute(name: 'D')
   final AllocationStampType type;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in position.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

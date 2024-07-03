@@ -24,7 +24,7 @@ class DeviceElement extends Iso11783Element
     List<DeviceObjectReference>? objectReferences,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
@@ -68,7 +68,10 @@ class DeviceElement extends Iso11783Element
     required this.parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     this.designator,
-  }) : super(tag: Iso11783XmlTag.deviceElement, description: 'DeviceElement') {
+  }) : super(
+          elementType: Iso11783ElementType.deviceElement,
+          description: 'DeviceElement',
+        ) {
     if (objectReferences != null) {
       this.objectReferences.addAll(objectReferences);
     }
@@ -104,7 +107,10 @@ class DeviceElement extends Iso11783Element
   }
 
   /// Regular expression matching pattern for the [id] of [DeviceElement]s.
-  static const idRefPattern = '(DET|DET-)([0-9])+';
+  static const staticIdRefPattern = '(DET|DET-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [DeviceObjectReference]s that describes references to
   /// [DeviceProcessData] or [DeviceProperty] elements.
@@ -114,6 +120,7 @@ class DeviceElement extends Iso11783Element
   /// Unique identifier for this device element.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
@@ -138,6 +145,15 @@ class DeviceElement extends Iso11783Element
   /// Object ID of a parent [DeviceElement] or [Device].
   @annotation.XmlAttribute(name: 'F')
   final int parentObjectId;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a
+              in objectReferences.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

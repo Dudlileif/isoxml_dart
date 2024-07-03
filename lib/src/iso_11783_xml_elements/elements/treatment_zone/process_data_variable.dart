@@ -44,21 +44,21 @@ class ProcessDataVariable extends Iso11783Element
     if (productIdRef != null) {
       ArgumentValidation.checkId(
         id: productIdRef,
-        idRefPattern: Product.idRefPattern,
+        idRefPattern: Product.staticIdRefPattern,
         idName: 'productIdRef',
       );
     }
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
         id: deviceElementIdRef,
-        idRefPattern: DeviceElement.idRefPattern,
+        idRefPattern: DeviceElement.staticIdRefPattern,
         idName: 'deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
         id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.idRefPattern,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
         idName: 'valuePresentationIdRef',
       );
     }
@@ -103,7 +103,7 @@ class ProcessDataVariable extends Iso11783Element
     this.actualCulturalPracticeValue,
     this.elementTypeInstanceValue,
   }) : super(
-          tag: Iso11783XmlTag.processDataVariable,
+          elementType: Iso11783ElementType.processDataVariable,
           description: 'ProcessDataVariable',
         ) {
     if (processDataVariables != null) {
@@ -175,6 +175,13 @@ class ProcessDataVariable extends Iso11783Element
   /// database.
   @annotation.XmlAttribute(name: 'G')
   final int? elementTypeInstanceValue;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a
+            in processDataVariables.map((e) => e.selfWithRecursiveChildren))
+          ...a,
+      ];
 
   @override
   List<Object?> get props => super.props

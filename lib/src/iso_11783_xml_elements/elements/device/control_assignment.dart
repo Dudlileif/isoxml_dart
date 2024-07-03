@@ -90,7 +90,7 @@ class ControlAssignment extends Iso11783Element
     required this.processDataDDI,
     this.allocationStamp,
   }) : super(
-          tag: Iso11783XmlTag.controlAssignment,
+          elementType: Iso11783ElementType.controlAssignment,
           description: 'ControlAssignment',
           onlyVersion4AndAbove: true,
         );
@@ -138,6 +138,10 @@ class ControlAssignment extends Iso11783Element
   /// in the ISO 11783-11 database.
   @annotation.XmlAttribute(name: 'G')
   final String processDataDDI;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

@@ -27,7 +27,7 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
     String? softwareVersion,
     String? serialNumber,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkHexStringLength(
       clientNAME,
       name: 'clientNAME',
@@ -88,7 +88,7 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
     this.designator,
     this.softwareVersion,
     this.serialNumber,
-  }) : super(tag: Iso11783XmlTag.device, description: 'Device') {
+  }) : super(elementType: Iso11783ElementType.device, description: 'Device') {
     if (elements != null) {
       this.elements.addAll(elements);
     }
@@ -134,7 +134,10 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [Device]s.
-  static const idRefPattern = '(DVC|DVC-)([0-9])+';
+  static const staticIdRefPattern = '(DVC|DVC-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Regular expression matching pattern for structure labels.
   static const structureLabelPattern =
@@ -163,9 +166,11 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
   /// Unique identifier for this device.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
+  
   /// Name of the device, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String? designator;
@@ -196,6 +201,27 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
   final String localizationLabel;
 
   @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in elements.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in processData.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in properties.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in valuePresentations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+
+  @override
   List<Object?> get props => super.props
     ..addAll([
       elements,
@@ -210,4 +236,5 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
       structureLabel,
       localizationLabel,
     ]);
+
 }

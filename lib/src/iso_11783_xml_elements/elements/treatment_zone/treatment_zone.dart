@@ -68,7 +68,10 @@ class TreatmentZone extends Iso11783Element
     List<ProcessDataVariable>? processDataVariables,
     this.designator,
     this.colour,
-  }) : super(tag: Iso11783XmlTag.treatmentZone, description: 'TreatmentZone') {
+  }) : super(
+          elementType: Iso11783ElementType.treatmentZone,
+          description: 'TreatmentZone',
+        ) {
     if (polygons != null) {
       this.polygons.addAll(polygons);
     }
@@ -118,6 +121,19 @@ class TreatmentZone extends Iso11783Element
   @annotation.XmlAttribute(name: 'C')
   final int? colour;
 
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in polygons.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in processDataVariables.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+      
   @override
   List<Object?> get props => super.props
     ..addAll([

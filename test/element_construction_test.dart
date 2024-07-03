@@ -229,7 +229,7 @@ void main() {
             XmlAttribute(XmlName('A'), 'DVC00001'),
           ]),
         ).elementType,
-        Iso11783XmlTag.device,
+        Iso11783ElementType.device,
       ),
     );
   });

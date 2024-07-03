@@ -34,7 +34,7 @@ class CommentAllocation extends Iso11783Element
     if (codedCommentIdRef != null) {
       ArgumentValidation.checkId(
         id: codedCommentIdRef,
-        idRefPattern: CodedComment.idRefPattern,
+        idRefPattern: CodedComment.staticIdRefPattern,
         idName: 'codedCommentIdRef',
       );
       if (freeCommentText != null) {
@@ -48,7 +48,7 @@ class CommentAllocation extends Iso11783Element
     if (codedCommentListValueIdRef != null) {
       ArgumentValidation.checkId(
         id: codedCommentListValueIdRef,
-        idRefPattern: CodedCommentListValue.idRefPattern,
+        idRefPattern: CodedCommentListValue.staticIdRefPattern,
         idName: 'codedCommentListValueIdRef',
       );
     }
@@ -78,7 +78,7 @@ class CommentAllocation extends Iso11783Element
     this.codedCommentListValueIdRef,
     this.freeCommentText,
   }) : super(
-          tag: Iso11783XmlTag.commentAllocation,
+          elementType: Iso11783ElementType.commentAllocation,
           description: 'CommentAllocation',
         );
 
@@ -101,6 +101,10 @@ class CommentAllocation extends Iso11783Element
   /// A text comment specified by the operator.
   @annotation.XmlAttribute(name: 'C')
   String? freeCommentText;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

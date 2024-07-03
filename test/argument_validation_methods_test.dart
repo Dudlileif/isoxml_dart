@@ -8,15 +8,15 @@ import 'package:test/test.dart';
 
 void main() {
   group('Test ArgumentValidation', () {
-    group('.chedkId', () {
+    group('.checkId', () {
       test(
         'with valid base station id',
         () {
           Object? error;
           try {
             ArgumentValidation.checkId(
-              id: 'BSN0001',
-              idRefPattern: BaseStation.idRefPattern,
+              id: 'BSN1',
+              idRefPattern: BaseStation.staticIdRefPattern,
             );
           } catch (e) {
             error = e;
@@ -28,13 +28,31 @@ void main() {
         },
       );
       test(
-        'with invalid base station id',
+        'with invalid base station id, wrong tag',
         () {
           Object? error;
           try {
             ArgumentValidation.checkId(
               id: 'BS0001',
-              idRefPattern: BaseStation.idRefPattern,
+              idRefPattern: BaseStation.staticIdRefPattern,
+            );
+          } catch (e) {
+            error = e;
+          }
+          expect(
+            error,
+            isArgumentError,
+          );
+        },
+      );
+      test(
+        'with invalid base station id, leading zeros',
+        () {
+          Object? error;
+          try {
+            ArgumentValidation.checkId(
+              id: 'BSN00001',
+              idRefPattern: BaseStation.staticIdRefPattern,
             );
           } catch (e) {
             error = e;
@@ -52,7 +70,7 @@ void main() {
           try {
             ArgumentValidation.checkId(
               id: 'BSN10',
-              idRefPattern: BaseStation.idRefPattern,
+              idRefPattern: BaseStation.staticIdRefPattern,
               maxLength: 4,
             );
           } catch (e) {
@@ -71,7 +89,7 @@ void main() {
           try {
             ArgumentValidation.checkId(
               id: 'BSN10',
-              idRefPattern: Partfield.idRefPattern,
+              idRefPattern: Partfield.staticIdRefPattern,
             );
           } catch (e) {
             error = e;
@@ -129,7 +147,7 @@ void main() {
             ArgumentValidation.checkIdAndDesignator(
               id: 'PFD100',
               designator: 'Some field in the world',
-              idRefPattern: Partfield.idRefPattern,
+              idRefPattern: Partfield.staticIdRefPattern,
             );
           } catch (e) {
             error = e;
@@ -148,7 +166,7 @@ void main() {
             ArgumentValidation.checkIdAndDesignator(
               id: 'PFD100',
               designator: 'Some field in the world',
-              idRefPattern: Product.idRefPattern,
+              idRefPattern: Product.staticIdRefPattern,
             );
           } catch (e) {
             error = e;

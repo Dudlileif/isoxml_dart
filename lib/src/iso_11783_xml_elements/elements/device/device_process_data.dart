@@ -78,7 +78,7 @@ class DeviceProcessData extends Iso11783Element
     this.designator,
     this.presentationObjectId,
   }) : super(
-          tag: Iso11783XmlTag.deciveProcessData,
+          elementType: Iso11783ElementType.deciveProcessData,
           description: 'DeviceProcessData',
         );
 

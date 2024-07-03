@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 /// multiple. To determine which [Farm]s or [Partfield]s belong to a specific
 /// [Customer], the [customerIdRef] values of all [Farm]s or [Partfield]s,
 /// respectively, shall be examined for a match with a particular [Customer.id]
-///  value.
+/// value.
 @CopyWith()
 @annotation.XmlRootElement(name: 'FRM')
 @annotation.XmlSerializable(createMixin: true)
@@ -30,7 +30,7 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     if (street != null) {
@@ -66,7 +66,7 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
     if (customerIdRef != null) {
       ArgumentValidation.checkId(
         id: customerIdRef,
-        idRefPattern: Customer.idRefPattern,
+        idRefPattern: Customer.staticIdRefPattern,
         idName: 'customerIdRef',
       );
     }
@@ -96,20 +96,26 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
     this.state,
     this.country,
     this.customerIdRef,
-  }) : super(tag: Iso11783XmlTag.farm, description: 'Farm');
+  }) : super(elementType: Iso11783ElementType.farm, description: 'Farm');
 
   /// Creates a [Farm] from [element].
   factory Farm.fromXmlElement(XmlElement element) =>
       _$FarmFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [Farm]s.
-  static const idRefPattern = '(FRM|FRM-)([0-9])+';
+  static const staticIdRefPattern = '(FRM|FRM-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this farm.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
+
+
 
   /// Name of the farm, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -156,4 +162,5 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
       country,
       customerIdRef,
     ]);
+
 }

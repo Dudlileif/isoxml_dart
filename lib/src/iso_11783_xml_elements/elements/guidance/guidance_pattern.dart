@@ -40,7 +40,7 @@ class GuidancePattern extends Iso11783Element
       );
     }
 
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
     }
@@ -79,7 +79,7 @@ class GuidancePattern extends Iso11783Element
     if (baseStationIdRef != null) {
       ArgumentValidation.checkId(
         id: baseStationIdRef,
-        idRefPattern: BaseStation.idRefPattern,
+        idRefPattern: BaseStation.staticIdRefPattern,
         idName: 'baseStationIdRef',
       );
     }
@@ -144,7 +144,7 @@ class GuidancePattern extends Iso11783Element
     this.numberOfSwathsLeft,
     this.numberOfSwathsRight,
   }) : super(
-          tag: Iso11783XmlTag.guidancePattern,
+          elementType: Iso11783ElementType.guidancePattern,
           description: 'GuidancePattern',
           onlyVersion4AndAbove: true,
         ) {
@@ -156,7 +156,10 @@ class GuidancePattern extends Iso11783Element
       _$GuidancePatternFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [GuidancePattern]s.
-  static const idRefPattern = '(GPN|GPN-)([0-9])+';
+  static const staticIdRefPattern = '(GPN|GPN-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Boundary [Polygon] for this.
   @annotation.XmlElement(name: 'PLN', includeIfNull: false)
@@ -172,6 +175,7 @@ class GuidancePattern extends Iso11783Element
   /// Unique identifier for this guidance pattern.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
@@ -236,6 +240,16 @@ class GuidancePattern extends Iso11783Element
   @annotation.XmlAttribute(name: 'O')
   final int? numberOfSwathsRight;
 
+@override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        if (boundaryPolygon != null)
+          ...boundaryPolygon!.selfWithRecursiveChildren,
+      ];
+
   @override
   List<Object?> get props => super.props
     ..addAll([
@@ -257,6 +271,7 @@ class GuidancePattern extends Iso11783Element
       numberOfSwathsLeft,
       numberOfSwathsRight,
     ]);
+
 }
 
 /// An enumeration for the type of [GuidancePattern].

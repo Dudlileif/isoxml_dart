@@ -28,7 +28,7 @@ class CulturalPractice extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     return CulturalPractice._(
@@ -45,7 +45,7 @@ class CulturalPractice extends Iso11783Element
     required this.designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
   }) : super(
-          tag: Iso11783XmlTag.culturalPractice,
+          elementType: Iso11783ElementType.culturalPractice,
           description: 'CulturalPractice',
         ) {
     if (operationTechniqueReferences != null) {
@@ -68,7 +68,10 @@ class CulturalPractice extends Iso11783Element
   }
 
   /// Regular expression matching pattern for the [id] of [CulturalPractice]s.
-  static const idRefPattern = '(CPC|CPC-)([0-9])+';
+  static const staticIdRefPattern = '(CPC|CPC-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of references to the available [OperationTechnique]s for this.
   @annotation.XmlElement(name: 'OTR')
@@ -77,13 +80,23 @@ class CulturalPractice extends Iso11783Element
   /// Unique identifier for this cultural practice.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
+
+
 
   /// Name of the cultural practice, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
-  
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a in operationTechniqueReferences
+            .map((e) => e.selfWithRecursiveChildren))
+          ...a,
+      ];
+
   @override
   List<Object?> get props => super.props
     ..addAll([
@@ -91,4 +104,5 @@ class CulturalPractice extends Iso11783Element
       id,
       designator,
     ]);
+
 }

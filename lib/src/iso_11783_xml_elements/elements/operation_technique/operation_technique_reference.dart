@@ -17,7 +17,7 @@ class OperationTechniqueReference extends Iso11783Element
   }) {
     ArgumentValidation.checkId(
       id: operationTechniqueIdRef,
-      idRefPattern: OperationTechnique.idRefPattern,
+      idRefPattern: OperationTechnique.staticIdRefPattern,
       idName: 'operationTechniqueIdRef',
     );
 
@@ -31,7 +31,7 @@ class OperationTechniqueReference extends Iso11783Element
   const OperationTechniqueReference._({
     required this.operationTechniqueIdRef,
   }) : super(
-          tag: Iso11783XmlTag.operationTechniqueReference,
+          elementType: Iso11783ElementType.operationTechniqueReference,
           description: 'OperationTechniqueReference',
         );
 

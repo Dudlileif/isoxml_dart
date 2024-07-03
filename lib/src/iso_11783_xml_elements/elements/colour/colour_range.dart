@@ -52,7 +52,10 @@ class ColourRange extends Iso11783Element
     required this.minimumValue,
     required this.maximumValue,
     required this.colour,
-  }) : super(tag: Iso11783XmlTag.colourRange, description: 'ColourRange');
+  }) : super(
+          elementType: Iso11783ElementType.colourRange,
+          description: 'ColourRange',
+        );
 
   /// Creates a [ColourRange] from [element].
   factory ColourRange.fromXmlElement(XmlElement element) =>

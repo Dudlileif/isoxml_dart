@@ -24,7 +24,7 @@ class CodedCommentGroup extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
@@ -40,7 +40,7 @@ class CodedCommentGroup extends Iso11783Element
     required this.id,
     required this.designator,
   }) : super(
-          tag: Iso11783XmlTag.codedCommentGroup,
+          elementType: Iso11783ElementType.codedCommentGroup,
           description: 'CodedCommentGroup',
         );
 
@@ -50,11 +50,15 @@ class CodedCommentGroup extends Iso11783Element
 
   /// Regular expression matching pattern for the [id] of
   /// [CodedCommentGroup]s.
-  static const String idRefPattern = '(CCG|CCG-)([0-9])+';
+  static const String staticIdRefPattern = '(CCG|CCG-)[1-9]([0-9])*';
 
-  /// Unique identifier for this colour legend.
+  @override
+  String get idRefPattern => staticIdRefPattern;
+
+  /// Unique identifier for this comment group.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 

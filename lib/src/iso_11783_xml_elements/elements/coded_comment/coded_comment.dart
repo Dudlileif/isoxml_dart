@@ -24,14 +24,14 @@ class CodedComment extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
         id: groupIdRef,
-        idRefPattern: CodedCommentGroup.idRefPattern,
+        idRefPattern: CodedCommentGroup.staticIdRefPattern,
         idName: 'groupIdRef',
       );
     }
@@ -52,7 +52,10 @@ class CodedComment extends Iso11783Element
     required this.scope,
     List<CodedCommentListValue>? listValues,
     this.groupIdRef,
-  }) : super(tag: Iso11783XmlTag.codedComment, description: 'CodedComment') {
+  }) : super(
+          elementType: Iso11783ElementType.codedComment,
+          description: 'CodedComment',
+        ) {
     if (listValues != null) {
       this.listValues.addAll(listValues);
     }
@@ -84,7 +87,10 @@ class CodedComment extends Iso11783Element
   }
 
   /// Regular expression matching pattern for the [id] of [CodedComment]s.
-  static const String idRefPattern = '(CCT|CCT-)([0-9])+';
+  static const String staticIdRefPattern = '(CCT|CCT-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// List of [CodedCommentListValue]s for this comment.
   @annotation.XmlElement(name: 'CCL')
@@ -93,6 +99,7 @@ class CodedComment extends Iso11783Element
   /// Unique identifier for this comment.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
@@ -107,6 +114,14 @@ class CodedComment extends Iso11783Element
   /// A reference to a [CodedCommentGroup] that this comment is a part of.
   @annotation.XmlAttribute(name: 'D')
   String? groupIdRef;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in listValues.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

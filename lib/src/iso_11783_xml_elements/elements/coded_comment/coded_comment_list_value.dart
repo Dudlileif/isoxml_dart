@@ -24,7 +24,7 @@ class CodedCommentListValue extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
@@ -35,7 +35,7 @@ class CodedCommentListValue extends Iso11783Element
   /// in the default factory.
   const CodedCommentListValue._({required this.id, required this.designator})
       : super(
-          tag: Iso11783XmlTag.codedCommentListValue,
+          elementType: Iso11783ElementType.codedCommentListValue,
           description: 'CodedCommentListvalue',
         );
 
@@ -45,11 +45,15 @@ class CodedCommentListValue extends Iso11783Element
 
   /// Regular expression matching pattern for the [id] of
   /// [CodedCommentListValue]s.
-  static const String idRefPattern = '(CCL|CCL-)([0-9])+';
+  static const String staticIdRefPattern = '(CCL|CCL-)[1-9]([0-9])*';
 
-  /// Unique identifier for this colour legend.
+  @override
+  String get idRefPattern => staticIdRefPattern;
+
+  /// Unique identifier for this comment list value.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 

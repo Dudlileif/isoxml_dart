@@ -21,7 +21,7 @@ class TaskDataFileHandler {
 
   /// Saves the [taskData] to a zip file at [path].
   /// If [externalize] is true, the [taskData] will split up the main XML
-  /// file to one for each type in [Iso11783XmlTag.tagsThatCanBeExternal].
+  /// file to one for each type in [Iso11783ElementType.tagsThatCanBeExternal].
   ///
   /// On web it will download the zip file directly.
   static Future<bool> saveToZip({
@@ -33,7 +33,7 @@ class TaskDataFileHandler {
 
   /// Saves the [taskData] to the directory at [path].
   /// If [externalize] is true, the [taskData] will split up the main XML
-  /// file to one for each type in [Iso11783XmlTag.tagsThatCanBeExternal].
+  /// file to one for each type in [Iso11783ElementType.tagsThatCanBeExternal].
   ///
   /// On web it will fall back to [saveToZip].
   static Future<bool> saveToFolder({

@@ -33,20 +33,20 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
         id: groupIdRef,
-        idRefPattern: ProductGroup.idRefPattern,
+        idRefPattern: ProductGroup.staticIdRefPattern,
         idName: 'groupIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
         id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.idRefPattern,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
         idName: 'valuePresentationIdRef',
       );
     }
@@ -135,7 +135,10 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
     this.densityMassPerVolume,
     this.densityMassPerCount,
     this.densityVolumePerCount,
-  }) : super(tag: Iso11783XmlTag.product, description: 'Product') {
+  }) : super(
+          elementType: Iso11783ElementType.product,
+          description: 'Product',
+        ) {
     if (relations != null) {
       this.relations.addAll(relations);
     }
@@ -186,7 +189,10 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [Product]s.
-  static const idRefPattern = '(PDT|PDT-)([0-9])+';
+  static const staticIdRefPattern = '(PDT|PDT-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [ProductRelation]s to other [Product]s that are used in this
   /// mixture, if there are any.
@@ -196,8 +202,11 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   /// Unique identifier for this product.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
+
+
 
   /// Name of the product, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -246,6 +255,11 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   final int? densityVolumePerCount;
 
   @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a in relations.map((e) => e.selfWithRecursiveChildren)) ...a,
+      ];
+
+  @override
   List<Object?> get props => super.props
     ..addAll([
       relations,
@@ -260,6 +274,7 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
       densityMassPerCount,
       densityVolumePerCount,
     ]);
+
 }
 
 /// An enumerator for whether a [Product] is singular or in a mixture.

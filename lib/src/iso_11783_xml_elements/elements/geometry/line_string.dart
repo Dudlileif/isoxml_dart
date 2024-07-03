@@ -56,7 +56,7 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     }
 
     return LineString._(
@@ -80,7 +80,10 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
     this.length,
     this.colour,
     this.id,
-  }) : super(tag: Iso11783XmlTag.lineString, description: 'LineString') {
+  }) : super(
+          elementType: Iso11783ElementType.lineString,
+          description: 'LineString',
+        ) {
     this.points.addAll(points);
   }
 
@@ -89,7 +92,10 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
       _$LineStringFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [LineString]s.
-  static const idRefPattern = '(LSG|LSG-)([0-9])+';
+  static const staticIdRefPattern = '(LSG|LSG-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// The positions along this.
   @annotation.XmlElement(name: 'PNT')
@@ -122,8 +128,17 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
   /// Unique identifier for this line string.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'F')
   final String? id;
+
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

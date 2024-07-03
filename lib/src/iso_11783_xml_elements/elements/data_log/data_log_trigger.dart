@@ -115,14 +115,14 @@ class DataLogTrigger extends Iso11783Element
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
         id: deviceElementIdRef,
-        idRefPattern: DeviceElement.idRefPattern,
+        idRefPattern: DeviceElement.staticIdRefPattern,
         idName: 'deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
         id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.idRefPattern,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
         idName: 'valuePresentationIdRef',
       );
     }
@@ -189,7 +189,10 @@ class DataLogTrigger extends Iso11783Element
     this.pgn,
     this.pgnStartBit,
     this.pgnStopBit,
-  }) : super(tag: Iso11783XmlTag.dataLogTrigger, description: 'DataLogTrigger');
+  }) : super(
+          elementType: Iso11783ElementType.dataLogTrigger,
+          description: 'DataLogTrigger',
+        );
 
   /// Creates a [DataLogTrigger] from [element].
   factory DataLogTrigger.fromXmlElement(XmlElement element) =>

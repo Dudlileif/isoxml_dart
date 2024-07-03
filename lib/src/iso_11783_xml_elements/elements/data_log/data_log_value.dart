@@ -43,7 +43,7 @@ class DataLogValue extends Iso11783Element
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef,
-      idRefPattern: DeviceElement.idRefPattern,
+      idRefPattern: DeviceElement.staticIdRefPattern,
       idName: 'deviceElementIdRef',
     );
     if (pgn != null) {
@@ -96,7 +96,10 @@ class DataLogValue extends Iso11783Element
     this.pgn,
     this.pgnStartBit,
     this.pgnStopBit,
-  }) : super(tag: Iso11783XmlTag.dataLogValue, description: 'DataLogValue');
+  }) : super(
+          elementType: Iso11783ElementType.dataLogValue,
+          description: 'DataLogValue',
+        );
 
   /// Creates a [DataLogValue] from [element].
   factory DataLogValue.fromXmlElement(XmlElement element) =>

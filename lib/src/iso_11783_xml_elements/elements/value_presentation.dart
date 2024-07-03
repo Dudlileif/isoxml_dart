@@ -28,7 +28,7 @@ class ValuePresentation extends Iso11783Element
     String? unitDesignator,
     String? colourLegendIdRef,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkValueInRange(
       value: offset,
       min: -2147483648,
@@ -56,7 +56,7 @@ class ValuePresentation extends Iso11783Element
     if (colourLegendIdRef != null) {
       ArgumentValidation.checkId(
         id: colourLegendIdRef,
-        idRefPattern: ColourLegend.idRefPattern,
+        idRefPattern: ColourLegend.staticIdRefPattern,
         idName: 'colourLegendIdRef',
       );
     }
@@ -81,7 +81,7 @@ class ValuePresentation extends Iso11783Element
     this.unitDesignator,
     this.colourLegendIdRef,
   }) : super(
-          tag: Iso11783XmlTag.valuePresentation,
+          elementType: Iso11783ElementType.valuePresentation,
           description: 'ValuePresentation',
         );
 
@@ -90,11 +90,15 @@ class ValuePresentation extends Iso11783Element
       _$ValuePresentationFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [ValuePresentation]s.
-  static const idRefPattern = '(VPN|VPN-)([0-9])+';
+  static const staticIdRefPattern = '(VPN|VPN-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this value presentation.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
@@ -128,4 +132,5 @@ class ValuePresentation extends Iso11783Element
       unitDesignator,
       colourLegendIdRef,
     ]);
+
 }

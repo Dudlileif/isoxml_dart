@@ -47,7 +47,7 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     }
     return Polygon._(
       type: type,
@@ -68,7 +68,10 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
     this.area,
     this.colour,
     this.id,
-  }) : super(tag: Iso11783XmlTag.polygon, description: 'Polygon') {
+  }) : super(
+          elementType: Iso11783ElementType.polygon,
+          description: 'Polygon',
+        ) {
     this.lineStrings.addAll(lineStrings);
   }
 
@@ -77,7 +80,10 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
       _$PolygonFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [Polygon]s.
-  static const idRefPattern = '(PLN|PLN-)([0-9])+';
+  static const staticIdRefPattern = '(PLN|PLN-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// The line strins that makes up this polygon.
   @annotation.XmlElement(name: 'LSG')
@@ -105,8 +111,17 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
   /// Unique identifier for this polygon.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'E')
   final String? id;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

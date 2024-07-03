@@ -78,7 +78,7 @@ class Iso11783LinkList extends Iso11783Element
     this.taskControllerVersion,
     this.fileVersion,
   }) : super(
-          tag: Iso11783XmlTag.linkList,
+          elementType: Iso11783ElementType.linkList,
           description: 'ISO 11783 Link List File',
           onlyVersion4AndAbove: true,
         ) {
@@ -140,7 +140,7 @@ class Iso11783LinkList extends Iso11783Element
 
   /// Creates an [Iso11783LinkList] from [document].
   static Iso11783LinkList? fromXmlDocument(XmlDocument document) {
-    final element = document.getElement(Iso11783XmlTag.linkList.name);
+    final element = document.getElement(Iso11783ElementType.linkList.xmlTag);
     if (element == null) {
       return null;
     }
@@ -187,9 +187,15 @@ class Iso11783LinkList extends Iso11783Element
   XmlDocument toXmlDocument() {
     final builder = XmlBuilder()
       ..processing('xml', 'version="1.0" encoding="UTF-8"');
-    builder.element(tag.name, nest: () => buildXmlChildren(builder));
+    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
     return builder.buildDocument();
   }
+@override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        for (final a in linkGroups.map((e) => e.selfWithRecursiveChildren))
+          ...a,
+      ];
+
 
   @override
   List<Object?> get props => super.props

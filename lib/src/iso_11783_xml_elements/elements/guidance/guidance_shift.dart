@@ -27,14 +27,14 @@ class GuidanceShift extends Iso11783Element
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
         id: groupIdRef,
-        idRefPattern: GuidanceGroup.idRefPattern,
+        idRefPattern: GuidanceGroup.staticIdRefPattern,
         idName: 'groupIdRef',
       );
     }
     if (patternIdRef != null) {
       ArgumentValidation.checkId(
         id: patternIdRef,
-        idRefPattern: GuidancePattern.idRefPattern,
+        idRefPattern: GuidancePattern.staticIdRefPattern,
         idName: 'patternIdRef',
       );
     }
@@ -82,7 +82,7 @@ class GuidanceShift extends Iso11783Element
     this.northShift,
     this.propagationOffset,
   }) : super(
-          tag: Iso11783XmlTag.guidanceShift,
+          elementType: Iso11783ElementType.guidanceShift,
           description: 'GuidanceShift',
           onlyVersion4AndAbove: true,
         );
@@ -119,6 +119,10 @@ class GuidanceShift extends Iso11783Element
   /// shifts the pattern to the right.
   @annotation.XmlAttribute(name: 'E')
   final int? propagationOffset;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

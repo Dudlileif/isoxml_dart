@@ -66,7 +66,7 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
     List<DataLogValue>? dataLogValues,
     this.stop,
     this.duration,
-  }) : super(tag: Iso11783XmlTag.time, description: 'Time') {
+  }) : super(elementType: Iso11783ElementType.time, description: 'Time') {
     if (positions != null) {
       this.positions.addAll(positions);
     }
@@ -123,6 +123,18 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
   /// Which type this is.
   @annotation.XmlAttribute(name: 'D')
   final TimeType type;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in positions.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in dataLogValues.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

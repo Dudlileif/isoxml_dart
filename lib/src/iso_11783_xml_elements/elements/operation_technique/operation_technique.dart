@@ -19,7 +19,7 @@ class OperationTechnique extends Iso11783Element
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
@@ -35,7 +35,7 @@ class OperationTechnique extends Iso11783Element
     required this.id,
     required this.designator,
   }) : super(
-          tag: Iso11783XmlTag.operationTechnique,
+          elementType: Iso11783ElementType.operationTechnique,
           description: 'OperationTechnique',
         );
 
@@ -44,13 +44,19 @@ class OperationTechnique extends Iso11783Element
       _$OperationTechniqueFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [OperationTechnique]s.
-  static const idRefPattern = '(OTQ|OTQ-)([0-9])+';
+  static const staticIdRefPattern = '(OTQ|OTQ-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this operation technique.
   ///
   /// Records generated on MICS have negative IDs.
-  @annotation.XmlAttribute(name: 'A')
+  @override
+@annotation.XmlAttribute(name: 'A')
   final String id;
+
+
 
   /// Name of the operation technique, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -61,5 +67,5 @@ class OperationTechnique extends Iso11783Element
     ..addAll([
       id,
       designator,
-    ]);
+    ]);    
 }

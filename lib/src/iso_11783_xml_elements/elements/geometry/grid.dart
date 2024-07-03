@@ -167,7 +167,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
     this.treatmentZoneCodeGrid,
     this.numberOfProcessDataVariables,
     this.processDataValueGrid,
-  }) : super(tag: Iso11783XmlTag.grid, description: 'Grid');
+  }) : super(elementType: Iso11783ElementType.grid, description: 'Grid');
 
   /// Creates a [Grid] from [element];
   factory Grid.fromXmlElement(XmlElement element) =>
@@ -175,7 +175,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
 
   /// Regular expression pattern for the filename of the binary
   /// `GRD-----.bin` file, excluding the `.bin` part
-  static const fileNamePattern = 'GRD[0-9][0-9][0-9][0-9][0-9]';
+  static const fileNamePattern = 'GRD[0-9]{5}';
 
   /// Minimum north position of the grid, format: WGS84 latitude
   @annotation.XmlAttribute(name: 'A')

@@ -15,8 +15,8 @@ import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
 export 'package:isoxml_dart/src/iso_11783_xml_elements/data_transfer_origin.dart';
+export 'package:isoxml_dart/src/iso_11783_xml_elements/iso_11783_element_type.dart';
 export 'package:isoxml_dart/src/iso_11783_xml_elements/version.dart';
-export 'package:isoxml_dart/src/iso_11783_xml_elements/xml_tag.dart';
 
 part 'elements/allocation_stamp.dart';
 part 'elements/base_station.dart';
@@ -88,98 +88,111 @@ part 'iso_11783_element.g.dart';
 /// used to filter them out if exporting to an older version.
 sealed class Iso11783Element with EquatableMixin {
   const Iso11783Element({
-    required this.tag,
+    required this.elementType,
     required this.description,
     this.onlyVersion4AndAbove = false,
   });
 
   factory Iso11783Element.fromXmlElement(XmlElement element) =>
-      switch (Iso11783XmlTag.fromName(element.name.local)) {
-        Iso11783XmlTag.allocationStamp =>
+      switch (Iso11783ElementType.fromXmlTag(element.name.local)) {
+        Iso11783ElementType.allocationStamp =>
           AllocationStamp.fromXmlElement(element),
-        Iso11783XmlTag.attachedFile => AttachedFile.fromXmlElement(element),
-        Iso11783XmlTag.baseStation => BaseStation.fromXmlElement(element),
-        Iso11783XmlTag.codedComment => CodedComment.fromXmlElement(element),
-        Iso11783XmlTag.codedCommentGroup =>
+        Iso11783ElementType.attachedFile =>
+          AttachedFile.fromXmlElement(element),
+        Iso11783ElementType.baseStation => BaseStation.fromXmlElement(element),
+        Iso11783ElementType.codedComment =>
+          CodedComment.fromXmlElement(element),
+        Iso11783ElementType.codedCommentGroup =>
           CodedCommentGroup.fromXmlElement(element),
-        Iso11783XmlTag.codedCommentListValue =>
+        Iso11783ElementType.codedCommentListValue =>
           CodedCommentListValue.fromXmlElement(element),
-        Iso11783XmlTag.colourLegend => ColourLegend.fromXmlElement(element),
-        Iso11783XmlTag.colourRange => ColourRange.fromXmlElement(element),
-        Iso11783XmlTag.commentAllocation =>
+        Iso11783ElementType.colourLegend =>
+          ColourLegend.fromXmlElement(element),
+        Iso11783ElementType.colourRange => ColourRange.fromXmlElement(element),
+        Iso11783ElementType.commentAllocation =>
           CommentAllocation.fromXmlElement(element),
-        Iso11783XmlTag.connection => Connection.fromXmlElement(element),
-        Iso11783XmlTag.controlAssignment =>
+        Iso11783ElementType.connection => Connection.fromXmlElement(element),
+        Iso11783ElementType.controlAssignment =>
           ControlAssignment.fromXmlElement(element),
-        Iso11783XmlTag.cropType => CropType.fromXmlElement(element),
-        Iso11783XmlTag.cropVariety => CropVariety.fromXmlElement(element),
-        Iso11783XmlTag.culturalPractice =>
+        Iso11783ElementType.cropType => CropType.fromXmlElement(element),
+        Iso11783ElementType.cropVariety => CropVariety.fromXmlElement(element),
+        Iso11783ElementType.culturalPractice =>
           CulturalPractice.fromXmlElement(element),
-        Iso11783XmlTag.customer => Customer.fromXmlElement(element),
-        Iso11783XmlTag.dataLogTrigger => DataLogTrigger.fromXmlElement(element),
-        Iso11783XmlTag.dataLogValue => DataLogValue.fromXmlElement(element),
-        Iso11783XmlTag.device => Device.fromXmlElement(element),
-        Iso11783XmlTag.deviceAllocation =>
+        Iso11783ElementType.customer => Customer.fromXmlElement(element),
+        Iso11783ElementType.dataLogTrigger =>
+          DataLogTrigger.fromXmlElement(element),
+        Iso11783ElementType.dataLogValue =>
+          DataLogValue.fromXmlElement(element),
+        Iso11783ElementType.device => Device.fromXmlElement(element),
+        Iso11783ElementType.deviceAllocation =>
           DeviceAllocation.fromXmlElement(element),
-        Iso11783XmlTag.deviceElement => DeviceElement.fromXmlElement(element),
-        Iso11783XmlTag.deviceObjectReference =>
+        Iso11783ElementType.deviceElement =>
+          DeviceElement.fromXmlElement(element),
+        Iso11783ElementType.deviceObjectReference =>
           DeviceObjectReference.fromXmlElement(element),
-        Iso11783XmlTag.deviceProperty => DeviceProperty.fromXmlElement(element),
-        Iso11783XmlTag.deciveProcessData =>
+        Iso11783ElementType.deviceProperty =>
+          DeviceProperty.fromXmlElement(element),
+        Iso11783ElementType.deciveProcessData =>
           DeviceProcessData.fromXmlElement(element),
-        Iso11783XmlTag.deviceValuePresentation =>
+        Iso11783ElementType.deviceValuePresentation =>
           DeviceValuePresentation.fromXmlElement(element),
-        Iso11783XmlTag.externalFileContents =>
+        Iso11783ElementType.externalFileContents =>
           ExternalFileContents.fromXmlElement(element),
-        Iso11783XmlTag.externalFileReference =>
+        Iso11783ElementType.externalFileReference =>
           ExternalFileReference.fromXmlElement(element),
-        Iso11783XmlTag.farm => Farm.fromXmlElement(element),
-        Iso11783XmlTag.grid => Grid.fromXmlElement(element),
-        Iso11783XmlTag.guidanceAllocation =>
+        Iso11783ElementType.farm => Farm.fromXmlElement(element),
+        Iso11783ElementType.grid => Grid.fromXmlElement(element),
+        Iso11783ElementType.guidanceAllocation =>
           GuidanceAllocation.fromXmlElement(element),
-        Iso11783XmlTag.guidanceGroup => GuidanceGroup.fromXmlElement(element),
-        Iso11783XmlTag.guidancePattern =>
+        Iso11783ElementType.guidanceGroup =>
+          GuidanceGroup.fromXmlElement(element),
+        Iso11783ElementType.guidancePattern =>
           GuidancePattern.fromXmlElement(element),
-        Iso11783XmlTag.guidanceShift => GuidanceShift.fromXmlElement(element),
-        Iso11783XmlTag.lineString => LineString.fromXmlElement(element),
-        Iso11783XmlTag.link => Link.fromXmlElement(element),
-        Iso11783XmlTag.linkGroup => LinkGroup.fromXmlElement(element),
-        Iso11783XmlTag.linkList => Iso11783LinkList.fromXmlElement(element),
-        Iso11783XmlTag.operationTechnique =>
+        Iso11783ElementType.guidanceShift =>
+          GuidanceShift.fromXmlElement(element),
+        Iso11783ElementType.lineString => LineString.fromXmlElement(element),
+        Iso11783ElementType.link => Link.fromXmlElement(element),
+        Iso11783ElementType.linkGroup => LinkGroup.fromXmlElement(element),
+        Iso11783ElementType.linkList =>
+          Iso11783LinkList.fromXmlElement(element),
+        Iso11783ElementType.operationTechnique =>
           OperationTechnique.fromXmlElement(element),
-        Iso11783XmlTag.operationTechniqueReference =>
+        Iso11783ElementType.operationTechniqueReference =>
           OperationTechniqueReference.fromXmlElement(element),
-        Iso11783XmlTag.operationTechniquePractice =>
+        Iso11783ElementType.operationTechniquePractice =>
           OperationTechniquePractice.fromXmlElement(element),
-        Iso11783XmlTag.partfield => Partfield.fromXmlElement(element),
-        Iso11783XmlTag.polygon => Polygon.fromXmlElement(element),
-        Iso11783XmlTag.point => Point.fromXmlElement(element),
-        Iso11783XmlTag.position => Position.fromXmlElement(element),
-        Iso11783XmlTag.processDataVariable =>
+        Iso11783ElementType.partfield => Partfield.fromXmlElement(element),
+        Iso11783ElementType.polygon => Polygon.fromXmlElement(element),
+        Iso11783ElementType.point => Point.fromXmlElement(element),
+        Iso11783ElementType.position => Position.fromXmlElement(element),
+        Iso11783ElementType.processDataVariable =>
           ProcessDataVariable.fromXmlElement(element),
-        Iso11783XmlTag.product => Product.fromXmlElement(element),
-        Iso11783XmlTag.productAllocation =>
+        Iso11783ElementType.product => Product.fromXmlElement(element),
+        Iso11783ElementType.productAllocation =>
           ProductAllocation.fromXmlElement(element),
-        Iso11783XmlTag.productGroup => ProductGroup.fromXmlElement(element),
-        Iso11783XmlTag.productRelation =>
+        Iso11783ElementType.productGroup =>
+          ProductGroup.fromXmlElement(element),
+        Iso11783ElementType.productRelation =>
           ProductRelation.fromXmlElement(element),
-        Iso11783XmlTag.task => Task.fromXmlElement(element),
-        Iso11783XmlTag.taskData => Iso11783TaskData.fromXmlElement(element),
-        Iso11783XmlTag.taskControllerCapabilities =>
+        Iso11783ElementType.task => Task.fromXmlElement(element),
+        Iso11783ElementType.taskData =>
+          Iso11783TaskData.fromXmlElement(element),
+        Iso11783ElementType.taskControllerCapabilities =>
           TaskControllerCapabilities.fromXmlElement(element),
-        Iso11783XmlTag.time => Time.fromXmlElement(element),
-        Iso11783XmlTag.timeLog => TimeLog.fromXmlElement(element),
-        Iso11783XmlTag.treatmentZone => TreatmentZone.fromXmlElement(element),
-        Iso11783XmlTag.valuePresentation =>
+        Iso11783ElementType.time => Time.fromXmlElement(element),
+        Iso11783ElementType.timeLog => TimeLog.fromXmlElement(element),
+        Iso11783ElementType.treatmentZone =>
+          TreatmentZone.fromXmlElement(element),
+        Iso11783ElementType.valuePresentation =>
           ValuePresentation.fromXmlElement(element),
-        Iso11783XmlTag.worker => Worker.fromXmlElement(element),
-        Iso11783XmlTag.workerAllocation =>
+        Iso11783ElementType.worker => Worker.fromXmlElement(element),
+        Iso11783ElementType.workerAllocation =>
           WorkerAllocation.fromXmlElement(element),
         _ => const EmptyIso11783Element(),
       };
 
   /// Which type of ISO 11783-10 element this is based on the XML tag.
-  final Iso11783XmlTag tag;
+  final Iso11783ElementType elementType;
 
   /// A short description of the element type.
   final String description;
@@ -187,9 +200,24 @@ sealed class Iso11783Element with EquatableMixin {
   /// Whether this element type is only supported in version 4 and above.
   final bool onlyVersion4AndAbove;
 
+  /// The ID of this, if it has one;
+  String? get id => null;
+
+  /// The ID reference pattern (regExp) for [id] if there is one.
+  String? get idRefPattern => null;
+
+  /// All the element children connected to this, and their children
+  /// recursively.
+  Iterable<Iso11783Element>? get recursiveChildren => null;
+
+  /// All the element children connected to this, and their children
+  /// recursively.
+  Iterable<Iso11783Element> get selfWithRecursiveChildren =>
+      [this, ...recursiveChildren ?? []];
+
   @override
   List<Object?> get props => [
-        tag,
+        elementType,
         description,
         onlyVersion4AndAbove,
       ];
@@ -204,7 +232,7 @@ class EmptyIso11783Element extends Iso11783Element {
   /// Default constructor, creates an empty element.
   const EmptyIso11783Element()
       : super(
-          tag: Iso11783XmlTag.emptyElement,
+          elementType: Iso11783ElementType.emptyElement,
           description: 'Empty element, should not have been created.',
         );
 }

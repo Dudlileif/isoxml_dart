@@ -31,7 +31,7 @@ class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
     String? licenseNumber,
     String? email,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (lastName.length > 32) {
       throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
     }
@@ -128,20 +128,25 @@ class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
     this.mobile,
     this.licenseNumber,
     this.email,
-  }) : super(tag: Iso11783XmlTag.worker, description: 'Worker');
+  }) : super(elementType: Iso11783ElementType.worker, description: 'Worker');
 
   /// Creates a [Worker] from [element].
   factory Worker.fromXmlElement(XmlElement element) =>
       _$WorkerFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [Worker]s.
-  static const idRefPattern = '(WKR|WKR-)([0-9])+';
+  static const staticIdRefPattern = '(WKR|WKR-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this worker.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// Worker's last name.
   @annotation.XmlAttribute(name: 'B')
@@ -208,4 +213,5 @@ class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
       licenseNumber,
       email,
     ]);
+
 }

@@ -112,7 +112,10 @@ class Position extends Iso11783Element with _$PositionXmlSerializableMixin {
     this.numberOfSatellites,
     this.gpsUtcTimeMs,
     this.gpsUtcDate,
-  }) : super(tag: Iso11783XmlTag.position, description: 'Position');
+  }) : super(
+          elementType: Iso11783ElementType.position,
+          description: 'Position',
+        );
 
   /// Creates a [Position] from [element].
   factory Position.fromXmlElement(XmlElement element) {

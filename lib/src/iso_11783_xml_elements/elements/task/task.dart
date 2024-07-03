@@ -40,35 +40,35 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
     }
     if (customerIdRef != null) {
       ArgumentValidation.checkId(
         id: customerIdRef,
-        idRefPattern: Customer.idRefPattern,
+        idRefPattern: Customer.staticIdRefPattern,
         idName: 'customerIdRef',
       );
     }
     if (farmIdRef != null) {
       ArgumentValidation.checkId(
         id: farmIdRef,
-        idRefPattern: Farm.idRefPattern,
+        idRefPattern: Farm.staticIdRefPattern,
         idName: 'farmIdRef',
       );
     }
     if (partfieldIdRef != null) {
       ArgumentValidation.checkId(
         id: partfieldIdRef,
-        idRefPattern: Partfield.idRefPattern,
+        idRefPattern: Partfield.staticIdRefPattern,
         idName: 'partfieldIdRef',
       );
     }
     if (responsibleWorkerIdRef != null) {
       ArgumentValidation.checkId(
         id: responsibleWorkerIdRef,
-        idRefPattern: Worker.idRefPattern,
+        idRefPattern: Worker.staticIdRefPattern,
         idName: 'responsibleWorkerIdRef',
       );
     }
@@ -149,7 +149,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     this.defaultTreatmentZoneCode,
     this.positionLostTreatmentZoneCode,
     this.outOfFieldTreatmentZoneCode,
-  }) : super(tag: Iso11783XmlTag.task, description: 'Task') {
+  }) : super(elementType: Iso11783ElementType.task, description: 'Task') {
     if (treatmentZones != null) {
       this.treatmentZones.addAll(treatmentZones);
     }
@@ -263,7 +263,10 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [Task]s.
-  static const idRefPattern = '(TSK|TSK-)([0-9])+';
+  static const staticIdRefPattern = '(TSK|TSK-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of [CommentAllocation] for this.
   @annotation.XmlElement(name: 'CAN')
@@ -320,8 +323,10 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
   /// Unique identifier for this task.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// Name of the task, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -360,6 +365,64 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
   int? outOfFieldTreatmentZoneCode;
 
   @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a
+              in commentAllocations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in controlAssignments.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in connections.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in deviceAllocations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in dataLogTriggers.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        if (grid != null) ...grid!.selfWithRecursiveChildren,
+        ...[
+          for (final a
+              in guidanceAllocations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        if (operationTechniquePractice != null)
+          ...operationTechniquePractice!.selfWithRecursiveChildren,
+        ...[
+          for (final a
+              in productAllocations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in times.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a in timeLogs.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in treatmentZones.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in workerAllocations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+
+  @override
   List<Object?> get props => super.props
     ..addAll([
       commentAllocations,
@@ -382,6 +445,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
       positionLostTreatmentZoneCode,
       outOfFieldTreatmentZoneCode,
     ]);
+
 }
 
 /// An enumerator for which state a [Task] has.

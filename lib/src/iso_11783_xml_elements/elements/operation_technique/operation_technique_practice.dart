@@ -19,13 +19,13 @@ class OperationTechniquePractice extends Iso11783Element
   }) {
     ArgumentValidation.checkId(
       id: culturalPracticeIdRef,
-      idRefPattern: CulturalPractice.idRefPattern,
+      idRefPattern: CulturalPractice.staticIdRefPattern,
       idName: 'culturalPracticeIdRef',
     );
     if (operationTechniqueIdRef != null) {
       ArgumentValidation.checkId(
         id: operationTechniqueIdRef,
-        idRefPattern: OperationTechnique.idRefPattern,
+        idRefPattern: OperationTechnique.staticIdRefPattern,
         idName: 'operationTechniqueIdRef',
       );
     }
@@ -41,7 +41,7 @@ class OperationTechniquePractice extends Iso11783Element
     required this.culturalPracticeIdRef,
     this.operationTechniqueIdRef,
   }) : super(
-          tag: Iso11783XmlTag.operationTechniquePractice,
+          elementType: Iso11783ElementType.operationTechniquePractice,
           description: 'OperationTechniquePractice',
         );
 

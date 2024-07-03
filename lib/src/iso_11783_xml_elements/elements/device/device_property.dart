@@ -67,7 +67,10 @@ class DeviceProperty extends Iso11783Element
     required this.value,
     this.designator,
     this.valuePresentationObjectId,
-  }) : super(tag: Iso11783XmlTag.deviceProperty, description: 'DeviceProperty');
+  }) : super(
+          elementType: Iso11783ElementType.deviceProperty,
+          description: 'DeviceProperty',
+        );
 
   /// Creates a [DeviceProperty] from [element].
   factory DeviceProperty.fromXmlElement(XmlElement element) =>

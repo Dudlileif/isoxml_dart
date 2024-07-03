@@ -31,7 +31,7 @@ class GuidanceAllocation extends Iso11783Element
     }
     ArgumentValidation.checkId(
       id: groupIdRef,
-      idRefPattern: GuidanceGroup.idRefPattern,
+      idRefPattern: GuidanceGroup.staticIdRefPattern,
       idName: 'groupIdRef',
     );
     return GuidanceAllocation._(
@@ -48,7 +48,7 @@ class GuidanceAllocation extends Iso11783Element
     required this.groupIdRef,
     List<GuidanceShift>? shifts,
   }) : super(
-          tag: Iso11783XmlTag.guidanceAllocation,
+          elementType: Iso11783ElementType.guidanceAllocation,
           description: 'GuidanceAllocation',
           onlyVersion4AndAbove: true,
         ) {
@@ -82,6 +82,19 @@ class GuidanceAllocation extends Iso11783Element
   /// Reference to a [GuidanceGroup].
   @annotation.XmlAttribute(name: 'A')
   final String groupIdRef;
+
+
+@override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a
+              in allocationStamps.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in shifts.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

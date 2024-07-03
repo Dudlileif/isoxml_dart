@@ -33,22 +33,22 @@ class Connection extends Iso11783Element with _$ConnectionXmlSerializableMixin {
   }) {
     ArgumentValidation.checkId(
       id: deviceIdRef_0,
-      idRefPattern: Device.idRefPattern,
+      idRefPattern: Device.staticIdRefPattern,
       idName: 'deviceIdRef_0',
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef_0,
-      idRefPattern: DeviceElement.idRefPattern,
+      idRefPattern: DeviceElement.staticIdRefPattern,
       idName: 'deviceElementIdRef_0',
     );
     ArgumentValidation.checkId(
       id: deviceIdRef_1,
-      idRefPattern: Device.idRefPattern,
+      idRefPattern: Device.staticIdRefPattern,
       idName: 'deviceIdRef_1',
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef_1,
-      idRefPattern: DeviceElement.idRefPattern,
+      idRefPattern: DeviceElement.staticIdRefPattern,
       idName: 'deviceElementIdRef_1',
     );
 
@@ -67,7 +67,10 @@ class Connection extends Iso11783Element with _$ConnectionXmlSerializableMixin {
     required this.deviceElementIdRef_0,
     required this.deviceIdRef_1,
     required this.deviceElementIdRef_1,
-  }) : super(tag: Iso11783XmlTag.connection, description: 'Connection');
+  }) : super(
+          elementType: Iso11783ElementType.connection,
+          description: 'Connection',
+        );
 
   /// Creates a [Connection] from [element].
   factory Connection.fromXmlElement(XmlElement element) =>

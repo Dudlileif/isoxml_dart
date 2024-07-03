@@ -20,14 +20,14 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
-      idRefPattern: idRefPattern,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
     );
 
     if (productGroupIdRef != null) {
       ArgumentValidation.checkId(
         id: productGroupIdRef,
-        idRefPattern: ProductGroup.idRefPattern,
+        idRefPattern: ProductGroup.staticIdRefPattern,
         idName: 'productGroupIdRef',
       );
     }
@@ -47,7 +47,10 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
     required this.designator,
     List<CropVariety>? varieties,
     this.productGroupIdRef,
-  }) : super(tag: Iso11783XmlTag.cropType, description: 'CropType') {
+  }) : super(
+          elementType: Iso11783ElementType.cropType,
+          description: 'CropType',
+        ) {
     if (varieties != null) {
       this.varieties.addAll(varieties);
     }
@@ -68,7 +71,10 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
   }
 
   /// Regular expression matching pattern for the [id] of [CropType]s.
-  static const idRefPattern = '(CTP|CTP-)([0-9])+';
+  static const staticIdRefPattern = '(CTP|CTP-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// A list of different varieties of this crop.
   @annotation.XmlElement(name: 'CVT')
@@ -77,8 +83,10 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
   /// Unique identifier for this crop type.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
 
   /// Name of the crop type, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -87,6 +95,14 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
   /// Reference to a [ProductGroup] that this is a part of.
   @annotation.XmlAttribute(name: 'C')
   final String? productGroupIdRef;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in varieties.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
 
   @override
   List<Object?> get props => super.props

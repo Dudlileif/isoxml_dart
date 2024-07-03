@@ -43,7 +43,7 @@ class Link extends Iso11783Element with _$LinkXmlSerializableMixin {
     required this.value,
     this.designator,
   }) : super(
-          tag: Iso11783XmlTag.link,
+          elementType: Iso11783ElementType.link,
           description: 'Link',
           onlyVersion4AndAbove: true,
         );

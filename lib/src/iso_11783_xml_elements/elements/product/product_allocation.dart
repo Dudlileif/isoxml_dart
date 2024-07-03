@@ -30,7 +30,7 @@ class ProductAllocation extends Iso11783Element
   }) {
     ArgumentValidation.checkId(
       id: productIdRef,
-      idRefPattern: Product.idRefPattern,
+      idRefPattern: Product.staticIdRefPattern,
       idName: 'productIdRef',
     );
     if (quantityDDI != null) {
@@ -42,21 +42,21 @@ class ProductAllocation extends Iso11783Element
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
         id: deviceElementIdRef,
-        idRefPattern: DeviceElement.idRefPattern,
+        idRefPattern: DeviceElement.staticIdRefPattern,
         idName: 'deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
         id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.idRefPattern,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
         idName: 'valuePresentationIdRef',
       );
     }
     if (productSubTypeIdRef != null) {
       ArgumentValidation.checkId(
         id: productSubTypeIdRef,
-        idRefPattern: Product.idRefPattern,
+        idRefPattern: Product.staticIdRefPattern,
         idName: 'productSubTypeIdRef',
       );
     }
@@ -85,7 +85,7 @@ class ProductAllocation extends Iso11783Element
     this.productSubTypeIdRef,
     this.allocationStamp,
   }) : super(
-          tag: Iso11783XmlTag.productAllocation,
+          elementType: Iso11783ElementType.productAllocation,
           description: 'ProductAllocation',
         );
 
@@ -128,6 +128,10 @@ class ProductAllocation extends Iso11783Element
   /// Reference to a sub type of[Product].
   @annotation.XmlAttribute(name: 'G')
   final String? productSubTypeIdRef;
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren =>
+      allocationStamp?.selfWithRecursiveChildren;
 
   @override
   List<Object?> get props => super.props

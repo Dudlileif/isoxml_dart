@@ -135,66 +135,28 @@ class Iso11783TaskData extends Iso11783Element
     this.taskControllerVersion,
     this.language,
   }) : super(
-          tag: Iso11783XmlTag.taskData,
+          elementType: Iso11783ElementType.taskData,
           description: 'ISO 11783 Task Data File',
         ) {
-    if (attachedFiles != null) {
-      this.attachedFiles.addAll(attachedFiles);
-    }
-    if (baseStations != null) {
-      this.baseStations.addAll(baseStations);
-    }
-    if (codedComments != null) {
-      this.codedComments.addAll(codedComments);
-    }
-    if (codedCommentGroups != null) {
-      this.codedCommentGroups.addAll(codedCommentGroups);
-    }
-    if (colourLegends != null) {
-      this.colourLegends.addAll(colourLegends);
-    }
-    if (cropTypes != null) {
-      this.cropTypes.addAll(cropTypes);
-    }
-    if (culturalPractices != null) {
-      this.culturalPractices.addAll(culturalPractices);
-    }
-    if (customers != null) {
-      this.customers.addAll(customers);
-    }
-    if (devices != null) {
-      this.devices.addAll(devices);
-    }
-    if (farms != null) {
-      this.farms.addAll(farms);
-    }
-    if (operationTechniques != null) {
-      this.operationTechniques.addAll(operationTechniques);
-    }
-    if (partfields != null) {
-      this.partfields.addAll(partfields);
-    }
-    if (products != null) {
-      this.products.addAll(products);
-    }
-    if (productGroups != null) {
-      this.productGroups.addAll(productGroups);
-    }
-    if (tasks != null) {
-      this.tasks.addAll(tasks);
-    }
-    if (taskControllerCapabilities != null) {
-      this.taskControllerCapabilities.addAll(taskControllerCapabilities);
-    }
-    if (valuePresentations != null) {
-      this.valuePresentations.addAll(valuePresentations);
-    }
-    if (workers != null) {
-      this.workers.addAll(workers);
-    }
-    if (externalFileReferences != null) {
-      this.externalFileReferences.addAll(externalFileReferences);
-    }
+    attachedFiles?.forEach(addTopLevelElement);
+    baseStations?.forEach(addTopLevelElement);
+    codedComments?.forEach(addTopLevelElement);
+    codedCommentGroups?.forEach(addTopLevelElement);
+    colourLegends?.forEach(addTopLevelElement);
+    cropTypes?.forEach(addTopLevelElement);
+    culturalPractices?.forEach(addTopLevelElement);
+    customers?.forEach(addTopLevelElement);
+    devices?.forEach(addTopLevelElement);
+    farms?.forEach(addTopLevelElement);
+    operationTechniques?.forEach(addTopLevelElement);
+    partfields?.forEach(addTopLevelElement);
+    products?.forEach(addTopLevelElement);
+    productGroups?.forEach(addTopLevelElement);
+    tasks?.forEach(addTopLevelElement);
+    taskControllerCapabilities?.forEach(addTopLevelElement);
+    valuePresentations?.forEach(addTopLevelElement);
+    workers?.forEach(addTopLevelElement);
+    externalFileReferences?.forEach(addTopLevelElement);
   }
 
   /// Creates an [Iso11783TaskData] from [element].
@@ -340,13 +302,12 @@ class Iso11783TaskData extends Iso11783Element
       );
     }
 
-    
     for (final task in taskData.tasks) {
-        if (task.grid != null) {
-          final dataFile = archive.files.firstWhereOrNull(
-            (file) =>
-                file.name.toUpperCase().endsWith('${task.grid!.fileName}.BIN'),
-          );
+      if (task.grid != null) {
+        final dataFile = archive.files.firstWhereOrNull(
+          (file) =>
+              file.name.toUpperCase().endsWith('${task.grid!.fileName}.BIN'),
+        );
         task.grid!
           ..byteData = dataFile?.content as Uint8List
           ..numberOfProcessDataVariables = task.grid!.type == GridType.two
@@ -393,8 +354,8 @@ class Iso11783TaskData extends Iso11783Element
   /// Creates a zip file export of this.
   ///
   /// If [externalize] is true, then all the elements of this that are in
-  /// [Iso11783XmlTag.tagsThatCanBeExternal] will create separate XML documents
-  /// in the TASKDATA folder.
+  /// [Iso11783ElementType.tagsThatCanBeExternal] will create separate XML
+  /// documents in the TASKDATA folder.
   Archive toZip({bool externalize = false}) {
     final archive = Archive();
     if (!externalize) {
@@ -465,8 +426,8 @@ class Iso11783TaskData extends Iso11783Element
   /// Creates a zip file export bytes of this.
   ///
   /// If [externalize] is true, then all the elements of this that are in
-  /// [Iso11783XmlTag.tagsThatCanBeExternal] will create separate XML documents
-  /// in the TASKDATA folder.
+  /// [Iso11783ElementType.tagsThatCanBeExternal] will create separate XML
+  /// documents in the TASKDATA folder.
   List<int>? toBytes({bool externalize = false}) =>
       ZipEncoder().encode(toZip(externalize: externalize));
 
@@ -588,12 +549,13 @@ class Iso11783TaskData extends Iso11783Element
   XmlDocument toSingleXmlDocument() {
     final builder = XmlBuilder()
       ..processing('xml', 'version="1.0" encoding="UTF-8"');
-    builder.element(tag.name, nest: () => buildXmlChildren(builder));
+    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
     final document = builder.buildDocument();
     document.lastChild?.children.retainWhere(
       (node) =>
           node is XmlElement &&
-              node.name.local != Iso11783XmlTag.externalFileReference.name ||
+              node.name.local !=
+                  Iso11783ElementType.externalFileReference.xmlTag ||
           node is! XmlElement,
     );
     return document;
@@ -604,12 +566,12 @@ class Iso11783TaskData extends Iso11783Element
     final builder = XmlBuilder()
       ..processing('xml', 'version="1.0" encoding="UTF-8"');
 
-    builder.element(tag.name, nest: () => buildXmlChildren(builder));
+    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
     final mainDocument = builder.buildDocument();
 
     final list = <({String fileName, XmlDocument document})>[];
     if (mainDocument.lastChild != null) {
-      final occurancesOfType = <Iso11783XmlTag, int>{};
+      final occurancesOfType = <Iso11783ElementType, int>{};
       for (final externalFileReference in externalFileReferences) {
         occurancesOfType.update(
           externalFileReference.elementType,
@@ -617,7 +579,7 @@ class Iso11783TaskData extends Iso11783Element
           ifAbsent: () => 1,
         );
       }
-      final typeDone = <Iso11783XmlTag, bool>{};
+      final typeDone = <Iso11783ElementType, bool>{};
 
       for (final externalFileReference in externalFileReferences) {
         final type = externalFileReference.elementType;
@@ -632,14 +594,16 @@ class Iso11783TaskData extends Iso11783Element
         // removed.
         if ((occurancesOfType[type] ?? 0) > 1) {
           final externalContent =
-              mainDocument.lastChild!.getElements(type.name)?.toList();
+              mainDocument.lastChild!.getElements(type.xmlTag)?.toList();
           if (externalContent != null && externalContent.isNotEmpty) {
             // ---00001 , Negative ids
             final documentNegative = XmlDocument(
               [
                 XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
                 XmlElement(
-                  XmlName.fromString(Iso11783XmlTag.externalFileContents.name),
+                  XmlName.fromString(
+                    Iso11783ElementType.externalFileContents.xmlTag,
+                  ),
                   [],
                   externalContent
                       .where(
@@ -668,7 +632,9 @@ class Iso11783TaskData extends Iso11783Element
               [
                 XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
                 XmlElement(
-                  XmlName.fromString(Iso11783XmlTag.externalFileContents.name),
+                  XmlName.fromString(
+                    Iso11783ElementType.externalFileContents.xmlTag,
+                  ),
                   [],
                   externalContent.map((e) => e.copy()).toList(),
                 ),
@@ -684,7 +650,7 @@ class Iso11783TaskData extends Iso11783Element
 
             mainDocument.lastChild!.children.retainWhere(
               (node) =>
-                  node is XmlElement && node.name.local != type.name ||
+                  node is XmlElement && node.name.local != type.xmlTag ||
                   node is! XmlElement,
             );
           }
@@ -695,8 +661,8 @@ class Iso11783TaskData extends Iso11783Element
                 in mainDocument.lastChild!.children.indexed) {
               if (node is XmlElement &&
                   node.name.local ==
-                      Iso11783XmlTag.externalFileReference.name &&
-                  (node.getAttribute('A')?.startsWith(type.name) ?? false)) {
+                      Iso11783ElementType.externalFileReference.xmlTag &&
+                  (node.getAttribute('A')?.startsWith(type.xmlTag) ?? false)) {
                 indices.add(index);
               }
             }
@@ -705,13 +671,15 @@ class Iso11783TaskData extends Iso11783Element
           }
         } else {
           final externalContent =
-              mainDocument.lastChild?.getElements(type.name);
+              mainDocument.lastChild?.getElements(type.xmlTag);
           if (externalContent != null && externalContent.isNotEmpty) {
             final document = XmlDocument(
               [
                 XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
                 XmlElement(
-                  XmlName.fromString(Iso11783XmlTag.externalFileContents.name),
+                  XmlName.fromString(
+                    Iso11783ElementType.externalFileContents.xmlTag,
+                  ),
                   [],
                   externalContent.map((e) => e.copy()).toList(),
                 ),
@@ -723,7 +691,7 @@ class Iso11783TaskData extends Iso11783Element
 
             mainDocument.lastChild!.children.retainWhere(
               (node) =>
-                  node is XmlElement && node.name.local != type.name ||
+                  node is XmlElement && node.name.local != type.xmlTag ||
                   node is! XmlElement,
             );
           }
@@ -784,6 +752,144 @@ class Iso11783TaskData extends Iso11783Element
         break;
     }
   }
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in attachedFiles.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in baseStations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in codedComments.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in codedCommentGroups.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in colourLegends.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in cropTypes.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in culturalPractices.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in customers.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in devices.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a in farms.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a
+              in operationTechniques.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in partfields.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in products.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in productGroups.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in tasks.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a in taskControllerCapabilities
+              .map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a
+              in valuePresentations.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+        ...[
+          for (final a in workers.map((e) => e.selfWithRecursiveChildren)) ...a,
+        ],
+        ...[
+          for (final a
+              in externalFileReferences.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+
+  /// Find all the IDs for the [Iso11783Element]s of [type] in this.
+  Iterable<String>? idsOfType(Iso11783ElementType type) =>
+      type.canHaveId ? elementsOfType(type).map((e) => e.id).nonNulls : null;
+
+  /// Find all the [Iso11783Element]s of [type] in this.
+  Iterable<Iso11783Element> elementsOfType(Iso11783ElementType type) =>
+      recursiveChildren!.where((e) => e.elementType == type);
+
+  /// Find the next ID for an [Iso11783Element] of [type], if it can have an ID.
+  ///
+  /// [additionalIncrement] can be changed to get IDs further from the current 
+  /// max, this is particularily useful for getting several IDs before the 
+  /// elements become children of the task data structure.
+  ///
+  /// [overrideTransferOrigin] can be used to change the next ID to not follow
+  /// the [dataTransferOrigin].
+  String? nextIdForType(
+    Iso11783ElementType type, {
+    int additionalIncrement = 0,
+    DataTransferOrigin? overrideTransferOrigin,
+  }) {
+    if (!type.canHaveId) {
+      return null;
+    }
+    final ids = idsOfType(type);
+    if (ids == null) {
+      return null;
+    }
+    if ((overrideTransferOrigin ?? dataTransferOrigin) ==
+        DataTransferOrigin.mics) {
+      final min = ids.isEmpty
+          ? 0
+          : [0, ...ids.map((e) => int.parse(e.split(type.xmlTag).last))].min;
+
+      return [
+        type.xmlTag,
+        min - (1+additionalIncrement),
+      ].join();
+    } else {
+      final max = ids.isEmpty
+          ? 0
+          : [0, ...ids.map((e) => int.parse(e.split(type.xmlTag).last))].max;
+
+      return [
+        type.xmlTag,
+        max + (1+additionalIncrement),
+      ].join();
+    }
+  }
+
+  /// Attempts to find the (recursive) child [Iso11783Element] with the given
+  /// [id].
+  Iso11783Element? elementById(String id) =>
+      elementsOfType(Iso11783ElementType.fromXmlTag(id.substring(0, 3)))
+          .firstWhereOrNull((e) => e.id == id);
 
   @override
   List<Object?> get props => super.props

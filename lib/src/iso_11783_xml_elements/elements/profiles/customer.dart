@@ -32,7 +32,7 @@ class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
     String? fax,
     String? email,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: idRefPattern);
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (lastName.length > 32) {
       throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
     }
@@ -124,20 +124,29 @@ class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
     this.mobile,
     this.fax,
     this.email,
-  }) : super(tag: Iso11783XmlTag.customer, description: 'Customer');
+  }) : super(
+          elementType: Iso11783ElementType.customer,
+          description: 'Customer',
+        );
 
   /// Creates a [Customer] from [element].
   factory Customer.fromXmlElement(XmlElement element) =>
       _$CustomerFromXmlElement(element);
 
   /// Regular expression matching pattern for the [id] of [Customer]s.
-  static const idRefPattern = '(CTR|CTR-)([0-9])+';
+  static const staticIdRefPattern = '(CTR|CTR-)[1-9]([0-9])*';
+
+  @override
+  String get idRefPattern => staticIdRefPattern;
 
   /// Unique identifier for this customer.
   ///
   /// Records generated on MICS have negative IDs.
+  @override
   @annotation.XmlAttribute(name: 'A')
   final String id;
+
+
 
   /// Customer's last name.
   @annotation.XmlAttribute(name: 'B')
@@ -204,4 +213,5 @@ class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
       fax,
       email,
     ]);
+
 }

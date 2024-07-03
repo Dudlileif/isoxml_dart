@@ -76,7 +76,7 @@ class DeviceValuePresentation extends Iso11783Element
     required this.numberOfDecimals,
     this.unitDesignator,
   }) : super(
-          tag: Iso11783XmlTag.deviceValuePresentation,
+          elementType: Iso11783ElementType.deviceValuePresentation,
           description: 'DeviceValuePresentation',
         );
 

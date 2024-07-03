@@ -4,11 +4,11 @@
 import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
 
-part 'xml_tag.g.dart';
+part 'iso_11783_element_type.g.dart';
 
 /// An enumerator for all ISO 11783-10 XML element types.
 @annotation.XmlEnum()
-enum Iso11783XmlTag {
+enum Iso11783ElementType {
   /// See [AllocationStamp]
   @annotation.XmlValue('ASP')
   allocationStamp('ASP'),
@@ -19,23 +19,23 @@ enum Iso11783XmlTag {
 
   /// See [BaseStation]
   @annotation.XmlValue('BSN')
-  baseStation('BSN'),
+  baseStation('BSN', canHaveId: true),
 
   /// See [CodedComment]
   @annotation.XmlValue('CCT')
-  codedComment('CCT'),
+  codedComment('CCT', canHaveId: true),
 
   /// See [CodedCommentGroup]
   @annotation.XmlValue('CCG')
-  codedCommentGroup('CCG'),
+  codedCommentGroup('CCG', canHaveId: true),
 
   /// See [CodedCommentListValue]
   @annotation.XmlValue('CCL')
-  codedCommentListValue('CCL'),
+  codedCommentListValue('CCL', canHaveId: true),
 
   /// See [ColourLegend]
   @annotation.XmlValue('CLD')
-  colourLegend('CLD'),
+  colourLegend('CLD', canHaveId: true),
 
   /// See [ColourRange]
   @annotation.XmlValue('CRG')
@@ -55,19 +55,19 @@ enum Iso11783XmlTag {
 
   /// See [CropType]
   @annotation.XmlValue('CTP')
-  cropType('CTP'),
+  cropType('CTP', canHaveId: true),
 
   /// See [CropVariety]
   @annotation.XmlValue('CVT')
-  cropVariety('CVT'),
+  cropVariety('CVT', canHaveId: true),
 
   /// See [CulturalPractice]
   @annotation.XmlValue('CPC')
-  culturalPractice('CPC'),
+  culturalPractice('CPC', canHaveId: true),
 
   /// See [Customer]
   @annotation.XmlValue('CTR')
-  customer('CTR'),
+  customer('CTR', canHaveId: true),
 
   /// See [DataLogTrigger]
   @annotation.XmlValue('DLT')
@@ -79,7 +79,7 @@ enum Iso11783XmlTag {
 
   /// See [Device]
   @annotation.XmlValue('DVC')
-  device('DVC'),
+  device('DVC', canHaveId: true),
 
   /// See [DeviceAllocation]
   @annotation.XmlValue('DAN')
@@ -87,7 +87,7 @@ enum Iso11783XmlTag {
 
   /// See [DeviceElement]
   @annotation.XmlValue('DET')
-  deviceElement('DET'),
+  deviceElement('DET', canHaveId: true),
 
   /// See [DeviceObjectReference]
   @annotation.XmlValue('DOR')
@@ -115,7 +115,7 @@ enum Iso11783XmlTag {
 
   /// See [Farm]
   @annotation.XmlValue('FRM')
-  farm('FRM'),
+  farm('FRM', canHaveId: true),
 
   /// See [Grid]
   @annotation.XmlValue('GRD')
@@ -127,11 +127,11 @@ enum Iso11783XmlTag {
 
   /// See [GuidanceGroup]
   @annotation.XmlValue('GGP')
-  guidanceGroup('GGP'),
+  guidanceGroup('GGP', canHaveId: true),
 
   /// See [GuidancePattern]
   @annotation.XmlValue('GPN')
-  guidancePattern('GPN'),
+  guidancePattern('GPN', canHaveId: true),
 
   /// See [GuidanceShift]
   @annotation.XmlValue('GST')
@@ -139,7 +139,7 @@ enum Iso11783XmlTag {
 
   /// See [LineString]
   @annotation.XmlValue('LSG')
-  lineString('LSG'),
+  lineString('LSG', canHaveId: true),
 
   /// See [Link]
   @annotation.XmlValue('LNK')
@@ -147,7 +147,7 @@ enum Iso11783XmlTag {
 
   /// See [LinkGroup]
   @annotation.XmlValue('LGP')
-  linkGroup('LGP'),
+  linkGroup('LGP', canHaveId: true),
 
   /// See [Iso11783LinkList]
   @annotation.XmlValue('ISO11783LinkList')
@@ -155,7 +155,7 @@ enum Iso11783XmlTag {
 
   /// See [OperationTechnique]
   @annotation.XmlValue('OTQ')
-  operationTechnique('OTQ'),
+  operationTechnique('OTQ', canHaveId: true),
 
   /// See [OperationTechniquePractice]
   @annotation.XmlValue('OTP')
@@ -167,15 +167,15 @@ enum Iso11783XmlTag {
 
   /// See [Partfield]
   @annotation.XmlValue('PFD')
-  partfield('PFD'),
+  partfield('PFD', canHaveId: true),
 
   /// See [Polygon]
   @annotation.XmlValue('PLN')
-  polygon('PLN'),
+  polygon('PLN', canHaveId: true),
 
   /// See [Point]
   @annotation.XmlValue('PNT')
-  point('PNT'),
+  point('PNT', canHaveId: true),
 
   /// See [Position]
   @annotation.XmlValue('PTN')
@@ -187,7 +187,7 @@ enum Iso11783XmlTag {
 
   /// See [Product]
   @annotation.XmlValue('PDT')
-  product('PDT'),
+  product('PDT', canHaveId: true),
 
   /// See [ProductAllocation]
   @annotation.XmlValue('PAN')
@@ -195,7 +195,7 @@ enum Iso11783XmlTag {
 
   /// See [ProductGroup]
   @annotation.XmlValue('PGP')
-  productGroup('PGP'),
+  productGroup('PGP', canHaveId: true),
 
   /// See [ProductRelation]
   @annotation.XmlValue('PRN')
@@ -203,7 +203,7 @@ enum Iso11783XmlTag {
 
   /// See [Task]
   @annotation.XmlValue('TSK')
-  task('TSK'),
+  task('TSK', canHaveId: true),
 
   /// See [TaskControllerCapabilities]
   @annotation.XmlValue('TCC')
@@ -227,11 +227,11 @@ enum Iso11783XmlTag {
 
   /// See [ValuePresentation]
   @annotation.XmlValue('VPN')
-  valuePresentation('VPN'),
+  valuePresentation('VPN', canHaveId: true),
 
   /// See [Worker]
   @annotation.XmlValue('WKR')
-  worker('WKR'),
+  worker('WKR', canHaveId: true),
 
   /// See [WorkerAllocation]
   @annotation.XmlValue('WAN')
@@ -241,15 +241,22 @@ enum Iso11783XmlTag {
   @annotation.XmlValue('')
   emptyElement('');
 
-  const Iso11783XmlTag(this.name);
+  const Iso11783ElementType(this.xmlTag, {this.canHaveId = false});
 
   /// The XML element name for the element type.
-  final String name;
+  final String xmlTag;
 
-  /// Finds the [Iso11783XmlTag] element which matches the [name] to this.
-  static Iso11783XmlTag fromName(String name) => values.firstWhere(
-        (element) => element.name == name,
+  /// Whether this element type can have IDs for the elements.
+  final bool canHaveId;
+
+  /// Finds the [Iso11783ElementType] element which matches the [xmlTag] to
+  /// this.
+  static Iso11783ElementType fromXmlTag(String xmlTag) => values.firstWhere(
+        (element) => element.xmlTag == xmlTag,
       );
+
+  /// Redirects to [xmlTag]. Gives the XML element name for the element type.
+  String get name => xmlTag;
 
   /// A list of the element types that can be stored in external files.
   static const tagsThatCanBeExternal = [
