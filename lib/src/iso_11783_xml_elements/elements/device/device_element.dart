@@ -12,7 +12,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DET')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceElement extends Iso11783Element
-    with _$DeviceElementXmlSerializableMixin {
+    with _$DeviceElementXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceElement] with verified
   /// arguments.
   factory DeviceElement({
@@ -156,16 +156,15 @@ class DeviceElement extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      objectReferences,
-      id,
-      objectId,
-      type,
-      designator,
-      number,
-      parentObjectId,
-    ]);
+  List<Object?> get props => [
+        objectReferences,
+        id,
+        objectId,
+        type,
+        designator,
+        number,
+        parentObjectId,
+      ];
 }
 
 /// An enumerator for describing what type a [DeviceElement] is.

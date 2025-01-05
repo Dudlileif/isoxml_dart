@@ -4,7 +4,7 @@
 
 /// A library for interacting with ISO 11783-10 XML documents and the
 /// ISO 11783-11 Data Directory.
-library isoxml_dart;
+library;
 
 export 'iso_11783_colour.dart';
 export 'iso_11783_data_dictionary.dart';

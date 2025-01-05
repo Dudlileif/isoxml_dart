@@ -12,7 +12,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'LNK')
 @annotation.XmlSerializable(createMixin: true)
-class Link extends Iso11783Element with _$LinkXmlSerializableMixin {
+class Link extends Iso11783Element
+    with _$LinkXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Link] with verified
   /// arguments.
   factory Link({
@@ -69,10 +70,9 @@ class Link extends Iso11783Element with _$LinkXmlSerializableMixin {
   final String? designator;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      objectIdRef,
-      value,
-      designator,
-    ]);
+  List<Object?> get props => [
+        objectIdRef,
+        value,
+        designator,
+      ];
 }

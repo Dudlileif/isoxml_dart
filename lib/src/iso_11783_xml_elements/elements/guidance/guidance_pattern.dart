@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'GPN')
 @annotation.XmlSerializable(createMixin: true)
 class GuidancePattern extends Iso11783Element
-    with _$GuidancePatternXmlSerializableMixin {
+    with _$GuidancePatternXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [GuidancePattern] with verified
   /// arguments.
   factory GuidancePattern({
@@ -240,7 +240,7 @@ class GuidancePattern extends Iso11783Element
   @annotation.XmlAttribute(name: 'O')
   final int? numberOfSwathsRight;
 
-@override
+  @override
   Iterable<Iso11783Element>? get recursiveChildren => [
         ...[
           for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
@@ -251,27 +251,25 @@ class GuidancePattern extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      boundaryPolygon,
-      lineStrings,
-      id,
-      designator,
-      type,
-      options,
-      propagationDirection,
-      extension,
-      heading,
-      radius,
-      gnssMethod,
-      horizontalAccuracy,
-      verticalAccuracy,
-      baseStationIdRef,
-      originalSRID,
-      numberOfSwathsLeft,
-      numberOfSwathsRight,
-    ]);
-
+  List<Object?> get props => [
+        boundaryPolygon,
+        lineStrings,
+        id,
+        designator,
+        type,
+        options,
+        propagationDirection,
+        extension,
+        heading,
+        radius,
+        gnssMethod,
+        horizontalAccuracy,
+        verticalAccuracy,
+        baseStationIdRef,
+        originalSRID,
+        numberOfSwathsLeft,
+        numberOfSwathsRight,
+      ];
 }
 
 /// An enumeration for the type of [GuidancePattern].

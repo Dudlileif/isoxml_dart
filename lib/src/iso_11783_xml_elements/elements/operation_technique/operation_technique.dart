@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'OTQ')
 @annotation.XmlSerializable(createMixin: true)
 class OperationTechnique extends Iso11783Element
-    with _$OperationTechniqueXmlSerializableMixin {
+    with _$OperationTechniqueXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [OperationTechnique] with verified
   /// arguments.
   factory OperationTechnique({
@@ -53,19 +53,16 @@ class OperationTechnique extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-@annotation.XmlAttribute(name: 'A')
+  @annotation.XmlAttribute(name: 'A')
   final String id;
-
-
 
   /// Name of the operation technique, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-    ]);    
+  List<Object?> get props => [
+        id,
+        designator,
+      ];
 }

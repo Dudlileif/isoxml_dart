@@ -12,7 +12,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CVT')
 @annotation.XmlSerializable(createMixin: true)
 class CropVariety extends Iso11783Element
-    with _$CropVarietyXmlSerializableMixin {
+    with _$CropVarietyXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [CropVariety] with verified
   /// arguments.
   factory CropVariety({
@@ -76,10 +76,9 @@ class CropVariety extends Iso11783Element
   final String? productIdRef;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-      productIdRef,
-    ]);
+  List<Object?> get props => [
+        id,
+        designator,
+        productIdRef,
+      ];
 }

@@ -86,7 +86,7 @@ part 'iso_11783_element.g.dart';
 /// Some elements are not available in earlier versions of the standard,
 /// these have the [onlyVersion4AndAbove] parameter set to true, which can be
 /// used to filter them out if exporting to an older version.
-sealed class Iso11783Element with EquatableMixin {
+sealed class Iso11783Element {
   const Iso11783Element({
     required this.elementType,
     required this.description,
@@ -215,12 +215,10 @@ sealed class Iso11783Element with EquatableMixin {
   Iterable<Iso11783Element> get selfWithRecursiveChildren =>
       [this, ...recursiveChildren ?? []];
 
-  @override
-  List<Object?> get props => [
-        elementType,
-        description,
-        onlyVersion4AndAbove,
-      ];
+  /// Returns a string for [props].
+  String mapPropsToString(Type runtimeType, List<Object?> props) {
+    return '''$runtimeType(${props.map((prop) => prop.toString()).join(', ')})''';
+  }
 }
 
 /// An empty ISO 11783-10 element that is only created if the parser finds some

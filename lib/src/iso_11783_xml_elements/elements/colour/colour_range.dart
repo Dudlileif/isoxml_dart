@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CRG')
 @annotation.XmlSerializable(createMixin: true)
 class ColourRange extends Iso11783Element
-    with _$ColourRangeXmlSerializableMixin {
+    with _$ColourRangeXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ColourLegend] with verified arguments.
   factory ColourRange({
     required int minimumValue,
@@ -74,10 +74,9 @@ class ColourRange extends Iso11783Element
   @annotation.XmlAttribute(name: 'C')
   final int colour;
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      minimumValue,
-      maximumValue,
-      colour,
-    ]);
+  List<Object?> get props => [
+        minimumValue,
+        maximumValue,
+        colour,
+      ];
 }

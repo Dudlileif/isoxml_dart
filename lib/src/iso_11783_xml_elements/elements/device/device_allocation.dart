@@ -18,7 +18,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DAN')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceAllocation extends Iso11783Element
-    with _$DeviceAllocationXmlSerializableMixin {
+    with _$DeviceAllocationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceAllocation] with verified
   /// arguments.
   factory DeviceAllocation({
@@ -100,11 +100,10 @@ class DeviceAllocation extends Iso11783Element
       allocationStamp?.selfWithRecursiveChildren;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      clientNAMEValue,
-      clientNAMEMask,
-      deviceIdRef,
-    ]);
+  List<Object?> get props => [
+        allocationStamp,
+        clientNAMEValue,
+        clientNAMEMask,
+        deviceIdRef,
+      ];
 }

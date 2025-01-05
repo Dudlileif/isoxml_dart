@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DOR')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceObjectReference extends Iso11783Element
-    with _$DeviceObjectReferenceXmlSerializableMixin {
+    with _$DeviceObjectReferenceXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceObjectReference] with verified
   /// arguments.
   factory DeviceObjectReference({required int objectId}) {
@@ -42,5 +42,5 @@ class DeviceObjectReference extends Iso11783Element
   final int objectId;
 
   @override
-  List<Object?> get props => super.props..addAll([objectId]);
+  List<Object?> get props => [objectId];
 }

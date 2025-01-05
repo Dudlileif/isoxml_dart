@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'GST')
 @annotation.XmlSerializable(createMixin: true)
 class GuidanceShift extends Iso11783Element
-    with _$GuidanceShiftXmlSerializableMixin {
+    with _$GuidanceShiftXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [GuidanceShift] with verified
   /// arguments.
   factory GuidanceShift({
@@ -125,13 +125,12 @@ class GuidanceShift extends Iso11783Element
       allocationStamp?.selfWithRecursiveChildren;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      groupIdRef,
-      patternIdRef,
-      eastShift,
-      northShift,
-      propagationOffset,
-    ]);
+  List<Object?> get props => [
+        allocationStamp,
+        groupIdRef,
+        patternIdRef,
+        eastShift,
+        northShift,
+        propagationOffset,
+      ];
 }

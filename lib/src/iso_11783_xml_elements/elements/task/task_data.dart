@@ -11,7 +11,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'ISO11783_TaskData')
 @annotation.XmlSerializable(createMixin: true)
 class Iso11783TaskData extends Iso11783Element
-    with _$Iso11783TaskDataXmlSerializableMixin {
+    with _$Iso11783TaskDataXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating an [Iso11783TaskData] with verified
   /// arguments.
   factory Iso11783TaskData({
@@ -268,7 +268,7 @@ class Iso11783TaskData extends Iso11783Element
     }
     final taskData = Iso11783TaskData.fromXmlDocument(
       XmlDocument.parse(
-        utf8.decoder.convert(taskDataFile.content as Uint8List),
+        utf8.decoder.convert(taskDataFile.content),
       ),
     );
     if (taskData == null) {
@@ -283,7 +283,7 @@ class Iso11783TaskData extends Iso11783Element
       if (archiveFile != null) {
         final externalContent = ExternalFileContents.fromXmlDocument(
           XmlDocument.parse(
-            utf8.decoder.convert(archiveFile.content as Uint8List),
+            utf8.decoder.convert(archiveFile.content),
           ),
         );
         externalContent?.contents.forEach(taskData.addTopLevelElement);
@@ -297,7 +297,7 @@ class Iso11783TaskData extends Iso11783Element
     if (linkListFile != null) {
       linkList = Iso11783LinkList.fromXmlDocument(
         XmlDocument.parse(
-          utf8.decoder.convert(linkListFile.content as Uint8List),
+          utf8.decoder.convert(linkListFile.content),
         ),
       );
     }
@@ -309,7 +309,7 @@ class Iso11783TaskData extends Iso11783Element
               file.name.toUpperCase().endsWith('${task.grid!.fileName}.BIN'),
         );
         task.grid!
-          ..byteData = dataFile?.content as Uint8List
+          ..byteData = dataFile!.content
           ..numberOfProcessDataVariables = task.grid!.type == GridType.two
               ? task.treatmentZones
                   .firstWhereOrNull(
@@ -332,10 +332,10 @@ class Iso11783TaskData extends Iso11783Element
           timeLog
             ..header = TimeLogHeader.fromXmlDocument(
               XmlDocument.parse(
-                utf8.decoder.convert(headerFile!.content as Uint8List),
+                utf8.decoder.convert(headerFile!.content),
               ),
             )
-            ..byteData = dataFile!.content as Uint8List
+            ..byteData = dataFile!.content
             ..parseData();
         }
       }
@@ -845,8 +845,8 @@ class Iso11783TaskData extends Iso11783Element
 
   /// Find the next ID for an [Iso11783Element] of [type], if it can have an ID.
   ///
-  /// [additionalIncrement] can be changed to get IDs further from the current 
-  /// max, this is particularily useful for getting several IDs before the 
+  /// [additionalIncrement] can be changed to get IDs further from the current
+  /// max, this is particularily useful for getting several IDs before the
   /// elements become children of the task data structure.
   ///
   /// [overrideTransferOrigin] can be used to change the next ID to not follow
@@ -871,7 +871,7 @@ class Iso11783TaskData extends Iso11783Element
 
       return [
         type.xmlTag,
-        min - (1+additionalIncrement),
+        min - (1 + additionalIncrement),
       ].join();
     } else {
       final max = ids.isEmpty
@@ -880,7 +880,7 @@ class Iso11783TaskData extends Iso11783Element
 
       return [
         type.xmlTag,
-        max + (1+additionalIncrement),
+        max + (1 + additionalIncrement),
       ].join();
     }
   }
@@ -892,36 +892,35 @@ class Iso11783TaskData extends Iso11783Element
           .firstWhereOrNull((e) => e.id == id);
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      attachedFiles,
-      baseStations,
-      codedComments,
-      codedCommentGroups,
-      colourLegends,
-      cropTypes,
-      culturalPractices,
-      customers,
-      devices,
-      farms,
-      operationTechniques,
-      partfields,
-      products,
-      productGroups,
-      tasks,
-      taskControllerCapabilities,
-      valuePresentations,
-      workers,
-      externalFileReferences,
-      linkList,
-      versionMajor,
-      versionMinor,
-      dataTransferOrigin,
-      managementSoftwareManufacturer,
-      managementSoftwareVersion,
-      taskControllerManufacturer,
-      taskControllerVersion,
-      dataTransferOrigin,
-      language,
-    ]);
+  List<Object?> get props => [
+        attachedFiles,
+        baseStations,
+        codedComments,
+        codedCommentGroups,
+        colourLegends,
+        cropTypes,
+        culturalPractices,
+        customers,
+        devices,
+        farms,
+        operationTechniques,
+        partfields,
+        products,
+        productGroups,
+        tasks,
+        taskControllerCapabilities,
+        valuePresentations,
+        workers,
+        externalFileReferences,
+        linkList,
+        versionMajor,
+        versionMinor,
+        dataTransferOrigin,
+        managementSoftwareManufacturer,
+        managementSoftwareVersion,
+        taskControllerManufacturer,
+        taskControllerVersion,
+        dataTransferOrigin,
+        language,
+      ];
 }

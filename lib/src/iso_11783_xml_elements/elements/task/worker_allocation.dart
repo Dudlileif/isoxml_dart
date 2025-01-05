@@ -12,7 +12,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'WAN')
 @annotation.XmlSerializable(createMixin: true)
 class WorkerAllocation extends Iso11783Element
-    with _$WorkerAllocationXmlSerializableMixin {
+    with _$WorkerAllocationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [WorkerAllocation] with verified
   /// arguments.
   factory WorkerAllocation({
@@ -57,9 +57,8 @@ class WorkerAllocation extends Iso11783Element
       allocationStamp?.selfWithRecursiveChildren;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      workerIdRef,
-    ]);
+  List<Object?> get props => [
+        allocationStamp,
+        workerIdRef,
+      ];
 }

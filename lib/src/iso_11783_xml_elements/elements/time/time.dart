@@ -136,16 +136,20 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
         ],
       ];
 
+  /// The list of properties that will be used to determine whether
+  /// two instances are equal.
+  List<Object?> get props => [
+        positions,
+        dataLogValues,
+        start,
+        stop,
+        duration,
+        type,
+      ];
+
+  /// Returns a string for [props].
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      positions,
-      dataLogValues,
-      start,
-      stop,
-      duration,
-      type,
-    ]);
+  String toString() => mapPropsToString(runtimeType, props);
 }
 
 /// An enumerator for which type a [Time] element is.

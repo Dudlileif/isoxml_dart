@@ -12,7 +12,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'GGP')
 @annotation.XmlSerializable(createMixin: true)
 class GuidanceGroup extends Iso11783Element
-    with _$GuidanceGroupXmlSerializableMixin {
+    with _$GuidanceGroupXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [GuidanceGroup] with verified
   /// arguments.
   factory GuidanceGroup({
@@ -103,11 +103,10 @@ class GuidanceGroup extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      patterns,
-      boundaryPolygon,
-      id,
-      designator,
-    ]);
+  List<Object?> get props => [
+        patterns,
+        boundaryPolygon,
+        id,
+        designator,
+      ];
 }

@@ -23,7 +23,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'CNN')
 @annotation.XmlSerializable(createMixin: true)
-class Connection extends Iso11783Element with _$ConnectionXmlSerializableMixin {
+class Connection extends Iso11783Element
+    with _$ConnectionXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Connection] with verified arguments.
   factory Connection({
     required String deviceIdRef_0,
@@ -93,11 +94,10 @@ class Connection extends Iso11783Element with _$ConnectionXmlSerializableMixin {
   final String deviceElementIdRef_1;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      deviceIdRef_0,
-      deviceElementIdRef_0,
-      deviceIdRef_1,
-      deviceElementIdRef_1,
-    ]);
+  List<Object?> get props => [
+        deviceIdRef_0,
+        deviceElementIdRef_0,
+        deviceIdRef_1,
+        deviceElementIdRef_1,
+      ];
 }

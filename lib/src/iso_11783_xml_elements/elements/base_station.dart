@@ -11,7 +11,7 @@ part of '../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'BSN')
 @annotation.XmlSerializable(createMixin: true)
 class BaseStation extends Iso11783Element
-    with _$BaseStationXmlSerializableMixin {
+    with _$BaseStationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [BaseStation] with verified arguments.
   factory BaseStation({
     required String id,
@@ -113,12 +113,11 @@ class BaseStation extends Iso11783Element
   final int up;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-      north,
-      east,
-      up,
-    ]);
+  List<Object?> get props => [
+        id,
+        designator,
+        north,
+        east,
+        up,
+      ];
 }

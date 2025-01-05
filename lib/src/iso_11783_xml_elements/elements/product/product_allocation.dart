@@ -15,7 +15,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'PAN')
 @annotation.XmlSerializable(createMixin: true)
 class ProductAllocation extends Iso11783Element
-    with _$ProductAllocationXmlSerializableMixin {
+    with _$ProductAllocationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ProductAllocation] with verified
   /// arguments.
   factory ProductAllocation({
@@ -134,17 +134,16 @@ class ProductAllocation extends Iso11783Element
       allocationStamp?.selfWithRecursiveChildren;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      productIdRef,
-      quantityDDI,
-      quantityValue,
-      transferMode,
-      deviceElementIdRef,
-      valuePresentationIdRef,
-      productSubTypeIdRef,
-    ]);
+  List<Object?> get props => [
+        allocationStamp,
+        productIdRef,
+        quantityDDI,
+        quantityValue,
+        transferMode,
+        deviceElementIdRef,
+        valuePresentationIdRef,
+        productSubTypeIdRef,
+      ];
 }
 
 /// An enumerator for which kind of transfer the [ProductAllocation] is

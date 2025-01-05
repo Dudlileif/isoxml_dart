@@ -15,7 +15,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CCL')
 @annotation.XmlSerializable(createMixin: true)
 class CodedCommentListValue extends Iso11783Element
-    with _$CodedCommentListValueXmlSerializableMixin {
+    with _$CodedCommentListValueXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [CodedCommentListValue] with verified
   /// arguments.
   factory CodedCommentListValue({
@@ -62,9 +62,8 @@ class CodedCommentListValue extends Iso11783Element
   final String designator;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-    ]);
+  List<Object?> get props => [
+        id,
+        designator,
+      ];
 }

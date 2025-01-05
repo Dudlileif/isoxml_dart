@@ -273,22 +273,6 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
     }
   }
 
-  @override
-  List<Object?> get props => super.props
-    ..addAll([
-      minimumNorthPosition,
-      minimumEastPosition,
-      cellNorthSize,
-      cellEastSize,
-      maximumColumn,
-      maximumRow,
-      fileName,
-      fileLength,
-      type,
-      treatmentZoneCode,
-      byteData,
-    ]);
-
   /// Converts [treatmentZoneCodeGrid] or [processDataValueGrid] to bytes
   /// ready to be saved as a `GRD-----.BIN` file.
   Uint8List? gridToBytes() {

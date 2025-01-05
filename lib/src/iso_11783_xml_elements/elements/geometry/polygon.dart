@@ -16,7 +16,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'PLN')
 @annotation.XmlSerializable(createMixin: true)
-class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
+class Polygon extends Iso11783Element
+    with _$PolygonXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Polygon] with verified
   /// arguments.
   factory Polygon({
@@ -124,15 +125,14 @@ class Polygon extends Iso11783Element with _$PolygonXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      lineStrings,
-      type,
-      designator,
-      area,
-      colour,
-      id,
-    ]);
+  List<Object?> get props => [
+        lineStrings,
+        type,
+        designator,
+        area,
+        colour,
+        id,
+      ];
 }
 
 /// An enumerator for which type a [Polygon] is.

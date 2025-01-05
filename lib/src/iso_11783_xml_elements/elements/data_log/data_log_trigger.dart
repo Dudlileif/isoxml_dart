@@ -45,7 +45,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DLT')
 @annotation.XmlSerializable(createMixin: true)
 class DataLogTrigger extends Iso11783Element
-    with _$DataLogTriggerXmlSerializableMixin {
+    with _$DataLogTriggerXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DataLogTrigger] with verified
   /// arguments.
   factory DataLogTrigger({
@@ -275,19 +275,18 @@ class DataLogTrigger extends Iso11783Element
   final int? pgnStopBit;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      ddi,
-      method,
-      distanceInterval,
-      timeInterval,
-      thresholdMinimum,
-      thresholdMaximum,
-      thresholdChange,
-      deviceElementIdRef,
-      valuePresentationIdRef,
-      pgn,
-      pgnStartBit,
-      pgnStopBit,
-    ]);
+  List<Object?> get props => [
+        ddi,
+        method,
+        distanceInterval,
+        timeInterval,
+        thresholdMinimum,
+        thresholdMaximum,
+        thresholdChange,
+        deviceElementIdRef,
+        valuePresentationIdRef,
+        pgn,
+        pgnStartBit,
+        pgnStopBit,
+      ];
 }

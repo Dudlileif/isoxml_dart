@@ -14,7 +14,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'FRM')
 @annotation.XmlSerializable(createMixin: true)
-class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
+class Farm extends Iso11783Element
+    with _$FarmXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Farm] with verified
   /// arguments.
   factory Farm({
@@ -112,10 +113,8 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
   ///
   /// Records generated on MICS have negative IDs.
   @override
-@annotation.XmlAttribute(name: 'A')
+  @annotation.XmlAttribute(name: 'A')
   final String id;
-
-
 
   /// Name of the farm, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -150,17 +149,15 @@ class Farm extends Iso11783Element with _$FarmXmlSerializableMixin {
   final String? customerIdRef;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-      street,
-      poBox,
-      postalCode,
-      city,
-      state,
-      country,
-      customerIdRef,
-    ]);
-
+  List<Object?> get props => [
+        id,
+        designator,
+        street,
+        poBox,
+        postalCode,
+        city,
+        state,
+        country,
+        customerIdRef,
+      ];
 }

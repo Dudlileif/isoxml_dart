@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'OTP')
 @annotation.XmlSerializable(createMixin: true)
 class OperationTechniquePractice extends Iso11783Element
-    with _$OperationTechniquePracticeXmlSerializableMixin {
+    with _$OperationTechniquePracticeXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [OperationTechniquePractice] with
   /// verified arguments.
   factory OperationTechniquePractice({
@@ -58,9 +58,8 @@ class OperationTechniquePractice extends Iso11783Element
   final String? operationTechniqueIdRef;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      culturalPracticeIdRef,
-      operationTechniqueIdRef,
-    ]);
+  List<Object?> get props => [
+        culturalPracticeIdRef,
+        operationTechniqueIdRef,
+      ];
 }

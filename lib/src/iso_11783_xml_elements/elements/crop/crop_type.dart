@@ -9,7 +9,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'CTP')
 @annotation.XmlSerializable(createMixin: true)
-class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
+class CropType extends Iso11783Element
+    with _$CropTypeXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [CropType] with verified
   /// arguments.
   factory CropType({
@@ -87,7 +88,6 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-
   /// Name of the crop type, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
@@ -105,11 +105,10 @@ class CropType extends Iso11783Element with _$CropTypeXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      varieties,
-      id,
-      designator,
-      productGroupIdRef,
-    ]);
+  List<Object?> get props => [
+        varieties,
+        id,
+        designator,
+        productGroupIdRef,
+      ];
 }

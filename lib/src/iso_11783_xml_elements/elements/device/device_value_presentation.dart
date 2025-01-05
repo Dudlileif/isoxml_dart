@@ -17,7 +17,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DVP')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceValuePresentation extends Iso11783Element
-    with _$DeviceValuePresentationXmlSerializableMixin {
+    with _$DeviceValuePresentationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceValuePresentation] with verified
   /// arguments.
   factory DeviceValuePresentation({
@@ -105,12 +105,11 @@ class DeviceValuePresentation extends Iso11783Element
   final String? unitDesignator;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      objectId,
-      offset,
-      scale,
-      numberOfDecimals,
-      unitDesignator,
-    ]);
+  List<Object?> get props => [
+        objectId,
+        offset,
+        scale,
+        numberOfDecimals,
+        unitDesignator,
+      ];
 }

@@ -4,7 +4,7 @@
 
 /// A library for the interfacing with the ISO 11783-11 Data Dictionary
 /// and it's entities.
-library iso_11783_data_dictionary;
+library;
 
 export 'src/iso_11783_data_dictionary/device_class.dart';
 export 'src/iso_11783_data_dictionary/dictionary.dart';

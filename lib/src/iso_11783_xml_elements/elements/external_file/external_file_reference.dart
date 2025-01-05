@@ -17,7 +17,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'XFR')
 @annotation.XmlSerializable(createMixin: true)
 class ExternalFileReference extends Iso11783Element
-    with _$ExternalFileReferenceXmlSerializableMixin {
+    with _$ExternalFileReferenceXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating an [ExternalFileReference] with verified
   /// arguments.
   factory ExternalFileReference({
@@ -71,11 +71,10 @@ class ExternalFileReference extends Iso11783Element
       .firstWhere((element) => element.xmlTag == filename.substring(0, 3));
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      filename,
-      filetype,
-    ]);
+  List<Object?> get props => [
+        filename,
+        filetype,
+      ];
 }
 
 /// An enumerator for which type of file an [ExternalFileReference] refers to.

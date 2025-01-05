@@ -9,7 +9,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'OTR')
 @annotation.XmlSerializable(createMixin: true)
 class OperationTechniqueReference extends Iso11783Element
-    with _$OperationTechniqueReferenceXmlSerializableMixin {
+    with _$OperationTechniqueReferenceXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [OperationTechniqueReference] with
   /// verified arguments.
   factory OperationTechniqueReference({
@@ -44,5 +44,5 @@ class OperationTechniqueReference extends Iso11783Element
   final String operationTechniqueIdRef;
 
   @override
-  List<Object?> get props => super.props..addAll([operationTechniqueIdRef]);
+  List<Object?> get props => [operationTechniqueIdRef];
 }

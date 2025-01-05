@@ -123,15 +123,19 @@ class CodedComment extends Iso11783Element
         ],
       ];
 
+  /// The list of properties that will be used to determine whether
+  /// two instances are equal.
+  List<Object?> get props => [
+        listValues,
+        id,
+        designator,
+        scope,
+        groupIdRef,
+      ];
+
+  /// Returns a string for [props].
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      listValues,
-      id,
-      designator,
-      scope,
-      groupIdRef,
-    ]);
+  String toString() => mapPropsToString(runtimeType, props);
 }
 
 /// An enumerator for declaring the scope of a [CodedComment].

@@ -14,7 +14,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'CTR')
 @annotation.XmlSerializable(createMixin: true)
-class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
+class Customer extends Iso11783Element
+    with _$CustomerXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Customer] with verified
   /// arguments.
   factory Customer({
@@ -146,8 +147,6 @@ class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-
-
   /// Customer's last name.
   @annotation.XmlAttribute(name: 'B')
   final String lastName;
@@ -197,21 +196,19 @@ class Customer extends Iso11783Element with _$CustomerXmlSerializableMixin {
   final String? email;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      lastName,
-      firstName,
-      street,
-      poBox,
-      postalCode,
-      city,
-      state,
-      country,
-      phone,
-      mobile,
-      fax,
-      email,
-    ]);
-
+  List<Object?> get props => [
+        id,
+        lastName,
+        firstName,
+        street,
+        poBox,
+        postalCode,
+        city,
+        state,
+        country,
+        phone,
+        mobile,
+        fax,
+        email,
+      ];
 }

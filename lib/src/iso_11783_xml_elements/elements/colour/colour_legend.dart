@@ -14,7 +14,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CLD')
 @annotation.XmlSerializable(createMixin: true)
 class ColourLegend extends Iso11783Element
-    with _$ColourLegendXmlSerializableMixin {
+    with _$ColourLegendXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ColourLegend] with verified arguments.
   factory ColourLegend({
     required List<ColourRange> ranges,
@@ -71,10 +71,8 @@ class ColourLegend extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-
   @annotation.XmlAttribute(name: 'A')
   final String id;
-
 
   /// Default colour to fall back to if a value is not in any of the [ranges].
   @annotation.XmlAttribute(name: 'B')
@@ -88,10 +86,9 @@ class ColourLegend extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      ranges,
-      id,
-      defaultColour,
-    ]);
+  List<Object?> get props => [
+        ranges,
+        id,
+        defaultColour,
+      ];
 }

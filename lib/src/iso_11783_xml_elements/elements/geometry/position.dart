@@ -12,7 +12,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'PTN')
 @annotation.XmlSerializable(createMixin: true)
-class Position extends Iso11783Element with _$PositionXmlSerializableMixin {
+class Position extends Iso11783Element
+    with _$PositionXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Position] with verified
   /// arguments.
   factory Position({
@@ -191,18 +192,17 @@ class Position extends Iso11783Element with _$PositionXmlSerializableMixin {
   final int? gpsUtcDate;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      north,
-      east,
-      up,
-      status,
-      pdop,
-      hdop,
-      numberOfSatellites,
-      gpsUtcTimeMs,
-      gpsUtcDate,
-    ]);
+  List<Object?> get props => [
+        north,
+        east,
+        up,
+        status,
+        pdop,
+        hdop,
+        numberOfSatellites,
+        gpsUtcTimeMs,
+        gpsUtcDate,
+      ];
 }
 
 /// An ennumerator for the status/qualty of a [Position].

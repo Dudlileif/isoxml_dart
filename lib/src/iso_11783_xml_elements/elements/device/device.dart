@@ -11,7 +11,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'DVC')
 @annotation.XmlSerializable(createMixin: true)
-class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
+class Device extends Iso11783Element
+    with _$DeviceXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Device] with verified
   /// arguments.
   factory Device({
@@ -170,7 +171,6 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-  
   /// Name of the device, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String? designator;
@@ -222,19 +222,17 @@ class Device extends Iso11783Element with _$DeviceXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      elements,
-      processData,
-      properties,
-      valuePresentations,
-      id,
-      designator,
-      softwareVersion,
-      clientNAME,
-      serialNumber,
-      structureLabel,
-      localizationLabel,
-    ]);
-
+  List<Object?> get props => [
+        elements,
+        processData,
+        properties,
+        valuePresentations,
+        id,
+        designator,
+        softwareVersion,
+        clientNAME,
+        serialNumber,
+        structureLabel,
+        localizationLabel,
+      ];
 }

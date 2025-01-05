@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CAT')
 @annotation.XmlSerializable(createMixin: true)
 class ControlAssignment extends Iso11783Element
-    with _$ControlAssignmentXmlSerializableMixin {
+    with _$ControlAssignmentXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ControlAssignment] with verified
   /// arguments.
   factory ControlAssignment({
@@ -144,15 +144,14 @@ class ControlAssignment extends Iso11783Element
       allocationStamp?.selfWithRecursiveChildren;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      sourceClientNAME,
-      userClientNAME,
-      sourceDeviceStructureLabel,
-      userDeviceStructureLabel,
-      sourceDeviceElementNumber,
-      userDeviceElementNumber,
-      processDataDDI,
-    ]);
+  List<Object?> get props => [
+        allocationStamp,
+        sourceClientNAME,
+        userClientNAME,
+        sourceDeviceStructureLabel,
+        userDeviceStructureLabel,
+        sourceDeviceElementNumber,
+        userDeviceElementNumber,
+        processDataDDI,
+      ];
 }

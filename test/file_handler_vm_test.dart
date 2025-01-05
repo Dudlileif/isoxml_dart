@@ -22,8 +22,8 @@ void main() async {
   test(
     'Check that zip and folder data is the same',
     () => expect(
-      taskDataZip,
-      taskDataFolder,
+      taskDataZip.toString(),
+      taskDataFolder.toString(),
     ),
   );
 

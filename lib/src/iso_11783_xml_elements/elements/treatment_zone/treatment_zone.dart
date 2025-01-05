@@ -23,7 +23,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'TZN')
 @annotation.XmlSerializable(createMixin: true)
 class TreatmentZone extends Iso11783Element
-    with _$TreatmentZoneXmlSerializableMixin {
+    with _$TreatmentZoneXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [TreatmentZone] with verified
   /// arguments.
   factory TreatmentZone({
@@ -133,14 +133,13 @@ class TreatmentZone extends Iso11783Element
             ...a,
         ],
       ];
-      
+
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      polygons,
-      processDataVariables,
-      code,
-      designator,
-      colour,
-    ]);
+  List<Object?> get props => [
+        polygons,
+        processDataVariables,
+        code,
+        designator,
+        colour,
+      ];
 }

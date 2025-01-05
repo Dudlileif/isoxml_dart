@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Allow catching all errors and exceptions
+// ignore_for_file: avoid_catches_without_on_clauses
+
 import 'dart:typed_data';
 
 import 'package:isoxml_dart/isoxml_dart.dart';
@@ -722,5 +725,4 @@ void main() {
       });
     }
   });
-
 }

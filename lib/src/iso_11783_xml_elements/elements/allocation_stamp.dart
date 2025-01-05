@@ -13,7 +13,7 @@ part of '../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'ASP')
 @annotation.XmlSerializable(createMixin: true)
 class AllocationStamp extends Iso11783Element
-    with _$AllocationStampXmlSerializableMixin {
+    with _$AllocationStampXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating an [AllocationStamp] with verified arguments.
   factory AllocationStamp({
     required DateTime start,
@@ -120,14 +120,13 @@ class AllocationStamp extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      position,
-      start,
-      stop,
-      duration,
-      type,
-    ]);
+  List<Object?> get props => [
+        position,
+        start,
+        stop,
+        duration,
+        type,
+      ];
 }
 
 /// An enumerator for whether the [AllocationStamp] is planned for the future

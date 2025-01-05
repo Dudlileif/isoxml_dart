@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'PNT')
 @annotation.XmlSerializable()
-class Point extends Iso11783Element {
+class Point extends Iso11783Element with EquatableMixin {
   /// Default factory for creating a [Point] with verified
   /// arguments.
   factory Point({
@@ -252,7 +252,6 @@ class Point extends Iso11783Element {
   @override
   @annotation.XmlAttribute(name: 'G')
   final String? id;
-
 
   /// Horizontal accuracy, (RMS error) in meters.
   @annotation.XmlAttribute(name: 'H')
@@ -654,23 +653,22 @@ class Point extends Iso11783Element {
   }
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      type,
-      designator,
-      north,
-      east,
-      up,
-      colour,
-      id,
-      horizontalAccuracy,
-      verticalAccuracy,
-      filename,
-      fileLength,
-      binaryHeaderOptions,
-      byteData,
-      binaryPoints,
-    ]);
+  List<Object?> get props => [
+        type,
+        designator,
+        north,
+        east,
+        up,
+        colour,
+        id,
+        horizontalAccuracy,
+        verticalAccuracy,
+        filename,
+        fileLength,
+        binaryHeaderOptions,
+        byteData,
+        binaryPoints,
+      ];
 }
 
 /// An enumerator for what type a [Point] is.

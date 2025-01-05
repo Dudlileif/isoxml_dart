@@ -13,7 +13,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'LSG')
 @annotation.XmlSerializable(createMixin: true)
-class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
+class LineString extends Iso11783Element
+    with _$LineStringXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [LineString] with verified
   /// arguments.
   factory LineString({
@@ -132,7 +133,6 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'F')
   final String? id;
 
-
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
         ...[
@@ -141,16 +141,15 @@ class LineString extends Iso11783Element with _$LineStringXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      points,
-      type,
-      designator,
-      width,
-      length,
-      colour,
-      id,
-    ]);
+  List<Object?> get props => [
+        points,
+        type,
+        designator,
+        width,
+        length,
+        colour,
+        id,
+      ];
 }
 
 /// An enumerator for which type a [LineString] is.

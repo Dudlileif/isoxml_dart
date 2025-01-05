@@ -30,7 +30,7 @@ class TaskDataFileHandler {
 
     final inputStream = InputFileStream(path);
 
-    final archive = ZipDecoder().decodeBuffer(inputStream);
+    final archive = ZipDecoder().decodeStream(inputStream);
 
     if (extract && extractionPath != null) {
       await extractArchiveToDisk(
@@ -152,14 +152,11 @@ class TaskDataFileHandler {
   }) async {
     final archive = taskData.toZip(externalize: externalize);
     final bytes = ZipEncoder().encode(archive);
-    if (bytes != null) {
-      final file = File(path);
-      await file.create(recursive: true);
-      await file.writeAsBytes(Uint8List.fromList(bytes));
+    final file = File(path);
+    await file.create(recursive: true);
+    await file.writeAsBytes(Uint8List.fromList(bytes));
 
-      return true;
-    }
-    return false;
+    return true;
   }
 
   /// Saves the [taskData] to the directory at [path].

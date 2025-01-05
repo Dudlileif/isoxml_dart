@@ -4,7 +4,7 @@
 
 /// A library with a class with methods for importing and exporting
 /// [Iso11783TaskData] to and from files and zip archives.
-library task_data_file_handler;
+library;
 
 import 'package:isoxml_dart/isoxml_dart.dart';
 

@@ -9,7 +9,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'GP')
 @annotation.XmlSerializable(createMixin: true)
-class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
+class LinkGroup extends Iso11783Element
+    with _$LinkGroupXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [LinkGroup] with verified
   /// arguments.
   factory LinkGroup({
@@ -117,9 +118,8 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
   ///
   /// Records generated on MICS have negative IDs.
   @override
-@annotation.XmlAttribute(name: 'A')
+  @annotation.XmlAttribute(name: 'A')
   final String id;
-
 
   /// What type of identifiers/[Link.value]s are used with the [links].
   @annotation.XmlAttribute(name: 'B')
@@ -150,16 +150,14 @@ class LinkGroup extends Iso11783Element with _$LinkGroupXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      links,
-      id,
-      type,
-      manufacturerGLN,
-      namespace,
-      designator,
-    ]);
-
+  List<Object?> get props => [
+        links,
+        id,
+        type,
+        manufacturerGLN,
+        namespace,
+        designator,
+      ];
 }
 
 /// An enumerator for which type of external object key a [LinkGroup] uses.

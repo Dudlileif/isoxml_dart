@@ -11,7 +11,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'AFE')
 @annotation.XmlSerializable(createMixin: true)
 class AttachedFile extends Iso11783Element
-    with _$AttachedFileXmlSerializableMixin {
+    with _$AttachedFileXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating an [AttachedFile] with verified
   /// arguments.
   factory AttachedFile({
@@ -108,15 +108,14 @@ class AttachedFile extends Iso11783Element
   final int? fileLength;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      filenameWithExtension,
-      preserve,
-      manufacturerGLN,
-      fileType,
-      fileVersion,
-      fileLength,
-    ]);
+  List<Object?> get props => [
+        filenameWithExtension,
+        preserve,
+        manufacturerGLN,
+        fileType,
+        fileVersion,
+        fileLength,
+      ];
 }
 
 /// An enumerator for whether the [AttachedFile] should be preserved when

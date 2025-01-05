@@ -13,7 +13,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'WKR')
 @annotation.XmlSerializable(createMixin: true)
-class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
+class Worker extends Iso11783Element
+    with _$WorkerXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Worker] with verified
   /// arguments.
   factory Worker({
@@ -147,7 +148,6 @@ class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-
   /// Worker's last name.
   @annotation.XmlAttribute(name: 'B')
   final String lastName;
@@ -197,21 +197,19 @@ class Worker extends Iso11783Element with _$WorkerXmlSerializableMixin {
   final String? email;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      lastName,
-      firstName,
-      street,
-      poBox,
-      postalCode,
-      city,
-      state,
-      country,
-      phone,
-      mobile,
-      licenseNumber,
-      email,
-    ]);
-
+  List<Object?> get props => [
+        id,
+        lastName,
+        firstName,
+        street,
+        poBox,
+        postalCode,
+        city,
+        state,
+        country,
+        phone,
+        mobile,
+        licenseNumber,
+        email,
+      ];
 }

@@ -106,12 +106,16 @@ class CommentAllocation extends Iso11783Element
   Iterable<Iso11783Element>? get recursiveChildren =>
       allocationStamp?.selfWithRecursiveChildren;
 
+  /// The list of properties that will be used to determine whether
+  /// two instances are equal.
+  List<Object?> get props => [
+        allocationStamp,
+        codedCommentIdRef,
+        codedCommentListValueIdRef,
+        freeCommentText,
+      ];
+
+  /// Returns a string for [props].
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamp,
-      codedCommentIdRef,
-      codedCommentListValueIdRef,
-      freeCommentText,
-    ]);
+  String toString() => mapPropsToString(runtimeType, props);
 }

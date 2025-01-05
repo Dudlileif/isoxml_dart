@@ -192,7 +192,6 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-
   /// Partfield number from the FMIS.
   @annotation.XmlAttribute(name: 'B')
   final String? code;
@@ -245,23 +244,25 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
         ],
       ];
 
+  /// The list of properties that will be used to determine whether
+  /// two instances are equal.
+  List<Object?> get props => [
+        polygons,
+        lineStrings,
+        points,
+        guidanceGroups,
+        id,
+        code,
+        designator,
+        area,
+        customerIdRef,
+        farmIdRef,
+        cropTypeIdRef,
+        cropVarietyIdRef,
+        fieldIdRef,
+      ];
+
+  /// Returns a string for [props].
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      polygons,
-      lineStrings,
-      points,
-      guidanceGroups,
-      id,
-      code,
-      designator,
-      area,
-      customerIdRef,
-      farmIdRef,
-      cropTypeIdRef,
-      cropVarietyIdRef,
-      fieldIdRef,
-    ]);
-
-
+  String toString() => mapPropsToString(runtimeType, props);
 }

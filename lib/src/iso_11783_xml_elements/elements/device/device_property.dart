@@ -12,7 +12,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DPT')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceProperty extends Iso11783Element
-    with _$DevicePropertyXmlSerializableMixin {
+    with _$DevicePropertyXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceProperty] with verified
   /// arguments.
   factory DeviceProperty({
@@ -101,12 +101,11 @@ class DeviceProperty extends Iso11783Element
   final int? valuePresentationObjectId;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      objectId,
-      ddi,
-      value,
-      designator,
-      valuePresentationObjectId,
-    ]);
+  List<Object?> get props => [
+        objectId,
+        ddi,
+        value,
+        designator,
+        valuePresentationObjectId,
+      ];
 }

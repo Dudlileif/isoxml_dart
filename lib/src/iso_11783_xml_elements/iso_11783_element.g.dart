@@ -24,8 +24,8 @@ abstract class _$AllocationStampCWProxy {
   /// AllocationStamp(...).copyWith(id: 12, name: "My name")
   /// ````
   AllocationStamp call({
-    DateTime? start,
-    AllocationStampType? type,
+    DateTime start,
+    AllocationStampType type,
     List<Position>? position,
     DateTime? stop,
     int? duration,
@@ -70,11 +70,11 @@ class _$AllocationStampCWProxyImpl implements _$AllocationStampCWProxy {
     Object? duration = const $CopyWithPlaceholder(),
   }) {
     return AllocationStamp(
-      start: start == const $CopyWithPlaceholder() || start == null
+      start: start == const $CopyWithPlaceholder()
           ? _value.start
           // ignore: cast_nullable_to_non_nullable
           : start as DateTime,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as AllocationStampType,
@@ -118,11 +118,11 @@ abstract class _$BaseStationCWProxy {
   /// BaseStation(...).copyWith(id: 12, name: "My name")
   /// ````
   BaseStation call({
-    String? id,
-    String? designator,
-    double? north,
-    double? east,
-    int? up,
+    String id,
+    String designator,
+    double north,
+    double east,
+    int up,
   });
 }
 
@@ -163,24 +163,23 @@ class _$BaseStationCWProxyImpl implements _$BaseStationCWProxy {
     Object? up = const $CopyWithPlaceholder(),
   }) {
     return BaseStation(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
-      north: north == const $CopyWithPlaceholder() || north == null
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
+      north: north == const $CopyWithPlaceholder()
           ? _value.north
           // ignore: cast_nullable_to_non_nullable
           : north as double,
-      east: east == const $CopyWithPlaceholder() || east == null
+      east: east == const $CopyWithPlaceholder()
           ? _value.east
           // ignore: cast_nullable_to_non_nullable
           : east as double,
-      up: up == const $CopyWithPlaceholder() || up == null
+      up: up == const $CopyWithPlaceholder()
           ? _value.up
           // ignore: cast_nullable_to_non_nullable
           : up as int,
@@ -212,9 +211,9 @@ abstract class _$CodedCommentCWProxy {
   /// CodedComment(...).copyWith(id: 12, name: "My name")
   /// ````
   CodedComment call({
-    String? id,
-    String? designator,
-    CodedCommmentScope? scope,
+    String id,
+    String designator,
+    CodedCommmentScope scope,
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
   });
@@ -258,16 +257,15 @@ class _$CodedCommentCWProxyImpl implements _$CodedCommentCWProxy {
     Object? groupIdRef = const $CopyWithPlaceholder(),
   }) {
     return CodedComment(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
-      scope: scope == const $CopyWithPlaceholder() || scope == null
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
+      scope: scope == const $CopyWithPlaceholder()
           ? _value.scope
           // ignore: cast_nullable_to_non_nullable
           : scope as CodedCommmentScope,
@@ -301,8 +299,8 @@ abstract class _$CodedCommentGroupCWProxy {
   /// CodedCommentGroup(...).copyWith(id: 12, name: "My name")
   /// ````
   CodedCommentGroup call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
   });
 }
 
@@ -332,15 +330,14 @@ class _$CodedCommentGroupCWProxyImpl implements _$CodedCommentGroupCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return CodedCommentGroup(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
     );
   }
 }
@@ -364,8 +361,8 @@ abstract class _$CodedCommentListValueCWProxy {
   /// CodedCommentListValue(...).copyWith(id: 12, name: "My name")
   /// ````
   CodedCommentListValue call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
   });
 }
 
@@ -396,15 +393,14 @@ class _$CodedCommentListValueCWProxyImpl
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return CodedCommentListValue(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
     );
   }
 }
@@ -520,8 +516,8 @@ abstract class _$ColourLegendCWProxy {
   /// ColourLegend(...).copyWith(id: 12, name: "My name")
   /// ````
   ColourLegend call({
-    List<ColourRange>? ranges,
-    String? id,
+    List<ColourRange> ranges,
+    String id,
     int? defaultColour,
   });
 }
@@ -556,11 +552,11 @@ class _$ColourLegendCWProxyImpl implements _$ColourLegendCWProxy {
     Object? defaultColour = const $CopyWithPlaceholder(),
   }) {
     return ColourLegend(
-      ranges: ranges == const $CopyWithPlaceholder() || ranges == null
+      ranges: ranges == const $CopyWithPlaceholder()
           ? _value.ranges
           // ignore: cast_nullable_to_non_nullable
           : ranges as List<ColourRange>,
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
@@ -592,9 +588,9 @@ abstract class _$ColourRangeCWProxy {
   /// ColourRange(...).copyWith(id: 12, name: "My name")
   /// ````
   ColourRange call({
-    int? minimumValue,
-    int? maximumValue,
-    int? colour,
+    int minimumValue,
+    int maximumValue,
+    int colour,
   });
 }
 
@@ -629,17 +625,15 @@ class _$ColourRangeCWProxyImpl implements _$ColourRangeCWProxy {
     Object? colour = const $CopyWithPlaceholder(),
   }) {
     return ColourRange(
-      minimumValue:
-          minimumValue == const $CopyWithPlaceholder() || minimumValue == null
-              ? _value.minimumValue
-              // ignore: cast_nullable_to_non_nullable
-              : minimumValue as int,
-      maximumValue:
-          maximumValue == const $CopyWithPlaceholder() || maximumValue == null
-              ? _value.maximumValue
-              // ignore: cast_nullable_to_non_nullable
-              : maximumValue as int,
-      colour: colour == const $CopyWithPlaceholder() || colour == null
+      minimumValue: minimumValue == const $CopyWithPlaceholder()
+          ? _value.minimumValue
+          // ignore: cast_nullable_to_non_nullable
+          : minimumValue as int,
+      maximumValue: maximumValue == const $CopyWithPlaceholder()
+          ? _value.maximumValue
+          // ignore: cast_nullable_to_non_nullable
+          : maximumValue as int,
+      colour: colour == const $CopyWithPlaceholder()
           ? _value.colour
           // ignore: cast_nullable_to_non_nullable
           : colour as int,
@@ -669,8 +663,8 @@ abstract class _$CropTypeCWProxy {
   /// CropType(...).copyWith(id: 12, name: "My name")
   /// ````
   CropType call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     List<CropVariety>? varieties,
     String? productGroupIdRef,
   });
@@ -711,15 +705,14 @@ class _$CropTypeCWProxyImpl implements _$CropTypeCWProxy {
     Object? productGroupIdRef = const $CopyWithPlaceholder(),
   }) {
     return CropType(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       varieties: varieties == const $CopyWithPlaceholder()
           ? _value.varieties
           // ignore: cast_nullable_to_non_nullable
@@ -752,8 +745,8 @@ abstract class _$CropVarietyCWProxy {
   /// CropVariety(...).copyWith(id: 12, name: "My name")
   /// ````
   CropVariety call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     String? productIdRef,
   });
 }
@@ -788,15 +781,14 @@ class _$CropVarietyCWProxyImpl implements _$CropVarietyCWProxy {
     Object? productIdRef = const $CopyWithPlaceholder(),
   }) {
     return CropVariety(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       productIdRef: productIdRef == const $CopyWithPlaceholder()
           ? _value.productIdRef
           // ignore: cast_nullable_to_non_nullable
@@ -843,8 +835,8 @@ abstract class _$DataLogTriggerCWProxy {
   /// DataLogTrigger(...).copyWith(id: 12, name: "My name")
   /// ````
   DataLogTrigger call({
-    String? ddi,
-    int? method,
+    String ddi,
+    int method,
     int? distanceInterval,
     int? timeInterval,
     int? thresholdMinimum,
@@ -931,11 +923,11 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
     Object? pgnStopBit = const $CopyWithPlaceholder(),
   }) {
     return DataLogTrigger(
-      ddi: ddi == const $CopyWithPlaceholder() || ddi == null
+      ddi: ddi == const $CopyWithPlaceholder()
           ? _value.ddi
           // ignore: cast_nullable_to_non_nullable
           : ddi as String,
-      method: method == const $CopyWithPlaceholder() || method == null
+      method: method == const $CopyWithPlaceholder()
           ? _value.method
           // ignore: cast_nullable_to_non_nullable
           : method as int,
@@ -1010,9 +1002,9 @@ abstract class _$DataLogValueCWProxy {
   /// DataLogValue(...).copyWith(id: 12, name: "My name")
   /// ````
   DataLogValue call({
-    String? processDataDDI,
-    int? processDataValue,
-    String? deviceElementIdRef,
+    String processDataDDI,
+    int processDataValue,
+    String deviceElementIdRef,
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
@@ -1063,18 +1055,15 @@ class _$DataLogValueCWProxyImpl implements _$DataLogValueCWProxy {
     Object? pgnStopBit = const $CopyWithPlaceholder(),
   }) {
     return DataLogValue(
-      processDataDDI: processDataDDI == const $CopyWithPlaceholder() ||
-              processDataDDI == null
+      processDataDDI: processDataDDI == const $CopyWithPlaceholder()
           ? _value.processDataDDI
           // ignore: cast_nullable_to_non_nullable
           : processDataDDI as String,
-      processDataValue: processDataValue == const $CopyWithPlaceholder() ||
-              processDataValue == null
+      processDataValue: processDataValue == const $CopyWithPlaceholder()
           ? _value.processDataValue
           // ignore: cast_nullable_to_non_nullable
           : processDataValue as int,
-      deviceElementIdRef: deviceElementIdRef == const $CopyWithPlaceholder() ||
-              deviceElementIdRef == null
+      deviceElementIdRef: deviceElementIdRef == const $CopyWithPlaceholder()
           ? _value.deviceElementIdRef
           // ignore: cast_nullable_to_non_nullable
           : deviceElementIdRef as String,
@@ -1116,10 +1105,10 @@ abstract class _$ConnectionCWProxy {
   /// Connection(...).copyWith(id: 12, name: "My name")
   /// ````
   Connection call({
-    String? deviceIdRef_0,
-    String? deviceElementIdRef_0,
-    String? deviceIdRef_1,
-    String? deviceElementIdRef_1,
+    String deviceIdRef_0,
+    String deviceElementIdRef_0,
+    String deviceIdRef_1,
+    String deviceElementIdRef_1,
   });
 }
 
@@ -1160,28 +1149,22 @@ class _$ConnectionCWProxyImpl implements _$ConnectionCWProxy {
     Object? deviceElementIdRef_1 = const $CopyWithPlaceholder(),
   }) {
     return Connection(
-      deviceIdRef_0:
-          deviceIdRef_0 == const $CopyWithPlaceholder() || deviceIdRef_0 == null
-              ? _value.deviceIdRef_0
-              // ignore: cast_nullable_to_non_nullable
-              : deviceIdRef_0 as String,
-      deviceElementIdRef_0:
-          deviceElementIdRef_0 == const $CopyWithPlaceholder() ||
-                  deviceElementIdRef_0 == null
-              ? _value.deviceElementIdRef_0
-              // ignore: cast_nullable_to_non_nullable
-              : deviceElementIdRef_0 as String,
-      deviceIdRef_1:
-          deviceIdRef_1 == const $CopyWithPlaceholder() || deviceIdRef_1 == null
-              ? _value.deviceIdRef_1
-              // ignore: cast_nullable_to_non_nullable
-              : deviceIdRef_1 as String,
-      deviceElementIdRef_1:
-          deviceElementIdRef_1 == const $CopyWithPlaceholder() ||
-                  deviceElementIdRef_1 == null
-              ? _value.deviceElementIdRef_1
-              // ignore: cast_nullable_to_non_nullable
-              : deviceElementIdRef_1 as String,
+      deviceIdRef_0: deviceIdRef_0 == const $CopyWithPlaceholder()
+          ? _value.deviceIdRef_0
+          // ignore: cast_nullable_to_non_nullable
+          : deviceIdRef_0 as String,
+      deviceElementIdRef_0: deviceElementIdRef_0 == const $CopyWithPlaceholder()
+          ? _value.deviceElementIdRef_0
+          // ignore: cast_nullable_to_non_nullable
+          : deviceElementIdRef_0 as String,
+      deviceIdRef_1: deviceIdRef_1 == const $CopyWithPlaceholder()
+          ? _value.deviceIdRef_1
+          // ignore: cast_nullable_to_non_nullable
+          : deviceIdRef_1 as String,
+      deviceElementIdRef_1: deviceElementIdRef_1 == const $CopyWithPlaceholder()
+          ? _value.deviceElementIdRef_1
+          // ignore: cast_nullable_to_non_nullable
+          : deviceElementIdRef_1 as String,
     );
   }
 }
@@ -1217,13 +1200,13 @@ abstract class _$ControlAssignmentCWProxy {
   /// ControlAssignment(...).copyWith(id: 12, name: "My name")
   /// ````
   ControlAssignment call({
-    String? sourceClientNAME,
-    String? userClientNAME,
-    String? sourceDeviceStructureLabel,
-    String? userDeviceStructureLabel,
-    int? sourceDeviceElementNumber,
-    int? userDeviceElementNumber,
-    String? processDataDDI,
+    String sourceClientNAME,
+    String userClientNAME,
+    String sourceDeviceStructureLabel,
+    String userDeviceStructureLabel,
+    int sourceDeviceElementNumber,
+    int userDeviceElementNumber,
+    String processDataDDI,
     AllocationStamp? allocationStamp,
   });
 }
@@ -1286,42 +1269,35 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
     Object? allocationStamp = const $CopyWithPlaceholder(),
   }) {
     return ControlAssignment(
-      sourceClientNAME: sourceClientNAME == const $CopyWithPlaceholder() ||
-              sourceClientNAME == null
+      sourceClientNAME: sourceClientNAME == const $CopyWithPlaceholder()
           ? _value.sourceClientNAME
           // ignore: cast_nullable_to_non_nullable
           : sourceClientNAME as String,
-      userClientNAME: userClientNAME == const $CopyWithPlaceholder() ||
-              userClientNAME == null
+      userClientNAME: userClientNAME == const $CopyWithPlaceholder()
           ? _value.userClientNAME
           // ignore: cast_nullable_to_non_nullable
           : userClientNAME as String,
       sourceDeviceStructureLabel:
-          sourceDeviceStructureLabel == const $CopyWithPlaceholder() ||
-                  sourceDeviceStructureLabel == null
+          sourceDeviceStructureLabel == const $CopyWithPlaceholder()
               ? _value.sourceDeviceStructureLabel
               // ignore: cast_nullable_to_non_nullable
               : sourceDeviceStructureLabel as String,
       userDeviceStructureLabel:
-          userDeviceStructureLabel == const $CopyWithPlaceholder() ||
-                  userDeviceStructureLabel == null
+          userDeviceStructureLabel == const $CopyWithPlaceholder()
               ? _value.userDeviceStructureLabel
               // ignore: cast_nullable_to_non_nullable
               : userDeviceStructureLabel as String,
       sourceDeviceElementNumber:
-          sourceDeviceElementNumber == const $CopyWithPlaceholder() ||
-                  sourceDeviceElementNumber == null
+          sourceDeviceElementNumber == const $CopyWithPlaceholder()
               ? _value.sourceDeviceElementNumber
               // ignore: cast_nullable_to_non_nullable
               : sourceDeviceElementNumber as int,
       userDeviceElementNumber:
-          userDeviceElementNumber == const $CopyWithPlaceholder() ||
-                  userDeviceElementNumber == null
+          userDeviceElementNumber == const $CopyWithPlaceholder()
               ? _value.userDeviceElementNumber
               // ignore: cast_nullable_to_non_nullable
               : userDeviceElementNumber as int,
-      processDataDDI: processDataDDI == const $CopyWithPlaceholder() ||
-              processDataDDI == null
+      processDataDDI: processDataDDI == const $CopyWithPlaceholder()
           ? _value.processDataDDI
           // ignore: cast_nullable_to_non_nullable
           : processDataDDI as String,
@@ -1370,10 +1346,10 @@ abstract class _$DeviceCWProxy {
   /// Device(...).copyWith(id: 12, name: "My name")
   /// ````
   Device call({
-    String? id,
-    String? clientNAME,
-    String? structureLabel,
-    String? localizationLabel,
+    String id,
+    String clientNAME,
+    String structureLabel,
+    String localizationLabel,
     List<DeviceElement>? elements,
     List<DeviceProperty>? properties,
     List<DeviceProcessData>? processData,
@@ -1452,22 +1428,19 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
     Object? serialNumber = const $CopyWithPlaceholder(),
   }) {
     return Device(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      clientNAME:
-          clientNAME == const $CopyWithPlaceholder() || clientNAME == null
-              ? _value.clientNAME
-              // ignore: cast_nullable_to_non_nullable
-              : clientNAME as String,
-      structureLabel: structureLabel == const $CopyWithPlaceholder() ||
-              structureLabel == null
+      clientNAME: clientNAME == const $CopyWithPlaceholder()
+          ? _value.clientNAME
+          // ignore: cast_nullable_to_non_nullable
+          : clientNAME as String,
+      structureLabel: structureLabel == const $CopyWithPlaceholder()
           ? _value.structureLabel
           // ignore: cast_nullable_to_non_nullable
           : structureLabel as String,
-      localizationLabel: localizationLabel == const $CopyWithPlaceholder() ||
-              localizationLabel == null
+      localizationLabel: localizationLabel == const $CopyWithPlaceholder()
           ? _value.localizationLabel
           // ignore: cast_nullable_to_non_nullable
           : localizationLabel as String,
@@ -1525,7 +1498,7 @@ abstract class _$DeviceAllocationCWProxy {
   /// DeviceAllocation(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceAllocation call({
-    String? clientNAMEValue,
+    String clientNAMEValue,
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
@@ -1569,8 +1542,7 @@ class _$DeviceAllocationCWProxyImpl implements _$DeviceAllocationCWProxy {
     Object? allocationStamp = const $CopyWithPlaceholder(),
   }) {
     return DeviceAllocation(
-      clientNAMEValue: clientNAMEValue == const $CopyWithPlaceholder() ||
-              clientNAMEValue == null
+      clientNAMEValue: clientNAMEValue == const $CopyWithPlaceholder()
           ? _value.clientNAMEValue
           // ignore: cast_nullable_to_non_nullable
           : clientNAMEValue as String,
@@ -1618,11 +1590,11 @@ abstract class _$DeviceElementCWProxy {
   /// DeviceElement(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceElement call({
-    String? id,
-    int? objectId,
-    DeviceElementType? type,
-    int? number,
-    int? parentObjectId,
+    String id,
+    int objectId,
+    DeviceElementType type,
+    int number,
+    int parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     String? designator,
   });
@@ -1676,24 +1648,23 @@ class _$DeviceElementCWProxyImpl implements _$DeviceElementCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return DeviceElement(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+      objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as DeviceElementType,
-      number: number == const $CopyWithPlaceholder() || number == null
+      number: number == const $CopyWithPlaceholder()
           ? _value.number
           // ignore: cast_nullable_to_non_nullable
           : number as int,
-      parentObjectId: parentObjectId == const $CopyWithPlaceholder() ||
-              parentObjectId == null
+      parentObjectId: parentObjectId == const $CopyWithPlaceholder()
           ? _value.parentObjectId
           // ignore: cast_nullable_to_non_nullable
           : parentObjectId as int,
@@ -1725,7 +1696,7 @@ abstract class _$DeviceObjectReferenceCWProxy {
   /// DeviceObjectReference(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceObjectReference call({
-    int? objectId,
+    int objectId,
   });
 }
 
@@ -1751,7 +1722,7 @@ class _$DeviceObjectReferenceCWProxyImpl
     Object? objectId = const $CopyWithPlaceholder(),
   }) {
     return DeviceObjectReference(
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+      objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
@@ -1786,10 +1757,10 @@ abstract class _$DeviceProcessDataCWProxy {
   /// DeviceProcessData(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceProcessData call({
-    int? objectId,
-    String? ddi,
-    int? property,
-    int? triggerMethods,
+    int objectId,
+    String ddi,
+    int property,
+    int triggerMethods,
     String? designator,
     int? presentationObjectId,
   });
@@ -1839,20 +1810,19 @@ class _$DeviceProcessDataCWProxyImpl implements _$DeviceProcessDataCWProxy {
     Object? presentationObjectId = const $CopyWithPlaceholder(),
   }) {
     return DeviceProcessData(
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+      objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
-      ddi: ddi == const $CopyWithPlaceholder() || ddi == null
+      ddi: ddi == const $CopyWithPlaceholder()
           ? _value.ddi
           // ignore: cast_nullable_to_non_nullable
           : ddi as String,
-      property: property == const $CopyWithPlaceholder() || property == null
+      property: property == const $CopyWithPlaceholder()
           ? _value.property
           // ignore: cast_nullable_to_non_nullable
           : property as int,
-      triggerMethods: triggerMethods == const $CopyWithPlaceholder() ||
-              triggerMethods == null
+      triggerMethods: triggerMethods == const $CopyWithPlaceholder()
           ? _value.triggerMethods
           // ignore: cast_nullable_to_non_nullable
           : triggerMethods as int,
@@ -1893,9 +1863,9 @@ abstract class _$DevicePropertyCWProxy {
   /// DeviceProperty(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceProperty call({
-    int? objectId,
-    String? ddi,
-    int? value,
+    int objectId,
+    String ddi,
+    int value,
     String? designator,
     int? valuePresentationObjectId,
   });
@@ -1939,15 +1909,15 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
     Object? valuePresentationObjectId = const $CopyWithPlaceholder(),
   }) {
     return DeviceProperty(
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+      objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
-      ddi: ddi == const $CopyWithPlaceholder() || ddi == null
+      ddi: ddi == const $CopyWithPlaceholder()
           ? _value.ddi
           // ignore: cast_nullable_to_non_nullable
           : ddi as String,
-      value: value == const $CopyWithPlaceholder() || value == null
+      value: value == const $CopyWithPlaceholder()
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
           : value as int,
@@ -1988,10 +1958,10 @@ abstract class _$DeviceValuePresentationCWProxy {
   /// DeviceValuePresentation(...).copyWith(id: 12, name: "My name")
   /// ````
   DeviceValuePresentation call({
-    int? objectId,
-    int? offset,
-    double? scale,
-    int? numberOfDecimals,
+    int objectId,
+    int offset,
+    double scale,
+    int numberOfDecimals,
     String? unitDesignator,
   });
 }
@@ -2036,20 +2006,19 @@ class _$DeviceValuePresentationCWProxyImpl
     Object? unitDesignator = const $CopyWithPlaceholder(),
   }) {
     return DeviceValuePresentation(
-      objectId: objectId == const $CopyWithPlaceholder() || objectId == null
+      objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
-      offset: offset == const $CopyWithPlaceholder() || offset == null
+      offset: offset == const $CopyWithPlaceholder()
           ? _value.offset
           // ignore: cast_nullable_to_non_nullable
           : offset as int,
-      scale: scale == const $CopyWithPlaceholder() || scale == null
+      scale: scale == const $CopyWithPlaceholder()
           ? _value.scale
           // ignore: cast_nullable_to_non_nullable
           : scale as double,
-      numberOfDecimals: numberOfDecimals == const $CopyWithPlaceholder() ||
-              numberOfDecimals == null
+      numberOfDecimals: numberOfDecimals == const $CopyWithPlaceholder()
           ? _value.numberOfDecimals
           // ignore: cast_nullable_to_non_nullable
           : numberOfDecimals as int,
@@ -2088,10 +2057,10 @@ abstract class _$AttachedFileCWProxy {
   /// AttachedFile(...).copyWith(id: 12, name: "My name")
   /// ````
   AttachedFile call({
-    String? filenameWithExtension,
-    Preserve? preserve,
-    String? manufacturerGLN,
-    int? fileType,
+    String filenameWithExtension,
+    Preserve preserve,
+    String manufacturerGLN,
+    int fileType,
     String? fileVersion,
     int? fileLength,
   });
@@ -2142,21 +2111,19 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
   }) {
     return AttachedFile(
       filenameWithExtension:
-          filenameWithExtension == const $CopyWithPlaceholder() ||
-                  filenameWithExtension == null
+          filenameWithExtension == const $CopyWithPlaceholder()
               ? _value.filenameWithExtension
               // ignore: cast_nullable_to_non_nullable
               : filenameWithExtension as String,
-      preserve: preserve == const $CopyWithPlaceholder() || preserve == null
+      preserve: preserve == const $CopyWithPlaceholder()
           ? _value.preserve
           // ignore: cast_nullable_to_non_nullable
           : preserve as Preserve,
-      manufacturerGLN: manufacturerGLN == const $CopyWithPlaceholder() ||
-              manufacturerGLN == null
+      manufacturerGLN: manufacturerGLN == const $CopyWithPlaceholder()
           ? _value.manufacturerGLN
           // ignore: cast_nullable_to_non_nullable
           : manufacturerGLN as String,
-      fileType: fileType == const $CopyWithPlaceholder() || fileType == null
+      fileType: fileType == const $CopyWithPlaceholder()
           ? _value.fileType
           // ignore: cast_nullable_to_non_nullable
           : fileType as int,
@@ -2438,7 +2405,7 @@ abstract class _$ExternalFileReferenceCWProxy {
   /// ExternalFileReference(...).copyWith(id: 12, name: "My name")
   /// ````
   ExternalFileReference call({
-    String? filename,
+    String filename,
     FileType? filetype,
   });
 }
@@ -2470,7 +2437,7 @@ class _$ExternalFileReferenceCWProxyImpl
     Object? filetype = const $CopyWithPlaceholder(),
   }) {
     return ExternalFileReference(
-      filename: filename == const $CopyWithPlaceholder() || filename == null
+      filename: filename == const $CopyWithPlaceholder()
           ? _value.filename
           // ignore: cast_nullable_to_non_nullable
           : filename as String,
@@ -2525,14 +2492,14 @@ abstract class _$GridCWProxy {
   /// Grid(...).copyWith(id: 12, name: "My name")
   /// ````
   Grid call({
-    double? minimumNorthPosition,
-    double? minimumEastPosition,
-    double? cellNorthSize,
-    double? cellEastSize,
-    int? maximumColumn,
-    int? maximumRow,
-    String? fileName,
-    GridType? type,
+    double minimumNorthPosition,
+    double minimumEastPosition,
+    double cellNorthSize,
+    double cellEastSize,
+    int maximumColumn,
+    int maximumRow,
+    String fileName,
+    GridType type,
     Uint8List? byteData,
     int? fileLength,
     int? treatmentZoneCode,
@@ -2622,43 +2589,35 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
     Object? processDataValueGrid = const $CopyWithPlaceholder(),
   }) {
     return Grid(
-      minimumNorthPosition:
-          minimumNorthPosition == const $CopyWithPlaceholder() ||
-                  minimumNorthPosition == null
-              ? _value.minimumNorthPosition
-              // ignore: cast_nullable_to_non_nullable
-              : minimumNorthPosition as double,
-      minimumEastPosition:
-          minimumEastPosition == const $CopyWithPlaceholder() ||
-                  minimumEastPosition == null
-              ? _value.minimumEastPosition
-              // ignore: cast_nullable_to_non_nullable
-              : minimumEastPosition as double,
-      cellNorthSize:
-          cellNorthSize == const $CopyWithPlaceholder() || cellNorthSize == null
-              ? _value.cellNorthSize
-              // ignore: cast_nullable_to_non_nullable
-              : cellNorthSize as double,
-      cellEastSize:
-          cellEastSize == const $CopyWithPlaceholder() || cellEastSize == null
-              ? _value.cellEastSize
-              // ignore: cast_nullable_to_non_nullable
-              : cellEastSize as double,
-      maximumColumn:
-          maximumColumn == const $CopyWithPlaceholder() || maximumColumn == null
-              ? _value.maximumColumn
-              // ignore: cast_nullable_to_non_nullable
-              : maximumColumn as int,
-      maximumRow:
-          maximumRow == const $CopyWithPlaceholder() || maximumRow == null
-              ? _value.maximumRow
-              // ignore: cast_nullable_to_non_nullable
-              : maximumRow as int,
-      fileName: fileName == const $CopyWithPlaceholder() || fileName == null
+      minimumNorthPosition: minimumNorthPosition == const $CopyWithPlaceholder()
+          ? _value.minimumNorthPosition
+          // ignore: cast_nullable_to_non_nullable
+          : minimumNorthPosition as double,
+      minimumEastPosition: minimumEastPosition == const $CopyWithPlaceholder()
+          ? _value.minimumEastPosition
+          // ignore: cast_nullable_to_non_nullable
+          : minimumEastPosition as double,
+      cellNorthSize: cellNorthSize == const $CopyWithPlaceholder()
+          ? _value.cellNorthSize
+          // ignore: cast_nullable_to_non_nullable
+          : cellNorthSize as double,
+      cellEastSize: cellEastSize == const $CopyWithPlaceholder()
+          ? _value.cellEastSize
+          // ignore: cast_nullable_to_non_nullable
+          : cellEastSize as double,
+      maximumColumn: maximumColumn == const $CopyWithPlaceholder()
+          ? _value.maximumColumn
+          // ignore: cast_nullable_to_non_nullable
+          : maximumColumn as int,
+      maximumRow: maximumRow == const $CopyWithPlaceholder()
+          ? _value.maximumRow
+          // ignore: cast_nullable_to_non_nullable
+          : maximumRow as int,
+      fileName: fileName == const $CopyWithPlaceholder()
           ? _value.fileName
           // ignore: cast_nullable_to_non_nullable
           : fileName as String,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as GridType,
@@ -2720,8 +2679,8 @@ abstract class _$LineStringCWProxy {
   /// LineString(...).copyWith(id: 12, name: "My name")
   /// ````
   LineString call({
-    List<Point>? points,
-    LineStringType? type,
+    List<Point> points,
+    LineStringType type,
     String? designator,
     int? width,
     int? length,
@@ -2775,11 +2734,11 @@ class _$LineStringCWProxyImpl implements _$LineStringCWProxy {
     Object? id = const $CopyWithPlaceholder(),
   }) {
     return LineString(
-      points: points == const $CopyWithPlaceholder() || points == null
+      points: points == const $CopyWithPlaceholder()
           ? _value.points
           // ignore: cast_nullable_to_non_nullable
           : points as List<Point>,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as LineStringType,
@@ -2847,9 +2806,9 @@ abstract class _$PartfieldCWProxy {
   /// Partfield(...).copyWith(id: 12, name: "My name")
   /// ````
   Partfield call({
-    String? id,
-    String? designator,
-    int? area,
+    String id,
+    String designator,
+    int area,
     List<LineString>? lineStrings,
     List<Polygon>? polygons,
     List<Point>? points,
@@ -2937,16 +2896,15 @@ class _$PartfieldCWProxyImpl implements _$PartfieldCWProxy {
     Object? fieldIdRef = const $CopyWithPlaceholder(),
   }) {
     return Partfield(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
-      area: area == const $CopyWithPlaceholder() || area == null
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
+      area: area == const $CopyWithPlaceholder()
           ? _value.area
           // ignore: cast_nullable_to_non_nullable
           : area as int,
@@ -3216,8 +3174,8 @@ abstract class _$PolygonCWProxy {
   /// Polygon(...).copyWith(id: 12, name: "My name")
   /// ````
   Polygon call({
-    PolygonType? type,
-    List<LineString>? lineStrings,
+    PolygonType type,
+    List<LineString> lineStrings,
     String? designator,
     int? area,
     int? colour,
@@ -3267,15 +3225,14 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
     Object? id = const $CopyWithPlaceholder(),
   }) {
     return Polygon(
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as PolygonType,
-      lineStrings:
-          lineStrings == const $CopyWithPlaceholder() || lineStrings == null
-              ? _value.lineStrings
-              // ignore: cast_nullable_to_non_nullable
-              : lineStrings as List<LineString>,
+      lineStrings: lineStrings == const $CopyWithPlaceholder()
+          ? _value.lineStrings
+          // ignore: cast_nullable_to_non_nullable
+          : lineStrings as List<LineString>,
       designator: designator == const $CopyWithPlaceholder()
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
@@ -3328,9 +3285,9 @@ abstract class _$PositionCWProxy {
   /// Position(...).copyWith(id: 12, name: "My name")
   /// ````
   Position call({
-    double? north,
-    double? east,
-    PositionStatus? status,
+    double north,
+    double east,
+    PositionStatus status,
     int? up,
     double? pdop,
     double? hdop,
@@ -3394,15 +3351,15 @@ class _$PositionCWProxyImpl implements _$PositionCWProxy {
     Object? gpsUtcDate = const $CopyWithPlaceholder(),
   }) {
     return Position(
-      north: north == const $CopyWithPlaceholder() || north == null
+      north: north == const $CopyWithPlaceholder()
           ? _value.north
           // ignore: cast_nullable_to_non_nullable
           : north as double,
-      east: east == const $CopyWithPlaceholder() || east == null
+      east: east == const $CopyWithPlaceholder()
           ? _value.east
           // ignore: cast_nullable_to_non_nullable
           : east as double,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as PositionStatus,
@@ -3454,8 +3411,8 @@ abstract class _$GuidanceAllocationCWProxy {
   /// GuidanceAllocation(...).copyWith(id: 12, name: "My name")
   /// ````
   GuidanceAllocation call({
-    List<AllocationStamp>? allocationStamps,
-    String? groupIdRef,
+    List<AllocationStamp> allocationStamps,
+    String groupIdRef,
     List<GuidanceShift>? shifts,
   });
 }
@@ -3492,16 +3449,14 @@ class _$GuidanceAllocationCWProxyImpl implements _$GuidanceAllocationCWProxy {
     Object? shifts = const $CopyWithPlaceholder(),
   }) {
     return GuidanceAllocation(
-      allocationStamps: allocationStamps == const $CopyWithPlaceholder() ||
-              allocationStamps == null
+      allocationStamps: allocationStamps == const $CopyWithPlaceholder()
           ? _value.allocationStamps
           // ignore: cast_nullable_to_non_nullable
           : allocationStamps as List<AllocationStamp>,
-      groupIdRef:
-          groupIdRef == const $CopyWithPlaceholder() || groupIdRef == null
-              ? _value.groupIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : groupIdRef as String,
+      groupIdRef: groupIdRef == const $CopyWithPlaceholder()
+          ? _value.groupIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : groupIdRef as String,
       shifts: shifts == const $CopyWithPlaceholder()
           ? _value.shifts
           // ignore: cast_nullable_to_non_nullable
@@ -3533,7 +3488,7 @@ abstract class _$GuidanceGroupCWProxy {
   /// GuidanceGroup(...).copyWith(id: 12, name: "My name")
   /// ````
   GuidanceGroup call({
-    String? id,
+    String id,
     List<GuidancePattern>? patterns,
     Polygon? boundaryPolygon,
     String? designator,
@@ -3575,7 +3530,7 @@ class _$GuidanceGroupCWProxyImpl implements _$GuidanceGroupCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return GuidanceGroup(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
@@ -3644,9 +3599,9 @@ abstract class _$GuidancePatternCWProxy {
   /// GuidancePattern(...).copyWith(id: 12, name: "My name")
   /// ````
   GuidancePattern call({
-    List<LineString>? lineStrings,
-    String? id,
-    GuidancePatternType? type,
+    List<LineString> lineStrings,
+    String id,
+    GuidancePatternType type,
     Polygon? boundaryPolygon,
     String? designator,
     GuidancePatternOptions? options,
@@ -3763,16 +3718,15 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
     Object? numberOfSwathsRight = const $CopyWithPlaceholder(),
   }) {
     return GuidancePattern(
-      lineStrings:
-          lineStrings == const $CopyWithPlaceholder() || lineStrings == null
-              ? _value.lineStrings
-              // ignore: cast_nullable_to_non_nullable
-              : lineStrings as List<LineString>,
-      id: id == const $CopyWithPlaceholder() || id == null
+      lineStrings: lineStrings == const $CopyWithPlaceholder()
+          ? _value.lineStrings
+          // ignore: cast_nullable_to_non_nullable
+          : lineStrings as List<LineString>,
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as GuidancePatternType,
@@ -3977,11 +3931,11 @@ abstract class _$Iso11783LinkListCWProxy {
   /// Iso11783LinkList(...).copyWith(id: 12, name: "My name")
   /// ````
   Iso11783LinkList call({
-    VersionMajor? versionMajor,
-    VersionMinor? versionMinor,
-    String? managementSoftwareManufacturer,
-    String? managementSoftwareVersion,
-    DataTransferOrigin? dataTransferOrigin,
+    VersionMajor versionMajor,
+    VersionMinor versionMinor,
+    String managementSoftwareManufacturer,
+    String managementSoftwareVersion,
+    DataTransferOrigin dataTransferOrigin,
     List<LinkGroup>? linkGroups,
     String? taskControllerManufacturer,
     String? taskControllerVersion,
@@ -4054,30 +4008,25 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
     Object? fileVersion = const $CopyWithPlaceholder(),
   }) {
     return Iso11783LinkList(
-      versionMajor:
-          versionMajor == const $CopyWithPlaceholder() || versionMajor == null
-              ? _value.versionMajor
-              // ignore: cast_nullable_to_non_nullable
-              : versionMajor as VersionMajor,
-      versionMinor:
-          versionMinor == const $CopyWithPlaceholder() || versionMinor == null
-              ? _value.versionMinor
-              // ignore: cast_nullable_to_non_nullable
-              : versionMinor as VersionMinor,
+      versionMajor: versionMajor == const $CopyWithPlaceholder()
+          ? _value.versionMajor
+          // ignore: cast_nullable_to_non_nullable
+          : versionMajor as VersionMajor,
+      versionMinor: versionMinor == const $CopyWithPlaceholder()
+          ? _value.versionMinor
+          // ignore: cast_nullable_to_non_nullable
+          : versionMinor as VersionMinor,
       managementSoftwareManufacturer:
-          managementSoftwareManufacturer == const $CopyWithPlaceholder() ||
-                  managementSoftwareManufacturer == null
+          managementSoftwareManufacturer == const $CopyWithPlaceholder()
               ? _value.managementSoftwareManufacturer
               // ignore: cast_nullable_to_non_nullable
               : managementSoftwareManufacturer as String,
       managementSoftwareVersion:
-          managementSoftwareVersion == const $CopyWithPlaceholder() ||
-                  managementSoftwareVersion == null
+          managementSoftwareVersion == const $CopyWithPlaceholder()
               ? _value.managementSoftwareVersion
               // ignore: cast_nullable_to_non_nullable
               : managementSoftwareVersion as String,
-      dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder() ||
-              dataTransferOrigin == null
+      dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder()
           ? _value.dataTransferOrigin
           // ignore: cast_nullable_to_non_nullable
           : dataTransferOrigin as DataTransferOrigin,
@@ -4123,8 +4072,8 @@ abstract class _$LinkCWProxy {
   /// Link(...).copyWith(id: 12, name: "My name")
   /// ````
   Link call({
-    String? objectIdRef,
-    String? value,
+    String objectIdRef,
+    String value,
     String? designator,
   });
 }
@@ -4158,12 +4107,11 @@ class _$LinkCWProxyImpl implements _$LinkCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return Link(
-      objectIdRef:
-          objectIdRef == const $CopyWithPlaceholder() || objectIdRef == null
-              ? _value.objectIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : objectIdRef as String,
-      value: value == const $CopyWithPlaceholder() || value == null
+      objectIdRef: objectIdRef == const $CopyWithPlaceholder()
+          ? _value.objectIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : objectIdRef as String,
+      value: value == const $CopyWithPlaceholder()
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
           : value as String,
@@ -4201,8 +4149,8 @@ abstract class _$LinkGroupCWProxy {
   /// LinkGroup(...).copyWith(id: 12, name: "My name")
   /// ````
   LinkGroup call({
-    String? id,
-    LinkGroupType? type,
+    String id,
+    LinkGroupType type,
     List<Link>? links,
     String? manufacturerGLN,
     String? namespace,
@@ -4252,11 +4200,11 @@ class _$LinkGroupCWProxyImpl implements _$LinkGroupCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return LinkGroup(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as LinkGroupType,
@@ -4298,8 +4246,8 @@ abstract class _$OperationTechniqueCWProxy {
   /// OperationTechnique(...).copyWith(id: 12, name: "My name")
   /// ````
   OperationTechnique call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
   });
 }
 
@@ -4329,15 +4277,14 @@ class _$OperationTechniqueCWProxyImpl implements _$OperationTechniqueCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
   }) {
     return OperationTechnique(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
     );
   }
 }
@@ -4363,7 +4310,7 @@ abstract class _$OperationTechniquePracticeCWProxy {
   /// OperationTechniquePractice(...).copyWith(id: 12, name: "My name")
   /// ````
   OperationTechniquePractice call({
-    String? culturalPracticeIdRef,
+    String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
   });
 }
@@ -4399,8 +4346,7 @@ class _$OperationTechniquePracticeCWProxyImpl
   }) {
     return OperationTechniquePractice(
       culturalPracticeIdRef:
-          culturalPracticeIdRef == const $CopyWithPlaceholder() ||
-                  culturalPracticeIdRef == null
+          culturalPracticeIdRef == const $CopyWithPlaceholder()
               ? _value.culturalPracticeIdRef
               // ignore: cast_nullable_to_non_nullable
               : culturalPracticeIdRef as String,
@@ -4431,7 +4377,7 @@ abstract class _$OperationTechniqueReferenceCWProxy {
   /// OperationTechniqueReference(...).copyWith(id: 12, name: "My name")
   /// ````
   OperationTechniqueReference call({
-    String? operationTechniqueIdRef,
+    String operationTechniqueIdRef,
   });
 }
 
@@ -4460,8 +4406,7 @@ class _$OperationTechniqueReferenceCWProxyImpl
   }) {
     return OperationTechniqueReference(
       operationTechniqueIdRef:
-          operationTechniqueIdRef == const $CopyWithPlaceholder() ||
-                  operationTechniqueIdRef == null
+          operationTechniqueIdRef == const $CopyWithPlaceholder()
               ? _value.operationTechniqueIdRef
               // ignore: cast_nullable_to_non_nullable
               : operationTechniqueIdRef as String,
@@ -4506,8 +4451,8 @@ abstract class _$ProductCWProxy {
   /// Product(...).copyWith(id: 12, name: "My name")
   /// ````
   Product call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     List<ProductRelation>? relations,
     String? groupIdRef,
     String? valuePresentationIdRef,
@@ -4587,15 +4532,14 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
     Object? densityVolumePerCount = const $CopyWithPlaceholder(),
   }) {
     return Product(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       relations: relations == const $CopyWithPlaceholder()
           ? _value.relations
           // ignore: cast_nullable_to_non_nullable
@@ -4669,7 +4613,7 @@ abstract class _$ProductAllocationCWProxy {
   /// ProductAllocation(...).copyWith(id: 12, name: "My name")
   /// ````
   ProductAllocation call({
-    String? productIdRef,
+    String productIdRef,
     String? quantityDDI,
     int? quantityValue,
     TransferMode? transferMode,
@@ -4737,11 +4681,10 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
     Object? allocationStamp = const $CopyWithPlaceholder(),
   }) {
     return ProductAllocation(
-      productIdRef:
-          productIdRef == const $CopyWithPlaceholder() || productIdRef == null
-              ? _value.productIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : productIdRef as String,
+      productIdRef: productIdRef == const $CopyWithPlaceholder()
+          ? _value.productIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : productIdRef as String,
       quantityDDI: quantityDDI == const $CopyWithPlaceholder()
           ? _value.quantityDDI
           // ignore: cast_nullable_to_non_nullable
@@ -4796,8 +4739,8 @@ abstract class _$ProductGroupCWProxy {
   /// ProductGroup(...).copyWith(id: 12, name: "My name")
   /// ````
   ProductGroup call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     ProductGroupType? type,
   });
 }
@@ -4831,15 +4774,14 @@ class _$ProductGroupCWProxyImpl implements _$ProductGroupCWProxy {
     Object? type = const $CopyWithPlaceholder(),
   }) {
     return ProductGroup(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
@@ -4866,8 +4808,8 @@ abstract class _$ProductRelationCWProxy {
   /// ProductRelation(...).copyWith(id: 12, name: "My name")
   /// ````
   ProductRelation call({
-    String? productIdRef,
-    int? quantityValue,
+    String productIdRef,
+    int quantityValue,
   });
 }
 
@@ -4898,16 +4840,14 @@ class _$ProductRelationCWProxyImpl implements _$ProductRelationCWProxy {
     Object? quantityValue = const $CopyWithPlaceholder(),
   }) {
     return ProductRelation(
-      productIdRef:
-          productIdRef == const $CopyWithPlaceholder() || productIdRef == null
-              ? _value.productIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : productIdRef as String,
-      quantityValue:
-          quantityValue == const $CopyWithPlaceholder() || quantityValue == null
-              ? _value.quantityValue
-              // ignore: cast_nullable_to_non_nullable
-              : quantityValue as int,
+      productIdRef: productIdRef == const $CopyWithPlaceholder()
+          ? _value.productIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : productIdRef as String,
+      quantityValue: quantityValue == const $CopyWithPlaceholder()
+          ? _value.quantityValue
+          // ignore: cast_nullable_to_non_nullable
+          : quantityValue as int,
     );
   }
 }
@@ -4952,8 +4892,8 @@ abstract class _$CustomerCWProxy {
   /// Customer(...).copyWith(id: 12, name: "My name")
   /// ````
   Customer call({
-    String? id,
-    String? lastName,
+    String id,
+    String lastName,
     String? firstName,
     String? street,
     String? poBox,
@@ -5037,11 +4977,11 @@ class _$CustomerCWProxyImpl implements _$CustomerCWProxy {
     Object? email = const $CopyWithPlaceholder(),
   }) {
     return Customer(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      lastName: lastName == const $CopyWithPlaceholder() || lastName == null
+      lastName: lastName == const $CopyWithPlaceholder()
           ? _value.lastName
           // ignore: cast_nullable_to_non_nullable
           : lastName as String,
@@ -5125,8 +5065,8 @@ abstract class _$FarmCWProxy {
   /// Farm(...).copyWith(id: 12, name: "My name")
   /// ````
   Farm call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     String? street,
     String? poBox,
     String? postalCode,
@@ -5191,15 +5131,14 @@ class _$FarmCWProxyImpl implements _$FarmCWProxy {
     Object? customerIdRef = const $CopyWithPlaceholder(),
   }) {
     return Farm(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       street: street == const $CopyWithPlaceholder()
           ? _value.street
           // ignore: cast_nullable_to_non_nullable
@@ -5272,8 +5211,8 @@ abstract class _$WorkerCWProxy {
   /// Worker(...).copyWith(id: 12, name: "My name")
   /// ````
   Worker call({
-    String? id,
-    String? lastName,
+    String id,
+    String lastName,
     String? firstName,
     String? street,
     String? poBox,
@@ -5358,11 +5297,11 @@ class _$WorkerCWProxyImpl implements _$WorkerCWProxy {
     Object? email = const $CopyWithPlaceholder(),
   }) {
     return Worker(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      lastName: lastName == const $CopyWithPlaceholder() || lastName == null
+      lastName: lastName == const $CopyWithPlaceholder()
           ? _value.lastName
           // ignore: cast_nullable_to_non_nullable
           : lastName as String,
@@ -5435,8 +5374,8 @@ abstract class _$CulturalPracticeCWProxy {
   /// CulturalPractice(...).copyWith(id: 12, name: "My name")
   /// ````
   CulturalPractice call({
-    String? id,
-    String? designator,
+    String id,
+    String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
   });
 }
@@ -5473,15 +5412,14 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
     Object? operationTechniqueReferences = const $CopyWithPlaceholder(),
   }) {
     return CulturalPractice(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
       operationTechniqueReferences: operationTechniqueReferences ==
               const $CopyWithPlaceholder()
           ? _value.operationTechniqueReferences
@@ -5552,8 +5490,8 @@ abstract class _$TaskCWProxy {
   /// Task(...).copyWith(id: 12, name: "My name")
   /// ````
   Task call({
-    String? id,
-    TaskStatus? status,
+    String id,
+    TaskStatus status,
     List<TreatmentZone>? treatmentZones,
     List<Time>? times,
     OperationTechniquePractice? operationTechniquePractice,
@@ -5704,11 +5642,11 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
     Object? outOfFieldTreatmentZoneCode = const $CopyWithPlaceholder(),
   }) {
     return Task(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as TaskStatus,
@@ -5836,13 +5774,13 @@ abstract class _$TaskControllerCapabilitiesCWProxy {
   /// TaskControllerCapabilities(...).copyWith(id: 12, name: "My name")
   /// ````
   TaskControllerCapabilities call({
-    String? functionNAME,
-    String? designator,
-    VersionNumber? versionNumber,
-    int? providedCapabilities,
-    int? numberOfBoomsSectionControl,
-    int? numberOfSectionsSectionControl,
-    int? numberOfControlChannels,
+    String functionNAME,
+    String designator,
+    VersionNumber versionNumber,
+    int providedCapabilities,
+    int numberOfBoomsSectionControl,
+    int numberOfSectionsSectionControl,
+    int numberOfControlChannels,
   });
 }
 
@@ -5902,42 +5840,34 @@ class _$TaskControllerCapabilitiesCWProxyImpl
     Object? numberOfControlChannels = const $CopyWithPlaceholder(),
   }) {
     return TaskControllerCapabilities(
-      functionNAME:
-          functionNAME == const $CopyWithPlaceholder() || functionNAME == null
-              ? _value.functionNAME
-              // ignore: cast_nullable_to_non_nullable
-              : functionNAME as String,
-      designator:
-          designator == const $CopyWithPlaceholder() || designator == null
-              ? _value.designator
-              // ignore: cast_nullable_to_non_nullable
-              : designator as String,
-      versionNumber:
-          versionNumber == const $CopyWithPlaceholder() || versionNumber == null
-              ? _value.versionNumber
-              // ignore: cast_nullable_to_non_nullable
-              : versionNumber as VersionNumber,
-      providedCapabilities:
-          providedCapabilities == const $CopyWithPlaceholder() ||
-                  providedCapabilities == null
-              ? _value.providedCapabilities
-              // ignore: cast_nullable_to_non_nullable
-              : providedCapabilities as int,
+      functionNAME: functionNAME == const $CopyWithPlaceholder()
+          ? _value.functionNAME
+          // ignore: cast_nullable_to_non_nullable
+          : functionNAME as String,
+      designator: designator == const $CopyWithPlaceholder()
+          ? _value.designator
+          // ignore: cast_nullable_to_non_nullable
+          : designator as String,
+      versionNumber: versionNumber == const $CopyWithPlaceholder()
+          ? _value.versionNumber
+          // ignore: cast_nullable_to_non_nullable
+          : versionNumber as VersionNumber,
+      providedCapabilities: providedCapabilities == const $CopyWithPlaceholder()
+          ? _value.providedCapabilities
+          // ignore: cast_nullable_to_non_nullable
+          : providedCapabilities as int,
       numberOfBoomsSectionControl:
-          numberOfBoomsSectionControl == const $CopyWithPlaceholder() ||
-                  numberOfBoomsSectionControl == null
+          numberOfBoomsSectionControl == const $CopyWithPlaceholder()
               ? _value.numberOfBoomsSectionControl
               // ignore: cast_nullable_to_non_nullable
               : numberOfBoomsSectionControl as int,
       numberOfSectionsSectionControl:
-          numberOfSectionsSectionControl == const $CopyWithPlaceholder() ||
-                  numberOfSectionsSectionControl == null
+          numberOfSectionsSectionControl == const $CopyWithPlaceholder()
               ? _value.numberOfSectionsSectionControl
               // ignore: cast_nullable_to_non_nullable
               : numberOfSectionsSectionControl as int,
       numberOfControlChannels:
-          numberOfControlChannels == const $CopyWithPlaceholder() ||
-                  numberOfControlChannels == null
+          numberOfControlChannels == const $CopyWithPlaceholder()
               ? _value.numberOfControlChannels
               // ignore: cast_nullable_to_non_nullable
               : numberOfControlChannels as int,
@@ -6023,11 +5953,11 @@ abstract class _$Iso11783TaskDataCWProxy {
   /// Iso11783TaskData(...).copyWith(id: 12, name: "My name")
   /// ````
   Iso11783TaskData call({
-    VersionMajor? versionMajor,
-    VersionMinor? versionMinor,
-    String? managementSoftwareManufacturer,
-    String? managementSoftwareVersion,
-    DataTransferOrigin? dataTransferOrigin,
+    VersionMajor versionMajor,
+    VersionMinor versionMinor,
+    String managementSoftwareManufacturer,
+    String managementSoftwareVersion,
+    DataTransferOrigin dataTransferOrigin,
     List<AttachedFile>? attachedFiles,
     List<BaseStation>? baseStations,
     List<CodedComment>? codedComments,
@@ -6215,30 +6145,25 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
     Object? language = const $CopyWithPlaceholder(),
   }) {
     return Iso11783TaskData(
-      versionMajor:
-          versionMajor == const $CopyWithPlaceholder() || versionMajor == null
-              ? _value.versionMajor
-              // ignore: cast_nullable_to_non_nullable
-              : versionMajor as VersionMajor,
-      versionMinor:
-          versionMinor == const $CopyWithPlaceholder() || versionMinor == null
-              ? _value.versionMinor
-              // ignore: cast_nullable_to_non_nullable
-              : versionMinor as VersionMinor,
+      versionMajor: versionMajor == const $CopyWithPlaceholder()
+          ? _value.versionMajor
+          // ignore: cast_nullable_to_non_nullable
+          : versionMajor as VersionMajor,
+      versionMinor: versionMinor == const $CopyWithPlaceholder()
+          ? _value.versionMinor
+          // ignore: cast_nullable_to_non_nullable
+          : versionMinor as VersionMinor,
       managementSoftwareManufacturer:
-          managementSoftwareManufacturer == const $CopyWithPlaceholder() ||
-                  managementSoftwareManufacturer == null
+          managementSoftwareManufacturer == const $CopyWithPlaceholder()
               ? _value.managementSoftwareManufacturer
               // ignore: cast_nullable_to_non_nullable
               : managementSoftwareManufacturer as String,
       managementSoftwareVersion:
-          managementSoftwareVersion == const $CopyWithPlaceholder() ||
-                  managementSoftwareVersion == null
+          managementSoftwareVersion == const $CopyWithPlaceholder()
               ? _value.managementSoftwareVersion
               // ignore: cast_nullable_to_non_nullable
               : managementSoftwareVersion as String,
-      dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder() ||
-              dataTransferOrigin == null
+      dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder()
           ? _value.dataTransferOrigin
           // ignore: cast_nullable_to_non_nullable
           : dataTransferOrigin as DataTransferOrigin,
@@ -6360,7 +6285,7 @@ abstract class _$WorkerAllocationCWProxy {
   /// WorkerAllocation(...).copyWith(id: 12, name: "My name")
   /// ````
   WorkerAllocation call({
-    String? workerIdRef,
+    String workerIdRef,
     AllocationStamp? allocationStamp,
   });
 }
@@ -6392,11 +6317,10 @@ class _$WorkerAllocationCWProxyImpl implements _$WorkerAllocationCWProxy {
     Object? allocationStamp = const $CopyWithPlaceholder(),
   }) {
     return WorkerAllocation(
-      workerIdRef:
-          workerIdRef == const $CopyWithPlaceholder() || workerIdRef == null
-              ? _value.workerIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : workerIdRef as String,
+      workerIdRef: workerIdRef == const $CopyWithPlaceholder()
+          ? _value.workerIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : workerIdRef as String,
       allocationStamp: allocationStamp == const $CopyWithPlaceholder()
           ? _value.allocationStamp
           // ignore: cast_nullable_to_non_nullable
@@ -6431,8 +6355,8 @@ abstract class _$TimeCWProxy {
   /// Time(...).copyWith(id: 12, name: "My name")
   /// ````
   Time call({
-    DateTime? start,
-    TimeType? type,
+    DateTime start,
+    TimeType type,
     List<Position>? positions,
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
@@ -6482,11 +6406,11 @@ class _$TimeCWProxyImpl implements _$TimeCWProxy {
     Object? duration = const $CopyWithPlaceholder(),
   }) {
     return Time(
-      start: start == const $CopyWithPlaceholder() || start == null
+      start: start == const $CopyWithPlaceholder()
           ? _value.start
           // ignore: cast_nullable_to_non_nullable
           : start as DateTime,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as TimeType,
@@ -6536,9 +6460,9 @@ abstract class _$TimeLogCWProxy {
   /// TimeLog(...).copyWith(id: 12, name: "My name")
   /// ````
   TimeLog call({
-    String? filename,
+    String filename,
     int? fileLength,
-    TimeLogType? type,
+    TimeLogType type,
     Uint8List? byteData,
     TimeLogHeader? header,
     List<Time>? records,
@@ -6586,7 +6510,7 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
     Object? records = const $CopyWithPlaceholder(),
   }) {
     return TimeLog(
-      filename: filename == const $CopyWithPlaceholder() || filename == null
+      filename: filename == const $CopyWithPlaceholder()
           ? _value.filename
           // ignore: cast_nullable_to_non_nullable
           : filename as String,
@@ -6594,7 +6518,7 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
           ? _value.fileLength
           // ignore: cast_nullable_to_non_nullable
           : fileLength as int?,
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as TimeLogType,
@@ -6636,7 +6560,7 @@ abstract class _$TimeLogHeaderCWProxy {
   /// TimeLogHeader(...).copyWith(id: 12, name: "My name")
   /// ````
   TimeLogHeader call({
-    TimeType? type,
+    TimeType type,
     DateTime? start,
     TimeLogHeaderPosition? position,
     List<TimeLogHeaderDataLogValue>? dataLogValues,
@@ -6678,7 +6602,7 @@ class _$TimeLogHeaderCWProxyImpl implements _$TimeLogHeaderCWProxy {
     Object? dataLogValues = const $CopyWithPlaceholder(),
   }) {
     return TimeLogHeader(
-      type: type == const $CopyWithPlaceholder() || type == null
+      type: type == const $CopyWithPlaceholder()
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as TimeType,
@@ -6748,15 +6672,15 @@ abstract class _$TimeLogHeaderPositionCWProxy {
   /// TimeLogHeaderPosition(...).copyWith(id: 12, name: "My name")
   /// ````
   TimeLogHeaderPosition call({
-    bool? readNorth,
-    bool? readEast,
-    bool? readUp,
-    bool? readStatus,
-    bool? readPdop,
-    bool? readHdop,
-    bool? readNumberOfSatellites,
-    bool? readgpsUtcTimeMs,
-    bool? readGpsUtcDate,
+    bool readNorth,
+    bool readEast,
+    bool readUp,
+    bool readStatus,
+    bool readPdop,
+    bool readHdop,
+    bool readNumberOfSatellites,
+    bool readgpsUtcTimeMs,
+    bool readGpsUtcDate,
     double? north,
     double? east,
     PositionStatus? status,
@@ -6866,44 +6790,40 @@ class _$TimeLogHeaderPositionCWProxyImpl
     Object? gpsUtcDate = const $CopyWithPlaceholder(),
   }) {
     return TimeLogHeaderPosition(
-      readNorth: readNorth == const $CopyWithPlaceholder() || readNorth == null
+      readNorth: readNorth == const $CopyWithPlaceholder()
           ? _value.readNorth
           // ignore: cast_nullable_to_non_nullable
           : readNorth as bool,
-      readEast: readEast == const $CopyWithPlaceholder() || readEast == null
+      readEast: readEast == const $CopyWithPlaceholder()
           ? _value.readEast
           // ignore: cast_nullable_to_non_nullable
           : readEast as bool,
-      readUp: readUp == const $CopyWithPlaceholder() || readUp == null
+      readUp: readUp == const $CopyWithPlaceholder()
           ? _value.readUp
           // ignore: cast_nullable_to_non_nullable
           : readUp as bool,
-      readStatus:
-          readStatus == const $CopyWithPlaceholder() || readStatus == null
-              ? _value.readStatus
-              // ignore: cast_nullable_to_non_nullable
-              : readStatus as bool,
-      readPdop: readPdop == const $CopyWithPlaceholder() || readPdop == null
+      readStatus: readStatus == const $CopyWithPlaceholder()
+          ? _value.readStatus
+          // ignore: cast_nullable_to_non_nullable
+          : readStatus as bool,
+      readPdop: readPdop == const $CopyWithPlaceholder()
           ? _value.readPdop
           // ignore: cast_nullable_to_non_nullable
           : readPdop as bool,
-      readHdop: readHdop == const $CopyWithPlaceholder() || readHdop == null
+      readHdop: readHdop == const $CopyWithPlaceholder()
           ? _value.readHdop
           // ignore: cast_nullable_to_non_nullable
           : readHdop as bool,
       readNumberOfSatellites:
-          readNumberOfSatellites == const $CopyWithPlaceholder() ||
-                  readNumberOfSatellites == null
+          readNumberOfSatellites == const $CopyWithPlaceholder()
               ? _value.readNumberOfSatellites
               // ignore: cast_nullable_to_non_nullable
               : readNumberOfSatellites as bool,
-      readgpsUtcTimeMs: readgpsUtcTimeMs == const $CopyWithPlaceholder() ||
-              readgpsUtcTimeMs == null
+      readgpsUtcTimeMs: readgpsUtcTimeMs == const $CopyWithPlaceholder()
           ? _value.readgpsUtcTimeMs
           // ignore: cast_nullable_to_non_nullable
           : readgpsUtcTimeMs as bool,
-      readGpsUtcDate: readGpsUtcDate == const $CopyWithPlaceholder() ||
-              readGpsUtcDate == null
+      readGpsUtcDate: readGpsUtcDate == const $CopyWithPlaceholder()
           ? _value.readGpsUtcDate
           // ignore: cast_nullable_to_non_nullable
           : readGpsUtcDate as bool,
@@ -6976,9 +6896,9 @@ abstract class _$TimeLogHeaderDataLogValueCWProxy {
   /// TimeLogHeaderDataLogValue(...).copyWith(id: 12, name: "My name")
   /// ````
   TimeLogHeaderDataLogValue call({
-    String? processDataDDI,
-    String? deviceElementIdRef,
-    bool? readProcessDataValue,
+    String processDataDDI,
+    String deviceElementIdRef,
+    bool readProcessDataValue,
     int? processDataValue,
     int? pgn,
     int? pgnStartBit,
@@ -7038,22 +6958,18 @@ class _$TimeLogHeaderDataLogValueCWProxyImpl
     Object? pgnStopBit = const $CopyWithPlaceholder(),
   }) {
     return TimeLogHeaderDataLogValue(
-      processDataDDI: processDataDDI == const $CopyWithPlaceholder() ||
-              processDataDDI == null
+      processDataDDI: processDataDDI == const $CopyWithPlaceholder()
           ? _value.processDataDDI
           // ignore: cast_nullable_to_non_nullable
           : processDataDDI as String,
-      deviceElementIdRef: deviceElementIdRef == const $CopyWithPlaceholder() ||
-              deviceElementIdRef == null
+      deviceElementIdRef: deviceElementIdRef == const $CopyWithPlaceholder()
           ? _value.deviceElementIdRef
           // ignore: cast_nullable_to_non_nullable
           : deviceElementIdRef as String,
-      readProcessDataValue:
-          readProcessDataValue == const $CopyWithPlaceholder() ||
-                  readProcessDataValue == null
-              ? _value.readProcessDataValue
-              // ignore: cast_nullable_to_non_nullable
-              : readProcessDataValue as bool,
+      readProcessDataValue: readProcessDataValue == const $CopyWithPlaceholder()
+          ? _value.readProcessDataValue
+          // ignore: cast_nullable_to_non_nullable
+          : readProcessDataValue as bool,
       processDataValue: processDataValue == const $CopyWithPlaceholder()
           ? _value.processDataValue
           // ignore: cast_nullable_to_non_nullable
@@ -7107,8 +7023,8 @@ abstract class _$ProcessDataVariableCWProxy {
   /// ProcessDataVariable(...).copyWith(id: 12, name: "My name")
   /// ````
   ProcessDataVariable call({
-    String? ddi,
-    int? value,
+    String ddi,
+    int value,
     List<ProcessDataVariable>? processDataVariables,
     String? productIdRef,
     String? deviceElementIdRef,
@@ -7175,11 +7091,11 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
     Object? elementTypeInstanceValue = const $CopyWithPlaceholder(),
   }) {
     return ProcessDataVariable(
-      ddi: ddi == const $CopyWithPlaceholder() || ddi == null
+      ddi: ddi == const $CopyWithPlaceholder()
           ? _value.ddi
           // ignore: cast_nullable_to_non_nullable
           : ddi as String,
-      value: value == const $CopyWithPlaceholder() || value == null
+      value: value == const $CopyWithPlaceholder()
           ? _value.value
           // ignore: cast_nullable_to_non_nullable
           : value as int,
@@ -7240,7 +7156,7 @@ abstract class _$TreatmentZoneCWProxy {
   /// TreatmentZone(...).copyWith(id: 12, name: "My name")
   /// ````
   TreatmentZone call({
-    int? code,
+    int code,
     List<Polygon>? polygons,
     List<ProcessDataVariable>? processDataVariables,
     String? designator,
@@ -7287,7 +7203,7 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
     Object? colour = const $CopyWithPlaceholder(),
   }) {
     return TreatmentZone(
-      code: code == const $CopyWithPlaceholder() || code == null
+      code: code == const $CopyWithPlaceholder()
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
           : code as int,
@@ -7337,10 +7253,10 @@ abstract class _$ValuePresentationCWProxy {
   /// ValuePresentation(...).copyWith(id: 12, name: "My name")
   /// ````
   ValuePresentation call({
-    String? id,
-    int? offset,
-    double? scale,
-    int? numberOfDecimals,
+    String id,
+    int offset,
+    double scale,
+    int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
   });
@@ -7390,20 +7306,19 @@ class _$ValuePresentationCWProxyImpl implements _$ValuePresentationCWProxy {
     Object? colourLegendIdRef = const $CopyWithPlaceholder(),
   }) {
     return ValuePresentation(
-      id: id == const $CopyWithPlaceholder() || id == null
+      id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String,
-      offset: offset == const $CopyWithPlaceholder() || offset == null
+      offset: offset == const $CopyWithPlaceholder()
           ? _value.offset
           // ignore: cast_nullable_to_non_nullable
           : offset as int,
-      scale: scale == const $CopyWithPlaceholder() || scale == null
+      scale: scale == const $CopyWithPlaceholder()
           ? _value.scale
           // ignore: cast_nullable_to_non_nullable
           : scale as double,
-      numberOfDecimals: numberOfDecimals == const $CopyWithPlaceholder() ||
-              numberOfDecimals == null
+      numberOfDecimals: numberOfDecimals == const $CopyWithPlaceholder()
           ? _value.numberOfDecimals
           // ignore: cast_nullable_to_non_nullable
           : numberOfDecimals as int,

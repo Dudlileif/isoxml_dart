@@ -17,7 +17,7 @@ part of '../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'VPN')
 @annotation.XmlSerializable(createMixin: true)
 class ValuePresentation extends Iso11783Element
-    with _$ValuePresentationXmlSerializableMixin {
+    with _$ValuePresentationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ValuePresentation] with verified
   /// arguments.
   factory ValuePresentation({
@@ -123,14 +123,12 @@ class ValuePresentation extends Iso11783Element
   final String? colourLegendIdRef;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      offset,
-      scale,
-      numberOfDecimals,
-      unitDesignator,
-      colourLegendIdRef,
-    ]);
-
+  List<Object?> get props => [
+        id,
+        offset,
+        scale,
+        numberOfDecimals,
+        unitDesignator,
+        colourLegendIdRef,
+      ];
 }

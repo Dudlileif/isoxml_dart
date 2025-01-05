@@ -15,7 +15,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'CCG')
 @annotation.XmlSerializable(createMixin: true)
 class CodedCommentGroup extends Iso11783Element
-    with _$CodedCommentGroupXmlSerializableMixin {
+    with _$CodedCommentGroupXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [CodedCommentGroup] with verified
   /// arguments.
   factory CodedCommentGroup({
@@ -67,9 +67,8 @@ class CodedCommentGroup extends Iso11783Element
   final String designator;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-    ]);
+  List<Object?> get props => [
+        id,
+        designator,
+      ];
 }

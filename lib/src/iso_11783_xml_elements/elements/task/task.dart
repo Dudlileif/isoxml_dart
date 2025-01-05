@@ -327,7 +327,6 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
   @annotation.XmlAttribute(name: 'A')
   final String id;
 
-
   /// Name of the task, description or comment.
   @annotation.XmlAttribute(name: 'B')
   String? designator;
@@ -422,30 +421,33 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
         ],
       ];
 
-  @override
-  List<Object?> get props => super.props
-    ..addAll([
-      commentAllocations,
-      controlAssignments,
-      connections,
-      deviceAllocations,
-      dataLogTriggers,
-      grid,
-      guidanceAllocations,
-      operationTechniquePractice,
-      productAllocations,
-      id,
-      designator,
-      customerIdRef,
-      farmIdRef,
-      partfieldIdRef,
-      responsibleWorkerIdRef,
-      status,
-      defaultTreatmentZoneCode,
-      positionLostTreatmentZoneCode,
-      outOfFieldTreatmentZoneCode,
-    ]);
+  /// The list of properties that will be used to determine whether
+  /// two instances are equal.
+  List<Object?> get props => [
+        commentAllocations,
+        controlAssignments,
+        connections,
+        deviceAllocations,
+        dataLogTriggers,
+        grid,
+        guidanceAllocations,
+        operationTechniquePractice,
+        productAllocations,
+        id,
+        designator,
+        customerIdRef,
+        farmIdRef,
+        partfieldIdRef,
+        responsibleWorkerIdRef,
+        status,
+        defaultTreatmentZoneCode,
+        positionLostTreatmentZoneCode,
+        outOfFieldTreatmentZoneCode,
+      ];
 
+  /// Returns a string for [props].
+  @override
+  String toString() => mapPropsToString(runtimeType, props);
 }
 
 /// An enumerator for which state a [Task] has.

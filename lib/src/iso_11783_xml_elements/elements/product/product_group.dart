@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'PGP')
 @annotation.XmlSerializable(createMixin: true)
 class ProductGroup extends Iso11783Element
-    with _$ProductGroupXmlSerializableMixin {
+    with _$ProductGroupXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ProductGroup] with verified
   /// arguments.
   factory ProductGroup({
@@ -59,7 +59,7 @@ class ProductGroup extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-@annotation.XmlAttribute(name: 'A')
+  @annotation.XmlAttribute(name: 'A')
   final String id;
 
   /// Name of the product group, description or comment.
@@ -71,14 +71,11 @@ class ProductGroup extends Iso11783Element
   final ProductGroupType? type;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      id,
-      designator,
-      type,
-    ]);
-
-
+  List<Object?> get props => [
+        id,
+        designator,
+        type,
+      ];
 }
 
 /// An enumerator for which type a [ProductGroup] is.

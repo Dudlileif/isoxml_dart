@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DPD')
 @annotation.XmlSerializable(createMixin: true)
 class DeviceProcessData extends Iso11783Element
-    with _$DeviceProcessDataXmlSerializableMixin {
+    with _$DeviceProcessDataXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DeviceProcessData] with verified
   /// arguments.
   factory DeviceProcessData({
@@ -123,13 +123,12 @@ class DeviceProcessData extends Iso11783Element
   final int? presentationObjectId;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      objectId,
-      ddi,
-      property,
-      triggerMethods,
-      designator,
-      presentationObjectId,
-    ]);
+  List<Object?> get props => [
+        objectId,
+        ddi,
+        property,
+        triggerMethods,
+        designator,
+        presentationObjectId,
+      ];
 }

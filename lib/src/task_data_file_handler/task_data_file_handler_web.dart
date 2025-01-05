@@ -28,18 +28,15 @@ class TaskDataFileHandler {
   }) async {
     final archive = taskData.toZip(externalize: externalize);
     final bytes = ZipEncoder().encode(archive);
-    if (bytes != null) {
-      final anchor = web.document.createElement('a') as web.HTMLAnchorElement
-        ..href = 'data:application/octet-stream;base64,${base64Encode(bytes)}'
-        ..download = '${path.split('/').last}.zip'
-        ..style.display = 'none';
+    final anchor = web.document.createElement('a') as web.HTMLAnchorElement
+      ..href = 'data:application/octet-stream;base64,${base64Encode(bytes)}'
+      ..download = '${path.split('/').last}.zip'
+      ..style.display = 'none';
 
-      web.document.body?.appendChild(anchor);
-      anchor.click();
-      web.document.body?.removeChild(anchor);
-      return true;
-    }
-    return false;
+    web.document.body?.appendChild(anchor);
+    anchor.click();
+    web.document.body?.removeChild(anchor);
+    return true;
   }
 
   /// Falls back to [saveToZip].

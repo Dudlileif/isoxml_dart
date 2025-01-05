@@ -10,7 +10,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'PRN')
 @annotation.XmlSerializable(createMixin: true)
 class ProductRelation extends Iso11783Element
-    with _$ProductRelationXmlSerializableMixin {
+    with _$ProductRelationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ProductRelation] with verified
   /// arguments.
   factory ProductRelation({
@@ -59,9 +59,8 @@ class ProductRelation extends Iso11783Element
   final int quantityValue;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      productIdRef,
-      quantityValue,
-    ]);
+  List<Object?> get props => [
+        productIdRef,
+        quantityValue,
+      ];
 }

@@ -13,7 +13,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'TCC')
 @annotation.XmlSerializable(createMixin: true)
 class TaskControllerCapabilities extends Iso11783Element
-    with _$TaskControllerCapabilitiesXmlSerializableMixin {
+    with _$TaskControllerCapabilitiesXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [TaskControllerCapabilities] with
   /// verified arguments.
   factory TaskControllerCapabilities({
@@ -136,16 +136,15 @@ class TaskControllerCapabilities extends Iso11783Element
       .toList();
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      functionNAME,
-      designator,
-      versionNumber,
-      providedCapabilities,
-      numberOfBoomsSectionControl,
-      numberOfSectionsSectionControl,
-      numberOfControlChannels,
-    ]);
+  List<Object?> get props => [
+        functionNAME,
+        designator,
+        versionNumber,
+        providedCapabilities,
+        numberOfBoomsSectionControl,
+        numberOfSectionsSectionControl,
+        numberOfControlChannels,
+      ];
 }
 
 /// An enumerator for which version a TaskController is.

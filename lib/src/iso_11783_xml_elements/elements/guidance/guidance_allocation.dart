@@ -14,7 +14,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'GAN')
 @annotation.XmlSerializable(createMixin: true)
 class GuidanceAllocation extends Iso11783Element
-    with _$GuidanceAllocationXmlSerializableMixin {
+    with _$GuidanceAllocationXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [GuidanceAllocation] with verified
   /// arguments.
   factory GuidanceAllocation({
@@ -83,8 +83,7 @@ class GuidanceAllocation extends Iso11783Element
   @annotation.XmlAttribute(name: 'A')
   final String groupIdRef;
 
-
-@override
+  @override
   Iterable<Iso11783Element>? get recursiveChildren => [
         ...[
           for (final a
@@ -97,10 +96,9 @@ class GuidanceAllocation extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      allocationStamps,
-      shifts,
-      groupIdRef,
-    ]);
+  List<Object?> get props => [
+        allocationStamps,
+        shifts,
+        groupIdRef,
+      ];
 }

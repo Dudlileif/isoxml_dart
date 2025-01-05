@@ -18,7 +18,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'PDV')
 @annotation.XmlSerializable(createMixin: true)
 class ProcessDataVariable extends Iso11783Element
-    with _$ProcessDataVariableXmlSerializableMixin {
+    with _$ProcessDataVariableXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [ProcessDataVariable] with verified
   /// arguments.
   factory ProcessDataVariable({
@@ -184,15 +184,14 @@ class ProcessDataVariable extends Iso11783Element
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      processDataVariables,
-      ddi,
-      value,
-      productIdRef,
-      deviceElementIdRef,
-      valuePresentationIdRef,
-      actualCulturalPracticeValue,
-      elementTypeInstanceValue,
-    ]);
+  List<Object?> get props => [
+        processDataVariables,
+        ddi,
+        value,
+        productIdRef,
+        deviceElementIdRef,
+        valuePresentationIdRef,
+        actualCulturalPracticeValue,
+        elementTypeInstanceValue,
+      ];
 }

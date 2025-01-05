@@ -805,7 +805,9 @@ void main() async {
 
     test(
       'Check task data parsing',
-      () => expect(taskData, manuallyEnteredData),
+      () {
+        expect(taskData.toString(), manuallyEnteredData.toString());
+      },
     );
   });
   test(

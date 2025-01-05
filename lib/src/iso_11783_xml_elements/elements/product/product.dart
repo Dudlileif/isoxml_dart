@@ -15,7 +15,8 @@ part of '../../iso_11783_element.dart';
 @CopyWith()
 @annotation.XmlRootElement(name: 'PDT')
 @annotation.XmlSerializable(createMixin: true)
-class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
+class Product extends Iso11783Element
+    with _$ProductXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [Product] with verified
   /// arguments.
   factory Product({
@@ -203,10 +204,8 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
   ///
   /// Records generated on MICS have negative IDs.
   @override
-@annotation.XmlAttribute(name: 'A')
+  @annotation.XmlAttribute(name: 'A')
   final String id;
-
-
 
   /// Name of the product, description or comment.
   @annotation.XmlAttribute(name: 'B')
@@ -260,21 +259,19 @@ class Product extends Iso11783Element with _$ProductXmlSerializableMixin {
       ];
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      relations,
-      id,
-      designator,
-      groupIdRef,
-      valuePresentationIdRef,
-      quantityDDI,
-      type,
-      mixtureRecipeQuantity,
-      densityMassPerVolume,
-      densityMassPerCount,
-      densityVolumePerCount,
-    ]);
-
+  List<Object?> get props => [
+        relations,
+        id,
+        designator,
+        groupIdRef,
+        valuePresentationIdRef,
+        quantityDDI,
+        type,
+        mixtureRecipeQuantity,
+        densityMassPerVolume,
+        densityMassPerCount,
+        densityVolumePerCount,
+      ];
 }
 
 /// An enumerator for whether a [Product] is singular or in a mixture.

@@ -11,7 +11,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'ISO11783LinkList')
 @annotation.XmlSerializable(createMixin: true)
 class Iso11783LinkList extends Iso11783Element
-    with _$Iso11783LinkListXmlSerializableMixin {
+    with _$Iso11783LinkListXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating an [Iso11783LinkList] with verified
   /// arguments.
   factory Iso11783LinkList({
@@ -190,24 +190,23 @@ class Iso11783LinkList extends Iso11783Element
     builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
     return builder.buildDocument();
   }
-@override
+
+  @override
   Iterable<Iso11783Element>? get recursiveChildren => [
         for (final a in linkGroups.map((e) => e.selfWithRecursiveChildren))
           ...a,
       ];
 
-
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      linkGroups,
-      versionMajor,
-      versionMinor,
-      managementSoftwareManufacturer,
-      managementSoftwareVersion,
-      taskControllerManufacturer,
-      taskControllerVersion,
-      fileVersion,
-      dataTransferOrigin,
-    ]);
+  List<Object?> get props => [
+        linkGroups,
+        versionMajor,
+        versionMinor,
+        managementSoftwareManufacturer,
+        managementSoftwareVersion,
+        taskControllerManufacturer,
+        taskControllerVersion,
+        fileVersion,
+        dataTransferOrigin,
+      ];
 }

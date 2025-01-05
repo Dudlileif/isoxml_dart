@@ -20,7 +20,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'DLV')
 @annotation.XmlSerializable(createMixin: true)
 class DataLogValue extends Iso11783Element
-    with _$DataLogValueXmlSerializableMixin {
+    with _$DataLogValueXmlSerializableMixin, EquatableMixin {
   /// Default factory for creating a [DataLogValue] with verified
   /// arguments.
   factory DataLogValue({
@@ -141,13 +141,12 @@ class DataLogValue extends Iso11783Element
   final int? pgnStopBit;
 
   @override
-  List<Object?> get props => super.props
-    ..addAll([
-      processDataDDI,
-      processDataValue,
-      deviceElementIdRef,
-      pgn,
-      pgnStartBit,
-      pgnStopBit,
-    ]);
+  List<Object?> get props => [
+        processDataDDI,
+        processDataValue,
+        deviceElementIdRef,
+        pgn,
+        pgnStartBit,
+        pgnStopBit,
+      ];
 }

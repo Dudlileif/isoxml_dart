@@ -3,6 +3,6 @@
 // license that can be found in the LICENSE file.
 
 /// A library with all the ISO 11783-10 XML elements.
-library iso_11783_xml_elements;
+library;
 
 export 'src/iso_11783_xml_elements/iso_11783_element.dart';

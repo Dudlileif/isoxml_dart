@@ -11,8 +11,7 @@ part of '../../iso_11783_element.dart';
 @annotation.XmlRootElement(name: 'XFC')
 @annotation.XmlSerializable(createMixin: true)
 class ExternalFileContents extends Iso11783Element
-    with _$ExternalFileContentsXmlSerializableMixin {
-  
+    with _$ExternalFileContentsXmlSerializableMixin, EquatableMixin {
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   ExternalFileContents({
@@ -222,8 +221,38 @@ class ExternalFileContents extends Iso11783Element
 
   /// Iterable with all the children elements of this.
   Iterable<Iso11783Element> get contents => [
-        for (final list in [
-        attachedFiles,
+        for (final list in <List<Iso11783Element>>[
+          attachedFiles,
+          baseStations,
+          codedComments,
+          codedCommentGroups,
+          colourLegends,
+          cropTypes,
+          culturalPractices,
+          customers,
+          devices,
+          farms,
+          operationTechniques,
+          partfields,
+          products,
+          productGroups,
+          tasks,
+          valuePresentations,
+          workers,
+        ])
+          ...list,
+      ];
+
+  @override
+  Iterable<Iso11783Element>? get recursiveChildren => [
+        ...[
+          for (final a in contents.map((e) => e.selfWithRecursiveChildren))
+            ...a,
+        ],
+      ];
+
+  @override
+  List<Object?> get props => [
         baseStations,
         codedComments,
         codedCommentGroups,
@@ -240,36 +269,5 @@ class ExternalFileContents extends Iso11783Element
         tasks,
         valuePresentations,
         workers,
-        ])
-          ...list,
       ];
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in contents.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
-
-  @override
-  List<Object?> get props => super.props
-    ..addAll([
-      baseStations,
-      codedComments,
-      codedCommentGroups,
-      colourLegends,
-      cropTypes,
-      culturalPractices,
-      customers,
-      devices,
-      farms,
-      operationTechniques,
-      partfields,
-      products,
-      productGroups,
-      tasks,
-      valuePresentations,
-      workers,
-    ]);
 }
