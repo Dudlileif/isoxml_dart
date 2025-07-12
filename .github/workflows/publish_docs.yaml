@@ -5,9 +5,14 @@ on:
     branches:
       - main
     paths:
-        - 'lib/**''
-        - 'README.md'
+        - 'lib/**'
+        - '**.md'
+
   workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}
+    cancel-in-progress: true
 
 permissions:
   contents: write
@@ -50,5 +55,5 @@ jobs:
     
     environment:
       name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
+      url: ${{ steps.deployment.outputs.page_url }}
     
