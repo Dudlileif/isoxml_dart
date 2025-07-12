@@ -817,6 +817,7 @@ void main() async {
       taskData?.toSingleXmlDocument().toXmlString(
         pretty: true,
         indent: '    ',
+        newLine: Platform.isWindows ? '\r\n' : null,
       ),
       dataString,
     ),
