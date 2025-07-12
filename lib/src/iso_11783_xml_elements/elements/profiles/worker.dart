@@ -198,18 +198,18 @@ class Worker extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        lastName,
-        firstName,
-        street,
-        poBox,
-        postalCode,
-        city,
-        state,
-        country,
-        phone,
-        mobile,
-        licenseNumber,
-        email,
-      ];
+    id,
+    lastName,
+    firstName,
+    street,
+    poBox,
+    postalCode,
+    city,
+    state,
+    country,
+    phone,
+    mobile,
+    licenseNumber,
+    email,
+  ];
 }

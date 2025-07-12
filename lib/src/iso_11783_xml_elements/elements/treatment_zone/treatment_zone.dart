@@ -69,9 +69,9 @@ class TreatmentZone extends Iso11783Element
     this.designator,
     this.colour,
   }) : super(
-          elementType: Iso11783ElementType.treatmentZone,
-          description: 'TreatmentZone',
-        ) {
+         elementType: Iso11783ElementType.treatmentZone,
+         description: 'TreatmentZone',
+       ) {
     if (polygons != null) {
       this.polygons.addAll(polygons);
     }
@@ -123,23 +123,23 @@ class TreatmentZone extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in polygons.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in processDataVariables.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in polygons.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in processDataVariables.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        polygons,
-        processDataVariables,
-        code,
-        designator,
-        colour,
-      ];
+    polygons,
+    processDataVariables,
+    code,
+    designator,
+    colour,
+  ];
 }

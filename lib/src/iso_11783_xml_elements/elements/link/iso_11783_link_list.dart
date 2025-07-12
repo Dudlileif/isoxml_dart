@@ -78,10 +78,10 @@ class Iso11783LinkList extends Iso11783Element
     this.taskControllerVersion,
     this.fileVersion,
   }) : super(
-          elementType: Iso11783ElementType.linkList,
-          description: 'ISO 11783 Link List File',
-          onlyVersion4AndAbove: true,
-        ) {
+         elementType: Iso11783ElementType.linkList,
+         description: 'ISO 11783 Link List File',
+         onlyVersion4AndAbove: true,
+       ) {
     if (linkGroups != null) {
       this.linkGroups.addAll(linkGroups);
     }
@@ -92,12 +92,15 @@ class Iso11783LinkList extends Iso11783Element
     final linkGroups = element.getElements('LGP');
     final versionMajor = element.getAttribute('VersionMajor')!;
     final versionMinor = element.getAttribute('VersionMinor')!;
-    final managementSoftwareManufacturer =
-        element.getAttribute('ManagementSoftwareManufacturer')!;
-    final managementSoftwareVersion =
-        element.getAttribute('ManagementSoftwareVersion')!;
-    final taskControllerManufacturer =
-        element.getAttribute('TaskControllerManufacturer');
+    final managementSoftwareManufacturer = element.getAttribute(
+      'ManagementSoftwareManufacturer',
+    )!;
+    final managementSoftwareVersion = element.getAttribute(
+      'ManagementSoftwareVersion',
+    )!;
+    final taskControllerManufacturer = element.getAttribute(
+      'TaskControllerManufacturer',
+    );
     final taskControllerVersion = element.getAttribute('TaskControllerVersion');
     final fileVersion = element.getAttribute('FileVersion');
     final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
@@ -193,20 +196,19 @@ class Iso11783LinkList extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a in linkGroups.map((e) => e.selfWithRecursiveChildren))
-          ...a,
-      ];
+    for (final a in linkGroups.map((e) => e.selfWithRecursiveChildren)) ...a,
+  ];
 
   @override
   List<Object?> get props => [
-        linkGroups,
-        versionMajor,
-        versionMinor,
-        managementSoftwareManufacturer,
-        managementSoftwareVersion,
-        taskControllerManufacturer,
-        taskControllerVersion,
-        fileVersion,
-        dataTransferOrigin,
-      ];
+    linkGroups,
+    versionMajor,
+    versionMinor,
+    managementSoftwareManufacturer,
+    managementSoftwareVersion,
+    taskControllerManufacturer,
+    taskControllerVersion,
+    fileVersion,
+    dataTransferOrigin,
+  ];
 }

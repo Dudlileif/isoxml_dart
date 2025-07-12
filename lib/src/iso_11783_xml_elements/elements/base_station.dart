@@ -62,10 +62,10 @@ class BaseStation extends Iso11783Element
     required this.east,
     required this.up,
   }) : super(
-          elementType: Iso11783ElementType.baseStation,
-          description: 'BaseStation',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.baseStation,
+         description: 'BaseStation',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [BaseStation] from [element].
   factory BaseStation.fromXmlElement(XmlElement element) {
@@ -114,10 +114,10 @@ class BaseStation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-        north,
-        east,
-        up,
-      ];
+    id,
+    designator,
+    north,
+    east,
+    up,
+  ];
 }

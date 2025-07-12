@@ -113,9 +113,9 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     this.cropVarietyIdRef,
     this.fieldIdRef,
   }) : super(
-          elementType: Iso11783ElementType.partfield,
-          description: 'Partfield',
-        ) {
+         elementType: Iso11783ElementType.partfield,
+         description: 'Partfield',
+       ) {
     if (lineStrings != null) {
       this.lineStrings.addAll(lineStrings);
     }
@@ -149,8 +149,9 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
       polygons: polygons?.map(Polygon.fromXmlElement).toList(),
       points: points?.map(Point.fromXmlElement).toList(),
       lineStrings: lineStrings?.map(LineString.fromXmlElement).toList(),
-      guidanceGroups:
-          guidanceGroups?.map(GuidanceGroup.fromXmlElement).toList(),
+      guidanceGroups: guidanceGroups
+          ?.map(GuidanceGroup.fromXmlElement)
+          .toList(),
       id: id,
       code: code,
       designator: designator,
@@ -226,41 +227,38 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in polygons.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a
-              in guidanceGroups.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in polygons.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in guidanceGroups.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+  ];
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        polygons,
-        lineStrings,
-        points,
-        guidanceGroups,
-        id,
-        code,
-        designator,
-        area,
-        customerIdRef,
-        farmIdRef,
-        cropTypeIdRef,
-        cropVarietyIdRef,
-        fieldIdRef,
-      ];
+    polygons,
+    lineStrings,
+    points,
+    guidanceGroups,
+    id,
+    code,
+    designator,
+    area,
+    customerIdRef,
+    farmIdRef,
+    cropTypeIdRef,
+    cropVarietyIdRef,
+    fieldIdRef,
+  ];
 
   /// Returns a string for [props].
   @override

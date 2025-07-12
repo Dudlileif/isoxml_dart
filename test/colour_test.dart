@@ -249,8 +249,9 @@ void main() {
       expect(List.generate(256, colours.fromIndex), [
         ...firstColours,
         ...webSafeColours,
-        ...Iso11783Colour.defaultProprietaryColours
-            .map((value) => (0xFF << 24) + value),
+        ...Iso11783Colour.defaultProprietaryColours.map(
+          (value) => (0xFF << 24) + value,
+        ),
       ]);
       expect(colours.palette(), List.generate(256, colours.fromIndex));
     });

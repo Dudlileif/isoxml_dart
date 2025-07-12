@@ -185,8 +185,9 @@ class Point extends Iso11783Element with EquatableMixin {
       horizontalAccuracy: horizontalAccuracy != null
           ? double.tryParse(horizontalAccuracy)
           : null,
-      verticalAccuracy:
-          verticalAccuracy != null ? double.tryParse(verticalAccuracy) : null,
+      verticalAccuracy: verticalAccuracy != null
+          ? double.tryParse(verticalAccuracy)
+          : null,
       filename: filename,
       fileLength: fileLength != null ? int.tryParse(fileLength) : null,
     );
@@ -198,10 +199,12 @@ class Point extends Iso11783Element with EquatableMixin {
           readEast: point.east == null,
           readUp: point.up == null && up != null && up.isEmpty,
           readColour: point.colour == null && colour != null && colour.isEmpty,
-          readHorizontalAccuracy: point.horizontalAccuracy == null &&
+          readHorizontalAccuracy:
+              point.horizontalAccuracy == null &&
               horizontalAccuracy != null &&
               horizontalAccuracy.isEmpty,
-          readVerticalAccuracy: point.verticalAccuracy == null &&
+          readVerticalAccuracy:
+              point.verticalAccuracy == null &&
               verticalAccuracy != null &&
               verticalAccuracy.isEmpty,
         ),
@@ -369,8 +372,8 @@ class Point extends Iso11783Element with EquatableMixin {
 
         final parsedHorizontalAccuracy =
             binaryHeaderOptions!.readHorizontalAccuracy
-                ? data.getUint16(currentOffset, Endian.little) / 1e3
-                : horizontalAccuracy;
+            ? data.getUint16(currentOffset, Endian.little) / 1e3
+            : horizontalAccuracy;
         if (binaryHeaderOptions!.readHorizontalAccuracy) {
           currentOffset += 2;
         }
@@ -556,8 +559,9 @@ class Point extends Iso11783Element with EquatableMixin {
       attributes.add(eastConstructed);
     }
     final upSerialized = up?.toString();
-    final upConstructed =
-        upSerialized != null ? XmlAttribute(XmlName('E'), upSerialized) : null;
+    final upConstructed = upSerialized != null
+        ? XmlAttribute(XmlName('E'), upSerialized)
+        : null;
     if (upConstructed != null) {
       attributes.add(upConstructed);
     }
@@ -569,8 +573,9 @@ class Point extends Iso11783Element with EquatableMixin {
       attributes.add(colourConstructed);
     }
     final idSerialized = id;
-    final idConstructed =
-        idSerialized != null ? XmlAttribute(XmlName('G'), idSerialized) : null;
+    final idConstructed = idSerialized != null
+        ? XmlAttribute(XmlName('G'), idSerialized)
+        : null;
     if (idConstructed != null) {
       attributes.add(idConstructed);
     }
@@ -654,21 +659,21 @@ class Point extends Iso11783Element with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        type,
-        designator,
-        north,
-        east,
-        up,
-        colour,
-        id,
-        horizontalAccuracy,
-        verticalAccuracy,
-        filename,
-        fileLength,
-        binaryHeaderOptions,
-        byteData,
-        binaryPoints,
-      ];
+    type,
+    designator,
+    north,
+    east,
+    up,
+    colour,
+    id,
+    horizontalAccuracy,
+    verticalAccuracy,
+    filename,
+    fileLength,
+    binaryHeaderOptions,
+    byteData,
+    binaryPoints,
+  ];
 }
 
 /// An enumerator for what type a [Point] is.
@@ -763,12 +768,12 @@ class PointBinaryHeaderOptions extends Equatable {
 
   @override
   List<Object?> get props => [
-        readType,
-        readNorth,
-        readEast,
-        readUp,
-        readColour,
-        readHorizontalAccuracy,
-        readVerticalAccuracy,
-      ];
+    readType,
+    readNorth,
+    readEast,
+    readUp,
+    readColour,
+    readHorizontalAccuracy,
+    readVerticalAccuracy,
+  ];
 }

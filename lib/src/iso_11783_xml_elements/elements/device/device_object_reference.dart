@@ -27,10 +27,10 @@ class DeviceObjectReference extends Iso11783Element
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   const DeviceObjectReference._({required this.objectId})
-      : super(
-          elementType: Iso11783ElementType.deviceObjectReference,
-          description: 'DeviceObjectReference',
-        );
+    : super(
+        elementType: Iso11783ElementType.deviceObjectReference,
+        description: 'DeviceObjectReference',
+      );
 
   /// Creates a [DeviceObjectReference] from [element].
   factory DeviceObjectReference.fromXmlElement(XmlElement element) =>

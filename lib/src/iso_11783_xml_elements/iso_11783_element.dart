@@ -93,103 +93,109 @@ sealed class Iso11783Element {
     this.onlyVersion4AndAbove = false,
   });
 
-  factory Iso11783Element.fromXmlElement(XmlElement element) =>
-      switch (Iso11783ElementType.fromXmlTag(element.name.local)) {
-        Iso11783ElementType.allocationStamp =>
-          AllocationStamp.fromXmlElement(element),
-        Iso11783ElementType.attachedFile =>
-          AttachedFile.fromXmlElement(element),
-        Iso11783ElementType.baseStation => BaseStation.fromXmlElement(element),
-        Iso11783ElementType.codedComment =>
-          CodedComment.fromXmlElement(element),
-        Iso11783ElementType.codedCommentGroup =>
-          CodedCommentGroup.fromXmlElement(element),
-        Iso11783ElementType.codedCommentListValue =>
-          CodedCommentListValue.fromXmlElement(element),
-        Iso11783ElementType.colourLegend =>
-          ColourLegend.fromXmlElement(element),
-        Iso11783ElementType.colourRange => ColourRange.fromXmlElement(element),
-        Iso11783ElementType.commentAllocation =>
-          CommentAllocation.fromXmlElement(element),
-        Iso11783ElementType.connection => Connection.fromXmlElement(element),
-        Iso11783ElementType.controlAssignment =>
-          ControlAssignment.fromXmlElement(element),
-        Iso11783ElementType.cropType => CropType.fromXmlElement(element),
-        Iso11783ElementType.cropVariety => CropVariety.fromXmlElement(element),
-        Iso11783ElementType.culturalPractice =>
-          CulturalPractice.fromXmlElement(element),
-        Iso11783ElementType.customer => Customer.fromXmlElement(element),
-        Iso11783ElementType.dataLogTrigger =>
-          DataLogTrigger.fromXmlElement(element),
-        Iso11783ElementType.dataLogValue =>
-          DataLogValue.fromXmlElement(element),
-        Iso11783ElementType.device => Device.fromXmlElement(element),
-        Iso11783ElementType.deviceAllocation =>
-          DeviceAllocation.fromXmlElement(element),
-        Iso11783ElementType.deviceElement =>
-          DeviceElement.fromXmlElement(element),
-        Iso11783ElementType.deviceObjectReference =>
-          DeviceObjectReference.fromXmlElement(element),
-        Iso11783ElementType.deviceProperty =>
-          DeviceProperty.fromXmlElement(element),
-        Iso11783ElementType.deciveProcessData =>
-          DeviceProcessData.fromXmlElement(element),
-        Iso11783ElementType.deviceValuePresentation =>
-          DeviceValuePresentation.fromXmlElement(element),
-        Iso11783ElementType.externalFileContents =>
-          ExternalFileContents.fromXmlElement(element),
-        Iso11783ElementType.externalFileReference =>
-          ExternalFileReference.fromXmlElement(element),
-        Iso11783ElementType.farm => Farm.fromXmlElement(element),
-        Iso11783ElementType.grid => Grid.fromXmlElement(element),
-        Iso11783ElementType.guidanceAllocation =>
-          GuidanceAllocation.fromXmlElement(element),
-        Iso11783ElementType.guidanceGroup =>
-          GuidanceGroup.fromXmlElement(element),
-        Iso11783ElementType.guidancePattern =>
-          GuidancePattern.fromXmlElement(element),
-        Iso11783ElementType.guidanceShift =>
-          GuidanceShift.fromXmlElement(element),
-        Iso11783ElementType.lineString => LineString.fromXmlElement(element),
-        Iso11783ElementType.link => Link.fromXmlElement(element),
-        Iso11783ElementType.linkGroup => LinkGroup.fromXmlElement(element),
-        Iso11783ElementType.linkList =>
-          Iso11783LinkList.fromXmlElement(element),
-        Iso11783ElementType.operationTechnique =>
-          OperationTechnique.fromXmlElement(element),
-        Iso11783ElementType.operationTechniqueReference =>
-          OperationTechniqueReference.fromXmlElement(element),
-        Iso11783ElementType.operationTechniquePractice =>
-          OperationTechniquePractice.fromXmlElement(element),
-        Iso11783ElementType.partfield => Partfield.fromXmlElement(element),
-        Iso11783ElementType.polygon => Polygon.fromXmlElement(element),
-        Iso11783ElementType.point => Point.fromXmlElement(element),
-        Iso11783ElementType.position => Position.fromXmlElement(element),
-        Iso11783ElementType.processDataVariable =>
-          ProcessDataVariable.fromXmlElement(element),
-        Iso11783ElementType.product => Product.fromXmlElement(element),
-        Iso11783ElementType.productAllocation =>
-          ProductAllocation.fromXmlElement(element),
-        Iso11783ElementType.productGroup =>
-          ProductGroup.fromXmlElement(element),
-        Iso11783ElementType.productRelation =>
-          ProductRelation.fromXmlElement(element),
-        Iso11783ElementType.task => Task.fromXmlElement(element),
-        Iso11783ElementType.taskData =>
-          Iso11783TaskData.fromXmlElement(element),
-        Iso11783ElementType.taskControllerCapabilities =>
-          TaskControllerCapabilities.fromXmlElement(element),
-        Iso11783ElementType.time => Time.fromXmlElement(element),
-        Iso11783ElementType.timeLog => TimeLog.fromXmlElement(element),
-        Iso11783ElementType.treatmentZone =>
-          TreatmentZone.fromXmlElement(element),
-        Iso11783ElementType.valuePresentation =>
-          ValuePresentation.fromXmlElement(element),
-        Iso11783ElementType.worker => Worker.fromXmlElement(element),
-        Iso11783ElementType.workerAllocation =>
-          WorkerAllocation.fromXmlElement(element),
-        _ => const EmptyIso11783Element(),
-      };
+  factory Iso11783Element.fromXmlElement(
+    XmlElement element,
+  ) => switch (Iso11783ElementType.fromXmlTag(element.name.local)) {
+    Iso11783ElementType.allocationStamp => AllocationStamp.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.attachedFile => AttachedFile.fromXmlElement(element),
+    Iso11783ElementType.baseStation => BaseStation.fromXmlElement(element),
+    Iso11783ElementType.codedComment => CodedComment.fromXmlElement(element),
+    Iso11783ElementType.codedCommentGroup => CodedCommentGroup.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.codedCommentListValue =>
+      CodedCommentListValue.fromXmlElement(element),
+    Iso11783ElementType.colourLegend => ColourLegend.fromXmlElement(element),
+    Iso11783ElementType.colourRange => ColourRange.fromXmlElement(element),
+    Iso11783ElementType.commentAllocation => CommentAllocation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.connection => Connection.fromXmlElement(element),
+    Iso11783ElementType.controlAssignment => ControlAssignment.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.cropType => CropType.fromXmlElement(element),
+    Iso11783ElementType.cropVariety => CropVariety.fromXmlElement(element),
+    Iso11783ElementType.culturalPractice => CulturalPractice.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.customer => Customer.fromXmlElement(element),
+    Iso11783ElementType.dataLogTrigger => DataLogTrigger.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.dataLogValue => DataLogValue.fromXmlElement(element),
+    Iso11783ElementType.device => Device.fromXmlElement(element),
+    Iso11783ElementType.deviceAllocation => DeviceAllocation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.deviceElement => DeviceElement.fromXmlElement(element),
+    Iso11783ElementType.deviceObjectReference =>
+      DeviceObjectReference.fromXmlElement(element),
+    Iso11783ElementType.deviceProperty => DeviceProperty.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.deciveProcessData => DeviceProcessData.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.deviceValuePresentation =>
+      DeviceValuePresentation.fromXmlElement(element),
+    Iso11783ElementType.externalFileContents =>
+      ExternalFileContents.fromXmlElement(element),
+    Iso11783ElementType.externalFileReference =>
+      ExternalFileReference.fromXmlElement(element),
+    Iso11783ElementType.farm => Farm.fromXmlElement(element),
+    Iso11783ElementType.grid => Grid.fromXmlElement(element),
+    Iso11783ElementType.guidanceAllocation => GuidanceAllocation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.guidanceGroup => GuidanceGroup.fromXmlElement(element),
+    Iso11783ElementType.guidancePattern => GuidancePattern.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.guidanceShift => GuidanceShift.fromXmlElement(element),
+    Iso11783ElementType.lineString => LineString.fromXmlElement(element),
+    Iso11783ElementType.link => Link.fromXmlElement(element),
+    Iso11783ElementType.linkGroup => LinkGroup.fromXmlElement(element),
+    Iso11783ElementType.linkList => Iso11783LinkList.fromXmlElement(element),
+    Iso11783ElementType.operationTechnique => OperationTechnique.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.operationTechniqueReference =>
+      OperationTechniqueReference.fromXmlElement(element),
+    Iso11783ElementType.operationTechniquePractice =>
+      OperationTechniquePractice.fromXmlElement(element),
+    Iso11783ElementType.partfield => Partfield.fromXmlElement(element),
+    Iso11783ElementType.polygon => Polygon.fromXmlElement(element),
+    Iso11783ElementType.point => Point.fromXmlElement(element),
+    Iso11783ElementType.position => Position.fromXmlElement(element),
+    Iso11783ElementType.processDataVariable =>
+      ProcessDataVariable.fromXmlElement(element),
+    Iso11783ElementType.product => Product.fromXmlElement(element),
+    Iso11783ElementType.productAllocation => ProductAllocation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.productGroup => ProductGroup.fromXmlElement(element),
+    Iso11783ElementType.productRelation => ProductRelation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.task => Task.fromXmlElement(element),
+    Iso11783ElementType.taskData => Iso11783TaskData.fromXmlElement(element),
+    Iso11783ElementType.taskControllerCapabilities =>
+      TaskControllerCapabilities.fromXmlElement(element),
+    Iso11783ElementType.time => Time.fromXmlElement(element),
+    Iso11783ElementType.timeLog => TimeLog.fromXmlElement(element),
+    Iso11783ElementType.treatmentZone => TreatmentZone.fromXmlElement(element),
+    Iso11783ElementType.valuePresentation => ValuePresentation.fromXmlElement(
+      element,
+    ),
+    Iso11783ElementType.worker => Worker.fromXmlElement(element),
+    Iso11783ElementType.workerAllocation => WorkerAllocation.fromXmlElement(
+      element,
+    ),
+    _ => const EmptyIso11783Element(),
+  };
 
   /// Which type of ISO 11783-10 element this is based on the XML tag.
   final Iso11783ElementType elementType;
@@ -212,8 +218,10 @@ sealed class Iso11783Element {
 
   /// All the element children connected to this, and their children
   /// recursively.
-  Iterable<Iso11783Element> get selfWithRecursiveChildren =>
-      [this, ...recursiveChildren ?? []];
+  Iterable<Iso11783Element> get selfWithRecursiveChildren => [
+    this,
+    ...recursiveChildren ?? [],
+  ];
 
   /// Returns a string for [props].
   String mapPropsToString(Type runtimeType, List<Object?> props) {
@@ -229,8 +237,8 @@ sealed class Iso11783Element {
 class EmptyIso11783Element extends Iso11783Element {
   /// Default constructor, creates an empty element.
   const EmptyIso11783Element()
-      : super(
-          elementType: Iso11783ElementType.emptyElement,
-          description: 'Empty element, should not have been created.',
-        );
+    : super(
+        elementType: Iso11783ElementType.emptyElement,
+        description: 'Empty element, should not have been created.',
+      );
 }

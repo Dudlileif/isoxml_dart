@@ -150,14 +150,14 @@ class Farm extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-        street,
-        poBox,
-        postalCode,
-        city,
-        state,
-        country,
-        customerIdRef,
-      ];
+    id,
+    designator,
+    street,
+    poBox,
+    postalCode,
+    city,
+    state,
+    country,
+    customerIdRef,
+  ];
 }

@@ -135,9 +135,9 @@ class Iso11783TaskData extends Iso11783Element
     this.taskControllerVersion,
     this.language,
   }) : super(
-          elementType: Iso11783ElementType.taskData,
-          description: 'ISO 11783 Task Data File',
-        ) {
+         elementType: Iso11783ElementType.taskData,
+         description: 'ISO 11783 Task Data File',
+       ) {
     attachedFiles?.forEach(addTopLevelElement);
     baseStations?.forEach(addTopLevelElement);
     codedComments?.forEach(addTopLevelElement);
@@ -183,29 +183,35 @@ class Iso11783TaskData extends Iso11783Element
     final versionMajor = element.getAttribute('VersionMajor')!;
     final versionMinor = element.getAttribute('VersionMinor')!;
     final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
-    final managementSoftwareManufacturer =
-        element.getAttribute('ManagementSoftwareManufacturer')!;
-    final managementSoftwareVersion =
-        element.getAttribute('ManagementSoftwareVersion')!;
-    final taskControllerManufacturer =
-        element.getAttribute('TaskControllerManufacturer');
+    final managementSoftwareManufacturer = element.getAttribute(
+      'ManagementSoftwareManufacturer',
+    )!;
+    final managementSoftwareVersion = element.getAttribute(
+      'ManagementSoftwareVersion',
+    )!;
+    final taskControllerManufacturer = element.getAttribute(
+      'TaskControllerManufacturer',
+    );
     final taskControllerVersion = element.getAttribute('TaskControllerVersion');
     final language = element.getAttribute('lang');
     return Iso11783TaskData(
       attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
       baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
       codedComments: codedComments?.map(CodedComment.fromXmlElement).toList(),
-      codedCommentGroups:
-          codedCommentGroups?.map(CodedCommentGroup.fromXmlElement).toList(),
+      codedCommentGroups: codedCommentGroups
+          ?.map(CodedCommentGroup.fromXmlElement)
+          .toList(),
       colourLegends: colourLegends?.map(ColourLegend.fromXmlElement).toList(),
       cropTypes: cropTypes?.map(CropType.fromXmlElement).toList(),
-      culturalPractices:
-          culturalPractices?.map(CulturalPractice.fromXmlElement).toList(),
+      culturalPractices: culturalPractices
+          ?.map(CulturalPractice.fromXmlElement)
+          .toList(),
       customers: customers?.map(Customer.fromXmlElement).toList(),
       devices: devices?.map(Device.fromXmlElement).toList(),
       farms: farms?.map(Farm.fromXmlElement).toList(),
-      operationTechniques:
-          operationTechniques?.map(OperationTechnique.fromXmlElement).toList(),
+      operationTechniques: operationTechniques
+          ?.map(OperationTechnique.fromXmlElement)
+          .toList(),
       partfields: partfields?.map(Partfield.fromXmlElement).toList(),
       products: products?.map(Product.fromXmlElement).toList(),
       productGroups: productGroups?.map(ProductGroup.fromXmlElement).toList(),
@@ -213,8 +219,9 @@ class Iso11783TaskData extends Iso11783Element
       taskControllerCapabilities: taskControllerCapabilities
           ?.map(TaskControllerCapabilities.fromXmlElement)
           .toList(),
-      valuePresentations:
-          valuePresentations?.map(ValuePresentation.fromXmlElement).toList(),
+      valuePresentations: valuePresentations
+          ?.map(ValuePresentation.fromXmlElement)
+          .toList(),
       workers: workers?.map(Worker.fromXmlElement).toList(),
       externalFileReferences: externalFileReferences
           ?.map(ExternalFileReference.fromXmlElement)
@@ -312,11 +319,11 @@ class Iso11783TaskData extends Iso11783Element
           ..byteData = dataFile!.content
           ..numberOfProcessDataVariables = task.grid!.type == GridType.two
               ? task.treatmentZones
-                  .firstWhereOrNull(
-                    (element) => element.code == task.grid!.treatmentZoneCode,
-                  )
-                  ?.processDataVariables
-                  .length
+                    .firstWhereOrNull(
+                      (element) => element.code == task.grid!.treatmentZoneCode,
+                    )
+                    ?.processDataVariables
+                    .length
               : null
           ..parseData();
       }
@@ -412,9 +419,10 @@ class Iso11783TaskData extends Iso11783Element
             ..addFile(
               ArchiveFile.string(
                 'TASKDATA/${timeLog.filename}.XML',
-                timeLog.header!
-                    .toXmlDocument()
-                    .toXmlString(pretty: true, indent: '    '),
+                timeLog.header!.toXmlDocument().toXmlString(
+                  pretty: true,
+                  indent: '    ',
+                ),
               ),
             );
         }
@@ -593,8 +601,9 @@ class Iso11783TaskData extends Iso11783Element
         // If there are more than two occurances, the overshooting ones are
         // removed.
         if ((occurancesOfType[type] ?? 0) > 1) {
-          final externalContent =
-              mainDocument.lastChild!.getElements(type.xmlTag)?.toList();
+          final externalContent = mainDocument.lastChild!
+              .getElements(type.xmlTag)
+              ?.toList();
           if (externalContent != null && externalContent.isNotEmpty) {
             // ---00001 , Negative ids
             final documentNegative = XmlDocument(
@@ -619,7 +628,7 @@ class Iso11783TaskData extends Iso11783Element
               (
                 fileName:
                     '${externalFileReference.filename.substring(0, 3)}00001',
-                document: documentNegative
+                document: documentNegative,
               ),
             );
 
@@ -644,7 +653,7 @@ class Iso11783TaskData extends Iso11783Element
               (
                 fileName:
                     '${externalFileReference.filename.substring(0, 3)}00000',
-                document: documentPositive
+                document: documentPositive,
               ),
             );
 
@@ -666,12 +675,15 @@ class Iso11783TaskData extends Iso11783Element
                 indices.add(index);
               }
             }
-            mainDocument.lastChild!.children
-                .removeRange(indices[2], indices.last + 1);
+            mainDocument.lastChild!.children.removeRange(
+              indices[2],
+              indices.last + 1,
+            );
           }
         } else {
-          final externalContent =
-              mainDocument.lastChild?.getElements(type.xmlTag);
+          final externalContent = mainDocument.lastChild?.getElements(
+            type.xmlTag,
+          );
           if (externalContent != null && externalContent.isNotEmpty) {
             final document = XmlDocument(
               [
@@ -755,85 +767,85 @@ class Iso11783TaskData extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in attachedFiles.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in baseStations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in codedComments.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in codedCommentGroups.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in colourLegends.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in cropTypes.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in culturalPractices.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in customers.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in devices.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a in farms.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a
-              in operationTechniques.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in partfields.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in products.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in productGroups.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in tasks.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a in taskControllerCapabilities
-              .map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in valuePresentations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in workers.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a
-              in externalFileReferences.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in attachedFiles.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in baseStations.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in codedComments.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in codedCommentGroups.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in colourLegends.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in cropTypes.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in culturalPractices.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in customers.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in devices.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in farms.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in operationTechniques.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in partfields.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in products.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in productGroups.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in tasks.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in taskControllerCapabilities.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in valuePresentations.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in workers.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in externalFileReferences.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+  ];
 
   /// Find all the IDs for the [Iso11783Element]s of [type] in this.
   Iterable<String>? idsOfType(Iso11783ElementType type) =>
@@ -887,40 +899,40 @@ class Iso11783TaskData extends Iso11783Element
 
   /// Attempts to find the (recursive) child [Iso11783Element] with the given
   /// [id].
-  Iso11783Element? elementById(String id) =>
-      elementsOfType(Iso11783ElementType.fromXmlTag(id.substring(0, 3)))
-          .firstWhereOrNull((e) => e.id == id);
+  Iso11783Element? elementById(String id) => elementsOfType(
+    Iso11783ElementType.fromXmlTag(id.substring(0, 3)),
+  ).firstWhereOrNull((e) => e.id == id);
 
   @override
   List<Object?> get props => [
-        attachedFiles,
-        baseStations,
-        codedComments,
-        codedCommentGroups,
-        colourLegends,
-        cropTypes,
-        culturalPractices,
-        customers,
-        devices,
-        farms,
-        operationTechniques,
-        partfields,
-        products,
-        productGroups,
-        tasks,
-        taskControllerCapabilities,
-        valuePresentations,
-        workers,
-        externalFileReferences,
-        linkList,
-        versionMajor,
-        versionMinor,
-        dataTransferOrigin,
-        managementSoftwareManufacturer,
-        managementSoftwareVersion,
-        taskControllerManufacturer,
-        taskControllerVersion,
-        dataTransferOrigin,
-        language,
-      ];
+    attachedFiles,
+    baseStations,
+    codedComments,
+    codedCommentGroups,
+    colourLegends,
+    cropTypes,
+    culturalPractices,
+    customers,
+    devices,
+    farms,
+    operationTechniques,
+    partfields,
+    products,
+    productGroups,
+    tasks,
+    taskControllerCapabilities,
+    valuePresentations,
+    workers,
+    externalFileReferences,
+    linkList,
+    versionMajor,
+    versionMinor,
+    dataTransferOrigin,
+    managementSoftwareManufacturer,
+    managementSoftwareVersion,
+    taskControllerManufacturer,
+    taskControllerVersion,
+    dataTransferOrigin,
+    language,
+  ];
 }

@@ -211,31 +211,39 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     final positionLostTreatmentZoneCode = element.getAttribute('I');
     final outOfFieldTreatmentZoneCode = element.getAttribute('J');
     return Task(
-      commentAllocations:
-          commentAllocations?.map(CommentAllocation.fromXmlElement).toList(),
-      controlAssignments:
-          controlAssignments?.map(ControlAssignment.fromXmlElement).toList(),
+      commentAllocations: commentAllocations
+          ?.map(CommentAllocation.fromXmlElement)
+          .toList(),
+      controlAssignments: controlAssignments
+          ?.map(ControlAssignment.fromXmlElement)
+          .toList(),
       connections: connections?.map(Connection.fromXmlElement).toList(),
-      deviceAllocations:
-          deviceAllocations?.map(DeviceAllocation.fromXmlElement).toList(),
-      dataLogTriggers:
-          dataLogTriggers?.map(DataLogTrigger.fromXmlElement).toList(),
+      deviceAllocations: deviceAllocations
+          ?.map(DeviceAllocation.fromXmlElement)
+          .toList(),
+      dataLogTriggers: dataLogTriggers
+          ?.map(DataLogTrigger.fromXmlElement)
+          .toList(),
       grid: grid != null ? Grid.fromXmlElement(grid) : null,
-      guidanceAllocations:
-          guidanceAllocations?.map(GuidanceAllocation.fromXmlElement).toList(),
+      guidanceAllocations: guidanceAllocations
+          ?.map(GuidanceAllocation.fromXmlElement)
+          .toList(),
       operationTechniquePractice: operationTechniquePractice != null
           ? OperationTechniquePractice.fromXmlElement(
               operationTechniquePractice,
             )
           : null,
-      productAllocations:
-          productAllocations?.map(ProductAllocation.fromXmlElement).toList(),
+      productAllocations: productAllocations
+          ?.map(ProductAllocation.fromXmlElement)
+          .toList(),
       times: times?.map(Time.fromXmlElement).toList(),
       timeLogs: timeLogs?.map(TimeLog.fromXmlElement).toList(),
-      treatmentZones:
-          treatmentZones?.map(TreatmentZone.fromXmlElement).toList(),
-      workerAllocations:
-          workerAllocations?.map(WorkerAllocation.fromXmlElement).toList(),
+      treatmentZones: treatmentZones
+          ?.map(TreatmentZone.fromXmlElement)
+          .toList(),
+      workerAllocations: workerAllocations
+          ?.map(WorkerAllocation.fromXmlElement)
+          .toList(),
       id: id,
       designator: designator,
       customerIdRef: customerIdRef,
@@ -365,85 +373,83 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a
-              in commentAllocations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in controlAssignments.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in connections.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in deviceAllocations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in dataLogTriggers.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        if (grid != null) ...grid!.selfWithRecursiveChildren,
-        ...[
-          for (final a
-              in guidanceAllocations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        if (operationTechniquePractice != null)
-          ...operationTechniquePractice!.selfWithRecursiveChildren,
-        ...[
-          for (final a
-              in productAllocations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in times.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-        ...[
-          for (final a in timeLogs.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in treatmentZones.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in workerAllocations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in commentAllocations.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in controlAssignments.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in connections.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in deviceAllocations.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in dataLogTriggers.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    if (grid != null) ...grid!.selfWithRecursiveChildren,
+    ...[
+      for (final a in guidanceAllocations.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    if (operationTechniquePractice != null)
+      ...operationTechniquePractice!.selfWithRecursiveChildren,
+    ...[
+      for (final a in productAllocations.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+    ...[
+      for (final a in times.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in timeLogs.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in treatmentZones.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in workerAllocations.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+  ];
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        commentAllocations,
-        controlAssignments,
-        connections,
-        deviceAllocations,
-        dataLogTriggers,
-        grid,
-        guidanceAllocations,
-        operationTechniquePractice,
-        productAllocations,
-        id,
-        designator,
-        customerIdRef,
-        farmIdRef,
-        partfieldIdRef,
-        responsibleWorkerIdRef,
-        status,
-        defaultTreatmentZoneCode,
-        positionLostTreatmentZoneCode,
-        outOfFieldTreatmentZoneCode,
-      ];
+    commentAllocations,
+    controlAssignments,
+    connections,
+    deviceAllocations,
+    dataLogTriggers,
+    grid,
+    guidanceAllocations,
+    operationTechniquePractice,
+    productAllocations,
+    id,
+    designator,
+    customerIdRef,
+    farmIdRef,
+    partfieldIdRef,
+    responsibleWorkerIdRef,
+    status,
+    defaultTreatmentZoneCode,
+    positionLostTreatmentZoneCode,
+    outOfFieldTreatmentZoneCode,
+  ];
 
   /// Returns a string for [props].
   @override
@@ -475,8 +481,7 @@ enum TaskStatus {
 
   /// Cancelled
   @annotation.XmlValue('6')
-  cancelled(6, 'Cancelled'),
-  ;
+  cancelled(6, 'Cancelled');
 
   const TaskStatus(this.value, this.description);
 

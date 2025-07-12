@@ -126,9 +126,9 @@ class Customer extends Iso11783Element
     this.fax,
     this.email,
   }) : super(
-          elementType: Iso11783ElementType.customer,
-          description: 'Customer',
-        );
+         elementType: Iso11783ElementType.customer,
+         description: 'Customer',
+       );
 
   /// Creates a [Customer] from [element].
   factory Customer.fromXmlElement(XmlElement element) =>
@@ -197,18 +197,18 @@ class Customer extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        lastName,
-        firstName,
-        street,
-        poBox,
-        postalCode,
-        city,
-        state,
-        country,
-        phone,
-        mobile,
-        fax,
-        email,
-      ];
+    id,
+    lastName,
+    firstName,
+    street,
+    poBox,
+    postalCode,
+    city,
+    state,
+    country,
+    phone,
+    mobile,
+    fax,
+    email,
+  ];
 }

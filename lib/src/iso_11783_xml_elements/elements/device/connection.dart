@@ -69,9 +69,9 @@ class Connection extends Iso11783Element
     required this.deviceIdRef_1,
     required this.deviceElementIdRef_1,
   }) : super(
-          elementType: Iso11783ElementType.connection,
-          description: 'Connection',
-        );
+         elementType: Iso11783ElementType.connection,
+         description: 'Connection',
+       );
 
   /// Creates a [Connection] from [element].
   factory Connection.fromXmlElement(XmlElement element) =>
@@ -95,9 +95,9 @@ class Connection extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        deviceIdRef_0,
-        deviceElementIdRef_0,
-        deviceIdRef_1,
-        deviceElementIdRef_1,
-      ];
+    deviceIdRef_0,
+    deviceElementIdRef_0,
+    deviceIdRef_1,
+    deviceElementIdRef_1,
+  ];
 }

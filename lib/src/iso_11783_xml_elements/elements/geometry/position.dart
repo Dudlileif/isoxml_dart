@@ -114,9 +114,9 @@ class Position extends Iso11783Element
     this.gpsUtcTimeMs,
     this.gpsUtcDate,
   }) : super(
-          elementType: Iso11783ElementType.position,
-          description: 'Position',
-        );
+         elementType: Iso11783ElementType.position,
+         description: 'Position',
+       );
 
   /// Creates a [Position] from [element].
   factory Position.fromXmlElement(XmlElement element) {
@@ -144,8 +144,9 @@ class Position extends Iso11783Element
           .key,
       pdop: pdop != null ? double.parse(pdop) : null,
       hdop: hdop != null ? double.parse(hdop) : null,
-      numberOfSatellites:
-          numberOfSatellites != null ? int.parse(numberOfSatellites) : null,
+      numberOfSatellites: numberOfSatellites != null
+          ? int.parse(numberOfSatellites)
+          : null,
       gpsUtcTimeMs: gpsUtcTimeMs != null ? int.parse(gpsUtcTimeMs) : null,
       gpsUtcDate: gpsUtcDate != null ? int.parse(gpsUtcDate) : null,
     );
@@ -193,16 +194,16 @@ class Position extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        north,
-        east,
-        up,
-        status,
-        pdop,
-        hdop,
-        numberOfSatellites,
-        gpsUtcTimeMs,
-        gpsUtcDate,
-      ];
+    north,
+    east,
+    up,
+    status,
+    pdop,
+    hdop,
+    numberOfSatellites,
+    gpsUtcTimeMs,
+    gpsUtcDate,
+  ];
 }
 
 /// An ennumerator for the status/qualty of a [Position].

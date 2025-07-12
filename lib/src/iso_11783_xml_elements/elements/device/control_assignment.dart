@@ -90,10 +90,10 @@ class ControlAssignment extends Iso11783Element
     required this.processDataDDI,
     this.allocationStamp,
   }) : super(
-          elementType: Iso11783ElementType.controlAssignment,
-          description: 'ControlAssignment',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.controlAssignment,
+         description: 'ControlAssignment',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [ControlAssignment] form [element].
   factory ControlAssignment.fromXmlElement(XmlElement element) =>
@@ -145,13 +145,13 @@ class ControlAssignment extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        allocationStamp,
-        sourceClientNAME,
-        userClientNAME,
-        sourceDeviceStructureLabel,
-        userDeviceStructureLabel,
-        sourceDeviceElementNumber,
-        userDeviceElementNumber,
-        processDataDDI,
-      ];
+    allocationStamp,
+    sourceClientNAME,
+    userClientNAME,
+    sourceDeviceStructureLabel,
+    userDeviceStructureLabel,
+    sourceDeviceElementNumber,
+    userDeviceElementNumber,
+    processDataDDI,
+  ];
 }

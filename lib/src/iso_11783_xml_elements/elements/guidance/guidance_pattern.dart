@@ -144,10 +144,10 @@ class GuidancePattern extends Iso11783Element
     this.numberOfSwathsLeft,
     this.numberOfSwathsRight,
   }) : super(
-          elementType: Iso11783ElementType.guidancePattern,
-          description: 'GuidancePattern',
-          onlyVersion4AndAbove: true,
-        ) {
+         elementType: Iso11783ElementType.guidancePattern,
+         description: 'GuidancePattern',
+         onlyVersion4AndAbove: true,
+       ) {
     this.lineStrings.addAll(lineStrings);
   }
 
@@ -242,34 +242,32 @@ class GuidancePattern extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        if (boundaryPolygon != null)
-          ...boundaryPolygon!.selfWithRecursiveChildren,
-      ];
+    ...[
+      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    if (boundaryPolygon != null) ...boundaryPolygon!.selfWithRecursiveChildren,
+  ];
 
   @override
   List<Object?> get props => [
-        boundaryPolygon,
-        lineStrings,
-        id,
-        designator,
-        type,
-        options,
-        propagationDirection,
-        extension,
-        heading,
-        radius,
-        gnssMethod,
-        horizontalAccuracy,
-        verticalAccuracy,
-        baseStationIdRef,
-        originalSRID,
-        numberOfSwathsLeft,
-        numberOfSwathsRight,
-      ];
+    boundaryPolygon,
+    lineStrings,
+    id,
+    designator,
+    type,
+    options,
+    propagationDirection,
+    extension,
+    heading,
+    radius,
+    gnssMethod,
+    horizontalAccuracy,
+    verticalAccuracy,
+    baseStationIdRef,
+    originalSRID,
+    numberOfSwathsLeft,
+    numberOfSwathsRight,
+  ];
 }
 
 /// An enumeration for the type of [GuidancePattern].
@@ -293,8 +291,7 @@ enum GuidancePatternType {
 
   /// Spiral, a spiral out from a center point.
   @annotation.XmlValue('5')
-  spiral(5, 'Spiral'),
-  ;
+  spiral(5, 'Spiral');
 
   const GuidancePatternType(this.value, this.description);
 
@@ -319,8 +316,7 @@ enum GuidancePatternOptions {
 
   /// Full circle, for [GuidancePatternType.pivot] only.
   @annotation.XmlValue('3')
-  fullCircle(3, 'Full Circle - for pivot'),
-  ;
+  fullCircle(3, 'Full Circle - for pivot');
 
   const GuidancePatternOptions(this.value, this.description);
 
@@ -351,8 +347,7 @@ enum GuidancePatternPropagationDirection {
 
   /// No propagation, i.e. only the reference line will be used.
   @annotation.XmlValue('4')
-  noPropagation(4, 'No propagation'),
-  ;
+  noPropagation(4, 'No propagation');
 
   const GuidancePatternPropagationDirection(this.value, this.description);
 
@@ -381,8 +376,7 @@ enum GuidancePatternExtension {
 
   /// No extension from any points.
   @annotation.XmlValue('4')
-  noExtensions(4, 'No extensions'),
-  ;
+  noExtensions(4, 'No extensions');
 
   const GuidancePatternExtension(this.value, this.description);
 
@@ -400,46 +394,36 @@ enum GuidancePatternGnssMethod {
   @annotation.XmlValue('0')
   noGnssFix(0, 'No GNSS fix'),
   @annotation.XmlValue('1')
-
   /// GNSS fix
   gnssFix(1, 'GNSS fix'),
   @annotation.XmlValue('2')
-
   /// Differential GNSS fix
   dgnssFix(2, 'DGNSS fix'),
   @annotation.XmlValue('3')
-
   /// Precise GNSS
   preciseGnss(3, 'Precise GNSS'),
   @annotation.XmlValue('4')
-
   /// RTK fixed integer
   rtkFixedInteger(4, 'RTK fixed integer'),
   @annotation.XmlValue('5')
-
   /// RTK float
   rtkFloat(5, 'RTK float'),
   @annotation.XmlValue('6')
-
   /// Estimated (Dead Reckoning) mode
   estimatedDRmode(6, 'Estimated (Dead Reckoning) mode'),
   @annotation.XmlValue('7')
-
   /// Manual input
   manualInput(7, 'Manual input'),
   @annotation.XmlValue('8')
-
   /// Simulation mode
   simulationMode(8, 'Simulation mode'),
   @annotation.XmlValue('16')
-
   /// Desktop generated data
   desktopGeneratedData(16, 'Desktop generated data'),
 
   /// Other
   @annotation.XmlValue('17')
-  other(17, 'Other'),
-  ;
+  other(17, 'Other');
 
   const GuidancePatternGnssMethod(this.value, this.description);
 

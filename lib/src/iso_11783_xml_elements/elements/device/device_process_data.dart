@@ -78,9 +78,9 @@ class DeviceProcessData extends Iso11783Element
     this.designator,
     this.presentationObjectId,
   }) : super(
-          elementType: Iso11783ElementType.deciveProcessData,
-          description: 'DeviceProcessData',
-        );
+         elementType: Iso11783ElementType.deciveProcessData,
+         description: 'DeviceProcessData',
+       );
 
   /// Creates a [DeviceProcessData] from [element].
   factory DeviceProcessData.fromXmlElement(XmlElement element) =>
@@ -124,11 +124,11 @@ class DeviceProcessData extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        objectId,
-        ddi,
-        property,
-        triggerMethods,
-        designator,
-        presentationObjectId,
-      ];
+    objectId,
+    ddi,
+    property,
+    triggerMethods,
+    designator,
+    presentationObjectId,
+  ];
 }

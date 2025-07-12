@@ -35,9 +35,9 @@ class OperationTechnique extends Iso11783Element
     required this.id,
     required this.designator,
   }) : super(
-          elementType: Iso11783ElementType.operationTechnique,
-          description: 'OperationTechnique',
-        );
+         elementType: Iso11783ElementType.operationTechnique,
+         description: 'OperationTechnique',
+       );
 
   /// Creates a [OperationTechnique] from [element].
   factory OperationTechnique.fromXmlElement(XmlElement element) =>
@@ -62,7 +62,7 @@ class OperationTechnique extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-      ];
+    id,
+    designator,
+  ];
 }

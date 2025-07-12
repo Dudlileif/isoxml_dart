@@ -81,9 +81,9 @@ class ValuePresentation extends Iso11783Element
     this.unitDesignator,
     this.colourLegendIdRef,
   }) : super(
-          elementType: Iso11783ElementType.valuePresentation,
-          description: 'ValuePresentation',
-        );
+         elementType: Iso11783ElementType.valuePresentation,
+         description: 'ValuePresentation',
+       );
 
   /// Creates a [ValuePresentation] from [element].
   factory ValuePresentation.fromXmlElement(XmlElement element) =>
@@ -124,11 +124,11 @@ class ValuePresentation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        offset,
-        scale,
-        numberOfDecimals,
-        unitDesignator,
-        colourLegendIdRef,
-      ];
+    id,
+    offset,
+    scale,
+    numberOfDecimals,
+    unitDesignator,
+    colourLegendIdRef,
+  ];
 }

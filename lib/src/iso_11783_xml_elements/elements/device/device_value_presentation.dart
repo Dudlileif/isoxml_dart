@@ -76,9 +76,9 @@ class DeviceValuePresentation extends Iso11783Element
     required this.numberOfDecimals,
     this.unitDesignator,
   }) : super(
-          elementType: Iso11783ElementType.deviceValuePresentation,
-          description: 'DeviceValuePresentation',
-        );
+         elementType: Iso11783ElementType.deviceValuePresentation,
+         description: 'DeviceValuePresentation',
+       );
 
   /// Creates a [DeviceValuePresentation] from [element].
   factory DeviceValuePresentation.fromXmlElement(XmlElement element) =>
@@ -106,10 +106,10 @@ class DeviceValuePresentation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        objectId,
-        offset,
-        scale,
-        numberOfDecimals,
-        unitDesignator,
-      ];
+    objectId,
+    offset,
+    scale,
+    numberOfDecimals,
+    unitDesignator,
+  ];
 }

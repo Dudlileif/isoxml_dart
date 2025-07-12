@@ -105,17 +105,17 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a in records.map((e) => e.selfWithRecursiveChildren)) ...a,
-      ];
+    for (final a in records.map((e) => e.selfWithRecursiveChildren)) ...a,
+  ];
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        filename,
-        fileLength,
-        type,
-        byteData,
-      ];
+    filename,
+    fileLength,
+    type,
+    byteData,
+  ];
 
   /// Returns a string for [props].
   @override

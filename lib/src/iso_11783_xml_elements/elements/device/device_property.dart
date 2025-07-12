@@ -68,9 +68,9 @@ class DeviceProperty extends Iso11783Element
     this.designator,
     this.valuePresentationObjectId,
   }) : super(
-          elementType: Iso11783ElementType.deviceProperty,
-          description: 'DeviceProperty',
-        );
+         elementType: Iso11783ElementType.deviceProperty,
+         description: 'DeviceProperty',
+       );
 
   /// Creates a [DeviceProperty] from [element].
   factory DeviceProperty.fromXmlElement(XmlElement element) =>
@@ -102,10 +102,10 @@ class DeviceProperty extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        objectId,
-        ddi,
-        value,
-        designator,
-        valuePresentationObjectId,
-      ];
+    objectId,
+    ddi,
+    value,
+    designator,
+    valuePresentationObjectId,
+  ];
 }

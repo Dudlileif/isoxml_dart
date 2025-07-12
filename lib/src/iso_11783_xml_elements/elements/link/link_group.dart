@@ -69,10 +69,10 @@ class LinkGroup extends Iso11783Element
     this.namespace,
     this.designator,
   }) : super(
-          elementType: Iso11783ElementType.linkGroup,
-          description: 'LinkGroup',
-          onlyVersion4AndAbove: true,
-        ) {
+         elementType: Iso11783ElementType.linkGroup,
+         description: 'LinkGroup',
+         onlyVersion4AndAbove: true,
+       ) {
     if (links != null) {
       this.links.addAll(links);
     }
@@ -146,18 +146,18 @@ class LinkGroup extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a in links.map((e) => e.selfWithRecursiveChildren)) ...a,
-      ];
+    for (final a in links.map((e) => e.selfWithRecursiveChildren)) ...a,
+  ];
 
   @override
   List<Object?> get props => [
-        links,
-        id,
-        type,
-        manufacturerGLN,
-        namespace,
-        designator,
-      ];
+    links,
+    id,
+    type,
+    manufacturerGLN,
+    namespace,
+    designator,
+  ];
 }
 
 /// An enumerator for which type of external object key a [LinkGroup] uses.
@@ -180,8 +180,7 @@ enum LinkGroupType {
   /// Information resolvable URIs. Disjoint set of information link, the full
   /// link value is the concatenation of [LinkGroup.namespace] and [Link.value].
   @annotation.XmlValue('4')
-  informationalResolvableUris(4, 'Informational Resolvable URIs'),
-  ;
+  informationalResolvableUris(4, 'Informational Resolvable URIs');
 
   const LinkGroupType(this.value, this.description);
 

@@ -137,9 +137,9 @@ class Product extends Iso11783Element
     this.densityMassPerCount,
     this.densityVolumePerCount,
   }) : super(
-          elementType: Iso11783ElementType.product,
-          description: 'Product',
-        ) {
+         elementType: Iso11783ElementType.product,
+         description: 'Product',
+       ) {
     if (relations != null) {
       this.relations.addAll(relations);
     }
@@ -167,22 +167,24 @@ class Product extends Iso11783Element
       quantityDDI: quantityDDI,
       type: type != null
           ? $ProductTypeEnumMap.entries
-              .singleWhere(
-                (productTypeEnumMapEntry) =>
-                    productTypeEnumMapEntry.value == type,
-                orElse: () => throw ArgumentError(
-                  '''`$type` is not one of the supported values: ${$ProductTypeEnumMap.values.join(', ')}''',
-                ),
-              )
-              .key
+                .singleWhere(
+                  (productTypeEnumMapEntry) =>
+                      productTypeEnumMapEntry.value == type,
+                  orElse: () => throw ArgumentError(
+                    '''`$type` is not one of the supported values: ${$ProductTypeEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
           : null,
       mixtureRecipeQuantity: mixtureRecipeQuantity != null
           ? int.parse(mixtureRecipeQuantity)
           : null,
-      densityMassPerVolume:
-          densityMassPerVolume != null ? int.parse(densityMassPerVolume) : null,
-      densityMassPerCount:
-          densityMassPerCount != null ? int.parse(densityMassPerCount) : null,
+      densityMassPerVolume: densityMassPerVolume != null
+          ? int.parse(densityMassPerVolume)
+          : null,
+      densityMassPerCount: densityMassPerCount != null
+          ? int.parse(densityMassPerCount)
+          : null,
       densityVolumePerCount: densityVolumePerCount != null
           ? int.parse(densityVolumePerCount)
           : null,
@@ -255,23 +257,23 @@ class Product extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a in relations.map((e) => e.selfWithRecursiveChildren)) ...a,
-      ];
+    for (final a in relations.map((e) => e.selfWithRecursiveChildren)) ...a,
+  ];
 
   @override
   List<Object?> get props => [
-        relations,
-        id,
-        designator,
-        groupIdRef,
-        valuePresentationIdRef,
-        quantityDDI,
-        type,
-        mixtureRecipeQuantity,
-        densityMassPerVolume,
-        densityMassPerCount,
-        densityVolumePerCount,
-      ];
+    relations,
+    id,
+    designator,
+    groupIdRef,
+    valuePresentationIdRef,
+    quantityDDI,
+    type,
+    mixtureRecipeQuantity,
+    densityMassPerVolume,
+    densityMassPerCount,
+    densityVolumePerCount,
+  ];
 }
 
 /// An enumerator for whether a [Product] is singular or in a mixture.

@@ -36,9 +36,9 @@ class WorkerAllocation extends Iso11783Element
     required this.workerIdRef,
     this.allocationStamp,
   }) : super(
-          elementType: Iso11783ElementType.workerAllocation,
-          description: 'WorkerAllocation',
-        );
+         elementType: Iso11783ElementType.workerAllocation,
+         description: 'WorkerAllocation',
+       );
 
   /// Creates a [WorkerAllocation] from [element].
   factory WorkerAllocation.fromXmlElement(XmlElement element) =>
@@ -58,7 +58,7 @@ class WorkerAllocation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        allocationStamp,
-        workerIdRef,
-      ];
+    allocationStamp,
+    workerIdRef,
+  ];
 }

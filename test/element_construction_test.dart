@@ -16,8 +16,9 @@ void main() {
     test(
       'from XmlElement with empty name string',
       () => expect(
-        Iso11783Element.fromXmlElement(XmlElement(XmlName.fromString('')))
-            .runtimeType,
+        Iso11783Element.fromXmlElement(
+          XmlElement(XmlName.fromString('')),
+        ).runtimeType,
         EmptyIso11783Element,
       ),
     );

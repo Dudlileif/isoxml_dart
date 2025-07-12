@@ -70,9 +70,9 @@ class Polygon extends Iso11783Element
     this.colour,
     this.id,
   }) : super(
-          elementType: Iso11783ElementType.polygon,
-          description: 'Polygon',
-        ) {
+         elementType: Iso11783ElementType.polygon,
+         description: 'Polygon',
+       ) {
     this.lineStrings.addAll(lineStrings);
   }
 
@@ -118,21 +118,20 @@ class Polygon extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        lineStrings,
-        type,
-        designator,
-        area,
-        colour,
-        id,
-      ];
+    lineStrings,
+    type,
+    designator,
+    area,
+    colour,
+    id,
+  ];
 }
 
 /// An enumerator for which type a [Polygon] is.
@@ -184,8 +183,7 @@ enum PolygonType {
 
   /// Windbreak
   @annotation.XmlValue('12')
-  windbreak(12, 'Windbreak'),
-  ;
+  windbreak(12, 'Windbreak');
 
   const PolygonType(this.value, this.description);
 

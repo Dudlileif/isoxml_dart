@@ -22,8 +22,9 @@ class Iso11783DataDictionary {
         .split('Version: ')
         .last;
 
-    final indexOfFirstEntity =
-        lines.indexWhere((element) => element.startsWith('DD Entity: '));
+    final indexOfFirstEntity = lines.indexWhere(
+      (element) => element.startsWith('DD Entity: '),
+    );
 
     final entities = <Iso11783DataDictionaryEntity>[];
 

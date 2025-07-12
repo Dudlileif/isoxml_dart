@@ -202,37 +202,35 @@ class Device extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in elements.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in processData.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in properties.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a
-              in valuePresentations.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in elements.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in processData.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in properties.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in valuePresentations.map(
+        (e) => e.selfWithRecursiveChildren,
+      ))
+        ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        elements,
-        processData,
-        properties,
-        valuePresentations,
-        id,
-        designator,
-        softwareVersion,
-        clientNAME,
-        serialNumber,
-        structureLabel,
-        localizationLabel,
-      ];
+    elements,
+    processData,
+    properties,
+    valuePresentations,
+    id,
+    designator,
+    softwareVersion,
+    clientNAME,
+    serialNumber,
+    structureLabel,
+    localizationLabel,
+  ];
 }

@@ -40,21 +40,24 @@ class Iso11783DataDictionaryEntity {
   /// none
   /// ```
   factory Iso11783DataDictionaryEntity(List<String> rawStrings) {
-    final id =
-        int.parse(rawStrings.first.split('DD Entity: ').last.split(' ').first);
+    final id = int.parse(
+      rawStrings.first.split('DD Entity: ').last.split(' ').first,
+    );
 
     final name = rawStrings.first.split('DD Entity: $id ').last;
 
-    final commentIndex =
-        rawStrings.indexWhere((element) => element.startsWith('Comment: '));
+    final commentIndex = rawStrings.indexWhere(
+      (element) => element.startsWith('Comment: '),
+    );
 
     final definition = rawStrings
         .sublist(1, commentIndex)
         .join('\n')
         .replaceFirst('Definition: ', '');
 
-    final typicallyUsedLineIndex = rawStrings
-        .indexWhere((element) => element.startsWith('Typically used'));
+    final typicallyUsedLineIndex = rawStrings.indexWhere(
+      (element) => element.startsWith('Typically used'),
+    );
 
     String? comment;
     if (commentIndex > 0 && typicallyUsedLineIndex > commentIndex) {
@@ -67,8 +70,9 @@ class Iso11783DataDictionaryEntity {
       }
     }
 
-    final unitLineIndex =
-        rawStrings.indexWhere((element) => element.startsWith('Unit:'));
+    final unitLineIndex = rawStrings.indexWhere(
+      (element) => element.startsWith('Unit:'),
+    );
 
     final assignedDeviceClasses = <DeviceClass>[];
 
@@ -79,14 +83,21 @@ class Iso11783DataDictionaryEntity {
       }
     }
 
-    final unit =
-        rawStrings[unitLineIndex].split('Unit: ').last.split(' - ').first;
+    final unit = rawStrings[unitLineIndex]
+        .split('Unit: ')
+        .last
+        .split(' - ')
+        .first;
 
-    final unitDescription =
-        rawStrings[unitLineIndex].split('Unit: ').last.split(' - ').last;
+    final unitDescription = rawStrings[unitLineIndex]
+        .split('Unit: ')
+        .last
+        .split(' - ')
+        .last;
 
-    final resolutionIndex =
-        rawStrings.indexWhere((element) => element.startsWith('Resolution: '));
+    final resolutionIndex = rawStrings.indexWhere(
+      (element) => element.startsWith('Resolution: '),
+    );
 
     final bitResolution = double.parse(
       rawStrings[resolutionIndex]
@@ -95,8 +106,9 @@ class Iso11783DataDictionaryEntity {
           .replaceAll(',', '.'),
     );
 
-    final canBusIndex = rawStrings
-        .indexWhere((element) => element.startsWith('CANBus Range: '));
+    final canBusIndex = rawStrings.indexWhere(
+      (element) => element.startsWith('CANBus Range: '),
+    );
 
     final canBusRange = (
       min: int.tryParse(
@@ -170,9 +182,9 @@ class Iso11783DataDictionaryEntity {
 
   /// The range of allowed display numbers.
   ({num? min, num? max}) get displayRange => (
-        min: canBusRange.min != null ? canBusRange.min! * bitResolution : null,
-        max: canBusRange.max != null ? canBusRange.max! * bitResolution : null
-      );
+    min: canBusRange.min != null ? canBusRange.min! * bitResolution : null,
+    max: canBusRange.max != null ? canBusRange.max! * bitResolution : null,
+  );
 
   /// DDI value in hex format, useful for comparing DDIs in
   /// [Iso11783Element]s.
@@ -180,19 +192,19 @@ class Iso11783DataDictionaryEntity {
 
   @override
   String toString() => [
-        'Iso11783DataDictionaryEntity(',
-        [
-          'name: $name',
-          'id: $id',
-          'ddi: $ddi',
-          'definition: $definition',
-          if (comment != null) 'comment: $comment',
-          'unit: $unit',
-          'unitDescription: $unitDescription',
-          'assignedDeviceClasses: $assignedDeviceClasses',
-          'bitResolution: $bitResolution',
-          'canBusRange: ${canBusRange.min} - ${canBusRange.max}',
-        ].join(', '),
-        ')',
-      ].join('\n');
+    'Iso11783DataDictionaryEntity(',
+    [
+      'name: $name',
+      'id: $id',
+      'ddi: $ddi',
+      'definition: $definition',
+      if (comment != null) 'comment: $comment',
+      'unit: $unit',
+      'unitDescription: $unitDescription',
+      'assignedDeviceClasses: $assignedDeviceClasses',
+      'bitResolution: $bitResolution',
+      'canBusRange: ${canBusRange.min} - ${canBusRange.max}',
+    ].join(', '),
+    ')',
+  ].join('\n');
 }

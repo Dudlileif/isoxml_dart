@@ -40,5 +40,5 @@ enum VersionMinor {
 
   /// Version X.3
   @annotation.XmlValue('3')
-  three;
+  three,
 }

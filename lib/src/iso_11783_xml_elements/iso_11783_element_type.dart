@@ -252,8 +252,8 @@ enum Iso11783ElementType {
   /// Finds the [Iso11783ElementType] element which matches the [xmlTag] to
   /// this.
   static Iso11783ElementType fromXmlTag(String xmlTag) => values.firstWhere(
-        (element) => element.xmlTag == xmlTag,
-      );
+    (element) => element.xmlTag == xmlTag,
+  );
 
   /// Redirects to [xmlTag]. Gives the XML element name for the element type.
   String get name => xmlTag;

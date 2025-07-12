@@ -64,5 +64,5 @@ const $Iso11783ElementTypeEnumMap = {
   Iso11783ElementType.valuePresentation: 'VPN',
   Iso11783ElementType.worker: 'WKR',
   Iso11783ElementType.workerAllocation: 'WAN',
-  Iso11783ElementType.emptyElement: ''
+  Iso11783ElementType.emptyElement: '',
 };

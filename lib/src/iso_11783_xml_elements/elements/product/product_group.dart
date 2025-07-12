@@ -41,9 +41,9 @@ class ProductGroup extends Iso11783Element
     required this.designator,
     this.type,
   }) : super(
-          elementType: Iso11783ElementType.productGroup,
-          description: 'ProductGroup',
-        );
+         elementType: Iso11783ElementType.productGroup,
+         description: 'ProductGroup',
+       );
 
   /// Creates a [ProductGroup] from [element].
   factory ProductGroup.fromXmlElement(XmlElement element) =>
@@ -72,10 +72,10 @@ class ProductGroup extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-        type,
-      ];
+    id,
+    designator,
+    type,
+  ];
 }
 
 /// An enumerator for which type a [ProductGroup] is.

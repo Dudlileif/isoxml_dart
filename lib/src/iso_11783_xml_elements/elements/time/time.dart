@@ -126,26 +126,25 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in positions.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in dataLogValues.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in positions.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    ...[
+      for (final a in dataLogValues.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+  ];
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        positions,
-        dataLogValues,
-        start,
-        stop,
-        duration,
-        type,
-      ];
+    positions,
+    dataLogValues,
+    start,
+    stop,
+    duration,
+    type,
+  ];
 
   /// Returns a string for [props].
   @override
@@ -181,8 +180,7 @@ enum TimeType {
 
   /// Powered down
   @annotation.XmlValue('8')
-  poweredDown(7, 'Powered Down'),
-  ;
+  poweredDown(7, 'Powered Down');
 
   const TimeType(this.value, this.description);
 

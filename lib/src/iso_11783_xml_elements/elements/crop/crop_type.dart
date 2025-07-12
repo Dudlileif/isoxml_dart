@@ -49,9 +49,9 @@ class CropType extends Iso11783Element
     List<CropVariety>? varieties,
     this.productGroupIdRef,
   }) : super(
-          elementType: Iso11783ElementType.cropType,
-          description: 'CropType',
-        ) {
+         elementType: Iso11783ElementType.cropType,
+         description: 'CropType',
+       ) {
     if (varieties != null) {
       this.varieties.addAll(varieties);
     }
@@ -98,17 +98,16 @@ class CropType extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in varieties.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in varieties.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        varieties,
-        id,
-        designator,
-        productGroupIdRef,
-      ];
+    varieties,
+    id,
+    designator,
+    productGroupIdRef,
+  ];
 }

@@ -46,9 +46,9 @@ class CropVariety extends Iso11783Element
     required this.designator,
     this.productIdRef,
   }) : super(
-          elementType: Iso11783ElementType.cropVariety,
-          description: 'CropVariety',
-        );
+         elementType: Iso11783ElementType.cropVariety,
+         description: 'CropVariety',
+       );
 
   /// Creates a [CropVariety] from [element].
   factory CropVariety.fromXmlElement(XmlElement element) =>
@@ -77,8 +77,8 @@ class CropVariety extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-        productIdRef,
-      ];
+    id,
+    designator,
+    productIdRef,
+  ];
 }

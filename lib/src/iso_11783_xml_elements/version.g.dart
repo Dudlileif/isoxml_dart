@@ -12,5 +12,5 @@ const $VersionMinorEnumMap = {
   VersionMinor.zero: '0',
   VersionMinor.one: '1',
   VersionMinor.two: '2',
-  VersionMinor.three: '3'
+  VersionMinor.three: '3',
 };

@@ -34,10 +34,10 @@ class CodedCommentListValue extends Iso11783Element
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   const CodedCommentListValue._({required this.id, required this.designator})
-      : super(
-          elementType: Iso11783ElementType.codedCommentListValue,
-          description: 'CodedCommentListvalue',
-        );
+    : super(
+        elementType: Iso11783ElementType.codedCommentListValue,
+        description: 'CodedCommentListvalue',
+      );
 
   /// Creates a [CodedCommentListValue] from [element].
   factory CodedCommentListValue.fromXmlElement(XmlElement element) =>
@@ -63,7 +63,7 @@ class CodedCommentListValue extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-      ];
+    id,
+    designator,
+  ];
 }

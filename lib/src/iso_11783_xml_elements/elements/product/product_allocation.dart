@@ -85,9 +85,9 @@ class ProductAllocation extends Iso11783Element
     this.productSubTypeIdRef,
     this.allocationStamp,
   }) : super(
-          elementType: Iso11783ElementType.productAllocation,
-          description: 'ProductAllocation',
-        );
+         elementType: Iso11783ElementType.productAllocation,
+         description: 'ProductAllocation',
+       );
 
   /// Creates a [ProductAllocation] from [element].
   factory ProductAllocation.fromXmlElement(XmlElement element) =>
@@ -135,15 +135,15 @@ class ProductAllocation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        allocationStamp,
-        productIdRef,
-        quantityDDI,
-        quantityValue,
-        transferMode,
-        deviceElementIdRef,
-        valuePresentationIdRef,
-        productSubTypeIdRef,
-      ];
+    allocationStamp,
+    productIdRef,
+    quantityDDI,
+    quantityValue,
+    transferMode,
+    deviceElementIdRef,
+    valuePresentationIdRef,
+    productSubTypeIdRef,
+  ];
 }
 
 /// An enumerator for which kind of transfer the [ProductAllocation] is
@@ -160,8 +160,7 @@ enum TransferMode {
 
   /// Remainder
   @annotation.XmlValue('3')
-  remainder(3, 'Remainder'),
-  ;
+  remainder(3, 'Remainder');
 
   const TransferMode(this.value, this.description);
 

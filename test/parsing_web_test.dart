@@ -138,12 +138,12 @@ void main() {
             (
               codedComment.listValues.first.id,
               codedComment.listValues.elementAt(1).id,
-              codedComment.listValues.elementAt(2).id
+              codedComment.listValues.elementAt(2).id,
             ),
             (
               codedComment.listValues.first.designator,
               codedComment.listValues.elementAt(1).designator,
-              codedComment.listValues.elementAt(2).designator
+              codedComment.listValues.elementAt(2).designator,
             ),
           ),
           (
@@ -194,7 +194,7 @@ void main() {
               colourLegend.ranges.elementAt(1).colour,
               colourLegend.ranges.elementAt(2).colour,
               colourLegend.ranges.elementAt(3).colour,
-            )
+            ),
           ),
           (
             'CLD1',
@@ -219,11 +219,11 @@ void main() {
             (cropType.varieties.first.id, cropType.varieties.last.id),
             (
               cropType.varieties.first.designator,
-              cropType.varieties.last.designator
+              cropType.varieties.last.designator,
             ),
             (
               cropType.varieties.first.productIdRef,
-              cropType.varieties.last.productIdRef
+              cropType.varieties.last.productIdRef,
             ),
           ),
           (
@@ -232,7 +232,7 @@ void main() {
             'PGP1',
             ('CVT1', 'CVT2'),
             ('PopCorn', 'Golden Bantam'),
-            ('PDT1', 'PDT1')
+            ('PDT1', 'PDT1'),
           ),
         );
       },
@@ -247,7 +247,9 @@ void main() {
             culturalPractice.id,
             culturalPractice.designator,
             culturalPractice
-                .operationTechniqueReferences.first.operationTechniqueIdRef,
+                .operationTechniqueReferences
+                .first
+                .operationTechniqueIdRef,
           ),
           ('CPC1', 'Drilling', 'OTQ1'),
         );
@@ -306,7 +308,7 @@ void main() {
           'A00086000D300841',
           '123453',
           '00000330000000',
-          'FF000000006564'
+          'FF000000006564',
         ),
         (
           'DVC-2',
@@ -315,7 +317,7 @@ void main() {
           'A00086000F300842',
           '123455',
           '00000220000000',
-          'FF000000006564'
+          'FF000000006564',
         ),
       ];
 
@@ -389,9 +391,9 @@ void main() {
                     switch (index) {
                       1 => element.objectReferences.first.objectId,
                       _ => (
-                          element.objectReferences.first.objectId,
-                          element.objectReferences.last.objectId
-                        )
+                        element.objectReferences.first.objectId,
+                        element.objectReferences.last.objectId,
+                      ),
                     },
                     switch (index) {
                       0 => (10, 50),
@@ -571,7 +573,7 @@ void main() {
                 'FRM1',
                 'CTP1',
                 'CVT1',
-                [null, 'PFD1'][index]
+                [null, 'PFD1'][index],
               ),
             ),
           );
@@ -587,7 +589,7 @@ void main() {
                     fieldBorder.designator,
                     fieldBorder.area,
                     fieldBorder.colour,
-                    fieldBorder.id
+                    fieldBorder.id,
                   ),
                   (
                     PolygonType.partfieldBoundary,
@@ -609,7 +611,7 @@ void main() {
                     borderLineString.width,
                     borderLineString.length,
                     borderLineString.colour,
-                    borderLineString.id
+                    borderLineString.id,
                   ),
                   (
                     LineStringType.polygonExterior,
@@ -701,7 +703,7 @@ void main() {
                       outerLineString.width,
                       outerLineString.length,
                       outerLineString.colour,
-                      outerLineString.id
+                      outerLineString.id,
                     ),
                     (
                       LineStringType.samplingRoute,
@@ -817,7 +819,7 @@ void main() {
                         guidanceFieldBorder.designator,
                         guidanceFieldBorder.area,
                         guidanceFieldBorder.colour,
-                        guidanceFieldBorder.id
+                        guidanceFieldBorder.id,
                       ),
                       (
                         PolygonType.partfieldBoundary,
@@ -840,7 +842,7 @@ void main() {
                         guidanceBorderLineString.width,
                         guidanceBorderLineString.length,
                         guidanceBorderLineString.colour,
-                        guidanceBorderLineString.id
+                        guidanceBorderLineString.id,
                       ),
                       (
                         LineStringType.polygonExterior,
@@ -899,7 +901,7 @@ void main() {
                         guidanceOuterLineString.width,
                         guidanceOuterLineString.length,
                         guidanceOuterLineString.colour,
-                        guidanceOuterLineString.id
+                        guidanceOuterLineString.id,
                       ),
                       (
                         LineStringType.samplingRoute,
@@ -958,7 +960,7 @@ void main() {
                         guidanceGroupPolygon.designator,
                         guidanceGroupPolygon.area,
                         guidanceGroupPolygon.colour,
-                        guidanceGroupPolygon.id
+                        guidanceGroupPolygon.id,
                       ),
                       (
                         PolygonType.partfieldBoundary,
@@ -981,7 +983,7 @@ void main() {
                         guidanceGroupPolygonLineString.width,
                         guidanceGroupPolygonLineString.length,
                         guidanceGroupPolygonLineString.colour,
-                        guidanceGroupPolygonLineString.id
+                        guidanceGroupPolygonLineString.id,
                       ),
                       (
                         LineStringType.polygonExterior,
@@ -1108,7 +1110,7 @@ void main() {
         (
           'PGP1',
           'Zutaten für Schneckenkorn',
-          ProductGroupType.productGroupDefault
+          ProductGroupType.productGroupDefault,
         ),
       );
     });
@@ -1157,7 +1159,7 @@ void main() {
             (
               task.commentAllocations.first.codedCommentIdRef,
               task.commentAllocations.elementAt(1).codedCommentListValueIdRef,
-              task.commentAllocations.elementAt(2).freeCommentText
+              task.commentAllocations.elementAt(2).freeCommentText,
             ),
             ('CCT1', 'CCL1', 'Driver wrote this'),
           ),
@@ -1243,7 +1245,7 @@ void main() {
                     (
                       deviceAllocation.clientNAMEValue,
                       deviceAllocation.clientNAMEMask,
-                      deviceAllocation.deviceIdRef
+                      deviceAllocation.deviceIdRef,
                     ),
                     ('A00086000D300841', 'FFFFFFFFFFFFFFFF', 'DVC-1'),
                   ),
@@ -1543,7 +1545,7 @@ void main() {
                         dataLogValue.deviceElementIdRef,
                         dataLogValue.pgn,
                         dataLogValue.pgnStartBit,
-                        dataLogValue.pgnStopBit
+                        dataLogValue.pgnStopBit,
                       ),
                       (
                         ['00D4', 'DFFE'][dataLogValueIndex],
@@ -1662,7 +1664,7 @@ void main() {
           valuePresentation.scale,
           valuePresentation.numberOfDecimals,
           valuePresentation.unitDesignator,
-          valuePresentation.colourLegendIdRef
+          valuePresentation.colourLegendIdRef,
         ),
         ('VPN1', 0, 0.0001, 4, 'l/ha', 'CLD1'),
       );
@@ -1685,7 +1687,7 @@ void main() {
           worker.phone,
           worker.mobile,
           worker.licenseNumber,
-          worker.email
+          worker.email,
         ),
         (
           'WKR1',
@@ -1709,9 +1711,9 @@ void main() {
     'Export document to string, check if equal to input string',
     () => expect(
       taskData?.toSingleXmlDocument().toXmlString(
-            pretty: true,
-            indent: '    ',
-          ),
+        pretty: true,
+        indent: '    ',
+      ),
       docString,
     ),
   );

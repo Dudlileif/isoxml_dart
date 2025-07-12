@@ -31,9 +31,9 @@ class OperationTechniqueReference extends Iso11783Element
   const OperationTechniqueReference._({
     required this.operationTechniqueIdRef,
   }) : super(
-          elementType: Iso11783ElementType.operationTechniqueReference,
-          description: 'OperationTechniqueReference',
-        );
+         elementType: Iso11783ElementType.operationTechniqueReference,
+         description: 'OperationTechniqueReference',
+       );
 
   /// Creates a [OperationTechniqueReference] from [element].
   factory OperationTechniqueReference.fromXmlElement(XmlElement element) =>

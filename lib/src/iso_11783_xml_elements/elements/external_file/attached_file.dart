@@ -67,10 +67,10 @@ class AttachedFile extends Iso11783Element
     this.fileVersion,
     this.fileLength,
   }) : super(
-          elementType: Iso11783ElementType.attachedFile,
-          description: 'AttachedFile',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.attachedFile,
+         description: 'AttachedFile',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates an [AttachedFile] from [element].
   factory AttachedFile.fromXmlElement(XmlElement element) =>
@@ -109,13 +109,13 @@ class AttachedFile extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        filenameWithExtension,
-        preserve,
-        manufacturerGLN,
-        fileType,
-        fileVersion,
-        fileLength,
-      ];
+    filenameWithExtension,
+    preserve,
+    manufacturerGLN,
+    fileType,
+    fileVersion,
+    fileLength,
+  ];
 }
 
 /// An enumerator for whether the [AttachedFile] should be preserved when

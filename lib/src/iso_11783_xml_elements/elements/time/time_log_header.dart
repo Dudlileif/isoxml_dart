@@ -43,18 +43,19 @@ class TimeLogHeader {
       position: position != null
           ? TimeLogHeaderPosition.fromXmlElement(position)
           : null,
-      dataLogValues:
-          dataLogValues?.map(TimeLogHeaderDataLogValue.fromXmlElement).toList(),
+      dataLogValues: dataLogValues
+          ?.map(TimeLogHeaderDataLogValue.fromXmlElement)
+          .toList(),
       start: start != null && start.isNotEmpty ? DateTime.parse(start) : null,
       type: type != null && type.isNotEmpty
           ? $TimeTypeEnumMap.entries
-              .singleWhere(
-                (mapEntry) => mapEntry.value == type,
-                orElse: () => throw ArgumentError(
-                  '''`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}''',
-                ),
-              )
-              .key
+                .singleWhere(
+                  (mapEntry) => mapEntry.value == type,
+                  orElse: () => throw ArgumentError(
+                    '''`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
           : TimeType.effective,
     );
   }
@@ -145,25 +146,26 @@ class TimeLogHeader {
 
   /// Get the [XmlElement] representing this.
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) {
-    final element = XmlElement(
-      XmlName.fromString('TIM'),
-      [...namespaces.toXmlAttributes()],
-      [
-        if (position != null) position!.toXmlElement(),
-        ...dataLogValues.map((e) => e.toXmlElement()),
-      ],
-    )
-      ..setAttribute('A', start?.toString() ?? '')
-      ..setAttribute('D', type.value.toString());
+    final element =
+        XmlElement(
+            XmlName.fromString('TIM'),
+            [...namespaces.toXmlAttributes()],
+            [
+              if (position != null) position!.toXmlElement(),
+              ...dataLogValues.map((e) => e.toXmlElement()),
+            ],
+          )
+          ..setAttribute('A', start?.toString() ?? '')
+          ..setAttribute('D', type.value.toString());
 
     return element;
   }
 
   /// Get the [XmlDocument] representing this.
   XmlDocument toXmlDocument() => XmlDocument([
-        XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
-        toXmlElement(),
-      ]);
+    XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
+    toXmlElement(),
+  ]);
 }
 
 /// An element for use in [TimeLogHeader.position] that describes default
@@ -213,14 +215,14 @@ class TimeLogHeaderPosition {
       readUp: up?.isEmpty ?? false,
       status: status != null && status.isNotEmpty
           ? $PositionStatusEnumMap.entries
-              .singleWhere(
-                (positionStatusEnumMapEntry) =>
-                    positionStatusEnumMapEntry.value == status,
-                orElse: () => throw ArgumentError(
-                  '''`$status` is not one of the supported values: ${$PositionStatusEnumMap.values.join(', ')}''',
-                ),
-              )
-              .key
+                .singleWhere(
+                  (positionStatusEnumMapEntry) =>
+                      positionStatusEnumMapEntry.value == status,
+                  orElse: () => throw ArgumentError(
+                    '''`$status` is not one of the supported values: ${$PositionStatusEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
           : null,
       readStatus: status?.isEmpty ?? false,
       pdop: pdop != null && pdop.isNotEmpty ? double.parse(pdop) : null,
@@ -229,8 +231,8 @@ class TimeLogHeaderPosition {
       readHdop: hdop?.isEmpty ?? false,
       numberOfSatellites:
           numberOfSatellites != null && numberOfSatellites.isNotEmpty
-              ? int.parse(numberOfSatellites)
-              : null,
+          ? int.parse(numberOfSatellites)
+          : null,
       readNumberOfSatellites: numberOfSatellites?.isEmpty ?? false,
       gpsUtcTimeMs: gpsUtcTimeMs != null && gpsUtcTimeMs.isNotEmpty
           ? int.parse(gpsUtcTimeMs)

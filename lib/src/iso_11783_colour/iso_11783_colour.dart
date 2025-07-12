@@ -17,9 +17,9 @@ class Iso11783Colour {
   const Iso11783Colour({
     this.proprietaryColours = defaultProprietaryColours,
   }) : assert(
-          proprietaryColours.length == 24,
-          'proprietaryColours must have a length of 24.',
-        );
+         proprietaryColours.length == 24,
+         'proprietaryColours must have a length of 24.',
+       );
 
   /// The proprietary colours for the virtual termnial design, corresponds to
   /// indices 232-255.

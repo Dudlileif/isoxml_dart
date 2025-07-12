@@ -65,9 +65,9 @@ class DeviceAllocation extends Iso11783Element
     this.deviceIdRef,
     this.allocationStamp,
   }) : super(
-          elementType: Iso11783ElementType.deviceAllocation,
-          description: 'DeviceAllocation',
-        );
+         elementType: Iso11783ElementType.deviceAllocation,
+         description: 'DeviceAllocation',
+       );
 
   /// Creates a [DeviceAllocation] from [element].
   factory DeviceAllocation.fromXmlElement(XmlElement element) =>
@@ -101,9 +101,9 @@ class DeviceAllocation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        allocationStamp,
-        clientNAMEValue,
-        clientNAMEMask,
-        deviceIdRef,
-      ];
+    allocationStamp,
+    clientNAMEValue,
+    clientNAMEMask,
+    deviceIdRef,
+  ];
 }

@@ -33,9 +33,9 @@ class ExternalFileContents extends Iso11783Element
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
   }) : super(
-          elementType: Iso11783ElementType.externalFileContents,
-          description: 'ExternalFileContents',
-        ) {
+         elementType: Iso11783ElementType.externalFileContents,
+         description: 'ExternalFileContents',
+       ) {
     if (attachedFiles != null) {
       this.attachedFiles.addAll(attachedFiles);
     }
@@ -112,31 +112,36 @@ class ExternalFileContents extends Iso11783Element
       attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
       baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
       codedComments: codedComments?.map(CodedComment.fromXmlElement).toList(),
-      codedCommentGroups:
-          codedCommentGroups?.map(CodedCommentGroup.fromXmlElement).toList(),
+      codedCommentGroups: codedCommentGroups
+          ?.map(CodedCommentGroup.fromXmlElement)
+          .toList(),
       colourLegends: colourLegends?.map(ColourLegend.fromXmlElement).toList(),
       cropTypes: cropTypes?.map(CropType.fromXmlElement).toList(),
-      culturalPractices:
-          culturalPractices?.map(CulturalPractice.fromXmlElement).toList(),
+      culturalPractices: culturalPractices
+          ?.map(CulturalPractice.fromXmlElement)
+          .toList(),
       customers: customers?.map(Customer.fromXmlElement).toList(),
       devices: devices?.map(Device.fromXmlElement).toList(),
       farms: farms?.map(Farm.fromXmlElement).toList(),
-      operationTechniques:
-          operationTechniques?.map(OperationTechnique.fromXmlElement).toList(),
+      operationTechniques: operationTechniques
+          ?.map(OperationTechnique.fromXmlElement)
+          .toList(),
       partfields: partfields?.map(Partfield.fromXmlElement).toList(),
       products: products?.map(Product.fromXmlElement).toList(),
       productGroups: productGroups?.map(ProductGroup.fromXmlElement).toList(),
       tasks: tasks?.map(Task.fromXmlElement).toList(),
-      valuePresentations:
-          valuePresentations?.map(ValuePresentation.fromXmlElement).toList(),
+      valuePresentations: valuePresentations
+          ?.map(ValuePresentation.fromXmlElement)
+          .toList(),
       workers: workers?.map(Worker.fromXmlElement).toList(),
     );
   }
 
   /// Creates an [ExternalFileContents] from [document].
   static ExternalFileContents? fromXmlDocument(XmlDocument document) {
-    final element =
-        document.getElement(Iso11783ElementType.externalFileContents.xmlTag);
+    final element = document.getElement(
+      Iso11783ElementType.externalFileContents.xmlTag,
+    );
     if (element == null) {
       return null;
     }
@@ -221,53 +226,52 @@ class ExternalFileContents extends Iso11783Element
 
   /// Iterable with all the children elements of this.
   Iterable<Iso11783Element> get contents => [
-        for (final list in <List<Iso11783Element>>[
-          attachedFiles,
-          baseStations,
-          codedComments,
-          codedCommentGroups,
-          colourLegends,
-          cropTypes,
-          culturalPractices,
-          customers,
-          devices,
-          farms,
-          operationTechniques,
-          partfields,
-          products,
-          productGroups,
-          tasks,
-          valuePresentations,
-          workers,
-        ])
-          ...list,
-      ];
+    for (final list in <List<Iso11783Element>>[
+      attachedFiles,
+      baseStations,
+      codedComments,
+      codedCommentGroups,
+      colourLegends,
+      cropTypes,
+      culturalPractices,
+      customers,
+      devices,
+      farms,
+      operationTechniques,
+      partfields,
+      products,
+      productGroups,
+      tasks,
+      valuePresentations,
+      workers,
+    ])
+      ...list,
+  ];
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in contents.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in contents.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        baseStations,
-        codedComments,
-        codedCommentGroups,
-        colourLegends,
-        cropTypes,
-        culturalPractices,
-        customers,
-        devices,
-        farms,
-        operationTechniques,
-        partfields,
-        products,
-        productGroups,
-        tasks,
-        valuePresentations,
-        workers,
-      ];
+    baseStations,
+    codedComments,
+    codedCommentGroups,
+    colourLegends,
+    cropTypes,
+    culturalPractices,
+    customers,
+    devices,
+    farms,
+    operationTechniques,
+    partfields,
+    products,
+    productGroups,
+    tasks,
+    valuePresentations,
+    workers,
+  ];
 }

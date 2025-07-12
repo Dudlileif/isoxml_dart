@@ -103,9 +103,9 @@ class ProcessDataVariable extends Iso11783Element
     this.actualCulturalPracticeValue,
     this.elementTypeInstanceValue,
   }) : super(
-          elementType: Iso11783ElementType.processDataVariable,
-          description: 'ProcessDataVariable',
-        ) {
+         elementType: Iso11783ElementType.processDataVariable,
+         description: 'ProcessDataVariable',
+       ) {
     if (processDataVariables != null) {
       this.processDataVariables.addAll(processDataVariables);
     }
@@ -178,20 +178,21 @@ class ProcessDataVariable extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a
-            in processDataVariables.map((e) => e.selfWithRecursiveChildren))
-          ...a,
-      ];
+    for (final a in processDataVariables.map(
+      (e) => e.selfWithRecursiveChildren,
+    ))
+      ...a,
+  ];
 
   @override
   List<Object?> get props => [
-        processDataVariables,
-        ddi,
-        value,
-        productIdRef,
-        deviceElementIdRef,
-        valuePresentationIdRef,
-        actualCulturalPracticeValue,
-        elementTypeInstanceValue,
-      ];
+    processDataVariables,
+    ddi,
+    value,
+    productIdRef,
+    deviceElementIdRef,
+    valuePresentationIdRef,
+    actualCulturalPracticeValue,
+    elementTypeInstanceValue,
+  ];
 }

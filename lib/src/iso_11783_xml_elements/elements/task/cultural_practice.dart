@@ -45,9 +45,9 @@ class CulturalPractice extends Iso11783Element
     required this.designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
   }) : super(
-          elementType: Iso11783ElementType.culturalPractice,
-          description: 'CulturalPractice',
-        ) {
+         elementType: Iso11783ElementType.culturalPractice,
+         description: 'CulturalPractice',
+       ) {
     if (operationTechniqueReferences != null) {
       this.operationTechniqueReferences.addAll(operationTechniqueReferences);
     }
@@ -90,15 +90,16 @@ class CulturalPractice extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        for (final a in operationTechniqueReferences
-            .map((e) => e.selfWithRecursiveChildren))
-          ...a,
-      ];
+    for (final a in operationTechniqueReferences.map(
+      (e) => e.selfWithRecursiveChildren,
+    ))
+      ...a,
+  ];
 
   @override
   List<Object?> get props => [
-        operationTechniqueReferences,
-        id,
-        designator,
-      ];
+    operationTechniqueReferences,
+    id,
+    designator,
+  ];
 }

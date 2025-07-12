@@ -55,7 +55,6 @@ class _$AllocationStampCWProxyImpl implements _$AllocationStampCWProxy {
   AllocationStamp duration(int? duration) => this(duration: duration);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AllocationStamp(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -148,7 +147,6 @@ class _$BaseStationCWProxyImpl implements _$BaseStationCWProxy {
   BaseStation up(int up) => this(up: up);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseStation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -242,7 +240,6 @@ class _$CodedCommentCWProxyImpl implements _$CodedCommentCWProxy {
   CodedComment groupIdRef(String? groupIdRef) => this(groupIdRef: groupIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedComment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -318,7 +315,6 @@ class _$CodedCommentGroupCWProxyImpl implements _$CodedCommentGroupCWProxy {
       this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -381,7 +377,6 @@ class _$CodedCommentListValueCWProxyImpl
       this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentListValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -418,7 +413,8 @@ abstract class _$CommentAllocationCWProxy {
   CommentAllocation codedCommentIdRef(String? codedCommentIdRef);
 
   CommentAllocation codedCommentListValueIdRef(
-      String? codedCommentListValueIdRef);
+    String? codedCommentListValueIdRef,
+  );
 
   CommentAllocation freeCommentText(String? freeCommentText);
 
@@ -452,15 +448,14 @@ class _$CommentAllocationCWProxyImpl implements _$CommentAllocationCWProxy {
 
   @override
   CommentAllocation codedCommentListValueIdRef(
-          String? codedCommentListValueIdRef) =>
-      this(codedCommentListValueIdRef: codedCommentListValueIdRef);
+    String? codedCommentListValueIdRef,
+  ) => this(codedCommentListValueIdRef: codedCommentListValueIdRef);
 
   @override
   CommentAllocation freeCommentText(String? freeCommentText) =>
       this(freeCommentText: freeCommentText);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CommentAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -484,9 +479,9 @@ class _$CommentAllocationCWProxyImpl implements _$CommentAllocationCWProxy {
           : codedCommentIdRef as String?,
       codedCommentListValueIdRef:
           codedCommentListValueIdRef == const $CopyWithPlaceholder()
-              ? _value.codedCommentListValueIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : codedCommentListValueIdRef as String?,
+          ? _value.codedCommentListValueIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : codedCommentListValueIdRef as String?,
       freeCommentText: freeCommentText == const $CopyWithPlaceholder()
           ? _value.freeCommentText
           // ignore: cast_nullable_to_non_nullable
@@ -539,7 +534,6 @@ class _$ColourLegendCWProxyImpl implements _$ColourLegendCWProxy {
       this(defaultColour: defaultColour);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourLegend(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -612,7 +606,6 @@ class _$ColourRangeCWProxyImpl implements _$ColourRangeCWProxy {
   ColourRange colour(int colour) => this(colour: colour);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourRange(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -691,7 +684,6 @@ class _$CropTypeCWProxyImpl implements _$CropTypeCWProxy {
       this(productGroupIdRef: productGroupIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropType(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -768,7 +760,6 @@ class _$CropVarietyCWProxyImpl implements _$CropVarietyCWProxy {
       this(productIdRef: productIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropVariety(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -901,7 +892,6 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
   DataLogTrigger pgnStopBit(int? pgnStopBit) => this(pgnStopBit: pgnStopBit);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogTrigger(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -957,9 +947,9 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
           : deviceElementIdRef as String?,
       valuePresentationIdRef:
           valuePresentationIdRef == const $CopyWithPlaceholder()
-              ? _value.valuePresentationIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : valuePresentationIdRef as String?,
+          ? _value.valuePresentationIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : valuePresentationIdRef as String?,
       pgn: pgn == const $CopyWithPlaceholder()
           ? _value.pgn
           // ignore: cast_nullable_to_non_nullable
@@ -1039,7 +1029,6 @@ class _$DataLogValueCWProxyImpl implements _$DataLogValueCWProxy {
   DataLogValue pgnStopBit(int? pgnStopBit) => this(pgnStopBit: pgnStopBit);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1135,7 +1124,6 @@ class _$ConnectionCWProxyImpl implements _$ConnectionCWProxy {
       this(deviceElementIdRef_1: deviceElementIdRef_1);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Connection(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1181,7 +1169,8 @@ abstract class _$ControlAssignmentCWProxy {
   ControlAssignment userClientNAME(String userClientNAME);
 
   ControlAssignment sourceDeviceStructureLabel(
-      String sourceDeviceStructureLabel);
+    String sourceDeviceStructureLabel,
+  );
 
   ControlAssignment userDeviceStructureLabel(String userDeviceStructureLabel);
 
@@ -1227,8 +1216,8 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
 
   @override
   ControlAssignment sourceDeviceStructureLabel(
-          String sourceDeviceStructureLabel) =>
-      this(sourceDeviceStructureLabel: sourceDeviceStructureLabel);
+    String sourceDeviceStructureLabel,
+  ) => this(sourceDeviceStructureLabel: sourceDeviceStructureLabel);
 
   @override
   ControlAssignment userDeviceStructureLabel(String userDeviceStructureLabel) =>
@@ -1251,7 +1240,6 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ControlAssignment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1279,24 +1267,24 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
           : userClientNAME as String,
       sourceDeviceStructureLabel:
           sourceDeviceStructureLabel == const $CopyWithPlaceholder()
-              ? _value.sourceDeviceStructureLabel
-              // ignore: cast_nullable_to_non_nullable
-              : sourceDeviceStructureLabel as String,
+          ? _value.sourceDeviceStructureLabel
+          // ignore: cast_nullable_to_non_nullable
+          : sourceDeviceStructureLabel as String,
       userDeviceStructureLabel:
           userDeviceStructureLabel == const $CopyWithPlaceholder()
-              ? _value.userDeviceStructureLabel
-              // ignore: cast_nullable_to_non_nullable
-              : userDeviceStructureLabel as String,
+          ? _value.userDeviceStructureLabel
+          // ignore: cast_nullable_to_non_nullable
+          : userDeviceStructureLabel as String,
       sourceDeviceElementNumber:
           sourceDeviceElementNumber == const $CopyWithPlaceholder()
-              ? _value.sourceDeviceElementNumber
-              // ignore: cast_nullable_to_non_nullable
-              : sourceDeviceElementNumber as int,
+          ? _value.sourceDeviceElementNumber
+          // ignore: cast_nullable_to_non_nullable
+          : sourceDeviceElementNumber as int,
       userDeviceElementNumber:
           userDeviceElementNumber == const $CopyWithPlaceholder()
-              ? _value.userDeviceElementNumber
-              // ignore: cast_nullable_to_non_nullable
-              : userDeviceElementNumber as int,
+          ? _value.userDeviceElementNumber
+          // ignore: cast_nullable_to_non_nullable
+          : userDeviceElementNumber as int,
       processDataDDI: processDataDDI == const $CopyWithPlaceholder()
           ? _value.processDataDDI
           // ignore: cast_nullable_to_non_nullable
@@ -1393,8 +1381,8 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
 
   @override
   Device valuePresentations(
-          List<DeviceValuePresentation>? valuePresentations) =>
-      this(valuePresentations: valuePresentations);
+    List<DeviceValuePresentation>? valuePresentations,
+  ) => this(valuePresentations: valuePresentations);
 
   @override
   Device designator(String? designator) => this(designator: designator);
@@ -1407,7 +1395,6 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
   Device serialNumber(String? serialNumber) => this(serialNumber: serialNumber);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Device(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1528,7 +1515,6 @@ class _$DeviceAllocationCWProxyImpl implements _$DeviceAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1624,14 +1610,13 @@ class _$DeviceElementCWProxyImpl implements _$DeviceElementCWProxy {
 
   @override
   DeviceElement objectReferences(
-          List<DeviceObjectReference>? objectReferences) =>
-      this(objectReferences: objectReferences);
+    List<DeviceObjectReference>? objectReferences,
+  ) => this(objectReferences: objectReferences);
 
   @override
   DeviceElement designator(String? designator) => this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceElement(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1711,7 +1696,6 @@ class _$DeviceObjectReferenceCWProxyImpl
   DeviceObjectReference objectId(int objectId) => this(objectId: objectId);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceObjectReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1794,7 +1778,6 @@ class _$DeviceProcessDataCWProxyImpl implements _$DeviceProcessDataCWProxy {
       this(presentationObjectId: presentationObjectId);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProcessData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1894,7 +1877,6 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
       this(valuePresentationObjectId: valuePresentationObjectId);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProperty(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1927,9 +1909,9 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
           : designator as String?,
       valuePresentationObjectId:
           valuePresentationObjectId == const $CopyWithPlaceholder()
-              ? _value.valuePresentationObjectId
-              // ignore: cast_nullable_to_non_nullable
-              : valuePresentationObjectId as int?,
+          ? _value.valuePresentationObjectId
+          // ignore: cast_nullable_to_non_nullable
+          : valuePresentationObjectId as int?,
     );
   }
 }
@@ -1991,7 +1973,6 @@ class _$DeviceValuePresentationCWProxyImpl
       this(unitDesignator: unitDesignator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2094,7 +2075,6 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
   AttachedFile fileLength(int? fileLength) => this(fileLength: fileLength);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AttachedFile(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2112,9 +2092,9 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
     return AttachedFile(
       filenameWithExtension:
           filenameWithExtension == const $CopyWithPlaceholder()
-              ? _value.filenameWithExtension
-              // ignore: cast_nullable_to_non_nullable
-              : filenameWithExtension as String,
+          ? _value.filenameWithExtension
+          // ignore: cast_nullable_to_non_nullable
+          : filenameWithExtension as String,
       preserve: preserve == const $CopyWithPlaceholder()
           ? _value.preserve
           // ignore: cast_nullable_to_non_nullable
@@ -2153,14 +2133,16 @@ abstract class _$ExternalFileContentsCWProxy {
   ExternalFileContents codedComments(List<CodedComment>? codedComments);
 
   ExternalFileContents codedCommentGroups(
-      List<CodedCommentGroup>? codedCommentGroups);
+    List<CodedCommentGroup>? codedCommentGroups,
+  );
 
   ExternalFileContents colourLegends(List<ColourLegend>? colourLegends);
 
   ExternalFileContents cropTypes(List<CropType>? cropTypes);
 
   ExternalFileContents culturalPractices(
-      List<CulturalPractice>? culturalPractices);
+    List<CulturalPractice>? culturalPractices,
+  );
 
   ExternalFileContents customers(List<Customer>? customers);
 
@@ -2169,7 +2151,8 @@ abstract class _$ExternalFileContentsCWProxy {
   ExternalFileContents farms(List<Farm>? farms);
 
   ExternalFileContents operationTechniques(
-      List<OperationTechnique>? operationTechniques);
+    List<OperationTechnique>? operationTechniques,
+  );
 
   ExternalFileContents partfields(List<Partfield>? partfields);
 
@@ -2180,7 +2163,8 @@ abstract class _$ExternalFileContentsCWProxy {
   ExternalFileContents tasks(List<Task>? tasks);
 
   ExternalFileContents valuePresentations(
-      List<ValuePresentation>? valuePresentations);
+    List<ValuePresentation>? valuePresentations,
+  );
 
   ExternalFileContents workers(List<Worker>? workers);
 
@@ -2232,8 +2216,8 @@ class _$ExternalFileContentsCWProxyImpl
 
   @override
   ExternalFileContents codedCommentGroups(
-          List<CodedCommentGroup>? codedCommentGroups) =>
-      this(codedCommentGroups: codedCommentGroups);
+    List<CodedCommentGroup>? codedCommentGroups,
+  ) => this(codedCommentGroups: codedCommentGroups);
 
   @override
   ExternalFileContents colourLegends(List<ColourLegend>? colourLegends) =>
@@ -2245,8 +2229,8 @@ class _$ExternalFileContentsCWProxyImpl
 
   @override
   ExternalFileContents culturalPractices(
-          List<CulturalPractice>? culturalPractices) =>
-      this(culturalPractices: culturalPractices);
+    List<CulturalPractice>? culturalPractices,
+  ) => this(culturalPractices: culturalPractices);
 
   @override
   ExternalFileContents customers(List<Customer>? customers) =>
@@ -2260,8 +2244,8 @@ class _$ExternalFileContentsCWProxyImpl
 
   @override
   ExternalFileContents operationTechniques(
-          List<OperationTechnique>? operationTechniques) =>
-      this(operationTechniques: operationTechniques);
+    List<OperationTechnique>? operationTechniques,
+  ) => this(operationTechniques: operationTechniques);
 
   @override
   ExternalFileContents partfields(List<Partfield>? partfields) =>
@@ -2280,14 +2264,13 @@ class _$ExternalFileContentsCWProxyImpl
 
   @override
   ExternalFileContents valuePresentations(
-          List<ValuePresentation>? valuePresentations) =>
-      this(valuePresentations: valuePresentations);
+    List<ValuePresentation>? valuePresentations,
+  ) => this(valuePresentations: valuePresentations);
 
   @override
   ExternalFileContents workers(List<Worker>? workers) => this(workers: workers);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileContents(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2425,7 +2408,6 @@ class _$ExternalFileReferenceCWProxyImpl
       this(filetype: filetype);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2565,7 +2547,6 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
       this(processDataValueGrid: processDataValueGrid);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Grid(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2635,14 +2616,14 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
           : treatmentZoneCode as int?,
       treatmentZoneCodeGrid:
           treatmentZoneCodeGrid == const $CopyWithPlaceholder()
-              ? _value.treatmentZoneCodeGrid
-              // ignore: cast_nullable_to_non_nullable
-              : treatmentZoneCodeGrid as List<List<int>>?,
+          ? _value.treatmentZoneCodeGrid
+          // ignore: cast_nullable_to_non_nullable
+          : treatmentZoneCodeGrid as List<List<int>>?,
       numberOfProcessDataVariables:
           numberOfProcessDataVariables == const $CopyWithPlaceholder()
-              ? _value.numberOfProcessDataVariables
-              // ignore: cast_nullable_to_non_nullable
-              : numberOfProcessDataVariables as int?,
+          ? _value.numberOfProcessDataVariables
+          // ignore: cast_nullable_to_non_nullable
+          : numberOfProcessDataVariables as int?,
       processDataValueGrid: processDataValueGrid == const $CopyWithPlaceholder()
           ? _value.processDataValueGrid
           // ignore: cast_nullable_to_non_nullable
@@ -2717,7 +2698,6 @@ class _$LineStringCWProxyImpl implements _$LineStringCWProxy {
   LineString id(String? id) => this(id: id);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LineString(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2873,7 +2853,6 @@ class _$PartfieldCWProxyImpl implements _$PartfieldCWProxy {
   Partfield fieldIdRef(String? fieldIdRef) => this(fieldIdRef: fieldIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Partfield(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3064,7 +3043,6 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
       this(binaryPoints: binaryPoints);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Point(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3209,7 +3187,6 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
   Polygon id(String? id) => this(id: id);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Polygon(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3332,7 +3309,6 @@ class _$PositionCWProxyImpl implements _$PositionCWProxy {
   Position gpsUtcDate(int? gpsUtcDate) => this(gpsUtcDate: gpsUtcDate);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Position(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3436,7 +3412,6 @@ class _$GuidanceAllocationCWProxyImpl implements _$GuidanceAllocationCWProxy {
       this(shifts: shifts);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3516,7 +3491,6 @@ class _$GuidanceGroupCWProxyImpl implements _$GuidanceGroupCWProxy {
   GuidanceGroup designator(String? designator) => this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3570,7 +3544,8 @@ abstract class _$GuidancePatternCWProxy {
   GuidancePattern options(GuidancePatternOptions? options);
 
   GuidancePattern propagationDirection(
-      GuidancePatternPropagationDirection? propagationDirection);
+    GuidancePatternPropagationDirection? propagationDirection,
+  );
 
   GuidancePattern extension(GuidancePatternExtension? extension);
 
@@ -3649,8 +3624,8 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
 
   @override
   GuidancePattern propagationDirection(
-          GuidancePatternPropagationDirection? propagationDirection) =>
-      this(propagationDirection: propagationDirection);
+    GuidancePatternPropagationDirection? propagationDirection,
+  ) => this(propagationDirection: propagationDirection);
 
   @override
   GuidancePattern extension(GuidancePatternExtension? extension) =>
@@ -3691,7 +3666,6 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
       this(numberOfSwathsRight: numberOfSwathsRight);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidancePattern(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3853,7 +3827,6 @@ class _$GuidanceShiftCWProxyImpl implements _$GuidanceShiftCWProxy {
       this(propagationOffset: propagationOffset);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceShift(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3909,7 +3882,8 @@ abstract class _$Iso11783LinkListCWProxy {
   Iso11783LinkList versionMinor(VersionMinor versionMinor);
 
   Iso11783LinkList managementSoftwareManufacturer(
-      String managementSoftwareManufacturer);
+    String managementSoftwareManufacturer,
+  );
 
   Iso11783LinkList managementSoftwareVersion(String managementSoftwareVersion);
 
@@ -3918,7 +3892,8 @@ abstract class _$Iso11783LinkListCWProxy {
   Iso11783LinkList linkGroups(List<LinkGroup>? linkGroups);
 
   Iso11783LinkList taskControllerManufacturer(
-      String? taskControllerManufacturer);
+    String? taskControllerManufacturer,
+  );
 
   Iso11783LinkList taskControllerVersion(String? taskControllerVersion);
 
@@ -3959,13 +3934,13 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
 
   @override
   Iso11783LinkList managementSoftwareManufacturer(
-          String managementSoftwareManufacturer) =>
-      this(managementSoftwareManufacturer: managementSoftwareManufacturer);
+    String managementSoftwareManufacturer,
+  ) => this(managementSoftwareManufacturer: managementSoftwareManufacturer);
 
   @override
   Iso11783LinkList managementSoftwareVersion(
-          String managementSoftwareVersion) =>
-      this(managementSoftwareVersion: managementSoftwareVersion);
+    String managementSoftwareVersion,
+  ) => this(managementSoftwareVersion: managementSoftwareVersion);
 
   @override
   Iso11783LinkList dataTransferOrigin(DataTransferOrigin dataTransferOrigin) =>
@@ -3977,8 +3952,8 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
 
   @override
   Iso11783LinkList taskControllerManufacturer(
-          String? taskControllerManufacturer) =>
-      this(taskControllerManufacturer: taskControllerManufacturer);
+    String? taskControllerManufacturer,
+  ) => this(taskControllerManufacturer: taskControllerManufacturer);
 
   @override
   Iso11783LinkList taskControllerVersion(String? taskControllerVersion) =>
@@ -3989,7 +3964,6 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
       this(fileVersion: fileVersion);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783LinkList(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4018,14 +3992,14 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
           : versionMinor as VersionMinor,
       managementSoftwareManufacturer:
           managementSoftwareManufacturer == const $CopyWithPlaceholder()
-              ? _value.managementSoftwareManufacturer
-              // ignore: cast_nullable_to_non_nullable
-              : managementSoftwareManufacturer as String,
+          ? _value.managementSoftwareManufacturer
+          // ignore: cast_nullable_to_non_nullable
+          : managementSoftwareManufacturer as String,
       managementSoftwareVersion:
           managementSoftwareVersion == const $CopyWithPlaceholder()
-              ? _value.managementSoftwareVersion
-              // ignore: cast_nullable_to_non_nullable
-              : managementSoftwareVersion as String,
+          ? _value.managementSoftwareVersion
+          // ignore: cast_nullable_to_non_nullable
+          : managementSoftwareVersion as String,
       dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder()
           ? _value.dataTransferOrigin
           // ignore: cast_nullable_to_non_nullable
@@ -4036,14 +4010,14 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
           : linkGroups as List<LinkGroup>?,
       taskControllerManufacturer:
           taskControllerManufacturer == const $CopyWithPlaceholder()
-              ? _value.taskControllerManufacturer
-              // ignore: cast_nullable_to_non_nullable
-              : taskControllerManufacturer as String?,
+          ? _value.taskControllerManufacturer
+          // ignore: cast_nullable_to_non_nullable
+          : taskControllerManufacturer as String?,
       taskControllerVersion:
           taskControllerVersion == const $CopyWithPlaceholder()
-              ? _value.taskControllerVersion
-              // ignore: cast_nullable_to_non_nullable
-              : taskControllerVersion as String?,
+          ? _value.taskControllerVersion
+          // ignore: cast_nullable_to_non_nullable
+          : taskControllerVersion as String?,
       fileVersion: fileVersion == const $CopyWithPlaceholder()
           ? _value.fileVersion
           // ignore: cast_nullable_to_non_nullable
@@ -4094,7 +4068,6 @@ class _$LinkCWProxyImpl implements _$LinkCWProxy {
   Link designator(String? designator) => this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Link(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4184,7 +4157,6 @@ class _$LinkGroupCWProxyImpl implements _$LinkGroupCWProxy {
   LinkGroup designator(String? designator) => this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LinkGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4265,7 +4237,6 @@ class _$OperationTechniqueCWProxyImpl implements _$OperationTechniqueCWProxy {
       this(designator: designator);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechnique(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4298,10 +4269,12 @@ extension $OperationTechniqueCopyWith on OperationTechnique {
 
 abstract class _$OperationTechniquePracticeCWProxy {
   OperationTechniquePractice culturalPracticeIdRef(
-      String culturalPracticeIdRef);
+    String culturalPracticeIdRef,
+  );
 
   OperationTechniquePractice operationTechniqueIdRef(
-      String? operationTechniqueIdRef);
+    String? operationTechniqueIdRef,
+  );
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniquePractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -4324,16 +4297,15 @@ class _$OperationTechniquePracticeCWProxyImpl
 
   @override
   OperationTechniquePractice culturalPracticeIdRef(
-          String culturalPracticeIdRef) =>
-      this(culturalPracticeIdRef: culturalPracticeIdRef);
+    String culturalPracticeIdRef,
+  ) => this(culturalPracticeIdRef: culturalPracticeIdRef);
 
   @override
   OperationTechniquePractice operationTechniqueIdRef(
-          String? operationTechniqueIdRef) =>
-      this(operationTechniqueIdRef: operationTechniqueIdRef);
+    String? operationTechniqueIdRef,
+  ) => this(operationTechniqueIdRef: operationTechniqueIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniquePractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4347,14 +4319,14 @@ class _$OperationTechniquePracticeCWProxyImpl
     return OperationTechniquePractice(
       culturalPracticeIdRef:
           culturalPracticeIdRef == const $CopyWithPlaceholder()
-              ? _value.culturalPracticeIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : culturalPracticeIdRef as String,
+          ? _value.culturalPracticeIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : culturalPracticeIdRef as String,
       operationTechniqueIdRef:
           operationTechniqueIdRef == const $CopyWithPlaceholder()
-              ? _value.operationTechniqueIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : operationTechniqueIdRef as String?,
+          ? _value.operationTechniqueIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : operationTechniqueIdRef as String?,
     );
   }
 }
@@ -4368,7 +4340,8 @@ extension $OperationTechniquePracticeCopyWith on OperationTechniquePractice {
 
 abstract class _$OperationTechniqueReferenceCWProxy {
   OperationTechniqueReference operationTechniqueIdRef(
-      String operationTechniqueIdRef);
+    String operationTechniqueIdRef,
+  );
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniqueReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -4390,11 +4363,10 @@ class _$OperationTechniqueReferenceCWProxyImpl
 
   @override
   OperationTechniqueReference operationTechniqueIdRef(
-          String operationTechniqueIdRef) =>
-      this(operationTechniqueIdRef: operationTechniqueIdRef);
+    String operationTechniqueIdRef,
+  ) => this(operationTechniqueIdRef: operationTechniqueIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniqueReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4407,9 +4379,9 @@ class _$OperationTechniqueReferenceCWProxyImpl
     return OperationTechniqueReference(
       operationTechniqueIdRef:
           operationTechniqueIdRef == const $CopyWithPlaceholder()
-              ? _value.operationTechniqueIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : operationTechniqueIdRef as String,
+          ? _value.operationTechniqueIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : operationTechniqueIdRef as String,
     );
   }
 }
@@ -4511,7 +4483,6 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       this(densityVolumePerCount: densityVolumePerCount);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Product(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4550,9 +4521,9 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           : groupIdRef as String?,
       valuePresentationIdRef:
           valuePresentationIdRef == const $CopyWithPlaceholder()
-              ? _value.valuePresentationIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : valuePresentationIdRef as String?,
+          ? _value.valuePresentationIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : valuePresentationIdRef as String?,
       quantityDDI: quantityDDI == const $CopyWithPlaceholder()
           ? _value.quantityDDI
           // ignore: cast_nullable_to_non_nullable
@@ -4563,9 +4534,9 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           : type as ProductType?,
       mixtureRecipeQuantity:
           mixtureRecipeQuantity == const $CopyWithPlaceholder()
-              ? _value.mixtureRecipeQuantity
-              // ignore: cast_nullable_to_non_nullable
-              : mixtureRecipeQuantity as int?,
+          ? _value.mixtureRecipeQuantity
+          // ignore: cast_nullable_to_non_nullable
+          : mixtureRecipeQuantity as int?,
       densityMassPerVolume: densityMassPerVolume == const $CopyWithPlaceholder()
           ? _value.densityMassPerVolume
           // ignore: cast_nullable_to_non_nullable
@@ -4576,9 +4547,9 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           : densityMassPerCount as int?,
       densityVolumePerCount:
           densityVolumePerCount == const $CopyWithPlaceholder()
-              ? _value.densityVolumePerCount
-              // ignore: cast_nullable_to_non_nullable
-              : densityVolumePerCount as int?,
+          ? _value.densityVolumePerCount
+          // ignore: cast_nullable_to_non_nullable
+          : densityVolumePerCount as int?,
     );
   }
 }
@@ -4663,7 +4634,6 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4703,9 +4673,9 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
           : deviceElementIdRef as String?,
       valuePresentationIdRef:
           valuePresentationIdRef == const $CopyWithPlaceholder()
-              ? _value.valuePresentationIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : valuePresentationIdRef as String?,
+          ? _value.valuePresentationIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : valuePresentationIdRef as String?,
       productSubTypeIdRef: productSubTypeIdRef == const $CopyWithPlaceholder()
           ? _value.productSubTypeIdRef
           // ignore: cast_nullable_to_non_nullable
@@ -4761,7 +4731,6 @@ class _$ProductGroupCWProxyImpl implements _$ProductGroupCWProxy {
   ProductGroup type(ProductGroupType? type) => this(type: type);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4828,7 +4797,6 @@ class _$ProductRelationCWProxyImpl implements _$ProductRelationCWProxy {
       this(quantityValue: quantityValue);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductRelation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4954,7 +4922,6 @@ class _$CustomerCWProxyImpl implements _$CustomerCWProxy {
   Customer email(String? email) => this(email: email);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Customer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5112,7 +5079,6 @@ class _$FarmCWProxyImpl implements _$FarmCWProxy {
       this(customerIdRef: customerIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Farm(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5274,7 +5240,6 @@ class _$WorkerCWProxyImpl implements _$WorkerCWProxy {
   Worker email(String? email) => this(email: email);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Worker(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5365,7 +5330,8 @@ abstract class _$CulturalPracticeCWProxy {
   CulturalPractice designator(String designator);
 
   CulturalPractice operationTechniqueReferences(
-      List<OperationTechniqueReference>? operationTechniqueReferences);
+    List<OperationTechniqueReference>? operationTechniqueReferences,
+  );
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CulturalPractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -5395,11 +5361,10 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
 
   @override
   CulturalPractice operationTechniqueReferences(
-          List<OperationTechniqueReference>? operationTechniqueReferences) =>
-      this(operationTechniqueReferences: operationTechniqueReferences);
+    List<OperationTechniqueReference>? operationTechniqueReferences,
+  ) => this(operationTechniqueReferences: operationTechniqueReferences);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CulturalPractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5420,8 +5385,8 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String,
-      operationTechniqueReferences: operationTechniqueReferences ==
-              const $CopyWithPlaceholder()
+      operationTechniqueReferences:
+          operationTechniqueReferences == const $CopyWithPlaceholder()
           ? _value.operationTechniqueReferences
           // ignore: cast_nullable_to_non_nullable
           : operationTechniqueReferences as List<OperationTechniqueReference>?,
@@ -5445,7 +5410,8 @@ abstract class _$TaskCWProxy {
   Task times(List<Time>? times);
 
   Task operationTechniquePractice(
-      OperationTechniquePractice? operationTechniquePractice);
+    OperationTechniquePractice? operationTechniquePractice,
+  );
 
   Task workerAllocations(List<WorkerAllocation>? workerAllocations);
 
@@ -5537,8 +5503,8 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
 
   @override
   Task operationTechniquePractice(
-          OperationTechniquePractice? operationTechniquePractice) =>
-      this(operationTechniquePractice: operationTechniquePractice);
+    OperationTechniquePractice? operationTechniquePractice,
+  ) => this(operationTechniquePractice: operationTechniquePractice);
 
   @override
   Task workerAllocations(List<WorkerAllocation>? workerAllocations) =>
@@ -5609,7 +5575,6 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
       this(outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Task(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5660,9 +5625,9 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
           : times as List<Time>?,
       operationTechniquePractice:
           operationTechniquePractice == const $CopyWithPlaceholder()
-              ? _value.operationTechniquePractice
-              // ignore: cast_nullable_to_non_nullable
-              : operationTechniquePractice as OperationTechniquePractice?,
+          ? _value.operationTechniquePractice
+          // ignore: cast_nullable_to_non_nullable
+          : operationTechniquePractice as OperationTechniquePractice?,
       workerAllocations: workerAllocations == const $CopyWithPlaceholder()
           ? _value.workerAllocations
           // ignore: cast_nullable_to_non_nullable
@@ -5721,24 +5686,24 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
           : partfieldIdRef as String?,
       responsibleWorkerIdRef:
           responsibleWorkerIdRef == const $CopyWithPlaceholder()
-              ? _value.responsibleWorkerIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : responsibleWorkerIdRef as String?,
+          ? _value.responsibleWorkerIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : responsibleWorkerIdRef as String?,
       defaultTreatmentZoneCode:
           defaultTreatmentZoneCode == const $CopyWithPlaceholder()
-              ? _value.defaultTreatmentZoneCode
-              // ignore: cast_nullable_to_non_nullable
-              : defaultTreatmentZoneCode as int?,
+          ? _value.defaultTreatmentZoneCode
+          // ignore: cast_nullable_to_non_nullable
+          : defaultTreatmentZoneCode as int?,
       positionLostTreatmentZoneCode:
           positionLostTreatmentZoneCode == const $CopyWithPlaceholder()
-              ? _value.positionLostTreatmentZoneCode
-              // ignore: cast_nullable_to_non_nullable
-              : positionLostTreatmentZoneCode as int?,
+          ? _value.positionLostTreatmentZoneCode
+          // ignore: cast_nullable_to_non_nullable
+          : positionLostTreatmentZoneCode as int?,
       outOfFieldTreatmentZoneCode:
           outOfFieldTreatmentZoneCode == const $CopyWithPlaceholder()
-              ? _value.outOfFieldTreatmentZoneCode
-              // ignore: cast_nullable_to_non_nullable
-              : outOfFieldTreatmentZoneCode as int?,
+          ? _value.outOfFieldTreatmentZoneCode
+          // ignore: cast_nullable_to_non_nullable
+          : outOfFieldTreatmentZoneCode as int?,
     );
   }
 }
@@ -5759,13 +5724,16 @@ abstract class _$TaskControllerCapabilitiesCWProxy {
   TaskControllerCapabilities providedCapabilities(int providedCapabilities);
 
   TaskControllerCapabilities numberOfBoomsSectionControl(
-      int numberOfBoomsSectionControl);
+    int numberOfBoomsSectionControl,
+  );
 
   TaskControllerCapabilities numberOfSectionsSectionControl(
-      int numberOfSectionsSectionControl);
+    int numberOfSectionsSectionControl,
+  );
 
   TaskControllerCapabilities numberOfControlChannels(
-      int numberOfControlChannels);
+    int numberOfControlChannels,
+  );
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TaskControllerCapabilities(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -5809,21 +5777,20 @@ class _$TaskControllerCapabilitiesCWProxyImpl
 
   @override
   TaskControllerCapabilities numberOfBoomsSectionControl(
-          int numberOfBoomsSectionControl) =>
-      this(numberOfBoomsSectionControl: numberOfBoomsSectionControl);
+    int numberOfBoomsSectionControl,
+  ) => this(numberOfBoomsSectionControl: numberOfBoomsSectionControl);
 
   @override
   TaskControllerCapabilities numberOfSectionsSectionControl(
-          int numberOfSectionsSectionControl) =>
-      this(numberOfSectionsSectionControl: numberOfSectionsSectionControl);
+    int numberOfSectionsSectionControl,
+  ) => this(numberOfSectionsSectionControl: numberOfSectionsSectionControl);
 
   @override
   TaskControllerCapabilities numberOfControlChannels(
-          int numberOfControlChannels) =>
-      this(numberOfControlChannels: numberOfControlChannels);
+    int numberOfControlChannels,
+  ) => this(numberOfControlChannels: numberOfControlChannels);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TaskControllerCapabilities(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5858,19 +5825,19 @@ class _$TaskControllerCapabilitiesCWProxyImpl
           : providedCapabilities as int,
       numberOfBoomsSectionControl:
           numberOfBoomsSectionControl == const $CopyWithPlaceholder()
-              ? _value.numberOfBoomsSectionControl
-              // ignore: cast_nullable_to_non_nullable
-              : numberOfBoomsSectionControl as int,
+          ? _value.numberOfBoomsSectionControl
+          // ignore: cast_nullable_to_non_nullable
+          : numberOfBoomsSectionControl as int,
       numberOfSectionsSectionControl:
           numberOfSectionsSectionControl == const $CopyWithPlaceholder()
-              ? _value.numberOfSectionsSectionControl
-              // ignore: cast_nullable_to_non_nullable
-              : numberOfSectionsSectionControl as int,
+          ? _value.numberOfSectionsSectionControl
+          // ignore: cast_nullable_to_non_nullable
+          : numberOfSectionsSectionControl as int,
       numberOfControlChannels:
           numberOfControlChannels == const $CopyWithPlaceholder()
-              ? _value.numberOfControlChannels
-              // ignore: cast_nullable_to_non_nullable
-              : numberOfControlChannels as int,
+          ? _value.numberOfControlChannels
+          // ignore: cast_nullable_to_non_nullable
+          : numberOfControlChannels as int,
     );
   }
 }
@@ -5888,7 +5855,8 @@ abstract class _$Iso11783TaskDataCWProxy {
   Iso11783TaskData versionMinor(VersionMinor versionMinor);
 
   Iso11783TaskData managementSoftwareManufacturer(
-      String managementSoftwareManufacturer);
+    String managementSoftwareManufacturer,
+  );
 
   Iso11783TaskData managementSoftwareVersion(String managementSoftwareVersion);
 
@@ -5901,7 +5869,8 @@ abstract class _$Iso11783TaskDataCWProxy {
   Iso11783TaskData codedComments(List<CodedComment>? codedComments);
 
   Iso11783TaskData codedCommentGroups(
-      List<CodedCommentGroup>? codedCommentGroups);
+    List<CodedCommentGroup>? codedCommentGroups,
+  );
 
   Iso11783TaskData colourLegends(List<ColourLegend>? colourLegends);
 
@@ -5916,7 +5885,8 @@ abstract class _$Iso11783TaskDataCWProxy {
   Iso11783TaskData farms(List<Farm>? farms);
 
   Iso11783TaskData operationTechniques(
-      List<OperationTechnique>? operationTechniques);
+    List<OperationTechnique>? operationTechniques,
+  );
 
   Iso11783TaskData partfields(List<Partfield>? partfields);
 
@@ -5927,20 +5897,24 @@ abstract class _$Iso11783TaskDataCWProxy {
   Iso11783TaskData tasks(List<Task>? tasks);
 
   Iso11783TaskData taskControllerCapabilities(
-      List<TaskControllerCapabilities>? taskControllerCapabilities);
+    List<TaskControllerCapabilities>? taskControllerCapabilities,
+  );
 
   Iso11783TaskData valuePresentations(
-      List<ValuePresentation>? valuePresentations);
+    List<ValuePresentation>? valuePresentations,
+  );
 
   Iso11783TaskData workers(List<Worker>? workers);
 
   Iso11783TaskData externalFileReferences(
-      List<ExternalFileReference>? externalFileReferences);
+    List<ExternalFileReference>? externalFileReferences,
+  );
 
   Iso11783TaskData linkList(Iso11783LinkList? linkList);
 
   Iso11783TaskData taskControllerManufacturer(
-      String? taskControllerManufacturer);
+    String? taskControllerManufacturer,
+  );
 
   Iso11783TaskData taskControllerVersion(String? taskControllerVersion);
 
@@ -6000,13 +5974,13 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData managementSoftwareManufacturer(
-          String managementSoftwareManufacturer) =>
-      this(managementSoftwareManufacturer: managementSoftwareManufacturer);
+    String managementSoftwareManufacturer,
+  ) => this(managementSoftwareManufacturer: managementSoftwareManufacturer);
 
   @override
   Iso11783TaskData managementSoftwareVersion(
-          String managementSoftwareVersion) =>
-      this(managementSoftwareVersion: managementSoftwareVersion);
+    String managementSoftwareVersion,
+  ) => this(managementSoftwareVersion: managementSoftwareVersion);
 
   @override
   Iso11783TaskData dataTransferOrigin(DataTransferOrigin dataTransferOrigin) =>
@@ -6026,8 +6000,8 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData codedCommentGroups(
-          List<CodedCommentGroup>? codedCommentGroups) =>
-      this(codedCommentGroups: codedCommentGroups);
+    List<CodedCommentGroup>? codedCommentGroups,
+  ) => this(codedCommentGroups: codedCommentGroups);
 
   @override
   Iso11783TaskData colourLegends(List<ColourLegend>? colourLegends) =>
@@ -6039,8 +6013,8 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData culturalPractices(
-          List<CulturalPractice>? culturalPractices) =>
-      this(culturalPractices: culturalPractices);
+    List<CulturalPractice>? culturalPractices,
+  ) => this(culturalPractices: culturalPractices);
 
   @override
   Iso11783TaskData customers(List<Customer>? customers) =>
@@ -6054,8 +6028,8 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData operationTechniques(
-          List<OperationTechnique>? operationTechniques) =>
-      this(operationTechniques: operationTechniques);
+    List<OperationTechnique>? operationTechniques,
+  ) => this(operationTechniques: operationTechniques);
 
   @override
   Iso11783TaskData partfields(List<Partfield>? partfields) =>
@@ -6074,21 +6048,21 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData taskControllerCapabilities(
-          List<TaskControllerCapabilities>? taskControllerCapabilities) =>
-      this(taskControllerCapabilities: taskControllerCapabilities);
+    List<TaskControllerCapabilities>? taskControllerCapabilities,
+  ) => this(taskControllerCapabilities: taskControllerCapabilities);
 
   @override
   Iso11783TaskData valuePresentations(
-          List<ValuePresentation>? valuePresentations) =>
-      this(valuePresentations: valuePresentations);
+    List<ValuePresentation>? valuePresentations,
+  ) => this(valuePresentations: valuePresentations);
 
   @override
   Iso11783TaskData workers(List<Worker>? workers) => this(workers: workers);
 
   @override
   Iso11783TaskData externalFileReferences(
-          List<ExternalFileReference>? externalFileReferences) =>
-      this(externalFileReferences: externalFileReferences);
+    List<ExternalFileReference>? externalFileReferences,
+  ) => this(externalFileReferences: externalFileReferences);
 
   @override
   Iso11783TaskData linkList(Iso11783LinkList? linkList) =>
@@ -6096,8 +6070,8 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
 
   @override
   Iso11783TaskData taskControllerManufacturer(
-          String? taskControllerManufacturer) =>
-      this(taskControllerManufacturer: taskControllerManufacturer);
+    String? taskControllerManufacturer,
+  ) => this(taskControllerManufacturer: taskControllerManufacturer);
 
   @override
   Iso11783TaskData taskControllerVersion(String? taskControllerVersion) =>
@@ -6107,7 +6081,6 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
   Iso11783TaskData language(String? language) => this(language: language);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783TaskData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6155,14 +6128,14 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
           : versionMinor as VersionMinor,
       managementSoftwareManufacturer:
           managementSoftwareManufacturer == const $CopyWithPlaceholder()
-              ? _value.managementSoftwareManufacturer
-              // ignore: cast_nullable_to_non_nullable
-              : managementSoftwareManufacturer as String,
+          ? _value.managementSoftwareManufacturer
+          // ignore: cast_nullable_to_non_nullable
+          : managementSoftwareManufacturer as String,
       managementSoftwareVersion:
           managementSoftwareVersion == const $CopyWithPlaceholder()
-              ? _value.managementSoftwareVersion
-              // ignore: cast_nullable_to_non_nullable
-              : managementSoftwareVersion as String,
+          ? _value.managementSoftwareVersion
+          // ignore: cast_nullable_to_non_nullable
+          : managementSoftwareVersion as String,
       dataTransferOrigin: dataTransferOrigin == const $CopyWithPlaceholder()
           ? _value.dataTransferOrigin
           // ignore: cast_nullable_to_non_nullable
@@ -6229,9 +6202,9 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
           : tasks as List<Task>?,
       taskControllerCapabilities:
           taskControllerCapabilities == const $CopyWithPlaceholder()
-              ? _value.taskControllerCapabilities
-              // ignore: cast_nullable_to_non_nullable
-              : taskControllerCapabilities as List<TaskControllerCapabilities>?,
+          ? _value.taskControllerCapabilities
+          // ignore: cast_nullable_to_non_nullable
+          : taskControllerCapabilities as List<TaskControllerCapabilities>?,
       valuePresentations: valuePresentations == const $CopyWithPlaceholder()
           ? _value.valuePresentations
           // ignore: cast_nullable_to_non_nullable
@@ -6242,23 +6215,23 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
           : workers as List<Worker>?,
       externalFileReferences:
           externalFileReferences == const $CopyWithPlaceholder()
-              ? _value.externalFileReferences
-              // ignore: cast_nullable_to_non_nullable
-              : externalFileReferences as List<ExternalFileReference>?,
+          ? _value.externalFileReferences
+          // ignore: cast_nullable_to_non_nullable
+          : externalFileReferences as List<ExternalFileReference>?,
       linkList: linkList == const $CopyWithPlaceholder()
           ? _value.linkList
           // ignore: cast_nullable_to_non_nullable
           : linkList as Iso11783LinkList?,
       taskControllerManufacturer:
           taskControllerManufacturer == const $CopyWithPlaceholder()
-              ? _value.taskControllerManufacturer
-              // ignore: cast_nullable_to_non_nullable
-              : taskControllerManufacturer as String?,
+          ? _value.taskControllerManufacturer
+          // ignore: cast_nullable_to_non_nullable
+          : taskControllerManufacturer as String?,
       taskControllerVersion:
           taskControllerVersion == const $CopyWithPlaceholder()
-              ? _value.taskControllerVersion
-              // ignore: cast_nullable_to_non_nullable
-              : taskControllerVersion as String?,
+          ? _value.taskControllerVersion
+          // ignore: cast_nullable_to_non_nullable
+          : taskControllerVersion as String?,
       language: language == const $CopyWithPlaceholder()
           ? _value.language
           // ignore: cast_nullable_to_non_nullable
@@ -6305,7 +6278,6 @@ class _$WorkerAllocationCWProxyImpl implements _$WorkerAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkerAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6390,7 +6362,6 @@ class _$TimeCWProxyImpl implements _$TimeCWProxy {
   Time duration(int? duration) => this(duration: duration);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Time(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6494,7 +6465,6 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
   TimeLog records(List<Time>? records) => this(records: records);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLog(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6588,7 +6558,6 @@ class _$TimeLogHeaderCWProxyImpl implements _$TimeLogHeaderCWProxy {
       this(dataLogValues: dataLogValues);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLogHeader(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6762,7 +6731,6 @@ class _$TimeLogHeaderPositionCWProxyImpl
       this(gpsUtcDate: gpsUtcDate);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLogHeaderPosition(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6816,9 +6784,9 @@ class _$TimeLogHeaderPositionCWProxyImpl
           : readHdop as bool,
       readNumberOfSatellites:
           readNumberOfSatellites == const $CopyWithPlaceholder()
-              ? _value.readNumberOfSatellites
-              // ignore: cast_nullable_to_non_nullable
-              : readNumberOfSatellites as bool,
+          ? _value.readNumberOfSatellites
+          // ignore: cast_nullable_to_non_nullable
+          : readNumberOfSatellites as bool,
       readgpsUtcTimeMs: readgpsUtcTimeMs == const $CopyWithPlaceholder()
           ? _value.readgpsUtcTimeMs
           // ignore: cast_nullable_to_non_nullable
@@ -6941,7 +6909,6 @@ class _$TimeLogHeaderDataLogValueCWProxyImpl
       this(pgnStopBit: pgnStopBit);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLogHeaderDataLogValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7003,7 +6970,8 @@ abstract class _$ProcessDataVariableCWProxy {
   ProcessDataVariable value(int value);
 
   ProcessDataVariable processDataVariables(
-      List<ProcessDataVariable>? processDataVariables);
+    List<ProcessDataVariable>? processDataVariables,
+  );
 
   ProcessDataVariable productIdRef(String? productIdRef);
 
@@ -7012,7 +6980,8 @@ abstract class _$ProcessDataVariableCWProxy {
   ProcessDataVariable valuePresentationIdRef(String? valuePresentationIdRef);
 
   ProcessDataVariable actualCulturalPracticeValue(
-      int? actualCulturalPracticeValue);
+    int? actualCulturalPracticeValue,
+  );
 
   ProcessDataVariable elementTypeInstanceValue(int? elementTypeInstanceValue);
 
@@ -7048,8 +7017,8 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
 
   @override
   ProcessDataVariable processDataVariables(
-          List<ProcessDataVariable>? processDataVariables) =>
-      this(processDataVariables: processDataVariables);
+    List<ProcessDataVariable>? processDataVariables,
+  ) => this(processDataVariables: processDataVariables);
 
   @override
   ProcessDataVariable productIdRef(String? productIdRef) =>
@@ -7065,15 +7034,14 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
 
   @override
   ProcessDataVariable actualCulturalPracticeValue(
-          int? actualCulturalPracticeValue) =>
-      this(actualCulturalPracticeValue: actualCulturalPracticeValue);
+    int? actualCulturalPracticeValue,
+  ) => this(actualCulturalPracticeValue: actualCulturalPracticeValue);
 
   @override
   ProcessDataVariable elementTypeInstanceValue(int? elementTypeInstanceValue) =>
       this(elementTypeInstanceValue: elementTypeInstanceValue);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProcessDataVariable(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7113,19 +7081,19 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
           : deviceElementIdRef as String?,
       valuePresentationIdRef:
           valuePresentationIdRef == const $CopyWithPlaceholder()
-              ? _value.valuePresentationIdRef
-              // ignore: cast_nullable_to_non_nullable
-              : valuePresentationIdRef as String?,
+          ? _value.valuePresentationIdRef
+          // ignore: cast_nullable_to_non_nullable
+          : valuePresentationIdRef as String?,
       actualCulturalPracticeValue:
           actualCulturalPracticeValue == const $CopyWithPlaceholder()
-              ? _value.actualCulturalPracticeValue
-              // ignore: cast_nullable_to_non_nullable
-              : actualCulturalPracticeValue as int?,
+          ? _value.actualCulturalPracticeValue
+          // ignore: cast_nullable_to_non_nullable
+          : actualCulturalPracticeValue as int?,
       elementTypeInstanceValue:
           elementTypeInstanceValue == const $CopyWithPlaceholder()
-              ? _value.elementTypeInstanceValue
-              // ignore: cast_nullable_to_non_nullable
-              : elementTypeInstanceValue as int?,
+          ? _value.elementTypeInstanceValue
+          // ignore: cast_nullable_to_non_nullable
+          : elementTypeInstanceValue as int?,
     );
   }
 }
@@ -7143,7 +7111,8 @@ abstract class _$TreatmentZoneCWProxy {
   TreatmentZone polygons(List<Polygon>? polygons);
 
   TreatmentZone processDataVariables(
-      List<ProcessDataVariable>? processDataVariables);
+    List<ProcessDataVariable>? processDataVariables,
+  );
 
   TreatmentZone designator(String? designator);
 
@@ -7178,8 +7147,8 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
 
   @override
   TreatmentZone processDataVariables(
-          List<ProcessDataVariable>? processDataVariables) =>
-      this(processDataVariables: processDataVariables);
+    List<ProcessDataVariable>? processDataVariables,
+  ) => this(processDataVariables: processDataVariables);
 
   @override
   TreatmentZone designator(String? designator) => this(designator: designator);
@@ -7188,7 +7157,6 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
   TreatmentZone colour(int? colour) => this(colour: colour);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TreatmentZone(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7290,7 +7258,6 @@ class _$ValuePresentationCWProxyImpl implements _$ValuePresentationCWProxy {
       this(colourLegendIdRef: colourLegendIdRef);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7347,13 +7314,13 @@ extension $ValuePresentationCopyWith on ValuePresentation {
 
 const $AllocationStampTypeEnumMap = {
   AllocationStampType.planned: '1',
-  AllocationStampType.effective: '4'
+  AllocationStampType.effective: '4',
 };
 
 const $CodedCommmentScopeEnumMap = {
   CodedCommmentScope.point: '1',
   CodedCommmentScope.global: '2',
-  CodedCommmentScope.continuous: '3'
+  CodedCommmentScope.continuous: '3',
 };
 
 const $DeviceElementTypeEnumMap = {
@@ -7363,7 +7330,7 @@ const $DeviceElementTypeEnumMap = {
   DeviceElementType.section: '4',
   DeviceElementType.unit: '5',
   DeviceElementType.connector: '6',
-  DeviceElementType.navigation: '7'
+  DeviceElementType.navigation: '7',
 };
 
 const $PreserveEnumMap = {Preserve.doNotPreserve: '1', Preserve.preserve: '2'};
@@ -7381,7 +7348,7 @@ const $LineStringTypeEnumMap = {
   LineStringType.drainage: '6',
   LineStringType.fence: '7',
   LineStringType.flag: '8',
-  LineStringType.obstacle: '9'
+  LineStringType.obstacle: '9',
 };
 
 const $PointTypeEnumMap = {
@@ -7395,7 +7362,7 @@ const $PointTypeEnumMap = {
   PointType.guidanceReferenceCenter: '8',
   PointType.guidancePoint: '9',
   PointType.partfieldReferencePoint: '10',
-  PointType.homebase: '11'
+  PointType.homebase: '11',
 };
 
 const $PolygonTypeEnumMap = {
@@ -7410,7 +7377,7 @@ const $PolygonTypeEnumMap = {
   PolygonType.mainfield: '9',
   PolygonType.headland: '10',
   PolygonType.bufferZone: '11',
-  PolygonType.windbreak: '12'
+  PolygonType.windbreak: '12',
 };
 
 const $PositionStatusEnumMap = {
@@ -7429,7 +7396,7 @@ const $PositionStatusEnumMap = {
   PositionStatus.reserved12: '12',
   PositionStatus.reserved13: '13',
   PositionStatus.error: '14',
-  PositionStatus.notAvailable: '15'
+  PositionStatus.notAvailable: '15',
 };
 
 const $GuidancePatternTypeEnumMap = {
@@ -7437,27 +7404,27 @@ const $GuidancePatternTypeEnumMap = {
   GuidancePatternType.aPlus: '2',
   GuidancePatternType.curve: '3',
   GuidancePatternType.pivot: '4',
-  GuidancePatternType.spiral: '5'
+  GuidancePatternType.spiral: '5',
 };
 
 const $GuidancePatternOptionsEnumMap = {
   GuidancePatternOptions.clockwise: '1',
   GuidancePatternOptions.counterClockwise: '2',
-  GuidancePatternOptions.fullCircle: '3'
+  GuidancePatternOptions.fullCircle: '3',
 };
 
 const $GuidancePatternPropagationDirectionEnumMap = {
   GuidancePatternPropagationDirection.both: '1',
   GuidancePatternPropagationDirection.leftOnly: '2',
   GuidancePatternPropagationDirection.rightOnly: '3',
-  GuidancePatternPropagationDirection.noPropagation: '4'
+  GuidancePatternPropagationDirection.noPropagation: '4',
 };
 
 const $GuidancePatternExtensionEnumMap = {
   GuidancePatternExtension.fromBoth: '1',
   GuidancePatternExtension.fromAOnly: '2',
   GuidancePatternExtension.fromBOnly: '3',
-  GuidancePatternExtension.noExtensions: '4'
+  GuidancePatternExtension.noExtensions: '4',
 };
 
 const $GuidancePatternGnssMethodEnumMap = {
@@ -7471,31 +7438,31 @@ const $GuidancePatternGnssMethodEnumMap = {
   GuidancePatternGnssMethod.manualInput: '7',
   GuidancePatternGnssMethod.simulationMode: '8',
   GuidancePatternGnssMethod.desktopGeneratedData: '16',
-  GuidancePatternGnssMethod.other: '17'
+  GuidancePatternGnssMethod.other: '17',
 };
 
 const $LinkGroupTypeEnumMap = {
   LinkGroupType.uuids: '1',
   LinkGroupType.manufacturerProprietary: '2',
   LinkGroupType.uniqueResolvableUris: '3',
-  LinkGroupType.informationalResolvableUris: '4'
+  LinkGroupType.informationalResolvableUris: '4',
 };
 
 const $ProductTypeEnumMap = {
   ProductType.single: '1',
   ProductType.mixture: '2',
-  ProductType.temporaryMixture: '3'
+  ProductType.temporaryMixture: '3',
 };
 
 const $TransferModeEnumMap = {
   TransferMode.filling: '1',
   TransferMode.emptying: '2',
-  TransferMode.remainder: '3'
+  TransferMode.remainder: '3',
 };
 
 const $ProductGroupTypeEnumMap = {
   ProductGroupType.productGroupDefault: '1',
-  ProductGroupType.cropType: '2'
+  ProductGroupType.cropType: '2',
 };
 
 const $TaskStatusEnumMap = {
@@ -7504,7 +7471,7 @@ const $TaskStatusEnumMap = {
   TaskStatus.paused: '3',
   TaskStatus.completed: '4',
   TaskStatus.template: '5',
-  TaskStatus.cancelled: '6'
+  TaskStatus.cancelled: '6',
 };
 
 const $VersionNumberEnumMap = {
@@ -7512,7 +7479,7 @@ const $VersionNumberEnumMap = {
   VersionNumber.fdis1: '1',
   VersionNumber.fdis2: '2',
   VersionNumber.e2dis: '3',
-  VersionNumber.e2fdis: '4'
+  VersionNumber.e2fdis: '4',
 };
 
 const $TimeTypeEnumMap = {
@@ -7522,7 +7489,7 @@ const $TimeTypeEnumMap = {
   TimeType.ineffective: '5',
   TimeType.repair: '6',
   TimeType.clearing: '7',
-  TimeType.poweredDown: '8'
+  TimeType.poweredDown: '8',
 };
 
 const $TimeLogTypeEnumMap = {TimeLogType.binaryTimeLogFileType1: '1'};
@@ -7532,14 +7499,19 @@ const $TimeLogTypeEnumMap = {TimeLogType.binaryTimeLogFileType1: '1'};
 // **************************************************************************
 
 void _$AllocationStampBuildXmlChildren(
-    AllocationStamp instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  AllocationStamp instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final position = instance.position;
   final positionSerialized = position;
   for (final value in positionSerialized) {
-    builder.element('PTN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PTN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -7560,11 +7532,17 @@ void _$AllocationStampBuildXmlChildren(
 }
 
 void _$AllocationStampBuildXmlElement(
-    AllocationStamp instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('ASP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  AllocationStamp instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'ASP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 AllocationStamp _$AllocationStampFromXmlElement(XmlElement element) {
@@ -7574,21 +7552,26 @@ AllocationStamp _$AllocationStampFromXmlElement(XmlElement element) {
   final duration = element.getAttribute('C');
   final type = element.getAttribute('D')!;
   return AllocationStamp(
-      position: position.map((e) => Position.fromXmlElement(e)).toList(),
-      start: DateTime.parse(start),
-      stop: stop != null ? DateTime.parse(stop) : null,
-      duration: duration != null ? int.parse(duration) : null,
-      type: $AllocationStampTypeEnumMap.entries
-          .singleWhere(
-              (allocationStampTypeEnumMapEntry) =>
-                  allocationStampTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$AllocationStampTypeEnumMap.values.join(', ')}'))
-          .key);
+    position: position.map((e) => Position.fromXmlElement(e)).toList(),
+    start: DateTime.parse(start),
+    stop: stop != null ? DateTime.parse(stop) : null,
+    duration: duration != null ? int.parse(duration) : null,
+    type: $AllocationStampTypeEnumMap.entries
+        .singleWhere(
+          (allocationStampTypeEnumMapEntry) =>
+              allocationStampTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$AllocationStampTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+  );
 }
 
-List<XmlAttribute> _$AllocationStampToXmlAttributes(AllocationStamp instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$AllocationStampToXmlAttributes(
+  AllocationStamp instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -7617,57 +7600,78 @@ List<XmlAttribute> _$AllocationStampToXmlAttributes(AllocationStamp instance,
   return attributes;
 }
 
-List<XmlNode> _$AllocationStampToXmlChildren(AllocationStamp instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$AllocationStampToXmlChildren(
+  AllocationStamp instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final position = instance.position;
   final positionSerialized = position;
-  final positionConstructed = positionSerialized.map((e) => XmlElement(
+  final positionConstructed = positionSerialized.map(
+    (e) => XmlElement(
       XmlName('PTN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(positionConstructed);
   return children;
 }
 
-XmlElement _$AllocationStampToXmlElement(AllocationStamp instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('ASP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$AllocationStampToXmlElement(
+  AllocationStamp instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('ASP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$AllocationStampXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$AllocationStampBuildXmlChildren(this as AllocationStamp, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$AllocationStampBuildXmlChildren(
+    this as AllocationStamp,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$AllocationStampBuildXmlElement(this as AllocationStamp, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$AllocationStampBuildXmlElement(
+    this as AllocationStamp,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$AllocationStampToXmlAttributes(this as AllocationStamp,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$AllocationStampToXmlAttributes(
+    this as AllocationStamp,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$AllocationStampToXmlChildren(this as AllocationStamp,
-          namespaces: namespaces);
+      _$AllocationStampToXmlChildren(
+        this as AllocationStamp,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$AllocationStampToXmlElement(this as AllocationStamp,
-          namespaces: namespaces);
+      _$AllocationStampToXmlElement(
+        this as AllocationStamp,
+        namespaces: namespaces,
+      );
 }
 
-void _$BaseStationBuildXmlChildren(BaseStation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$BaseStationBuildXmlChildren(
+  BaseStation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -7685,11 +7689,18 @@ void _$BaseStationBuildXmlChildren(BaseStation instance, XmlBuilder builder,
   builder.attribute('E', upSerialized);
 }
 
-void _$BaseStationBuildXmlElement(BaseStation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('BSN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$BaseStationBuildXmlElement(
+  BaseStation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'BSN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 BaseStation _$BaseStationFromXmlElement(XmlElement element) {
@@ -7699,15 +7710,18 @@ BaseStation _$BaseStationFromXmlElement(XmlElement element) {
   final east = element.getAttribute('D')!;
   final up = element.getAttribute('E')!;
   return BaseStation(
-      id: id,
-      designator: designator,
-      north: double.parse(north),
-      east: double.parse(east),
-      up: int.parse(up));
+    id: id,
+    designator: designator,
+    north: double.parse(north),
+    east: double.parse(east),
+    up: int.parse(up),
+  );
 }
 
-List<XmlAttribute> _$BaseStationToXmlAttributes(BaseStation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$BaseStationToXmlAttributes(
+  BaseStation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -7715,8 +7729,10 @@ List<XmlAttribute> _$BaseStationToXmlAttributes(BaseStation instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final north = instance.north;
   final northSerialized = north.toString();
@@ -7733,36 +7749,46 @@ List<XmlAttribute> _$BaseStationToXmlAttributes(BaseStation instance,
   return attributes;
 }
 
-List<XmlNode> _$BaseStationToXmlChildren(BaseStation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$BaseStationToXmlChildren(
+  BaseStation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$BaseStationToXmlElement(BaseStation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('BSN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$BaseStationToXmlElement(
+  BaseStation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('BSN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$BaseStationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$BaseStationBuildXmlChildren(this as BaseStation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$BaseStationBuildXmlChildren(
+    this as BaseStation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$BaseStationBuildXmlElement(this as BaseStation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$BaseStationBuildXmlElement(
+    this as BaseStation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) =>
       _$BaseStationToXmlAttributes(this as BaseStation, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
@@ -7772,14 +7798,20 @@ mixin _$BaseStationXmlSerializableMixin {
       _$BaseStationToXmlElement(this as BaseStation, namespaces: namespaces);
 }
 
-void _$CodedCommentBuildXmlChildren(CodedComment instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$CodedCommentBuildXmlChildren(
+  CodedComment instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final listValues = instance.listValues;
   final listValuesSerialized = listValues;
   for (final value in listValuesSerialized) {
-    builder.element('CCL', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CCL',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -7797,11 +7829,18 @@ void _$CodedCommentBuildXmlChildren(CodedComment instance, XmlBuilder builder,
   }
 }
 
-void _$CodedCommentBuildXmlElement(CodedComment instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CCT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$CodedCommentBuildXmlElement(
+  CodedComment instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CCT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CodedComment _$CodedCommentFromXmlElement(XmlElement element) {
@@ -7811,23 +7850,28 @@ CodedComment _$CodedCommentFromXmlElement(XmlElement element) {
   final scope = element.getAttribute('C')!;
   final groupIdRef = element.getAttribute('D');
   return CodedComment(
-      listValues: listValues
-          .map((e) => CodedCommentListValue.fromXmlElement(e))
-          .toList(),
-      id: id,
-      designator: designator,
-      scope: $CodedCommmentScopeEnumMap.entries
-          .singleWhere(
-              (codedCommmentScopeEnumMapEntry) =>
-                  codedCommmentScopeEnumMapEntry.value == scope,
-              orElse: () => throw ArgumentError(
-                  '`$scope` is not one of the supported values: ${$CodedCommmentScopeEnumMap.values.join(', ')}'))
-          .key,
-      groupIdRef: groupIdRef);
+    listValues: listValues
+        .map((e) => CodedCommentListValue.fromXmlElement(e))
+        .toList(),
+    id: id,
+    designator: designator,
+    scope: $CodedCommmentScopeEnumMap.entries
+        .singleWhere(
+          (codedCommmentScopeEnumMapEntry) =>
+              codedCommmentScopeEnumMapEntry.value == scope,
+          orElse: () => throw ArgumentError(
+            '`$scope` is not one of the supported values: ${$CodedCommmentScopeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    groupIdRef: groupIdRef,
+  );
 }
 
-List<XmlAttribute> _$CodedCommentToXmlAttributes(CodedComment instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$CodedCommentToXmlAttributes(
+  CodedComment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -7835,8 +7879,10 @@ List<XmlAttribute> _$CodedCommentToXmlAttributes(CodedComment instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final scope = instance.scope;
   final scopeSerialized = $CodedCommmentScopeEnumMap[scope]!;
@@ -7853,45 +7899,59 @@ List<XmlAttribute> _$CodedCommentToXmlAttributes(CodedComment instance,
   return attributes;
 }
 
-List<XmlNode> _$CodedCommentToXmlChildren(CodedComment instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CodedCommentToXmlChildren(
+  CodedComment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final listValues = instance.listValues;
   final listValuesSerialized = listValues;
-  final listValuesConstructed = listValuesSerialized.map((e) => XmlElement(
+  final listValuesConstructed = listValuesSerialized.map(
+    (e) => XmlElement(
       XmlName('CCL'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(listValuesConstructed);
   return children;
 }
 
-XmlElement _$CodedCommentToXmlElement(CodedComment instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CCT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CodedCommentToXmlElement(
+  CodedComment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CCT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CodedCommentXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentBuildXmlChildren(this as CodedComment, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentBuildXmlChildren(
+    this as CodedComment,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentBuildXmlElement(this as CodedComment, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentBuildXmlElement(
+    this as CodedComment,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentToXmlAttributes(this as CodedComment,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CodedCommentToXmlAttributes(
+    this as CodedComment,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$CodedCommentToXmlChildren(this as CodedComment, namespaces: namespaces);
@@ -7901,8 +7961,10 @@ mixin _$CodedCommentXmlSerializableMixin {
 }
 
 void _$CodedCommentGroupBuildXmlChildren(
-    CodedCommentGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  CodedCommentGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -7912,11 +7974,17 @@ void _$CodedCommentGroupBuildXmlChildren(
 }
 
 void _$CodedCommentGroupBuildXmlElement(
-    CodedCommentGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CCG', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  CodedCommentGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CCG',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CodedCommentGroup _$CodedCommentGroupFromXmlElement(XmlElement element) {
@@ -7926,8 +7994,9 @@ CodedCommentGroup _$CodedCommentGroupFromXmlElement(XmlElement element) {
 }
 
 List<XmlAttribute> _$CodedCommentGroupToXmlAttributes(
-    CodedCommentGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+  CodedCommentGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -7935,57 +8004,76 @@ List<XmlAttribute> _$CodedCommentGroupToXmlAttributes(
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   return attributes;
 }
 
-List<XmlNode> _$CodedCommentGroupToXmlChildren(CodedCommentGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CodedCommentGroupToXmlChildren(
+  CodedCommentGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$CodedCommentGroupToXmlElement(CodedCommentGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CCG'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CodedCommentGroupToXmlElement(
+  CodedCommentGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CCG'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CodedCommentGroupXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentGroupBuildXmlChildren(this as CodedCommentGroup, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentGroupBuildXmlChildren(
+    this as CodedCommentGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentGroupBuildXmlElement(this as CodedCommentGroup, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentGroupBuildXmlElement(
+    this as CodedCommentGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentGroupToXmlAttributes(this as CodedCommentGroup,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CodedCommentGroupToXmlAttributes(
+    this as CodedCommentGroup,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentGroupToXmlChildren(this as CodedCommentGroup,
-          namespaces: namespaces);
+      _$CodedCommentGroupToXmlChildren(
+        this as CodedCommentGroup,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentGroupToXmlElement(this as CodedCommentGroup,
-          namespaces: namespaces);
+      _$CodedCommentGroupToXmlElement(
+        this as CodedCommentGroup,
+        namespaces: namespaces,
+      );
 }
 
 void _$CodedCommentListValueBuildXmlChildren(
-    CodedCommentListValue instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  CodedCommentListValue instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -7995,23 +8083,31 @@ void _$CodedCommentListValueBuildXmlChildren(
 }
 
 void _$CodedCommentListValueBuildXmlElement(
-    CodedCommentListValue instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CCL', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  CodedCommentListValue instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CCL',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CodedCommentListValue _$CodedCommentListValueFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   return CodedCommentListValue(id: id, designator: designator);
 }
 
 List<XmlAttribute> _$CodedCommentListValueToXmlAttributes(
-    CodedCommentListValue instance,
-    {Map<String, String?> namespaces = const {}}) {
+  CodedCommentListValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -8019,67 +8115,88 @@ List<XmlAttribute> _$CodedCommentListValueToXmlAttributes(
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   return attributes;
 }
 
 List<XmlNode> _$CodedCommentListValueToXmlChildren(
-    CodedCommentListValue instance,
-    {Map<String, String?> namespaces = const {}}) {
+  CodedCommentListValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$CodedCommentListValueToXmlElement(CodedCommentListValue instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CCL'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CodedCommentListValueToXmlElement(
+  CodedCommentListValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CCL'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CodedCommentListValueXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentListValueBuildXmlChildren(
-          this as CodedCommentListValue, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentListValueBuildXmlChildren(
+    this as CodedCommentListValue,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CodedCommentListValueBuildXmlElement(
-          this as CodedCommentListValue, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CodedCommentListValueBuildXmlElement(
+    this as CodedCommentListValue,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentListValueToXmlAttributes(this as CodedCommentListValue,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CodedCommentListValueToXmlAttributes(
+    this as CodedCommentListValue,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentListValueToXmlChildren(this as CodedCommentListValue,
-          namespaces: namespaces);
+      _$CodedCommentListValueToXmlChildren(
+        this as CodedCommentListValue,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$CodedCommentListValueToXmlElement(this as CodedCommentListValue,
-          namespaces: namespaces);
+      _$CodedCommentListValueToXmlElement(
+        this as CodedCommentListValue,
+        namespaces: namespaces,
+      );
 }
 
 void _$CommentAllocationBuildXmlChildren(
-    CommentAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  CommentAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final codedCommentIdRef = instance.codedCommentIdRef;
   final codedCommentIdRefSerialized = codedCommentIdRef;
@@ -8099,11 +8216,17 @@ void _$CommentAllocationBuildXmlChildren(
 }
 
 void _$CommentAllocationBuildXmlElement(
-    CommentAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CAN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  CommentAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CAN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CommentAllocation _$CommentAllocationFromXmlElement(XmlElement element) {
@@ -8112,17 +8235,19 @@ CommentAllocation _$CommentAllocationFromXmlElement(XmlElement element) {
   final codedCommentListValueIdRef = element.getAttribute('B');
   final freeCommentText = element.getAttribute('C');
   return CommentAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      codedCommentIdRef: codedCommentIdRef,
-      codedCommentListValueIdRef: codedCommentListValueIdRef,
-      freeCommentText: freeCommentText);
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    codedCommentIdRef: codedCommentIdRef,
+    codedCommentListValueIdRef: codedCommentListValueIdRef,
+    freeCommentText: freeCommentText,
+  );
 }
 
 List<XmlAttribute> _$CommentAllocationToXmlAttributes(
-    CommentAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  CommentAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final codedCommentIdRef = instance.codedCommentIdRef;
   final codedCommentIdRefSerialized = codedCommentIdRef;
@@ -8136,8 +8261,8 @@ List<XmlAttribute> _$CommentAllocationToXmlAttributes(
   final codedCommentListValueIdRefSerialized = codedCommentListValueIdRef;
   final codedCommentListValueIdRefConstructed =
       codedCommentListValueIdRefSerialized != null
-          ? XmlAttribute(XmlName('B'), codedCommentListValueIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('B'), codedCommentListValueIdRefSerialized)
+      : null;
   if (codedCommentListValueIdRefConstructed != null) {
     attributes.add(codedCommentListValueIdRefConstructed);
   }
@@ -8152,8 +8277,10 @@ List<XmlAttribute> _$CommentAllocationToXmlAttributes(
   return attributes;
 }
 
-List<XmlNode> _$CommentAllocationToXmlChildren(CommentAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CommentAllocationToXmlChildren(
+  CommentAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -8161,7 +8288,8 @@ List<XmlNode> _$CommentAllocationToXmlChildren(CommentAllocation instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -8169,50 +8297,69 @@ List<XmlNode> _$CommentAllocationToXmlChildren(CommentAllocation instance,
   return children;
 }
 
-XmlElement _$CommentAllocationToXmlElement(CommentAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CAN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CommentAllocationToXmlElement(
+  CommentAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CAN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CommentAllocationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CommentAllocationBuildXmlChildren(this as CommentAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CommentAllocationBuildXmlChildren(
+    this as CommentAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CommentAllocationBuildXmlElement(this as CommentAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CommentAllocationBuildXmlElement(
+    this as CommentAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CommentAllocationToXmlAttributes(this as CommentAllocation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CommentAllocationToXmlAttributes(
+    this as CommentAllocation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$CommentAllocationToXmlChildren(this as CommentAllocation,
-          namespaces: namespaces);
+      _$CommentAllocationToXmlChildren(
+        this as CommentAllocation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$CommentAllocationToXmlElement(this as CommentAllocation,
-          namespaces: namespaces);
+      _$CommentAllocationToXmlElement(
+        this as CommentAllocation,
+        namespaces: namespaces,
+      );
 }
 
-void _$ColourLegendBuildXmlChildren(ColourLegend instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$ColourLegendBuildXmlChildren(
+  ColourLegend instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final ranges = instance.ranges;
   final rangesSerialized = ranges;
   for (final value in rangesSerialized) {
-    builder.element('CRG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CRG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -8224,11 +8371,18 @@ void _$ColourLegendBuildXmlChildren(ColourLegend instance, XmlBuilder builder,
   }
 }
 
-void _$ColourLegendBuildXmlElement(ColourLegend instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CLD', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$ColourLegendBuildXmlElement(
+  ColourLegend instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CLD',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ColourLegend _$ColourLegendFromXmlElement(XmlElement element) {
@@ -8236,13 +8390,16 @@ ColourLegend _$ColourLegendFromXmlElement(XmlElement element) {
   final id = element.getAttribute('A')!;
   final defaultColour = element.getAttribute('B');
   return ColourLegend(
-      ranges: ranges.map((e) => ColourRange.fromXmlElement(e)).toList(),
-      id: id,
-      defaultColour: defaultColour != null ? int.parse(defaultColour) : null);
+    ranges: ranges.map((e) => ColourRange.fromXmlElement(e)).toList(),
+    id: id,
+    defaultColour: defaultColour != null ? int.parse(defaultColour) : null,
+  );
 }
 
-List<XmlAttribute> _$ColourLegendToXmlAttributes(ColourLegend instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ColourLegendToXmlAttributes(
+  ColourLegend instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -8259,45 +8416,59 @@ List<XmlAttribute> _$ColourLegendToXmlAttributes(ColourLegend instance,
   return attributes;
 }
 
-List<XmlNode> _$ColourLegendToXmlChildren(ColourLegend instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ColourLegendToXmlChildren(
+  ColourLegend instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final ranges = instance.ranges;
   final rangesSerialized = ranges;
-  final rangesConstructed = rangesSerialized.map((e) => XmlElement(
+  final rangesConstructed = rangesSerialized.map(
+    (e) => XmlElement(
       XmlName('CRG'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(rangesConstructed);
   return children;
 }
 
-XmlElement _$ColourLegendToXmlElement(ColourLegend instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CLD'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ColourLegendToXmlElement(
+  ColourLegend instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CLD'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ColourLegendXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ColourLegendBuildXmlChildren(this as ColourLegend, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ColourLegendBuildXmlChildren(
+    this as ColourLegend,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ColourLegendBuildXmlElement(this as ColourLegend, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ColourLegendBuildXmlElement(
+    this as ColourLegend,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ColourLegendToXmlAttributes(this as ColourLegend,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ColourLegendToXmlAttributes(
+    this as ColourLegend,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$ColourLegendToXmlChildren(this as ColourLegend, namespaces: namespaces);
@@ -8306,8 +8477,11 @@ mixin _$ColourLegendXmlSerializableMixin {
       _$ColourLegendToXmlElement(this as ColourLegend, namespaces: namespaces);
 }
 
-void _$ColourRangeBuildXmlChildren(ColourRange instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$ColourRangeBuildXmlChildren(
+  ColourRange instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final minimumValue = instance.minimumValue;
   final minimumValueSerialized = minimumValue.toString();
   builder.attribute('A', minimumValueSerialized);
@@ -8319,11 +8493,18 @@ void _$ColourRangeBuildXmlChildren(ColourRange instance, XmlBuilder builder,
   builder.attribute('C', colourSerialized);
 }
 
-void _$ColourRangeBuildXmlElement(ColourRange instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CRG', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$ColourRangeBuildXmlElement(
+  ColourRange instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CRG',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ColourRange _$ColourRangeFromXmlElement(XmlElement element) {
@@ -8331,23 +8512,30 @@ ColourRange _$ColourRangeFromXmlElement(XmlElement element) {
   final maximumValue = element.getAttribute('B')!;
   final colour = element.getAttribute('C')!;
   return ColourRange(
-      minimumValue: int.parse(minimumValue),
-      maximumValue: int.parse(maximumValue),
-      colour: int.parse(colour));
+    minimumValue: int.parse(minimumValue),
+    maximumValue: int.parse(maximumValue),
+    colour: int.parse(colour),
+  );
 }
 
-List<XmlAttribute> _$ColourRangeToXmlAttributes(ColourRange instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ColourRangeToXmlAttributes(
+  ColourRange instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final minimumValue = instance.minimumValue;
   final minimumValueSerialized = minimumValue.toString();
-  final minimumValueConstructed =
-      XmlAttribute(XmlName('A'), minimumValueSerialized);
+  final minimumValueConstructed = XmlAttribute(
+    XmlName('A'),
+    minimumValueSerialized,
+  );
   attributes.add(minimumValueConstructed);
   final maximumValue = instance.maximumValue;
   final maximumValueSerialized = maximumValue.toString();
-  final maximumValueConstructed =
-      XmlAttribute(XmlName('B'), maximumValueSerialized);
+  final maximumValueConstructed = XmlAttribute(
+    XmlName('B'),
+    maximumValueSerialized,
+  );
   attributes.add(maximumValueConstructed);
   final colour = instance.colour;
   final colourSerialized = colour.toString();
@@ -8356,36 +8544,46 @@ List<XmlAttribute> _$ColourRangeToXmlAttributes(ColourRange instance,
   return attributes;
 }
 
-List<XmlNode> _$ColourRangeToXmlChildren(ColourRange instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ColourRangeToXmlChildren(
+  ColourRange instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ColourRangeToXmlElement(ColourRange instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CRG'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ColourRangeToXmlElement(
+  ColourRange instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CRG'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ColourRangeXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ColourRangeBuildXmlChildren(this as ColourRange, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ColourRangeBuildXmlChildren(
+    this as ColourRange,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ColourRangeBuildXmlElement(this as ColourRange, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ColourRangeBuildXmlElement(
+    this as ColourRange,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) =>
       _$ColourRangeToXmlAttributes(this as ColourRange, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
@@ -8395,14 +8593,20 @@ mixin _$ColourRangeXmlSerializableMixin {
       _$ColourRangeToXmlElement(this as ColourRange, namespaces: namespaces);
 }
 
-void _$CropTypeBuildXmlChildren(CropType instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$CropTypeBuildXmlChildren(
+  CropType instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final varieties = instance.varieties;
   final varietiesSerialized = varieties;
   for (final value in varietiesSerialized) {
-    builder.element('CVT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CVT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -8417,11 +8621,18 @@ void _$CropTypeBuildXmlChildren(CropType instance, XmlBuilder builder,
   }
 }
 
-void _$CropTypeBuildXmlElement(CropType instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CTP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$CropTypeBuildXmlElement(
+  CropType instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CTP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CropType _$CropTypeFromXmlElement(XmlElement element) {
@@ -8430,14 +8641,17 @@ CropType _$CropTypeFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('B')!;
   final productGroupIdRef = element.getAttribute('C');
   return CropType(
-      varieties: varieties.map((e) => CropVariety.fromXmlElement(e)).toList(),
-      id: id,
-      designator: designator,
-      productGroupIdRef: productGroupIdRef);
+    varieties: varieties.map((e) => CropVariety.fromXmlElement(e)).toList(),
+    id: id,
+    designator: designator,
+    productGroupIdRef: productGroupIdRef,
+  );
 }
 
-List<XmlAttribute> _$CropTypeToXmlAttributes(CropType instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$CropTypeToXmlAttributes(
+  CropType instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -8445,8 +8659,10 @@ List<XmlAttribute> _$CropTypeToXmlAttributes(CropType instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final productGroupIdRef = instance.productGroupIdRef;
   final productGroupIdRefSerialized = productGroupIdRef;
@@ -8459,44 +8675,56 @@ List<XmlAttribute> _$CropTypeToXmlAttributes(CropType instance,
   return attributes;
 }
 
-List<XmlNode> _$CropTypeToXmlChildren(CropType instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CropTypeToXmlChildren(
+  CropType instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final varieties = instance.varieties;
   final varietiesSerialized = varieties;
-  final varietiesConstructed = varietiesSerialized.map((e) => XmlElement(
+  final varietiesConstructed = varietiesSerialized.map(
+    (e) => XmlElement(
       XmlName('CVT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(varietiesConstructed);
   return children;
 }
 
-XmlElement _$CropTypeToXmlElement(CropType instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CTP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CropTypeToXmlElement(
+  CropType instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CTP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CropTypeXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CropTypeBuildXmlChildren(this as CropType, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CropTypeBuildXmlChildren(
+    this as CropType,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CropTypeBuildXmlElement(this as CropType, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CropTypeBuildXmlElement(
+    this as CropType,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CropTypeToXmlAttributes(this as CropType, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CropTypeToXmlAttributes(this as CropType, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$CropTypeToXmlChildren(this as CropType, namespaces: namespaces);
@@ -8505,8 +8733,11 @@ mixin _$CropTypeXmlSerializableMixin {
       _$CropTypeToXmlElement(this as CropType, namespaces: namespaces);
 }
 
-void _$CropVarietyBuildXmlChildren(CropVariety instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$CropVarietyBuildXmlChildren(
+  CropVariety instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -8520,11 +8751,18 @@ void _$CropVarietyBuildXmlChildren(CropVariety instance, XmlBuilder builder,
   }
 }
 
-void _$CropVarietyBuildXmlElement(CropVariety instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CVT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$CropVarietyBuildXmlElement(
+  CropVariety instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CVT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CropVariety _$CropVarietyFromXmlElement(XmlElement element) {
@@ -8532,11 +8770,16 @@ CropVariety _$CropVarietyFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('B')!;
   final productIdRef = element.getAttribute('C');
   return CropVariety(
-      id: id, designator: designator, productIdRef: productIdRef);
+    id: id,
+    designator: designator,
+    productIdRef: productIdRef,
+  );
 }
 
-List<XmlAttribute> _$CropVarietyToXmlAttributes(CropVariety instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$CropVarietyToXmlAttributes(
+  CropVariety instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -8544,8 +8787,10 @@ List<XmlAttribute> _$CropVarietyToXmlAttributes(CropVariety instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final productIdRef = instance.productIdRef;
   final productIdRefSerialized = productIdRef;
@@ -8558,36 +8803,46 @@ List<XmlAttribute> _$CropVarietyToXmlAttributes(CropVariety instance,
   return attributes;
 }
 
-List<XmlNode> _$CropVarietyToXmlChildren(CropVariety instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CropVarietyToXmlChildren(
+  CropVariety instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$CropVarietyToXmlElement(CropVariety instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CVT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CropVarietyToXmlElement(
+  CropVariety instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CVT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CropVarietyXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CropVarietyBuildXmlChildren(this as CropVariety, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CropVarietyBuildXmlChildren(
+    this as CropVariety,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CropVarietyBuildXmlElement(this as CropVariety, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CropVarietyBuildXmlElement(
+    this as CropVariety,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) =>
       _$CropVarietyToXmlAttributes(this as CropVariety, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
@@ -8598,8 +8853,10 @@ mixin _$CropVarietyXmlSerializableMixin {
 }
 
 void _$DataLogTriggerBuildXmlChildren(
-    DataLogTrigger instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DataLogTrigger instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final ddi = instance.ddi;
   final ddiSerialized = ddi;
   builder.attribute('A', ddiSerialized);
@@ -8659,11 +8916,17 @@ void _$DataLogTriggerBuildXmlChildren(
 }
 
 void _$DataLogTriggerBuildXmlElement(
-    DataLogTrigger instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DLT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DataLogTrigger instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DLT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DataLogTrigger _$DataLogTriggerFromXmlElement(XmlElement element) {
@@ -8680,26 +8943,33 @@ DataLogTrigger _$DataLogTriggerFromXmlElement(XmlElement element) {
   final pgnStartBit = element.getAttribute('K');
   final pgnStopBit = element.getAttribute('L');
   return DataLogTrigger(
-      ddi: ddi,
-      method: int.parse(method),
-      distanceInterval:
-          distanceInterval != null ? int.parse(distanceInterval) : null,
-      timeInterval: timeInterval != null ? int.parse(timeInterval) : null,
-      thresholdMinimum:
-          thresholdMinimum != null ? int.parse(thresholdMinimum) : null,
-      thresholdMaximum:
-          thresholdMaximum != null ? int.parse(thresholdMaximum) : null,
-      thresholdChange:
-          thresholdChange != null ? int.parse(thresholdChange) : null,
-      deviceElementIdRef: deviceElementIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      pgn: pgn != null ? int.parse(pgn) : null,
-      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
-      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null);
+    ddi: ddi,
+    method: int.parse(method),
+    distanceInterval: distanceInterval != null
+        ? int.parse(distanceInterval)
+        : null,
+    timeInterval: timeInterval != null ? int.parse(timeInterval) : null,
+    thresholdMinimum: thresholdMinimum != null
+        ? int.parse(thresholdMinimum)
+        : null,
+    thresholdMaximum: thresholdMaximum != null
+        ? int.parse(thresholdMaximum)
+        : null,
+    thresholdChange: thresholdChange != null
+        ? int.parse(thresholdChange)
+        : null,
+    deviceElementIdRef: deviceElementIdRef,
+    valuePresentationIdRef: valuePresentationIdRef,
+    pgn: pgn != null ? int.parse(pgn) : null,
+    pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
+    pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
+  );
 }
 
-List<XmlAttribute> _$DataLogTriggerToXmlAttributes(DataLogTrigger instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DataLogTriggerToXmlAttributes(
+  DataLogTrigger instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final ddi = instance.ddi;
   final ddiSerialized = ddi;
@@ -8761,15 +9031,16 @@ List<XmlAttribute> _$DataLogTriggerToXmlAttributes(DataLogTrigger instance,
   final valuePresentationIdRefSerialized = valuePresentationIdRef;
   final valuePresentationIdRefConstructed =
       valuePresentationIdRefSerialized != null
-          ? XmlAttribute(XmlName('I'), valuePresentationIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('I'), valuePresentationIdRefSerialized)
+      : null;
   if (valuePresentationIdRefConstructed != null) {
     attributes.add(valuePresentationIdRefConstructed);
   }
   final pgn = instance.pgn;
   final pgnSerialized = pgn?.toString();
-  final pgnConstructed =
-      pgnSerialized != null ? XmlAttribute(XmlName('J'), pgnSerialized) : null;
+  final pgnConstructed = pgnSerialized != null
+      ? XmlAttribute(XmlName('J'), pgnSerialized)
+      : null;
   if (pgnConstructed != null) {
     attributes.add(pgnConstructed);
   }
@@ -8792,50 +9063,68 @@ List<XmlAttribute> _$DataLogTriggerToXmlAttributes(DataLogTrigger instance,
   return attributes;
 }
 
-List<XmlNode> _$DataLogTriggerToXmlChildren(DataLogTrigger instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DataLogTriggerToXmlChildren(
+  DataLogTrigger instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$DataLogTriggerToXmlElement(DataLogTrigger instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DLT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DataLogTriggerToXmlElement(
+  DataLogTrigger instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DLT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DataLogTriggerXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DataLogTriggerBuildXmlChildren(this as DataLogTrigger, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DataLogTriggerBuildXmlChildren(
+    this as DataLogTrigger,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DataLogTriggerBuildXmlElement(this as DataLogTrigger, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DataLogTriggerBuildXmlElement(
+    this as DataLogTrigger,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DataLogTriggerToXmlAttributes(this as DataLogTrigger,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DataLogTriggerToXmlAttributes(
+    this as DataLogTrigger,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DataLogTriggerToXmlChildren(this as DataLogTrigger,
-          namespaces: namespaces);
+      _$DataLogTriggerToXmlChildren(
+        this as DataLogTrigger,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DataLogTriggerToXmlElement(this as DataLogTrigger,
-          namespaces: namespaces);
+      _$DataLogTriggerToXmlElement(
+        this as DataLogTrigger,
+        namespaces: namespaces,
+      );
 }
 
-void _$DataLogValueBuildXmlChildren(DataLogValue instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$DataLogValueBuildXmlChildren(
+  DataLogValue instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final processDataDDI = instance.processDataDDI;
   final processDataDDISerialized = processDataDDI;
   builder.attribute('A', processDataDDISerialized);
@@ -8862,11 +9151,18 @@ void _$DataLogValueBuildXmlChildren(DataLogValue instance, XmlBuilder builder,
   }
 }
 
-void _$DataLogValueBuildXmlElement(DataLogValue instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DLV', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$DataLogValueBuildXmlElement(
+  DataLogValue instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DLV',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DataLogValue _$DataLogValueFromXmlElement(XmlElement element) {
@@ -8877,36 +9173,46 @@ DataLogValue _$DataLogValueFromXmlElement(XmlElement element) {
   final pgnStartBit = element.getAttribute('E');
   final pgnStopBit = element.getAttribute('F');
   return DataLogValue(
-      processDataDDI: processDataDDI,
-      processDataValue: int.parse(processDataValue),
-      deviceElementIdRef: deviceElementIdRef,
-      pgn: pgn != null ? int.parse(pgn) : null,
-      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
-      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null);
+    processDataDDI: processDataDDI,
+    processDataValue: int.parse(processDataValue),
+    deviceElementIdRef: deviceElementIdRef,
+    pgn: pgn != null ? int.parse(pgn) : null,
+    pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
+    pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
+  );
 }
 
-List<XmlAttribute> _$DataLogValueToXmlAttributes(DataLogValue instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DataLogValueToXmlAttributes(
+  DataLogValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final processDataDDI = instance.processDataDDI;
   final processDataDDISerialized = processDataDDI;
-  final processDataDDIConstructed =
-      XmlAttribute(XmlName('A'), processDataDDISerialized);
+  final processDataDDIConstructed = XmlAttribute(
+    XmlName('A'),
+    processDataDDISerialized,
+  );
   attributes.add(processDataDDIConstructed);
   final processDataValue = instance.processDataValue;
   final processDataValueSerialized = processDataValue.toString();
-  final processDataValueConstructed =
-      XmlAttribute(XmlName('B'), processDataValueSerialized);
+  final processDataValueConstructed = XmlAttribute(
+    XmlName('B'),
+    processDataValueSerialized,
+  );
   attributes.add(processDataValueConstructed);
   final deviceElementIdRef = instance.deviceElementIdRef;
   final deviceElementIdRefSerialized = deviceElementIdRef;
-  final deviceElementIdRefConstructed =
-      XmlAttribute(XmlName('C'), deviceElementIdRefSerialized);
+  final deviceElementIdRefConstructed = XmlAttribute(
+    XmlName('C'),
+    deviceElementIdRefSerialized,
+  );
   attributes.add(deviceElementIdRefConstructed);
   final pgn = instance.pgn;
   final pgnSerialized = pgn?.toString();
-  final pgnConstructed =
-      pgnSerialized != null ? XmlAttribute(XmlName('D'), pgnSerialized) : null;
+  final pgnConstructed = pgnSerialized != null
+      ? XmlAttribute(XmlName('D'), pgnSerialized)
+      : null;
   if (pgnConstructed != null) {
     attributes.add(pgnConstructed);
   }
@@ -8929,38 +9235,49 @@ List<XmlAttribute> _$DataLogValueToXmlAttributes(DataLogValue instance,
   return attributes;
 }
 
-List<XmlNode> _$DataLogValueToXmlChildren(DataLogValue instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DataLogValueToXmlChildren(
+  DataLogValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$DataLogValueToXmlElement(DataLogValue instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DLV'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DataLogValueToXmlElement(
+  DataLogValue instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DLV'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DataLogValueXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DataLogValueBuildXmlChildren(this as DataLogValue, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DataLogValueBuildXmlChildren(
+    this as DataLogValue,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DataLogValueBuildXmlElement(this as DataLogValue, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DataLogValueBuildXmlElement(
+    this as DataLogValue,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DataLogValueToXmlAttributes(this as DataLogValue,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DataLogValueToXmlAttributes(
+    this as DataLogValue,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$DataLogValueToXmlChildren(this as DataLogValue, namespaces: namespaces);
@@ -8969,8 +9286,11 @@ mixin _$DataLogValueXmlSerializableMixin {
       _$DataLogValueToXmlElement(this as DataLogValue, namespaces: namespaces);
 }
 
-void _$ConnectionBuildXmlChildren(Connection instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$ConnectionBuildXmlChildren(
+  Connection instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final deviceIdRef_0 = instance.deviceIdRef_0;
   final deviceIdRef_0Serialized = deviceIdRef_0;
   builder.attribute('A', deviceIdRef_0Serialized);
@@ -8985,11 +9305,18 @@ void _$ConnectionBuildXmlChildren(Connection instance, XmlBuilder builder,
   builder.attribute('D', deviceElementIdRef_1Serialized);
 }
 
-void _$ConnectionBuildXmlElement(Connection instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CNN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$ConnectionBuildXmlElement(
+  Connection instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CNN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Connection _$ConnectionFromXmlElement(XmlElement element) {
@@ -8998,69 +9325,89 @@ Connection _$ConnectionFromXmlElement(XmlElement element) {
   final deviceIdRef_1 = element.getAttribute('C')!;
   final deviceElementIdRef_1 = element.getAttribute('D')!;
   return Connection(
-      deviceIdRef_0: deviceIdRef_0,
-      deviceElementIdRef_0: deviceElementIdRef_0,
-      deviceIdRef_1: deviceIdRef_1,
-      deviceElementIdRef_1: deviceElementIdRef_1);
+    deviceIdRef_0: deviceIdRef_0,
+    deviceElementIdRef_0: deviceElementIdRef_0,
+    deviceIdRef_1: deviceIdRef_1,
+    deviceElementIdRef_1: deviceElementIdRef_1,
+  );
 }
 
-List<XmlAttribute> _$ConnectionToXmlAttributes(Connection instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ConnectionToXmlAttributes(
+  Connection instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final deviceIdRef_0 = instance.deviceIdRef_0;
   final deviceIdRef_0Serialized = deviceIdRef_0;
-  final deviceIdRef_0Constructed =
-      XmlAttribute(XmlName('A'), deviceIdRef_0Serialized);
+  final deviceIdRef_0Constructed = XmlAttribute(
+    XmlName('A'),
+    deviceIdRef_0Serialized,
+  );
   attributes.add(deviceIdRef_0Constructed);
   final deviceElementIdRef_0 = instance.deviceElementIdRef_0;
   final deviceElementIdRef_0Serialized = deviceElementIdRef_0;
-  final deviceElementIdRef_0Constructed =
-      XmlAttribute(XmlName('B'), deviceElementIdRef_0Serialized);
+  final deviceElementIdRef_0Constructed = XmlAttribute(
+    XmlName('B'),
+    deviceElementIdRef_0Serialized,
+  );
   attributes.add(deviceElementIdRef_0Constructed);
   final deviceIdRef_1 = instance.deviceIdRef_1;
   final deviceIdRef_1Serialized = deviceIdRef_1;
-  final deviceIdRef_1Constructed =
-      XmlAttribute(XmlName('C'), deviceIdRef_1Serialized);
+  final deviceIdRef_1Constructed = XmlAttribute(
+    XmlName('C'),
+    deviceIdRef_1Serialized,
+  );
   attributes.add(deviceIdRef_1Constructed);
   final deviceElementIdRef_1 = instance.deviceElementIdRef_1;
   final deviceElementIdRef_1Serialized = deviceElementIdRef_1;
-  final deviceElementIdRef_1Constructed =
-      XmlAttribute(XmlName('D'), deviceElementIdRef_1Serialized);
+  final deviceElementIdRef_1Constructed = XmlAttribute(
+    XmlName('D'),
+    deviceElementIdRef_1Serialized,
+  );
   attributes.add(deviceElementIdRef_1Constructed);
   return attributes;
 }
 
-List<XmlNode> _$ConnectionToXmlChildren(Connection instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ConnectionToXmlChildren(
+  Connection instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ConnectionToXmlElement(Connection instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CNN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ConnectionToXmlElement(
+  Connection instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CNN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ConnectionXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ConnectionBuildXmlChildren(this as Connection, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ConnectionBuildXmlChildren(
+    this as Connection,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ConnectionBuildXmlElement(this as Connection, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ConnectionBuildXmlElement(
+    this as Connection,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ConnectionToXmlAttributes(this as Connection, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ConnectionToXmlAttributes(this as Connection, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$ConnectionToXmlChildren(this as Connection, namespaces: namespaces);
@@ -9070,15 +9417,22 @@ mixin _$ConnectionXmlSerializableMixin {
 }
 
 void _$ControlAssignmentBuildXmlChildren(
-    ControlAssignment instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ControlAssignment instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final sourceClientNAME = instance.sourceClientNAME;
   final sourceClientNAMESerialized = sourceClientNAME;
@@ -9093,8 +9447,8 @@ void _$ControlAssignmentBuildXmlChildren(
   final userDeviceStructureLabelSerialized = userDeviceStructureLabel;
   builder.attribute('D', userDeviceStructureLabelSerialized);
   final sourceDeviceElementNumber = instance.sourceDeviceElementNumber;
-  final sourceDeviceElementNumberSerialized =
-      sourceDeviceElementNumber.toString();
+  final sourceDeviceElementNumberSerialized = sourceDeviceElementNumber
+      .toString();
   builder.attribute('E', sourceDeviceElementNumberSerialized);
   final userDeviceElementNumber = instance.userDeviceElementNumber;
   final userDeviceElementNumberSerialized = userDeviceElementNumber.toString();
@@ -9105,11 +9459,17 @@ void _$ControlAssignmentBuildXmlChildren(
 }
 
 void _$ControlAssignmentBuildXmlElement(
-    ControlAssignment instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CAT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ControlAssignment instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CAT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ControlAssignment _$ControlAssignmentFromXmlElement(XmlElement element) {
@@ -9122,63 +9482,81 @@ ControlAssignment _$ControlAssignmentFromXmlElement(XmlElement element) {
   final userDeviceElementNumber = element.getAttribute('F')!;
   final processDataDDI = element.getAttribute('G')!;
   return ControlAssignment(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      sourceClientNAME: sourceClientNAME,
-      userClientNAME: userClientNAME,
-      sourceDeviceStructureLabel: sourceDeviceStructureLabel,
-      userDeviceStructureLabel: userDeviceStructureLabel,
-      sourceDeviceElementNumber: int.parse(sourceDeviceElementNumber),
-      userDeviceElementNumber: int.parse(userDeviceElementNumber),
-      processDataDDI: processDataDDI);
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    sourceClientNAME: sourceClientNAME,
+    userClientNAME: userClientNAME,
+    sourceDeviceStructureLabel: sourceDeviceStructureLabel,
+    userDeviceStructureLabel: userDeviceStructureLabel,
+    sourceDeviceElementNumber: int.parse(sourceDeviceElementNumber),
+    userDeviceElementNumber: int.parse(userDeviceElementNumber),
+    processDataDDI: processDataDDI,
+  );
 }
 
 List<XmlAttribute> _$ControlAssignmentToXmlAttributes(
-    ControlAssignment instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ControlAssignment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final sourceClientNAME = instance.sourceClientNAME;
   final sourceClientNAMESerialized = sourceClientNAME;
-  final sourceClientNAMEConstructed =
-      XmlAttribute(XmlName('A'), sourceClientNAMESerialized);
+  final sourceClientNAMEConstructed = XmlAttribute(
+    XmlName('A'),
+    sourceClientNAMESerialized,
+  );
   attributes.add(sourceClientNAMEConstructed);
   final userClientNAME = instance.userClientNAME;
   final userClientNAMESerialized = userClientNAME;
-  final userClientNAMEConstructed =
-      XmlAttribute(XmlName('B'), userClientNAMESerialized);
+  final userClientNAMEConstructed = XmlAttribute(
+    XmlName('B'),
+    userClientNAMESerialized,
+  );
   attributes.add(userClientNAMEConstructed);
   final sourceDeviceStructureLabel = instance.sourceDeviceStructureLabel;
   final sourceDeviceStructureLabelSerialized = sourceDeviceStructureLabel;
-  final sourceDeviceStructureLabelConstructed =
-      XmlAttribute(XmlName('C'), sourceDeviceStructureLabelSerialized);
+  final sourceDeviceStructureLabelConstructed = XmlAttribute(
+    XmlName('C'),
+    sourceDeviceStructureLabelSerialized,
+  );
   attributes.add(sourceDeviceStructureLabelConstructed);
   final userDeviceStructureLabel = instance.userDeviceStructureLabel;
   final userDeviceStructureLabelSerialized = userDeviceStructureLabel;
-  final userDeviceStructureLabelConstructed =
-      XmlAttribute(XmlName('D'), userDeviceStructureLabelSerialized);
+  final userDeviceStructureLabelConstructed = XmlAttribute(
+    XmlName('D'),
+    userDeviceStructureLabelSerialized,
+  );
   attributes.add(userDeviceStructureLabelConstructed);
   final sourceDeviceElementNumber = instance.sourceDeviceElementNumber;
-  final sourceDeviceElementNumberSerialized =
-      sourceDeviceElementNumber.toString();
-  final sourceDeviceElementNumberConstructed =
-      XmlAttribute(XmlName('E'), sourceDeviceElementNumberSerialized);
+  final sourceDeviceElementNumberSerialized = sourceDeviceElementNumber
+      .toString();
+  final sourceDeviceElementNumberConstructed = XmlAttribute(
+    XmlName('E'),
+    sourceDeviceElementNumberSerialized,
+  );
   attributes.add(sourceDeviceElementNumberConstructed);
   final userDeviceElementNumber = instance.userDeviceElementNumber;
   final userDeviceElementNumberSerialized = userDeviceElementNumber.toString();
-  final userDeviceElementNumberConstructed =
-      XmlAttribute(XmlName('F'), userDeviceElementNumberSerialized);
+  final userDeviceElementNumberConstructed = XmlAttribute(
+    XmlName('F'),
+    userDeviceElementNumberSerialized,
+  );
   attributes.add(userDeviceElementNumberConstructed);
   final processDataDDI = instance.processDataDDI;
   final processDataDDISerialized = processDataDDI;
-  final processDataDDIConstructed =
-      XmlAttribute(XmlName('G'), processDataDDISerialized);
+  final processDataDDIConstructed = XmlAttribute(
+    XmlName('G'),
+    processDataDDISerialized,
+  );
   attributes.add(processDataDDIConstructed);
   return attributes;
 }
 
-List<XmlNode> _$ControlAssignmentToXmlChildren(ControlAssignment instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ControlAssignmentToXmlChildren(
+  ControlAssignment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -9186,7 +9564,8 @@ List<XmlNode> _$ControlAssignmentToXmlChildren(ControlAssignment instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -9194,71 +9573,99 @@ List<XmlNode> _$ControlAssignmentToXmlChildren(ControlAssignment instance,
   return children;
 }
 
-XmlElement _$ControlAssignmentToXmlElement(ControlAssignment instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CAT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ControlAssignmentToXmlElement(
+  ControlAssignment instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CAT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ControlAssignmentXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ControlAssignmentBuildXmlChildren(this as ControlAssignment, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ControlAssignmentBuildXmlChildren(
+    this as ControlAssignment,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ControlAssignmentBuildXmlElement(this as ControlAssignment, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ControlAssignmentBuildXmlElement(
+    this as ControlAssignment,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ControlAssignmentToXmlAttributes(this as ControlAssignment,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ControlAssignmentToXmlAttributes(
+    this as ControlAssignment,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ControlAssignmentToXmlChildren(this as ControlAssignment,
-          namespaces: namespaces);
+      _$ControlAssignmentToXmlChildren(
+        this as ControlAssignment,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ControlAssignmentToXmlElement(this as ControlAssignment,
-          namespaces: namespaces);
+      _$ControlAssignmentToXmlElement(
+        this as ControlAssignment,
+        namespaces: namespaces,
+      );
 }
 
-void _$DeviceBuildXmlChildren(Device instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$DeviceBuildXmlChildren(
+  Device instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final elements = instance.elements;
   final elementsSerialized = elements;
   for (final value in elementsSerialized) {
-    builder.element('DET', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DET',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final processData = instance.processData;
   final processDataSerialized = processData;
   for (final value in processDataSerialized) {
-    builder.element('DPD', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DPD',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final properties = instance.properties;
   final propertiesSerialized = properties;
   for (final value in propertiesSerialized) {
-    builder.element('DPT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DPT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
   for (final value in valuePresentationsSerialized) {
-    builder.element('DVP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DVP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -9289,11 +9696,18 @@ void _$DeviceBuildXmlChildren(Device instance, XmlBuilder builder,
   builder.attribute('G', localizationLabelSerialized);
 }
 
-void _$DeviceBuildXmlElement(Device instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DVC', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$DeviceBuildXmlElement(
+  Device instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DVC',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Device _$DeviceFromXmlElement(XmlElement element) {
@@ -9309,25 +9723,30 @@ Device _$DeviceFromXmlElement(XmlElement element) {
   final structureLabel = element.getAttribute('F')!;
   final localizationLabel = element.getAttribute('G')!;
   return Device(
-      elements: elements.map((e) => DeviceElement.fromXmlElement(e)).toList(),
-      processData:
-          processData.map((e) => DeviceProcessData.fromXmlElement(e)).toList(),
-      properties:
-          properties.map((e) => DeviceProperty.fromXmlElement(e)).toList(),
-      valuePresentations: valuePresentations
-          .map((e) => DeviceValuePresentation.fromXmlElement(e))
-          .toList(),
-      id: id,
-      designator: designator,
-      softwareVersion: softwareVersion,
-      clientNAME: clientNAME,
-      serialNumber: serialNumber,
-      structureLabel: structureLabel,
-      localizationLabel: localizationLabel);
+    elements: elements.map((e) => DeviceElement.fromXmlElement(e)).toList(),
+    processData: processData
+        .map((e) => DeviceProcessData.fromXmlElement(e))
+        .toList(),
+    properties: properties
+        .map((e) => DeviceProperty.fromXmlElement(e))
+        .toList(),
+    valuePresentations: valuePresentations
+        .map((e) => DeviceValuePresentation.fromXmlElement(e))
+        .toList(),
+    id: id,
+    designator: designator,
+    softwareVersion: softwareVersion,
+    clientNAME: clientNAME,
+    serialNumber: serialNumber,
+    structureLabel: structureLabel,
+    localizationLabel: localizationLabel,
+  );
 }
 
-List<XmlAttribute> _$DeviceToXmlAttributes(Device instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DeviceToXmlAttributes(
+  Device instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -9351,8 +9770,10 @@ List<XmlAttribute> _$DeviceToXmlAttributes(Device instance,
   }
   final clientNAME = instance.clientNAME;
   final clientNAMESerialized = clientNAME;
-  final clientNAMEConstructed =
-      XmlAttribute(XmlName('D'), clientNAMESerialized);
+  final clientNAMEConstructed = XmlAttribute(
+    XmlName('D'),
+    clientNAMESerialized,
+  );
   attributes.add(clientNAMEConstructed);
   final serialNumber = instance.serialNumber;
   final serialNumberSerialized = serialNumber;
@@ -9364,73 +9785,95 @@ List<XmlAttribute> _$DeviceToXmlAttributes(Device instance,
   }
   final structureLabel = instance.structureLabel;
   final structureLabelSerialized = structureLabel;
-  final structureLabelConstructed =
-      XmlAttribute(XmlName('F'), structureLabelSerialized);
+  final structureLabelConstructed = XmlAttribute(
+    XmlName('F'),
+    structureLabelSerialized,
+  );
   attributes.add(structureLabelConstructed);
   final localizationLabel = instance.localizationLabel;
   final localizationLabelSerialized = localizationLabel;
-  final localizationLabelConstructed =
-      XmlAttribute(XmlName('G'), localizationLabelSerialized);
+  final localizationLabelConstructed = XmlAttribute(
+    XmlName('G'),
+    localizationLabelSerialized,
+  );
   attributes.add(localizationLabelConstructed);
   return attributes;
 }
 
-List<XmlNode> _$DeviceToXmlChildren(Device instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DeviceToXmlChildren(
+  Device instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final elements = instance.elements;
   final elementsSerialized = elements;
-  final elementsConstructed = elementsSerialized.map((e) => XmlElement(
+  final elementsConstructed = elementsSerialized.map(
+    (e) => XmlElement(
       XmlName('DET'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(elementsConstructed);
   final processData = instance.processData;
   final processDataSerialized = processData;
-  final processDataConstructed = processDataSerialized.map((e) => XmlElement(
+  final processDataConstructed = processDataSerialized.map(
+    (e) => XmlElement(
       XmlName('DPD'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(processDataConstructed);
   final properties = instance.properties;
   final propertiesSerialized = properties;
-  final propertiesConstructed = propertiesSerialized.map((e) => XmlElement(
+  final propertiesConstructed = propertiesSerialized.map(
+    (e) => XmlElement(
       XmlName('DPT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(propertiesConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
-      XmlElement(XmlName('DVP'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final valuePresentationsConstructed = valuePresentationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('DVP'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(valuePresentationsConstructed);
   return children;
 }
 
-XmlElement _$DeviceToXmlElement(Device instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DVC'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DeviceToXmlElement(
+  Device instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DVC'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) =>
       _$DeviceBuildXmlChildren(this as Device, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) =>
       _$DeviceBuildXmlElement(this as Device, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceToXmlAttributes(this as Device, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceToXmlAttributes(this as Device, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$DeviceToXmlChildren(this as Device, namespaces: namespaces);
@@ -9440,15 +9883,22 @@ mixin _$DeviceXmlSerializableMixin {
 }
 
 void _$DeviceAllocationBuildXmlChildren(
-    DeviceAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DeviceAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final clientNAMEValue = instance.clientNAMEValue;
   final clientNAMEValueSerialized = clientNAMEValue;
@@ -9466,11 +9916,17 @@ void _$DeviceAllocationBuildXmlChildren(
 }
 
 void _$DeviceAllocationBuildXmlElement(
-    DeviceAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DAN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DeviceAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DAN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceAllocation _$DeviceAllocationFromXmlElement(XmlElement element) {
@@ -9479,21 +9935,26 @@ DeviceAllocation _$DeviceAllocationFromXmlElement(XmlElement element) {
   final clientNAMEMask = element.getAttribute('B');
   final deviceIdRef = element.getAttribute('C');
   return DeviceAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      clientNAMEValue: clientNAMEValue,
-      clientNAMEMask: clientNAMEMask,
-      deviceIdRef: deviceIdRef);
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    clientNAMEValue: clientNAMEValue,
+    clientNAMEMask: clientNAMEMask,
+    deviceIdRef: deviceIdRef,
+  );
 }
 
-List<XmlAttribute> _$DeviceAllocationToXmlAttributes(DeviceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DeviceAllocationToXmlAttributes(
+  DeviceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final clientNAMEValue = instance.clientNAMEValue;
   final clientNAMEValueSerialized = clientNAMEValue;
-  final clientNAMEValueConstructed =
-      XmlAttribute(XmlName('A'), clientNAMEValueSerialized);
+  final clientNAMEValueConstructed = XmlAttribute(
+    XmlName('A'),
+    clientNAMEValueSerialized,
+  );
   attributes.add(clientNAMEValueConstructed);
   final clientNAMEMask = instance.clientNAMEMask;
   final clientNAMEMaskSerialized = clientNAMEMask;
@@ -9514,8 +9975,10 @@ List<XmlAttribute> _$DeviceAllocationToXmlAttributes(DeviceAllocation instance,
   return attributes;
 }
 
-List<XmlNode> _$DeviceAllocationToXmlChildren(DeviceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DeviceAllocationToXmlChildren(
+  DeviceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -9523,7 +9986,8 @@ List<XmlNode> _$DeviceAllocationToXmlChildren(DeviceAllocation instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -9531,50 +9995,69 @@ List<XmlNode> _$DeviceAllocationToXmlChildren(DeviceAllocation instance,
   return children;
 }
 
-XmlElement _$DeviceAllocationToXmlElement(DeviceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DAN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DeviceAllocationToXmlElement(
+  DeviceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DAN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceAllocationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceAllocationBuildXmlChildren(this as DeviceAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceAllocationBuildXmlChildren(
+    this as DeviceAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceAllocationBuildXmlElement(this as DeviceAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceAllocationBuildXmlElement(
+    this as DeviceAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceAllocationToXmlAttributes(this as DeviceAllocation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceAllocationToXmlAttributes(
+    this as DeviceAllocation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceAllocationToXmlChildren(this as DeviceAllocation,
-          namespaces: namespaces);
+      _$DeviceAllocationToXmlChildren(
+        this as DeviceAllocation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceAllocationToXmlElement(this as DeviceAllocation,
-          namespaces: namespaces);
+      _$DeviceAllocationToXmlElement(
+        this as DeviceAllocation,
+        namespaces: namespaces,
+      );
 }
 
-void _$DeviceElementBuildXmlChildren(DeviceElement instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$DeviceElementBuildXmlChildren(
+  DeviceElement instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectReferences = instance.objectReferences;
   final objectReferencesSerialized = objectReferences;
   for (final value in objectReferencesSerialized) {
-    builder.element('DOR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DOR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -9598,11 +10081,18 @@ void _$DeviceElementBuildXmlChildren(DeviceElement instance, XmlBuilder builder,
   builder.attribute('F', parentObjectIdSerialized);
 }
 
-void _$DeviceElementBuildXmlElement(DeviceElement instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DET', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$DeviceElementBuildXmlElement(
+  DeviceElement instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DET',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceElement _$DeviceElementFromXmlElement(XmlElement element) {
@@ -9614,25 +10104,30 @@ DeviceElement _$DeviceElementFromXmlElement(XmlElement element) {
   final number = element.getAttribute('E')!;
   final parentObjectId = element.getAttribute('F')!;
   return DeviceElement(
-      objectReferences: objectReferences
-          .map((e) => DeviceObjectReference.fromXmlElement(e))
-          .toList(),
-      id: id,
-      objectId: int.parse(objectId),
-      type: $DeviceElementTypeEnumMap.entries
-          .singleWhere(
-              (deviceElementTypeEnumMapEntry) =>
-                  deviceElementTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$DeviceElementTypeEnumMap.values.join(', ')}'))
-          .key,
-      designator: designator,
-      number: int.parse(number),
-      parentObjectId: int.parse(parentObjectId));
+    objectReferences: objectReferences
+        .map((e) => DeviceObjectReference.fromXmlElement(e))
+        .toList(),
+    id: id,
+    objectId: int.parse(objectId),
+    type: $DeviceElementTypeEnumMap.entries
+        .singleWhere(
+          (deviceElementTypeEnumMapEntry) =>
+              deviceElementTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$DeviceElementTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    designator: designator,
+    number: int.parse(number),
+    parentObjectId: int.parse(parentObjectId),
+  );
 }
 
-List<XmlAttribute> _$DeviceElementToXmlAttributes(DeviceElement instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DeviceElementToXmlAttributes(
+  DeviceElement instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -9660,85 +10155,116 @@ List<XmlAttribute> _$DeviceElementToXmlAttributes(DeviceElement instance,
   attributes.add(numberConstructed);
   final parentObjectId = instance.parentObjectId;
   final parentObjectIdSerialized = parentObjectId.toString();
-  final parentObjectIdConstructed =
-      XmlAttribute(XmlName('F'), parentObjectIdSerialized);
+  final parentObjectIdConstructed = XmlAttribute(
+    XmlName('F'),
+    parentObjectIdSerialized,
+  );
   attributes.add(parentObjectIdConstructed);
   return attributes;
 }
 
-List<XmlNode> _$DeviceElementToXmlChildren(DeviceElement instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DeviceElementToXmlChildren(
+  DeviceElement instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final objectReferences = instance.objectReferences;
   final objectReferencesSerialized = objectReferences;
-  final objectReferencesConstructed = objectReferencesSerialized.map((e) =>
-      XmlElement(XmlName('DOR'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final objectReferencesConstructed = objectReferencesSerialized.map(
+    (e) => XmlElement(
+      XmlName('DOR'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(objectReferencesConstructed);
   return children;
 }
 
-XmlElement _$DeviceElementToXmlElement(DeviceElement instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DET'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DeviceElementToXmlElement(
+  DeviceElement instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DET'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceElementXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceElementBuildXmlChildren(this as DeviceElement, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceElementBuildXmlChildren(
+    this as DeviceElement,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceElementBuildXmlElement(this as DeviceElement, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceElementBuildXmlElement(
+    this as DeviceElement,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceElementToXmlAttributes(this as DeviceElement,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceElementToXmlAttributes(
+    this as DeviceElement,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceElementToXmlChildren(this as DeviceElement,
-          namespaces: namespaces);
+      _$DeviceElementToXmlChildren(
+        this as DeviceElement,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceElementToXmlElement(this as DeviceElement,
-          namespaces: namespaces);
+      _$DeviceElementToXmlElement(
+        this as DeviceElement,
+        namespaces: namespaces,
+      );
 }
 
 void _$DeviceObjectReferenceBuildXmlChildren(
-    DeviceObjectReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DeviceObjectReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
   builder.attribute('A', objectIdSerialized);
 }
 
 void _$DeviceObjectReferenceBuildXmlElement(
-    DeviceObjectReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DOR', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DeviceObjectReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DOR',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceObjectReference _$DeviceObjectReferenceFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final objectId = element.getAttribute('A')!;
   return DeviceObjectReference(objectId: int.parse(objectId));
 }
 
 List<XmlAttribute> _$DeviceObjectReferenceToXmlAttributes(
-    DeviceObjectReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  DeviceObjectReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
@@ -9748,53 +10274,67 @@ List<XmlAttribute> _$DeviceObjectReferenceToXmlAttributes(
 }
 
 List<XmlNode> _$DeviceObjectReferenceToXmlChildren(
-    DeviceObjectReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  DeviceObjectReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$DeviceObjectReferenceToXmlElement(DeviceObjectReference instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DOR'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DeviceObjectReferenceToXmlElement(
+  DeviceObjectReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DOR'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceObjectReferenceXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceObjectReferenceBuildXmlChildren(
-          this as DeviceObjectReference, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceObjectReferenceBuildXmlChildren(
+    this as DeviceObjectReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceObjectReferenceBuildXmlElement(
-          this as DeviceObjectReference, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceObjectReferenceBuildXmlElement(
+    this as DeviceObjectReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceObjectReferenceToXmlAttributes(this as DeviceObjectReference,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceObjectReferenceToXmlAttributes(
+    this as DeviceObjectReference,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceObjectReferenceToXmlChildren(this as DeviceObjectReference,
-          namespaces: namespaces);
+      _$DeviceObjectReferenceToXmlChildren(
+        this as DeviceObjectReference,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceObjectReferenceToXmlElement(this as DeviceObjectReference,
-          namespaces: namespaces);
+      _$DeviceObjectReferenceToXmlElement(
+        this as DeviceObjectReference,
+        namespaces: namespaces,
+      );
 }
 
 void _$DeviceProcessDataBuildXmlChildren(
-    DeviceProcessData instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DeviceProcessData instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
   builder.attribute('A', objectIdSerialized);
@@ -9820,11 +10360,17 @@ void _$DeviceProcessDataBuildXmlChildren(
 }
 
 void _$DeviceProcessDataBuildXmlElement(
-    DeviceProcessData instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DPD', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DeviceProcessData instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DPD',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceProcessData _$DeviceProcessDataFromXmlElement(XmlElement element) {
@@ -9835,19 +10381,21 @@ DeviceProcessData _$DeviceProcessDataFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('E');
   final presentationObjectId = element.getAttribute('F');
   return DeviceProcessData(
-      objectId: int.parse(objectId),
-      ddi: ddi,
-      property: int.parse(property),
-      triggerMethods: int.parse(triggerMethods),
-      designator: designator,
-      presentationObjectId: presentationObjectId != null
-          ? int.parse(presentationObjectId)
-          : null);
+    objectId: int.parse(objectId),
+    ddi: ddi,
+    property: int.parse(property),
+    triggerMethods: int.parse(triggerMethods),
+    designator: designator,
+    presentationObjectId: presentationObjectId != null
+        ? int.parse(presentationObjectId)
+        : null,
+  );
 }
 
 List<XmlAttribute> _$DeviceProcessDataToXmlAttributes(
-    DeviceProcessData instance,
-    {Map<String, String?> namespaces = const {}}) {
+  DeviceProcessData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
@@ -9863,8 +10411,10 @@ List<XmlAttribute> _$DeviceProcessDataToXmlAttributes(
   attributes.add(propertyConstructed);
   final triggerMethods = instance.triggerMethods;
   final triggerMethodsSerialized = triggerMethods.toString();
-  final triggerMethodsConstructed =
-      XmlAttribute(XmlName('D'), triggerMethodsSerialized);
+  final triggerMethodsConstructed = XmlAttribute(
+    XmlName('D'),
+    triggerMethodsSerialized,
+  );
   attributes.add(triggerMethodsConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
@@ -9885,51 +10435,68 @@ List<XmlAttribute> _$DeviceProcessDataToXmlAttributes(
   return attributes;
 }
 
-List<XmlNode> _$DeviceProcessDataToXmlChildren(DeviceProcessData instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DeviceProcessDataToXmlChildren(
+  DeviceProcessData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$DeviceProcessDataToXmlElement(DeviceProcessData instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DPD'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DeviceProcessDataToXmlElement(
+  DeviceProcessData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DPD'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceProcessDataXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceProcessDataBuildXmlChildren(this as DeviceProcessData, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceProcessDataBuildXmlChildren(
+    this as DeviceProcessData,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceProcessDataBuildXmlElement(this as DeviceProcessData, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceProcessDataBuildXmlElement(
+    this as DeviceProcessData,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceProcessDataToXmlAttributes(this as DeviceProcessData,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceProcessDataToXmlAttributes(
+    this as DeviceProcessData,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceProcessDataToXmlChildren(this as DeviceProcessData,
-          namespaces: namespaces);
+      _$DeviceProcessDataToXmlChildren(
+        this as DeviceProcessData,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceProcessDataToXmlElement(this as DeviceProcessData,
-          namespaces: namespaces);
+      _$DeviceProcessDataToXmlElement(
+        this as DeviceProcessData,
+        namespaces: namespaces,
+      );
 }
 
 void _$DevicePropertyBuildXmlChildren(
-    DeviceProperty instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DeviceProperty instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
   builder.attribute('A', objectIdSerialized);
@@ -9945,19 +10512,25 @@ void _$DevicePropertyBuildXmlChildren(
     builder.attribute('D', designatorSerialized);
   }
   final valuePresentationObjectId = instance.valuePresentationObjectId;
-  final valuePresentationObjectIdSerialized =
-      valuePresentationObjectId?.toString();
+  final valuePresentationObjectIdSerialized = valuePresentationObjectId
+      ?.toString();
   if (valuePresentationObjectIdSerialized != null) {
     builder.attribute('E', valuePresentationObjectIdSerialized);
   }
 }
 
 void _$DevicePropertyBuildXmlElement(
-    DeviceProperty instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DPT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DeviceProperty instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DPT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceProperty _$DevicePropertyFromXmlElement(XmlElement element) {
@@ -9967,17 +10540,20 @@ DeviceProperty _$DevicePropertyFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('D');
   final valuePresentationObjectId = element.getAttribute('E');
   return DeviceProperty(
-      objectId: int.parse(objectId),
-      ddi: ddi,
-      value: int.parse(value),
-      designator: designator,
-      valuePresentationObjectId: valuePresentationObjectId != null
-          ? int.parse(valuePresentationObjectId)
-          : null);
+    objectId: int.parse(objectId),
+    ddi: ddi,
+    value: int.parse(value),
+    designator: designator,
+    valuePresentationObjectId: valuePresentationObjectId != null
+        ? int.parse(valuePresentationObjectId)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$DevicePropertyToXmlAttributes(DeviceProperty instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$DevicePropertyToXmlAttributes(
+  DeviceProperty instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
@@ -10000,63 +10576,80 @@ List<XmlAttribute> _$DevicePropertyToXmlAttributes(DeviceProperty instance,
     attributes.add(designatorConstructed);
   }
   final valuePresentationObjectId = instance.valuePresentationObjectId;
-  final valuePresentationObjectIdSerialized =
-      valuePresentationObjectId?.toString();
+  final valuePresentationObjectIdSerialized = valuePresentationObjectId
+      ?.toString();
   final valuePresentationObjectIdConstructed =
       valuePresentationObjectIdSerialized != null
-          ? XmlAttribute(XmlName('E'), valuePresentationObjectIdSerialized)
-          : null;
+      ? XmlAttribute(XmlName('E'), valuePresentationObjectIdSerialized)
+      : null;
   if (valuePresentationObjectIdConstructed != null) {
     attributes.add(valuePresentationObjectIdConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$DevicePropertyToXmlChildren(DeviceProperty instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$DevicePropertyToXmlChildren(
+  DeviceProperty instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$DevicePropertyToXmlElement(DeviceProperty instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DPT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$DevicePropertyToXmlElement(
+  DeviceProperty instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DPT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DevicePropertyXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DevicePropertyBuildXmlChildren(this as DeviceProperty, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DevicePropertyBuildXmlChildren(
+    this as DeviceProperty,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DevicePropertyBuildXmlElement(this as DeviceProperty, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DevicePropertyBuildXmlElement(
+    this as DeviceProperty,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DevicePropertyToXmlAttributes(this as DeviceProperty,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DevicePropertyToXmlAttributes(
+    this as DeviceProperty,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DevicePropertyToXmlChildren(this as DeviceProperty,
-          namespaces: namespaces);
+      _$DevicePropertyToXmlChildren(
+        this as DeviceProperty,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DevicePropertyToXmlElement(this as DeviceProperty,
-          namespaces: namespaces);
+      _$DevicePropertyToXmlElement(
+        this as DeviceProperty,
+        namespaces: namespaces,
+      );
 }
 
 void _$DeviceValuePresentationBuildXmlChildren(
-    DeviceValuePresentation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  DeviceValuePresentation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
   builder.attribute('A', objectIdSerialized);
@@ -10077,31 +10670,40 @@ void _$DeviceValuePresentationBuildXmlChildren(
 }
 
 void _$DeviceValuePresentationBuildXmlElement(
-    DeviceValuePresentation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('DVP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  DeviceValuePresentation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'DVP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 DeviceValuePresentation _$DeviceValuePresentationFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final objectId = element.getAttribute('A')!;
   final offset = element.getAttribute('B')!;
   final scale = element.getAttribute('C')!;
   final numberOfDecimals = element.getAttribute('D')!;
   final unitDesignator = element.getAttribute('E');
   return DeviceValuePresentation(
-      objectId: int.parse(objectId),
-      offset: int.parse(offset),
-      scale: double.parse(scale),
-      numberOfDecimals: int.parse(numberOfDecimals),
-      unitDesignator: unitDesignator);
+    objectId: int.parse(objectId),
+    offset: int.parse(offset),
+    scale: double.parse(scale),
+    numberOfDecimals: int.parse(numberOfDecimals),
+    unitDesignator: unitDesignator,
+  );
 }
 
 List<XmlAttribute> _$DeviceValuePresentationToXmlAttributes(
-    DeviceValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  DeviceValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final objectId = instance.objectId;
   final objectIdSerialized = objectId.toString();
@@ -10117,8 +10719,10 @@ List<XmlAttribute> _$DeviceValuePresentationToXmlAttributes(
   attributes.add(scaleConstructed);
   final numberOfDecimals = instance.numberOfDecimals;
   final numberOfDecimalsSerialized = numberOfDecimals.toString();
-  final numberOfDecimalsConstructed =
-      XmlAttribute(XmlName('D'), numberOfDecimalsSerialized);
+  final numberOfDecimalsConstructed = XmlAttribute(
+    XmlName('D'),
+    numberOfDecimalsSerialized,
+  );
   attributes.add(numberOfDecimalsConstructed);
   final unitDesignator = instance.unitDesignator;
   final unitDesignatorSerialized = unitDesignator;
@@ -10132,53 +10736,67 @@ List<XmlAttribute> _$DeviceValuePresentationToXmlAttributes(
 }
 
 List<XmlNode> _$DeviceValuePresentationToXmlChildren(
-    DeviceValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  DeviceValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
 XmlElement _$DeviceValuePresentationToXmlElement(
-    DeviceValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('DVP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+  DeviceValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('DVP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$DeviceValuePresentationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceValuePresentationBuildXmlChildren(
-          this as DeviceValuePresentation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceValuePresentationBuildXmlChildren(
+    this as DeviceValuePresentation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$DeviceValuePresentationBuildXmlElement(
-          this as DeviceValuePresentation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$DeviceValuePresentationBuildXmlElement(
+    this as DeviceValuePresentation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$DeviceValuePresentationToXmlAttributes(this as DeviceValuePresentation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$DeviceValuePresentationToXmlAttributes(
+    this as DeviceValuePresentation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceValuePresentationToXmlChildren(this as DeviceValuePresentation,
-          namespaces: namespaces);
+      _$DeviceValuePresentationToXmlChildren(
+        this as DeviceValuePresentation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$DeviceValuePresentationToXmlElement(this as DeviceValuePresentation,
-          namespaces: namespaces);
+      _$DeviceValuePresentationToXmlElement(
+        this as DeviceValuePresentation,
+        namespaces: namespaces,
+      );
 }
 
-void _$AttachedFileBuildXmlChildren(AttachedFile instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$AttachedFileBuildXmlChildren(
+  AttachedFile instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final filenameWithExtension = instance.filenameWithExtension;
   final filenameWithExtensionSerialized = filenameWithExtension;
   builder.attribute('A', filenameWithExtensionSerialized);
@@ -10203,11 +10821,18 @@ void _$AttachedFileBuildXmlChildren(AttachedFile instance, XmlBuilder builder,
   }
 }
 
-void _$AttachedFileBuildXmlElement(AttachedFile instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('AFE', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$AttachedFileBuildXmlElement(
+  AttachedFile instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'AFE',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 AttachedFile _$AttachedFileFromXmlElement(XmlElement element) {
@@ -10218,26 +10843,33 @@ AttachedFile _$AttachedFileFromXmlElement(XmlElement element) {
   final fileVersion = element.getAttribute('E');
   final fileLength = element.getAttribute('F');
   return AttachedFile(
-      filenameWithExtension: filenameWithExtension,
-      preserve: $PreserveEnumMap.entries
-          .singleWhere(
-              (preserveEnumMapEntry) => preserveEnumMapEntry.value == preserve,
-              orElse: () => throw ArgumentError(
-                  '`$preserve` is not one of the supported values: ${$PreserveEnumMap.values.join(', ')}'))
-          .key,
-      manufacturerGLN: manufacturerGLN,
-      fileType: int.parse(fileType),
-      fileVersion: fileVersion,
-      fileLength: fileLength != null ? int.parse(fileLength) : null);
+    filenameWithExtension: filenameWithExtension,
+    preserve: $PreserveEnumMap.entries
+        .singleWhere(
+          (preserveEnumMapEntry) => preserveEnumMapEntry.value == preserve,
+          orElse: () => throw ArgumentError(
+            '`$preserve` is not one of the supported values: ${$PreserveEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    manufacturerGLN: manufacturerGLN,
+    fileType: int.parse(fileType),
+    fileVersion: fileVersion,
+    fileLength: fileLength != null ? int.parse(fileLength) : null,
+  );
 }
 
-List<XmlAttribute> _$AttachedFileToXmlAttributes(AttachedFile instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$AttachedFileToXmlAttributes(
+  AttachedFile instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final filenameWithExtension = instance.filenameWithExtension;
   final filenameWithExtensionSerialized = filenameWithExtension;
-  final filenameWithExtensionConstructed =
-      XmlAttribute(XmlName('A'), filenameWithExtensionSerialized);
+  final filenameWithExtensionConstructed = XmlAttribute(
+    XmlName('A'),
+    filenameWithExtensionSerialized,
+  );
   attributes.add(filenameWithExtensionConstructed);
   final preserve = instance.preserve;
   final preserveSerialized = $PreserveEnumMap[preserve]!;
@@ -10245,8 +10877,10 @@ List<XmlAttribute> _$AttachedFileToXmlAttributes(AttachedFile instance,
   attributes.add(preserveConstructed);
   final manufacturerGLN = instance.manufacturerGLN;
   final manufacturerGLNSerialized = manufacturerGLN;
-  final manufacturerGLNConstructed =
-      XmlAttribute(XmlName('C'), manufacturerGLNSerialized);
+  final manufacturerGLNConstructed = XmlAttribute(
+    XmlName('C'),
+    manufacturerGLNSerialized,
+  );
   attributes.add(manufacturerGLNConstructed);
   final fileType = instance.fileType;
   final fileTypeSerialized = fileType.toString();
@@ -10271,38 +10905,49 @@ List<XmlAttribute> _$AttachedFileToXmlAttributes(AttachedFile instance,
   return attributes;
 }
 
-List<XmlNode> _$AttachedFileToXmlChildren(AttachedFile instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$AttachedFileToXmlChildren(
+  AttachedFile instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$AttachedFileToXmlElement(AttachedFile instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('AFE'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$AttachedFileToXmlElement(
+  AttachedFile instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('AFE'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$AttachedFileXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$AttachedFileBuildXmlChildren(this as AttachedFile, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$AttachedFileBuildXmlChildren(
+    this as AttachedFile,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$AttachedFileBuildXmlElement(this as AttachedFile, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$AttachedFileBuildXmlElement(
+    this as AttachedFile,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$AttachedFileToXmlAttributes(this as AttachedFile,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$AttachedFileToXmlAttributes(
+    this as AttachedFile,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$AttachedFileToXmlChildren(this as AttachedFile, namespaces: namespaces);
@@ -10312,135 +10957,194 @@ mixin _$AttachedFileXmlSerializableMixin {
 }
 
 void _$ExternalFileContentsBuildXmlChildren(
-    ExternalFileContents instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ExternalFileContents instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
   for (final value in attachedFilesSerialized) {
-    builder.element('AFE', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'AFE',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
   for (final value in baseStationsSerialized) {
-    builder.element('BSN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'BSN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
   for (final value in codedCommentsSerialized) {
-    builder.element('CCT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CCT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
   for (final value in codedCommentGroupsSerialized) {
-    builder.element('CCG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CCG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
   for (final value in colourLegendsSerialized) {
-    builder.element('CLD', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CLD',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
   for (final value in cropTypesSerialized) {
-    builder.element('CTP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CTP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
   for (final value in culturalPracticesSerialized) {
-    builder.element('CPC', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CPC',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final customers = instance.customers;
   final customersSerialized = customers;
   for (final value in customersSerialized) {
-    builder.element('CTR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CTR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final devices = instance.devices;
   final devicesSerialized = devices;
   for (final value in devicesSerialized) {
-    builder.element('DVC', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DVC',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final farms = instance.farms;
   final farmsSerialized = farms;
   for (final value in farmsSerialized) {
-    builder.element('FRM', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'FRM',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
   for (final value in operationTechniquesSerialized) {
-    builder.element('OTQ', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'OTQ',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
   for (final value in partfieldsSerialized) {
-    builder.element('PFD', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PFD',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final products = instance.products;
   final productsSerialized = products;
   for (final value in productsSerialized) {
-    builder.element('PDT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PDT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
   for (final value in productGroupsSerialized) {
-    builder.element('PGP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PGP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
   for (final value in tasksSerialized) {
-    builder.element('TSK', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TSK',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
   for (final value in valuePresentationsSerialized) {
-    builder.element('VPN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'VPN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final workers = instance.workers;
   final workersSerialized = workers;
   for (final value in workersSerialized) {
-    builder.element('WKR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'WKR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
 }
 
 void _$ExternalFileContentsBuildXmlElement(
-    ExternalFileContents instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('XFC', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ExternalFileContents instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'XFC',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ExternalFileContents _$ExternalFileContentsFromXmlElement(XmlElement element) {
@@ -10462,252 +11166,344 @@ ExternalFileContents _$ExternalFileContentsFromXmlElement(XmlElement element) {
   final valuePresentations = element.getElements('VPN')!;
   final workers = element.getElements('WKR')!;
   return ExternalFileContents(
-      attachedFiles:
-          attachedFiles.map((e) => AttachedFile.fromXmlElement(e)).toList(),
-      baseStations:
-          baseStations.map((e) => BaseStation.fromXmlElement(e)).toList(),
-      codedComments:
-          codedComments.map((e) => CodedComment.fromXmlElement(e)).toList(),
-      codedCommentGroups: codedCommentGroups
-          .map((e) => CodedCommentGroup.fromXmlElement(e))
-          .toList(),
-      colourLegends:
-          colourLegends.map((e) => ColourLegend.fromXmlElement(e)).toList(),
-      cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
-      culturalPractices: culturalPractices
-          .map((e) => CulturalPractice.fromXmlElement(e))
-          .toList(),
-      customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
-      devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
-      farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
-      operationTechniques: operationTechniques
-          .map((e) => OperationTechnique.fromXmlElement(e))
-          .toList(),
-      partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
-      products: products.map((e) => Product.fromXmlElement(e)).toList(),
-      productGroups:
-          productGroups.map((e) => ProductGroup.fromXmlElement(e)).toList(),
-      tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
-      valuePresentations: valuePresentations
-          .map((e) => ValuePresentation.fromXmlElement(e))
-          .toList(),
-      workers: workers.map((e) => Worker.fromXmlElement(e)).toList());
+    attachedFiles: attachedFiles
+        .map((e) => AttachedFile.fromXmlElement(e))
+        .toList(),
+    baseStations: baseStations
+        .map((e) => BaseStation.fromXmlElement(e))
+        .toList(),
+    codedComments: codedComments
+        .map((e) => CodedComment.fromXmlElement(e))
+        .toList(),
+    codedCommentGroups: codedCommentGroups
+        .map((e) => CodedCommentGroup.fromXmlElement(e))
+        .toList(),
+    colourLegends: colourLegends
+        .map((e) => ColourLegend.fromXmlElement(e))
+        .toList(),
+    cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
+    culturalPractices: culturalPractices
+        .map((e) => CulturalPractice.fromXmlElement(e))
+        .toList(),
+    customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
+    devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
+    farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
+    operationTechniques: operationTechniques
+        .map((e) => OperationTechnique.fromXmlElement(e))
+        .toList(),
+    partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
+    products: products.map((e) => Product.fromXmlElement(e)).toList(),
+    productGroups: productGroups
+        .map((e) => ProductGroup.fromXmlElement(e))
+        .toList(),
+    tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
+    valuePresentations: valuePresentations
+        .map((e) => ValuePresentation.fromXmlElement(e))
+        .toList(),
+    workers: workers.map((e) => Worker.fromXmlElement(e)).toList(),
+  );
 }
 
 List<XmlAttribute> _$ExternalFileContentsToXmlAttributes(
-    ExternalFileContents instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ExternalFileContents instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   return attributes;
 }
 
-List<XmlNode> _$ExternalFileContentsToXmlChildren(ExternalFileContents instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ExternalFileContentsToXmlChildren(
+  ExternalFileContents instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  final attachedFilesConstructed = attachedFilesSerialized.map((e) =>
-      XmlElement(XmlName('AFE'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final attachedFilesConstructed = attachedFilesSerialized.map(
+    (e) => XmlElement(
+      XmlName('AFE'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(attachedFilesConstructed);
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  final baseStationsConstructed = baseStationsSerialized.map((e) => XmlElement(
+  final baseStationsConstructed = baseStationsSerialized.map(
+    (e) => XmlElement(
       XmlName('BSN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(baseStationsConstructed);
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  final codedCommentsConstructed = codedCommentsSerialized.map((e) =>
-      XmlElement(XmlName('CCT'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final codedCommentsConstructed = codedCommentsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CCT'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(codedCommentsConstructed);
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map((e) =>
-      XmlElement(XmlName('CCG'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CCG'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(codedCommentGroupsConstructed);
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  final colourLegendsConstructed = colourLegendsSerialized.map((e) =>
-      XmlElement(XmlName('CLD'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final colourLegendsConstructed = colourLegendsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CLD'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(colourLegendsConstructed);
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  final cropTypesConstructed = cropTypesSerialized.map((e) => XmlElement(
+  final cropTypesConstructed = cropTypesSerialized.map(
+    (e) => XmlElement(
       XmlName('CTP'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(cropTypesConstructed);
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  final culturalPracticesConstructed = culturalPracticesSerialized.map((e) =>
-      XmlElement(XmlName('CPC'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final culturalPracticesConstructed = culturalPracticesSerialized.map(
+    (e) => XmlElement(
+      XmlName('CPC'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(culturalPracticesConstructed);
   final customers = instance.customers;
   final customersSerialized = customers;
-  final customersConstructed = customersSerialized.map((e) => XmlElement(
+  final customersConstructed = customersSerialized.map(
+    (e) => XmlElement(
       XmlName('CTR'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(customersConstructed);
   final devices = instance.devices;
   final devicesSerialized = devices;
-  final devicesConstructed = devicesSerialized.map((e) => XmlElement(
+  final devicesConstructed = devicesSerialized.map(
+    (e) => XmlElement(
       XmlName('DVC'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(devicesConstructed);
   final farms = instance.farms;
   final farmsSerialized = farms;
-  final farmsConstructed = farmsSerialized.map((e) => XmlElement(
+  final farmsConstructed = farmsSerialized.map(
+    (e) => XmlElement(
       XmlName('FRM'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(farmsConstructed);
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
   final operationTechniquesConstructed = operationTechniquesSerialized.map(
-      (e) => XmlElement(
-          XmlName('OTQ'),
-          e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+    (e) => XmlElement(
+      XmlName('OTQ'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(operationTechniquesConstructed);
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  final partfieldsConstructed = partfieldsSerialized.map((e) => XmlElement(
+  final partfieldsConstructed = partfieldsSerialized.map(
+    (e) => XmlElement(
       XmlName('PFD'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(partfieldsConstructed);
   final products = instance.products;
   final productsSerialized = products;
-  final productsConstructed = productsSerialized.map((e) => XmlElement(
+  final productsConstructed = productsSerialized.map(
+    (e) => XmlElement(
       XmlName('PDT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(productsConstructed);
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  final productGroupsConstructed = productGroupsSerialized.map((e) =>
-      XmlElement(XmlName('PGP'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final productGroupsConstructed = productGroupsSerialized.map(
+    (e) => XmlElement(
+      XmlName('PGP'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(productGroupsConstructed);
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  final tasksConstructed = tasksSerialized.map((e) => XmlElement(
+  final tasksConstructed = tasksSerialized.map(
+    (e) => XmlElement(
       XmlName('TSK'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(tasksConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
-      XmlElement(XmlName('VPN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final valuePresentationsConstructed = valuePresentationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('VPN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(valuePresentationsConstructed);
   final workers = instance.workers;
   final workersSerialized = workers;
-  final workersConstructed = workersSerialized.map((e) => XmlElement(
+  final workersConstructed = workersSerialized.map(
+    (e) => XmlElement(
       XmlName('WKR'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(workersConstructed);
   return children;
 }
 
-XmlElement _$ExternalFileContentsToXmlElement(ExternalFileContents instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('XFC'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ExternalFileContentsToXmlElement(
+  ExternalFileContents instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('XFC'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ExternalFileContentsXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ExternalFileContentsBuildXmlChildren(
-          this as ExternalFileContents, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ExternalFileContentsBuildXmlChildren(
+    this as ExternalFileContents,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ExternalFileContentsBuildXmlElement(
-          this as ExternalFileContents, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ExternalFileContentsBuildXmlElement(
+    this as ExternalFileContents,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileContentsToXmlAttributes(this as ExternalFileContents,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ExternalFileContentsToXmlAttributes(
+    this as ExternalFileContents,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileContentsToXmlChildren(this as ExternalFileContents,
-          namespaces: namespaces);
+      _$ExternalFileContentsToXmlChildren(
+        this as ExternalFileContents,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileContentsToXmlElement(this as ExternalFileContents,
-          namespaces: namespaces);
+      _$ExternalFileContentsToXmlElement(
+        this as ExternalFileContents,
+        namespaces: namespaces,
+      );
 }
 
 void _$ExternalFileReferenceBuildXmlChildren(
-    ExternalFileReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ExternalFileReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final filename = instance.filename;
   final filenameSerialized = filename;
   builder.attribute('A', filenameSerialized);
   final filetype = instance.filetype;
-  final filetypeSerialized =
-      filetype != null ? $FileTypeEnumMap[filetype]! : null;
+  final filetypeSerialized = filetype != null
+      ? $FileTypeEnumMap[filetype]!
+      : null;
   if (filetypeSerialized != null) {
     builder.attribute('B', filetypeSerialized);
   }
 }
 
 void _$ExternalFileReferenceBuildXmlElement(
-    ExternalFileReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('XFR', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ExternalFileReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'XFR',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ExternalFileReference _$ExternalFileReferenceFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final filename = element.getAttribute('A')!;
   final filetype = element.getAttribute('B');
   return ExternalFileReference(
-      filename: filename,
-      filetype: filetype != null
-          ? $FileTypeEnumMap.entries
+    filename: filename,
+    filetype: filetype != null
+        ? $FileTypeEnumMap.entries
               .singleWhere(
-                  (fileTypeEnumMapEntry) =>
-                      fileTypeEnumMapEntry.value == filetype,
-                  orElse: () => throw ArgumentError(
-                      '`$filetype` is not one of the supported values: ${$FileTypeEnumMap.values.join(', ')}'))
+                (fileTypeEnumMapEntry) =>
+                    fileTypeEnumMapEntry.value == filetype,
+                orElse: () => throw ArgumentError(
+                  '`$filetype` is not one of the supported values: ${$FileTypeEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null);
+        : null,
+  );
 }
 
 List<XmlAttribute> _$ExternalFileReferenceToXmlAttributes(
-    ExternalFileReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ExternalFileReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final filename = instance.filename;
   final filenameSerialized = filename;
   final filenameConstructed = XmlAttribute(XmlName('A'), filenameSerialized);
   attributes.add(filenameConstructed);
   final filetype = instance.filetype;
-  final filetypeSerialized =
-      filetype != null ? $FileTypeEnumMap[filetype]! : null;
+  final filetypeSerialized = filetype != null
+      ? $FileTypeEnumMap[filetype]!
+      : null;
   final filetypeConstructed = filetypeSerialized != null
       ? XmlAttribute(XmlName('B'), filetypeSerialized)
       : null;
@@ -10718,52 +11514,67 @@ List<XmlAttribute> _$ExternalFileReferenceToXmlAttributes(
 }
 
 List<XmlNode> _$ExternalFileReferenceToXmlChildren(
-    ExternalFileReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ExternalFileReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ExternalFileReferenceToXmlElement(ExternalFileReference instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('XFR'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ExternalFileReferenceToXmlElement(
+  ExternalFileReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('XFR'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ExternalFileReferenceXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ExternalFileReferenceBuildXmlChildren(
-          this as ExternalFileReference, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ExternalFileReferenceBuildXmlChildren(
+    this as ExternalFileReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ExternalFileReferenceBuildXmlElement(
-          this as ExternalFileReference, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ExternalFileReferenceBuildXmlElement(
+    this as ExternalFileReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileReferenceToXmlAttributes(this as ExternalFileReference,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ExternalFileReferenceToXmlAttributes(
+    this as ExternalFileReference,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileReferenceToXmlChildren(this as ExternalFileReference,
-          namespaces: namespaces);
+      _$ExternalFileReferenceToXmlChildren(
+        this as ExternalFileReference,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ExternalFileReferenceToXmlElement(this as ExternalFileReference,
-          namespaces: namespaces);
+      _$ExternalFileReferenceToXmlElement(
+        this as ExternalFileReference,
+        namespaces: namespaces,
+      );
 }
 
-void _$GridBuildXmlChildren(Grid instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$GridBuildXmlChildren(
+  Grid instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final minimumNorthPosition = instance.minimumNorthPosition;
   final minimumNorthPositionSerialized = minimumNorthPosition.toString();
   builder.attribute('A', minimumNorthPositionSerialized);
@@ -10800,11 +11611,18 @@ void _$GridBuildXmlChildren(Grid instance, XmlBuilder builder,
   }
 }
 
-void _$GridBuildXmlElement(Grid instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GRD', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$GridBuildXmlElement(
+  Grid instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GRD',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Grid _$GridFromXmlElement(XmlElement element) {
@@ -10819,56 +11637,74 @@ Grid _$GridFromXmlElement(XmlElement element) {
   final type = element.getAttribute('I')!;
   final treatmentZoneCode = element.getAttribute('J');
   return Grid(
-      minimumNorthPosition: double.parse(minimumNorthPosition),
-      minimumEastPosition: double.parse(minimumEastPosition),
-      cellNorthSize: double.parse(cellNorthSize),
-      cellEastSize: double.parse(cellEastSize),
-      maximumColumn: int.parse(maximumColumn),
-      maximumRow: int.parse(maximumRow),
-      fileName: fileName,
-      fileLength: fileLength != null ? int.parse(fileLength) : null,
-      type: $GridTypeEnumMap.entries
-          .singleWhere(
-              (gridTypeEnumMapEntry) => gridTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$GridTypeEnumMap.values.join(', ')}'))
-          .key,
-      treatmentZoneCode:
-          treatmentZoneCode != null ? int.parse(treatmentZoneCode) : null);
+    minimumNorthPosition: double.parse(minimumNorthPosition),
+    minimumEastPosition: double.parse(minimumEastPosition),
+    cellNorthSize: double.parse(cellNorthSize),
+    cellEastSize: double.parse(cellEastSize),
+    maximumColumn: int.parse(maximumColumn),
+    maximumRow: int.parse(maximumRow),
+    fileName: fileName,
+    fileLength: fileLength != null ? int.parse(fileLength) : null,
+    type: $GridTypeEnumMap.entries
+        .singleWhere(
+          (gridTypeEnumMapEntry) => gridTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$GridTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    treatmentZoneCode: treatmentZoneCode != null
+        ? int.parse(treatmentZoneCode)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$GridToXmlAttributes(Grid instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$GridToXmlAttributes(
+  Grid instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final minimumNorthPosition = instance.minimumNorthPosition;
   final minimumNorthPositionSerialized = minimumNorthPosition.toString();
-  final minimumNorthPositionConstructed =
-      XmlAttribute(XmlName('A'), minimumNorthPositionSerialized);
+  final minimumNorthPositionConstructed = XmlAttribute(
+    XmlName('A'),
+    minimumNorthPositionSerialized,
+  );
   attributes.add(minimumNorthPositionConstructed);
   final minimumEastPosition = instance.minimumEastPosition;
   final minimumEastPositionSerialized = minimumEastPosition.toString();
-  final minimumEastPositionConstructed =
-      XmlAttribute(XmlName('B'), minimumEastPositionSerialized);
+  final minimumEastPositionConstructed = XmlAttribute(
+    XmlName('B'),
+    minimumEastPositionSerialized,
+  );
   attributes.add(minimumEastPositionConstructed);
   final cellNorthSize = instance.cellNorthSize;
   final cellNorthSizeSerialized = cellNorthSize.toString();
-  final cellNorthSizeConstructed =
-      XmlAttribute(XmlName('C'), cellNorthSizeSerialized);
+  final cellNorthSizeConstructed = XmlAttribute(
+    XmlName('C'),
+    cellNorthSizeSerialized,
+  );
   attributes.add(cellNorthSizeConstructed);
   final cellEastSize = instance.cellEastSize;
   final cellEastSizeSerialized = cellEastSize.toString();
-  final cellEastSizeConstructed =
-      XmlAttribute(XmlName('D'), cellEastSizeSerialized);
+  final cellEastSizeConstructed = XmlAttribute(
+    XmlName('D'),
+    cellEastSizeSerialized,
+  );
   attributes.add(cellEastSizeConstructed);
   final maximumColumn = instance.maximumColumn;
   final maximumColumnSerialized = maximumColumn.toString();
-  final maximumColumnConstructed =
-      XmlAttribute(XmlName('E'), maximumColumnSerialized);
+  final maximumColumnConstructed = XmlAttribute(
+    XmlName('E'),
+    maximumColumnSerialized,
+  );
   attributes.add(maximumColumnConstructed);
   final maximumRow = instance.maximumRow;
   final maximumRowSerialized = maximumRow.toString();
-  final maximumRowConstructed =
-      XmlAttribute(XmlName('F'), maximumRowSerialized);
+  final maximumRowConstructed = XmlAttribute(
+    XmlName('F'),
+    maximumRowSerialized,
+  );
   attributes.add(maximumRowConstructed);
   final fileName = instance.fileName;
   final fileNameSerialized = fileName;
@@ -10897,35 +11733,38 @@ List<XmlAttribute> _$GridToXmlAttributes(Grid instance,
   return attributes;
 }
 
-List<XmlNode> _$GridToXmlChildren(Grid instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$GridToXmlChildren(
+  Grid instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$GridToXmlElement(Grid instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GRD'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$GridToXmlElement(
+  Grid instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GRD'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$GridXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GridBuildXmlChildren(this as Grid, builder, namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GridBuildXmlChildren(this as Grid, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GridBuildXmlElement(this as Grid, builder, namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GridBuildXmlElement(this as Grid, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$GridToXmlAttributes(this as Grid, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$GridToXmlAttributes(this as Grid, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$GridToXmlChildren(this as Grid, namespaces: namespaces);
@@ -10934,14 +11773,20 @@ mixin _$GridXmlSerializableMixin {
       _$GridToXmlElement(this as Grid, namespaces: namespaces);
 }
 
-void _$LineStringBuildXmlChildren(LineString instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$LineStringBuildXmlChildren(
+  LineString instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final points = instance.points;
   final pointsSerialized = points;
   for (final value in pointsSerialized) {
-    builder.element('PNT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PNT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final type = instance.type;
   final typeSerialized = $LineStringTypeEnumMap[type]!;
@@ -10973,11 +11818,18 @@ void _$LineStringBuildXmlChildren(LineString instance, XmlBuilder builder,
   }
 }
 
-void _$LineStringBuildXmlElement(LineString instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('LSG', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$LineStringBuildXmlElement(
+  LineString instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'LSG',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 LineString _$LineStringFromXmlElement(XmlElement element) {
@@ -10989,23 +11841,28 @@ LineString _$LineStringFromXmlElement(XmlElement element) {
   final colour = element.getAttribute('E');
   final id = element.getAttribute('F');
   return LineString(
-      points: points.map((e) => Point.fromXmlElement(e)).toList(),
-      type: $LineStringTypeEnumMap.entries
-          .singleWhere(
-              (lineStringTypeEnumMapEntry) =>
-                  lineStringTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$LineStringTypeEnumMap.values.join(', ')}'))
-          .key,
-      designator: designator,
-      width: width != null ? int.parse(width) : null,
-      length: length != null ? int.parse(length) : null,
-      colour: colour != null ? int.parse(colour) : null,
-      id: id);
+    points: points.map((e) => Point.fromXmlElement(e)).toList(),
+    type: $LineStringTypeEnumMap.entries
+        .singleWhere(
+          (lineStringTypeEnumMapEntry) =>
+              lineStringTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$LineStringTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    designator: designator,
+    width: width != null ? int.parse(width) : null,
+    length: length != null ? int.parse(length) : null,
+    colour: colour != null ? int.parse(colour) : null,
+    id: id,
+  );
 }
 
-List<XmlAttribute> _$LineStringToXmlAttributes(LineString instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$LineStringToXmlAttributes(
+  LineString instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final type = instance.type;
   final typeSerialized = $LineStringTypeEnumMap[type]!;
@@ -11045,52 +11902,65 @@ List<XmlAttribute> _$LineStringToXmlAttributes(LineString instance,
   }
   final id = instance.id;
   final idSerialized = id;
-  final idConstructed =
-      idSerialized != null ? XmlAttribute(XmlName('F'), idSerialized) : null;
+  final idConstructed = idSerialized != null
+      ? XmlAttribute(XmlName('F'), idSerialized)
+      : null;
   if (idConstructed != null) {
     attributes.add(idConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$LineStringToXmlChildren(LineString instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$LineStringToXmlChildren(
+  LineString instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final points = instance.points;
   final pointsSerialized = points;
-  final pointsConstructed = pointsSerialized.map((e) => XmlElement(
+  final pointsConstructed = pointsSerialized.map(
+    (e) => XmlElement(
       XmlName('PNT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(pointsConstructed);
   return children;
 }
 
-XmlElement _$LineStringToXmlElement(LineString instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('LSG'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$LineStringToXmlElement(
+  LineString instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('LSG'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$LineStringXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LineStringBuildXmlChildren(this as LineString, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LineStringBuildXmlChildren(
+    this as LineString,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LineStringBuildXmlElement(this as LineString, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LineStringBuildXmlElement(
+    this as LineString,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$LineStringToXmlAttributes(this as LineString, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$LineStringToXmlAttributes(this as LineString, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$LineStringToXmlChildren(this as LineString, namespaces: namespaces);
@@ -11099,35 +11969,50 @@ mixin _$LineStringXmlSerializableMixin {
       _$LineStringToXmlElement(this as LineString, namespaces: namespaces);
 }
 
-void _$PartfieldBuildXmlChildren(Partfield instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$PartfieldBuildXmlChildren(
+  Partfield instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
   for (final value in polygonsSerialized) {
-    builder.element('PLN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PLN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final points = instance.points;
   final pointsSerialized = points;
   for (final value in pointsSerialized) {
-    builder.element('PNT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PNT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
   for (final value in lineStringsSerialized) {
-    builder.element('LSG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'LSG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final guidanceGroups = instance.guidanceGroups;
   final guidanceGroupsSerialized = guidanceGroups;
   for (final value in guidanceGroupsSerialized) {
-    builder.element('GGP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'GGP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -11170,11 +12055,18 @@ void _$PartfieldBuildXmlChildren(Partfield instance, XmlBuilder builder,
   }
 }
 
-void _$PartfieldBuildXmlElement(Partfield instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PFD', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$PartfieldBuildXmlElement(
+  Partfield instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PFD',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Partfield _$PartfieldFromXmlElement(XmlElement element) {
@@ -11192,25 +12084,28 @@ Partfield _$PartfieldFromXmlElement(XmlElement element) {
   final cropVarietyIdRef = element.getAttribute('H');
   final fieldIdRef = element.getAttribute('I');
   return Partfield(
-      polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
-      points: points.map((e) => Point.fromXmlElement(e)).toList(),
-      lineStrings:
-          lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
-      guidanceGroups:
-          guidanceGroups.map((e) => GuidanceGroup.fromXmlElement(e)).toList(),
-      id: id,
-      code: code,
-      designator: designator,
-      area: int.parse(area),
-      customerIdRef: customerIdRef,
-      farmIdRef: farmIdRef,
-      cropTypeIdRef: cropTypeIdRef,
-      cropVarietyIdRef: cropVarietyIdRef,
-      fieldIdRef: fieldIdRef);
+    polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
+    points: points.map((e) => Point.fromXmlElement(e)).toList(),
+    lineStrings: lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
+    guidanceGroups: guidanceGroups
+        .map((e) => GuidanceGroup.fromXmlElement(e))
+        .toList(),
+    id: id,
+    code: code,
+    designator: designator,
+    area: int.parse(area),
+    customerIdRef: customerIdRef,
+    farmIdRef: farmIdRef,
+    cropTypeIdRef: cropTypeIdRef,
+    cropVarietyIdRef: cropVarietyIdRef,
+    fieldIdRef: fieldIdRef,
+  );
 }
 
-List<XmlAttribute> _$PartfieldToXmlAttributes(Partfield instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$PartfieldToXmlAttributes(
+  Partfield instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -11226,8 +12121,10 @@ List<XmlAttribute> _$PartfieldToXmlAttributes(Partfield instance,
   }
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('C'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('C'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final area = instance.area;
   final areaSerialized = area.toString();
@@ -11276,64 +12173,86 @@ List<XmlAttribute> _$PartfieldToXmlAttributes(Partfield instance,
   return attributes;
 }
 
-List<XmlNode> _$PartfieldToXmlChildren(Partfield instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$PartfieldToXmlChildren(
+  Partfield instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  final polygonsConstructed = polygonsSerialized.map((e) => XmlElement(
+  final polygonsConstructed = polygonsSerialized.map(
+    (e) => XmlElement(
       XmlName('PLN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(polygonsConstructed);
   final points = instance.points;
   final pointsSerialized = points;
-  final pointsConstructed = pointsSerialized.map((e) => XmlElement(
+  final pointsConstructed = pointsSerialized.map(
+    (e) => XmlElement(
       XmlName('PNT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(pointsConstructed);
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  final lineStringsConstructed = lineStringsSerialized.map((e) => XmlElement(
+  final lineStringsConstructed = lineStringsSerialized.map(
+    (e) => XmlElement(
       XmlName('LSG'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(lineStringsConstructed);
   final guidanceGroups = instance.guidanceGroups;
   final guidanceGroupsSerialized = guidanceGroups;
-  final guidanceGroupsConstructed = guidanceGroupsSerialized.map((e) =>
-      XmlElement(XmlName('GGP'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final guidanceGroupsConstructed = guidanceGroupsSerialized.map(
+    (e) => XmlElement(
+      XmlName('GGP'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(guidanceGroupsConstructed);
   return children;
 }
 
-XmlElement _$PartfieldToXmlElement(Partfield instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PFD'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$PartfieldToXmlElement(
+  Partfield instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PFD'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$PartfieldXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PartfieldBuildXmlChildren(this as Partfield, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PartfieldBuildXmlChildren(
+    this as Partfield,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PartfieldBuildXmlElement(this as Partfield, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PartfieldBuildXmlElement(
+    this as Partfield,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$PartfieldToXmlAttributes(this as Partfield, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$PartfieldToXmlAttributes(this as Partfield, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$PartfieldToXmlChildren(this as Partfield, namespaces: namespaces);
@@ -11342,8 +12261,11 @@ mixin _$PartfieldXmlSerializableMixin {
       _$PartfieldToXmlElement(this as Partfield, namespaces: namespaces);
 }
 
-void _$PointBuildXmlChildren(Point instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$PointBuildXmlChildren(
+  Point instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final type = instance.type;
   final typeSerialized = type != null ? $PointTypeEnumMap[type]! : null;
   if (typeSerialized != null) {
@@ -11401,11 +12323,18 @@ void _$PointBuildXmlChildren(Point instance, XmlBuilder builder,
   }
 }
 
-void _$PointBuildXmlElement(Point instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PNT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$PointBuildXmlElement(
+  Point instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PNT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Point _$PointFromXmlElement(XmlElement element) {
@@ -11421,31 +12350,37 @@ Point _$PointFromXmlElement(XmlElement element) {
   final filename = element.getAttribute('J');
   final fileLength = element.getAttribute('K');
   return Point(
-      type: type != null
-          ? $PointTypeEnumMap.entries
+    type: type != null
+        ? $PointTypeEnumMap.entries
               .singleWhere(
-                  (pointTypeEnumMapEntry) =>
-                      pointTypeEnumMapEntry.value == type,
-                  orElse: () => throw ArgumentError(
-                      '`$type` is not one of the supported values: ${$PointTypeEnumMap.values.join(', ')}'))
+                (pointTypeEnumMapEntry) => pointTypeEnumMapEntry.value == type,
+                orElse: () => throw ArgumentError(
+                  '`$type` is not one of the supported values: ${$PointTypeEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      designator: designator,
-      north: north != null ? double.parse(north) : null,
-      east: east != null ? double.parse(east) : null,
-      up: up != null ? int.parse(up) : null,
-      colour: colour != null ? int.parse(colour) : null,
-      id: id,
-      horizontalAccuracy:
-          horizontalAccuracy != null ? double.parse(horizontalAccuracy) : null,
-      verticalAccuracy:
-          verticalAccuracy != null ? double.parse(verticalAccuracy) : null,
-      filename: filename,
-      fileLength: fileLength != null ? int.parse(fileLength) : null);
+        : null,
+    designator: designator,
+    north: north != null ? double.parse(north) : null,
+    east: east != null ? double.parse(east) : null,
+    up: up != null ? int.parse(up) : null,
+    colour: colour != null ? int.parse(colour) : null,
+    id: id,
+    horizontalAccuracy: horizontalAccuracy != null
+        ? double.parse(horizontalAccuracy)
+        : null,
+    verticalAccuracy: verticalAccuracy != null
+        ? double.parse(verticalAccuracy)
+        : null,
+    filename: filename,
+    fileLength: fileLength != null ? int.parse(fileLength) : null,
+  );
 }
 
-List<XmlAttribute> _$PointToXmlAttributes(Point instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$PointToXmlAttributes(
+  Point instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final type = instance.type;
   final typeSerialized = type != null ? $PointTypeEnumMap[type]! : null;
@@ -11481,8 +12416,9 @@ List<XmlAttribute> _$PointToXmlAttributes(Point instance,
   }
   final up = instance.up;
   final upSerialized = up?.toString();
-  final upConstructed =
-      upSerialized != null ? XmlAttribute(XmlName('E'), upSerialized) : null;
+  final upConstructed = upSerialized != null
+      ? XmlAttribute(XmlName('E'), upSerialized)
+      : null;
   if (upConstructed != null) {
     attributes.add(upConstructed);
   }
@@ -11496,8 +12432,9 @@ List<XmlAttribute> _$PointToXmlAttributes(Point instance,
   }
   final id = instance.id;
   final idSerialized = id;
-  final idConstructed =
-      idSerialized != null ? XmlAttribute(XmlName('G'), idSerialized) : null;
+  final idConstructed = idSerialized != null
+      ? XmlAttribute(XmlName('G'), idSerialized)
+      : null;
   if (idConstructed != null) {
     attributes.add(idConstructed);
   }
@@ -11536,31 +12473,38 @@ List<XmlAttribute> _$PointToXmlAttributes(Point instance,
   return attributes;
 }
 
-List<XmlNode> _$PointToXmlChildren(Point instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$PointToXmlChildren(
+  Point instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$PointToXmlElement(Point instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PNT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$PointToXmlElement(
+  Point instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PNT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
-void _$PolygonBuildXmlChildren(Polygon instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$PolygonBuildXmlChildren(
+  Polygon instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
   for (final value in lineStringsSerialized) {
-    builder.element('LSG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'LSG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final type = instance.type;
   final typeSerialized = $PolygonTypeEnumMap[type]!;
@@ -11587,11 +12531,18 @@ void _$PolygonBuildXmlChildren(Polygon instance, XmlBuilder builder,
   }
 }
 
-void _$PolygonBuildXmlElement(Polygon instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PLN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$PolygonBuildXmlElement(
+  Polygon instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PLN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Polygon _$PolygonFromXmlElement(XmlElement element) {
@@ -11602,23 +12553,26 @@ Polygon _$PolygonFromXmlElement(XmlElement element) {
   final colour = element.getAttribute('D');
   final id = element.getAttribute('E');
   return Polygon(
-      lineStrings:
-          lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
-      type: $PolygonTypeEnumMap.entries
-          .singleWhere(
-              (polygonTypeEnumMapEntry) =>
-                  polygonTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$PolygonTypeEnumMap.values.join(', ')}'))
-          .key,
-      designator: designator,
-      area: area != null ? int.parse(area) : null,
-      colour: colour != null ? int.parse(colour) : null,
-      id: id);
+    lineStrings: lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
+    type: $PolygonTypeEnumMap.entries
+        .singleWhere(
+          (polygonTypeEnumMapEntry) => polygonTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$PolygonTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    designator: designator,
+    area: area != null ? int.parse(area) : null,
+    colour: colour != null ? int.parse(colour) : null,
+    id: id,
+  );
 }
 
-List<XmlAttribute> _$PolygonToXmlAttributes(Polygon instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$PolygonToXmlAttributes(
+  Polygon instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final type = instance.type;
   final typeSerialized = $PolygonTypeEnumMap[type]!;
@@ -11650,52 +12604,65 @@ List<XmlAttribute> _$PolygonToXmlAttributes(Polygon instance,
   }
   final id = instance.id;
   final idSerialized = id;
-  final idConstructed =
-      idSerialized != null ? XmlAttribute(XmlName('E'), idSerialized) : null;
+  final idConstructed = idSerialized != null
+      ? XmlAttribute(XmlName('E'), idSerialized)
+      : null;
   if (idConstructed != null) {
     attributes.add(idConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$PolygonToXmlChildren(Polygon instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$PolygonToXmlChildren(
+  Polygon instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  final lineStringsConstructed = lineStringsSerialized.map((e) => XmlElement(
+  final lineStringsConstructed = lineStringsSerialized.map(
+    (e) => XmlElement(
       XmlName('LSG'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(lineStringsConstructed);
   return children;
 }
 
-XmlElement _$PolygonToXmlElement(Polygon instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PLN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$PolygonToXmlElement(
+  Polygon instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PLN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$PolygonXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PolygonBuildXmlChildren(this as Polygon, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PolygonBuildXmlChildren(
+    this as Polygon,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PolygonBuildXmlElement(this as Polygon, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PolygonBuildXmlElement(
+    this as Polygon,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$PolygonToXmlAttributes(this as Polygon, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$PolygonToXmlAttributes(this as Polygon, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$PolygonToXmlChildren(this as Polygon, namespaces: namespaces);
@@ -11704,8 +12671,11 @@ mixin _$PolygonXmlSerializableMixin {
       _$PolygonToXmlElement(this as Polygon, namespaces: namespaces);
 }
 
-void _$PositionBuildXmlChildren(Position instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$PositionBuildXmlChildren(
+  Position instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final north = instance.north;
   final northSerialized = north.toString();
   builder.attribute('A', northSerialized);
@@ -11747,11 +12717,18 @@ void _$PositionBuildXmlChildren(Position instance, XmlBuilder builder,
   }
 }
 
-void _$PositionBuildXmlElement(Position instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PTN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$PositionBuildXmlElement(
+  Position instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PTN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Position _$PositionFromXmlElement(XmlElement element) {
@@ -11765,26 +12742,32 @@ Position _$PositionFromXmlElement(XmlElement element) {
   final gpsUtcTimeMs = element.getAttribute('H');
   final gpsUtcDate = element.getAttribute('I');
   return Position(
-      north: double.parse(north),
-      east: double.parse(east),
-      up: up != null ? int.parse(up) : null,
-      status: $PositionStatusEnumMap.entries
-          .singleWhere(
-              (positionStatusEnumMapEntry) =>
-                  positionStatusEnumMapEntry.value == status,
-              orElse: () => throw ArgumentError(
-                  '`$status` is not one of the supported values: ${$PositionStatusEnumMap.values.join(', ')}'))
-          .key,
-      pdop: pdop != null ? double.parse(pdop) : null,
-      hdop: hdop != null ? double.parse(hdop) : null,
-      numberOfSatellites:
-          numberOfSatellites != null ? int.parse(numberOfSatellites) : null,
-      gpsUtcTimeMs: gpsUtcTimeMs != null ? int.parse(gpsUtcTimeMs) : null,
-      gpsUtcDate: gpsUtcDate != null ? int.parse(gpsUtcDate) : null);
+    north: double.parse(north),
+    east: double.parse(east),
+    up: up != null ? int.parse(up) : null,
+    status: $PositionStatusEnumMap.entries
+        .singleWhere(
+          (positionStatusEnumMapEntry) =>
+              positionStatusEnumMapEntry.value == status,
+          orElse: () => throw ArgumentError(
+            '`$status` is not one of the supported values: ${$PositionStatusEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    pdop: pdop != null ? double.parse(pdop) : null,
+    hdop: hdop != null ? double.parse(hdop) : null,
+    numberOfSatellites: numberOfSatellites != null
+        ? int.parse(numberOfSatellites)
+        : null,
+    gpsUtcTimeMs: gpsUtcTimeMs != null ? int.parse(gpsUtcTimeMs) : null,
+    gpsUtcDate: gpsUtcDate != null ? int.parse(gpsUtcDate) : null,
+  );
 }
 
-List<XmlAttribute> _$PositionToXmlAttributes(Position instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$PositionToXmlAttributes(
+  Position instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final north = instance.north;
   final northSerialized = north.toString();
@@ -11796,8 +12779,9 @@ List<XmlAttribute> _$PositionToXmlAttributes(Position instance,
   attributes.add(eastConstructed);
   final up = instance.up;
   final upSerialized = up?.toString();
-  final upConstructed =
-      upSerialized != null ? XmlAttribute(XmlName('C'), upSerialized) : null;
+  final upConstructed = upSerialized != null
+      ? XmlAttribute(XmlName('C'), upSerialized)
+      : null;
   if (upConstructed != null) {
     attributes.add(upConstructed);
   }
@@ -11848,37 +12832,46 @@ List<XmlAttribute> _$PositionToXmlAttributes(Position instance,
   return attributes;
 }
 
-List<XmlNode> _$PositionToXmlChildren(Position instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$PositionToXmlChildren(
+  Position instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$PositionToXmlElement(Position instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PTN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$PositionToXmlElement(
+  Position instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PTN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$PositionXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PositionBuildXmlChildren(this as Position, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PositionBuildXmlChildren(
+    this as Position,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$PositionBuildXmlElement(this as Position, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$PositionBuildXmlElement(
+    this as Position,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$PositionToXmlAttributes(this as Position, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$PositionToXmlAttributes(this as Position, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$PositionToXmlChildren(this as Position, namespaces: namespaces);
@@ -11888,21 +12881,29 @@ mixin _$PositionXmlSerializableMixin {
 }
 
 void _$GuidanceAllocationBuildXmlChildren(
-    GuidanceAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  GuidanceAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamps = instance.allocationStamps;
   final allocationStampsSerialized = allocationStamps;
   for (final value in allocationStampsSerialized) {
-    builder.element('ASP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final shifts = instance.shifts;
   final shiftsSerialized = shifts;
   for (final value in shiftsSerialized) {
-    builder.element('GST', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'GST',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
@@ -11910,11 +12911,17 @@ void _$GuidanceAllocationBuildXmlChildren(
 }
 
 void _$GuidanceAllocationBuildXmlElement(
-    GuidanceAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GAN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  GuidanceAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GAN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 GuidanceAllocation _$GuidanceAllocationFromXmlElement(XmlElement element) {
@@ -11922,96 +12929,133 @@ GuidanceAllocation _$GuidanceAllocationFromXmlElement(XmlElement element) {
   final shifts = element.getElements('GST')!;
   final groupIdRef = element.getAttribute('A')!;
   return GuidanceAllocation(
-      allocationStamps: allocationStamps
-          .map((e) => AllocationStamp.fromXmlElement(e))
-          .toList(),
-      shifts: shifts.map((e) => GuidanceShift.fromXmlElement(e)).toList(),
-      groupIdRef: groupIdRef);
+    allocationStamps: allocationStamps
+        .map((e) => AllocationStamp.fromXmlElement(e))
+        .toList(),
+    shifts: shifts.map((e) => GuidanceShift.fromXmlElement(e)).toList(),
+    groupIdRef: groupIdRef,
+  );
 }
 
 List<XmlAttribute> _$GuidanceAllocationToXmlAttributes(
-    GuidanceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  GuidanceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
-  final groupIdRefConstructed =
-      XmlAttribute(XmlName('A'), groupIdRefSerialized);
+  final groupIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    groupIdRefSerialized,
+  );
   attributes.add(groupIdRefConstructed);
   return attributes;
 }
 
-List<XmlNode> _$GuidanceAllocationToXmlChildren(GuidanceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$GuidanceAllocationToXmlChildren(
+  GuidanceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamps = instance.allocationStamps;
   final allocationStampsSerialized = allocationStamps;
-  final allocationStampsConstructed = allocationStampsSerialized.map((e) =>
-      XmlElement(XmlName('ASP'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final allocationStampsConstructed = allocationStampsSerialized.map(
+    (e) => XmlElement(
+      XmlName('ASP'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(allocationStampsConstructed);
   final shifts = instance.shifts;
   final shiftsSerialized = shifts;
-  final shiftsConstructed = shiftsSerialized.map((e) => XmlElement(
+  final shiftsConstructed = shiftsSerialized.map(
+    (e) => XmlElement(
       XmlName('GST'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(shiftsConstructed);
   return children;
 }
 
-XmlElement _$GuidanceAllocationToXmlElement(GuidanceAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GAN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$GuidanceAllocationToXmlElement(
+  GuidanceAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GAN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$GuidanceAllocationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceAllocationBuildXmlChildren(this as GuidanceAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceAllocationBuildXmlChildren(
+    this as GuidanceAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceAllocationBuildXmlElement(this as GuidanceAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceAllocationBuildXmlElement(
+    this as GuidanceAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceAllocationToXmlAttributes(this as GuidanceAllocation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$GuidanceAllocationToXmlAttributes(
+    this as GuidanceAllocation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceAllocationToXmlChildren(this as GuidanceAllocation,
-          namespaces: namespaces);
+      _$GuidanceAllocationToXmlChildren(
+        this as GuidanceAllocation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceAllocationToXmlElement(this as GuidanceAllocation,
-          namespaces: namespaces);
+      _$GuidanceAllocationToXmlElement(
+        this as GuidanceAllocation,
+        namespaces: namespaces,
+      );
 }
 
-void _$GuidanceGroupBuildXmlChildren(GuidanceGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$GuidanceGroupBuildXmlChildren(
+  GuidanceGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final patterns = instance.patterns;
   final patternsSerialized = patterns;
   for (final value in patternsSerialized) {
-    builder.element('GPN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'GPN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
   if (boundaryPolygonSerialized != null) {
-    builder.element('PLN', nest: () {
-      boundaryPolygonSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'PLN',
+      nest: () {
+        boundaryPolygonSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -12023,11 +13067,18 @@ void _$GuidanceGroupBuildXmlChildren(GuidanceGroup instance, XmlBuilder builder,
   }
 }
 
-void _$GuidanceGroupBuildXmlElement(GuidanceGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GGP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$GuidanceGroupBuildXmlElement(
+  GuidanceGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GGP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 GuidanceGroup _$GuidanceGroupFromXmlElement(XmlElement element) {
@@ -12036,16 +13087,19 @@ GuidanceGroup _$GuidanceGroupFromXmlElement(XmlElement element) {
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B');
   return GuidanceGroup(
-      patterns: patterns.map((e) => GuidancePattern.fromXmlElement(e)).toList(),
-      boundaryPolygon: boundaryPolygon != null
-          ? Polygon.fromXmlElement(boundaryPolygon)
-          : null,
-      id: id,
-      designator: designator);
+    patterns: patterns.map((e) => GuidancePattern.fromXmlElement(e)).toList(),
+    boundaryPolygon: boundaryPolygon != null
+        ? Polygon.fromXmlElement(boundaryPolygon)
+        : null,
+    id: id,
+    designator: designator,
+  );
 }
 
-List<XmlAttribute> _$GuidanceGroupToXmlAttributes(GuidanceGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$GuidanceGroupToXmlAttributes(
+  GuidanceGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -12062,15 +13116,20 @@ List<XmlAttribute> _$GuidanceGroupToXmlAttributes(GuidanceGroup instance,
   return attributes;
 }
 
-List<XmlNode> _$GuidanceGroupToXmlChildren(GuidanceGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$GuidanceGroupToXmlChildren(
+  GuidanceGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final patterns = instance.patterns;
   final patternsSerialized = patterns;
-  final patternsConstructed = patternsSerialized.map((e) => XmlElement(
+  final patternsConstructed = patternsSerialized.map(
+    (e) => XmlElement(
       XmlName('GPN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(patternsConstructed);
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
@@ -12078,7 +13137,8 @@ List<XmlNode> _$GuidanceGroupToXmlChildren(GuidanceGroup instance,
       ? XmlElement(
           XmlName('PLN'),
           boundaryPolygonSerialized.toXmlAttributes(namespaces: namespaces),
-          boundaryPolygonSerialized.toXmlChildren(namespaces: namespaces))
+          boundaryPolygonSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (boundaryPolygonConstructed != null) {
     children.add(boundaryPolygonConstructed);
@@ -12086,59 +13146,82 @@ List<XmlNode> _$GuidanceGroupToXmlChildren(GuidanceGroup instance,
   return children;
 }
 
-XmlElement _$GuidanceGroupToXmlElement(GuidanceGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GGP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$GuidanceGroupToXmlElement(
+  GuidanceGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GGP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$GuidanceGroupXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceGroupBuildXmlChildren(this as GuidanceGroup, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceGroupBuildXmlChildren(
+    this as GuidanceGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceGroupBuildXmlElement(this as GuidanceGroup, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceGroupBuildXmlElement(
+    this as GuidanceGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceGroupToXmlAttributes(this as GuidanceGroup,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$GuidanceGroupToXmlAttributes(
+    this as GuidanceGroup,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceGroupToXmlChildren(this as GuidanceGroup,
-          namespaces: namespaces);
+      _$GuidanceGroupToXmlChildren(
+        this as GuidanceGroup,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceGroupToXmlElement(this as GuidanceGroup,
-          namespaces: namespaces);
+      _$GuidanceGroupToXmlElement(
+        this as GuidanceGroup,
+        namespaces: namespaces,
+      );
 }
 
 void _$GuidancePatternBuildXmlChildren(
-    GuidancePattern instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  GuidancePattern instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
   if (boundaryPolygonSerialized != null) {
-    builder.element('PLN', nest: () {
-      boundaryPolygonSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'PLN',
+      nest: () {
+        boundaryPolygonSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
   for (final value in lineStringsSerialized) {
-    builder.element('LSG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'LSG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -12152,8 +13235,9 @@ void _$GuidancePatternBuildXmlChildren(
   final typeSerialized = $GuidancePatternTypeEnumMap[type]!;
   builder.attribute('C', typeSerialized);
   final options = instance.options;
-  final optionsSerialized =
-      options != null ? $GuidancePatternOptionsEnumMap[options]! : null;
+  final optionsSerialized = options != null
+      ? $GuidancePatternOptionsEnumMap[options]!
+      : null;
   if (optionsSerialized != null) {
     builder.attribute('D', optionsSerialized);
   }
@@ -12165,8 +13249,9 @@ void _$GuidancePatternBuildXmlChildren(
     builder.attribute('E', propagationDirectionSerialized);
   }
   final extension = instance.extension;
-  final extensionSerialized =
-      extension != null ? $GuidancePatternExtensionEnumMap[extension]! : null;
+  final extensionSerialized = extension != null
+      ? $GuidancePatternExtensionEnumMap[extension]!
+      : null;
   if (extensionSerialized != null) {
     builder.attribute('F', extensionSerialized);
   }
@@ -12220,11 +13305,17 @@ void _$GuidancePatternBuildXmlChildren(
 }
 
 void _$GuidancePatternBuildXmlElement(
-    GuidancePattern instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GPN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  GuidancePattern instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GPN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 GuidancePattern _$GuidancePatternFromXmlElement(XmlElement element) {
@@ -12246,52 +13337,89 @@ GuidancePattern _$GuidancePatternFromXmlElement(XmlElement element) {
   final numberOfSwathsLeft = element.getAttribute('N');
   final numberOfSwathsRight = element.getAttribute('O');
   return GuidancePattern(
-      boundaryPolygon: boundaryPolygon != null
-          ? Polygon.fromXmlElement(boundaryPolygon)
-          : null,
-      lineStrings:
-          lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
-      id: id,
-      designator: designator,
-      type: $GuidancePatternTypeEnumMap.entries
-          .singleWhere((guidancePatternTypeEnumMapEntry) => guidancePatternTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$GuidancePatternTypeEnumMap.values.join(', ')}'))
-          .key,
-      options: options != null
-          ? $GuidancePatternOptionsEnumMap.entries
-              .singleWhere((guidancePatternOptionsEnumMapEntry) => guidancePatternOptionsEnumMapEntry.value == options,
-                  orElse: () => throw ArgumentError(
-                      '`$options` is not one of the supported values: ${$GuidancePatternOptionsEnumMap.values.join(', ')}'))
+    boundaryPolygon: boundaryPolygon != null
+        ? Polygon.fromXmlElement(boundaryPolygon)
+        : null,
+    lineStrings: lineStrings.map((e) => LineString.fromXmlElement(e)).toList(),
+    id: id,
+    designator: designator,
+    type: $GuidancePatternTypeEnumMap.entries
+        .singleWhere(
+          (guidancePatternTypeEnumMapEntry) =>
+              guidancePatternTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$GuidancePatternTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    options: options != null
+        ? $GuidancePatternOptionsEnumMap.entries
+              .singleWhere(
+                (guidancePatternOptionsEnumMapEntry) =>
+                    guidancePatternOptionsEnumMapEntry.value == options,
+                orElse: () => throw ArgumentError(
+                  '`$options` is not one of the supported values: ${$GuidancePatternOptionsEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      propagationDirection: propagationDirection != null
-          ? $GuidancePatternPropagationDirectionEnumMap.entries
-              .singleWhere((guidancePatternPropagationDirectionEnumMapEntry) => guidancePatternPropagationDirectionEnumMapEntry.value == propagationDirection,
-                  orElse: () => throw ArgumentError(
-                      '`$propagationDirection` is not one of the supported values: ${$GuidancePatternPropagationDirectionEnumMap.values.join(', ')}'))
+        : null,
+    propagationDirection: propagationDirection != null
+        ? $GuidancePatternPropagationDirectionEnumMap.entries
+              .singleWhere(
+                (guidancePatternPropagationDirectionEnumMapEntry) =>
+                    guidancePatternPropagationDirectionEnumMapEntry.value ==
+                    propagationDirection,
+                orElse: () => throw ArgumentError(
+                  '`$propagationDirection` is not one of the supported values: ${$GuidancePatternPropagationDirectionEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      extension: extension != null
-          ? $GuidancePatternExtensionEnumMap.entries
-              .singleWhere((guidancePatternExtensionEnumMapEntry) => guidancePatternExtensionEnumMapEntry.value == extension,
-                  orElse: () =>
-                      throw ArgumentError('`$extension` is not one of the supported values: ${$GuidancePatternExtensionEnumMap.values.join(', ')}'))
+        : null,
+    extension: extension != null
+        ? $GuidancePatternExtensionEnumMap.entries
+              .singleWhere(
+                (guidancePatternExtensionEnumMapEntry) =>
+                    guidancePatternExtensionEnumMapEntry.value == extension,
+                orElse: () => throw ArgumentError(
+                  '`$extension` is not one of the supported values: ${$GuidancePatternExtensionEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      heading: heading != null ? double.parse(heading) : null,
-      radius: radius != null ? int.parse(radius) : null,
-      gnssMethod: gnssMethod != null ? $GuidancePatternGnssMethodEnumMap.entries.singleWhere((guidancePatternGnssMethodEnumMapEntry) => guidancePatternGnssMethodEnumMapEntry.value == gnssMethod, orElse: () => throw ArgumentError('`$gnssMethod` is not one of the supported values: ${$GuidancePatternGnssMethodEnumMap.values.join(', ')}')).key : null,
-      horizontalAccuracy: horizontalAccuracy != null ? double.parse(horizontalAccuracy) : null,
-      verticalAccuracy: verticalAccuracy != null ? double.parse(verticalAccuracy) : null,
-      baseStationIdRef: baseStationIdRef,
-      originalSRID: originalSRID,
-      numberOfSwathsLeft: numberOfSwathsLeft != null ? int.parse(numberOfSwathsLeft) : null,
-      numberOfSwathsRight: numberOfSwathsRight != null ? int.parse(numberOfSwathsRight) : null);
+        : null,
+    heading: heading != null ? double.parse(heading) : null,
+    radius: radius != null ? int.parse(radius) : null,
+    gnssMethod: gnssMethod != null
+        ? $GuidancePatternGnssMethodEnumMap.entries
+              .singleWhere(
+                (guidancePatternGnssMethodEnumMapEntry) =>
+                    guidancePatternGnssMethodEnumMapEntry.value == gnssMethod,
+                orElse: () => throw ArgumentError(
+                  '`$gnssMethod` is not one of the supported values: ${$GuidancePatternGnssMethodEnumMap.values.join(', ')}',
+                ),
+              )
+              .key
+        : null,
+    horizontalAccuracy: horizontalAccuracy != null
+        ? double.parse(horizontalAccuracy)
+        : null,
+    verticalAccuracy: verticalAccuracy != null
+        ? double.parse(verticalAccuracy)
+        : null,
+    baseStationIdRef: baseStationIdRef,
+    originalSRID: originalSRID,
+    numberOfSwathsLeft: numberOfSwathsLeft != null
+        ? int.parse(numberOfSwathsLeft)
+        : null,
+    numberOfSwathsRight: numberOfSwathsRight != null
+        ? int.parse(numberOfSwathsRight)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$GuidancePatternToXmlAttributes(GuidancePattern instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$GuidancePatternToXmlAttributes(
+  GuidancePattern instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -12310,8 +13438,9 @@ List<XmlAttribute> _$GuidancePatternToXmlAttributes(GuidancePattern instance,
   final typeConstructed = XmlAttribute(XmlName('C'), typeSerialized);
   attributes.add(typeConstructed);
   final options = instance.options;
-  final optionsSerialized =
-      options != null ? $GuidancePatternOptionsEnumMap[options]! : null;
+  final optionsSerialized = options != null
+      ? $GuidancePatternOptionsEnumMap[options]!
+      : null;
   final optionsConstructed = optionsSerialized != null
       ? XmlAttribute(XmlName('D'), optionsSerialized)
       : null;
@@ -12329,8 +13458,9 @@ List<XmlAttribute> _$GuidancePatternToXmlAttributes(GuidancePattern instance,
     attributes.add(propagationDirectionConstructed);
   }
   final extension = instance.extension;
-  final extensionSerialized =
-      extension != null ? $GuidancePatternExtensionEnumMap[extension]! : null;
+  final extensionSerialized = extension != null
+      ? $GuidancePatternExtensionEnumMap[extension]!
+      : null;
   final extensionConstructed = extensionSerialized != null
       ? XmlAttribute(XmlName('F'), extensionSerialized)
       : null;
@@ -12414,8 +13544,10 @@ List<XmlAttribute> _$GuidancePatternToXmlAttributes(GuidancePattern instance,
   return attributes;
 }
 
-List<XmlNode> _$GuidancePatternToXmlChildren(GuidancePattern instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$GuidancePatternToXmlChildren(
+  GuidancePattern instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final boundaryPolygon = instance.boundaryPolygon;
   final boundaryPolygonSerialized = boundaryPolygon;
@@ -12423,66 +13555,91 @@ List<XmlNode> _$GuidancePatternToXmlChildren(GuidancePattern instance,
       ? XmlElement(
           XmlName('PLN'),
           boundaryPolygonSerialized.toXmlAttributes(namespaces: namespaces),
-          boundaryPolygonSerialized.toXmlChildren(namespaces: namespaces))
+          boundaryPolygonSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (boundaryPolygonConstructed != null) {
     children.add(boundaryPolygonConstructed);
   }
   final lineStrings = instance.lineStrings;
   final lineStringsSerialized = lineStrings;
-  final lineStringsConstructed = lineStringsSerialized.map((e) => XmlElement(
+  final lineStringsConstructed = lineStringsSerialized.map(
+    (e) => XmlElement(
       XmlName('LSG'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(lineStringsConstructed);
   return children;
 }
 
-XmlElement _$GuidancePatternToXmlElement(GuidancePattern instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GPN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$GuidancePatternToXmlElement(
+  GuidancePattern instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GPN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$GuidancePatternXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidancePatternBuildXmlChildren(this as GuidancePattern, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidancePatternBuildXmlChildren(
+    this as GuidancePattern,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidancePatternBuildXmlElement(this as GuidancePattern, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidancePatternBuildXmlElement(
+    this as GuidancePattern,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$GuidancePatternToXmlAttributes(this as GuidancePattern,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$GuidancePatternToXmlAttributes(
+    this as GuidancePattern,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$GuidancePatternToXmlChildren(this as GuidancePattern,
-          namespaces: namespaces);
+      _$GuidancePatternToXmlChildren(
+        this as GuidancePattern,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$GuidancePatternToXmlElement(this as GuidancePattern,
-          namespaces: namespaces);
+      _$GuidancePatternToXmlElement(
+        this as GuidancePattern,
+        namespaces: namespaces,
+      );
 }
 
-void _$GuidanceShiftBuildXmlChildren(GuidanceShift instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$GuidanceShiftBuildXmlChildren(
+  GuidanceShift instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
@@ -12511,11 +13668,18 @@ void _$GuidanceShiftBuildXmlChildren(GuidanceShift instance, XmlBuilder builder,
   }
 }
 
-void _$GuidanceShiftBuildXmlElement(GuidanceShift instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GST', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$GuidanceShiftBuildXmlElement(
+  GuidanceShift instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GST',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 GuidanceShift _$GuidanceShiftFromXmlElement(XmlElement element) {
@@ -12526,19 +13690,23 @@ GuidanceShift _$GuidanceShiftFromXmlElement(XmlElement element) {
   final northShift = element.getAttribute('D');
   final propagationOffset = element.getAttribute('E');
   return GuidanceShift(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      groupIdRef: groupIdRef,
-      patternIdRef: patternIdRef,
-      eastShift: eastShift != null ? int.parse(eastShift) : null,
-      northShift: northShift != null ? int.parse(northShift) : null,
-      propagationOffset:
-          propagationOffset != null ? int.parse(propagationOffset) : null);
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    groupIdRef: groupIdRef,
+    patternIdRef: patternIdRef,
+    eastShift: eastShift != null ? int.parse(eastShift) : null,
+    northShift: northShift != null ? int.parse(northShift) : null,
+    propagationOffset: propagationOffset != null
+        ? int.parse(propagationOffset)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$GuidanceShiftToXmlAttributes(GuidanceShift instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$GuidanceShiftToXmlAttributes(
+  GuidanceShift instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
@@ -12583,8 +13751,10 @@ List<XmlAttribute> _$GuidanceShiftToXmlAttributes(GuidanceShift instance,
   return attributes;
 }
 
-List<XmlNode> _$GuidanceShiftToXmlChildren(GuidanceShift instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$GuidanceShiftToXmlChildren(
+  GuidanceShift instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -12592,7 +13762,8 @@ List<XmlNode> _$GuidanceShiftToXmlChildren(GuidanceShift instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -12600,51 +13771,69 @@ List<XmlNode> _$GuidanceShiftToXmlChildren(GuidanceShift instance,
   return children;
 }
 
-XmlElement _$GuidanceShiftToXmlElement(GuidanceShift instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GST'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$GuidanceShiftToXmlElement(
+  GuidanceShift instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GST'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$GuidanceShiftXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceShiftBuildXmlChildren(this as GuidanceShift, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceShiftBuildXmlChildren(
+    this as GuidanceShift,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$GuidanceShiftBuildXmlElement(this as GuidanceShift, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$GuidanceShiftBuildXmlElement(
+    this as GuidanceShift,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceShiftToXmlAttributes(this as GuidanceShift,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$GuidanceShiftToXmlAttributes(
+    this as GuidanceShift,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceShiftToXmlChildren(this as GuidanceShift,
-          namespaces: namespaces);
+      _$GuidanceShiftToXmlChildren(
+        this as GuidanceShift,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$GuidanceShiftToXmlElement(this as GuidanceShift,
-          namespaces: namespaces);
+      _$GuidanceShiftToXmlElement(
+        this as GuidanceShift,
+        namespaces: namespaces,
+      );
 }
 
 void _$Iso11783LinkListBuildXmlChildren(
-    Iso11783LinkList instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  Iso11783LinkList instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final linkGroups = instance.linkGroups;
   final linkGroupsSerialized = linkGroups;
   for (final value in linkGroupsSerialized) {
-    builder.element('LGP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'LGP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
@@ -12656,17 +13845,23 @@ void _$Iso11783LinkListBuildXmlChildren(
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
       managementSoftwareManufacturer;
-  builder.attribute('ManagementSoftwareManufacturer',
-      managementSoftwareManufacturerSerialized);
+  builder.attribute(
+    'ManagementSoftwareManufacturer',
+    managementSoftwareManufacturerSerialized,
+  );
   final managementSoftwareVersion = instance.managementSoftwareVersion;
   final managementSoftwareVersionSerialized = managementSoftwareVersion;
   builder.attribute(
-      'ManagementSoftwareVersion', managementSoftwareVersionSerialized);
+    'ManagementSoftwareVersion',
+    managementSoftwareVersionSerialized,
+  );
   final taskControllerManufacturer = instance.taskControllerManufacturer;
   final taskControllerManufacturerSerialized = taskControllerManufacturer;
   if (taskControllerManufacturerSerialized != null) {
     builder.attribute(
-        'TaskControllerManufacturer', taskControllerManufacturerSerialized);
+      'TaskControllerManufacturer',
+      taskControllerManufacturerSerialized,
+    );
   }
   final taskControllerVersion = instance.taskControllerVersion;
   final taskControllerVersionSerialized = taskControllerVersion;
@@ -12685,90 +13880,116 @@ void _$Iso11783LinkListBuildXmlChildren(
 }
 
 void _$Iso11783LinkListBuildXmlElement(
-    Iso11783LinkList instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('ISO11783LinkList', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  Iso11783LinkList instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'ISO11783LinkList',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Iso11783LinkList _$Iso11783LinkListFromXmlElement(XmlElement element) {
   final linkGroups = element.getElements('LGP')!;
   final versionMajor = element.getAttribute('VersionMajor')!;
   final versionMinor = element.getAttribute('VersionMinor')!;
-  final managementSoftwareManufacturer =
-      element.getAttribute('ManagementSoftwareManufacturer')!;
-  final managementSoftwareVersion =
-      element.getAttribute('ManagementSoftwareVersion')!;
-  final taskControllerManufacturer =
-      element.getAttribute('TaskControllerManufacturer');
+  final managementSoftwareManufacturer = element.getAttribute(
+    'ManagementSoftwareManufacturer',
+  )!;
+  final managementSoftwareVersion = element.getAttribute(
+    'ManagementSoftwareVersion',
+  )!;
+  final taskControllerManufacturer = element.getAttribute(
+    'TaskControllerManufacturer',
+  );
   final taskControllerVersion = element.getAttribute('TaskControllerVersion');
   final fileVersion = element.getAttribute('FileVersion');
   final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
   return Iso11783LinkList(
-      linkGroups: linkGroups.map((e) => LinkGroup.fromXmlElement(e)).toList(),
-      versionMajor: $VersionMajorEnumMap.entries
-          .singleWhere(
-              (versionMajorEnumMapEntry) =>
-                  versionMajorEnumMapEntry.value == versionMajor,
-              orElse: () => throw ArgumentError(
-                  '`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}'))
-          .key,
-      versionMinor: $VersionMinorEnumMap.entries
-          .singleWhere(
-              (versionMinorEnumMapEntry) =>
-                  versionMinorEnumMapEntry.value == versionMinor,
-              orElse: () => throw ArgumentError(
-                  '`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}'))
-          .key,
-      managementSoftwareManufacturer: managementSoftwareManufacturer,
-      managementSoftwareVersion: managementSoftwareVersion,
-      taskControllerManufacturer: taskControllerManufacturer,
-      taskControllerVersion: taskControllerVersion,
-      fileVersion: fileVersion,
-      dataTransferOrigin: $DataTransferOriginEnumMap.entries
-          .singleWhere(
-              (dataTransferOriginEnumMapEntry) =>
-                  dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
-              orElse: () => throw ArgumentError(
-                  '`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}'))
-          .key);
+    linkGroups: linkGroups.map((e) => LinkGroup.fromXmlElement(e)).toList(),
+    versionMajor: $VersionMajorEnumMap.entries
+        .singleWhere(
+          (versionMajorEnumMapEntry) =>
+              versionMajorEnumMapEntry.value == versionMajor,
+          orElse: () => throw ArgumentError(
+            '`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    versionMinor: $VersionMinorEnumMap.entries
+        .singleWhere(
+          (versionMinorEnumMapEntry) =>
+              versionMinorEnumMapEntry.value == versionMinor,
+          orElse: () => throw ArgumentError(
+            '`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    managementSoftwareManufacturer: managementSoftwareManufacturer,
+    managementSoftwareVersion: managementSoftwareVersion,
+    taskControllerManufacturer: taskControllerManufacturer,
+    taskControllerVersion: taskControllerVersion,
+    fileVersion: fileVersion,
+    dataTransferOrigin: $DataTransferOriginEnumMap.entries
+        .singleWhere(
+          (dataTransferOriginEnumMapEntry) =>
+              dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
+          orElse: () => throw ArgumentError(
+            '`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+  );
 }
 
-List<XmlAttribute> _$Iso11783LinkListToXmlAttributes(Iso11783LinkList instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$Iso11783LinkListToXmlAttributes(
+  Iso11783LinkList instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
-  final versionMajorConstructed =
-      XmlAttribute(XmlName('VersionMajor'), versionMajorSerialized);
+  final versionMajorConstructed = XmlAttribute(
+    XmlName('VersionMajor'),
+    versionMajorSerialized,
+  );
   attributes.add(versionMajorConstructed);
   final versionMinor = instance.versionMinor;
   final versionMinorSerialized = $VersionMinorEnumMap[versionMinor]!;
-  final versionMinorConstructed =
-      XmlAttribute(XmlName('VersionMinor'), versionMinorSerialized);
+  final versionMinorConstructed = XmlAttribute(
+    XmlName('VersionMinor'),
+    versionMinorSerialized,
+  );
   attributes.add(versionMinorConstructed);
   final managementSoftwareManufacturer =
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
       managementSoftwareManufacturer;
   final managementSoftwareManufacturerConstructed = XmlAttribute(
-      XmlName('ManagementSoftwareManufacturer'),
-      managementSoftwareManufacturerSerialized);
+    XmlName('ManagementSoftwareManufacturer'),
+    managementSoftwareManufacturerSerialized,
+  );
   attributes.add(managementSoftwareManufacturerConstructed);
   final managementSoftwareVersion = instance.managementSoftwareVersion;
   final managementSoftwareVersionSerialized = managementSoftwareVersion;
   final managementSoftwareVersionConstructed = XmlAttribute(
-      XmlName('ManagementSoftwareVersion'),
-      managementSoftwareVersionSerialized);
+    XmlName('ManagementSoftwareVersion'),
+    managementSoftwareVersionSerialized,
+  );
   attributes.add(managementSoftwareVersionConstructed);
   final taskControllerManufacturer = instance.taskControllerManufacturer;
   final taskControllerManufacturerSerialized = taskControllerManufacturer;
   final taskControllerManufacturerConstructed =
       taskControllerManufacturerSerialized != null
-          ? XmlAttribute(XmlName('TaskControllerManufacturer'),
-              taskControllerManufacturerSerialized)
-          : null;
+      ? XmlAttribute(
+          XmlName('TaskControllerManufacturer'),
+          taskControllerManufacturerSerialized,
+        )
+      : null;
   if (taskControllerManufacturerConstructed != null) {
     attributes.add(taskControllerManufacturerConstructed);
   }
@@ -12776,9 +13997,11 @@ List<XmlAttribute> _$Iso11783LinkListToXmlAttributes(Iso11783LinkList instance,
   final taskControllerVersionSerialized = taskControllerVersion;
   final taskControllerVersionConstructed =
       taskControllerVersionSerialized != null
-          ? XmlAttribute(
-              XmlName('TaskControllerVersion'), taskControllerVersionSerialized)
-          : null;
+      ? XmlAttribute(
+          XmlName('TaskControllerVersion'),
+          taskControllerVersionSerialized,
+        )
+      : null;
   if (taskControllerVersionConstructed != null) {
     attributes.add(taskControllerVersionConstructed);
   }
@@ -12793,63 +14016,86 @@ List<XmlAttribute> _$Iso11783LinkListToXmlAttributes(Iso11783LinkList instance,
   final dataTransferOrigin = instance.dataTransferOrigin;
   final dataTransferOriginSerialized =
       $DataTransferOriginEnumMap[dataTransferOrigin]!;
-  final dataTransferOriginConstructed =
-      XmlAttribute(XmlName('DataTransferOrigin'), dataTransferOriginSerialized);
+  final dataTransferOriginConstructed = XmlAttribute(
+    XmlName('DataTransferOrigin'),
+    dataTransferOriginSerialized,
+  );
   attributes.add(dataTransferOriginConstructed);
   return attributes;
 }
 
-List<XmlNode> _$Iso11783LinkListToXmlChildren(Iso11783LinkList instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$Iso11783LinkListToXmlChildren(
+  Iso11783LinkList instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final linkGroups = instance.linkGroups;
   final linkGroupsSerialized = linkGroups;
-  final linkGroupsConstructed = linkGroupsSerialized.map((e) => XmlElement(
+  final linkGroupsConstructed = linkGroupsSerialized.map(
+    (e) => XmlElement(
       XmlName('LGP'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(linkGroupsConstructed);
   return children;
 }
 
-XmlElement _$Iso11783LinkListToXmlElement(Iso11783LinkList instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('ISO11783LinkList'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$Iso11783LinkListToXmlElement(
+  Iso11783LinkList instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('ISO11783LinkList'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$Iso11783LinkListXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$Iso11783LinkListBuildXmlChildren(this as Iso11783LinkList, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$Iso11783LinkListBuildXmlChildren(
+    this as Iso11783LinkList,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$Iso11783LinkListBuildXmlElement(this as Iso11783LinkList, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$Iso11783LinkListBuildXmlElement(
+    this as Iso11783LinkList,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783LinkListToXmlAttributes(this as Iso11783LinkList,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$Iso11783LinkListToXmlAttributes(
+    this as Iso11783LinkList,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783LinkListToXmlChildren(this as Iso11783LinkList,
-          namespaces: namespaces);
+      _$Iso11783LinkListToXmlChildren(
+        this as Iso11783LinkList,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783LinkListToXmlElement(this as Iso11783LinkList,
-          namespaces: namespaces);
+      _$Iso11783LinkListToXmlElement(
+        this as Iso11783LinkList,
+        namespaces: namespaces,
+      );
 }
 
-void _$LinkBuildXmlChildren(Link instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$LinkBuildXmlChildren(
+  Link instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final objectIdRef = instance.objectIdRef;
   final objectIdRefSerialized = objectIdRef;
   builder.attribute('A', objectIdRefSerialized);
@@ -12863,11 +14109,18 @@ void _$LinkBuildXmlChildren(Link instance, XmlBuilder builder,
   }
 }
 
-void _$LinkBuildXmlElement(Link instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('LNK', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$LinkBuildXmlElement(
+  Link instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'LNK',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Link _$LinkFromXmlElement(XmlElement element) {
@@ -12877,13 +14130,17 @@ Link _$LinkFromXmlElement(XmlElement element) {
   return Link(objectIdRef: objectIdRef, value: value, designator: designator);
 }
 
-List<XmlAttribute> _$LinkToXmlAttributes(Link instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$LinkToXmlAttributes(
+  Link instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final objectIdRef = instance.objectIdRef;
   final objectIdRefSerialized = objectIdRef;
-  final objectIdRefConstructed =
-      XmlAttribute(XmlName('A'), objectIdRefSerialized);
+  final objectIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    objectIdRefSerialized,
+  );
   attributes.add(objectIdRefConstructed);
   final value = instance.value;
   final valueSerialized = value;
@@ -12900,35 +14157,38 @@ List<XmlAttribute> _$LinkToXmlAttributes(Link instance,
   return attributes;
 }
 
-List<XmlNode> _$LinkToXmlChildren(Link instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$LinkToXmlChildren(
+  Link instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$LinkToXmlElement(Link instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('LNK'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$LinkToXmlElement(
+  Link instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('LNK'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$LinkXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LinkBuildXmlChildren(this as Link, builder, namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LinkBuildXmlChildren(this as Link, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LinkBuildXmlElement(this as Link, builder, namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LinkBuildXmlElement(this as Link, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$LinkToXmlAttributes(this as Link, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$LinkToXmlAttributes(this as Link, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$LinkToXmlChildren(this as Link, namespaces: namespaces);
@@ -12937,14 +14197,20 @@ mixin _$LinkXmlSerializableMixin {
       _$LinkToXmlElement(this as Link, namespaces: namespaces);
 }
 
-void _$LinkGroupBuildXmlChildren(LinkGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$LinkGroupBuildXmlChildren(
+  LinkGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final links = instance.links;
   final linksSerialized = links;
   for (final value in linksSerialized) {
-    builder.element('LNK', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'LNK',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -12969,11 +14235,18 @@ void _$LinkGroupBuildXmlChildren(LinkGroup instance, XmlBuilder builder,
   }
 }
 
-void _$LinkGroupBuildXmlElement(LinkGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('GP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$LinkGroupBuildXmlElement(
+  LinkGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'GP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 LinkGroup _$LinkGroupFromXmlElement(XmlElement element) {
@@ -12984,22 +14257,27 @@ LinkGroup _$LinkGroupFromXmlElement(XmlElement element) {
   final namespace = element.getAttribute('D');
   final designator = element.getAttribute('E');
   return LinkGroup(
-      links: links.map((e) => Link.fromXmlElement(e)).toList(),
-      id: id,
-      type: $LinkGroupTypeEnumMap.entries
-          .singleWhere(
-              (linkGroupTypeEnumMapEntry) =>
-                  linkGroupTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$LinkGroupTypeEnumMap.values.join(', ')}'))
-          .key,
-      manufacturerGLN: manufacturerGLN,
-      namespace: namespace,
-      designator: designator);
+    links: links.map((e) => Link.fromXmlElement(e)).toList(),
+    id: id,
+    type: $LinkGroupTypeEnumMap.entries
+        .singleWhere(
+          (linkGroupTypeEnumMapEntry) =>
+              linkGroupTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$LinkGroupTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    manufacturerGLN: manufacturerGLN,
+    namespace: namespace,
+    designator: designator,
+  );
 }
 
-List<XmlAttribute> _$LinkGroupToXmlAttributes(LinkGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$LinkGroupToXmlAttributes(
+  LinkGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -13036,44 +14314,56 @@ List<XmlAttribute> _$LinkGroupToXmlAttributes(LinkGroup instance,
   return attributes;
 }
 
-List<XmlNode> _$LinkGroupToXmlChildren(LinkGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$LinkGroupToXmlChildren(
+  LinkGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final links = instance.links;
   final linksSerialized = links;
-  final linksConstructed = linksSerialized.map((e) => XmlElement(
+  final linksConstructed = linksSerialized.map(
+    (e) => XmlElement(
       XmlName('LNK'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(linksConstructed);
   return children;
 }
 
-XmlElement _$LinkGroupToXmlElement(LinkGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('GP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$LinkGroupToXmlElement(
+  LinkGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('GP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$LinkGroupXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LinkGroupBuildXmlChildren(this as LinkGroup, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LinkGroupBuildXmlChildren(
+    this as LinkGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$LinkGroupBuildXmlElement(this as LinkGroup, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$LinkGroupBuildXmlElement(
+    this as LinkGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$LinkGroupToXmlAttributes(this as LinkGroup, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$LinkGroupToXmlAttributes(this as LinkGroup, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$LinkGroupToXmlChildren(this as LinkGroup, namespaces: namespaces);
@@ -13083,8 +14373,10 @@ mixin _$LinkGroupXmlSerializableMixin {
 }
 
 void _$OperationTechniqueBuildXmlChildren(
-    OperationTechnique instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  OperationTechnique instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -13094,11 +14386,17 @@ void _$OperationTechniqueBuildXmlChildren(
 }
 
 void _$OperationTechniqueBuildXmlElement(
-    OperationTechnique instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('OTQ', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  OperationTechnique instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'OTQ',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 OperationTechnique _$OperationTechniqueFromXmlElement(XmlElement element) {
@@ -13108,8 +14406,9 @@ OperationTechnique _$OperationTechniqueFromXmlElement(XmlElement element) {
 }
 
 List<XmlAttribute> _$OperationTechniqueToXmlAttributes(
-    OperationTechnique instance,
-    {Map<String, String?> namespaces = const {}}) {
+  OperationTechnique instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -13117,57 +14416,76 @@ List<XmlAttribute> _$OperationTechniqueToXmlAttributes(
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   return attributes;
 }
 
-List<XmlNode> _$OperationTechniqueToXmlChildren(OperationTechnique instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$OperationTechniqueToXmlChildren(
+  OperationTechnique instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$OperationTechniqueToXmlElement(OperationTechnique instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('OTQ'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$OperationTechniqueToXmlElement(
+  OperationTechnique instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('OTQ'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$OperationTechniqueXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniqueBuildXmlChildren(this as OperationTechnique, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniqueBuildXmlChildren(
+    this as OperationTechnique,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniqueBuildXmlElement(this as OperationTechnique, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniqueBuildXmlElement(
+    this as OperationTechnique,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$OperationTechniqueToXmlAttributes(this as OperationTechnique,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$OperationTechniqueToXmlAttributes(
+    this as OperationTechnique,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$OperationTechniqueToXmlChildren(this as OperationTechnique,
-          namespaces: namespaces);
+      _$OperationTechniqueToXmlChildren(
+        this as OperationTechnique,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$OperationTechniqueToXmlElement(this as OperationTechnique,
-          namespaces: namespaces);
+      _$OperationTechniqueToXmlElement(
+        this as OperationTechnique,
+        namespaces: namespaces,
+      );
 }
 
 void _$OperationTechniquePracticeBuildXmlChildren(
-    OperationTechniquePractice instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  OperationTechniquePractice instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final culturalPracticeIdRef = instance.culturalPracticeIdRef;
   final culturalPracticeIdRefSerialized = culturalPracticeIdRef;
   builder.attribute('A', culturalPracticeIdRefSerialized);
@@ -13179,37 +14497,48 @@ void _$OperationTechniquePracticeBuildXmlChildren(
 }
 
 void _$OperationTechniquePracticeBuildXmlElement(
-    OperationTechniquePractice instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('OTP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  OperationTechniquePractice instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'OTP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 OperationTechniquePractice _$OperationTechniquePracticeFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final culturalPracticeIdRef = element.getAttribute('A')!;
   final operationTechniqueIdRef = element.getAttribute('B');
   return OperationTechniquePractice(
-      culturalPracticeIdRef: culturalPracticeIdRef,
-      operationTechniqueIdRef: operationTechniqueIdRef);
+    culturalPracticeIdRef: culturalPracticeIdRef,
+    operationTechniqueIdRef: operationTechniqueIdRef,
+  );
 }
 
 List<XmlAttribute> _$OperationTechniquePracticeToXmlAttributes(
-    OperationTechniquePractice instance,
-    {Map<String, String?> namespaces = const {}}) {
+  OperationTechniquePractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final culturalPracticeIdRef = instance.culturalPracticeIdRef;
   final culturalPracticeIdRefSerialized = culturalPracticeIdRef;
-  final culturalPracticeIdRefConstructed =
-      XmlAttribute(XmlName('A'), culturalPracticeIdRefSerialized);
+  final culturalPracticeIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    culturalPracticeIdRefSerialized,
+  );
   attributes.add(culturalPracticeIdRefConstructed);
   final operationTechniqueIdRef = instance.operationTechniqueIdRef;
   final operationTechniqueIdRefSerialized = operationTechniqueIdRef;
   final operationTechniqueIdRefConstructed =
       operationTechniqueIdRefSerialized != null
-          ? XmlAttribute(XmlName('B'), operationTechniqueIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('B'), operationTechniqueIdRefSerialized)
+      : null;
   if (operationTechniqueIdRefConstructed != null) {
     attributes.add(operationTechniqueIdRefConstructed);
   }
@@ -13217,146 +14546,181 @@ List<XmlAttribute> _$OperationTechniquePracticeToXmlAttributes(
 }
 
 List<XmlNode> _$OperationTechniquePracticeToXmlChildren(
-    OperationTechniquePractice instance,
-    {Map<String, String?> namespaces = const {}}) {
+  OperationTechniquePractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
 XmlElement _$OperationTechniquePracticeToXmlElement(
-    OperationTechniquePractice instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('OTP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+  OperationTechniquePractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('OTP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$OperationTechniquePracticeXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniquePracticeBuildXmlChildren(
-          this as OperationTechniquePractice, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniquePracticeBuildXmlChildren(
+    this as OperationTechniquePractice,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniquePracticeBuildXmlElement(
-          this as OperationTechniquePractice, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniquePracticeBuildXmlElement(
+    this as OperationTechniquePractice,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$OperationTechniquePracticeToXmlAttributes(
-          this as OperationTechniquePractice,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$OperationTechniquePracticeToXmlAttributes(
+    this as OperationTechniquePractice,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$OperationTechniquePracticeToXmlChildren(
-          this as OperationTechniquePractice,
-          namespaces: namespaces);
+        this as OperationTechniquePractice,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
       _$OperationTechniquePracticeToXmlElement(
-          this as OperationTechniquePractice,
-          namespaces: namespaces);
+        this as OperationTechniquePractice,
+        namespaces: namespaces,
+      );
 }
 
 void _$OperationTechniqueReferenceBuildXmlChildren(
-    OperationTechniqueReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  OperationTechniqueReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final operationTechniqueIdRef = instance.operationTechniqueIdRef;
   final operationTechniqueIdRefSerialized = operationTechniqueIdRef;
   builder.attribute('A', operationTechniqueIdRefSerialized);
 }
 
 void _$OperationTechniqueReferenceBuildXmlElement(
-    OperationTechniqueReference instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('OTR', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  OperationTechniqueReference instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'OTR',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 OperationTechniqueReference _$OperationTechniqueReferenceFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final operationTechniqueIdRef = element.getAttribute('A')!;
   return OperationTechniqueReference(
-      operationTechniqueIdRef: operationTechniqueIdRef);
+    operationTechniqueIdRef: operationTechniqueIdRef,
+  );
 }
 
 List<XmlAttribute> _$OperationTechniqueReferenceToXmlAttributes(
-    OperationTechniqueReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  OperationTechniqueReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final operationTechniqueIdRef = instance.operationTechniqueIdRef;
   final operationTechniqueIdRefSerialized = operationTechniqueIdRef;
-  final operationTechniqueIdRefConstructed =
-      XmlAttribute(XmlName('A'), operationTechniqueIdRefSerialized);
+  final operationTechniqueIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    operationTechniqueIdRefSerialized,
+  );
   attributes.add(operationTechniqueIdRefConstructed);
   return attributes;
 }
 
 List<XmlNode> _$OperationTechniqueReferenceToXmlChildren(
-    OperationTechniqueReference instance,
-    {Map<String, String?> namespaces = const {}}) {
+  OperationTechniqueReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
 XmlElement _$OperationTechniqueReferenceToXmlElement(
-    OperationTechniqueReference instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('OTR'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+  OperationTechniqueReference instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('OTR'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$OperationTechniqueReferenceXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniqueReferenceBuildXmlChildren(
-          this as OperationTechniqueReference, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniqueReferenceBuildXmlChildren(
+    this as OperationTechniqueReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$OperationTechniqueReferenceBuildXmlElement(
-          this as OperationTechniqueReference, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$OperationTechniqueReferenceBuildXmlElement(
+    this as OperationTechniqueReference,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$OperationTechniqueReferenceToXmlAttributes(
-          this as OperationTechniqueReference,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$OperationTechniqueReferenceToXmlAttributes(
+    this as OperationTechniqueReference,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$OperationTechniqueReferenceToXmlChildren(
-          this as OperationTechniqueReference,
-          namespaces: namespaces);
+        this as OperationTechniqueReference,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
       _$OperationTechniqueReferenceToXmlElement(
-          this as OperationTechniqueReference,
-          namespaces: namespaces);
+        this as OperationTechniqueReference,
+        namespaces: namespaces,
+      );
 }
 
-void _$ProductBuildXmlChildren(Product instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$ProductBuildXmlChildren(
+  Product instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final relations = instance.relations;
   final relationsSerialized = relations;
   for (final value in relationsSerialized) {
-    builder.element('PRN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PRN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -13406,11 +14770,18 @@ void _$ProductBuildXmlChildren(Product instance, XmlBuilder builder,
   }
 }
 
-void _$ProductBuildXmlElement(Product instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PDT', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$ProductBuildXmlElement(
+  Product instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PDT',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Product _$ProductFromXmlElement(XmlElement element) {
@@ -13426,36 +14797,42 @@ Product _$ProductFromXmlElement(XmlElement element) {
   final densityMassPerCount = element.getAttribute('I');
   final densityVolumePerCount = element.getAttribute('J');
   return Product(
-      relations:
-          relations.map((e) => ProductRelation.fromXmlElement(e)).toList(),
-      id: id,
-      designator: designator,
-      groupIdRef: groupIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      quantityDDI: quantityDDI,
-      type: type != null
-          ? $ProductTypeEnumMap.entries
+    relations: relations.map((e) => ProductRelation.fromXmlElement(e)).toList(),
+    id: id,
+    designator: designator,
+    groupIdRef: groupIdRef,
+    valuePresentationIdRef: valuePresentationIdRef,
+    quantityDDI: quantityDDI,
+    type: type != null
+        ? $ProductTypeEnumMap.entries
               .singleWhere(
-                  (productTypeEnumMapEntry) =>
-                      productTypeEnumMapEntry.value == type,
-                  orElse: () => throw ArgumentError(
-                      '`$type` is not one of the supported values: ${$ProductTypeEnumMap.values.join(', ')}'))
+                (productTypeEnumMapEntry) =>
+                    productTypeEnumMapEntry.value == type,
+                orElse: () => throw ArgumentError(
+                  '`$type` is not one of the supported values: ${$ProductTypeEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      mixtureRecipeQuantity: mixtureRecipeQuantity != null
-          ? int.parse(mixtureRecipeQuantity)
-          : null,
-      densityMassPerVolume:
-          densityMassPerVolume != null ? int.parse(densityMassPerVolume) : null,
-      densityMassPerCount:
-          densityMassPerCount != null ? int.parse(densityMassPerCount) : null,
-      densityVolumePerCount: densityVolumePerCount != null
-          ? int.parse(densityVolumePerCount)
-          : null);
+        : null,
+    mixtureRecipeQuantity: mixtureRecipeQuantity != null
+        ? int.parse(mixtureRecipeQuantity)
+        : null,
+    densityMassPerVolume: densityMassPerVolume != null
+        ? int.parse(densityMassPerVolume)
+        : null,
+    densityMassPerCount: densityMassPerCount != null
+        ? int.parse(densityMassPerCount)
+        : null,
+    densityVolumePerCount: densityVolumePerCount != null
+        ? int.parse(densityVolumePerCount)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$ProductToXmlAttributes(Product instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ProductToXmlAttributes(
+  Product instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -13463,8 +14840,10 @@ List<XmlAttribute> _$ProductToXmlAttributes(Product instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final groupIdRef = instance.groupIdRef;
   final groupIdRefSerialized = groupIdRef;
@@ -13478,8 +14857,8 @@ List<XmlAttribute> _$ProductToXmlAttributes(Product instance,
   final valuePresentationIdRefSerialized = valuePresentationIdRef;
   final valuePresentationIdRefConstructed =
       valuePresentationIdRefSerialized != null
-          ? XmlAttribute(XmlName('D'), valuePresentationIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('D'), valuePresentationIdRefSerialized)
+      : null;
   if (valuePresentationIdRefConstructed != null) {
     attributes.add(valuePresentationIdRefConstructed);
   }
@@ -13503,8 +14882,8 @@ List<XmlAttribute> _$ProductToXmlAttributes(Product instance,
   final mixtureRecipeQuantitySerialized = mixtureRecipeQuantity?.toString();
   final mixtureRecipeQuantityConstructed =
       mixtureRecipeQuantitySerialized != null
-          ? XmlAttribute(XmlName('G'), mixtureRecipeQuantitySerialized)
-          : null;
+      ? XmlAttribute(XmlName('G'), mixtureRecipeQuantitySerialized)
+      : null;
   if (mixtureRecipeQuantityConstructed != null) {
     attributes.add(mixtureRecipeQuantityConstructed);
   }
@@ -13528,52 +14907,64 @@ List<XmlAttribute> _$ProductToXmlAttributes(Product instance,
   final densityVolumePerCountSerialized = densityVolumePerCount?.toString();
   final densityVolumePerCountConstructed =
       densityVolumePerCountSerialized != null
-          ? XmlAttribute(XmlName('J'), densityVolumePerCountSerialized)
-          : null;
+      ? XmlAttribute(XmlName('J'), densityVolumePerCountSerialized)
+      : null;
   if (densityVolumePerCountConstructed != null) {
     attributes.add(densityVolumePerCountConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$ProductToXmlChildren(Product instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ProductToXmlChildren(
+  Product instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final relations = instance.relations;
   final relationsSerialized = relations;
-  final relationsConstructed = relationsSerialized.map((e) => XmlElement(
+  final relationsConstructed = relationsSerialized.map(
+    (e) => XmlElement(
       XmlName('PRN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(relationsConstructed);
   return children;
 }
 
-XmlElement _$ProductToXmlElement(Product instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PDT'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ProductToXmlElement(
+  Product instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PDT'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ProductXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductBuildXmlChildren(this as Product, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductBuildXmlChildren(
+    this as Product,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductBuildXmlElement(this as Product, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductBuildXmlElement(
+    this as Product,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ProductToXmlAttributes(this as Product, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ProductToXmlAttributes(this as Product, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$ProductToXmlChildren(this as Product, namespaces: namespaces);
@@ -13583,15 +14974,22 @@ mixin _$ProductXmlSerializableMixin {
 }
 
 void _$ProductAllocationBuildXmlChildren(
-    ProductAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ProductAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final productIdRef = instance.productIdRef;
   final productIdRefSerialized = productIdRef;
@@ -13607,8 +15005,9 @@ void _$ProductAllocationBuildXmlChildren(
     builder.attribute('C', quantityValueSerialized);
   }
   final transferMode = instance.transferMode;
-  final transferModeSerialized =
-      transferMode != null ? $TransferModeEnumMap[transferMode]! : null;
+  final transferModeSerialized = transferMode != null
+      ? $TransferModeEnumMap[transferMode]!
+      : null;
   if (transferModeSerialized != null) {
     builder.attribute('D', transferModeSerialized);
   }
@@ -13630,11 +15029,17 @@ void _$ProductAllocationBuildXmlChildren(
 }
 
 void _$ProductAllocationBuildXmlElement(
-    ProductAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PAN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ProductAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PAN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ProductAllocation _$ProductAllocationFromXmlElement(XmlElement element) {
@@ -13647,34 +15052,40 @@ ProductAllocation _$ProductAllocationFromXmlElement(XmlElement element) {
   final valuePresentationIdRef = element.getAttribute('F');
   final productSubTypeIdRef = element.getAttribute('G');
   return ProductAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      productIdRef: productIdRef,
-      quantityDDI: quantityDDI,
-      quantityValue: quantityValue != null ? int.parse(quantityValue) : null,
-      transferMode: transferMode != null
-          ? $TransferModeEnumMap.entries
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    productIdRef: productIdRef,
+    quantityDDI: quantityDDI,
+    quantityValue: quantityValue != null ? int.parse(quantityValue) : null,
+    transferMode: transferMode != null
+        ? $TransferModeEnumMap.entries
               .singleWhere(
-                  (transferModeEnumMapEntry) =>
-                      transferModeEnumMapEntry.value == transferMode,
-                  orElse: () => throw ArgumentError(
-                      '`$transferMode` is not one of the supported values: ${$TransferModeEnumMap.values.join(', ')}'))
+                (transferModeEnumMapEntry) =>
+                    transferModeEnumMapEntry.value == transferMode,
+                orElse: () => throw ArgumentError(
+                  '`$transferMode` is not one of the supported values: ${$TransferModeEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null,
-      deviceElementIdRef: deviceElementIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      productSubTypeIdRef: productSubTypeIdRef);
+        : null,
+    deviceElementIdRef: deviceElementIdRef,
+    valuePresentationIdRef: valuePresentationIdRef,
+    productSubTypeIdRef: productSubTypeIdRef,
+  );
 }
 
 List<XmlAttribute> _$ProductAllocationToXmlAttributes(
-    ProductAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ProductAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final productIdRef = instance.productIdRef;
   final productIdRefSerialized = productIdRef;
-  final productIdRefConstructed =
-      XmlAttribute(XmlName('A'), productIdRefSerialized);
+  final productIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    productIdRefSerialized,
+  );
   attributes.add(productIdRefConstructed);
   final quantityDDI = instance.quantityDDI;
   final quantityDDISerialized = quantityDDI;
@@ -13693,8 +15104,9 @@ List<XmlAttribute> _$ProductAllocationToXmlAttributes(
     attributes.add(quantityValueConstructed);
   }
   final transferMode = instance.transferMode;
-  final transferModeSerialized =
-      transferMode != null ? $TransferModeEnumMap[transferMode]! : null;
+  final transferModeSerialized = transferMode != null
+      ? $TransferModeEnumMap[transferMode]!
+      : null;
   final transferModeConstructed = transferModeSerialized != null
       ? XmlAttribute(XmlName('D'), transferModeSerialized)
       : null;
@@ -13713,8 +15125,8 @@ List<XmlAttribute> _$ProductAllocationToXmlAttributes(
   final valuePresentationIdRefSerialized = valuePresentationIdRef;
   final valuePresentationIdRefConstructed =
       valuePresentationIdRefSerialized != null
-          ? XmlAttribute(XmlName('F'), valuePresentationIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('F'), valuePresentationIdRefSerialized)
+      : null;
   if (valuePresentationIdRefConstructed != null) {
     attributes.add(valuePresentationIdRefConstructed);
   }
@@ -13729,8 +15141,10 @@ List<XmlAttribute> _$ProductAllocationToXmlAttributes(
   return attributes;
 }
 
-List<XmlNode> _$ProductAllocationToXmlChildren(ProductAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ProductAllocationToXmlChildren(
+  ProductAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -13738,7 +15152,8 @@ List<XmlNode> _$ProductAllocationToXmlChildren(ProductAllocation instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -13746,44 +15161,60 @@ List<XmlNode> _$ProductAllocationToXmlChildren(ProductAllocation instance,
   return children;
 }
 
-XmlElement _$ProductAllocationToXmlElement(ProductAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PAN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ProductAllocationToXmlElement(
+  ProductAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PAN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ProductAllocationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductAllocationBuildXmlChildren(this as ProductAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductAllocationBuildXmlChildren(
+    this as ProductAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductAllocationBuildXmlElement(this as ProductAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductAllocationBuildXmlElement(
+    this as ProductAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ProductAllocationToXmlAttributes(this as ProductAllocation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ProductAllocationToXmlAttributes(
+    this as ProductAllocation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ProductAllocationToXmlChildren(this as ProductAllocation,
-          namespaces: namespaces);
+      _$ProductAllocationToXmlChildren(
+        this as ProductAllocation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ProductAllocationToXmlElement(this as ProductAllocation,
-          namespaces: namespaces);
+      _$ProductAllocationToXmlElement(
+        this as ProductAllocation,
+        namespaces: namespaces,
+      );
 }
 
-void _$ProductGroupBuildXmlChildren(ProductGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$ProductGroupBuildXmlChildren(
+  ProductGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -13797,11 +15228,18 @@ void _$ProductGroupBuildXmlChildren(ProductGroup instance, XmlBuilder builder,
   }
 }
 
-void _$ProductGroupBuildXmlElement(ProductGroup instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PGP', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$ProductGroupBuildXmlElement(
+  ProductGroup instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PGP',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ProductGroup _$ProductGroupFromXmlElement(XmlElement element) {
@@ -13809,21 +15247,26 @@ ProductGroup _$ProductGroupFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('B')!;
   final type = element.getAttribute('C');
   return ProductGroup(
-      id: id,
-      designator: designator,
-      type: type != null
-          ? $ProductGroupTypeEnumMap.entries
+    id: id,
+    designator: designator,
+    type: type != null
+        ? $ProductGroupTypeEnumMap.entries
               .singleWhere(
-                  (productGroupTypeEnumMapEntry) =>
-                      productGroupTypeEnumMapEntry.value == type,
-                  orElse: () => throw ArgumentError(
-                      '`$type` is not one of the supported values: ${$ProductGroupTypeEnumMap.values.join(', ')}'))
+                (productGroupTypeEnumMapEntry) =>
+                    productGroupTypeEnumMapEntry.value == type,
+                orElse: () => throw ArgumentError(
+                  '`$type` is not one of the supported values: ${$ProductGroupTypeEnumMap.values.join(', ')}',
+                ),
+              )
               .key
-          : null);
+        : null,
+  );
 }
 
-List<XmlAttribute> _$ProductGroupToXmlAttributes(ProductGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ProductGroupToXmlAttributes(
+  ProductGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -13831,8 +15274,10 @@ List<XmlAttribute> _$ProductGroupToXmlAttributes(ProductGroup instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final type = instance.type;
   final typeSerialized = type != null ? $ProductGroupTypeEnumMap[type]! : null;
@@ -13845,38 +15290,49 @@ List<XmlAttribute> _$ProductGroupToXmlAttributes(ProductGroup instance,
   return attributes;
 }
 
-List<XmlNode> _$ProductGroupToXmlChildren(ProductGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ProductGroupToXmlChildren(
+  ProductGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ProductGroupToXmlElement(ProductGroup instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PGP'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ProductGroupToXmlElement(
+  ProductGroup instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PGP'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ProductGroupXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductGroupBuildXmlChildren(this as ProductGroup, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductGroupBuildXmlChildren(
+    this as ProductGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductGroupBuildXmlElement(this as ProductGroup, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductGroupBuildXmlElement(
+    this as ProductGroup,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ProductGroupToXmlAttributes(this as ProductGroup,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ProductGroupToXmlAttributes(
+    this as ProductGroup,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$ProductGroupToXmlChildren(this as ProductGroup, namespaces: namespaces);
@@ -13886,8 +15342,10 @@ mixin _$ProductGroupXmlSerializableMixin {
 }
 
 void _$ProductRelationBuildXmlChildren(
-    ProductRelation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ProductRelation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final productIdRef = instance.productIdRef;
   final productIdRefSerialized = productIdRef;
   builder.attribute('A', productIdRefSerialized);
@@ -13897,80 +15355,112 @@ void _$ProductRelationBuildXmlChildren(
 }
 
 void _$ProductRelationBuildXmlElement(
-    ProductRelation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PRN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ProductRelation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PRN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ProductRelation _$ProductRelationFromXmlElement(XmlElement element) {
   final productIdRef = element.getAttribute('A')!;
   final quantityValue = element.getAttribute('B')!;
   return ProductRelation(
-      productIdRef: productIdRef, quantityValue: int.parse(quantityValue));
+    productIdRef: productIdRef,
+    quantityValue: int.parse(quantityValue),
+  );
 }
 
-List<XmlAttribute> _$ProductRelationToXmlAttributes(ProductRelation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$ProductRelationToXmlAttributes(
+  ProductRelation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final productIdRef = instance.productIdRef;
   final productIdRefSerialized = productIdRef;
-  final productIdRefConstructed =
-      XmlAttribute(XmlName('A'), productIdRefSerialized);
+  final productIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    productIdRefSerialized,
+  );
   attributes.add(productIdRefConstructed);
   final quantityValue = instance.quantityValue;
   final quantityValueSerialized = quantityValue.toString();
-  final quantityValueConstructed =
-      XmlAttribute(XmlName('B'), quantityValueSerialized);
+  final quantityValueConstructed = XmlAttribute(
+    XmlName('B'),
+    quantityValueSerialized,
+  );
   attributes.add(quantityValueConstructed);
   return attributes;
 }
 
-List<XmlNode> _$ProductRelationToXmlChildren(ProductRelation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ProductRelationToXmlChildren(
+  ProductRelation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ProductRelationToXmlElement(ProductRelation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PRN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ProductRelationToXmlElement(
+  ProductRelation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PRN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ProductRelationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductRelationBuildXmlChildren(this as ProductRelation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductRelationBuildXmlChildren(
+    this as ProductRelation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProductRelationBuildXmlElement(this as ProductRelation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProductRelationBuildXmlElement(
+    this as ProductRelation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ProductRelationToXmlAttributes(this as ProductRelation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ProductRelationToXmlAttributes(
+    this as ProductRelation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ProductRelationToXmlChildren(this as ProductRelation,
-          namespaces: namespaces);
+      _$ProductRelationToXmlChildren(
+        this as ProductRelation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ProductRelationToXmlElement(this as ProductRelation,
-          namespaces: namespaces);
+      _$ProductRelationToXmlElement(
+        this as ProductRelation,
+        namespaces: namespaces,
+      );
 }
 
-void _$CustomerBuildXmlChildren(Customer instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$CustomerBuildXmlChildren(
+  Customer instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -14034,11 +15524,18 @@ void _$CustomerBuildXmlChildren(Customer instance, XmlBuilder builder,
   }
 }
 
-void _$CustomerBuildXmlElement(Customer instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CTR', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$CustomerBuildXmlElement(
+  Customer instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CTR',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Customer _$CustomerFromXmlElement(XmlElement element) {
@@ -14056,23 +15553,26 @@ Customer _$CustomerFromXmlElement(XmlElement element) {
   final fax = element.getAttribute('L');
   final email = element.getAttribute('M');
   return Customer(
-      id: id,
-      lastName: lastName,
-      firstName: firstName,
-      street: street,
-      poBox: poBox,
-      postalCode: postalCode,
-      city: city,
-      state: state,
-      country: country,
-      phone: phone,
-      mobile: mobile,
-      fax: fax,
-      email: email);
+    id: id,
+    lastName: lastName,
+    firstName: firstName,
+    street: street,
+    poBox: poBox,
+    postalCode: postalCode,
+    city: city,
+    state: state,
+    country: country,
+    phone: phone,
+    mobile: mobile,
+    fax: fax,
+    email: email,
+  );
 }
 
-List<XmlAttribute> _$CustomerToXmlAttributes(Customer instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$CustomerToXmlAttributes(
+  Customer instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -14156,8 +15656,9 @@ List<XmlAttribute> _$CustomerToXmlAttributes(Customer instance,
   }
   final fax = instance.fax;
   final faxSerialized = fax;
-  final faxConstructed =
-      faxSerialized != null ? XmlAttribute(XmlName('L'), faxSerialized) : null;
+  final faxConstructed = faxSerialized != null
+      ? XmlAttribute(XmlName('L'), faxSerialized)
+      : null;
   if (faxConstructed != null) {
     attributes.add(faxConstructed);
   }
@@ -14172,37 +15673,46 @@ List<XmlAttribute> _$CustomerToXmlAttributes(Customer instance,
   return attributes;
 }
 
-List<XmlNode> _$CustomerToXmlChildren(Customer instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CustomerToXmlChildren(
+  Customer instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$CustomerToXmlElement(Customer instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CTR'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CustomerToXmlElement(
+  Customer instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CTR'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CustomerXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CustomerBuildXmlChildren(this as Customer, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CustomerBuildXmlChildren(
+    this as Customer,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CustomerBuildXmlElement(this as Customer, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CustomerBuildXmlElement(
+    this as Customer,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CustomerToXmlAttributes(this as Customer, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CustomerToXmlAttributes(this as Customer, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$CustomerToXmlChildren(this as Customer, namespaces: namespaces);
@@ -14211,8 +15721,11 @@ mixin _$CustomerXmlSerializableMixin {
       _$CustomerToXmlElement(this as Customer, namespaces: namespaces);
 }
 
-void _$FarmBuildXmlChildren(Farm instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$FarmBuildXmlChildren(
+  Farm instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -14256,11 +15769,18 @@ void _$FarmBuildXmlChildren(Farm instance, XmlBuilder builder,
   }
 }
 
-void _$FarmBuildXmlElement(Farm instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('FRM', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$FarmBuildXmlElement(
+  Farm instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'FRM',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Farm _$FarmFromXmlElement(XmlElement element) {
@@ -14274,19 +15794,22 @@ Farm _$FarmFromXmlElement(XmlElement element) {
   final country = element.getAttribute('H');
   final customerIdRef = element.getAttribute('I');
   return Farm(
-      id: id,
-      designator: designator,
-      street: street,
-      poBox: poBox,
-      postalCode: postalCode,
-      city: city,
-      state: state,
-      country: country,
-      customerIdRef: customerIdRef);
+    id: id,
+    designator: designator,
+    street: street,
+    poBox: poBox,
+    postalCode: postalCode,
+    city: city,
+    state: state,
+    country: country,
+    customerIdRef: customerIdRef,
+  );
 }
 
-List<XmlAttribute> _$FarmToXmlAttributes(Farm instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$FarmToXmlAttributes(
+  Farm instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -14294,8 +15817,10 @@ List<XmlAttribute> _$FarmToXmlAttributes(Farm instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final street = instance.street;
   final streetSerialized = street;
@@ -14356,35 +15881,38 @@ List<XmlAttribute> _$FarmToXmlAttributes(Farm instance,
   return attributes;
 }
 
-List<XmlNode> _$FarmToXmlChildren(Farm instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$FarmToXmlChildren(
+  Farm instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$FarmToXmlElement(Farm instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('FRM'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$FarmToXmlElement(
+  Farm instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('FRM'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$FarmXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$FarmBuildXmlChildren(this as Farm, builder, namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$FarmBuildXmlChildren(this as Farm, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$FarmBuildXmlElement(this as Farm, builder, namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$FarmBuildXmlElement(this as Farm, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$FarmToXmlAttributes(this as Farm, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$FarmToXmlAttributes(this as Farm, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$FarmToXmlChildren(this as Farm, namespaces: namespaces);
@@ -14393,8 +15921,11 @@ mixin _$FarmXmlSerializableMixin {
       _$FarmToXmlElement(this as Farm, namespaces: namespaces);
 }
 
-void _$WorkerBuildXmlChildren(Worker instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$WorkerBuildXmlChildren(
+  Worker instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -14458,11 +15989,18 @@ void _$WorkerBuildXmlChildren(Worker instance, XmlBuilder builder,
   }
 }
 
-void _$WorkerBuildXmlElement(Worker instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('WKR', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$WorkerBuildXmlElement(
+  Worker instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'WKR',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Worker _$WorkerFromXmlElement(XmlElement element) {
@@ -14480,23 +16018,26 @@ Worker _$WorkerFromXmlElement(XmlElement element) {
   final licenseNumber = element.getAttribute('L');
   final email = element.getAttribute('M');
   return Worker(
-      id: id,
-      lastName: lastName,
-      firstName: firstName,
-      street: street,
-      poBox: poBox,
-      postalCode: postalCode,
-      city: city,
-      state: state,
-      country: country,
-      phone: phone,
-      mobile: mobile,
-      licenseNumber: licenseNumber,
-      email: email);
+    id: id,
+    lastName: lastName,
+    firstName: firstName,
+    street: street,
+    poBox: poBox,
+    postalCode: postalCode,
+    city: city,
+    state: state,
+    country: country,
+    phone: phone,
+    mobile: mobile,
+    licenseNumber: licenseNumber,
+    email: email,
+  );
 }
 
-List<XmlAttribute> _$WorkerToXmlAttributes(Worker instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$WorkerToXmlAttributes(
+  Worker instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -14597,35 +16138,40 @@ List<XmlAttribute> _$WorkerToXmlAttributes(Worker instance,
   return attributes;
 }
 
-List<XmlNode> _$WorkerToXmlChildren(Worker instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$WorkerToXmlChildren(
+  Worker instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$WorkerToXmlElement(Worker instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('WKR'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$WorkerToXmlElement(
+  Worker instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('WKR'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$WorkerXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) =>
       _$WorkerBuildXmlChildren(this as Worker, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) =>
       _$WorkerBuildXmlElement(this as Worker, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$WorkerToXmlAttributes(this as Worker, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$WorkerToXmlAttributes(this as Worker, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$WorkerToXmlChildren(this as Worker, namespaces: namespaces);
@@ -14635,14 +16181,19 @@ mixin _$WorkerXmlSerializableMixin {
 }
 
 void _$CulturalPracticeBuildXmlChildren(
-    CulturalPractice instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  CulturalPractice instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final operationTechniqueReferences = instance.operationTechniqueReferences;
   final operationTechniqueReferencesSerialized = operationTechniqueReferences;
   for (final value in operationTechniqueReferencesSerialized) {
-    builder.element('OTR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'OTR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -14653,11 +16204,17 @@ void _$CulturalPracticeBuildXmlChildren(
 }
 
 void _$CulturalPracticeBuildXmlElement(
-    CulturalPractice instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('CPC', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  CulturalPractice instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'CPC',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 CulturalPractice _$CulturalPracticeFromXmlElement(XmlElement element) {
@@ -14665,15 +16222,18 @@ CulturalPractice _$CulturalPracticeFromXmlElement(XmlElement element) {
   final id = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   return CulturalPractice(
-      operationTechniqueReferences: operationTechniqueReferences
-          .map((e) => OperationTechniqueReference.fromXmlElement(e))
-          .toList(),
-      id: id,
-      designator: designator);
+    operationTechniqueReferences: operationTechniqueReferences
+        .map((e) => OperationTechniqueReference.fromXmlElement(e))
+        .toList(),
+    id: id,
+    designator: designator,
+  );
 }
 
-List<XmlAttribute> _$CulturalPracticeToXmlAttributes(CulturalPractice instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$CulturalPracticeToXmlAttributes(
+  CulturalPractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -14681,155 +16241,219 @@ List<XmlAttribute> _$CulturalPracticeToXmlAttributes(CulturalPractice instance,
   attributes.add(idConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   return attributes;
 }
 
-List<XmlNode> _$CulturalPracticeToXmlChildren(CulturalPractice instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$CulturalPracticeToXmlChildren(
+  CulturalPractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final operationTechniqueReferences = instance.operationTechniqueReferences;
   final operationTechniqueReferencesSerialized = operationTechniqueReferences;
   final operationTechniqueReferencesConstructed =
-      operationTechniqueReferencesSerialized.map((e) => XmlElement(
+      operationTechniqueReferencesSerialized.map(
+        (e) => XmlElement(
           XmlName('OTR'),
           e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+          e.toXmlChildren(namespaces: namespaces),
+        ),
+      );
   children.addAll(operationTechniqueReferencesConstructed);
   return children;
 }
 
-XmlElement _$CulturalPracticeToXmlElement(CulturalPractice instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('CPC'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$CulturalPracticeToXmlElement(
+  CulturalPractice instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('CPC'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$CulturalPracticeXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CulturalPracticeBuildXmlChildren(this as CulturalPractice, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CulturalPracticeBuildXmlChildren(
+    this as CulturalPractice,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$CulturalPracticeBuildXmlElement(this as CulturalPractice, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$CulturalPracticeBuildXmlElement(
+    this as CulturalPractice,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$CulturalPracticeToXmlAttributes(this as CulturalPractice,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$CulturalPracticeToXmlAttributes(
+    this as CulturalPractice,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$CulturalPracticeToXmlChildren(this as CulturalPractice,
-          namespaces: namespaces);
+      _$CulturalPracticeToXmlChildren(
+        this as CulturalPractice,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$CulturalPracticeToXmlElement(this as CulturalPractice,
-          namespaces: namespaces);
+      _$CulturalPracticeToXmlElement(
+        this as CulturalPractice,
+        namespaces: namespaces,
+      );
 }
 
-void _$TaskBuildXmlChildren(Task instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$TaskBuildXmlChildren(
+  Task instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final commentAllocations = instance.commentAllocations;
   final commentAllocationsSerialized = commentAllocations;
   for (final value in commentAllocationsSerialized) {
-    builder.element('CAN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CAN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final controlAssignments = instance.controlAssignments;
   final controlAssignmentsSerialized = controlAssignments;
   for (final value in controlAssignmentsSerialized) {
-    builder.element('CAT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CAT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final connections = instance.connections;
   final connectionsSerialized = connections;
   for (final value in connectionsSerialized) {
-    builder.element('CNN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CNN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final deviceAllocations = instance.deviceAllocations;
   final deviceAllocationsSerialized = deviceAllocations;
   for (final value in deviceAllocationsSerialized) {
-    builder.element('DAN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DAN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final dataLogTriggers = instance.dataLogTriggers;
   final dataLogTriggersSerialized = dataLogTriggers;
   for (final value in dataLogTriggersSerialized) {
-    builder.element('DLT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DLT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final grid = instance.grid;
   final gridSerialized = grid;
   if (gridSerialized != null) {
-    builder.element('GRD', nest: () {
-      gridSerialized.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'GRD',
+      nest: () {
+        gridSerialized.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final guidanceAllocations = instance.guidanceAllocations;
   final guidanceAllocationsSerialized = guidanceAllocations;
   for (final value in guidanceAllocationsSerialized) {
-    builder.element('GAN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'GAN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final operationTechniquePractice = instance.operationTechniquePractice;
   final operationTechniquePracticeSerialized = operationTechniquePractice;
   if (operationTechniquePracticeSerialized != null) {
-    builder.element('OTP', nest: () {
-      operationTechniquePracticeSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'OTP',
+      nest: () {
+        operationTechniquePracticeSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final productAllocations = instance.productAllocations;
   final productAllocationsSerialized = productAllocations;
   for (final value in productAllocationsSerialized) {
-    builder.element('PAN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PAN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final times = instance.times;
   final timesSerialized = times;
   for (final value in timesSerialized) {
-    builder.element('TIM', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TIM',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final timeLogs = instance.timeLogs;
   final timeLogsSerialized = timeLogs;
   for (final value in timeLogsSerialized) {
-    builder.element('TLG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TLG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final treatmentZones = instance.treatmentZones;
   final treatmentZonesSerialized = treatmentZones;
   for (final value in treatmentZonesSerialized) {
-    builder.element('TZN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TZN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final workerAllocations = instance.workerAllocations;
   final workerAllocationsSerialized = workerAllocations;
   for (final value in workerAllocationsSerialized) {
-    builder.element('WAN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'WAN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final id = instance.id;
   final idSerialized = id;
@@ -14863,30 +16487,37 @@ void _$TaskBuildXmlChildren(Task instance, XmlBuilder builder,
   final statusSerialized = $TaskStatusEnumMap[status]!;
   builder.attribute('G', statusSerialized);
   final defaultTreatmentZoneCode = instance.defaultTreatmentZoneCode;
-  final defaultTreatmentZoneCodeSerialized =
-      defaultTreatmentZoneCode?.toString();
+  final defaultTreatmentZoneCodeSerialized = defaultTreatmentZoneCode
+      ?.toString();
   if (defaultTreatmentZoneCodeSerialized != null) {
     builder.attribute('H', defaultTreatmentZoneCodeSerialized);
   }
   final positionLostTreatmentZoneCode = instance.positionLostTreatmentZoneCode;
-  final positionLostTreatmentZoneCodeSerialized =
-      positionLostTreatmentZoneCode?.toString();
+  final positionLostTreatmentZoneCodeSerialized = positionLostTreatmentZoneCode
+      ?.toString();
   if (positionLostTreatmentZoneCodeSerialized != null) {
     builder.attribute('I', positionLostTreatmentZoneCodeSerialized);
   }
   final outOfFieldTreatmentZoneCode = instance.outOfFieldTreatmentZoneCode;
-  final outOfFieldTreatmentZoneCodeSerialized =
-      outOfFieldTreatmentZoneCode?.toString();
+  final outOfFieldTreatmentZoneCodeSerialized = outOfFieldTreatmentZoneCode
+      ?.toString();
   if (outOfFieldTreatmentZoneCodeSerialized != null) {
     builder.attribute('J', outOfFieldTreatmentZoneCodeSerialized);
   }
 }
 
-void _$TaskBuildXmlElement(Task instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('TSK', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$TaskBuildXmlElement(
+  Task instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'TSK',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Task _$TaskFromXmlElement(XmlElement element) {
@@ -14914,63 +16545,67 @@ Task _$TaskFromXmlElement(XmlElement element) {
   final positionLostTreatmentZoneCode = element.getAttribute('I');
   final outOfFieldTreatmentZoneCode = element.getAttribute('J');
   return Task(
-      commentAllocations: commentAllocations
-          .map((e) => CommentAllocation.fromXmlElement(e))
-          .toList(),
-      controlAssignments: controlAssignments
-          .map((e) => ControlAssignment.fromXmlElement(e))
-          .toList(),
-      connections:
-          connections.map((e) => Connection.fromXmlElement(e)).toList(),
-      deviceAllocations: deviceAllocations
-          .map((e) => DeviceAllocation.fromXmlElement(e))
-          .toList(),
-      dataLogTriggers:
-          dataLogTriggers.map((e) => DataLogTrigger.fromXmlElement(e)).toList(),
-      grid: grid != null ? Grid.fromXmlElement(grid) : null,
-      guidanceAllocations: guidanceAllocations
-          .map((e) => GuidanceAllocation.fromXmlElement(e))
-          .toList(),
-      operationTechniquePractice: operationTechniquePractice != null
-          ? OperationTechniquePractice.fromXmlElement(
-              operationTechniquePractice)
-          : null,
-      productAllocations: productAllocations
-          .map((e) => ProductAllocation.fromXmlElement(e))
-          .toList(),
-      times: times.map((e) => Time.fromXmlElement(e)).toList(),
-      timeLogs: timeLogs.map((e) => TimeLog.fromXmlElement(e)).toList(),
-      treatmentZones:
-          treatmentZones.map((e) => TreatmentZone.fromXmlElement(e)).toList(),
-      workerAllocations: workerAllocations
-          .map((e) => WorkerAllocation.fromXmlElement(e))
-          .toList(),
-      id: id,
-      designator: designator,
-      customerIdRef: customerIdRef,
-      farmIdRef: farmIdRef,
-      partfieldIdRef: partfieldIdRef,
-      responsibleWorkerIdRef: responsibleWorkerIdRef,
-      status: $TaskStatusEnumMap.entries
-          .singleWhere(
-              (taskStatusEnumMapEntry) =>
-                  taskStatusEnumMapEntry.value == status,
-              orElse: () => throw ArgumentError(
-                  '`$status` is not one of the supported values: ${$TaskStatusEnumMap.values.join(', ')}'))
-          .key,
-      defaultTreatmentZoneCode: defaultTreatmentZoneCode != null
-          ? int.parse(defaultTreatmentZoneCode)
-          : null,
-      positionLostTreatmentZoneCode: positionLostTreatmentZoneCode != null
-          ? int.parse(positionLostTreatmentZoneCode)
-          : null,
-      outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode != null
-          ? int.parse(outOfFieldTreatmentZoneCode)
-          : null);
+    commentAllocations: commentAllocations
+        .map((e) => CommentAllocation.fromXmlElement(e))
+        .toList(),
+    controlAssignments: controlAssignments
+        .map((e) => ControlAssignment.fromXmlElement(e))
+        .toList(),
+    connections: connections.map((e) => Connection.fromXmlElement(e)).toList(),
+    deviceAllocations: deviceAllocations
+        .map((e) => DeviceAllocation.fromXmlElement(e))
+        .toList(),
+    dataLogTriggers: dataLogTriggers
+        .map((e) => DataLogTrigger.fromXmlElement(e))
+        .toList(),
+    grid: grid != null ? Grid.fromXmlElement(grid) : null,
+    guidanceAllocations: guidanceAllocations
+        .map((e) => GuidanceAllocation.fromXmlElement(e))
+        .toList(),
+    operationTechniquePractice: operationTechniquePractice != null
+        ? OperationTechniquePractice.fromXmlElement(operationTechniquePractice)
+        : null,
+    productAllocations: productAllocations
+        .map((e) => ProductAllocation.fromXmlElement(e))
+        .toList(),
+    times: times.map((e) => Time.fromXmlElement(e)).toList(),
+    timeLogs: timeLogs.map((e) => TimeLog.fromXmlElement(e)).toList(),
+    treatmentZones: treatmentZones
+        .map((e) => TreatmentZone.fromXmlElement(e))
+        .toList(),
+    workerAllocations: workerAllocations
+        .map((e) => WorkerAllocation.fromXmlElement(e))
+        .toList(),
+    id: id,
+    designator: designator,
+    customerIdRef: customerIdRef,
+    farmIdRef: farmIdRef,
+    partfieldIdRef: partfieldIdRef,
+    responsibleWorkerIdRef: responsibleWorkerIdRef,
+    status: $TaskStatusEnumMap.entries
+        .singleWhere(
+          (taskStatusEnumMapEntry) => taskStatusEnumMapEntry.value == status,
+          orElse: () => throw ArgumentError(
+            '`$status` is not one of the supported values: ${$TaskStatusEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    defaultTreatmentZoneCode: defaultTreatmentZoneCode != null
+        ? int.parse(defaultTreatmentZoneCode)
+        : null,
+    positionLostTreatmentZoneCode: positionLostTreatmentZoneCode != null
+        ? int.parse(positionLostTreatmentZoneCode)
+        : null,
+    outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode != null
+        ? int.parse(outOfFieldTreatmentZoneCode)
+        : null,
+  );
 }
 
-List<XmlAttribute> _$TaskToXmlAttributes(Task instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$TaskToXmlAttributes(
+  Task instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -15012,8 +16647,8 @@ List<XmlAttribute> _$TaskToXmlAttributes(Task instance,
   final responsibleWorkerIdRefSerialized = responsibleWorkerIdRef;
   final responsibleWorkerIdRefConstructed =
       responsibleWorkerIdRefSerialized != null
-          ? XmlAttribute(XmlName('F'), responsibleWorkerIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('F'), responsibleWorkerIdRefSerialized)
+      : null;
   if (responsibleWorkerIdRefConstructed != null) {
     attributes.add(responsibleWorkerIdRefConstructed);
   }
@@ -15022,71 +16657,92 @@ List<XmlAttribute> _$TaskToXmlAttributes(Task instance,
   final statusConstructed = XmlAttribute(XmlName('G'), statusSerialized);
   attributes.add(statusConstructed);
   final defaultTreatmentZoneCode = instance.defaultTreatmentZoneCode;
-  final defaultTreatmentZoneCodeSerialized =
-      defaultTreatmentZoneCode?.toString();
+  final defaultTreatmentZoneCodeSerialized = defaultTreatmentZoneCode
+      ?.toString();
   final defaultTreatmentZoneCodeConstructed =
       defaultTreatmentZoneCodeSerialized != null
-          ? XmlAttribute(XmlName('H'), defaultTreatmentZoneCodeSerialized)
-          : null;
+      ? XmlAttribute(XmlName('H'), defaultTreatmentZoneCodeSerialized)
+      : null;
   if (defaultTreatmentZoneCodeConstructed != null) {
     attributes.add(defaultTreatmentZoneCodeConstructed);
   }
   final positionLostTreatmentZoneCode = instance.positionLostTreatmentZoneCode;
-  final positionLostTreatmentZoneCodeSerialized =
-      positionLostTreatmentZoneCode?.toString();
+  final positionLostTreatmentZoneCodeSerialized = positionLostTreatmentZoneCode
+      ?.toString();
   final positionLostTreatmentZoneCodeConstructed =
       positionLostTreatmentZoneCodeSerialized != null
-          ? XmlAttribute(XmlName('I'), positionLostTreatmentZoneCodeSerialized)
-          : null;
+      ? XmlAttribute(XmlName('I'), positionLostTreatmentZoneCodeSerialized)
+      : null;
   if (positionLostTreatmentZoneCodeConstructed != null) {
     attributes.add(positionLostTreatmentZoneCodeConstructed);
   }
   final outOfFieldTreatmentZoneCode = instance.outOfFieldTreatmentZoneCode;
-  final outOfFieldTreatmentZoneCodeSerialized =
-      outOfFieldTreatmentZoneCode?.toString();
+  final outOfFieldTreatmentZoneCodeSerialized = outOfFieldTreatmentZoneCode
+      ?.toString();
   final outOfFieldTreatmentZoneCodeConstructed =
       outOfFieldTreatmentZoneCodeSerialized != null
-          ? XmlAttribute(XmlName('J'), outOfFieldTreatmentZoneCodeSerialized)
-          : null;
+      ? XmlAttribute(XmlName('J'), outOfFieldTreatmentZoneCodeSerialized)
+      : null;
   if (outOfFieldTreatmentZoneCodeConstructed != null) {
     attributes.add(outOfFieldTreatmentZoneCodeConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$TaskToXmlChildren(Task instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$TaskToXmlChildren(
+  Task instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final commentAllocations = instance.commentAllocations;
   final commentAllocationsSerialized = commentAllocations;
-  final commentAllocationsConstructed = commentAllocationsSerialized.map((e) =>
-      XmlElement(XmlName('CAN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final commentAllocationsConstructed = commentAllocationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CAN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(commentAllocationsConstructed);
   final controlAssignments = instance.controlAssignments;
   final controlAssignmentsSerialized = controlAssignments;
-  final controlAssignmentsConstructed = controlAssignmentsSerialized.map((e) =>
-      XmlElement(XmlName('CAT'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final controlAssignmentsConstructed = controlAssignmentsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CAT'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(controlAssignmentsConstructed);
   final connections = instance.connections;
   final connectionsSerialized = connections;
-  final connectionsConstructed = connectionsSerialized.map((e) => XmlElement(
+  final connectionsConstructed = connectionsSerialized.map(
+    (e) => XmlElement(
       XmlName('CNN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(connectionsConstructed);
   final deviceAllocations = instance.deviceAllocations;
   final deviceAllocationsSerialized = deviceAllocations;
-  final deviceAllocationsConstructed = deviceAllocationsSerialized.map((e) =>
-      XmlElement(XmlName('DAN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final deviceAllocationsConstructed = deviceAllocationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('DAN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(deviceAllocationsConstructed);
   final dataLogTriggers = instance.dataLogTriggers;
   final dataLogTriggersSerialized = dataLogTriggers;
-  final dataLogTriggersConstructed = dataLogTriggersSerialized.map((e) =>
-      XmlElement(XmlName('DLT'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final dataLogTriggersConstructed = dataLogTriggersSerialized.map(
+    (e) => XmlElement(
+      XmlName('DLT'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(dataLogTriggersConstructed);
   final grid = instance.grid;
   final gridSerialized = grid;
@@ -15094,7 +16750,8 @@ List<XmlNode> _$TaskToXmlChildren(Task instance,
       ? XmlElement(
           XmlName('GRD'),
           gridSerialized.toXmlAttributes(namespaces: namespaces),
-          gridSerialized.toXmlChildren(namespaces: namespaces))
+          gridSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (gridConstructed != null) {
     children.add(gridConstructed);
@@ -15102,83 +16759,107 @@ List<XmlNode> _$TaskToXmlChildren(Task instance,
   final guidanceAllocations = instance.guidanceAllocations;
   final guidanceAllocationsSerialized = guidanceAllocations;
   final guidanceAllocationsConstructed = guidanceAllocationsSerialized.map(
-      (e) => XmlElement(
-          XmlName('GAN'),
-          e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+    (e) => XmlElement(
+      XmlName('GAN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(guidanceAllocationsConstructed);
   final operationTechniquePractice = instance.operationTechniquePractice;
   final operationTechniquePracticeSerialized = operationTechniquePractice;
   final operationTechniquePracticeConstructed =
       operationTechniquePracticeSerialized != null
-          ? XmlElement(
-              XmlName('OTP'),
-              operationTechniquePracticeSerialized.toXmlAttributes(
-                  namespaces: namespaces),
-              operationTechniquePracticeSerialized.toXmlChildren(
-                  namespaces: namespaces))
-          : null;
+      ? XmlElement(
+          XmlName('OTP'),
+          operationTechniquePracticeSerialized.toXmlAttributes(
+            namespaces: namespaces,
+          ),
+          operationTechniquePracticeSerialized.toXmlChildren(
+            namespaces: namespaces,
+          ),
+        )
+      : null;
   if (operationTechniquePracticeConstructed != null) {
     children.add(operationTechniquePracticeConstructed);
   }
   final productAllocations = instance.productAllocations;
   final productAllocationsSerialized = productAllocations;
-  final productAllocationsConstructed = productAllocationsSerialized.map((e) =>
-      XmlElement(XmlName('PAN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final productAllocationsConstructed = productAllocationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('PAN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(productAllocationsConstructed);
   final times = instance.times;
   final timesSerialized = times;
-  final timesConstructed = timesSerialized.map((e) => XmlElement(
+  final timesConstructed = timesSerialized.map(
+    (e) => XmlElement(
       XmlName('TIM'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(timesConstructed);
   final timeLogs = instance.timeLogs;
   final timeLogsSerialized = timeLogs;
-  final timeLogsConstructed = timeLogsSerialized.map((e) => XmlElement(
+  final timeLogsConstructed = timeLogsSerialized.map(
+    (e) => XmlElement(
       XmlName('TLG'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(timeLogsConstructed);
   final treatmentZones = instance.treatmentZones;
   final treatmentZonesSerialized = treatmentZones;
-  final treatmentZonesConstructed = treatmentZonesSerialized.map((e) =>
-      XmlElement(XmlName('TZN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final treatmentZonesConstructed = treatmentZonesSerialized.map(
+    (e) => XmlElement(
+      XmlName('TZN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(treatmentZonesConstructed);
   final workerAllocations = instance.workerAllocations;
   final workerAllocationsSerialized = workerAllocations;
-  final workerAllocationsConstructed = workerAllocationsSerialized.map((e) =>
-      XmlElement(XmlName('WAN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final workerAllocationsConstructed = workerAllocationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('WAN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(workerAllocationsConstructed);
   return children;
 }
 
-XmlElement _$TaskToXmlElement(Task instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('TSK'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$TaskToXmlElement(
+  Task instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('TSK'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$TaskXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TaskBuildXmlChildren(this as Task, builder, namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TaskBuildXmlChildren(this as Task, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TaskBuildXmlElement(this as Task, builder, namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TaskBuildXmlElement(this as Task, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$TaskToXmlAttributes(this as Task, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$TaskToXmlAttributes(this as Task, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$TaskToXmlChildren(this as Task, namespaces: namespaces);
@@ -15188,8 +16869,10 @@ mixin _$TaskXmlSerializableMixin {
 }
 
 void _$TaskControllerCapabilitiesBuildXmlChildren(
-    TaskControllerCapabilities instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  TaskControllerCapabilities instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final functionNAME = instance.functionNAME;
   final functionNAMESerialized = functionNAME;
   builder.attribute('A', functionNAMESerialized);
@@ -15203,8 +16886,8 @@ void _$TaskControllerCapabilitiesBuildXmlChildren(
   final providedCapabilitiesSerialized = providedCapabilities.toString();
   builder.attribute('D', providedCapabilitiesSerialized);
   final numberOfBoomsSectionControl = instance.numberOfBoomsSectionControl;
-  final numberOfBoomsSectionControlSerialized =
-      numberOfBoomsSectionControl.toString();
+  final numberOfBoomsSectionControlSerialized = numberOfBoomsSectionControl
+      .toString();
   builder.attribute('E', numberOfBoomsSectionControlSerialized);
   final numberOfSectionsSectionControl =
       instance.numberOfSectionsSectionControl;
@@ -15217,15 +16900,22 @@ void _$TaskControllerCapabilitiesBuildXmlChildren(
 }
 
 void _$TaskControllerCapabilitiesBuildXmlElement(
-    TaskControllerCapabilities instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('TCC', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  TaskControllerCapabilities instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'TCC',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 TaskControllerCapabilities _$TaskControllerCapabilitiesFromXmlElement(
-    XmlElement element) {
+  XmlElement element,
+) {
   final functionNAME = element.getAttribute('A')!;
   final designator = element.getAttribute('B')!;
   final versionNumber = element.getAttribute('C')!;
@@ -15234,250 +16924,335 @@ TaskControllerCapabilities _$TaskControllerCapabilitiesFromXmlElement(
   final numberOfSectionsSectionControl = element.getAttribute('F')!;
   final numberOfControlChannels = element.getAttribute('G')!;
   return TaskControllerCapabilities(
-      functionNAME: functionNAME,
-      designator: designator,
-      versionNumber: $VersionNumberEnumMap.entries
-          .singleWhere(
-              (versionNumberEnumMapEntry) =>
-                  versionNumberEnumMapEntry.value == versionNumber,
-              orElse: () => throw ArgumentError(
-                  '`$versionNumber` is not one of the supported values: ${$VersionNumberEnumMap.values.join(', ')}'))
-          .key,
-      providedCapabilities: int.parse(providedCapabilities),
-      numberOfBoomsSectionControl: int.parse(numberOfBoomsSectionControl),
-      numberOfSectionsSectionControl: int.parse(numberOfSectionsSectionControl),
-      numberOfControlChannels: int.parse(numberOfControlChannels));
+    functionNAME: functionNAME,
+    designator: designator,
+    versionNumber: $VersionNumberEnumMap.entries
+        .singleWhere(
+          (versionNumberEnumMapEntry) =>
+              versionNumberEnumMapEntry.value == versionNumber,
+          orElse: () => throw ArgumentError(
+            '`$versionNumber` is not one of the supported values: ${$VersionNumberEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    providedCapabilities: int.parse(providedCapabilities),
+    numberOfBoomsSectionControl: int.parse(numberOfBoomsSectionControl),
+    numberOfSectionsSectionControl: int.parse(numberOfSectionsSectionControl),
+    numberOfControlChannels: int.parse(numberOfControlChannels),
+  );
 }
 
 List<XmlAttribute> _$TaskControllerCapabilitiesToXmlAttributes(
-    TaskControllerCapabilities instance,
-    {Map<String, String?> namespaces = const {}}) {
+  TaskControllerCapabilities instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final functionNAME = instance.functionNAME;
   final functionNAMESerialized = functionNAME;
-  final functionNAMEConstructed =
-      XmlAttribute(XmlName('A'), functionNAMESerialized);
+  final functionNAMEConstructed = XmlAttribute(
+    XmlName('A'),
+    functionNAMESerialized,
+  );
   attributes.add(functionNAMEConstructed);
   final designator = instance.designator;
   final designatorSerialized = designator;
-  final designatorConstructed =
-      XmlAttribute(XmlName('B'), designatorSerialized);
+  final designatorConstructed = XmlAttribute(
+    XmlName('B'),
+    designatorSerialized,
+  );
   attributes.add(designatorConstructed);
   final versionNumber = instance.versionNumber;
   final versionNumberSerialized = $VersionNumberEnumMap[versionNumber]!;
-  final versionNumberConstructed =
-      XmlAttribute(XmlName('C'), versionNumberSerialized);
+  final versionNumberConstructed = XmlAttribute(
+    XmlName('C'),
+    versionNumberSerialized,
+  );
   attributes.add(versionNumberConstructed);
   final providedCapabilities = instance.providedCapabilities;
   final providedCapabilitiesSerialized = providedCapabilities.toString();
-  final providedCapabilitiesConstructed =
-      XmlAttribute(XmlName('D'), providedCapabilitiesSerialized);
+  final providedCapabilitiesConstructed = XmlAttribute(
+    XmlName('D'),
+    providedCapabilitiesSerialized,
+  );
   attributes.add(providedCapabilitiesConstructed);
   final numberOfBoomsSectionControl = instance.numberOfBoomsSectionControl;
-  final numberOfBoomsSectionControlSerialized =
-      numberOfBoomsSectionControl.toString();
-  final numberOfBoomsSectionControlConstructed =
-      XmlAttribute(XmlName('E'), numberOfBoomsSectionControlSerialized);
+  final numberOfBoomsSectionControlSerialized = numberOfBoomsSectionControl
+      .toString();
+  final numberOfBoomsSectionControlConstructed = XmlAttribute(
+    XmlName('E'),
+    numberOfBoomsSectionControlSerialized,
+  );
   attributes.add(numberOfBoomsSectionControlConstructed);
   final numberOfSectionsSectionControl =
       instance.numberOfSectionsSectionControl;
   final numberOfSectionsSectionControlSerialized =
       numberOfSectionsSectionControl.toString();
-  final numberOfSectionsSectionControlConstructed =
-      XmlAttribute(XmlName('F'), numberOfSectionsSectionControlSerialized);
+  final numberOfSectionsSectionControlConstructed = XmlAttribute(
+    XmlName('F'),
+    numberOfSectionsSectionControlSerialized,
+  );
   attributes.add(numberOfSectionsSectionControlConstructed);
   final numberOfControlChannels = instance.numberOfControlChannels;
   final numberOfControlChannelsSerialized = numberOfControlChannels.toString();
-  final numberOfControlChannelsConstructed =
-      XmlAttribute(XmlName('G'), numberOfControlChannelsSerialized);
+  final numberOfControlChannelsConstructed = XmlAttribute(
+    XmlName('G'),
+    numberOfControlChannelsSerialized,
+  );
   attributes.add(numberOfControlChannelsConstructed);
   return attributes;
 }
 
 List<XmlNode> _$TaskControllerCapabilitiesToXmlChildren(
-    TaskControllerCapabilities instance,
-    {Map<String, String?> namespaces = const {}}) {
+  TaskControllerCapabilities instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
 XmlElement _$TaskControllerCapabilitiesToXmlElement(
-    TaskControllerCapabilities instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('TCC'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+  TaskControllerCapabilities instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('TCC'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$TaskControllerCapabilitiesXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TaskControllerCapabilitiesBuildXmlChildren(
-          this as TaskControllerCapabilities, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TaskControllerCapabilitiesBuildXmlChildren(
+    this as TaskControllerCapabilities,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TaskControllerCapabilitiesBuildXmlElement(
-          this as TaskControllerCapabilities, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TaskControllerCapabilitiesBuildXmlElement(
+    this as TaskControllerCapabilities,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$TaskControllerCapabilitiesToXmlAttributes(
-          this as TaskControllerCapabilities,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$TaskControllerCapabilitiesToXmlAttributes(
+    this as TaskControllerCapabilities,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$TaskControllerCapabilitiesToXmlChildren(
-          this as TaskControllerCapabilities,
-          namespaces: namespaces);
+        this as TaskControllerCapabilities,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
       _$TaskControllerCapabilitiesToXmlElement(
-          this as TaskControllerCapabilities,
-          namespaces: namespaces);
+        this as TaskControllerCapabilities,
+        namespaces: namespaces,
+      );
 }
 
 void _$Iso11783TaskDataBuildXmlChildren(
-    Iso11783TaskData instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  Iso11783TaskData instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
   for (final value in attachedFilesSerialized) {
-    builder.element('AFE', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'AFE',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
   for (final value in baseStationsSerialized) {
-    builder.element('BSN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'BSN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
   for (final value in codedCommentsSerialized) {
-    builder.element('CCT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CCT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
   for (final value in codedCommentGroupsSerialized) {
-    builder.element('CCG', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CCG',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
   for (final value in colourLegendsSerialized) {
-    builder.element('CLD', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CLD',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
   for (final value in cropTypesSerialized) {
-    builder.element('CTP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CTP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
   for (final value in culturalPracticesSerialized) {
-    builder.element('CPC', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CPC',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final customers = instance.customers;
   final customersSerialized = customers;
   for (final value in customersSerialized) {
-    builder.element('CTR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'CTR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final devices = instance.devices;
   final devicesSerialized = devices;
   for (final value in devicesSerialized) {
-    builder.element('DVC', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DVC',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final farms = instance.farms;
   final farmsSerialized = farms;
   for (final value in farmsSerialized) {
-    builder.element('FRM', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'FRM',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
   for (final value in operationTechniquesSerialized) {
-    builder.element('OTQ', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'OTQ',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
   for (final value in partfieldsSerialized) {
-    builder.element('PFD', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PFD',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final products = instance.products;
   final productsSerialized = products;
   for (final value in productsSerialized) {
-    builder.element('PDT', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PDT',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
   for (final value in productGroupsSerialized) {
-    builder.element('PGP', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PGP',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
   for (final value in tasksSerialized) {
-    builder.element('TSK', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TSK',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final taskControllerCapabilities = instance.taskControllerCapabilities;
   final taskControllerCapabilitiesSerialized = taskControllerCapabilities;
   for (final value in taskControllerCapabilitiesSerialized) {
-    builder.element('TCC', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'TCC',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
   for (final value in valuePresentationsSerialized) {
-    builder.element('VPN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'VPN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final workers = instance.workers;
   final workersSerialized = workers;
   for (final value in workersSerialized) {
-    builder.element('WKR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'WKR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final externalFileReferences = instance.externalFileReferences;
   final externalFileReferencesSerialized = externalFileReferences;
   for (final value in externalFileReferencesSerialized) {
-    builder.element('XFR', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'XFR',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
@@ -15493,17 +17268,23 @@ void _$Iso11783TaskDataBuildXmlChildren(
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
       managementSoftwareManufacturer;
-  builder.attribute('ManagementSoftwareManufacturer',
-      managementSoftwareManufacturerSerialized);
+  builder.attribute(
+    'ManagementSoftwareManufacturer',
+    managementSoftwareManufacturerSerialized,
+  );
   final managementSoftwareVersion = instance.managementSoftwareVersion;
   final managementSoftwareVersionSerialized = managementSoftwareVersion;
   builder.attribute(
-      'ManagementSoftwareVersion', managementSoftwareVersionSerialized);
+    'ManagementSoftwareVersion',
+    managementSoftwareVersionSerialized,
+  );
   final taskControllerManufacturer = instance.taskControllerManufacturer;
   final taskControllerManufacturerSerialized = taskControllerManufacturer;
   if (taskControllerManufacturerSerialized != null) {
     builder.attribute(
-        'TaskControllerManufacturer', taskControllerManufacturerSerialized);
+      'TaskControllerManufacturer',
+      taskControllerManufacturerSerialized,
+    );
   }
   final taskControllerVersion = instance.taskControllerVersion;
   final taskControllerVersionSerialized = taskControllerVersion;
@@ -15518,11 +17299,17 @@ void _$Iso11783TaskDataBuildXmlChildren(
 }
 
 void _$Iso11783TaskDataBuildXmlElement(
-    Iso11783TaskData instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('ISO11783_TaskData', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  Iso11783TaskData instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'ISO11783_TaskData',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
@@ -15548,119 +17335,146 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
   final versionMajor = element.getAttribute('VersionMajor')!;
   final versionMinor = element.getAttribute('VersionMinor')!;
   final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
-  final managementSoftwareManufacturer =
-      element.getAttribute('ManagementSoftwareManufacturer')!;
-  final managementSoftwareVersion =
-      element.getAttribute('ManagementSoftwareVersion')!;
-  final taskControllerManufacturer =
-      element.getAttribute('TaskControllerManufacturer');
+  final managementSoftwareManufacturer = element.getAttribute(
+    'ManagementSoftwareManufacturer',
+  )!;
+  final managementSoftwareVersion = element.getAttribute(
+    'ManagementSoftwareVersion',
+  )!;
+  final taskControllerManufacturer = element.getAttribute(
+    'TaskControllerManufacturer',
+  );
   final taskControllerVersion = element.getAttribute('TaskControllerVersion');
   final language = element.getAttribute('lang');
   return Iso11783TaskData(
-      attachedFiles:
-          attachedFiles.map((e) => AttachedFile.fromXmlElement(e)).toList(),
-      baseStations:
-          baseStations.map((e) => BaseStation.fromXmlElement(e)).toList(),
-      codedComments:
-          codedComments.map((e) => CodedComment.fromXmlElement(e)).toList(),
-      codedCommentGroups: codedCommentGroups
-          .map((e) => CodedCommentGroup.fromXmlElement(e))
-          .toList(),
-      colourLegends:
-          colourLegends.map((e) => ColourLegend.fromXmlElement(e)).toList(),
-      cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
-      culturalPractices: culturalPractices
-          .map((e) => CulturalPractice.fromXmlElement(e))
-          .toList(),
-      customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
-      devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
-      farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
-      operationTechniques: operationTechniques
-          .map((e) => OperationTechnique.fromXmlElement(e))
-          .toList(),
-      partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
-      products: products.map((e) => Product.fromXmlElement(e)).toList(),
-      productGroups:
-          productGroups.map((e) => ProductGroup.fromXmlElement(e)).toList(),
-      tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
-      taskControllerCapabilities: taskControllerCapabilities
-          .map((e) => TaskControllerCapabilities.fromXmlElement(e))
-          .toList(),
-      valuePresentations: valuePresentations
-          .map((e) => ValuePresentation.fromXmlElement(e))
-          .toList(),
-      workers: workers.map((e) => Worker.fromXmlElement(e)).toList(),
-      externalFileReferences: externalFileReferences
-          .map((e) => ExternalFileReference.fromXmlElement(e))
-          .toList(),
-      versionMajor: $VersionMajorEnumMap.entries
-          .singleWhere(
-              (versionMajorEnumMapEntry) =>
-                  versionMajorEnumMapEntry.value == versionMajor,
-              orElse: () => throw ArgumentError(
-                  '`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}'))
-          .key,
-      versionMinor: $VersionMinorEnumMap.entries
-          .singleWhere(
-              (versionMinorEnumMapEntry) =>
-                  versionMinorEnumMapEntry.value == versionMinor,
-              orElse: () => throw ArgumentError(
-                  '`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}'))
-          .key,
-      dataTransferOrigin: $DataTransferOriginEnumMap.entries
-          .singleWhere(
-              (dataTransferOriginEnumMapEntry) =>
-                  dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
-              orElse: () => throw ArgumentError(
-                  '`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}'))
-          .key,
-      managementSoftwareManufacturer: managementSoftwareManufacturer,
-      managementSoftwareVersion: managementSoftwareVersion,
-      taskControllerManufacturer: taskControllerManufacturer,
-      taskControllerVersion: taskControllerVersion,
-      language: language);
+    attachedFiles: attachedFiles
+        .map((e) => AttachedFile.fromXmlElement(e))
+        .toList(),
+    baseStations: baseStations
+        .map((e) => BaseStation.fromXmlElement(e))
+        .toList(),
+    codedComments: codedComments
+        .map((e) => CodedComment.fromXmlElement(e))
+        .toList(),
+    codedCommentGroups: codedCommentGroups
+        .map((e) => CodedCommentGroup.fromXmlElement(e))
+        .toList(),
+    colourLegends: colourLegends
+        .map((e) => ColourLegend.fromXmlElement(e))
+        .toList(),
+    cropTypes: cropTypes.map((e) => CropType.fromXmlElement(e)).toList(),
+    culturalPractices: culturalPractices
+        .map((e) => CulturalPractice.fromXmlElement(e))
+        .toList(),
+    customers: customers.map((e) => Customer.fromXmlElement(e)).toList(),
+    devices: devices.map((e) => Device.fromXmlElement(e)).toList(),
+    farms: farms.map((e) => Farm.fromXmlElement(e)).toList(),
+    operationTechniques: operationTechniques
+        .map((e) => OperationTechnique.fromXmlElement(e))
+        .toList(),
+    partfields: partfields.map((e) => Partfield.fromXmlElement(e)).toList(),
+    products: products.map((e) => Product.fromXmlElement(e)).toList(),
+    productGroups: productGroups
+        .map((e) => ProductGroup.fromXmlElement(e))
+        .toList(),
+    tasks: tasks.map((e) => Task.fromXmlElement(e)).toList(),
+    taskControllerCapabilities: taskControllerCapabilities
+        .map((e) => TaskControllerCapabilities.fromXmlElement(e))
+        .toList(),
+    valuePresentations: valuePresentations
+        .map((e) => ValuePresentation.fromXmlElement(e))
+        .toList(),
+    workers: workers.map((e) => Worker.fromXmlElement(e)).toList(),
+    externalFileReferences: externalFileReferences
+        .map((e) => ExternalFileReference.fromXmlElement(e))
+        .toList(),
+    versionMajor: $VersionMajorEnumMap.entries
+        .singleWhere(
+          (versionMajorEnumMapEntry) =>
+              versionMajorEnumMapEntry.value == versionMajor,
+          orElse: () => throw ArgumentError(
+            '`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    versionMinor: $VersionMinorEnumMap.entries
+        .singleWhere(
+          (versionMinorEnumMapEntry) =>
+              versionMinorEnumMapEntry.value == versionMinor,
+          orElse: () => throw ArgumentError(
+            '`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    dataTransferOrigin: $DataTransferOriginEnumMap.entries
+        .singleWhere(
+          (dataTransferOriginEnumMapEntry) =>
+              dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
+          orElse: () => throw ArgumentError(
+            '`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+    managementSoftwareManufacturer: managementSoftwareManufacturer,
+    managementSoftwareVersion: managementSoftwareVersion,
+    taskControllerManufacturer: taskControllerManufacturer,
+    taskControllerVersion: taskControllerVersion,
+    language: language,
+  );
 }
 
-List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(Iso11783TaskData instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(
+  Iso11783TaskData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final versionMajor = instance.versionMajor;
   final versionMajorSerialized = $VersionMajorEnumMap[versionMajor]!;
-  final versionMajorConstructed =
-      XmlAttribute(XmlName('VersionMajor'), versionMajorSerialized);
+  final versionMajorConstructed = XmlAttribute(
+    XmlName('VersionMajor'),
+    versionMajorSerialized,
+  );
   attributes.add(versionMajorConstructed);
   final versionMinor = instance.versionMinor;
   final versionMinorSerialized = $VersionMinorEnumMap[versionMinor]!;
-  final versionMinorConstructed =
-      XmlAttribute(XmlName('VersionMinor'), versionMinorSerialized);
+  final versionMinorConstructed = XmlAttribute(
+    XmlName('VersionMinor'),
+    versionMinorSerialized,
+  );
   attributes.add(versionMinorConstructed);
   final dataTransferOrigin = instance.dataTransferOrigin;
   final dataTransferOriginSerialized =
       $DataTransferOriginEnumMap[dataTransferOrigin]!;
-  final dataTransferOriginConstructed =
-      XmlAttribute(XmlName('DataTransferOrigin'), dataTransferOriginSerialized);
+  final dataTransferOriginConstructed = XmlAttribute(
+    XmlName('DataTransferOrigin'),
+    dataTransferOriginSerialized,
+  );
   attributes.add(dataTransferOriginConstructed);
   final managementSoftwareManufacturer =
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
       managementSoftwareManufacturer;
   final managementSoftwareManufacturerConstructed = XmlAttribute(
-      XmlName('ManagementSoftwareManufacturer'),
-      managementSoftwareManufacturerSerialized);
+    XmlName('ManagementSoftwareManufacturer'),
+    managementSoftwareManufacturerSerialized,
+  );
   attributes.add(managementSoftwareManufacturerConstructed);
   final managementSoftwareVersion = instance.managementSoftwareVersion;
   final managementSoftwareVersionSerialized = managementSoftwareVersion;
   final managementSoftwareVersionConstructed = XmlAttribute(
-      XmlName('ManagementSoftwareVersion'),
-      managementSoftwareVersionSerialized);
+    XmlName('ManagementSoftwareVersion'),
+    managementSoftwareVersionSerialized,
+  );
   attributes.add(managementSoftwareVersionConstructed);
   final taskControllerManufacturer = instance.taskControllerManufacturer;
   final taskControllerManufacturerSerialized = taskControllerManufacturer;
   final taskControllerManufacturerConstructed =
       taskControllerManufacturerSerialized != null
-          ? XmlAttribute(XmlName('TaskControllerManufacturer'),
-              taskControllerManufacturerSerialized)
-          : null;
+      ? XmlAttribute(
+          XmlName('TaskControllerManufacturer'),
+          taskControllerManufacturerSerialized,
+        )
+      : null;
   if (taskControllerManufacturerConstructed != null) {
     attributes.add(taskControllerManufacturerConstructed);
   }
@@ -15668,9 +17482,11 @@ List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(Iso11783TaskData instance,
   final taskControllerVersionSerialized = taskControllerVersion;
   final taskControllerVersionConstructed =
       taskControllerVersionSerialized != null
-          ? XmlAttribute(
-              XmlName('TaskControllerVersion'), taskControllerVersionSerialized)
-          : null;
+      ? XmlAttribute(
+          XmlName('TaskControllerVersion'),
+          taskControllerVersionSerialized,
+        )
+      : null;
   if (taskControllerVersionConstructed != null) {
     attributes.add(taskControllerVersionConstructed);
   }
@@ -15685,187 +17501,272 @@ List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(Iso11783TaskData instance,
   return attributes;
 }
 
-List<XmlNode> _$Iso11783TaskDataToXmlChildren(Iso11783TaskData instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$Iso11783TaskDataToXmlChildren(
+  Iso11783TaskData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final attachedFiles = instance.attachedFiles;
   final attachedFilesSerialized = attachedFiles;
-  final attachedFilesConstructed = attachedFilesSerialized.map((e) =>
-      XmlElement(XmlName('AFE'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final attachedFilesConstructed = attachedFilesSerialized.map(
+    (e) => XmlElement(
+      XmlName('AFE'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(attachedFilesConstructed);
   final baseStations = instance.baseStations;
   final baseStationsSerialized = baseStations;
-  final baseStationsConstructed = baseStationsSerialized.map((e) => XmlElement(
+  final baseStationsConstructed = baseStationsSerialized.map(
+    (e) => XmlElement(
       XmlName('BSN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(baseStationsConstructed);
   final codedComments = instance.codedComments;
   final codedCommentsSerialized = codedComments;
-  final codedCommentsConstructed = codedCommentsSerialized.map((e) =>
-      XmlElement(XmlName('CCT'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final codedCommentsConstructed = codedCommentsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CCT'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(codedCommentsConstructed);
   final codedCommentGroups = instance.codedCommentGroups;
   final codedCommentGroupsSerialized = codedCommentGroups;
-  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map((e) =>
-      XmlElement(XmlName('CCG'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final codedCommentGroupsConstructed = codedCommentGroupsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CCG'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(codedCommentGroupsConstructed);
   final colourLegends = instance.colourLegends;
   final colourLegendsSerialized = colourLegends;
-  final colourLegendsConstructed = colourLegendsSerialized.map((e) =>
-      XmlElement(XmlName('CLD'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final colourLegendsConstructed = colourLegendsSerialized.map(
+    (e) => XmlElement(
+      XmlName('CLD'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(colourLegendsConstructed);
   final cropTypes = instance.cropTypes;
   final cropTypesSerialized = cropTypes;
-  final cropTypesConstructed = cropTypesSerialized.map((e) => XmlElement(
+  final cropTypesConstructed = cropTypesSerialized.map(
+    (e) => XmlElement(
       XmlName('CTP'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(cropTypesConstructed);
   final culturalPractices = instance.culturalPractices;
   final culturalPracticesSerialized = culturalPractices;
-  final culturalPracticesConstructed = culturalPracticesSerialized.map((e) =>
-      XmlElement(XmlName('CPC'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final culturalPracticesConstructed = culturalPracticesSerialized.map(
+    (e) => XmlElement(
+      XmlName('CPC'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(culturalPracticesConstructed);
   final customers = instance.customers;
   final customersSerialized = customers;
-  final customersConstructed = customersSerialized.map((e) => XmlElement(
+  final customersConstructed = customersSerialized.map(
+    (e) => XmlElement(
       XmlName('CTR'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(customersConstructed);
   final devices = instance.devices;
   final devicesSerialized = devices;
-  final devicesConstructed = devicesSerialized.map((e) => XmlElement(
+  final devicesConstructed = devicesSerialized.map(
+    (e) => XmlElement(
       XmlName('DVC'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(devicesConstructed);
   final farms = instance.farms;
   final farmsSerialized = farms;
-  final farmsConstructed = farmsSerialized.map((e) => XmlElement(
+  final farmsConstructed = farmsSerialized.map(
+    (e) => XmlElement(
       XmlName('FRM'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(farmsConstructed);
   final operationTechniques = instance.operationTechniques;
   final operationTechniquesSerialized = operationTechniques;
   final operationTechniquesConstructed = operationTechniquesSerialized.map(
-      (e) => XmlElement(
-          XmlName('OTQ'),
-          e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+    (e) => XmlElement(
+      XmlName('OTQ'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(operationTechniquesConstructed);
   final partfields = instance.partfields;
   final partfieldsSerialized = partfields;
-  final partfieldsConstructed = partfieldsSerialized.map((e) => XmlElement(
+  final partfieldsConstructed = partfieldsSerialized.map(
+    (e) => XmlElement(
       XmlName('PFD'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(partfieldsConstructed);
   final products = instance.products;
   final productsSerialized = products;
-  final productsConstructed = productsSerialized.map((e) => XmlElement(
+  final productsConstructed = productsSerialized.map(
+    (e) => XmlElement(
       XmlName('PDT'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(productsConstructed);
   final productGroups = instance.productGroups;
   final productGroupsSerialized = productGroups;
-  final productGroupsConstructed = productGroupsSerialized.map((e) =>
-      XmlElement(XmlName('PGP'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final productGroupsConstructed = productGroupsSerialized.map(
+    (e) => XmlElement(
+      XmlName('PGP'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(productGroupsConstructed);
   final tasks = instance.tasks;
   final tasksSerialized = tasks;
-  final tasksConstructed = tasksSerialized.map((e) => XmlElement(
+  final tasksConstructed = tasksSerialized.map(
+    (e) => XmlElement(
       XmlName('TSK'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(tasksConstructed);
   final taskControllerCapabilities = instance.taskControllerCapabilities;
   final taskControllerCapabilitiesSerialized = taskControllerCapabilities;
   final taskControllerCapabilitiesConstructed =
-      taskControllerCapabilitiesSerialized.map((e) => XmlElement(
+      taskControllerCapabilitiesSerialized.map(
+        (e) => XmlElement(
           XmlName('TCC'),
           e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+          e.toXmlChildren(namespaces: namespaces),
+        ),
+      );
   children.addAll(taskControllerCapabilitiesConstructed);
   final valuePresentations = instance.valuePresentations;
   final valuePresentationsSerialized = valuePresentations;
-  final valuePresentationsConstructed = valuePresentationsSerialized.map((e) =>
-      XmlElement(XmlName('VPN'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final valuePresentationsConstructed = valuePresentationsSerialized.map(
+    (e) => XmlElement(
+      XmlName('VPN'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(valuePresentationsConstructed);
   final workers = instance.workers;
   final workersSerialized = workers;
-  final workersConstructed = workersSerialized.map((e) => XmlElement(
+  final workersConstructed = workersSerialized.map(
+    (e) => XmlElement(
       XmlName('WKR'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(workersConstructed);
   final externalFileReferences = instance.externalFileReferences;
   final externalFileReferencesSerialized = externalFileReferences;
-  final externalFileReferencesConstructed =
-      externalFileReferencesSerialized.map((e) => XmlElement(
+  final externalFileReferencesConstructed = externalFileReferencesSerialized
+      .map(
+        (e) => XmlElement(
           XmlName('XFR'),
           e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+          e.toXmlChildren(namespaces: namespaces),
+        ),
+      );
   children.addAll(externalFileReferencesConstructed);
   return children;
 }
 
-XmlElement _$Iso11783TaskDataToXmlElement(Iso11783TaskData instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('ISO11783_TaskData'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$Iso11783TaskDataToXmlElement(
+  Iso11783TaskData instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('ISO11783_TaskData'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$Iso11783TaskDataXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$Iso11783TaskDataBuildXmlChildren(this as Iso11783TaskData, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$Iso11783TaskDataBuildXmlChildren(
+    this as Iso11783TaskData,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$Iso11783TaskDataBuildXmlElement(this as Iso11783TaskData, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$Iso11783TaskDataBuildXmlElement(
+    this as Iso11783TaskData,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783TaskDataToXmlAttributes(this as Iso11783TaskData,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$Iso11783TaskDataToXmlAttributes(
+    this as Iso11783TaskData,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783TaskDataToXmlChildren(this as Iso11783TaskData,
-          namespaces: namespaces);
+      _$Iso11783TaskDataToXmlChildren(
+        this as Iso11783TaskData,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$Iso11783TaskDataToXmlElement(this as Iso11783TaskData,
-          namespaces: namespaces);
+      _$Iso11783TaskDataToXmlElement(
+        this as Iso11783TaskData,
+        namespaces: namespaces,
+      );
 }
 
 void _$WorkerAllocationBuildXmlChildren(
-    WorkerAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  WorkerAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
   if (allocationStampSerialized != null) {
-    builder.element('ASP', nest: () {
-      allocationStampSerialized.buildXmlChildren(builder,
-          namespaces: namespaces);
-    });
+    builder.element(
+      'ASP',
+      nest: () {
+        allocationStampSerialized.buildXmlChildren(
+          builder,
+          namespaces: namespaces,
+        );
+      },
+    );
   }
   final workerIdRef = instance.workerIdRef;
   final workerIdRefSerialized = workerIdRef;
@@ -15873,36 +17774,49 @@ void _$WorkerAllocationBuildXmlChildren(
 }
 
 void _$WorkerAllocationBuildXmlElement(
-    WorkerAllocation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('WAN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  WorkerAllocation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'WAN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 WorkerAllocation _$WorkerAllocationFromXmlElement(XmlElement element) {
   final allocationStamp = element.getElement('ASP');
   final workerIdRef = element.getAttribute('A')!;
   return WorkerAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      workerIdRef: workerIdRef);
+    allocationStamp: allocationStamp != null
+        ? AllocationStamp.fromXmlElement(allocationStamp)
+        : null,
+    workerIdRef: workerIdRef,
+  );
 }
 
-List<XmlAttribute> _$WorkerAllocationToXmlAttributes(WorkerAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$WorkerAllocationToXmlAttributes(
+  WorkerAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final workerIdRef = instance.workerIdRef;
   final workerIdRefSerialized = workerIdRef;
-  final workerIdRefConstructed =
-      XmlAttribute(XmlName('A'), workerIdRefSerialized);
+  final workerIdRefConstructed = XmlAttribute(
+    XmlName('A'),
+    workerIdRefSerialized,
+  );
   attributes.add(workerIdRefConstructed);
   return attributes;
 }
 
-List<XmlNode> _$WorkerAllocationToXmlChildren(WorkerAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$WorkerAllocationToXmlChildren(
+  WorkerAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final allocationStamp = instance.allocationStamp;
   final allocationStampSerialized = allocationStamp;
@@ -15910,7 +17824,8 @@ List<XmlNode> _$WorkerAllocationToXmlChildren(WorkerAllocation instance,
       ? XmlElement(
           XmlName('ASP'),
           allocationStampSerialized.toXmlAttributes(namespaces: namespaces),
-          allocationStampSerialized.toXmlChildren(namespaces: namespaces))
+          allocationStampSerialized.toXmlChildren(namespaces: namespaces),
+        )
       : null;
   if (allocationStampConstructed != null) {
     children.add(allocationStampConstructed);
@@ -15918,57 +17833,79 @@ List<XmlNode> _$WorkerAllocationToXmlChildren(WorkerAllocation instance,
   return children;
 }
 
-XmlElement _$WorkerAllocationToXmlElement(WorkerAllocation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('WAN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$WorkerAllocationToXmlElement(
+  WorkerAllocation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('WAN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$WorkerAllocationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$WorkerAllocationBuildXmlChildren(this as WorkerAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$WorkerAllocationBuildXmlChildren(
+    this as WorkerAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$WorkerAllocationBuildXmlElement(this as WorkerAllocation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$WorkerAllocationBuildXmlElement(
+    this as WorkerAllocation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$WorkerAllocationToXmlAttributes(this as WorkerAllocation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$WorkerAllocationToXmlAttributes(
+    this as WorkerAllocation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$WorkerAllocationToXmlChildren(this as WorkerAllocation,
-          namespaces: namespaces);
+      _$WorkerAllocationToXmlChildren(
+        this as WorkerAllocation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$WorkerAllocationToXmlElement(this as WorkerAllocation,
-          namespaces: namespaces);
+      _$WorkerAllocationToXmlElement(
+        this as WorkerAllocation,
+        namespaces: namespaces,
+      );
 }
 
-void _$TimeBuildXmlChildren(Time instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$TimeBuildXmlChildren(
+  Time instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final positions = instance.positions;
   final positionsSerialized = positions;
   for (final value in positionsSerialized) {
-    builder.element('PTN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PTN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final dataLogValues = instance.dataLogValues;
   final dataLogValuesSerialized = dataLogValues;
   for (final value in dataLogValuesSerialized) {
-    builder.element('DLV', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'DLV',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -15988,11 +17925,18 @@ void _$TimeBuildXmlChildren(Time instance, XmlBuilder builder,
   builder.attribute('D', typeSerialized);
 }
 
-void _$TimeBuildXmlElement(Time instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('TIM', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$TimeBuildXmlElement(
+  Time instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'TIM',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 Time _$TimeFromXmlElement(XmlElement element) {
@@ -16003,22 +17947,28 @@ Time _$TimeFromXmlElement(XmlElement element) {
   final duration = element.getAttribute('C');
   final type = element.getAttribute('D')!;
   return Time(
-      positions: positions.map((e) => Position.fromXmlElement(e)).toList(),
-      dataLogValues:
-          dataLogValues.map((e) => DataLogValue.fromXmlElement(e)).toList(),
-      start: DateTime.parse(start),
-      stop: stop != null ? DateTime.parse(stop) : null,
-      duration: duration != null ? int.parse(duration) : null,
-      type: $TimeTypeEnumMap.entries
-          .singleWhere(
-              (timeTypeEnumMapEntry) => timeTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}'))
-          .key);
+    positions: positions.map((e) => Position.fromXmlElement(e)).toList(),
+    dataLogValues: dataLogValues
+        .map((e) => DataLogValue.fromXmlElement(e))
+        .toList(),
+    start: DateTime.parse(start),
+    stop: stop != null ? DateTime.parse(stop) : null,
+    duration: duration != null ? int.parse(duration) : null,
+    type: $TimeTypeEnumMap.entries
+        .singleWhere(
+          (timeTypeEnumMapEntry) => timeTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+  );
 }
 
-List<XmlAttribute> _$TimeToXmlAttributes(Time instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$TimeToXmlAttributes(
+  Time instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final start = instance.start;
   final startSerialized = start.toIso8601String();
@@ -16047,48 +17997,58 @@ List<XmlAttribute> _$TimeToXmlAttributes(Time instance,
   return attributes;
 }
 
-List<XmlNode> _$TimeToXmlChildren(Time instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$TimeToXmlChildren(
+  Time instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final positions = instance.positions;
   final positionsSerialized = positions;
-  final positionsConstructed = positionsSerialized.map((e) => XmlElement(
+  final positionsConstructed = positionsSerialized.map(
+    (e) => XmlElement(
       XmlName('PTN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(positionsConstructed);
   final dataLogValues = instance.dataLogValues;
   final dataLogValuesSerialized = dataLogValues;
-  final dataLogValuesConstructed = dataLogValuesSerialized.map((e) =>
-      XmlElement(XmlName('DLV'), e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+  final dataLogValuesConstructed = dataLogValuesSerialized.map(
+    (e) => XmlElement(
+      XmlName('DLV'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(dataLogValuesConstructed);
   return children;
 }
 
-XmlElement _$TimeToXmlElement(Time instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('TIM'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$TimeToXmlElement(
+  Time instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('TIM'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$TimeXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TimeBuildXmlChildren(this as Time, builder, namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TimeBuildXmlChildren(this as Time, builder, namespaces: namespaces);
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TimeBuildXmlElement(this as Time, builder, namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TimeBuildXmlElement(this as Time, builder, namespaces: namespaces);
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$TimeToXmlAttributes(this as Time, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$TimeToXmlAttributes(this as Time, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$TimeToXmlChildren(this as Time, namespaces: namespaces);
@@ -16097,8 +18057,11 @@ mixin _$TimeXmlSerializableMixin {
       _$TimeToXmlElement(this as Time, namespaces: namespaces);
 }
 
-void _$TimeLogBuildXmlChildren(TimeLog instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$TimeLogBuildXmlChildren(
+  TimeLog instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final filename = instance.filename;
   final filenameSerialized = filename;
   builder.attribute('A', filenameSerialized);
@@ -16112,11 +18075,18 @@ void _$TimeLogBuildXmlChildren(TimeLog instance, XmlBuilder builder,
   builder.attribute('C', typeSerialized);
 }
 
-void _$TimeLogBuildXmlElement(TimeLog instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('TLG', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$TimeLogBuildXmlElement(
+  TimeLog instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'TLG',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 TimeLog _$TimeLogFromXmlElement(XmlElement element) {
@@ -16124,19 +18094,23 @@ TimeLog _$TimeLogFromXmlElement(XmlElement element) {
   final fileLength = element.getAttribute('B');
   final type = element.getAttribute('C')!;
   return TimeLog(
-      filename: filename,
-      fileLength: fileLength != null ? int.parse(fileLength) : null,
-      type: $TimeLogTypeEnumMap.entries
-          .singleWhere(
-              (timeLogTypeEnumMapEntry) =>
-                  timeLogTypeEnumMapEntry.value == type,
-              orElse: () => throw ArgumentError(
-                  '`$type` is not one of the supported values: ${$TimeLogTypeEnumMap.values.join(', ')}'))
-          .key);
+    filename: filename,
+    fileLength: fileLength != null ? int.parse(fileLength) : null,
+    type: $TimeLogTypeEnumMap.entries
+        .singleWhere(
+          (timeLogTypeEnumMapEntry) => timeLogTypeEnumMapEntry.value == type,
+          orElse: () => throw ArgumentError(
+            '`$type` is not one of the supported values: ${$TimeLogTypeEnumMap.values.join(', ')}',
+          ),
+        )
+        .key,
+  );
 }
 
-List<XmlAttribute> _$TimeLogToXmlAttributes(TimeLog instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$TimeLogToXmlAttributes(
+  TimeLog instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final filename = instance.filename;
   final filenameSerialized = filename;
@@ -16157,37 +18131,46 @@ List<XmlAttribute> _$TimeLogToXmlAttributes(TimeLog instance,
   return attributes;
 }
 
-List<XmlNode> _$TimeLogToXmlChildren(TimeLog instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$TimeLogToXmlChildren(
+  TimeLog instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$TimeLogToXmlElement(TimeLog instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('TLG'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$TimeLogToXmlElement(
+  TimeLog instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('TLG'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$TimeLogXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TimeLogBuildXmlChildren(this as TimeLog, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TimeLogBuildXmlChildren(
+    this as TimeLog,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TimeLogBuildXmlElement(this as TimeLog, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TimeLogBuildXmlElement(
+    this as TimeLog,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$TimeLogToXmlAttributes(this as TimeLog, namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$TimeLogToXmlAttributes(this as TimeLog, namespaces: namespaces);
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
       _$TimeLogToXmlChildren(this as TimeLog, namespaces: namespaces);
@@ -16197,14 +18180,19 @@ mixin _$TimeLogXmlSerializableMixin {
 }
 
 void _$ProcessDataVariableBuildXmlChildren(
-    ProcessDataVariable instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ProcessDataVariable instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
   for (final value in processDataVariablesSerialized) {
-    builder.element('PDV', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PDV',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final ddi = instance.ddi;
   final ddiSerialized = ddi;
@@ -16228,25 +18216,31 @@ void _$ProcessDataVariableBuildXmlChildren(
     builder.attribute('E', valuePresentationIdRefSerialized);
   }
   final actualCulturalPracticeValue = instance.actualCulturalPracticeValue;
-  final actualCulturalPracticeValueSerialized =
-      actualCulturalPracticeValue?.toString();
+  final actualCulturalPracticeValueSerialized = actualCulturalPracticeValue
+      ?.toString();
   if (actualCulturalPracticeValueSerialized != null) {
     builder.attribute('F', actualCulturalPracticeValueSerialized);
   }
   final elementTypeInstanceValue = instance.elementTypeInstanceValue;
-  final elementTypeInstanceValueSerialized =
-      elementTypeInstanceValue?.toString();
+  final elementTypeInstanceValueSerialized = elementTypeInstanceValue
+      ?.toString();
   if (elementTypeInstanceValueSerialized != null) {
     builder.attribute('G', elementTypeInstanceValueSerialized);
   }
 }
 
 void _$ProcessDataVariableBuildXmlElement(
-    ProcessDataVariable instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('PDV', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ProcessDataVariable instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'PDV',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ProcessDataVariable _$ProcessDataVariableFromXmlElement(XmlElement element) {
@@ -16259,25 +18253,27 @@ ProcessDataVariable _$ProcessDataVariableFromXmlElement(XmlElement element) {
   final actualCulturalPracticeValue = element.getAttribute('F');
   final elementTypeInstanceValue = element.getAttribute('G');
   return ProcessDataVariable(
-      processDataVariables: processDataVariables
-          .map((e) => ProcessDataVariable.fromXmlElement(e))
-          .toList(),
-      ddi: ddi,
-      value: int.parse(value),
-      productIdRef: productIdRef,
-      deviceElementIdRef: deviceElementIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      actualCulturalPracticeValue: actualCulturalPracticeValue != null
-          ? int.parse(actualCulturalPracticeValue)
-          : null,
-      elementTypeInstanceValue: elementTypeInstanceValue != null
-          ? int.parse(elementTypeInstanceValue)
-          : null);
+    processDataVariables: processDataVariables
+        .map((e) => ProcessDataVariable.fromXmlElement(e))
+        .toList(),
+    ddi: ddi,
+    value: int.parse(value),
+    productIdRef: productIdRef,
+    deviceElementIdRef: deviceElementIdRef,
+    valuePresentationIdRef: valuePresentationIdRef,
+    actualCulturalPracticeValue: actualCulturalPracticeValue != null
+        ? int.parse(actualCulturalPracticeValue)
+        : null,
+    elementTypeInstanceValue: elementTypeInstanceValue != null
+        ? int.parse(elementTypeInstanceValue)
+        : null,
+  );
 }
 
 List<XmlAttribute> _$ProcessDataVariableToXmlAttributes(
-    ProcessDataVariable instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ProcessDataVariable instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final ddi = instance.ddi;
   final ddiSerialized = ddi;
@@ -16307,100 +18303,125 @@ List<XmlAttribute> _$ProcessDataVariableToXmlAttributes(
   final valuePresentationIdRefSerialized = valuePresentationIdRef;
   final valuePresentationIdRefConstructed =
       valuePresentationIdRefSerialized != null
-          ? XmlAttribute(XmlName('E'), valuePresentationIdRefSerialized)
-          : null;
+      ? XmlAttribute(XmlName('E'), valuePresentationIdRefSerialized)
+      : null;
   if (valuePresentationIdRefConstructed != null) {
     attributes.add(valuePresentationIdRefConstructed);
   }
   final actualCulturalPracticeValue = instance.actualCulturalPracticeValue;
-  final actualCulturalPracticeValueSerialized =
-      actualCulturalPracticeValue?.toString();
+  final actualCulturalPracticeValueSerialized = actualCulturalPracticeValue
+      ?.toString();
   final actualCulturalPracticeValueConstructed =
       actualCulturalPracticeValueSerialized != null
-          ? XmlAttribute(XmlName('F'), actualCulturalPracticeValueSerialized)
-          : null;
+      ? XmlAttribute(XmlName('F'), actualCulturalPracticeValueSerialized)
+      : null;
   if (actualCulturalPracticeValueConstructed != null) {
     attributes.add(actualCulturalPracticeValueConstructed);
   }
   final elementTypeInstanceValue = instance.elementTypeInstanceValue;
-  final elementTypeInstanceValueSerialized =
-      elementTypeInstanceValue?.toString();
+  final elementTypeInstanceValueSerialized = elementTypeInstanceValue
+      ?.toString();
   final elementTypeInstanceValueConstructed =
       elementTypeInstanceValueSerialized != null
-          ? XmlAttribute(XmlName('G'), elementTypeInstanceValueSerialized)
-          : null;
+      ? XmlAttribute(XmlName('G'), elementTypeInstanceValueSerialized)
+      : null;
   if (elementTypeInstanceValueConstructed != null) {
     attributes.add(elementTypeInstanceValueConstructed);
   }
   return attributes;
 }
 
-List<XmlNode> _$ProcessDataVariableToXmlChildren(ProcessDataVariable instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ProcessDataVariableToXmlChildren(
+  ProcessDataVariable instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
   final processDataVariablesConstructed = processDataVariablesSerialized.map(
-      (e) => XmlElement(
-          XmlName('PDV'),
-          e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+    (e) => XmlElement(
+      XmlName('PDV'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(processDataVariablesConstructed);
   return children;
 }
 
-XmlElement _$ProcessDataVariableToXmlElement(ProcessDataVariable instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('PDV'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ProcessDataVariableToXmlElement(
+  ProcessDataVariable instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('PDV'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ProcessDataVariableXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProcessDataVariableBuildXmlChildren(
-          this as ProcessDataVariable, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProcessDataVariableBuildXmlChildren(
+    this as ProcessDataVariable,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ProcessDataVariableBuildXmlElement(this as ProcessDataVariable, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ProcessDataVariableBuildXmlElement(
+    this as ProcessDataVariable,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ProcessDataVariableToXmlAttributes(this as ProcessDataVariable,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ProcessDataVariableToXmlAttributes(
+    this as ProcessDataVariable,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ProcessDataVariableToXmlChildren(this as ProcessDataVariable,
-          namespaces: namespaces);
+      _$ProcessDataVariableToXmlChildren(
+        this as ProcessDataVariable,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ProcessDataVariableToXmlElement(this as ProcessDataVariable,
-          namespaces: namespaces);
+      _$ProcessDataVariableToXmlElement(
+        this as ProcessDataVariable,
+        namespaces: namespaces,
+      );
 }
 
-void _$TreatmentZoneBuildXmlChildren(TreatmentZone instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+void _$TreatmentZoneBuildXmlChildren(
+  TreatmentZone instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
   for (final value in polygonsSerialized) {
-    builder.element('PLN', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PLN',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
   for (final value in processDataVariablesSerialized) {
-    builder.element('PDV', nest: () {
-      value.buildXmlChildren(builder, namespaces: namespaces);
-    });
+    builder.element(
+      'PDV',
+      nest: () {
+        value.buildXmlChildren(builder, namespaces: namespaces);
+      },
+    );
   }
   final code = instance.code;
   final codeSerialized = code.toString();
@@ -16417,11 +18438,18 @@ void _$TreatmentZoneBuildXmlChildren(TreatmentZone instance, XmlBuilder builder,
   }
 }
 
-void _$TreatmentZoneBuildXmlElement(TreatmentZone instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('TZN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+void _$TreatmentZoneBuildXmlElement(
+  TreatmentZone instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'TZN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 TreatmentZone _$TreatmentZoneFromXmlElement(XmlElement element) {
@@ -16431,17 +18459,20 @@ TreatmentZone _$TreatmentZoneFromXmlElement(XmlElement element) {
   final designator = element.getAttribute('B');
   final colour = element.getAttribute('C');
   return TreatmentZone(
-      polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
-      processDataVariables: processDataVariables
-          .map((e) => ProcessDataVariable.fromXmlElement(e))
-          .toList(),
-      code: int.parse(code),
-      designator: designator,
-      colour: colour != null ? int.parse(colour) : null);
+    polygons: polygons.map((e) => Polygon.fromXmlElement(e)).toList(),
+    processDataVariables: processDataVariables
+        .map((e) => ProcessDataVariable.fromXmlElement(e))
+        .toList(),
+    code: int.parse(code),
+    designator: designator,
+    colour: colour != null ? int.parse(colour) : null,
+  );
 }
 
-List<XmlAttribute> _$TreatmentZoneToXmlAttributes(TreatmentZone instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlAttribute> _$TreatmentZoneToXmlAttributes(
+  TreatmentZone instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final code = instance.code;
   final codeSerialized = code.toString();
@@ -16466,66 +18497,88 @@ List<XmlAttribute> _$TreatmentZoneToXmlAttributes(TreatmentZone instance,
   return attributes;
 }
 
-List<XmlNode> _$TreatmentZoneToXmlChildren(TreatmentZone instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$TreatmentZoneToXmlChildren(
+  TreatmentZone instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   final polygons = instance.polygons;
   final polygonsSerialized = polygons;
-  final polygonsConstructed = polygonsSerialized.map((e) => XmlElement(
+  final polygonsConstructed = polygonsSerialized.map(
+    (e) => XmlElement(
       XmlName('PLN'),
       e.toXmlAttributes(namespaces: namespaces),
-      e.toXmlChildren(namespaces: namespaces)));
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(polygonsConstructed);
   final processDataVariables = instance.processDataVariables;
   final processDataVariablesSerialized = processDataVariables;
   final processDataVariablesConstructed = processDataVariablesSerialized.map(
-      (e) => XmlElement(
-          XmlName('PDV'),
-          e.toXmlAttributes(namespaces: namespaces),
-          e.toXmlChildren(namespaces: namespaces)));
+    (e) => XmlElement(
+      XmlName('PDV'),
+      e.toXmlAttributes(namespaces: namespaces),
+      e.toXmlChildren(namespaces: namespaces),
+    ),
+  );
   children.addAll(processDataVariablesConstructed);
   return children;
 }
 
-XmlElement _$TreatmentZoneToXmlElement(TreatmentZone instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('TZN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$TreatmentZoneToXmlElement(
+  TreatmentZone instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('TZN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$TreatmentZoneXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TreatmentZoneBuildXmlChildren(this as TreatmentZone, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TreatmentZoneBuildXmlChildren(
+    this as TreatmentZone,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$TreatmentZoneBuildXmlElement(this as TreatmentZone, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$TreatmentZoneBuildXmlElement(
+    this as TreatmentZone,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$TreatmentZoneToXmlAttributes(this as TreatmentZone,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$TreatmentZoneToXmlAttributes(
+    this as TreatmentZone,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$TreatmentZoneToXmlChildren(this as TreatmentZone,
-          namespaces: namespaces);
+      _$TreatmentZoneToXmlChildren(
+        this as TreatmentZone,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$TreatmentZoneToXmlElement(this as TreatmentZone,
-          namespaces: namespaces);
+      _$TreatmentZoneToXmlElement(
+        this as TreatmentZone,
+        namespaces: namespaces,
+      );
 }
 
 void _$ValuePresentationBuildXmlChildren(
-    ValuePresentation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
+  ValuePresentation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
   final id = instance.id;
   final idSerialized = id;
   builder.attribute('A', idSerialized);
@@ -16551,11 +18604,17 @@ void _$ValuePresentationBuildXmlChildren(
 }
 
 void _$ValuePresentationBuildXmlElement(
-    ValuePresentation instance, XmlBuilder builder,
-    {Map<String, String> namespaces = const {}}) {
-  builder.element('VPN', namespaces: namespaces, nest: () {
-    instance.buildXmlChildren(builder, namespaces: namespaces);
-  });
+  ValuePresentation instance,
+  XmlBuilder builder, {
+  Map<String, String> namespaces = const {},
+}) {
+  builder.element(
+    'VPN',
+    namespaces: namespaces,
+    nest: () {
+      instance.buildXmlChildren(builder, namespaces: namespaces);
+    },
+  );
 }
 
 ValuePresentation _$ValuePresentationFromXmlElement(XmlElement element) {
@@ -16566,17 +18625,19 @@ ValuePresentation _$ValuePresentationFromXmlElement(XmlElement element) {
   final unitDesignator = element.getAttribute('E');
   final colourLegendIdRef = element.getAttribute('F');
   return ValuePresentation(
-      id: id,
-      offset: int.parse(offset),
-      scale: double.parse(scale),
-      numberOfDecimals: int.parse(numberOfDecimals),
-      unitDesignator: unitDesignator,
-      colourLegendIdRef: colourLegendIdRef);
+    id: id,
+    offset: int.parse(offset),
+    scale: double.parse(scale),
+    numberOfDecimals: int.parse(numberOfDecimals),
+    unitDesignator: unitDesignator,
+    colourLegendIdRef: colourLegendIdRef,
+  );
 }
 
 List<XmlAttribute> _$ValuePresentationToXmlAttributes(
-    ValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
+  ValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final attributes = <XmlAttribute>[];
   final id = instance.id;
   final idSerialized = id;
@@ -16592,8 +18653,10 @@ List<XmlAttribute> _$ValuePresentationToXmlAttributes(
   attributes.add(scaleConstructed);
   final numberOfDecimals = instance.numberOfDecimals;
   final numberOfDecimalsSerialized = numberOfDecimals.toString();
-  final numberOfDecimalsConstructed =
-      XmlAttribute(XmlName('D'), numberOfDecimalsSerialized);
+  final numberOfDecimalsConstructed = XmlAttribute(
+    XmlName('D'),
+    numberOfDecimalsSerialized,
+  );
   attributes.add(numberOfDecimalsConstructed);
   final unitDesignator = instance.unitDesignator;
   final unitDesignatorSerialized = unitDesignator;
@@ -16614,44 +18677,59 @@ List<XmlAttribute> _$ValuePresentationToXmlAttributes(
   return attributes;
 }
 
-List<XmlNode> _$ValuePresentationToXmlChildren(ValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
+List<XmlNode> _$ValuePresentationToXmlChildren(
+  ValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
   final children = <XmlNode>[];
   return children;
 }
 
-XmlElement _$ValuePresentationToXmlElement(ValuePresentation instance,
-    {Map<String, String?> namespaces = const {}}) {
-  return XmlElement(
-      XmlName('VPN'),
-      [
-        ...namespaces.toXmlAttributes(),
-        ...instance.toXmlAttributes(namespaces: namespaces)
-      ],
-      instance.toXmlChildren(namespaces: namespaces));
+XmlElement _$ValuePresentationToXmlElement(
+  ValuePresentation instance, {
+  Map<String, String?> namespaces = const {},
+}) {
+  return XmlElement(XmlName('VPN'), [
+    ...namespaces.toXmlAttributes(),
+    ...instance.toXmlAttributes(namespaces: namespaces),
+  ], instance.toXmlChildren(namespaces: namespaces));
 }
 
 mixin _$ValuePresentationXmlSerializableMixin {
-  void buildXmlChildren(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ValuePresentationBuildXmlChildren(this as ValuePresentation, builder,
-          namespaces: namespaces);
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ValuePresentationBuildXmlChildren(
+    this as ValuePresentation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  void buildXmlElement(XmlBuilder builder,
-          {Map<String, String> namespaces = const {}}) =>
-      _$ValuePresentationBuildXmlElement(this as ValuePresentation, builder,
-          namespaces: namespaces);
+  void buildXmlElement(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) => _$ValuePresentationBuildXmlElement(
+    this as ValuePresentation,
+    builder,
+    namespaces: namespaces,
+  );
 
-  List<XmlAttribute> toXmlAttributes(
-          {Map<String, String?> namespaces = const {}}) =>
-      _$ValuePresentationToXmlAttributes(this as ValuePresentation,
-          namespaces: namespaces);
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) => _$ValuePresentationToXmlAttributes(
+    this as ValuePresentation,
+    namespaces: namespaces,
+  );
 
   List<XmlNode> toXmlChildren({Map<String, String?> namespaces = const {}}) =>
-      _$ValuePresentationToXmlChildren(this as ValuePresentation,
-          namespaces: namespaces);
+      _$ValuePresentationToXmlChildren(
+        this as ValuePresentation,
+        namespaces: namespaces,
+      );
 
   XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) =>
-      _$ValuePresentationToXmlElement(this as ValuePresentation,
-          namespaces: namespaces);
+      _$ValuePresentationToXmlElement(
+        this as ValuePresentation,
+        namespaces: namespaces,
+      );
 }

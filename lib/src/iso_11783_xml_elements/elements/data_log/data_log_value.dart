@@ -97,9 +97,9 @@ class DataLogValue extends Iso11783Element
     this.pgnStartBit,
     this.pgnStopBit,
   }) : super(
-          elementType: Iso11783ElementType.dataLogValue,
-          description: 'DataLogValue',
-        );
+         elementType: Iso11783ElementType.dataLogValue,
+         description: 'DataLogValue',
+       );
 
   /// Creates a [DataLogValue] from [element].
   factory DataLogValue.fromXmlElement(XmlElement element) =>
@@ -142,11 +142,11 @@ class DataLogValue extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        processDataDDI,
-        processDataValue,
-        deviceElementIdRef,
-        pgn,
-        pgnStartBit,
-        pgnStopBit,
-      ];
+    processDataDDI,
+    processDataValue,
+    deviceElementIdRef,
+    pgn,
+    pgnStartBit,
+    pgnStopBit,
+  ];
 }

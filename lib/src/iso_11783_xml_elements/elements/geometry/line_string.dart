@@ -82,9 +82,9 @@ class LineString extends Iso11783Element
     this.colour,
     this.id,
   }) : super(
-          elementType: Iso11783ElementType.lineString,
-          description: 'LineString',
-        ) {
+         elementType: Iso11783ElementType.lineString,
+         description: 'LineString',
+       ) {
     this.points.addAll(points);
   }
 
@@ -135,21 +135,21 @@ class LineString extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-      ];
+    ...[
+      for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        points,
-        type,
-        designator,
-        width,
-        length,
-        colour,
-        id,
-      ];
+    points,
+    type,
+    designator,
+    width,
+    length,
+    colour,
+    id,
+  ];
 }
 
 /// An enumerator for which type a [LineString] is.
@@ -189,8 +189,7 @@ enum LineStringType {
 
   /// An obstacle to avoid.
   @annotation.XmlValue('9')
-  obstacle(9, 'Obstacle'),
-  ;
+  obstacle(9, 'Obstacle');
 
   const LineStringType(this.value, this.description);
 

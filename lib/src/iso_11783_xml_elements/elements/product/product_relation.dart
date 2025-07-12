@@ -41,10 +41,10 @@ class ProductRelation extends Iso11783Element
     required this.productIdRef,
     required this.quantityValue,
   }) : super(
-          elementType: Iso11783ElementType.productRelation,
-          description: 'ProductRelation',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.productRelation,
+         description: 'ProductRelation',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [ProductRelation] from [element].
   factory ProductRelation.fromXmlElement(XmlElement element) =>
@@ -60,7 +60,7 @@ class ProductRelation extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        productIdRef,
-        quantityValue,
-      ];
+    productIdRef,
+    quantityValue,
+  ];
 }

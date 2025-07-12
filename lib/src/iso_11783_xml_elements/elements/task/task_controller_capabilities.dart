@@ -79,10 +79,10 @@ class TaskControllerCapabilities extends Iso11783Element
     required this.numberOfSectionsSectionControl,
     required this.numberOfControlChannels,
   }) : super(
-          elementType: Iso11783ElementType.taskControllerCapabilities,
-          description: 'TaskControllerCapabilities',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.taskControllerCapabilities,
+         description: 'TaskControllerCapabilities',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [TaskControllerCapabilities] from [element].
   factory TaskControllerCapabilities.fromXmlElement(XmlElement element) =>
@@ -137,14 +137,14 @@ class TaskControllerCapabilities extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        functionNAME,
-        designator,
-        versionNumber,
-        providedCapabilities,
-        numberOfBoomsSectionControl,
-        numberOfSectionsSectionControl,
-        numberOfControlChannels,
-      ];
+    functionNAME,
+    designator,
+    versionNumber,
+    providedCapabilities,
+    numberOfBoomsSectionControl,
+    numberOfSectionsSectionControl,
+    numberOfControlChannels,
+  ];
 }
 
 /// An enumerator for which version a TaskController is.
@@ -180,8 +180,7 @@ enum VersionNumber {
   e2fdis(
     4,
     '''The version of the second edition published as a final draft international standard (E2.FDIS)''',
-  ),
-  ;
+  );
 
   const VersionNumber(this.value, this.description);
 

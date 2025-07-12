@@ -16,8 +16,9 @@ void main() async {
 
   final dictionaryString = await http.read(url);
 
-  final dictionary =
-      Iso11783DataDictionary(utf8.decode(dictionaryString.codeUnits));
+  final dictionary = Iso11783DataDictionary(
+    utf8.decode(dictionaryString.codeUnits),
+  );
 
   group('Parse dictionary', () {
     final version = dictionaryString

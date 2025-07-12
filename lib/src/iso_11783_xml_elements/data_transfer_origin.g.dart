@@ -8,5 +8,5 @@ part of 'data_transfer_origin.dart';
 
 const $DataTransferOriginEnumMap = {
   DataTransferOrigin.fmis: '1',
-  DataTransferOrigin.mics: '2'
+  DataTransferOrigin.mics: '2',
 };

@@ -49,9 +49,9 @@ class ColourLegend extends Iso11783Element
     required this.id,
     this.defaultColour,
   }) : super(
-          elementType: Iso11783ElementType.colourLegend,
-          description: 'ColourLegend',
-        );
+         elementType: Iso11783ElementType.colourLegend,
+         description: 'ColourLegend',
+       );
 
   /// Creates a [ColourLegend] from [element].
   factory ColourLegend.fromXmlElement(XmlElement element) =>
@@ -80,15 +80,15 @@ class ColourLegend extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in ranges.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-      ];
+    ...[
+      for (final a in ranges.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        ranges,
-        id,
-        defaultColour,
-      ];
+    ranges,
+    id,
+    defaultColour,
+  ];
 }

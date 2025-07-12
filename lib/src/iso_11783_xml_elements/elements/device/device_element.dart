@@ -69,9 +69,9 @@ class DeviceElement extends Iso11783Element
     List<DeviceObjectReference>? objectReferences,
     this.designator,
   }) : super(
-          elementType: Iso11783ElementType.deviceElement,
-          description: 'DeviceElement',
-        ) {
+         elementType: Iso11783ElementType.deviceElement,
+         description: 'DeviceElement',
+       ) {
     if (objectReferences != null) {
       this.objectReferences.addAll(objectReferences);
     }
@@ -87,8 +87,9 @@ class DeviceElement extends Iso11783Element
     final number = element.getAttribute('E')!;
     final parentObjectId = element.getAttribute('F')!;
     return DeviceElement(
-      objectReferences:
-          objectReferences?.map(DeviceObjectReference.fromXmlElement).toList(),
+      objectReferences: objectReferences
+          ?.map(DeviceObjectReference.fromXmlElement)
+          .toList(),
       id: id,
       objectId: int.parse(objectId),
       type: $DeviceElementTypeEnumMap.entries
@@ -148,23 +149,22 @@ class DeviceElement extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a
-              in objectReferences.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in objectReferences.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        objectReferences,
-        id,
-        objectId,
-        type,
-        designator,
-        number,
-        parentObjectId,
-      ];
+    objectReferences,
+    id,
+    objectId,
+    type,
+    designator,
+    number,
+    parentObjectId,
+  ];
 }
 
 /// An enumerator for describing what type a [DeviceElement] is.
@@ -174,23 +174,18 @@ enum DeviceElementType {
   @annotation.XmlValue('1')
   device(1, 'Device'),
   @annotation.XmlValue('2')
-
   /// A function of the device.
   function(2, 'Function'),
   @annotation.XmlValue('3')
-
   /// A bin or container for storage.
   bin(3, 'Bin, container'),
   @annotation.XmlValue('4')
-
   /// A section of a boom or planter etc...
   section(4, 'Section'),
   @annotation.XmlValue('5')
-
   /// A single unit of a boom or planter etc...
   unit(5, 'Unit'),
   @annotation.XmlValue('6')
-
   /// A connector for connecting two [Device]s.
   connector(6, 'Connector'),
 

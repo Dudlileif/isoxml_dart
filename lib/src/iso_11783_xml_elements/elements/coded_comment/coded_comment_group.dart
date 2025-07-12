@@ -40,9 +40,9 @@ class CodedCommentGroup extends Iso11783Element
     required this.id,
     required this.designator,
   }) : super(
-          elementType: Iso11783ElementType.codedCommentGroup,
-          description: 'CodedCommentGroup',
-        );
+         elementType: Iso11783ElementType.codedCommentGroup,
+         description: 'CodedCommentGroup',
+       );
 
   /// Creates a [CodedCommentGroup] from [element].
   factory CodedCommentGroup.fromXmlElement(XmlElement element) =>
@@ -68,7 +68,7 @@ class CodedCommentGroup extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        id,
-        designator,
-      ];
+    id,
+    designator,
+  ];
 }

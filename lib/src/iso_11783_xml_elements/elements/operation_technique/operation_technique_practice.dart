@@ -41,9 +41,9 @@ class OperationTechniquePractice extends Iso11783Element
     required this.culturalPracticeIdRef,
     this.operationTechniqueIdRef,
   }) : super(
-          elementType: Iso11783ElementType.operationTechniquePractice,
-          description: 'OperationTechniquePractice',
-        );
+         elementType: Iso11783ElementType.operationTechniquePractice,
+         description: 'OperationTechniquePractice',
+       );
 
   /// Creates a [OperationTechniquePractice] from [element].
   factory OperationTechniquePractice.fromXmlElement(XmlElement element) =>
@@ -59,7 +59,7 @@ class OperationTechniquePractice extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        culturalPracticeIdRef,
-        operationTechniqueIdRef,
-      ];
+    culturalPracticeIdRef,
+    operationTechniqueIdRef,
+  ];
 }

@@ -48,10 +48,10 @@ class GuidanceAllocation extends Iso11783Element
     required this.groupIdRef,
     List<GuidanceShift>? shifts,
   }) : super(
-          elementType: Iso11783ElementType.guidanceAllocation,
-          description: 'GuidanceAllocation',
-          onlyVersion4AndAbove: true,
-        ) {
+         elementType: Iso11783ElementType.guidanceAllocation,
+         description: 'GuidanceAllocation',
+         onlyVersion4AndAbove: true,
+       ) {
     this.allocationStamps.addAll(allocationStamps);
     if (shifts != null) {
       this.shifts.addAll(shifts);
@@ -64,8 +64,9 @@ class GuidanceAllocation extends Iso11783Element
     final shifts = element.getElements('GST');
     final groupIdRef = element.getAttribute('A')!;
     return GuidanceAllocation(
-      allocationStamps:
-          allocationStamps.map(AllocationStamp.fromXmlElement).toList(),
+      allocationStamps: allocationStamps
+          .map(AllocationStamp.fromXmlElement)
+          .toList(),
       shifts: shifts?.map(GuidanceShift.fromXmlElement).toList(),
       groupIdRef: groupIdRef,
     );
@@ -85,20 +86,19 @@ class GuidanceAllocation extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a
-              in allocationStamps.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        ...[
-          for (final a in shifts.map((e) => e.selfWithRecursiveChildren)) ...a,
-        ],
-      ];
+    ...[
+      for (final a in allocationStamps.map((e) => e.selfWithRecursiveChildren))
+        ...a,
+    ],
+    ...[
+      for (final a in shifts.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        allocationStamps,
-        shifts,
-        groupIdRef,
-      ];
+    allocationStamps,
+    shifts,
+    groupIdRef,
+  ];
 }

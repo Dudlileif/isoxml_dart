@@ -82,10 +82,10 @@ class GuidanceShift extends Iso11783Element
     this.northShift,
     this.propagationOffset,
   }) : super(
-          elementType: Iso11783ElementType.guidanceShift,
-          description: 'GuidanceShift',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.guidanceShift,
+         description: 'GuidanceShift',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [GuidanceShift] from [element].
   factory GuidanceShift.fromXmlElement(XmlElement element) =>
@@ -126,11 +126,11 @@ class GuidanceShift extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        allocationStamp,
-        groupIdRef,
-        patternIdRef,
-        eastShift,
-        northShift,
-        propagationOffset,
-      ];
+    allocationStamp,
+    groupIdRef,
+    patternIdRef,
+    eastShift,
+    northShift,
+    propagationOffset,
+  ];
 }

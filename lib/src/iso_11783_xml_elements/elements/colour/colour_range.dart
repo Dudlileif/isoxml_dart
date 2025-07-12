@@ -53,9 +53,9 @@ class ColourRange extends Iso11783Element
     required this.maximumValue,
     required this.colour,
   }) : super(
-          elementType: Iso11783ElementType.colourRange,
-          description: 'ColourRange',
-        );
+         elementType: Iso11783ElementType.colourRange,
+         description: 'ColourRange',
+       );
 
   /// Creates a [ColourRange] from [element].
   factory ColourRange.fromXmlElement(XmlElement element) =>
@@ -75,8 +75,8 @@ class ColourRange extends Iso11783Element
   final int colour;
   @override
   List<Object?> get props => [
-        minimumValue,
-        maximumValue,
-        colour,
-      ];
+    minimumValue,
+    maximumValue,
+    colour,
+  ];
 }

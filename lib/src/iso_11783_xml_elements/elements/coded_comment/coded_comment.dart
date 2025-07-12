@@ -53,9 +53,9 @@ class CodedComment extends Iso11783Element
     List<CodedCommentListValue>? listValues,
     this.groupIdRef,
   }) : super(
-          elementType: Iso11783ElementType.codedComment,
-          description: 'CodedComment',
-        ) {
+         elementType: Iso11783ElementType.codedComment,
+         description: 'CodedComment',
+       ) {
     if (listValues != null) {
       this.listValues.addAll(listValues);
     }
@@ -69,8 +69,9 @@ class CodedComment extends Iso11783Element
     final scope = element.getAttribute('C')!;
     final groupIdRef = element.getAttribute('D');
     return CodedComment(
-      listValues:
-          listValues?.map(CodedCommentListValue.fromXmlElement).toList(),
+      listValues: listValues
+          ?.map(CodedCommentListValue.fromXmlElement)
+          .toList(),
       id: id,
       designator: designator,
       scope: $CodedCommmentScopeEnumMap.entries
@@ -117,21 +118,20 @@ class CodedComment extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in listValues.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in listValues.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        listValues,
-        id,
-        designator,
-        scope,
-        groupIdRef,
-      ];
+    listValues,
+    id,
+    designator,
+    scope,
+    groupIdRef,
+  ];
 
   /// Returns a string for [props].
   @override
@@ -151,8 +151,7 @@ enum CodedCommmentScope {
 
   /// Applies continuously.
   @annotation.XmlValue('3')
-  continuous(3, 'Contiuous'),
-  ;
+  continuous(3, 'Contiuous');
 
   const CodedCommmentScope(this.value, this.description);
 

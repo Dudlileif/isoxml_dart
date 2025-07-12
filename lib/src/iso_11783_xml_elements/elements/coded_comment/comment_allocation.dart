@@ -78,9 +78,9 @@ class CommentAllocation extends Iso11783Element
     this.codedCommentListValueIdRef,
     this.freeCommentText,
   }) : super(
-          elementType: Iso11783ElementType.commentAllocation,
-          description: 'CommentAllocation',
-        );
+         elementType: Iso11783ElementType.commentAllocation,
+         description: 'CommentAllocation',
+       );
 
   /// Creates a [CommentAllocation] from [element].
   factory CommentAllocation.fromXmlElement(XmlElement element) =>
@@ -109,11 +109,11 @@ class CommentAllocation extends Iso11783Element
   /// The list of properties that will be used to determine whether
   /// two instances are equal.
   List<Object?> get props => [
-        allocationStamp,
-        codedCommentIdRef,
-        codedCommentListValueIdRef,
-        freeCommentText,
-      ];
+    allocationStamp,
+    codedCommentIdRef,
+    codedCommentListValueIdRef,
+    freeCommentText,
+  ];
 
   /// Returns a string for [props].
   @override

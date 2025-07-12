@@ -43,9 +43,9 @@ class ExternalFileReference extends Iso11783Element
     required this.filename,
     this.filetype,
   }) : super(
-          elementType: Iso11783ElementType.externalFileReference,
-          description: 'ExternalFileReference',
-        );
+         elementType: Iso11783ElementType.externalFileReference,
+         description: 'ExternalFileReference',
+       );
 
   /// Creates an [ExternalFileReference] from [element].
   factory ExternalFileReference.fromXmlElement(XmlElement element) =>
@@ -67,14 +67,15 @@ class ExternalFileReference extends Iso11783Element
 
   /// Which type of element this file's content is.
   @override
-  Iso11783ElementType get elementType => Iso11783ElementType.values
-      .firstWhere((element) => element.xmlTag == filename.substring(0, 3));
+  Iso11783ElementType get elementType => Iso11783ElementType.values.firstWhere(
+    (element) => element.xmlTag == filename.substring(0, 3),
+  );
 
   @override
   List<Object?> get props => [
-        filename,
-        filetype,
-      ];
+    filename,
+    filetype,
+  ];
 }
 
 /// An enumerator for which type of file an [ExternalFileReference] refers to.

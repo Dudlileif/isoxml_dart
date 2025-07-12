@@ -44,10 +44,10 @@ class Link extends Iso11783Element
     required this.value,
     this.designator,
   }) : super(
-          elementType: Iso11783ElementType.link,
-          description: 'Link',
-          onlyVersion4AndAbove: true,
-        );
+         elementType: Iso11783ElementType.link,
+         description: 'Link',
+         onlyVersion4AndAbove: true,
+       );
 
   /// Creates a [Link] from [element].
   factory Link.fromXmlElement(XmlElement element) =>
@@ -71,8 +71,8 @@ class Link extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        objectIdRef,
-        value,
-        designator,
-      ];
+    objectIdRef,
+    value,
+    designator,
+  ];
 }

@@ -42,10 +42,10 @@ class GuidanceGroup extends Iso11783Element
     this.boundaryPolygon,
     this.designator,
   }) : super(
-          elementType: Iso11783ElementType.guidanceGroup,
-          description: 'GuidanceGroup',
-          onlyVersion4AndAbove: true,
-        ) {
+         elementType: Iso11783ElementType.guidanceGroup,
+         description: 'GuidanceGroup',
+         onlyVersion4AndAbove: true,
+       ) {
     if (patterns != null) {
       this.patterns.addAll(patterns);
     }
@@ -94,19 +94,17 @@ class GuidanceGroup extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in patterns.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-        if (boundaryPolygon != null)
-          ...boundaryPolygon!.selfWithRecursiveChildren,
-      ];
+    ...[
+      for (final a in patterns.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+    if (boundaryPolygon != null) ...boundaryPolygon!.selfWithRecursiveChildren,
+  ];
 
   @override
   List<Object?> get props => [
-        patterns,
-        boundaryPolygon,
-        id,
-        designator,
-      ];
+    patterns,
+    boundaryPolygon,
+    id,
+    designator,
+  ];
 }

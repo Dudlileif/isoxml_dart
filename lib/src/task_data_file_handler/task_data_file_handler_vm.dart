@@ -56,10 +56,9 @@ class TaskDataFileHandler {
       );
       List<File>? files;
       if (taskDirectory != null) {
-        files = await Directory(taskDirectory.path)
-            .list()
-            .map((e) => File(e.path))
-            .toList();
+        files = await Directory(
+          taskDirectory.path,
+        ).list().map((e) => File(e.path)).toList();
       }
       files ??= await directory.list().map((e) => File(e.path)).toList();
 
@@ -77,9 +76,9 @@ class TaskDataFileHandler {
       }
       for (final externalFile in taskData.externalFileReferences) {
         final archiveFile = files.firstWhereOrNull(
-          (element) => element.path
-              .toUpperCase()
-              .endsWith('${externalFile.filename}.XML'),
+          (element) => element.path.toUpperCase().endsWith(
+            '${externalFile.filename}.XML',
+          ),
         );
         if (archiveFile != null) {
           final contents = ExternalFileContents.fromXmlDocument(
@@ -108,11 +107,12 @@ class TaskDataFileHandler {
             ..byteData = await dataFile?.readAsBytes() ?? task.grid!.byteData
             ..numberOfProcessDataVariables = task.grid!.type == GridType.two
                 ? task.treatmentZones
-                    .firstWhereOrNull(
-                      (element) => element.code == task.grid?.treatmentZoneCode,
-                    )
-                    ?.processDataVariables
-                    .length
+                      .firstWhereOrNull(
+                        (element) =>
+                            element.code == task.grid?.treatmentZoneCode,
+                      )
+                      ?.processDataVariables
+                      .length
                 : null
             ..parseData();
         }
@@ -181,9 +181,10 @@ class TaskDataFileHandler {
         final file = File('$path/TASKDATA/TASKDATA.XML');
         await file.create(recursive: true);
         await file.writeAsString(
-          taskData
-              .toSingleXmlDocument()
-              .toXmlString(pretty: true, indent: '    '),
+          taskData.toSingleXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          ),
         );
       } else {
         for (final file in taskData.toXmlExternalDocuments()) {
@@ -199,9 +200,10 @@ class TaskDataFileHandler {
         final file = File('$path/TASKDATA/LINKLIST.XML');
         await file.create(recursive: true);
         await file.writeAsString(
-          taskData.linkList!
-              .toXmlDocument()
-              .toXmlString(pretty: true, indent: '    '),
+          taskData.linkList!.toXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          ),
         );
       }
 
@@ -224,13 +226,15 @@ class TaskDataFileHandler {
             await binaryFile.writeAsBytes(
               bytes,
             );
-            final headerFileile =
-                File('$path/TASKDATA/${timeLog.filename}.XML');
+            final headerFileile = File(
+              '$path/TASKDATA/${timeLog.filename}.XML',
+            );
             await headerFileile.create(recursive: true);
             await headerFileile.writeAsString(
-              timeLog.header!
-                  .toXmlDocument()
-                  .toXmlString(pretty: true, indent: '    '),
+              timeLog.header!.toXmlDocument().toXmlString(
+                pretty: true,
+                indent: '    ',
+              ),
             );
           }
         }

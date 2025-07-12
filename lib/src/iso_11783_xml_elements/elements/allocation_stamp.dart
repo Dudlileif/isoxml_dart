@@ -58,9 +58,9 @@ class AllocationStamp extends Iso11783Element
     this.duration,
     List<Position>? position,
   }) : super(
-          elementType: Iso11783ElementType.allocationStamp,
-          description: 'AllocationStamp',
-        ) {
+         elementType: Iso11783ElementType.allocationStamp,
+         description: 'AllocationStamp',
+       ) {
     if (position != null) {
       this.position.addAll(position);
     }
@@ -113,20 +113,19 @@ class AllocationStamp extends Iso11783Element
 
   @override
   Iterable<Iso11783Element>? get recursiveChildren => [
-        ...[
-          for (final a in position.map((e) => e.selfWithRecursiveChildren))
-            ...a,
-        ],
-      ];
+    ...[
+      for (final a in position.map((e) => e.selfWithRecursiveChildren)) ...a,
+    ],
+  ];
 
   @override
   List<Object?> get props => [
-        position,
-        start,
-        stop,
-        duration,
-        type,
-      ];
+    position,
+    start,
+    stop,
+    duration,
+    type,
+  ];
 }
 
 /// An enumerator for whether the [AllocationStamp] is planned for the future

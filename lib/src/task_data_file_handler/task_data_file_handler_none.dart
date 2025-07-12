@@ -28,8 +28,7 @@ class TaskDataFileHandler {
     required Iso11783TaskData taskData,
     required String path,
     bool externalize = false,
-  }) async =>
-      throw UnimplementedError();
+  }) async => throw UnimplementedError();
 
   /// Saves the [taskData] to the directory at [path].
   /// If [externalize] is true, the [taskData] will split up the main XML
@@ -40,6 +39,5 @@ class TaskDataFileHandler {
     required Iso11783TaskData taskData,
     required String path,
     bool externalize = false,
-  }) async =>
-      throw UnimplementedError();
+  }) async => throw UnimplementedError();
 }

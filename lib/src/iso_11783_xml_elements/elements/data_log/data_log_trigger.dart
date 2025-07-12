@@ -190,9 +190,9 @@ class DataLogTrigger extends Iso11783Element
     this.pgnStartBit,
     this.pgnStopBit,
   }) : super(
-          elementType: Iso11783ElementType.dataLogTrigger,
-          description: 'DataLogTrigger',
-        );
+         elementType: Iso11783ElementType.dataLogTrigger,
+         description: 'DataLogTrigger',
+       );
 
   /// Creates a [DataLogTrigger] from [element].
   factory DataLogTrigger.fromXmlElement(XmlElement element) =>
@@ -276,17 +276,17 @@ class DataLogTrigger extends Iso11783Element
 
   @override
   List<Object?> get props => [
-        ddi,
-        method,
-        distanceInterval,
-        timeInterval,
-        thresholdMinimum,
-        thresholdMaximum,
-        thresholdChange,
-        deviceElementIdRef,
-        valuePresentationIdRef,
-        pgn,
-        pgnStartBit,
-        pgnStopBit,
-      ];
+    ddi,
+    method,
+    distanceInterval,
+    timeInterval,
+    thresholdMinimum,
+    thresholdMaximum,
+    thresholdChange,
+    deviceElementIdRef,
+    valuePresentationIdRef,
+    pgn,
+    pgnStartBit,
+    pgnStopBit,
+  ];
 }
