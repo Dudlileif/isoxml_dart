@@ -259,7 +259,7 @@ enum Iso11783ElementType {
   String get name => xmlTag;
 
   /// A list of the element types that can be stored in external files.
-  static const tagsThatCanBeExternal = [
+  static const List<Iso11783ElementType> tagsThatCanBeExternal = [
     attachedFile,
     baseStation,
     codedComment,

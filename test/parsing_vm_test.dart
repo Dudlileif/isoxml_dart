@@ -12,8 +12,9 @@ import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
 void main() async {
-  final dataFile =
-      File('${Directory.current.path}/test/data_files/parsing_test.xml');
+  final dataFile = File(
+    '${Directory.current.path}/test/data_files/parsing_test.xml',
+  );
   final dataString = await dataFile.readAsString();
 
   final doc = XmlDocument.parse(dataString);
@@ -181,7 +182,7 @@ void main() async {
                 [
                   DeviceObjectReference(objectId: 52),
                   DeviceObjectReference(objectId: 53),
-                ]
+                ],
               ][index],
             ),
           ),
@@ -300,7 +301,7 @@ void main() async {
                   ),
                 ],
               ),
-            ]
+            ],
           ][index],
           points: [
             null,
@@ -316,7 +317,7 @@ void main() async {
                 horizontalAccuracy: 0,
                 verticalAccuracy: 1,
               ),
-            ]
+            ],
           ][index],
           lineStrings: [
             null,
@@ -498,7 +499,7 @@ void main() async {
                   ],
                 ),
               ),
-            ]
+            ],
           ][index],
         ),
       ),
@@ -814,9 +815,9 @@ void main() async {
     'Export document to string, check if equal to input string',
     () => expect(
       taskData?.toSingleXmlDocument().toXmlString(
-            pretty: true,
-            indent: '    ',
-          ),
+        pretty: true,
+        indent: '    ',
+      ),
       dataString,
     ),
   );

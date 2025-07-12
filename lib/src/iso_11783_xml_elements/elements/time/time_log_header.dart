@@ -139,7 +139,7 @@ class TimeLogHeader {
       );
       currentOffset += 4;
     }
-  
+
     return Uint8List.sublistView(bytes, 0, currentOffset);
   }
 
