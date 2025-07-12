@@ -16,6 +16,7 @@
 * ~~Implement Point binary file~~
 * Improve tests
 * Add example(s)
+* Evaluate if code generation should be removed (it can be more likely to break with updates or make future proofing difficult).
 
 ## Dependencies
 

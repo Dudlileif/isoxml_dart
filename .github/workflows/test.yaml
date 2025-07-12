@@ -8,8 +8,10 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "docs/**"
+    paths:
+      - "**/*.dart"
+
+  workflow_dispatch:
 
 jobs:
   build:

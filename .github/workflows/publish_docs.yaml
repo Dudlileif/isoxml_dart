@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:
-        - lib/**
-        - README.md
+        - 'lib/**''
+        - 'README.md'
+  workflow_dispatch:
 
 permissions:
   contents: write
