@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - "**/*.dart"
+      - '**/*.dart'
 
   workflow_dispatch:
 
@@ -20,8 +20,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [vm, chrome]
     steps:
-      - name: Clone repository
+      - name: Clone repository 
         uses: actions/checkout@v4
 
       - name: Set up Dart
@@ -29,6 +32,10 @@ jobs:
         with:
           sdk: stable
 
+      - name: Setup Chrome
+        if: ${{  matrix.platform == 'node' }} 
+        uses: browser-actions/setup-chrome@v2
+          
       - name: Get dependencies
         run: dart pub get
 
@@ -39,4 +46,4 @@ jobs:
         run: dart analyze --fatal-infos
 
       - name: Run tests
-        run: dart test
+        run: dart test --platform ${{ matrix.platform }}
