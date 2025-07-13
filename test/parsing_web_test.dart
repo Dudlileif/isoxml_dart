@@ -2,10 +2,16 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Allow catching all errors and exceptions
+// ignore_for_file: avoid_catches_without_on_clauses
+
 @TestOn('browser')
 library;
 
+import 'dart:typed_data';
+
 import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:isoxml_dart/src/lossy_web_int64.dart';
 import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
@@ -21,8 +27,8 @@ void main() {
     );
 
     test(
-      'Check that first elemeent is $Iso11783TaskData',
-      () => expect(taskData.runtimeType, Iso11783TaskData),
+      'Check that first element is Iso11783TaskData',
+      () => expect(taskData, isA<Iso11783TaskData>()),
     );
     taskData!;
     test(
@@ -73,7 +79,7 @@ void main() {
           taskData.valuePresentations.length,
           taskData.workers.length,
         ),
-        (1, 1, 1, 1, 1, 1, 1, 1, 2, null, 1, 1, 2, 3, 1, 1, 1, 1, 1),
+        (1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 1, 1, 2, 3, 1, 1, 1, 1, 1),
       ),
     );
 
@@ -1672,7 +1678,7 @@ void main() {
 
     test('Check worker attributes', () {
       final worker = taskData.workers.first;
-      expect(worker.runtimeType, Worker);
+      expect(worker, isA<Worker>());
       expect(
         (
           worker.id,
@@ -1717,6 +1723,107 @@ void main() {
       docString,
     ),
   );
+
+  group('Point', () {
+    test('.filename too long', () {
+      Object? error;
+      try {
+        Point(
+          north: 60,
+          east: 10,
+          type: PointType.other,
+          filename: 'PNT000001',
+        );
+      } catch (e) {
+        error = e;
+      }
+      expect(error, isArgumentError);
+    });
+    test('.filelength outside range', () {
+      Object? error;
+      try {
+        Point(
+          north: 60,
+          east: 10,
+          type: PointType.other,
+          filename: 'PNT00001',
+          fileLength: -1,
+        );
+      } catch (e) {
+        error = e;
+      }
+      expect(error, isArgumentError);
+    });
+
+    test('binary', () {
+      final data = ByteData(100);
+      var offset = 0;
+      data.setUint8(offset, 0x1);
+      offset++;
+
+      data.setTwoInt32FromDouble(
+        offset,
+        63.58 * 1e16,
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setTwoInt32FromDouble(
+        offset,
+        11.21 * 1e16,
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt32(offset, (96 * 1e3).round(), Endian.little);
+      offset += 4;
+
+      data.setUint8(offset, 0x5);
+      offset++;
+
+      data.setTwoInt32FromDouble(
+        offset,
+        63.5 * 1e16,
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setTwoInt32FromDouble(
+        offset,
+        11.2 * 1e16,
+        Endian.little,
+      );
+      offset += 8;
+
+      data.setInt32(offset, (90 * 1e3).round(), Endian.little);
+      offset += 4;
+      final byteData = data.buffer.asUint8List(0, offset);
+
+      final point = Point(
+        binaryHeaderOptions: const PointBinaryHeaderOptions(
+          readType: true,
+          readNorth: true,
+          readEast: true,
+          readUp: true,
+        ),
+        byteData: byteData,
+        filename: 'PNT00001',
+      );
+      expect(point.binaryPointsBytes, byteData);
+      expect(
+        point,
+        Point.fromXmlElement(
+          XmlElement(XmlName('PNT'), [
+            XmlAttribute(XmlName('A'), ''),
+            XmlAttribute(XmlName('C'), ''),
+            XmlAttribute(XmlName('D'), ''),
+            XmlAttribute(XmlName('E'), ''),
+            XmlAttribute(XmlName('J'), 'PNT00001'),
+          ]),
+        ).copyWith(byteData: byteData),
+      );
+    });
+  });
 }
 
 const docString = '''

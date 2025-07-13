@@ -18,6 +18,10 @@ export 'package:isoxml_dart/src/iso_11783_xml_elements/data_transfer_origin.dart
 export 'package:isoxml_dart/src/iso_11783_xml_elements/iso_11783_element_type.dart';
 export 'package:isoxml_dart/src/iso_11783_xml_elements/version.dart';
 
+export 'elements/geometry/point_binary/point_binary_none.dart'
+    if (dart.library.io) 'elements/geometry/point_binary/point_binary_vm.dart'
+    if (dart.library.js_interop) 'elements/geometry/point_binary/point_binary_web.dart';
+
 part 'elements/allocation_stamp.dart';
 part 'elements/base_station.dart';
 part 'elements/coded_comment/coded_comment.dart';

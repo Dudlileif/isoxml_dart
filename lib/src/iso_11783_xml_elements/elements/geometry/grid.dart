@@ -241,8 +241,8 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
   ///
   /// Access grid value with `processDataValueGrid[y][x][#pdv]`.
   ///
-  /// Value is only set if [type]==[GridType.two] and [treatmentZoneCode]!=null
-  /// and [byteData] is not empty.
+  /// Value is only set if [type] == [GridType.two] and
+  /// [treatmentZoneCode] != null and [byteData] is not empty.
   List<List<List<int>>>? processDataValueGrid;
 
   /// Parses [byteData] to fill [treatmentZoneCodeGrid] or
