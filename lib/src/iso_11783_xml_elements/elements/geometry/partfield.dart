@@ -28,6 +28,7 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     String? cropTypeIdRef,
     String? cropVarietyIdRef,
     String? fieldIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -93,6 +94,7 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
       cropTypeIdRef: cropTypeIdRef,
       cropVarietyIdRef: cropVarietyIdRef,
       fieldIdRef: fieldIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -112,6 +114,7 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     this.cropTypeIdRef,
     this.cropVarietyIdRef,
     this.fieldIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.partfield,
          description: 'Partfield',
@@ -145,6 +148,8 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     final cropTypeIdRef = element.getAttribute('G');
     final cropVarietyIdRef = element.getAttribute('H');
     final fieldIdRef = element.getAttribute('I');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return Partfield(
       polygons: polygons?.map(Polygon.fromXmlElement).toList(),
       points: points?.map(Point.fromXmlElement).toList(),
@@ -161,6 +166,7 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
       cropTypeIdRef: cropTypeIdRef,
       cropVarietyIdRef: cropVarietyIdRef,
       fieldIdRef: fieldIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -241,6 +247,35 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
         ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$PartfieldBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$PartfieldToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.

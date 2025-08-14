@@ -23,6 +23,7 @@ class DeviceProcessData extends Iso11783Element
     required int triggerMethods,
     String? designator,
     int? presentationObjectId,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -65,6 +66,7 @@ class DeviceProcessData extends Iso11783Element
       triggerMethods: triggerMethods,
       designator: designator,
       presentationObjectId: presentationObjectId,
+      customAttributes: customAttributes,
     );
   }
 
@@ -77,14 +79,34 @@ class DeviceProcessData extends Iso11783Element
     required this.triggerMethods,
     this.designator,
     this.presentationObjectId,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.deciveProcessData,
          description: 'DeviceProcessData',
        );
 
   /// Creates a [DeviceProcessData] from [element].
-  factory DeviceProcessData.fromXmlElement(XmlElement element) =>
-      _$DeviceProcessDataFromXmlElement(element);
+  factory DeviceProcessData.fromXmlElement(XmlElement element) {
+    final objectId = element.getAttribute('A')!;
+    final ddi = element.getAttribute('B')!;
+    final property = element.getAttribute('C')!;
+    final triggerMethods = element.getAttribute('D')!;
+    final designator = element.getAttribute('E');
+    final presentationObjectId = element.getAttribute('F');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DeviceProcessData(
+      objectId: int.parse(objectId),
+      ddi: ddi,
+      property: int.parse(property),
+      triggerMethods: int.parse(triggerMethods),
+      designator: designator,
+      presentationObjectId: presentationObjectId != null
+          ? int.parse(presentationObjectId)
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Unique number inside a single [Device].
   @annotation.XmlAttribute(name: 'A')
@@ -121,6 +143,35 @@ class DeviceProcessData extends Iso11783Element
   ///Object ID of the [DeviceValuePresentation].
   @annotation.XmlAttribute(name: 'F')
   final int? presentationObjectId;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DeviceProcessDataBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DeviceProcessDataToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

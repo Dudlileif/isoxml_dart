@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ISO11783_TaskData VersionMajor="4" VersionMinor="2" DataTransferOrigin="1" ManagementSoftwareManufacturer="test" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="SomeOne" TaskControllerVersion="1234" lang="en">
+<ISO11783_TaskData VersionMajor="4" VersionMinor="2" ManagementSoftwareManufacturer="test" ManagementSoftwareVersion="1.0" TaskControllerManufacturer="SomeOne" TaskControllerVersion="1234" DataTransferOrigin="1" lang="en">
     <AFE A="TEST1234.BIN" B="2" C="0614141000111" D="128" E="V1" F="400"/>
     <BSN A="BSN1" B="GlonassBaseStation" C="52.34424" D="7.234353" E="400"/>
     <CCT A="CCT1" B="Emoji comments" C="1" D="CCG1">

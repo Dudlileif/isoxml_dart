@@ -39,6 +39,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     int? defaultTreatmentZoneCode,
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
@@ -120,6 +121,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
       defaultTreatmentZoneCode: defaultTreatmentZoneCode,
       positionLostTreatmentZoneCode: positionLostTreatmentZoneCode,
       outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode,
+      customAttributes: customAttributes,
     );
   }
 
@@ -149,6 +151,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     this.defaultTreatmentZoneCode,
     this.positionLostTreatmentZoneCode,
     this.outOfFieldTreatmentZoneCode,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.task, description: 'Task') {
     if (treatmentZones != null) {
       this.treatmentZones.addAll(treatmentZones);
@@ -210,6 +213,8 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     final defaultTreatmentZoneCode = element.getAttribute('H');
     final positionLostTreatmentZoneCode = element.getAttribute('I');
     final outOfFieldTreatmentZoneCode = element.getAttribute('J');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return Task(
       commentAllocations: commentAllocations
           ?.map(CommentAllocation.fromXmlElement)
@@ -267,6 +272,7 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
       outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode != null
           ? int.parse(outOfFieldTreatmentZoneCode)
           : null,
+      customAttributes: customAttributes,
     );
   }
 
@@ -426,6 +432,32 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
         ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$TaskBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$TaskToXmlAttributes(this, namespaces: namespaces);
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.

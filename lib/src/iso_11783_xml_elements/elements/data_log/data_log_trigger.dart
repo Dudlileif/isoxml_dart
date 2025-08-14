@@ -61,6 +61,7 @@ class DataLogTrigger extends Iso11783Element
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -171,6 +172,7 @@ class DataLogTrigger extends Iso11783Element
       pgn: pgn,
       pgnStartBit: pgnStartBit,
       pgnStopBit: pgnStopBit,
+      customAttributes: customAttributes,
     );
   }
 
@@ -189,14 +191,52 @@ class DataLogTrigger extends Iso11783Element
     this.pgn,
     this.pgnStartBit,
     this.pgnStopBit,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.dataLogTrigger,
          description: 'DataLogTrigger',
        );
 
   /// Creates a [DataLogTrigger] from [element].
-  factory DataLogTrigger.fromXmlElement(XmlElement element) =>
-      _$DataLogTriggerFromXmlElement(element);
+  factory DataLogTrigger.fromXmlElement(XmlElement element) {
+    final ddi = element.getAttribute('A')!;
+    final method = element.getAttribute('B')!;
+    final distanceInterval = element.getAttribute('C');
+    final timeInterval = element.getAttribute('D');
+    final thresholdMinimum = element.getAttribute('E');
+    final thresholdMaximum = element.getAttribute('F');
+    final thresholdChange = element.getAttribute('G');
+    final deviceElementIdRef = element.getAttribute('H');
+    final valuePresentationIdRef = element.getAttribute('I');
+    final pgn = element.getAttribute('J');
+    final pgnStartBit = element.getAttribute('K');
+    final pgnStopBit = element.getAttribute('L');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DataLogTrigger(
+      ddi: ddi,
+      method: int.parse(method),
+      distanceInterval: distanceInterval != null
+          ? int.parse(distanceInterval)
+          : null,
+      timeInterval: timeInterval != null ? int.parse(timeInterval) : null,
+      thresholdMinimum: thresholdMinimum != null
+          ? int.parse(thresholdMinimum)
+          : null,
+      thresholdMaximum: thresholdMaximum != null
+          ? int.parse(thresholdMaximum)
+          : null,
+      thresholdChange: thresholdChange != null
+          ? int.parse(thresholdChange)
+          : null,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      pgn: pgn != null ? int.parse(pgn) : null,
+      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
+      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
@@ -273,6 +313,35 @@ class DataLogTrigger extends Iso11783Element
   /// bit.
   @annotation.XmlAttribute(name: 'L')
   final int? pgnStopBit;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DataLogTriggerBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DataLogTriggerToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

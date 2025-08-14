@@ -20,6 +20,7 @@ class LinkGroup extends Iso11783Element
     String? manufacturerGLN,
     String? namespace,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (manufacturerGLN != null) {
@@ -56,6 +57,7 @@ class LinkGroup extends Iso11783Element
       manufacturerGLN: manufacturerGLN,
       namespace: namespace,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -68,6 +70,7 @@ class LinkGroup extends Iso11783Element
     this.manufacturerGLN,
     this.namespace,
     this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.linkGroup,
          description: 'LinkGroup',
@@ -86,6 +89,8 @@ class LinkGroup extends Iso11783Element
     final manufacturerGLN = element.getAttribute('C');
     final namespace = element.getAttribute('D');
     final designator = element.getAttribute('E');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return LinkGroup(
       links: links?.map(Link.fromXmlElement).toList(),
       id: id,
@@ -101,6 +106,7 @@ class LinkGroup extends Iso11783Element
       manufacturerGLN: manufacturerGLN,
       namespace: namespace,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -148,6 +154,35 @@ class LinkGroup extends Iso11783Element
   Iterable<Iso11783Element>? get recursiveChildren => [
     for (final a in links.map((e) => e.selfWithRecursiveChildren)) ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$LinkGroupBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$LinkGroupToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

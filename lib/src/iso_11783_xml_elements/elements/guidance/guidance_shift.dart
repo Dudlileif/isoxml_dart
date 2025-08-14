@@ -23,6 +23,7 @@ class GuidanceShift extends Iso11783Element
     int? eastShift,
     int? northShift,
     int? propagationOffset,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
@@ -69,6 +70,7 @@ class GuidanceShift extends Iso11783Element
       eastShift: eastShift,
       northShift: northShift,
       propagationOffset: propagationOffset,
+      customAttributes: customAttributes,
     );
   }
 
@@ -81,6 +83,7 @@ class GuidanceShift extends Iso11783Element
     this.eastShift,
     this.northShift,
     this.propagationOffset,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.guidanceShift,
          description: 'GuidanceShift',
@@ -88,8 +91,29 @@ class GuidanceShift extends Iso11783Element
        );
 
   /// Creates a [GuidanceShift] from [element].
-  factory GuidanceShift.fromXmlElement(XmlElement element) =>
-      _$GuidanceShiftFromXmlElement(element);
+  factory GuidanceShift.fromXmlElement(XmlElement element) {
+    final allocationStamp = element.getElement('ASP');
+    final groupIdRef = element.getAttribute('A');
+    final patternIdRef = element.getAttribute('B');
+    final eastShift = element.getAttribute('C');
+    final northShift = element.getAttribute('D');
+    final propagationOffset = element.getAttribute('E');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return GuidanceShift(
+      allocationStamp: allocationStamp != null
+          ? AllocationStamp.fromXmlElement(allocationStamp)
+          : null,
+      groupIdRef: groupIdRef,
+      patternIdRef: patternIdRef,
+      eastShift: eastShift != null ? int.parse(eastShift) : null,
+      northShift: northShift != null ? int.parse(northShift) : null,
+      propagationOffset: propagationOffset != null
+          ? int.parse(propagationOffset)
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// [AllocationStamp] for position and time of this.
   @annotation.XmlElement(name: 'ASP', includeIfNull: false)
@@ -123,6 +147,35 @@ class GuidanceShift extends Iso11783Element
   @override
   Iterable<Iso11783Element>? get recursiveChildren =>
       allocationStamp?.selfWithRecursiveChildren;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$GuidanceShiftBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$GuidanceShiftToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

@@ -20,6 +20,7 @@ class ColourLegend extends Iso11783Element
     required List<ColourRange> ranges,
     required String id,
     int? defaultColour,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (ranges.isEmpty) {
       throw ArgumentError.value(ranges, 'ranges', "List can't be empty");
@@ -39,6 +40,7 @@ class ColourLegend extends Iso11783Element
       ranges: ranges,
       id: id,
       defaultColour: defaultColour,
+      customAttributes: customAttributes,
     );
   }
 
@@ -48,14 +50,26 @@ class ColourLegend extends Iso11783Element
     required this.ranges,
     required this.id,
     this.defaultColour,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.colourLegend,
          description: 'ColourLegend',
        );
 
   /// Creates a [ColourLegend] from [element].
-  factory ColourLegend.fromXmlElement(XmlElement element) =>
-      _$ColourLegendFromXmlElement(element);
+  factory ColourLegend.fromXmlElement(XmlElement element) {
+    final ranges = element.getElements('CRG')!;
+    final id = element.getAttribute('A')!;
+    final defaultColour = element.getAttribute('B');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ColourLegend(
+      ranges: ranges.map(ColourRange.fromXmlElement).toList(),
+      id: id,
+      defaultColour: defaultColour != null ? int.parse(defaultColour) : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [ColourLegend]s.
   static const staticIdRefPattern = '(CLD|CLD-)[1-9]([0-9])*';
@@ -84,6 +98,35 @@ class ColourLegend extends Iso11783Element
       for (final a in ranges.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ColourLegendBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ColourLegendToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

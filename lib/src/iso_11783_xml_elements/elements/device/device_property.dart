@@ -21,6 +21,7 @@ class DeviceProperty extends Iso11783Element
     required int value,
     String? designator,
     int? valuePresentationObjectId,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -56,6 +57,7 @@ class DeviceProperty extends Iso11783Element
       value: value,
       designator: designator,
       valuePresentationObjectId: valuePresentationObjectId,
+      customAttributes: customAttributes,
     );
   }
 
@@ -67,14 +69,32 @@ class DeviceProperty extends Iso11783Element
     required this.value,
     this.designator,
     this.valuePresentationObjectId,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.deviceProperty,
          description: 'DeviceProperty',
        );
 
   /// Creates a [DeviceProperty] from [element].
-  factory DeviceProperty.fromXmlElement(XmlElement element) =>
-      _$DevicePropertyFromXmlElement(element);
+  factory DeviceProperty.fromXmlElement(XmlElement element) {
+    final objectId = element.getAttribute('A')!;
+    final ddi = element.getAttribute('B')!;
+    final value = element.getAttribute('C')!;
+    final designator = element.getAttribute('D');
+    final valuePresentationObjectId = element.getAttribute('E');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DeviceProperty(
+      objectId: int.parse(objectId),
+      ddi: ddi,
+      value: int.parse(value),
+      designator: designator,
+      valuePresentationObjectId: valuePresentationObjectId != null
+          ? int.parse(valuePresentationObjectId)
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Unique number inside a single [Device].
   @annotation.XmlAttribute(name: 'A')
@@ -99,6 +119,35 @@ class DeviceProperty extends Iso11783Element
   /// Object ID of the [ValuePresentation].
   @annotation.XmlAttribute(name: 'E')
   final int? valuePresentationObjectId;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DevicePropertyBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DevicePropertyToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

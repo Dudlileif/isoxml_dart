@@ -20,6 +20,7 @@ class Link extends Iso11783Element
     required String objectIdRef,
     required String value,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: objectIdRef,
@@ -34,6 +35,7 @@ class Link extends Iso11783Element
       objectIdRef: objectIdRef,
       value: value,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -43,6 +45,7 @@ class Link extends Iso11783Element
     required this.objectIdRef,
     required this.value,
     this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.link,
          description: 'Link',
@@ -50,8 +53,19 @@ class Link extends Iso11783Element
        );
 
   /// Creates a [Link] from [element].
-  factory Link.fromXmlElement(XmlElement element) =>
-      _$LinkFromXmlElement(element);
+  factory Link.fromXmlElement(XmlElement element) {
+    final objectIdRef = element.getAttribute('A')!;
+    final value = element.getAttribute('B')!;
+    final designator = element.getAttribute('C');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Link(
+      objectIdRef: objectIdRef,
+      value: value,
+      designator: designator,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [objectIdRef].
   static const objectIdRefPattern =
@@ -68,6 +82,35 @@ class Link extends Iso11783Element
   /// Name of the link, description or comment.
   @annotation.XmlAttribute(name: 'C')
   final String? designator;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$LinkBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$LinkToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

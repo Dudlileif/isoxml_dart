@@ -19,6 +19,7 @@ class ColourRange extends Iso11783Element
     required int minimumValue,
     required int maximumValue,
     required int colour,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: minimumValue,
@@ -43,6 +44,7 @@ class ColourRange extends Iso11783Element
       minimumValue: minimumValue,
       maximumValue: maximumValue,
       colour: colour,
+      customAttributes: customAttributes,
     );
   }
 
@@ -52,14 +54,26 @@ class ColourRange extends Iso11783Element
     required this.minimumValue,
     required this.maximumValue,
     required this.colour,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.colourRange,
          description: 'ColourRange',
        );
 
   /// Creates a [ColourRange] from [element].
-  factory ColourRange.fromXmlElement(XmlElement element) =>
-      _$ColourRangeFromXmlElement(element);
+  factory ColourRange.fromXmlElement(XmlElement element) {
+    final minimumValue = element.getAttribute('A')!;
+    final maximumValue = element.getAttribute('B')!;
+    final colour = element.getAttribute('C')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ColourRange(
+      minimumValue: int.parse(minimumValue),
+      maximumValue: int.parse(maximumValue),
+      colour: int.parse(colour),
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Minimum value in the range.
   @annotation.XmlAttribute(name: 'A')

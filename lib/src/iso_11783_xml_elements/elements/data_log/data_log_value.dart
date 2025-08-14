@@ -30,6 +30,7 @@ class DataLogValue extends Iso11783Element
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       processDataDDI,
@@ -84,6 +85,7 @@ class DataLogValue extends Iso11783Element
       pgn: pgn,
       pgnStartBit: pgnStartBit,
       pgnStopBit: pgnStopBit,
+      customAttributes: customAttributes,
     );
   }
 
@@ -96,14 +98,32 @@ class DataLogValue extends Iso11783Element
     this.pgn,
     this.pgnStartBit,
     this.pgnStopBit,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.dataLogValue,
          description: 'DataLogValue',
        );
 
   /// Creates a [DataLogValue] from [element].
-  factory DataLogValue.fromXmlElement(XmlElement element) =>
-      _$DataLogValueFromXmlElement(element);
+  factory DataLogValue.fromXmlElement(XmlElement element) {
+    final processDataDDI = element.getAttribute('A')!;
+    final processDataValue = element.getAttribute('B')!;
+    final deviceElementIdRef = element.getAttribute('C')!;
+    final pgn = element.getAttribute('D');
+    final pgnStartBit = element.getAttribute('E');
+    final pgnStopBit = element.getAttribute('F');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DataLogValue(
+      processDataDDI: processDataDDI,
+      processDataValue: int.parse(processDataValue),
+      deviceElementIdRef: deviceElementIdRef,
+      pgn: pgn != null ? int.parse(pgn) : null,
+      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
+      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
@@ -139,6 +159,35 @@ class DataLogValue extends Iso11783Element
   /// bit.
   @annotation.XmlAttribute(name: 'F')
   final int? pgnStopBit;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DataLogValueBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DataLogValueToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

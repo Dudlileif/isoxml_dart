@@ -10,6 +10,7 @@ import 'package:collection/collection.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:isoxml_dart/src/extensions/xml_attritube_filter.dart';
 import 'package:isoxml_dart/src/iso_11783_xml_elements/argument_validation.dart';
 import 'package:xml/xml.dart';
 import 'package:xml_annotation/xml_annotation.dart' as annotation;
@@ -95,6 +96,7 @@ sealed class Iso11783Element {
     required this.elementType,
     required this.description,
     this.onlyVersion4AndAbove = false,
+    this.customAttributes,
   });
 
   factory Iso11783Element.fromXmlElement(
@@ -209,6 +211,9 @@ sealed class Iso11783Element {
 
   /// Whether this element type is only supported in version 4 and above.
   final bool onlyVersion4AndAbove;
+
+  /// XML attributes that exist in the files but are not part of the standard.
+  final List<XmlAttribute>? customAttributes;
 
   /// The ID of this, if it has one;
   String? get id => null;

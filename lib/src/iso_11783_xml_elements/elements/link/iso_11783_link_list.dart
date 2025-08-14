@@ -24,6 +24,7 @@ class Iso11783LinkList extends Iso11783Element
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? fileVersion,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkStringLength(
       managementSoftwareManufacturer,
@@ -62,6 +63,7 @@ class Iso11783LinkList extends Iso11783Element
       taskControllerManufacturer: taskControllerManufacturer,
       taskControllerVersion: taskControllerVersion,
       fileVersion: fileVersion,
+      customAttributes: customAttributes,
     );
   }
 
@@ -77,6 +79,7 @@ class Iso11783LinkList extends Iso11783Element
     this.taskControllerManufacturer,
     this.taskControllerVersion,
     this.fileVersion,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.linkList,
          description: 'ISO 11783 Link List File',
@@ -92,6 +95,7 @@ class Iso11783LinkList extends Iso11783Element
     final linkGroups = element.getElements('LGP');
     final versionMajor = element.getAttribute('VersionMajor')!;
     final versionMinor = element.getAttribute('VersionMinor')!;
+    final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
     final managementSoftwareManufacturer = element.getAttribute(
       'ManagementSoftwareManufacturer',
     )!;
@@ -103,7 +107,20 @@ class Iso11783LinkList extends Iso11783Element
     );
     final taskControllerVersion = element.getAttribute('TaskControllerVersion');
     final fileVersion = element.getAttribute('FileVersion');
-    final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
+    final customAttributes = element.attributes
+        .whereNot(
+          (attribute) => [
+            'VersionMajor',
+            'VersionMinor',
+            'DataTransferOrigin',
+            'ManagementSoftwareManufacturer',
+            'ManagementSoftwareVersion',
+            'TaskControllerManufacturer',
+            'TaskControllerVersion',
+            'FileVersion',
+          ].contains(attribute.name.local),
+        )
+        .toList();
     return Iso11783LinkList(
       linkGroups: linkGroups?.map(LinkGroup.fromXmlElement).toList(),
       versionMajor: $VersionMajorEnumMap.entries
@@ -138,6 +155,7 @@ class Iso11783LinkList extends Iso11783Element
             ),
           )
           .key,
+      customAttributes: customAttributes.isNotEmpty ? customAttributes : null,
     );
   }
 
@@ -198,6 +216,35 @@ class Iso11783LinkList extends Iso11783Element
   Iterable<Iso11783Element>? get recursiveChildren => [
     for (final a in linkGroups.map((e) => e.selfWithRecursiveChildren)) ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$Iso11783LinkListBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$Iso11783LinkListToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

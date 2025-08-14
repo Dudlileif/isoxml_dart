@@ -21,6 +21,7 @@ class AllocationStamp extends Iso11783Element
     List<Position>? position,
     DateTime? stop,
     int? duration,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (position != null) {
       if (position.length > 2) {
@@ -46,6 +47,7 @@ class AllocationStamp extends Iso11783Element
       stop: stop,
       duration: duration,
       position: position,
+      customAttributes: customAttributes,
     );
   }
 
@@ -57,6 +59,7 @@ class AllocationStamp extends Iso11783Element
     this.stop,
     this.duration,
     List<Position>? position,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.allocationStamp,
          description: 'AllocationStamp',
@@ -73,6 +76,8 @@ class AllocationStamp extends Iso11783Element
     final stop = element.getAttribute('B');
     final duration = element.getAttribute('C');
     final type = element.getAttribute('D')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return AllocationStamp(
       position: position?.map(Position.fromXmlElement).toList(),
       start: DateTime.parse(start),
@@ -87,6 +92,7 @@ class AllocationStamp extends Iso11783Element
             ),
           )
           .key,
+      customAttributes: customAttributes,
     );
   }
 
@@ -117,6 +123,35 @@ class AllocationStamp extends Iso11783Element
       for (final a in position.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$AllocationStampBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$AllocationStampToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

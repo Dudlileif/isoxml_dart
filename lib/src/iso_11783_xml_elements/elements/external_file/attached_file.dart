@@ -21,6 +21,7 @@ class AttachedFile extends Iso11783Element
     required int fileType,
     String? fileVersion,
     int? fileLength,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: filenameWithExtension,
@@ -54,6 +55,7 @@ class AttachedFile extends Iso11783Element
       fileType: fileType,
       fileVersion: fileVersion,
       fileLength: fileLength,
+      customAttributes: customAttributes,
     );
   }
 
@@ -66,6 +68,7 @@ class AttachedFile extends Iso11783Element
     required this.fileType,
     this.fileVersion,
     this.fileLength,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.attachedFile,
          description: 'AttachedFile',
@@ -73,8 +76,32 @@ class AttachedFile extends Iso11783Element
        );
 
   /// Creates an [AttachedFile] from [element].
-  factory AttachedFile.fromXmlElement(XmlElement element) =>
-      _$AttachedFileFromXmlElement(element);
+  factory AttachedFile.fromXmlElement(XmlElement element) {
+    final filenameWithExtension = element.getAttribute('A')!;
+    final preserve = element.getAttribute('B')!;
+    final manufacturerGLN = element.getAttribute('C')!;
+    final fileType = element.getAttribute('D')!;
+    final fileVersion = element.getAttribute('E');
+    final fileLength = element.getAttribute('F');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return AttachedFile(
+      filenameWithExtension: filenameWithExtension,
+      preserve: $PreserveEnumMap.entries
+          .singleWhere(
+            (preserveEnumMapEntry) => preserveEnumMapEntry.value == preserve,
+            orElse: () => throw ArgumentError(
+              '''`$preserve` is not one of the supported values: ${$PreserveEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      manufacturerGLN: manufacturerGLN,
+      fileType: int.parse(fileType),
+      fileVersion: fileVersion,
+      fileLength: fileLength != null ? int.parse(fileLength) : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [filenameWithExtension].
   static const extensionPattern = '([0-9]|[A-Z]){8}.([0-9]|[A-Z]){3}';
@@ -106,6 +133,35 @@ class AttachedFile extends Iso11783Element
   /// The length of the file in bytes.
   @annotation.XmlAttribute(name: 'F')
   final int? fileLength;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$AttachedFileBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$AttachedFileToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

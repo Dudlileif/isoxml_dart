@@ -23,6 +23,7 @@ class ExternalFileReference extends Iso11783Element
   factory ExternalFileReference({
     required String filename,
     FileType? filetype,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: filename,
@@ -34,6 +35,7 @@ class ExternalFileReference extends Iso11783Element
     return ExternalFileReference._(
       filename: filename,
       filetype: filetype,
+      customAttributes: customAttributes,
     );
   }
 
@@ -42,14 +44,34 @@ class ExternalFileReference extends Iso11783Element
   const ExternalFileReference._({
     required this.filename,
     this.filetype,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.externalFileReference,
          description: 'ExternalFileReference',
        );
 
   /// Creates an [ExternalFileReference] from [element].
-  factory ExternalFileReference.fromXmlElement(XmlElement element) =>
-      _$ExternalFileReferenceFromXmlElement(element);
+  factory ExternalFileReference.fromXmlElement(XmlElement element) {
+    final filename = element.getAttribute('A')!;
+    final filetype = element.getAttribute('B');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ExternalFileReference(
+      filename: filename,
+      filetype: filetype != null
+          ? $FileTypeEnumMap.entries
+                .singleWhere(
+                  (fileTypeEnumMapEntry) =>
+                      fileTypeEnumMapEntry.value == filetype,
+                  orElse: () => throw ArgumentError(
+                    '''`$filetype` is not one of the supported values: ${$FileTypeEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the filenames of external files.
   static const filenamePattern =
@@ -70,6 +92,39 @@ class ExternalFileReference extends Iso11783Element
   Iso11783ElementType get elementType => Iso11783ElementType.values.firstWhere(
     (element) => element.xmlTag == filename.substring(0, 3),
   );
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ExternalFileReferenceBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ExternalFileReferenceToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

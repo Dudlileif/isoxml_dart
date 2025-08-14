@@ -18,6 +18,7 @@ class CropType extends Iso11783Element
     required String designator,
     List<CropVariety>? varieties,
     String? productGroupIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -38,6 +39,7 @@ class CropType extends Iso11783Element
       designator: designator,
       varieties: varieties,
       productGroupIdRef: productGroupIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -48,6 +50,7 @@ class CropType extends Iso11783Element
     required this.designator,
     List<CropVariety>? varieties,
     this.productGroupIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.cropType,
          description: 'CropType',
@@ -63,11 +66,14 @@ class CropType extends Iso11783Element
     final id = element.getAttribute('A')!;
     final designator = element.getAttribute('B')!;
     final productGroupIdRef = element.getAttribute('C');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return CropType(
       varieties: varieties?.map(CropVariety.fromXmlElement).toList(),
       id: id,
       designator: designator,
       productGroupIdRef: productGroupIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -102,6 +108,35 @@ class CropType extends Iso11783Element
       for (final a in varieties.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$CropTypeBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$CropTypeToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

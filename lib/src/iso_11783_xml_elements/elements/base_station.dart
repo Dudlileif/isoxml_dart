@@ -19,6 +19,7 @@ class BaseStation extends Iso11783Element
     required double north,
     required double east,
     required int up,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -50,6 +51,7 @@ class BaseStation extends Iso11783Element
       north: north,
       east: east,
       up: up,
+      customAttributes: customAttributes,
     );
   }
 
@@ -61,6 +63,7 @@ class BaseStation extends Iso11783Element
     required this.north,
     required this.east,
     required this.up,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.baseStation,
          description: 'BaseStation',
@@ -74,12 +77,15 @@ class BaseStation extends Iso11783Element
     final north = element.getAttribute('C')!;
     final east = element.getAttribute('D')!;
     final up = element.getAttribute('E')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return BaseStation(
       id: id,
       designator: designator,
       north: double.parse(north),
       east: double.parse(east),
       up: num.parse(up).round(),
+      customAttributes: customAttributes,
     );
   }
 
@@ -111,6 +117,35 @@ class BaseStation extends Iso11783Element
   /// GNSS altitude in millimeters (mm) over the WGS84 ellipsoid.
   @annotation.XmlAttribute(name: 'E')
   final int up;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$BaseStationBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$BaseStationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

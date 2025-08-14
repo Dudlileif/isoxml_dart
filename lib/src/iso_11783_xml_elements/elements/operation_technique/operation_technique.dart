@@ -16,6 +16,7 @@ class OperationTechnique extends Iso11783Element
   factory OperationTechnique({
     required String id,
     required String designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -26,6 +27,7 @@ class OperationTechnique extends Iso11783Element
     return OperationTechnique._(
       id: id,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -34,14 +36,24 @@ class OperationTechnique extends Iso11783Element
   const OperationTechnique._({
     required this.id,
     required this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.operationTechnique,
          description: 'OperationTechnique',
        );
 
   /// Creates a [OperationTechnique] from [element].
-  factory OperationTechnique.fromXmlElement(XmlElement element) =>
-      _$OperationTechniqueFromXmlElement(element);
+  factory OperationTechnique.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return OperationTechnique(
+      id: id,
+      designator: designator,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [OperationTechnique]s.
   static const staticIdRefPattern = '(OTQ|OTQ-)[1-9]([0-9])*';
@@ -59,6 +71,35 @@ class OperationTechnique extends Iso11783Element
   /// Name of the operation technique, description or comment.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$OperationTechniqueBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$OperationTechniqueToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

@@ -30,6 +30,7 @@ class ProcessDataVariable extends Iso11783Element
     String? valuePresentationIdRef,
     int? actualCulturalPracticeValue,
     int? elementTypeInstanceValue,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -88,6 +89,7 @@ class ProcessDataVariable extends Iso11783Element
       valuePresentationIdRef: valuePresentationIdRef,
       actualCulturalPracticeValue: actualCulturalPracticeValue,
       elementTypeInstanceValue: elementTypeInstanceValue,
+      customAttributes: customAttributes,
     );
   }
 
@@ -102,6 +104,7 @@ class ProcessDataVariable extends Iso11783Element
     this.valuePresentationIdRef,
     this.actualCulturalPracticeValue,
     this.elementTypeInstanceValue,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.processDataVariable,
          description: 'ProcessDataVariable',
@@ -121,6 +124,8 @@ class ProcessDataVariable extends Iso11783Element
     final valuePresentationIdRef = element.getAttribute('E');
     final actualCulturalPracticeValue = element.getAttribute('F');
     final elementTypeInstanceValue = element.getAttribute('G');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return ProcessDataVariable(
       processDataVariables: processDataVariables
           ?.map(ProcessDataVariable.fromXmlElement)
@@ -136,6 +141,7 @@ class ProcessDataVariable extends Iso11783Element
       elementTypeInstanceValue: elementTypeInstanceValue != null
           ? int.parse(elementTypeInstanceValue)
           : null,
+      customAttributes: customAttributes,
     );
   }
 
@@ -183,6 +189,39 @@ class ProcessDataVariable extends Iso11783Element
     ))
       ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ProcessDataVariableBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ProcessDataVariableToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

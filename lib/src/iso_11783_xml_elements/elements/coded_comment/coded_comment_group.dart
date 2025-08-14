@@ -21,6 +21,7 @@ class CodedCommentGroup extends Iso11783Element
   factory CodedCommentGroup({
     required String id,
     required String designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -31,6 +32,7 @@ class CodedCommentGroup extends Iso11783Element
     return CodedCommentGroup._(
       id: id,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -39,14 +41,24 @@ class CodedCommentGroup extends Iso11783Element
   const CodedCommentGroup._({
     required this.id,
     required this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.codedCommentGroup,
          description: 'CodedCommentGroup',
        );
 
   /// Creates a [CodedCommentGroup] from [element].
-  factory CodedCommentGroup.fromXmlElement(XmlElement element) =>
-      _$CodedCommentGroupFromXmlElement(element);
+  factory CodedCommentGroup.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return CodedCommentGroup(
+      id: id,
+      designator: designator,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of
   /// [CodedCommentGroup]s.
@@ -65,6 +77,35 @@ class CodedCommentGroup extends Iso11783Element
   /// Name or description.
   @annotation.XmlAttribute(name: 'B')
   final String designator;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$CodedCommentGroupBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$CodedCommentGroupToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

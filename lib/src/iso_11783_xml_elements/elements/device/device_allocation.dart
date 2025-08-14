@@ -26,6 +26,7 @@ class DeviceAllocation extends Iso11783Element
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       clientNAMEValue,
@@ -54,6 +55,7 @@ class DeviceAllocation extends Iso11783Element
       clientNAMEMask: clientNAMEMask,
       deviceIdRef: deviceIdRef,
       allocationStamp: allocationStamp,
+      customAttributes: customAttributes,
     );
   }
 
@@ -64,14 +66,30 @@ class DeviceAllocation extends Iso11783Element
     this.clientNAMEMask,
     this.deviceIdRef,
     this.allocationStamp,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.deviceAllocation,
          description: 'DeviceAllocation',
        );
 
   /// Creates a [DeviceAllocation] from [element].
-  factory DeviceAllocation.fromXmlElement(XmlElement element) =>
-      _$DeviceAllocationFromXmlElement(element);
+  factory DeviceAllocation.fromXmlElement(XmlElement element) {
+    final allocationStamp = element.getElement('ASP');
+    final clientNAMEValue = element.getAttribute('A')!;
+    final clientNAMEMask = element.getAttribute('B');
+    final deviceIdRef = element.getAttribute('C');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DeviceAllocation(
+      allocationStamp: allocationStamp != null
+          ? AllocationStamp.fromXmlElement(allocationStamp)
+          : null,
+      clientNAMEValue: clientNAMEValue,
+      clientNAMEMask: clientNAMEMask,
+      deviceIdRef: deviceIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// [AllocationStamp] for specifying the position and time of this allocation.
   @annotation.XmlElement(name: 'ASP', includeIfNull: false)
@@ -98,6 +116,35 @@ class DeviceAllocation extends Iso11783Element
   @override
   Iterable<Iso11783Element>? get recursiveChildren =>
       allocationStamp?.selfWithRecursiveChildren;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DeviceAllocationBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DeviceAllocationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

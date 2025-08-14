@@ -25,6 +25,7 @@ class LineString extends Iso11783Element
     int? length,
     int? colour,
     String? id,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (points.isEmpty) {
       throw ArgumentError.value(points, 'points', 'Should not be empty');
@@ -68,6 +69,7 @@ class LineString extends Iso11783Element
       length: length,
       colour: colour,
       id: id,
+      customAttributes: customAttributes,
     );
   }
 
@@ -81,6 +83,7 @@ class LineString extends Iso11783Element
     this.length,
     this.colour,
     this.id,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.lineString,
          description: 'LineString',
@@ -89,8 +92,35 @@ class LineString extends Iso11783Element
   }
 
   /// Creates a [LineString] from [element].
-  factory LineString.fromXmlElement(XmlElement element) =>
-      _$LineStringFromXmlElement(element);
+  factory LineString.fromXmlElement(XmlElement element) {
+    final points = element.getElements('PNT')!;
+    final type = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final width = element.getAttribute('C');
+    final length = element.getAttribute('D');
+    final colour = element.getAttribute('E');
+    final id = element.getAttribute('F');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return LineString(
+      points: points.map(Point.fromXmlElement).toList(),
+      type: $LineStringTypeEnumMap.entries
+          .singleWhere(
+            (lineStringTypeEnumMapEntry) =>
+                lineStringTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$LineStringTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      designator: designator,
+      width: width != null ? int.parse(width) : null,
+      length: length != null ? int.parse(length) : null,
+      colour: colour != null ? int.parse(colour) : null,
+      id: id,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [LineString]s.
   static const staticIdRefPattern = '(LSG|LSG-)[1-9]([0-9])*';
@@ -139,6 +169,35 @@ class LineString extends Iso11783Element
       for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$LineStringBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$LineStringToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

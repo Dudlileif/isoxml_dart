@@ -32,6 +32,7 @@ class ExternalFileContents extends Iso11783Element
     List<Task>? tasks,
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.externalFileContents,
          description: 'ExternalFileContents',
@@ -108,6 +109,8 @@ class ExternalFileContents extends Iso11783Element
     final tasks = element.getElements('TSK');
     final valuePresentations = element.getElements('VPN');
     final workers = element.getElements('WKR');
+    final customAttributes = element.attributes;
+
     return ExternalFileContents(
       attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
       baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
@@ -134,6 +137,7 @@ class ExternalFileContents extends Iso11783Element
           ?.map(ValuePresentation.fromXmlElement)
           .toList(),
       workers: workers?.map(Worker.fromXmlElement).toList(),
+      customAttributes: customAttributes,
     );
   }
 
@@ -254,6 +258,39 @@ class ExternalFileContents extends Iso11783Element
       for (final a in contents.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ExternalFileContentsBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ExternalFileContentsToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

@@ -32,6 +32,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
     Uint8List? byteData,
     TimeLogHeader? header,
     List<Time>? records,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: filename,
@@ -53,6 +54,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
       type: type,
       header: header,
       records: records,
+      customAttributes: customAttributes,
     );
   }
 
@@ -65,6 +67,7 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
     this.fileLength,
     this.header,
     List<Time>? records,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.timeLog, description: 'TimeLog') {
     if (records != null) {
       this.records.addAll(records);
@@ -72,8 +75,26 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
   }
 
   /// Creates a [TimeLog] from [element].
-  factory TimeLog.fromXmlElement(XmlElement element) =>
-      _$TimeLogFromXmlElement(element);
+  factory TimeLog.fromXmlElement(XmlElement element) {
+    final filename = element.getAttribute('A')!;
+    final fileLength = element.getAttribute('B');
+    final type = element.getAttribute('C')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return TimeLog(
+      filename: filename,
+      fileLength: fileLength != null ? int.parse(fileLength) : null,
+      type: $TimeLogTypeEnumMap.entries
+          .singleWhere(
+            (timeLogTypeEnumMapEntry) => timeLogTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$TimeLogTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [filename] of this.
   static const fileNamePattern = 'TLG[0-9]{5}';
@@ -107,6 +128,35 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
   Iterable<Iso11783Element>? get recursiveChildren => [
     for (final a in records.map((e) => e.selfWithRecursiveChildren)) ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$TimeLogBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$TimeLogToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.

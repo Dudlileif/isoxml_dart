@@ -31,6 +31,7 @@ class Point extends Iso11783Element with EquatableMixin {
     PointBinaryHeaderOptions? binaryHeaderOptions,
     Uint8List? byteData,
     List<Point>? binaryPoints,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (filename == null && (north == null || east == null || type == null)) {
       throw ArgumentError(
@@ -124,6 +125,7 @@ class Point extends Iso11783Element with EquatableMixin {
       binaryHeaderOptions: binaryHeaderOptions,
       byteData: byteData,
       binaryPoints: binaryPoints,
+      customAttributes: customAttributes,
     );
   }
 
@@ -144,6 +146,7 @@ class Point extends Iso11783Element with EquatableMixin {
     this.binaryHeaderOptions,
     this.byteData,
     List<Point>? binaryPoints,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.point, description: 'Point') {
     if (binaryPoints != null) {
       this.binaryPoints.addAll(binaryPoints);
@@ -166,6 +169,7 @@ class Point extends Iso11783Element with EquatableMixin {
     final verticalAccuracy = element.getAttribute('I');
     final filename = element.getAttribute('J');
     final fileLength = element.getAttribute('K');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
 
     final point = Point(
       type: type != null && type.isNotEmpty
@@ -190,6 +194,7 @@ class Point extends Iso11783Element with EquatableMixin {
           : null,
       filename: filename,
       fileLength: fileLength != null ? int.tryParse(fileLength) : null,
+      customAttributes: customAttributes,
     );
     if (point.filename != null) {
       return point.copyWith(
@@ -372,6 +377,11 @@ class Point extends Iso11783Element with EquatableMixin {
     if (fileLengthSerialized != null) {
       builder.attribute('K', fileLengthSerialized);
     }
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
   }
 
   /// Builds the XML element of this on the [builder].
@@ -469,6 +479,9 @@ class Point extends Iso11783Element with EquatableMixin {
         : null;
     if (fileLengthConstructed != null) {
       attributes.add(fileLengthConstructed);
+    }
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
     }
     return attributes;
   }

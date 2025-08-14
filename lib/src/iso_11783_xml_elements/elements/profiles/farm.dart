@@ -28,6 +28,7 @@ class Farm extends Iso11783Element
     String? state,
     String? country,
     String? customerIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -82,6 +83,7 @@ class Farm extends Iso11783Element
       state: state,
       country: country,
       customerIdRef: customerIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -97,11 +99,35 @@ class Farm extends Iso11783Element
     this.state,
     this.country,
     this.customerIdRef,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.farm, description: 'Farm');
 
   /// Creates a [Farm] from [element].
-  factory Farm.fromXmlElement(XmlElement element) =>
-      _$FarmFromXmlElement(element);
+  factory Farm.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final street = element.getAttribute('C');
+    final poBox = element.getAttribute('D');
+    final postalCode = element.getAttribute('E');
+    final city = element.getAttribute('F');
+    final state = element.getAttribute('G');
+    final country = element.getAttribute('H');
+    final customerIdRef = element.getAttribute('I');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Farm(
+      id: id,
+      designator: designator,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      customerIdRef: customerIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Farm]s.
   static const staticIdRefPattern = '(FRM|FRM-)[1-9]([0-9])*';
@@ -147,6 +173,35 @@ class Farm extends Iso11783Element
   /// Reference to a [Customer].
   @annotation.XmlAttribute(name: 'I')
   final String? customerIdRef;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$FarmBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$FarmToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

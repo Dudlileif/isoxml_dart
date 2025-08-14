@@ -21,6 +21,7 @@ class CodedComment extends Iso11783Element
     required CodedCommmentScope scope,
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -41,6 +42,7 @@ class CodedComment extends Iso11783Element
       scope: scope,
       listValues: listValues,
       groupIdRef: groupIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -52,6 +54,7 @@ class CodedComment extends Iso11783Element
     required this.scope,
     List<CodedCommentListValue>? listValues,
     this.groupIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.codedComment,
          description: 'CodedComment',
@@ -68,6 +71,8 @@ class CodedComment extends Iso11783Element
     final designator = element.getAttribute('B')!;
     final scope = element.getAttribute('C')!;
     final groupIdRef = element.getAttribute('D');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return CodedComment(
       listValues: listValues
           ?.map(CodedCommentListValue.fromXmlElement)
@@ -84,6 +89,7 @@ class CodedComment extends Iso11783Element
           )
           .key,
       groupIdRef: groupIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -122,6 +128,39 @@ class CodedComment extends Iso11783Element
       for (final a in listValues.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$CodedCommentBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$CodedCommentToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.

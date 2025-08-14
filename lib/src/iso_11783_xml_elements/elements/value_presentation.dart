@@ -27,6 +27,7 @@ class ValuePresentation extends Iso11783Element
     required int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkValueInRange(
@@ -68,6 +69,7 @@ class ValuePresentation extends Iso11783Element
       numberOfDecimals: numberOfDecimals,
       unitDesignator: unitDesignator,
       colourLegendIdRef: colourLegendIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -80,14 +82,32 @@ class ValuePresentation extends Iso11783Element
     required this.numberOfDecimals,
     this.unitDesignator,
     this.colourLegendIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.valuePresentation,
          description: 'ValuePresentation',
        );
 
   /// Creates a [ValuePresentation] from [element].
-  factory ValuePresentation.fromXmlElement(XmlElement element) =>
-      _$ValuePresentationFromXmlElement(element);
+  factory ValuePresentation.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final offset = element.getAttribute('B')!;
+    final scale = element.getAttribute('C')!;
+    final numberOfDecimals = element.getAttribute('D')!;
+    final unitDesignator = element.getAttribute('E');
+    final colourLegendIdRef = element.getAttribute('F');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ValuePresentation(
+      id: id,
+      offset: int.parse(offset),
+      scale: double.parse(scale),
+      numberOfDecimals: int.parse(numberOfDecimals),
+      unitDesignator: unitDesignator,
+      colourLegendIdRef: colourLegendIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [ValuePresentation]s.
   static const staticIdRefPattern = '(VPN|VPN-)[1-9]([0-9])*';
@@ -121,6 +141,35 @@ class ValuePresentation extends Iso11783Element
   /// Reference to a [ColourLegend].
   @annotation.XmlAttribute(name: 'F')
   final String? colourLegendIdRef;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ValuePresentationBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ValuePresentationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

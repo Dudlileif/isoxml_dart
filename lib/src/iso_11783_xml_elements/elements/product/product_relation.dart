@@ -16,6 +16,7 @@ class ProductRelation extends Iso11783Element
   factory ProductRelation({
     required String productIdRef,
     required int quantityValue,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: productIdRef,
@@ -32,6 +33,7 @@ class ProductRelation extends Iso11783Element
     return ProductRelation._(
       productIdRef: productIdRef,
       quantityValue: quantityValue,
+      customAttributes: customAttributes,
     );
   }
 
@@ -40,6 +42,7 @@ class ProductRelation extends Iso11783Element
   const ProductRelation._({
     required this.productIdRef,
     required this.quantityValue,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.productRelation,
          description: 'ProductRelation',
@@ -47,8 +50,17 @@ class ProductRelation extends Iso11783Element
        );
 
   /// Creates a [ProductRelation] from [element].
-  factory ProductRelation.fromXmlElement(XmlElement element) =>
-      _$ProductRelationFromXmlElement(element);
+  factory ProductRelation.fromXmlElement(XmlElement element) {
+    final productIdRef = element.getAttribute('A')!;
+    final quantityValue = element.getAttribute('B')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ProductRelation(
+      productIdRef: productIdRef,
+      quantityValue: int.parse(quantityValue),
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Reference to a [Product].
   @annotation.XmlAttribute(name: 'A')
@@ -57,6 +69,35 @@ class ProductRelation extends Iso11783Element
   /// A quantity value, in ml, of the [Product] referenced by [productIdRef].
   @annotation.XmlAttribute(name: 'B')
   final int quantityValue;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ProductRelationBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ProductRelationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

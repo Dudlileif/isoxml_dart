@@ -16,6 +16,7 @@ class OperationTechniquePractice extends Iso11783Element
   factory OperationTechniquePractice({
     required String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: culturalPracticeIdRef,
@@ -32,6 +33,7 @@ class OperationTechniquePractice extends Iso11783Element
     return OperationTechniquePractice._(
       culturalPracticeIdRef: culturalPracticeIdRef,
       operationTechniqueIdRef: operationTechniqueIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -40,14 +42,24 @@ class OperationTechniquePractice extends Iso11783Element
   const OperationTechniquePractice._({
     required this.culturalPracticeIdRef,
     this.operationTechniqueIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.operationTechniquePractice,
          description: 'OperationTechniquePractice',
        );
 
   /// Creates a [OperationTechniquePractice] from [element].
-  factory OperationTechniquePractice.fromXmlElement(XmlElement element) =>
-      _$OperationTechniquePracticeFromXmlElement(element);
+  factory OperationTechniquePractice.fromXmlElement(XmlElement element) {
+    final culturalPracticeIdRef = element.getAttribute('A')!;
+    final operationTechniqueIdRef = element.getAttribute('B');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return OperationTechniquePractice(
+      culturalPracticeIdRef: culturalPracticeIdRef,
+      operationTechniqueIdRef: operationTechniqueIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Reference to a [CulturalPractice].
   @annotation.XmlAttribute(name: 'A')
@@ -56,6 +68,39 @@ class OperationTechniquePractice extends Iso11783Element
   /// Reference to a [OperationTechnique].
   @annotation.XmlAttribute(name: 'B')
   final String? operationTechniqueIdRef;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$OperationTechniquePracticeBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$OperationTechniquePracticeToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

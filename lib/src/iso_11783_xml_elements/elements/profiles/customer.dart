@@ -32,6 +32,7 @@ class Customer extends Iso11783Element
     String? mobile,
     String? fax,
     String? email,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (lastName.length > 32) {
@@ -106,6 +107,7 @@ class Customer extends Iso11783Element
       mobile: mobile,
       fax: fax,
       email: email,
+      customAttributes: customAttributes,
     );
   }
 
@@ -125,14 +127,46 @@ class Customer extends Iso11783Element
     this.mobile,
     this.fax,
     this.email,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.customer,
          description: 'Customer',
        );
 
   /// Creates a [Customer] from [element].
-  factory Customer.fromXmlElement(XmlElement element) =>
-      _$CustomerFromXmlElement(element);
+  factory Customer.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final lastName = element.getAttribute('B')!;
+    final firstName = element.getAttribute('C');
+    final street = element.getAttribute('D');
+    final poBox = element.getAttribute('E');
+    final postalCode = element.getAttribute('F');
+    final city = element.getAttribute('G');
+    final state = element.getAttribute('H');
+    final country = element.getAttribute('I');
+    final phone = element.getAttribute('J');
+    final mobile = element.getAttribute('K');
+    final fax = element.getAttribute('L');
+    final email = element.getAttribute('M');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Customer(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      fax: fax,
+      email: email,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Customer]s.
   static const staticIdRefPattern = '(CTR|CTR-)[1-9]([0-9])*';
@@ -194,6 +228,35 @@ class Customer extends Iso11783Element
   /// E-mail address
   @annotation.XmlAttribute(name: 'M')
   final String? email;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$CustomerBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$CustomerToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

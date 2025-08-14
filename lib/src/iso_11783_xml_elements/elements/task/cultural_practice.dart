@@ -25,6 +25,7 @@ class CulturalPractice extends Iso11783Element
     required String id,
     required String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -35,6 +36,7 @@ class CulturalPractice extends Iso11783Element
       id: id,
       designator: designator,
       operationTechniqueReferences: operationTechniqueReferences,
+      customAttributes: customAttributes,
     );
   }
 
@@ -44,6 +46,7 @@ class CulturalPractice extends Iso11783Element
     required this.id,
     required this.designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.culturalPractice,
          description: 'CulturalPractice',
@@ -58,12 +61,15 @@ class CulturalPractice extends Iso11783Element
     final operationTechniqueReferences = element.getElements('OTR');
     final id = element.getAttribute('A')!;
     final designator = element.getAttribute('B')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return CulturalPractice(
       operationTechniqueReferences: operationTechniqueReferences
           ?.map(OperationTechniqueReference.fromXmlElement)
           .toList(),
       id: id,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -95,6 +101,35 @@ class CulturalPractice extends Iso11783Element
     ))
       ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$CulturalPracticeBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$CulturalPracticeToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

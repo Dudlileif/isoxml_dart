@@ -31,6 +31,7 @@ class Connection extends Iso11783Element
     required String deviceElementIdRef_0,
     required String deviceIdRef_1,
     required String deviceElementIdRef_1,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: deviceIdRef_0,
@@ -58,6 +59,7 @@ class Connection extends Iso11783Element
       deviceElementIdRef_0: deviceElementIdRef_0,
       deviceIdRef_1: deviceIdRef_1,
       deviceElementIdRef_1: deviceElementIdRef_1,
+      customAttributes: customAttributes,
     );
   }
 
@@ -68,14 +70,28 @@ class Connection extends Iso11783Element
     required this.deviceElementIdRef_0,
     required this.deviceIdRef_1,
     required this.deviceElementIdRef_1,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.connection,
          description: 'Connection',
        );
 
   /// Creates a [Connection] from [element].
-  factory Connection.fromXmlElement(XmlElement element) =>
-      _$ConnectionFromXmlElement(element);
+  factory Connection.fromXmlElement(XmlElement element) {
+    final deviceIdRef_0 = element.getAttribute('A')!;
+    final deviceElementIdRef_0 = element.getAttribute('B')!;
+    final deviceIdRef_1 = element.getAttribute('C')!;
+    final deviceElementIdRef_1 = element.getAttribute('D')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Connection(
+      deviceIdRef_0: deviceIdRef_0,
+      deviceElementIdRef_0: deviceElementIdRef_0,
+      deviceIdRef_1: deviceIdRef_1,
+      deviceElementIdRef_1: deviceElementIdRef_1,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// An ID reference to the first device.
   @annotation.XmlAttribute(name: 'A')
@@ -92,6 +108,35 @@ class Connection extends Iso11783Element
   /// An ID reference to the second device element.
   @annotation.XmlAttribute(name: 'D')
   final String deviceElementIdRef_1;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ConnectionBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ConnectionToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

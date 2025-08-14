@@ -39,6 +39,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
     List<List<int>>? treatmentZoneCodeGrid,
     int? numberOfProcessDataVariables,
     List<List<List<int>>>? processDataValueGrid,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: minimumNorthPosition,
@@ -147,6 +148,7 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
       treatmentZoneCodeGrid: parsedTreatmentZoneCodes,
       numberOfProcessDataVariables: numberOfProcessDataVariables,
       processDataValueGrid: parsedProcessDataValueGrid,
+      customAttributes: customAttributes,
     );
   }
 
@@ -167,11 +169,46 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
     this.treatmentZoneCodeGrid,
     this.numberOfProcessDataVariables,
     this.processDataValueGrid,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.grid, description: 'Grid');
 
   /// Creates a [Grid] from [element];
-  factory Grid.fromXmlElement(XmlElement element) =>
-      _$GridFromXmlElement(element);
+  factory Grid.fromXmlElement(XmlElement element) {
+    final minimumNorthPosition = element.getAttribute('A')!;
+    final minimumEastPosition = element.getAttribute('B')!;
+    final cellNorthSize = element.getAttribute('C')!;
+    final cellEastSize = element.getAttribute('D')!;
+    final maximumColumn = element.getAttribute('E')!;
+    final maximumRow = element.getAttribute('F')!;
+    final fileName = element.getAttribute('G')!;
+    final fileLength = element.getAttribute('H');
+    final type = element.getAttribute('I')!;
+    final treatmentZoneCode = element.getAttribute('J');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Grid(
+      minimumNorthPosition: double.parse(minimumNorthPosition),
+      minimumEastPosition: double.parse(minimumEastPosition),
+      cellNorthSize: double.parse(cellNorthSize),
+      cellEastSize: double.parse(cellEastSize),
+      maximumColumn: int.parse(maximumColumn),
+      maximumRow: int.parse(maximumRow),
+      fileName: fileName,
+      fileLength: fileLength != null ? int.parse(fileLength) : null,
+      type: $GridTypeEnumMap.entries
+          .singleWhere(
+            (gridTypeEnumMapEntry) => gridTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$GridTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      treatmentZoneCode: treatmentZoneCode != null
+          ? int.parse(treatmentZoneCode)
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression pattern for the filename of the binary
   /// `GRD-----.bin` file, excluding the `.bin` part
@@ -244,6 +281,35 @@ class Grid extends Iso11783Element with _$GridXmlSerializableMixin {
   /// Value is only set if [type] == [GridType.two] and
   /// [treatmentZoneCode] != null and [byteData] is not empty.
   List<List<List<int>>>? processDataValueGrid;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$GridBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$GridToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// Parses [byteData] to fill [treatmentZoneCodeGrid] or
   /// [processDataValueGrid].

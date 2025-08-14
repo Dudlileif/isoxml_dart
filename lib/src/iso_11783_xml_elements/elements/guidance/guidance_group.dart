@@ -20,6 +20,7 @@ class GuidanceGroup extends Iso11783Element
     List<GuidancePattern>? patterns,
     Polygon? boundaryPolygon,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
@@ -31,6 +32,7 @@ class GuidanceGroup extends Iso11783Element
       patterns: patterns,
       boundaryPolygon: boundaryPolygon,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -41,6 +43,7 @@ class GuidanceGroup extends Iso11783Element
     List<GuidancePattern>? patterns,
     this.boundaryPolygon,
     this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.guidanceGroup,
          description: 'GuidanceGroup',
@@ -57,6 +60,8 @@ class GuidanceGroup extends Iso11783Element
     final boundaryPolygon = element.getElement('PLN');
     final id = element.getAttribute('A')!;
     final designator = element.getAttribute('B');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return GuidanceGroup(
       patterns: patterns?.map(GuidancePattern.fromXmlElement).toList(),
       boundaryPolygon: boundaryPolygon != null
@@ -64,6 +69,7 @@ class GuidanceGroup extends Iso11783Element
           : null,
       id: id,
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -99,6 +105,35 @@ class GuidanceGroup extends Iso11783Element
     ],
     if (boundaryPolygon != null) ...boundaryPolygon!.selfWithRecursiveChildren,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$GuidanceGroupBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$GuidanceGroupToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

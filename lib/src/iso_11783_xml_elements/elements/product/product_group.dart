@@ -20,6 +20,7 @@ class ProductGroup extends Iso11783Element
     required String id,
     required String designator,
     ProductGroupType? type,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -31,6 +32,7 @@ class ProductGroup extends Iso11783Element
       id: id,
       designator: designator,
       type: type,
+      customAttributes: customAttributes,
     );
   }
 
@@ -40,14 +42,36 @@ class ProductGroup extends Iso11783Element
     required this.id,
     required this.designator,
     this.type,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.productGroup,
          description: 'ProductGroup',
        );
 
   /// Creates a [ProductGroup] from [element].
-  factory ProductGroup.fromXmlElement(XmlElement element) =>
-      _$ProductGroupFromXmlElement(element);
+  factory ProductGroup.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final type = element.getAttribute('C');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ProductGroup(
+      id: id,
+      designator: designator,
+      type: type != null
+          ? $ProductGroupTypeEnumMap.entries
+                .singleWhere(
+                  (productGroupTypeEnumMapEntry) =>
+                      productGroupTypeEnumMapEntry.value == type,
+                  orElse: () => throw ArgumentError(
+                    '''`$type` is not one of the supported values: ${$ProductGroupTypeEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [ProductGroup]s.
   static const staticIdRefPattern = '(PGP|PGP-)[1-9]([0-9])*';
@@ -69,6 +93,35 @@ class ProductGroup extends Iso11783Element
   /// Which type of product group this is.
   @annotation.XmlAttribute(name: 'C')
   final ProductGroupType? type;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ProductGroupBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ProductGroupToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

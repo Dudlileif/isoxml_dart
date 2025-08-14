@@ -27,6 +27,7 @@ class ProductAllocation extends Iso11783Element
     String? valuePresentationIdRef,
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: productIdRef,
@@ -70,6 +71,7 @@ class ProductAllocation extends Iso11783Element
       valuePresentationIdRef: valuePresentationIdRef,
       productSubTypeIdRef: productSubTypeIdRef,
       allocationStamp: allocationStamp,
+      customAttributes: customAttributes,
     );
   }
 
@@ -84,14 +86,48 @@ class ProductAllocation extends Iso11783Element
     this.valuePresentationIdRef,
     this.productSubTypeIdRef,
     this.allocationStamp,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.productAllocation,
          description: 'ProductAllocation',
        );
 
   /// Creates a [ProductAllocation] from [element].
-  factory ProductAllocation.fromXmlElement(XmlElement element) =>
-      _$ProductAllocationFromXmlElement(element);
+  factory ProductAllocation.fromXmlElement(XmlElement element) {
+    final allocationStamp = element.getElement('ASP');
+    final productIdRef = element.getAttribute('A')!;
+    final quantityDDI = element.getAttribute('B');
+    final quantityValue = element.getAttribute('C');
+    final transferMode = element.getAttribute('D');
+    final deviceElementIdRef = element.getAttribute('E');
+    final valuePresentationIdRef = element.getAttribute('F');
+    final productSubTypeIdRef = element.getAttribute('G');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ProductAllocation(
+      allocationStamp: allocationStamp != null
+          ? AllocationStamp.fromXmlElement(allocationStamp)
+          : null,
+      productIdRef: productIdRef,
+      quantityDDI: quantityDDI,
+      quantityValue: quantityValue != null ? int.parse(quantityValue) : null,
+      transferMode: transferMode != null
+          ? $TransferModeEnumMap.entries
+                .singleWhere(
+                  (transferModeEnumMapEntry) =>
+                      transferModeEnumMapEntry.value == transferMode,
+                  orElse: () => throw ArgumentError(
+                    '''`$transferMode` is not one of the supported values: ${$TransferModeEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      productSubTypeIdRef: productSubTypeIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// [AllocationStamp] for the position and time of this allocation.
   @annotation.XmlElement(name: 'ASP', includeIfNull: false)
@@ -132,6 +168,35 @@ class ProductAllocation extends Iso11783Element
   @override
   Iterable<Iso11783Element>? get recursiveChildren =>
       allocationStamp?.selfWithRecursiveChildren;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ProductAllocationBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ProductAllocationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

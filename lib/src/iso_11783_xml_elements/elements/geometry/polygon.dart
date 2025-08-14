@@ -27,6 +27,7 @@ class Polygon extends Iso11783Element
     int? area,
     int? colour,
     String? id,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
@@ -57,6 +58,7 @@ class Polygon extends Iso11783Element
       area: area,
       colour: colour,
       id: id,
+      customAttributes: customAttributes,
     );
   }
 
@@ -69,6 +71,7 @@ class Polygon extends Iso11783Element
     this.area,
     this.colour,
     this.id,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.polygon,
          description: 'Polygon',
@@ -77,8 +80,32 @@ class Polygon extends Iso11783Element
   }
 
   /// Creates a [Polygon] from [element].
-  factory Polygon.fromXmlElement(XmlElement element) =>
-      _$PolygonFromXmlElement(element);
+  factory Polygon.fromXmlElement(XmlElement element) {
+    final lineStrings = element.getElements('LSG')!;
+    final type = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final area = element.getAttribute('C');
+    final colour = element.getAttribute('D');
+    final id = element.getAttribute('E');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Polygon(
+      lineStrings: lineStrings.map(LineString.fromXmlElement).toList(),
+      type: $PolygonTypeEnumMap.entries
+          .singleWhere(
+            (polygonTypeEnumMapEntry) => polygonTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$PolygonTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      designator: designator,
+      area: area != null ? int.parse(area) : null,
+      colour: colour != null ? int.parse(colour) : null,
+      id: id,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Polygon]s.
   static const staticIdRefPattern = '(PLN|PLN-)[1-9]([0-9])*';
@@ -122,6 +149,35 @@ class Polygon extends Iso11783Element
       for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$PolygonBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$PolygonToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

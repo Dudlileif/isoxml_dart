@@ -22,6 +22,7 @@ class ControlAssignment extends Iso11783Element
     required int userDeviceElementNumber,
     required String processDataDDI,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       sourceClientNAME,
@@ -75,6 +76,7 @@ class ControlAssignment extends Iso11783Element
       userDeviceElementNumber: userDeviceElementNumber,
       processDataDDI: processDataDDI,
       allocationStamp: allocationStamp,
+      customAttributes: customAttributes,
     );
   }
 
@@ -89,6 +91,7 @@ class ControlAssignment extends Iso11783Element
     required this.userDeviceElementNumber,
     required this.processDataDDI,
     this.allocationStamp,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.controlAssignment,
          description: 'ControlAssignment',
@@ -96,8 +99,31 @@ class ControlAssignment extends Iso11783Element
        );
 
   /// Creates a [ControlAssignment] form [element].
-  factory ControlAssignment.fromXmlElement(XmlElement element) =>
-      _$ControlAssignmentFromXmlElement(element);
+  factory ControlAssignment.fromXmlElement(XmlElement element) {
+    final allocationStamp = element.getElement('ASP');
+    final sourceClientNAME = element.getAttribute('A')!;
+    final userClientNAME = element.getAttribute('B')!;
+    final sourceDeviceStructureLabel = element.getAttribute('C')!;
+    final userDeviceStructureLabel = element.getAttribute('D')!;
+    final sourceDeviceElementNumber = element.getAttribute('E')!;
+    final userDeviceElementNumber = element.getAttribute('F')!;
+    final processDataDDI = element.getAttribute('G')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return ControlAssignment(
+      allocationStamp: allocationStamp != null
+          ? AllocationStamp.fromXmlElement(allocationStamp)
+          : null,
+      sourceClientNAME: sourceClientNAME,
+      userClientNAME: userClientNAME,
+      sourceDeviceStructureLabel: sourceDeviceStructureLabel,
+      userDeviceStructureLabel: userDeviceStructureLabel,
+      sourceDeviceElementNumber: int.parse(sourceDeviceElementNumber),
+      userDeviceElementNumber: int.parse(userDeviceElementNumber),
+      processDataDDI: processDataDDI,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// [AllocationStamp] for specifying the position and time of this assignment.
   @annotation.XmlElement(name: 'ASP', includeIfNull: false)
@@ -142,6 +168,35 @@ class ControlAssignment extends Iso11783Element
   @override
   Iterable<Iso11783Element>? get recursiveChildren =>
       allocationStamp?.selfWithRecursiveChildren;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ControlAssignmentBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ControlAssignmentToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

@@ -24,6 +24,7 @@ class TaskControllerCapabilities extends Iso11783Element
     required int numberOfBoomsSectionControl,
     required int numberOfSectionsSectionControl,
     required int numberOfControlChannels,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       functionNAME,
@@ -65,6 +66,7 @@ class TaskControllerCapabilities extends Iso11783Element
       numberOfBoomsSectionControl: numberOfBoomsSectionControl,
       numberOfSectionsSectionControl: numberOfSectionsSectionControl,
       numberOfControlChannels: numberOfControlChannels,
+      customAttributes: customAttributes,
     );
   }
 
@@ -78,6 +80,7 @@ class TaskControllerCapabilities extends Iso11783Element
     required this.numberOfBoomsSectionControl,
     required this.numberOfSectionsSectionControl,
     required this.numberOfControlChannels,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.taskControllerCapabilities,
          description: 'TaskControllerCapabilities',
@@ -85,8 +88,35 @@ class TaskControllerCapabilities extends Iso11783Element
        );
 
   /// Creates a [TaskControllerCapabilities] from [element].
-  factory TaskControllerCapabilities.fromXmlElement(XmlElement element) =>
-      _$TaskControllerCapabilitiesFromXmlElement(element);
+  factory TaskControllerCapabilities.fromXmlElement(XmlElement element) {
+    final functionNAME = element.getAttribute('A')!;
+    final designator = element.getAttribute('B')!;
+    final versionNumber = element.getAttribute('C')!;
+    final providedCapabilities = element.getAttribute('D')!;
+    final numberOfBoomsSectionControl = element.getAttribute('E')!;
+    final numberOfSectionsSectionControl = element.getAttribute('F')!;
+    final numberOfControlChannels = element.getAttribute('G')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return TaskControllerCapabilities(
+      functionNAME: functionNAME,
+      designator: designator,
+      versionNumber: $VersionNumberEnumMap.entries
+          .singleWhere(
+            (versionNumberEnumMapEntry) =>
+                versionNumberEnumMapEntry.value == versionNumber,
+            orElse: () => throw ArgumentError(
+              '''`$versionNumber` is not one of the supported values: ${$VersionNumberEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      providedCapabilities: int.parse(providedCapabilities),
+      numberOfBoomsSectionControl: int.parse(numberOfBoomsSectionControl),
+      numberOfSectionsSectionControl: int.parse(numberOfSectionsSectionControl),
+      numberOfControlChannels: int.parse(numberOfControlChannels),
+      customAttributes: customAttributes,
+    );
+  }
 
   /// NAME of the function.
   ///
@@ -134,6 +164,39 @@ class TaskControllerCapabilities extends Iso11783Element
             providedCapabilities & capability.bitMask == capability.bitMask,
       )
       .toList();
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$TaskControllerCapabilitiesBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$TaskControllerCapabilitiesToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

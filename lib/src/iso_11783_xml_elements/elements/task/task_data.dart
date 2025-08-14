@@ -43,6 +43,7 @@ class Iso11783TaskData extends Iso11783Element
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? language,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkStringLength(
       managementSoftwareManufacturer,
@@ -100,6 +101,7 @@ class Iso11783TaskData extends Iso11783Element
       taskControllerManufacturer: taskControllerManufacturer,
       taskControllerVersion: taskControllerVersion,
       language: language,
+      customAttributes: customAttributes,
     );
   }
 
@@ -134,6 +136,7 @@ class Iso11783TaskData extends Iso11783Element
     this.taskControllerManufacturer,
     this.taskControllerVersion,
     this.language,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.taskData,
          description: 'ISO 11783 Task Data File',
@@ -194,6 +197,20 @@ class Iso11783TaskData extends Iso11783Element
     );
     final taskControllerVersion = element.getAttribute('TaskControllerVersion');
     final language = element.getAttribute('lang');
+    final customAttributes = element.attributes
+        .whereNot(
+          (attribute) => [
+            'VersionMajor',
+            'VersionMinor',
+            'DataTransferOrigin',
+            'ManagementSoftwareManufacturer',
+            'ManagementSoftwareVersion',
+            'TaskControllerManufacturer',
+            'TaskControllerVersion',
+            'lang',
+          ].contains(attribute.name.local),
+        )
+        .toList();
     return Iso11783TaskData(
       attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
       baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
@@ -258,6 +275,7 @@ class Iso11783TaskData extends Iso11783Element
       taskControllerManufacturer: taskControllerManufacturer,
       taskControllerVersion: taskControllerVersion,
       language: language,
+      customAttributes: customAttributes.isNotEmpty ? customAttributes : null,
     );
   }
 
@@ -526,10 +544,6 @@ class Iso11783TaskData extends Iso11783Element
   @annotation.XmlAttribute(name: 'VersionMinor')
   final VersionMinor versionMinor;
 
-  /// The creation origin of this.
-  @annotation.XmlAttribute(name: 'DataTransferOrigin')
-  final DataTransferOrigin dataTransferOrigin;
-
   /// Name of the Management Software manufacturer.
   @annotation.XmlAttribute(name: 'ManagementSoftwareManufacturer')
   final String managementSoftwareManufacturer;
@@ -546,9 +560,42 @@ class Iso11783TaskData extends Iso11783Element
   @annotation.XmlAttribute(name: 'TaskControllerVersion')
   final String? taskControllerVersion;
 
+  /// The creation origin of this.
+  @annotation.XmlAttribute(name: 'DataTransferOrigin')
+  final DataTransferOrigin dataTransferOrigin;
+
   /// Preferred language of the software.
   @annotation.XmlAttribute(name: 'lang')
   final String? language;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$Iso11783TaskDataBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$Iso11783TaskDataToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// A structured XML document that represents this.
   ///

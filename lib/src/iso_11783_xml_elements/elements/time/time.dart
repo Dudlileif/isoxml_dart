@@ -28,6 +28,7 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (duration != null) {
       ArgumentValidation.checkValueInRange(
@@ -54,6 +55,7 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
       dataLogValues: dataLogValues,
       stop: stop,
       duration: duration,
+      customAttributes: customAttributes,
     );
   }
 
@@ -66,6 +68,7 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
     List<DataLogValue>? dataLogValues,
     this.stop,
     this.duration,
+    super.customAttributes,
   }) : super(elementType: Iso11783ElementType.time, description: 'Time') {
     if (positions != null) {
       this.positions.addAll(positions);
@@ -83,6 +86,8 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
     final stop = element.getAttribute('B');
     final duration = element.getAttribute('C');
     final type = element.getAttribute('D')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return Time(
       positions: positions?.map(Position.fromXmlElement).toList(),
       dataLogValues: dataLogValues?.map(DataLogValue.fromXmlElement).toList(),
@@ -97,6 +102,7 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
             ),
           )
           .key,
+      customAttributes: customAttributes,
     );
   }
 
@@ -134,6 +140,35 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
         ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$TimeBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$TimeToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   /// The list of properties that will be used to determine whether
   /// two instances are equal.

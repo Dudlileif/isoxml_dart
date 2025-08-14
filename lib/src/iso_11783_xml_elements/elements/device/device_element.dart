@@ -23,6 +23,7 @@ class DeviceElement extends Iso11783Element
     required int parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkValueInRange(
@@ -55,6 +56,7 @@ class DeviceElement extends Iso11783Element
       parentObjectId: parentObjectId,
       objectReferences: objectReferences ?? const [],
       designator: designator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -68,6 +70,7 @@ class DeviceElement extends Iso11783Element
     required this.parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     this.designator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.deviceElement,
          description: 'DeviceElement',
@@ -86,6 +89,8 @@ class DeviceElement extends Iso11783Element
     final designator = element.getAttribute('D');
     final number = element.getAttribute('E')!;
     final parentObjectId = element.getAttribute('F')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return DeviceElement(
       objectReferences: objectReferences
           ?.map(DeviceObjectReference.fromXmlElement)
@@ -104,6 +109,7 @@ class DeviceElement extends Iso11783Element
       designator: designator,
       number: int.parse(number),
       parentObjectId: int.parse(parentObjectId),
+      customAttributes: customAttributes,
     );
   }
 
@@ -154,6 +160,35 @@ class DeviceElement extends Iso11783Element
         ...a,
     ],
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DeviceElementBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DeviceElementToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

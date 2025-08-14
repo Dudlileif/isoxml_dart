@@ -31,6 +31,7 @@ class Product extends Iso11783Element
     int? densityMassPerVolume,
     int? densityMassPerCount,
     int? densityVolumePerCount,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -119,6 +120,7 @@ class Product extends Iso11783Element
       densityMassPerVolume: densityMassPerVolume,
       densityMassPerCount: densityMassPerCount,
       densityVolumePerCount: densityVolumePerCount,
+      customAttributes: customAttributes,
     );
   }
 
@@ -136,6 +138,7 @@ class Product extends Iso11783Element
     this.densityMassPerVolume,
     this.densityMassPerCount,
     this.densityVolumePerCount,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.product,
          description: 'Product',
@@ -158,6 +161,8 @@ class Product extends Iso11783Element
     final densityMassPerVolume = element.getAttribute('H');
     final densityMassPerCount = element.getAttribute('I');
     final densityVolumePerCount = element.getAttribute('J');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return Product(
       relations: relations?.map(ProductRelation.fromXmlElement).toList(),
       id: id,
@@ -188,6 +193,7 @@ class Product extends Iso11783Element
       densityVolumePerCount: densityVolumePerCount != null
           ? int.parse(densityVolumePerCount)
           : null,
+      customAttributes: customAttributes,
     );
   }
 
@@ -259,6 +265,35 @@ class Product extends Iso11783Element
   Iterable<Iso11783Element>? get recursiveChildren => [
     for (final a in relations.map((e) => e.selfWithRecursiveChildren)) ...a,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$ProductBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$ProductToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

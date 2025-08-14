@@ -31,6 +31,7 @@ class GuidancePattern extends Iso11783Element
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
+    List<XmlAttribute>? customAttributes,
   }) {
     if (lineStrings.isEmpty) {
       throw ArgumentError.value(
@@ -120,6 +121,7 @@ class GuidancePattern extends Iso11783Element
       originalSRID: originalSRID,
       numberOfSwathsLeft: numberOfSwathsLeft,
       numberOfSwathsRight: numberOfSwathsRight,
+      customAttributes: customAttributes,
     );
   }
 
@@ -143,6 +145,7 @@ class GuidancePattern extends Iso11783Element
     this.originalSRID,
     this.numberOfSwathsLeft,
     this.numberOfSwathsRight,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.guidancePattern,
          description: 'GuidancePattern',
@@ -152,8 +155,106 @@ class GuidancePattern extends Iso11783Element
   }
 
   /// Creates a [GuidancePattern] from [element].
-  factory GuidancePattern.fromXmlElement(XmlElement element) =>
-      _$GuidancePatternFromXmlElement(element);
+  factory GuidancePattern.fromXmlElement(XmlElement element) {
+    final boundaryPolygon = element.getElement('PLN');
+    final lineStrings = element.getElements('LSG')!;
+    final id = element.getAttribute('A')!;
+    final designator = element.getAttribute('B');
+    final type = element.getAttribute('C')!;
+    final options = element.getAttribute('D');
+    final propagationDirection = element.getAttribute('E');
+    final extension = element.getAttribute('F');
+    final heading = element.getAttribute('G');
+    final radius = element.getAttribute('H');
+    final gnssMethod = element.getAttribute('I');
+    final horizontalAccuracy = element.getAttribute('J');
+    final verticalAccuracy = element.getAttribute('K');
+    final baseStationIdRef = element.getAttribute('L');
+    final originalSRID = element.getAttribute('M');
+    final numberOfSwathsLeft = element.getAttribute('N');
+    final numberOfSwathsRight = element.getAttribute('O');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return GuidancePattern(
+      boundaryPolygon: boundaryPolygon != null
+          ? Polygon.fromXmlElement(boundaryPolygon)
+          : null,
+      lineStrings: lineStrings.map(LineString.fromXmlElement).toList(),
+      id: id,
+      designator: designator,
+      type: $GuidancePatternTypeEnumMap.entries
+          .singleWhere(
+            (guidancePatternTypeEnumMapEntry) =>
+                guidancePatternTypeEnumMapEntry.value == type,
+            orElse: () => throw ArgumentError(
+              '''`$type` is not one of the supported values: ${$GuidancePatternTypeEnumMap.values.join(', ')}''',
+            ),
+          )
+          .key,
+      options: options != null
+          ? $GuidancePatternOptionsEnumMap.entries
+                .singleWhere(
+                  (guidancePatternOptionsEnumMapEntry) =>
+                      guidancePatternOptionsEnumMapEntry.value == options,
+                  orElse: () => throw ArgumentError(
+                    '''`$options` is not one of the supported values: ${$GuidancePatternOptionsEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      propagationDirection: propagationDirection != null
+          ? $GuidancePatternPropagationDirectionEnumMap.entries
+                .singleWhere(
+                  (guidancePatternPropagationDirectionEnumMapEntry) =>
+                      guidancePatternPropagationDirectionEnumMapEntry.value ==
+                      propagationDirection,
+                  orElse: () => throw ArgumentError(
+                    '''`$propagationDirection` is not one of the supported values: ${$GuidancePatternPropagationDirectionEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      extension: extension != null
+          ? $GuidancePatternExtensionEnumMap.entries
+                .singleWhere(
+                  (guidancePatternExtensionEnumMapEntry) =>
+                      guidancePatternExtensionEnumMapEntry.value == extension,
+                  orElse: () => throw ArgumentError(
+                    '''`$extension` is not one of the supported values: ${$GuidancePatternExtensionEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      heading: heading != null ? double.parse(heading) : null,
+      radius: radius != null ? int.parse(radius) : null,
+      gnssMethod: gnssMethod != null
+          ? $GuidancePatternGnssMethodEnumMap.entries
+                .singleWhere(
+                  (guidancePatternGnssMethodEnumMapEntry) =>
+                      guidancePatternGnssMethodEnumMapEntry.value == gnssMethod,
+                  orElse: () => throw ArgumentError(
+                    '''`$gnssMethod` is not one of the supported values: ${$GuidancePatternGnssMethodEnumMap.values.join(', ')}''',
+                  ),
+                )
+                .key
+          : null,
+      horizontalAccuracy: horizontalAccuracy != null
+          ? double.parse(horizontalAccuracy)
+          : null,
+      verticalAccuracy: verticalAccuracy != null
+          ? double.parse(verticalAccuracy)
+          : null,
+      baseStationIdRef: baseStationIdRef,
+      originalSRID: originalSRID,
+      numberOfSwathsLeft: numberOfSwathsLeft != null
+          ? int.parse(numberOfSwathsLeft)
+          : null,
+      numberOfSwathsRight: numberOfSwathsRight != null
+          ? int.parse(numberOfSwathsRight)
+          : null,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [GuidancePattern]s.
   static const staticIdRefPattern = '(GPN|GPN-)[1-9]([0-9])*';
@@ -247,6 +348,35 @@ class GuidancePattern extends Iso11783Element
     ],
     if (boundaryPolygon != null) ...boundaryPolygon!.selfWithRecursiveChildren,
   ];
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$GuidancePatternBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$GuidancePatternToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

@@ -26,6 +26,7 @@ class Position extends Iso11783Element
     int? numberOfSatellites,
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: north,
@@ -98,6 +99,7 @@ class Position extends Iso11783Element
       numberOfSatellites: numberOfSatellites,
       gpsUtcTimeMs: gpsUtcTimeMs,
       gpsUtcDate: gpsUtcDate,
+      customAttributes: customAttributes,
     );
   }
 
@@ -113,6 +115,7 @@ class Position extends Iso11783Element
     this.numberOfSatellites,
     this.gpsUtcTimeMs,
     this.gpsUtcDate,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.position,
          description: 'Position',
@@ -129,6 +132,8 @@ class Position extends Iso11783Element
     final numberOfSatellites = element.getAttribute('G');
     final gpsUtcTimeMs = element.getAttribute('H');
     final gpsUtcDate = element.getAttribute('I');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
     return Position(
       north: double.parse(north),
       east: double.parse(east),
@@ -149,6 +154,7 @@ class Position extends Iso11783Element
           : null,
       gpsUtcTimeMs: gpsUtcTimeMs != null ? int.parse(gpsUtcTimeMs) : null,
       gpsUtcDate: gpsUtcDate != null ? int.parse(gpsUtcDate) : null,
+      customAttributes: customAttributes,
     );
   }
 
@@ -191,6 +197,35 @@ class Position extends Iso11783Element
   /// UTC date in days relative to `1980-01-01`.
   @annotation.XmlAttribute(name: 'I')
   final int? gpsUtcDate;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$PositionBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$PositionToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

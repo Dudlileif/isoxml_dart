@@ -31,6 +31,7 @@ class Worker extends Iso11783Element
     String? mobile,
     String? licenseNumber,
     String? email,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (lastName.length > 32) {
@@ -110,6 +111,7 @@ class Worker extends Iso11783Element
       mobile: mobile,
       licenseNumber: licenseNumber,
       email: email,
+      customAttributes: customAttributes,
     );
   }
 
@@ -128,12 +130,44 @@ class Worker extends Iso11783Element
     this.phone,
     this.mobile,
     this.licenseNumber,
+    super.customAttributes,
     this.email,
   }) : super(elementType: Iso11783ElementType.worker, description: 'Worker');
 
   /// Creates a [Worker] from [element].
-  factory Worker.fromXmlElement(XmlElement element) =>
-      _$WorkerFromXmlElement(element);
+  factory Worker.fromXmlElement(XmlElement element) {
+    final id = element.getAttribute('A')!;
+    final lastName = element.getAttribute('B')!;
+    final firstName = element.getAttribute('C');
+    final street = element.getAttribute('D');
+    final poBox = element.getAttribute('E');
+    final postalCode = element.getAttribute('F');
+    final city = element.getAttribute('G');
+    final state = element.getAttribute('H');
+    final country = element.getAttribute('I');
+    final phone = element.getAttribute('J');
+    final mobile = element.getAttribute('K');
+    final licenseNumber = element.getAttribute('L');
+    final email = element.getAttribute('M');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return Worker(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      licenseNumber: licenseNumber,
+      email: email,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Regular expression matching pattern for the [id] of [Worker]s.
   static const staticIdRefPattern = '(WKR|WKR-)[1-9]([0-9])*';
@@ -195,6 +229,35 @@ class Worker extends Iso11783Element
   /// E-mail address
   @annotation.XmlAttribute(name: 'M')
   final String? email;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$WorkerBuildXmlChildren(this, builder, namespaces: namespaces);
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$WorkerToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

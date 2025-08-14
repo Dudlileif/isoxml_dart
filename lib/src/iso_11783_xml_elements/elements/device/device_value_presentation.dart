@@ -26,6 +26,7 @@ class DeviceValuePresentation extends Iso11783Element
     required double scale,
     required int numberOfDecimals,
     String? unitDesignator,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: objectId,
@@ -64,6 +65,7 @@ class DeviceValuePresentation extends Iso11783Element
       scale: scale,
       numberOfDecimals: numberOfDecimals,
       unitDesignator: unitDesignator,
+      customAttributes: customAttributes,
     );
   }
 
@@ -75,14 +77,30 @@ class DeviceValuePresentation extends Iso11783Element
     required this.scale,
     required this.numberOfDecimals,
     this.unitDesignator,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.deviceValuePresentation,
          description: 'DeviceValuePresentation',
        );
 
   /// Creates a [DeviceValuePresentation] from [element].
-  factory DeviceValuePresentation.fromXmlElement(XmlElement element) =>
-      _$DeviceValuePresentationFromXmlElement(element);
+  factory DeviceValuePresentation.fromXmlElement(XmlElement element) {
+    final objectId = element.getAttribute('A')!;
+    final offset = element.getAttribute('B')!;
+    final scale = element.getAttribute('C')!;
+    final numberOfDecimals = element.getAttribute('D')!;
+    final unitDesignator = element.getAttribute('E');
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return DeviceValuePresentation(
+      objectId: int.parse(objectId),
+      offset: int.parse(offset),
+      scale: double.parse(scale),
+      numberOfDecimals: int.parse(numberOfDecimals),
+      unitDesignator: unitDesignator,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Unique number inside a single [Device].
   @annotation.XmlAttribute(name: 'A')
@@ -103,6 +121,39 @@ class DeviceValuePresentation extends Iso11783Element
   /// Optional unit designator string.
   @annotation.XmlAttribute(name: 'E')
   final String? unitDesignator;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$DeviceValuePresentationBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$DeviceValuePresentationToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [

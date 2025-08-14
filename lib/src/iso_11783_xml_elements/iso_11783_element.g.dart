@@ -17,6 +17,8 @@ abstract class _$AllocationStampCWProxy {
 
   AllocationStamp duration(int? duration);
 
+  AllocationStamp customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AllocationStamp(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$AllocationStampCWProxy {
     List<Position>? position,
     DateTime? stop,
     int? duration,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -55,6 +58,10 @@ class _$AllocationStampCWProxyImpl implements _$AllocationStampCWProxy {
   AllocationStamp duration(int? duration) => this(duration: duration);
 
   @override
+  AllocationStamp customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AllocationStamp(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -67,6 +74,7 @@ class _$AllocationStampCWProxyImpl implements _$AllocationStampCWProxy {
     Object? position = const $CopyWithPlaceholder(),
     Object? stop = const $CopyWithPlaceholder(),
     Object? duration = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return AllocationStamp(
       start: start == const $CopyWithPlaceholder()
@@ -89,6 +97,10 @@ class _$AllocationStampCWProxyImpl implements _$AllocationStampCWProxy {
           ? _value.duration
           // ignore: cast_nullable_to_non_nullable
           : duration as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -110,6 +122,8 @@ abstract class _$BaseStationCWProxy {
 
   BaseStation up(int up);
 
+  BaseStation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseStation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -122,6 +136,7 @@ abstract class _$BaseStationCWProxy {
     double north,
     double east,
     int up,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -147,6 +162,10 @@ class _$BaseStationCWProxyImpl implements _$BaseStationCWProxy {
   BaseStation up(int up) => this(up: up);
 
   @override
+  BaseStation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BaseStation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -159,6 +178,7 @@ class _$BaseStationCWProxyImpl implements _$BaseStationCWProxy {
     Object? north = const $CopyWithPlaceholder(),
     Object? east = const $CopyWithPlaceholder(),
     Object? up = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return BaseStation(
       id: id == const $CopyWithPlaceholder()
@@ -181,6 +201,10 @@ class _$BaseStationCWProxyImpl implements _$BaseStationCWProxy {
           ? _value.up
           // ignore: cast_nullable_to_non_nullable
           : up as int,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -202,6 +226,8 @@ abstract class _$CodedCommentCWProxy {
 
   CodedComment groupIdRef(String? groupIdRef);
 
+  CodedComment customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedComment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -214,6 +240,7 @@ abstract class _$CodedCommentCWProxy {
     CodedCommmentScope scope,
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -240,6 +267,10 @@ class _$CodedCommentCWProxyImpl implements _$CodedCommentCWProxy {
   CodedComment groupIdRef(String? groupIdRef) => this(groupIdRef: groupIdRef);
 
   @override
+  CodedComment customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedComment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -252,6 +283,7 @@ class _$CodedCommentCWProxyImpl implements _$CodedCommentCWProxy {
     Object? scope = const $CopyWithPlaceholder(),
     Object? listValues = const $CopyWithPlaceholder(),
     Object? groupIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CodedComment(
       id: id == const $CopyWithPlaceholder()
@@ -274,6 +306,10 @@ class _$CodedCommentCWProxyImpl implements _$CodedCommentCWProxy {
           ? _value.groupIdRef
           // ignore: cast_nullable_to_non_nullable
           : groupIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -289,6 +325,8 @@ abstract class _$CodedCommentGroupCWProxy {
 
   CodedCommentGroup designator(String designator);
 
+  CodedCommentGroup customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -298,6 +336,7 @@ abstract class _$CodedCommentGroupCWProxy {
   CodedCommentGroup call({
     String id,
     String designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -315,6 +354,10 @@ class _$CodedCommentGroupCWProxyImpl implements _$CodedCommentGroupCWProxy {
       this(designator: designator);
 
   @override
+  CodedCommentGroup customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -324,6 +367,7 @@ class _$CodedCommentGroupCWProxyImpl implements _$CodedCommentGroupCWProxy {
   CodedCommentGroup call({
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CodedCommentGroup(
       id: id == const $CopyWithPlaceholder()
@@ -334,6 +378,10 @@ class _$CodedCommentGroupCWProxyImpl implements _$CodedCommentGroupCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -350,6 +398,8 @@ abstract class _$CodedCommentListValueCWProxy {
 
   CodedCommentListValue designator(String designator);
 
+  CodedCommentListValue customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentListValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -359,6 +409,7 @@ abstract class _$CodedCommentListValueCWProxy {
   CodedCommentListValue call({
     String id,
     String designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -377,6 +428,11 @@ class _$CodedCommentListValueCWProxyImpl
       this(designator: designator);
 
   @override
+  CodedCommentListValue customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CodedCommentListValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -386,6 +442,7 @@ class _$CodedCommentListValueCWProxyImpl
   CodedCommentListValue call({
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CodedCommentListValue(
       id: id == const $CopyWithPlaceholder()
@@ -396,6 +453,10 @@ class _$CodedCommentListValueCWProxyImpl
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -418,6 +479,8 @@ abstract class _$CommentAllocationCWProxy {
 
   CommentAllocation freeCommentText(String? freeCommentText);
 
+  CommentAllocation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CommentAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -429,6 +492,7 @@ abstract class _$CommentAllocationCWProxy {
     String? codedCommentIdRef,
     String? codedCommentListValueIdRef,
     String? freeCommentText,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -456,6 +520,10 @@ class _$CommentAllocationCWProxyImpl implements _$CommentAllocationCWProxy {
       this(freeCommentText: freeCommentText);
 
   @override
+  CommentAllocation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CommentAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -467,6 +535,7 @@ class _$CommentAllocationCWProxyImpl implements _$CommentAllocationCWProxy {
     Object? codedCommentIdRef = const $CopyWithPlaceholder(),
     Object? codedCommentListValueIdRef = const $CopyWithPlaceholder(),
     Object? freeCommentText = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CommentAllocation(
       allocationStamp: allocationStamp == const $CopyWithPlaceholder()
@@ -486,6 +555,10 @@ class _$CommentAllocationCWProxyImpl implements _$CommentAllocationCWProxy {
           ? _value.freeCommentText
           // ignore: cast_nullable_to_non_nullable
           : freeCommentText as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -504,6 +577,8 @@ abstract class _$ColourLegendCWProxy {
 
   ColourLegend defaultColour(int? defaultColour);
 
+  ColourLegend customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourLegend(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -514,6 +589,7 @@ abstract class _$ColourLegendCWProxy {
     List<ColourRange> ranges,
     String id,
     int? defaultColour,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -534,6 +610,10 @@ class _$ColourLegendCWProxyImpl implements _$ColourLegendCWProxy {
       this(defaultColour: defaultColour);
 
   @override
+  ColourLegend customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourLegend(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -544,6 +624,7 @@ class _$ColourLegendCWProxyImpl implements _$ColourLegendCWProxy {
     Object? ranges = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
     Object? defaultColour = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ColourLegend(
       ranges: ranges == const $CopyWithPlaceholder()
@@ -558,6 +639,10 @@ class _$ColourLegendCWProxyImpl implements _$ColourLegendCWProxy {
           ? _value.defaultColour
           // ignore: cast_nullable_to_non_nullable
           : defaultColour as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -575,6 +660,8 @@ abstract class _$ColourRangeCWProxy {
 
   ColourRange colour(int colour);
 
+  ColourRange customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourRange(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -585,6 +672,7 @@ abstract class _$ColourRangeCWProxy {
     int minimumValue,
     int maximumValue,
     int colour,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -606,6 +694,10 @@ class _$ColourRangeCWProxyImpl implements _$ColourRangeCWProxy {
   ColourRange colour(int colour) => this(colour: colour);
 
   @override
+  ColourRange customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ColourRange(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -616,6 +708,7 @@ class _$ColourRangeCWProxyImpl implements _$ColourRangeCWProxy {
     Object? minimumValue = const $CopyWithPlaceholder(),
     Object? maximumValue = const $CopyWithPlaceholder(),
     Object? colour = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ColourRange(
       minimumValue: minimumValue == const $CopyWithPlaceholder()
@@ -630,6 +723,10 @@ class _$ColourRangeCWProxyImpl implements _$ColourRangeCWProxy {
           ? _value.colour
           // ignore: cast_nullable_to_non_nullable
           : colour as int,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -649,6 +746,8 @@ abstract class _$CropTypeCWProxy {
 
   CropType productGroupIdRef(String? productGroupIdRef);
 
+  CropType customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropType(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -660,6 +759,7 @@ abstract class _$CropTypeCWProxy {
     String designator,
     List<CropVariety>? varieties,
     String? productGroupIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -684,6 +784,10 @@ class _$CropTypeCWProxyImpl implements _$CropTypeCWProxy {
       this(productGroupIdRef: productGroupIdRef);
 
   @override
+  CropType customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropType(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -695,6 +799,7 @@ class _$CropTypeCWProxyImpl implements _$CropTypeCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
     Object? varieties = const $CopyWithPlaceholder(),
     Object? productGroupIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CropType(
       id: id == const $CopyWithPlaceholder()
@@ -713,6 +818,10 @@ class _$CropTypeCWProxyImpl implements _$CropTypeCWProxy {
           ? _value.productGroupIdRef
           // ignore: cast_nullable_to_non_nullable
           : productGroupIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -730,6 +839,8 @@ abstract class _$CropVarietyCWProxy {
 
   CropVariety productIdRef(String? productIdRef);
 
+  CropVariety customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropVariety(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -740,6 +851,7 @@ abstract class _$CropVarietyCWProxy {
     String id,
     String designator,
     String? productIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -760,6 +872,10 @@ class _$CropVarietyCWProxyImpl implements _$CropVarietyCWProxy {
       this(productIdRef: productIdRef);
 
   @override
+  CropVariety customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CropVariety(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -770,6 +886,7 @@ class _$CropVarietyCWProxyImpl implements _$CropVarietyCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? productIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CropVariety(
       id: id == const $CopyWithPlaceholder()
@@ -784,6 +901,10 @@ class _$CropVarietyCWProxyImpl implements _$CropVarietyCWProxy {
           ? _value.productIdRef
           // ignore: cast_nullable_to_non_nullable
           : productIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -819,6 +940,8 @@ abstract class _$DataLogTriggerCWProxy {
 
   DataLogTrigger pgnStopBit(int? pgnStopBit);
 
+  DataLogTrigger customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogTrigger(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -838,6 +961,7 @@ abstract class _$DataLogTriggerCWProxy {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -892,6 +1016,10 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
   DataLogTrigger pgnStopBit(int? pgnStopBit) => this(pgnStopBit: pgnStopBit);
 
   @override
+  DataLogTrigger customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogTrigger(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -911,6 +1039,7 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
     Object? pgn = const $CopyWithPlaceholder(),
     Object? pgnStartBit = const $CopyWithPlaceholder(),
     Object? pgnStopBit = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DataLogTrigger(
       ddi: ddi == const $CopyWithPlaceholder()
@@ -962,6 +1091,10 @@ class _$DataLogTriggerCWProxyImpl implements _$DataLogTriggerCWProxy {
           ? _value.pgnStopBit
           // ignore: cast_nullable_to_non_nullable
           : pgnStopBit as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -985,6 +1118,8 @@ abstract class _$DataLogValueCWProxy {
 
   DataLogValue pgnStopBit(int? pgnStopBit);
 
+  DataLogValue customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -998,6 +1133,7 @@ abstract class _$DataLogValueCWProxy {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1029,6 +1165,10 @@ class _$DataLogValueCWProxyImpl implements _$DataLogValueCWProxy {
   DataLogValue pgnStopBit(int? pgnStopBit) => this(pgnStopBit: pgnStopBit);
 
   @override
+  DataLogValue customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DataLogValue(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1042,6 +1182,7 @@ class _$DataLogValueCWProxyImpl implements _$DataLogValueCWProxy {
     Object? pgn = const $CopyWithPlaceholder(),
     Object? pgnStartBit = const $CopyWithPlaceholder(),
     Object? pgnStopBit = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DataLogValue(
       processDataDDI: processDataDDI == const $CopyWithPlaceholder()
@@ -1068,6 +1209,10 @@ class _$DataLogValueCWProxyImpl implements _$DataLogValueCWProxy {
           ? _value.pgnStopBit
           // ignore: cast_nullable_to_non_nullable
           : pgnStopBit as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1087,6 +1232,8 @@ abstract class _$ConnectionCWProxy {
 
   Connection deviceElementIdRef_1(String deviceElementIdRef_1);
 
+  Connection customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Connection(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1098,6 +1245,7 @@ abstract class _$ConnectionCWProxy {
     String deviceElementIdRef_0,
     String deviceIdRef_1,
     String deviceElementIdRef_1,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1124,6 +1272,10 @@ class _$ConnectionCWProxyImpl implements _$ConnectionCWProxy {
       this(deviceElementIdRef_1: deviceElementIdRef_1);
 
   @override
+  Connection customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Connection(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1135,6 +1287,7 @@ class _$ConnectionCWProxyImpl implements _$ConnectionCWProxy {
     Object? deviceElementIdRef_0 = const $CopyWithPlaceholder(),
     Object? deviceIdRef_1 = const $CopyWithPlaceholder(),
     Object? deviceElementIdRef_1 = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Connection(
       deviceIdRef_0: deviceIdRef_0 == const $CopyWithPlaceholder()
@@ -1153,6 +1306,10 @@ class _$ConnectionCWProxyImpl implements _$ConnectionCWProxy {
           ? _value.deviceElementIdRef_1
           // ignore: cast_nullable_to_non_nullable
           : deviceElementIdRef_1 as String,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1182,6 +1339,8 @@ abstract class _$ControlAssignmentCWProxy {
 
   ControlAssignment allocationStamp(AllocationStamp? allocationStamp);
 
+  ControlAssignment customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ControlAssignment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1197,6 +1356,7 @@ abstract class _$ControlAssignmentCWProxy {
     int userDeviceElementNumber,
     String processDataDDI,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1240,6 +1400,10 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
+  ControlAssignment customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ControlAssignment(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1255,6 +1419,7 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
     Object? userDeviceElementNumber = const $CopyWithPlaceholder(),
     Object? processDataDDI = const $CopyWithPlaceholder(),
     Object? allocationStamp = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ControlAssignment(
       sourceClientNAME: sourceClientNAME == const $CopyWithPlaceholder()
@@ -1293,6 +1458,10 @@ class _$ControlAssignmentCWProxyImpl implements _$ControlAssignmentCWProxy {
           ? _value.allocationStamp
           // ignore: cast_nullable_to_non_nullable
           : allocationStamp as AllocationStamp?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1327,6 +1496,8 @@ abstract class _$DeviceCWProxy {
 
   Device serialNumber(String? serialNumber);
 
+  Device customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Device(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1345,6 +1516,7 @@ abstract class _$DeviceCWProxy {
     String? designator,
     String? softwareVersion,
     String? serialNumber,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1395,6 +1567,10 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
   Device serialNumber(String? serialNumber) => this(serialNumber: serialNumber);
 
   @override
+  Device customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Device(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1413,6 +1589,7 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
     Object? designator = const $CopyWithPlaceholder(),
     Object? softwareVersion = const $CopyWithPlaceholder(),
     Object? serialNumber = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Device(
       id: id == const $CopyWithPlaceholder()
@@ -1459,6 +1636,10 @@ class _$DeviceCWProxyImpl implements _$DeviceCWProxy {
           ? _value.serialNumber
           // ignore: cast_nullable_to_non_nullable
           : serialNumber as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1478,6 +1659,8 @@ abstract class _$DeviceAllocationCWProxy {
 
   DeviceAllocation allocationStamp(AllocationStamp? allocationStamp);
 
+  DeviceAllocation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1489,6 +1672,7 @@ abstract class _$DeviceAllocationCWProxy {
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1515,6 +1699,10 @@ class _$DeviceAllocationCWProxyImpl implements _$DeviceAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
+  DeviceAllocation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1526,6 +1714,7 @@ class _$DeviceAllocationCWProxyImpl implements _$DeviceAllocationCWProxy {
     Object? clientNAMEMask = const $CopyWithPlaceholder(),
     Object? deviceIdRef = const $CopyWithPlaceholder(),
     Object? allocationStamp = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceAllocation(
       clientNAMEValue: clientNAMEValue == const $CopyWithPlaceholder()
@@ -1544,6 +1733,10 @@ class _$DeviceAllocationCWProxyImpl implements _$DeviceAllocationCWProxy {
           ? _value.allocationStamp
           // ignore: cast_nullable_to_non_nullable
           : allocationStamp as AllocationStamp?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1569,6 +1762,8 @@ abstract class _$DeviceElementCWProxy {
 
   DeviceElement designator(String? designator);
 
+  DeviceElement customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceElement(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1583,6 +1778,7 @@ abstract class _$DeviceElementCWProxy {
     int parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1617,6 +1813,10 @@ class _$DeviceElementCWProxyImpl implements _$DeviceElementCWProxy {
   DeviceElement designator(String? designator) => this(designator: designator);
 
   @override
+  DeviceElement customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceElement(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1631,6 +1831,7 @@ class _$DeviceElementCWProxyImpl implements _$DeviceElementCWProxy {
     Object? parentObjectId = const $CopyWithPlaceholder(),
     Object? objectReferences = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceElement(
       id: id == const $CopyWithPlaceholder()
@@ -1661,6 +1862,10 @@ class _$DeviceElementCWProxyImpl implements _$DeviceElementCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1674,6 +1879,8 @@ extension $DeviceElementCopyWith on DeviceElement {
 abstract class _$DeviceObjectReferenceCWProxy {
   DeviceObjectReference objectId(int objectId);
 
+  DeviceObjectReference customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceObjectReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1682,6 +1889,7 @@ abstract class _$DeviceObjectReferenceCWProxy {
   /// ````
   DeviceObjectReference call({
     int objectId,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1696,6 +1904,11 @@ class _$DeviceObjectReferenceCWProxyImpl
   DeviceObjectReference objectId(int objectId) => this(objectId: objectId);
 
   @override
+  DeviceObjectReference customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceObjectReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1704,12 +1917,17 @@ class _$DeviceObjectReferenceCWProxyImpl
   /// ````
   DeviceObjectReference call({
     Object? objectId = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceObjectReference(
       objectId: objectId == const $CopyWithPlaceholder()
           ? _value.objectId
           // ignore: cast_nullable_to_non_nullable
           : objectId as int,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1734,6 +1952,8 @@ abstract class _$DeviceProcessDataCWProxy {
 
   DeviceProcessData presentationObjectId(int? presentationObjectId);
 
+  DeviceProcessData customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProcessData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1747,6 +1967,7 @@ abstract class _$DeviceProcessDataCWProxy {
     int triggerMethods,
     String? designator,
     int? presentationObjectId,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1778,6 +1999,10 @@ class _$DeviceProcessDataCWProxyImpl implements _$DeviceProcessDataCWProxy {
       this(presentationObjectId: presentationObjectId);
 
   @override
+  DeviceProcessData customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProcessData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1791,6 +2016,7 @@ class _$DeviceProcessDataCWProxyImpl implements _$DeviceProcessDataCWProxy {
     Object? triggerMethods = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? presentationObjectId = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceProcessData(
       objectId: objectId == const $CopyWithPlaceholder()
@@ -1817,6 +2043,10 @@ class _$DeviceProcessDataCWProxyImpl implements _$DeviceProcessDataCWProxy {
           ? _value.presentationObjectId
           // ignore: cast_nullable_to_non_nullable
           : presentationObjectId as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1839,6 +2069,8 @@ abstract class _$DevicePropertyCWProxy {
 
   DeviceProperty valuePresentationObjectId(int? valuePresentationObjectId);
 
+  DeviceProperty customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProperty(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1851,6 +2083,7 @@ abstract class _$DevicePropertyCWProxy {
     int value,
     String? designator,
     int? valuePresentationObjectId,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1877,6 +2110,10 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
       this(valuePresentationObjectId: valuePresentationObjectId);
 
   @override
+  DeviceProperty customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceProperty(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1889,6 +2126,7 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
     Object? value = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? valuePresentationObjectId = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceProperty(
       objectId: objectId == const $CopyWithPlaceholder()
@@ -1912,6 +2150,10 @@ class _$DevicePropertyCWProxyImpl implements _$DevicePropertyCWProxy {
           ? _value.valuePresentationObjectId
           // ignore: cast_nullable_to_non_nullable
           : valuePresentationObjectId as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -1933,6 +2175,10 @@ abstract class _$DeviceValuePresentationCWProxy {
 
   DeviceValuePresentation unitDesignator(String? unitDesignator);
 
+  DeviceValuePresentation customAttributes(
+    List<XmlAttribute>? customAttributes,
+  );
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1945,6 +2191,7 @@ abstract class _$DeviceValuePresentationCWProxy {
     double scale,
     int numberOfDecimals,
     String? unitDesignator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -1973,6 +2220,11 @@ class _$DeviceValuePresentationCWProxyImpl
       this(unitDesignator: unitDesignator);
 
   @override
+  DeviceValuePresentation customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `DeviceValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -1985,6 +2237,7 @@ class _$DeviceValuePresentationCWProxyImpl
     Object? scale = const $CopyWithPlaceholder(),
     Object? numberOfDecimals = const $CopyWithPlaceholder(),
     Object? unitDesignator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return DeviceValuePresentation(
       objectId: objectId == const $CopyWithPlaceholder()
@@ -2007,6 +2260,10 @@ class _$DeviceValuePresentationCWProxyImpl
           ? _value.unitDesignator
           // ignore: cast_nullable_to_non_nullable
           : unitDesignator as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2031,6 +2288,8 @@ abstract class _$AttachedFileCWProxy {
 
   AttachedFile fileLength(int? fileLength);
 
+  AttachedFile customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AttachedFile(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2044,6 +2303,7 @@ abstract class _$AttachedFileCWProxy {
     int fileType,
     String? fileVersion,
     int? fileLength,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2075,6 +2335,10 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
   AttachedFile fileLength(int? fileLength) => this(fileLength: fileLength);
 
   @override
+  AttachedFile customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AttachedFile(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2088,6 +2352,7 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
     Object? fileType = const $CopyWithPlaceholder(),
     Object? fileVersion = const $CopyWithPlaceholder(),
     Object? fileLength = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return AttachedFile(
       filenameWithExtension:
@@ -2115,6 +2380,10 @@ class _$AttachedFileCWProxyImpl implements _$AttachedFileCWProxy {
           ? _value.fileLength
           // ignore: cast_nullable_to_non_nullable
           : fileLength as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2168,6 +2437,8 @@ abstract class _$ExternalFileContentsCWProxy {
 
   ExternalFileContents workers(List<Worker>? workers);
 
+  ExternalFileContents customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileContents(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2192,6 +2463,7 @@ abstract class _$ExternalFileContentsCWProxy {
     List<Task>? tasks,
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2271,6 +2543,10 @@ class _$ExternalFileContentsCWProxyImpl
   ExternalFileContents workers(List<Worker>? workers) => this(workers: workers);
 
   @override
+  ExternalFileContents customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileContents(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2295,6 +2571,7 @@ class _$ExternalFileContentsCWProxyImpl
     Object? tasks = const $CopyWithPlaceholder(),
     Object? valuePresentations = const $CopyWithPlaceholder(),
     Object? workers = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ExternalFileContents(
       attachedFiles: attachedFiles == const $CopyWithPlaceholder()
@@ -2365,6 +2642,10 @@ class _$ExternalFileContentsCWProxyImpl
           ? _value.workers
           // ignore: cast_nullable_to_non_nullable
           : workers as List<Worker>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2381,6 +2662,8 @@ abstract class _$ExternalFileReferenceCWProxy {
 
   ExternalFileReference filetype(FileType? filetype);
 
+  ExternalFileReference customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2390,6 +2673,7 @@ abstract class _$ExternalFileReferenceCWProxy {
   ExternalFileReference call({
     String filename,
     FileType? filetype,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2408,6 +2692,11 @@ class _$ExternalFileReferenceCWProxyImpl
       this(filetype: filetype);
 
   @override
+  ExternalFileReference customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ExternalFileReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2417,6 +2706,7 @@ class _$ExternalFileReferenceCWProxyImpl
   ExternalFileReference call({
     Object? filename = const $CopyWithPlaceholder(),
     Object? filetype = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ExternalFileReference(
       filename: filename == const $CopyWithPlaceholder()
@@ -2427,6 +2717,10 @@ class _$ExternalFileReferenceCWProxyImpl
           ? _value.filetype
           // ignore: cast_nullable_to_non_nullable
           : filetype as FileType?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2467,6 +2761,8 @@ abstract class _$GridCWProxy {
 
   Grid processDataValueGrid(List<List<List<int>>>? processDataValueGrid);
 
+  Grid customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Grid(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2488,6 +2784,7 @@ abstract class _$GridCWProxy {
     List<List<int>>? treatmentZoneCodeGrid,
     int? numberOfProcessDataVariables,
     List<List<List<int>>>? processDataValueGrid,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2547,6 +2844,10 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
       this(processDataValueGrid: processDataValueGrid);
 
   @override
+  Grid customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Grid(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2568,6 +2869,7 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
     Object? treatmentZoneCodeGrid = const $CopyWithPlaceholder(),
     Object? numberOfProcessDataVariables = const $CopyWithPlaceholder(),
     Object? processDataValueGrid = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Grid(
       minimumNorthPosition: minimumNorthPosition == const $CopyWithPlaceholder()
@@ -2628,6 +2930,10 @@ class _$GridCWProxyImpl implements _$GridCWProxy {
           ? _value.processDataValueGrid
           // ignore: cast_nullable_to_non_nullable
           : processDataValueGrid as List<List<List<int>>>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2653,6 +2959,8 @@ abstract class _$LineStringCWProxy {
 
   LineString id(String? id);
 
+  LineString customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LineString(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2667,6 +2975,7 @@ abstract class _$LineStringCWProxy {
     int? length,
     int? colour,
     String? id,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2698,6 +3007,10 @@ class _$LineStringCWProxyImpl implements _$LineStringCWProxy {
   LineString id(String? id) => this(id: id);
 
   @override
+  LineString customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LineString(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2712,6 +3025,7 @@ class _$LineStringCWProxyImpl implements _$LineStringCWProxy {
     Object? length = const $CopyWithPlaceholder(),
     Object? colour = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return LineString(
       points: points == const $CopyWithPlaceholder()
@@ -2742,6 +3056,10 @@ class _$LineStringCWProxyImpl implements _$LineStringCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2779,6 +3097,8 @@ abstract class _$PartfieldCWProxy {
 
   Partfield fieldIdRef(String? fieldIdRef);
 
+  Partfield customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Partfield(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2799,6 +3119,7 @@ abstract class _$PartfieldCWProxy {
     String? cropTypeIdRef,
     String? cropVarietyIdRef,
     String? fieldIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -2853,6 +3174,10 @@ class _$PartfieldCWProxyImpl implements _$PartfieldCWProxy {
   Partfield fieldIdRef(String? fieldIdRef) => this(fieldIdRef: fieldIdRef);
 
   @override
+  Partfield customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Partfield(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2873,6 +3198,7 @@ class _$PartfieldCWProxyImpl implements _$PartfieldCWProxy {
     Object? cropTypeIdRef = const $CopyWithPlaceholder(),
     Object? cropVarietyIdRef = const $CopyWithPlaceholder(),
     Object? fieldIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Partfield(
       id: id == const $CopyWithPlaceholder()
@@ -2927,6 +3253,10 @@ class _$PartfieldCWProxyImpl implements _$PartfieldCWProxy {
           ? _value.fieldIdRef
           // ignore: cast_nullable_to_non_nullable
           : fieldIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -2966,6 +3296,8 @@ abstract class _$PointCWProxy {
 
   Point binaryPoints(List<Point>? binaryPoints);
 
+  Point customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Point(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -2987,6 +3319,7 @@ abstract class _$PointCWProxy {
     PointBinaryHeaderOptions? binaryHeaderOptions,
     Uint8List? byteData,
     List<Point>? binaryPoints,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3043,6 +3376,10 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
       this(binaryPoints: binaryPoints);
 
   @override
+  Point customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Point(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3064,6 +3401,7 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
     Object? binaryHeaderOptions = const $CopyWithPlaceholder(),
     Object? byteData = const $CopyWithPlaceholder(),
     Object? binaryPoints = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Point(
       type: type == const $CopyWithPlaceholder()
@@ -3122,6 +3460,10 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
           ? _value.binaryPoints
           // ignore: cast_nullable_to_non_nullable
           : binaryPoints as List<Point>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3145,6 +3487,8 @@ abstract class _$PolygonCWProxy {
 
   Polygon id(String? id);
 
+  Polygon customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Polygon(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3158,6 +3502,7 @@ abstract class _$PolygonCWProxy {
     int? area,
     int? colour,
     String? id,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3187,6 +3532,10 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
   Polygon id(String? id) => this(id: id);
 
   @override
+  Polygon customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Polygon(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3200,6 +3549,7 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
     Object? area = const $CopyWithPlaceholder(),
     Object? colour = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Polygon(
       type: type == const $CopyWithPlaceholder()
@@ -3226,6 +3576,10 @@ class _$PolygonCWProxyImpl implements _$PolygonCWProxy {
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3255,6 +3609,8 @@ abstract class _$PositionCWProxy {
 
   Position gpsUtcDate(int? gpsUtcDate);
 
+  Position customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Position(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3271,6 +3627,7 @@ abstract class _$PositionCWProxy {
     int? numberOfSatellites,
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3309,6 +3666,10 @@ class _$PositionCWProxyImpl implements _$PositionCWProxy {
   Position gpsUtcDate(int? gpsUtcDate) => this(gpsUtcDate: gpsUtcDate);
 
   @override
+  Position customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Position(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3325,6 +3686,7 @@ class _$PositionCWProxyImpl implements _$PositionCWProxy {
     Object? numberOfSatellites = const $CopyWithPlaceholder(),
     Object? gpsUtcTimeMs = const $CopyWithPlaceholder(),
     Object? gpsUtcDate = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Position(
       north: north == const $CopyWithPlaceholder()
@@ -3363,6 +3725,10 @@ class _$PositionCWProxyImpl implements _$PositionCWProxy {
           ? _value.gpsUtcDate
           // ignore: cast_nullable_to_non_nullable
           : gpsUtcDate as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3380,6 +3746,8 @@ abstract class _$GuidanceAllocationCWProxy {
 
   GuidanceAllocation shifts(List<GuidanceShift>? shifts);
 
+  GuidanceAllocation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3390,6 +3758,7 @@ abstract class _$GuidanceAllocationCWProxy {
     List<AllocationStamp> allocationStamps,
     String groupIdRef,
     List<GuidanceShift>? shifts,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3412,6 +3781,10 @@ class _$GuidanceAllocationCWProxyImpl implements _$GuidanceAllocationCWProxy {
       this(shifts: shifts);
 
   @override
+  GuidanceAllocation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3422,6 +3795,7 @@ class _$GuidanceAllocationCWProxyImpl implements _$GuidanceAllocationCWProxy {
     Object? allocationStamps = const $CopyWithPlaceholder(),
     Object? groupIdRef = const $CopyWithPlaceholder(),
     Object? shifts = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return GuidanceAllocation(
       allocationStamps: allocationStamps == const $CopyWithPlaceholder()
@@ -3436,6 +3810,10 @@ class _$GuidanceAllocationCWProxyImpl implements _$GuidanceAllocationCWProxy {
           ? _value.shifts
           // ignore: cast_nullable_to_non_nullable
           : shifts as List<GuidanceShift>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3456,6 +3834,8 @@ abstract class _$GuidanceGroupCWProxy {
 
   GuidanceGroup designator(String? designator);
 
+  GuidanceGroup customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3467,6 +3847,7 @@ abstract class _$GuidanceGroupCWProxy {
     List<GuidancePattern>? patterns,
     Polygon? boundaryPolygon,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3491,6 +3872,10 @@ class _$GuidanceGroupCWProxyImpl implements _$GuidanceGroupCWProxy {
   GuidanceGroup designator(String? designator) => this(designator: designator);
 
   @override
+  GuidanceGroup customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3502,6 +3887,7 @@ class _$GuidanceGroupCWProxyImpl implements _$GuidanceGroupCWProxy {
     Object? patterns = const $CopyWithPlaceholder(),
     Object? boundaryPolygon = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return GuidanceGroup(
       id: id == const $CopyWithPlaceholder()
@@ -3520,6 +3906,10 @@ class _$GuidanceGroupCWProxyImpl implements _$GuidanceGroupCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3567,6 +3957,8 @@ abstract class _$GuidancePatternCWProxy {
 
   GuidancePattern numberOfSwathsRight(int? numberOfSwathsRight);
 
+  GuidancePattern customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidancePattern(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3591,6 +3983,7 @@ abstract class _$GuidancePatternCWProxy {
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3666,6 +4059,10 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
       this(numberOfSwathsRight: numberOfSwathsRight);
 
   @override
+  GuidancePattern customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidancePattern(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3690,6 +4087,7 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
     Object? originalSRID = const $CopyWithPlaceholder(),
     Object? numberOfSwathsLeft = const $CopyWithPlaceholder(),
     Object? numberOfSwathsRight = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return GuidancePattern(
       lineStrings: lineStrings == const $CopyWithPlaceholder()
@@ -3760,6 +4158,10 @@ class _$GuidancePatternCWProxyImpl implements _$GuidancePatternCWProxy {
           ? _value.numberOfSwathsRight
           // ignore: cast_nullable_to_non_nullable
           : numberOfSwathsRight as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3783,6 +4185,8 @@ abstract class _$GuidanceShiftCWProxy {
 
   GuidanceShift propagationOffset(int? propagationOffset);
 
+  GuidanceShift customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceShift(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3796,6 +4200,7 @@ abstract class _$GuidanceShiftCWProxy {
     int? eastShift,
     int? northShift,
     int? propagationOffset,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3827,6 +4232,10 @@ class _$GuidanceShiftCWProxyImpl implements _$GuidanceShiftCWProxy {
       this(propagationOffset: propagationOffset);
 
   @override
+  GuidanceShift customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GuidanceShift(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3840,6 +4249,7 @@ class _$GuidanceShiftCWProxyImpl implements _$GuidanceShiftCWProxy {
     Object? eastShift = const $CopyWithPlaceholder(),
     Object? northShift = const $CopyWithPlaceholder(),
     Object? propagationOffset = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return GuidanceShift(
       allocationStamp: allocationStamp == const $CopyWithPlaceholder()
@@ -3866,6 +4276,10 @@ class _$GuidanceShiftCWProxyImpl implements _$GuidanceShiftCWProxy {
           ? _value.propagationOffset
           // ignore: cast_nullable_to_non_nullable
           : propagationOffset as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -3899,6 +4313,8 @@ abstract class _$Iso11783LinkListCWProxy {
 
   Iso11783LinkList fileVersion(String? fileVersion);
 
+  Iso11783LinkList customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783LinkList(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3915,6 +4331,7 @@ abstract class _$Iso11783LinkListCWProxy {
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? fileVersion,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -3964,6 +4381,10 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
       this(fileVersion: fileVersion);
 
   @override
+  Iso11783LinkList customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783LinkList(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -3980,6 +4401,7 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
     Object? taskControllerManufacturer = const $CopyWithPlaceholder(),
     Object? taskControllerVersion = const $CopyWithPlaceholder(),
     Object? fileVersion = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Iso11783LinkList(
       versionMajor: versionMajor == const $CopyWithPlaceholder()
@@ -4022,6 +4444,10 @@ class _$Iso11783LinkListCWProxyImpl implements _$Iso11783LinkListCWProxy {
           ? _value.fileVersion
           // ignore: cast_nullable_to_non_nullable
           : fileVersion as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4039,6 +4465,8 @@ abstract class _$LinkCWProxy {
 
   Link designator(String? designator);
 
+  Link customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Link(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4049,6 +4477,7 @@ abstract class _$LinkCWProxy {
     String objectIdRef,
     String value,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4068,6 +4497,10 @@ class _$LinkCWProxyImpl implements _$LinkCWProxy {
   Link designator(String? designator) => this(designator: designator);
 
   @override
+  Link customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Link(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4078,6 +4511,7 @@ class _$LinkCWProxyImpl implements _$LinkCWProxy {
     Object? objectIdRef = const $CopyWithPlaceholder(),
     Object? value = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Link(
       objectIdRef: objectIdRef == const $CopyWithPlaceholder()
@@ -4092,6 +4526,10 @@ class _$LinkCWProxyImpl implements _$LinkCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4115,6 +4553,8 @@ abstract class _$LinkGroupCWProxy {
 
   LinkGroup designator(String? designator);
 
+  LinkGroup customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LinkGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4128,6 +4568,7 @@ abstract class _$LinkGroupCWProxy {
     String? manufacturerGLN,
     String? namespace,
     String? designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4157,6 +4598,10 @@ class _$LinkGroupCWProxyImpl implements _$LinkGroupCWProxy {
   LinkGroup designator(String? designator) => this(designator: designator);
 
   @override
+  LinkGroup customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LinkGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4170,6 +4615,7 @@ class _$LinkGroupCWProxyImpl implements _$LinkGroupCWProxy {
     Object? manufacturerGLN = const $CopyWithPlaceholder(),
     Object? namespace = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return LinkGroup(
       id: id == const $CopyWithPlaceholder()
@@ -4196,6 +4642,10 @@ class _$LinkGroupCWProxyImpl implements _$LinkGroupCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4211,6 +4661,8 @@ abstract class _$OperationTechniqueCWProxy {
 
   OperationTechnique designator(String designator);
 
+  OperationTechnique customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechnique(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4220,6 +4672,7 @@ abstract class _$OperationTechniqueCWProxy {
   OperationTechnique call({
     String id,
     String designator,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4237,6 +4690,10 @@ class _$OperationTechniqueCWProxyImpl implements _$OperationTechniqueCWProxy {
       this(designator: designator);
 
   @override
+  OperationTechnique customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechnique(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4246,6 +4703,7 @@ class _$OperationTechniqueCWProxyImpl implements _$OperationTechniqueCWProxy {
   OperationTechnique call({
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return OperationTechnique(
       id: id == const $CopyWithPlaceholder()
@@ -4256,6 +4714,10 @@ class _$OperationTechniqueCWProxyImpl implements _$OperationTechniqueCWProxy {
           ? _value.designator
           // ignore: cast_nullable_to_non_nullable
           : designator as String,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4276,6 +4738,10 @@ abstract class _$OperationTechniquePracticeCWProxy {
     String? operationTechniqueIdRef,
   );
 
+  OperationTechniquePractice customAttributes(
+    List<XmlAttribute>? customAttributes,
+  );
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniquePractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4285,6 +4751,7 @@ abstract class _$OperationTechniquePracticeCWProxy {
   OperationTechniquePractice call({
     String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4306,6 +4773,11 @@ class _$OperationTechniquePracticeCWProxyImpl
   ) => this(operationTechniqueIdRef: operationTechniqueIdRef);
 
   @override
+  OperationTechniquePractice customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniquePractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4315,6 +4787,7 @@ class _$OperationTechniquePracticeCWProxyImpl
   OperationTechniquePractice call({
     Object? culturalPracticeIdRef = const $CopyWithPlaceholder(),
     Object? operationTechniqueIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return OperationTechniquePractice(
       culturalPracticeIdRef:
@@ -4327,6 +4800,10 @@ class _$OperationTechniquePracticeCWProxyImpl
           ? _value.operationTechniqueIdRef
           // ignore: cast_nullable_to_non_nullable
           : operationTechniqueIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4343,6 +4820,10 @@ abstract class _$OperationTechniqueReferenceCWProxy {
     String operationTechniqueIdRef,
   );
 
+  OperationTechniqueReference customAttributes(
+    List<XmlAttribute>? customAttributes,
+  );
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniqueReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4351,6 +4832,7 @@ abstract class _$OperationTechniqueReferenceCWProxy {
   /// ````
   OperationTechniqueReference call({
     String operationTechniqueIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4367,6 +4849,11 @@ class _$OperationTechniqueReferenceCWProxyImpl
   ) => this(operationTechniqueIdRef: operationTechniqueIdRef);
 
   @override
+  OperationTechniqueReference customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OperationTechniqueReference(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4375,6 +4862,7 @@ class _$OperationTechniqueReferenceCWProxyImpl
   /// ````
   OperationTechniqueReference call({
     Object? operationTechniqueIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return OperationTechniqueReference(
       operationTechniqueIdRef:
@@ -4382,6 +4870,10 @@ class _$OperationTechniqueReferenceCWProxyImpl
           ? _value.operationTechniqueIdRef
           // ignore: cast_nullable_to_non_nullable
           : operationTechniqueIdRef as String,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4416,6 +4908,8 @@ abstract class _$ProductCWProxy {
 
   Product densityVolumePerCount(int? densityVolumePerCount);
 
+  Product customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Product(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4434,6 +4928,7 @@ abstract class _$ProductCWProxy {
     int? densityMassPerVolume,
     int? densityMassPerCount,
     int? densityVolumePerCount,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4483,6 +4978,10 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       this(densityVolumePerCount: densityVolumePerCount);
 
   @override
+  Product customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Product(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4501,6 +5000,7 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
     Object? densityMassPerVolume = const $CopyWithPlaceholder(),
     Object? densityMassPerCount = const $CopyWithPlaceholder(),
     Object? densityVolumePerCount = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Product(
       id: id == const $CopyWithPlaceholder()
@@ -4550,6 +5050,10 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           ? _value.densityVolumePerCount
           // ignore: cast_nullable_to_non_nullable
           : densityVolumePerCount as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4577,6 +5081,8 @@ abstract class _$ProductAllocationCWProxy {
 
   ProductAllocation allocationStamp(AllocationStamp? allocationStamp);
 
+  ProductAllocation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4592,6 +5098,7 @@ abstract class _$ProductAllocationCWProxy {
     String? valuePresentationIdRef,
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4634,6 +5141,10 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
+  ProductAllocation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4649,6 +5160,7 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
     Object? valuePresentationIdRef = const $CopyWithPlaceholder(),
     Object? productSubTypeIdRef = const $CopyWithPlaceholder(),
     Object? allocationStamp = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ProductAllocation(
       productIdRef: productIdRef == const $CopyWithPlaceholder()
@@ -4684,6 +5196,10 @@ class _$ProductAllocationCWProxyImpl implements _$ProductAllocationCWProxy {
           ? _value.allocationStamp
           // ignore: cast_nullable_to_non_nullable
           : allocationStamp as AllocationStamp?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4702,6 +5218,8 @@ abstract class _$ProductGroupCWProxy {
 
   ProductGroup type(ProductGroupType? type);
 
+  ProductGroup customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4712,6 +5230,7 @@ abstract class _$ProductGroupCWProxy {
     String id,
     String designator,
     ProductGroupType? type,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4731,6 +5250,10 @@ class _$ProductGroupCWProxyImpl implements _$ProductGroupCWProxy {
   ProductGroup type(ProductGroupType? type) => this(type: type);
 
   @override
+  ProductGroup customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductGroup(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4741,6 +5264,7 @@ class _$ProductGroupCWProxyImpl implements _$ProductGroupCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ProductGroup(
       id: id == const $CopyWithPlaceholder()
@@ -4755,6 +5279,10 @@ class _$ProductGroupCWProxyImpl implements _$ProductGroupCWProxy {
           ? _value.type
           // ignore: cast_nullable_to_non_nullable
           : type as ProductGroupType?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4770,6 +5298,8 @@ abstract class _$ProductRelationCWProxy {
 
   ProductRelation quantityValue(int quantityValue);
 
+  ProductRelation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductRelation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4779,6 +5309,7 @@ abstract class _$ProductRelationCWProxy {
   ProductRelation call({
     String productIdRef,
     int quantityValue,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4797,6 +5328,10 @@ class _$ProductRelationCWProxyImpl implements _$ProductRelationCWProxy {
       this(quantityValue: quantityValue);
 
   @override
+  ProductRelation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductRelation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4806,6 +5341,7 @@ class _$ProductRelationCWProxyImpl implements _$ProductRelationCWProxy {
   ProductRelation call({
     Object? productIdRef = const $CopyWithPlaceholder(),
     Object? quantityValue = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ProductRelation(
       productIdRef: productIdRef == const $CopyWithPlaceholder()
@@ -4816,6 +5352,10 @@ class _$ProductRelationCWProxyImpl implements _$ProductRelationCWProxy {
           ? _value.quantityValue
           // ignore: cast_nullable_to_non_nullable
           : quantityValue as int,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -4853,6 +5393,8 @@ abstract class _$CustomerCWProxy {
 
   Customer email(String? email);
 
+  Customer customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Customer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4873,6 +5415,7 @@ abstract class _$CustomerCWProxy {
     String? mobile,
     String? fax,
     String? email,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -4922,6 +5465,10 @@ class _$CustomerCWProxyImpl implements _$CustomerCWProxy {
   Customer email(String? email) => this(email: email);
 
   @override
+  Customer customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Customer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -4942,6 +5489,7 @@ class _$CustomerCWProxyImpl implements _$CustomerCWProxy {
     Object? mobile = const $CopyWithPlaceholder(),
     Object? fax = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Customer(
       id: id == const $CopyWithPlaceholder()
@@ -4996,6 +5544,10 @@ class _$CustomerCWProxyImpl implements _$CustomerCWProxy {
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
           : email as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5025,6 +5577,8 @@ abstract class _$FarmCWProxy {
 
   Farm customerIdRef(String? customerIdRef);
 
+  Farm customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Farm(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5041,6 +5595,7 @@ abstract class _$FarmCWProxy {
     String? state,
     String? country,
     String? customerIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -5079,6 +5634,10 @@ class _$FarmCWProxyImpl implements _$FarmCWProxy {
       this(customerIdRef: customerIdRef);
 
   @override
+  Farm customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Farm(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5095,6 +5654,7 @@ class _$FarmCWProxyImpl implements _$FarmCWProxy {
     Object? state = const $CopyWithPlaceholder(),
     Object? country = const $CopyWithPlaceholder(),
     Object? customerIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Farm(
       id: id == const $CopyWithPlaceholder()
@@ -5133,6 +5693,10 @@ class _$FarmCWProxyImpl implements _$FarmCWProxy {
           ? _value.customerIdRef
           // ignore: cast_nullable_to_non_nullable
           : customerIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5170,6 +5734,8 @@ abstract class _$WorkerCWProxy {
 
   Worker email(String? email);
 
+  Worker customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Worker(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5190,6 +5756,7 @@ abstract class _$WorkerCWProxy {
     String? mobile,
     String? licenseNumber,
     String? email,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -5240,6 +5807,10 @@ class _$WorkerCWProxyImpl implements _$WorkerCWProxy {
   Worker email(String? email) => this(email: email);
 
   @override
+  Worker customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Worker(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5260,6 +5831,7 @@ class _$WorkerCWProxyImpl implements _$WorkerCWProxy {
     Object? mobile = const $CopyWithPlaceholder(),
     Object? licenseNumber = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Worker(
       id: id == const $CopyWithPlaceholder()
@@ -5314,6 +5886,10 @@ class _$WorkerCWProxyImpl implements _$WorkerCWProxy {
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
           : email as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5333,6 +5909,8 @@ abstract class _$CulturalPracticeCWProxy {
     List<OperationTechniqueReference>? operationTechniqueReferences,
   );
 
+  CulturalPractice customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CulturalPractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5343,6 +5921,7 @@ abstract class _$CulturalPracticeCWProxy {
     String id,
     String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -5365,6 +5944,10 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
   ) => this(operationTechniqueReferences: operationTechniqueReferences);
 
   @override
+  CulturalPractice customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CulturalPractice(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5375,6 +5958,7 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? operationTechniqueReferences = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return CulturalPractice(
       id: id == const $CopyWithPlaceholder()
@@ -5390,6 +5974,10 @@ class _$CulturalPracticeCWProxyImpl implements _$CulturalPracticeCWProxy {
           ? _value.operationTechniqueReferences
           // ignore: cast_nullable_to_non_nullable
           : operationTechniqueReferences as List<OperationTechniqueReference>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5449,6 +6037,8 @@ abstract class _$TaskCWProxy {
 
   Task outOfFieldTreatmentZoneCode(int? outOfFieldTreatmentZoneCode);
 
+  Task customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Task(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5479,6 +6069,7 @@ abstract class _$TaskCWProxy {
     int? defaultTreatmentZoneCode,
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -5575,6 +6166,10 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
       this(outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode);
 
   @override
+  Task customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Task(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5605,6 +6200,7 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
     Object? defaultTreatmentZoneCode = const $CopyWithPlaceholder(),
     Object? positionLostTreatmentZoneCode = const $CopyWithPlaceholder(),
     Object? outOfFieldTreatmentZoneCode = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Task(
       id: id == const $CopyWithPlaceholder()
@@ -5704,6 +6300,10 @@ class _$TaskCWProxyImpl implements _$TaskCWProxy {
           ? _value.outOfFieldTreatmentZoneCode
           // ignore: cast_nullable_to_non_nullable
           : outOfFieldTreatmentZoneCode as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5735,6 +6335,10 @@ abstract class _$TaskControllerCapabilitiesCWProxy {
     int numberOfControlChannels,
   );
 
+  TaskControllerCapabilities customAttributes(
+    List<XmlAttribute>? customAttributes,
+  );
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TaskControllerCapabilities(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5749,6 +6353,7 @@ abstract class _$TaskControllerCapabilitiesCWProxy {
     int numberOfBoomsSectionControl,
     int numberOfSectionsSectionControl,
     int numberOfControlChannels,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -5791,6 +6396,11 @@ class _$TaskControllerCapabilitiesCWProxyImpl
   ) => this(numberOfControlChannels: numberOfControlChannels);
 
   @override
+  TaskControllerCapabilities customAttributes(
+    List<XmlAttribute>? customAttributes,
+  ) => this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TaskControllerCapabilities(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5805,6 +6415,7 @@ class _$TaskControllerCapabilitiesCWProxyImpl
     Object? numberOfBoomsSectionControl = const $CopyWithPlaceholder(),
     Object? numberOfSectionsSectionControl = const $CopyWithPlaceholder(),
     Object? numberOfControlChannels = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return TaskControllerCapabilities(
       functionNAME: functionNAME == const $CopyWithPlaceholder()
@@ -5838,6 +6449,10 @@ class _$TaskControllerCapabilitiesCWProxyImpl
           ? _value.numberOfControlChannels
           // ignore: cast_nullable_to_non_nullable
           : numberOfControlChannels as int,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -5920,6 +6535,8 @@ abstract class _$Iso11783TaskDataCWProxy {
 
   Iso11783TaskData language(String? language);
 
+  Iso11783TaskData customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783TaskData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -5955,6 +6572,7 @@ abstract class _$Iso11783TaskDataCWProxy {
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? language,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -6081,6 +6699,10 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
   Iso11783TaskData language(String? language) => this(language: language);
 
   @override
+  Iso11783TaskData customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Iso11783TaskData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6116,6 +6738,7 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
     Object? taskControllerManufacturer = const $CopyWithPlaceholder(),
     Object? taskControllerVersion = const $CopyWithPlaceholder(),
     Object? language = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Iso11783TaskData(
       versionMajor: versionMajor == const $CopyWithPlaceholder()
@@ -6236,6 +6859,10 @@ class _$Iso11783TaskDataCWProxyImpl implements _$Iso11783TaskDataCWProxy {
           ? _value.language
           // ignore: cast_nullable_to_non_nullable
           : language as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -6251,6 +6878,8 @@ abstract class _$WorkerAllocationCWProxy {
 
   WorkerAllocation allocationStamp(AllocationStamp? allocationStamp);
 
+  WorkerAllocation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkerAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6260,6 +6889,7 @@ abstract class _$WorkerAllocationCWProxy {
   WorkerAllocation call({
     String workerIdRef,
     AllocationStamp? allocationStamp,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -6278,6 +6908,10 @@ class _$WorkerAllocationCWProxyImpl implements _$WorkerAllocationCWProxy {
       this(allocationStamp: allocationStamp);
 
   @override
+  WorkerAllocation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkerAllocation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6287,6 +6921,7 @@ class _$WorkerAllocationCWProxyImpl implements _$WorkerAllocationCWProxy {
   WorkerAllocation call({
     Object? workerIdRef = const $CopyWithPlaceholder(),
     Object? allocationStamp = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return WorkerAllocation(
       workerIdRef: workerIdRef == const $CopyWithPlaceholder()
@@ -6297,6 +6932,10 @@ class _$WorkerAllocationCWProxyImpl implements _$WorkerAllocationCWProxy {
           ? _value.allocationStamp
           // ignore: cast_nullable_to_non_nullable
           : allocationStamp as AllocationStamp?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -6320,6 +6959,8 @@ abstract class _$TimeCWProxy {
 
   Time duration(int? duration);
 
+  Time customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Time(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6333,6 +6974,7 @@ abstract class _$TimeCWProxy {
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -6362,6 +7004,10 @@ class _$TimeCWProxyImpl implements _$TimeCWProxy {
   Time duration(int? duration) => this(duration: duration);
 
   @override
+  Time customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Time(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6375,6 +7021,7 @@ class _$TimeCWProxyImpl implements _$TimeCWProxy {
     Object? dataLogValues = const $CopyWithPlaceholder(),
     Object? stop = const $CopyWithPlaceholder(),
     Object? duration = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return Time(
       start: start == const $CopyWithPlaceholder()
@@ -6401,6 +7048,10 @@ class _$TimeCWProxyImpl implements _$TimeCWProxy {
           ? _value.duration
           // ignore: cast_nullable_to_non_nullable
           : duration as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -6424,6 +7075,8 @@ abstract class _$TimeLogCWProxy {
 
   TimeLog records(List<Time>? records);
 
+  TimeLog customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLog(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6437,6 +7090,7 @@ abstract class _$TimeLogCWProxy {
     Uint8List? byteData,
     TimeLogHeader? header,
     List<Time>? records,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -6465,6 +7119,10 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
   TimeLog records(List<Time>? records) => this(records: records);
 
   @override
+  TimeLog customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TimeLog(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -6478,6 +7136,7 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
     Object? byteData = const $CopyWithPlaceholder(),
     Object? header = const $CopyWithPlaceholder(),
     Object? records = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return TimeLog(
       filename: filename == const $CopyWithPlaceholder()
@@ -6504,6 +7163,10 @@ class _$TimeLogCWProxyImpl implements _$TimeLogCWProxy {
           ? _value.records
           // ignore: cast_nullable_to_non_nullable
           : records as List<Time>?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -6985,6 +7648,8 @@ abstract class _$ProcessDataVariableCWProxy {
 
   ProcessDataVariable elementTypeInstanceValue(int? elementTypeInstanceValue);
 
+  ProcessDataVariable customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProcessDataVariable(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7000,6 +7665,7 @@ abstract class _$ProcessDataVariableCWProxy {
     String? valuePresentationIdRef,
     int? actualCulturalPracticeValue,
     int? elementTypeInstanceValue,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -7042,6 +7708,10 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
       this(elementTypeInstanceValue: elementTypeInstanceValue);
 
   @override
+  ProcessDataVariable customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProcessDataVariable(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7057,6 +7727,7 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
     Object? valuePresentationIdRef = const $CopyWithPlaceholder(),
     Object? actualCulturalPracticeValue = const $CopyWithPlaceholder(),
     Object? elementTypeInstanceValue = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ProcessDataVariable(
       ddi: ddi == const $CopyWithPlaceholder()
@@ -7094,6 +7765,10 @@ class _$ProcessDataVariableCWProxyImpl implements _$ProcessDataVariableCWProxy {
           ? _value.elementTypeInstanceValue
           // ignore: cast_nullable_to_non_nullable
           : elementTypeInstanceValue as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -7118,6 +7793,8 @@ abstract class _$TreatmentZoneCWProxy {
 
   TreatmentZone colour(int? colour);
 
+  TreatmentZone customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TreatmentZone(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7130,6 +7807,7 @@ abstract class _$TreatmentZoneCWProxy {
     List<ProcessDataVariable>? processDataVariables,
     String? designator,
     int? colour,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -7157,6 +7835,10 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
   TreatmentZone colour(int? colour) => this(colour: colour);
 
   @override
+  TreatmentZone customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TreatmentZone(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7169,6 +7851,7 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
     Object? processDataVariables = const $CopyWithPlaceholder(),
     Object? designator = const $CopyWithPlaceholder(),
     Object? colour = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return TreatmentZone(
       code: code == const $CopyWithPlaceholder()
@@ -7191,6 +7874,10 @@ class _$TreatmentZoneCWProxyImpl implements _$TreatmentZoneCWProxy {
           ? _value.colour
           // ignore: cast_nullable_to_non_nullable
           : colour as int?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -7214,6 +7901,8 @@ abstract class _$ValuePresentationCWProxy {
 
   ValuePresentation colourLegendIdRef(String? colourLegendIdRef);
 
+  ValuePresentation customAttributes(List<XmlAttribute>? customAttributes);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7227,6 +7916,7 @@ abstract class _$ValuePresentationCWProxy {
     int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
+    List<XmlAttribute>? customAttributes,
   });
 }
 
@@ -7258,6 +7948,10 @@ class _$ValuePresentationCWProxyImpl implements _$ValuePresentationCWProxy {
       this(colourLegendIdRef: colourLegendIdRef);
 
   @override
+  ValuePresentation customAttributes(List<XmlAttribute>? customAttributes) =>
+      this(customAttributes: customAttributes);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ValuePresentation(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -7271,6 +7965,7 @@ class _$ValuePresentationCWProxyImpl implements _$ValuePresentationCWProxy {
     Object? numberOfDecimals = const $CopyWithPlaceholder(),
     Object? unitDesignator = const $CopyWithPlaceholder(),
     Object? colourLegendIdRef = const $CopyWithPlaceholder(),
+    Object? customAttributes = const $CopyWithPlaceholder(),
   }) {
     return ValuePresentation(
       id: id == const $CopyWithPlaceholder()
@@ -7297,6 +7992,10 @@ class _$ValuePresentationCWProxyImpl implements _$ValuePresentationCWProxy {
           ? _value.colourLegendIdRef
           // ignore: cast_nullable_to_non_nullable
           : colourLegendIdRef as String?,
+      customAttributes: customAttributes == const $CopyWithPlaceholder()
+          ? _value.customAttributes
+          // ignore: cast_nullable_to_non_nullable
+          : customAttributes as List<XmlAttribute>?,
     );
   }
 }
@@ -17260,10 +17959,6 @@ void _$Iso11783TaskDataBuildXmlChildren(
   final versionMinor = instance.versionMinor;
   final versionMinorSerialized = $VersionMinorEnumMap[versionMinor]!;
   builder.attribute('VersionMinor', versionMinorSerialized);
-  final dataTransferOrigin = instance.dataTransferOrigin;
-  final dataTransferOriginSerialized =
-      $DataTransferOriginEnumMap[dataTransferOrigin]!;
-  builder.attribute('DataTransferOrigin', dataTransferOriginSerialized);
   final managementSoftwareManufacturer =
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
@@ -17291,6 +17986,10 @@ void _$Iso11783TaskDataBuildXmlChildren(
   if (taskControllerVersionSerialized != null) {
     builder.attribute('TaskControllerVersion', taskControllerVersionSerialized);
   }
+  final dataTransferOrigin = instance.dataTransferOrigin;
+  final dataTransferOriginSerialized =
+      $DataTransferOriginEnumMap[dataTransferOrigin]!;
+  builder.attribute('DataTransferOrigin', dataTransferOriginSerialized);
   final language = instance.language;
   final languageSerialized = language;
   if (languageSerialized != null) {
@@ -17334,7 +18033,6 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
   final externalFileReferences = element.getElements('XFR')!;
   final versionMajor = element.getAttribute('VersionMajor')!;
   final versionMinor = element.getAttribute('VersionMinor')!;
-  final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
   final managementSoftwareManufacturer = element.getAttribute(
     'ManagementSoftwareManufacturer',
   )!;
@@ -17345,6 +18043,7 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
     'TaskControllerManufacturer',
   );
   final taskControllerVersion = element.getAttribute('TaskControllerVersion');
+  final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
   final language = element.getAttribute('lang');
   return Iso11783TaskData(
     attachedFiles: attachedFiles
@@ -17406,6 +18105,10 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
           ),
         )
         .key,
+    managementSoftwareManufacturer: managementSoftwareManufacturer,
+    managementSoftwareVersion: managementSoftwareVersion,
+    taskControllerManufacturer: taskControllerManufacturer,
+    taskControllerVersion: taskControllerVersion,
     dataTransferOrigin: $DataTransferOriginEnumMap.entries
         .singleWhere(
           (dataTransferOriginEnumMapEntry) =>
@@ -17415,10 +18118,6 @@ Iso11783TaskData _$Iso11783TaskDataFromXmlElement(XmlElement element) {
           ),
         )
         .key,
-    managementSoftwareManufacturer: managementSoftwareManufacturer,
-    managementSoftwareVersion: managementSoftwareVersion,
-    taskControllerManufacturer: taskControllerManufacturer,
-    taskControllerVersion: taskControllerVersion,
     language: language,
   );
 }
@@ -17442,14 +18141,6 @@ List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(
     versionMinorSerialized,
   );
   attributes.add(versionMinorConstructed);
-  final dataTransferOrigin = instance.dataTransferOrigin;
-  final dataTransferOriginSerialized =
-      $DataTransferOriginEnumMap[dataTransferOrigin]!;
-  final dataTransferOriginConstructed = XmlAttribute(
-    XmlName('DataTransferOrigin'),
-    dataTransferOriginSerialized,
-  );
-  attributes.add(dataTransferOriginConstructed);
   final managementSoftwareManufacturer =
       instance.managementSoftwareManufacturer;
   final managementSoftwareManufacturerSerialized =
@@ -17490,6 +18181,14 @@ List<XmlAttribute> _$Iso11783TaskDataToXmlAttributes(
   if (taskControllerVersionConstructed != null) {
     attributes.add(taskControllerVersionConstructed);
   }
+  final dataTransferOrigin = instance.dataTransferOrigin;
+  final dataTransferOriginSerialized =
+      $DataTransferOriginEnumMap[dataTransferOrigin]!;
+  final dataTransferOriginConstructed = XmlAttribute(
+    XmlName('DataTransferOrigin'),
+    dataTransferOriginSerialized,
+  );
+  attributes.add(dataTransferOriginConstructed);
   final language = instance.language;
   final languageSerialized = language;
   final languageConstructed = languageSerialized != null

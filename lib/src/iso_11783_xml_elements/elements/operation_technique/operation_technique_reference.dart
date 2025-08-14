@@ -14,6 +14,7 @@ class OperationTechniqueReference extends Iso11783Element
   /// verified arguments.
   factory OperationTechniqueReference({
     required String operationTechniqueIdRef,
+    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: operationTechniqueIdRef,
@@ -23,6 +24,7 @@ class OperationTechniqueReference extends Iso11783Element
 
     return OperationTechniqueReference._(
       operationTechniqueIdRef: operationTechniqueIdRef,
+      customAttributes: customAttributes,
     );
   }
 
@@ -30,18 +32,59 @@ class OperationTechniqueReference extends Iso11783Element
   /// in the default factory.
   const OperationTechniqueReference._({
     required this.operationTechniqueIdRef,
+    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.operationTechniqueReference,
          description: 'OperationTechniqueReference',
        );
 
   /// Creates a [OperationTechniqueReference] from [element].
-  factory OperationTechniqueReference.fromXmlElement(XmlElement element) =>
-      _$OperationTechniqueReferenceFromXmlElement(element);
+  factory OperationTechniqueReference.fromXmlElement(XmlElement element) {
+    final operationTechniqueIdRef = element.getAttribute('A')!;
+    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+
+    return OperationTechniqueReference(
+      operationTechniqueIdRef: operationTechniqueIdRef,
+      customAttributes: customAttributes,
+    );
+  }
 
   /// Reference to a [OperationTechnique].
   @annotation.XmlAttribute(name: 'A')
   final String operationTechniqueIdRef;
+
+  /// Builds the XML children of this on the [builder].
+  @override
+  void buildXmlChildren(
+    XmlBuilder builder, {
+    Map<String, String> namespaces = const {},
+  }) {
+    _$OperationTechniqueReferenceBuildXmlChildren(
+      this,
+      builder,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null && customAttributes!.isNotEmpty) {
+      for (final attribute in customAttributes!) {
+        builder.attribute(attribute.name.local, attribute.value);
+      }
+    }
+  }
+
+  /// Returns a list of the XML attributes of this.
+  @override
+  List<XmlAttribute> toXmlAttributes({
+    Map<String, String?> namespaces = const {},
+  }) {
+    final attributes = _$OperationTechniqueReferenceToXmlAttributes(
+      this,
+      namespaces: namespaces,
+    );
+    if (customAttributes != null) {
+      attributes.addAll(customAttributes!);
+    }
+    return attributes;
+  }
 
   @override
   List<Object?> get props => [operationTechniqueIdRef];
