@@ -11,14 +11,18 @@ import 'package:isoxml_dart/src/lossy_web_int64.dart';
 /// Extension for parsing [binaryPoints] from [byteData] and in reverse
 /// exporting the byte data of the same points.
 ///
-/// This operates on the web (js), so they use the [LossyWebInt64] methods to
-/// circumvent problems with values > 2^53.
+/// When compiling to WASM the normal int64 methods are used, but when compiling
+/// to js the [LossyWebInt64] methods are used to circumvent problems with
+/// values > 2^53 and the lack of int64 support.
 extension PointBinaryParser on Point {
   /// Parses [binaryPoints] from [byteData] with [binaryHeaderOptions].
   void parseData() {
     if (byteData != null &&
         binaryHeaderOptions != null &&
         binaryRecordLength != null) {
+      const compileTarget = bool.fromEnvironment('dart.tool.dart2wasm')
+          ? _WebCompileTarget.wasm
+          : _WebCompileTarget.js;
       binaryPoints.clear();
       var currentOffset = 0;
       final data = byteData!.buffer.asByteData(0, byteData!.lengthInBytes);
@@ -34,14 +38,34 @@ extension PointBinaryParser on Point {
         }
 
         final parsedNorth = binaryHeaderOptions!.readNorth
-            ? data.getDoubleFromTwoInt32(currentOffset, Endian.little) / 1e16
+            ? switch (compileTarget) {
+                    _WebCompileTarget.wasm => data.getInt64(
+                      currentOffset,
+                      Endian.little,
+                    ),
+                    _WebCompileTarget.js => data.getDoubleFromTwoInt32(
+                      currentOffset,
+                      Endian.little,
+                    ),
+                  } /
+                  1e16
             : north;
         if (binaryHeaderOptions!.readNorth) {
           currentOffset += 8;
         }
 
         final parsedEast = binaryHeaderOptions!.readEast
-            ? data.getDoubleFromTwoInt32(currentOffset, Endian.little) / 1e16
+            ? switch (compileTarget) {
+                    _WebCompileTarget.wasm => data.getInt64(
+                      currentOffset,
+                      Endian.little,
+                    ),
+                    _WebCompileTarget.js => data.getDoubleFromTwoInt32(
+                      currentOffset,
+                      Endian.little,
+                    ),
+                  } /
+                  1e16
             : east;
         if (binaryHeaderOptions!.readEast) {
           currentOffset += 8;
@@ -94,6 +118,9 @@ extension PointBinaryParser on Point {
   Uint8List? get binaryPointsBytes {
     final recordLength = binaryRecordLength;
     if (binaryHeaderOptions != null && recordLength != null) {
+      const compileTarget = bool.fromEnvironment('dart.tool.dart2wasm')
+          ? _WebCompileTarget.wasm
+          : _WebCompileTarget.js;
       final length = binaryPoints.length * recordLength;
       final byteData = ByteData(length);
       var currentOffset = 0;
@@ -106,20 +133,37 @@ extension PointBinaryParser on Point {
           currentOffset++;
         }
         if (binaryHeaderOptions!.readNorth) {
-          byteData.setTwoInt32FromDouble(
-            currentOffset,
-            point.north! * 1e16,
-            Endian.little,
-          );
-
+          switch (compileTarget) {
+            case _WebCompileTarget.wasm:
+              byteData.setInt64(
+                currentOffset,
+                (point.north! * 1e16).round(),
+                Endian.little,
+              );
+            case _WebCompileTarget.js:
+              byteData.setTwoInt32FromDouble(
+                currentOffset,
+                point.north! * 1e16,
+                Endian.little,
+              );
+          }
           currentOffset += 8;
         }
         if (binaryHeaderOptions!.readEast) {
-          byteData.setTwoInt32FromDouble(
-            currentOffset,
-            point.east! * 1e16,
-            Endian.little,
-          );
+          switch (compileTarget) {
+            case _WebCompileTarget.wasm:
+              byteData.setInt64(
+                currentOffset,
+                (point.east! * 1e16).round(),
+                Endian.little,
+              );
+            case _WebCompileTarget.js:
+              byteData.setTwoInt32FromDouble(
+                currentOffset,
+                point.east! * 1e16,
+                Endian.little,
+              );
+          }
           currentOffset += 8;
         }
         if (binaryHeaderOptions!.readUp) {
@@ -152,3 +196,5 @@ extension PointBinaryParser on Point {
     return null;
   }
 }
+
+enum _WebCompileTarget { js, wasm }

@@ -5,7 +5,7 @@
 // Allow catching all errors and exceptions
 // ignore_for_file: avoid_catches_without_on_clauses
 
-@TestOn('browser')
+@TestOn('dart2js')
 library;
 
 import 'dart:typed_data';
@@ -1657,7 +1657,7 @@ void main() {
           taskControllerCapabilities.numberOfSectionsSectionControl,
           taskControllerCapabilities.numberOfControlChannels,
         ),
-        ('A0008F000F300DDD', 'dev4AgTC', VersionNumber.e2fdis, 63, 1, 2, 3),
+        ('A0008F000F300DDD', 'isoxml_dart', VersionNumber.e2fdis, 63, 1, 2, 3),
       );
     });
 
@@ -2015,7 +2015,7 @@ const docString = '''
             </ASP>
         </WAN>
     </TSK>
-    <TCC A="A0008F000F300DDD" B="dev4AgTC" C="4" D="63" E="1" F="2" G="3"/>
+    <TCC A="A0008F000F300DDD" B="isoxml_dart" C="4" D="63" E="1" F="2" G="3"/>
     <VPN A="VPN1" B="0" C="0.0001" D="4" E="l/ha" F="CLD1"/>
     <WKR A="WKR1" B="Driver" C="Peter" D="ExampleRoad" E="12345" F="48485" G="Newchurch" H="NRW" I="Germany" J="01189998819101187253" K="01189998819101187254" L="01189998819101187153" M="driver@examplemail.com"/>
 </ISO11783_TaskData>''';
