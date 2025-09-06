@@ -12,12 +12,12 @@ import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  final taskDataFolder = await TaskDataFileHandler.loadDirectory(
+  final taskDataFolder = (await TaskDataFileHandler.loadDirectory(
     '${Directory.current.path}/test/data_files/folder_test',
-  );
-  final taskDataZip = await TaskDataFileHandler.loadZip(
+  ))!;
+  final taskDataZip = (await TaskDataFileHandler.loadZip(
     '${Directory.current.path}/test/data_files/zip_test.zip',
-  );
+  ))!;
 
   test(
     'Check that zip and folder data is the same',
@@ -30,8 +30,8 @@ void main() async {
   test(
     'Check that time log export bytes equals import bytes',
     () => expect(
-      taskDataFolder?.tasks.first.timeLogs.first.byteData.toString(),
-      taskDataFolder?.tasks.first.timeLogs.first.recordsToBytes().toString(),
+      taskDataFolder.tasks.first.timeLogs.first.byteData,
+      taskDataFolder.tasks.first.timeLogs.first.recordsToBytes(),
     ),
   );
 

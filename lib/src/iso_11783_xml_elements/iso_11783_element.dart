@@ -241,7 +241,7 @@ sealed class Iso11783Element {
 /// An empty ISO 11783-10 element that is only created if the parser finds some
 /// XML element that it doesn't recognize.
 ///
-/// If this is created, then the XML files have issues in them or there is
+/// If this is created, then the XML files have issues in them or there are
 /// non-standard elements in them.
 class EmptyIso11783Element extends Iso11783Element {
   /// Default constructor, creates an empty element.

@@ -16,37 +16,28 @@ void main() {
       () => expect(
         Iso11783Element.fromXmlElement(
           XmlElement(XmlName.fromString('')),
-        ).runtimeType,
-        EmptyIso11783Element,
+        ),
+        isA<EmptyIso11783Element>().having(
+          (element) => element.elementType,
+          'Has empty element type',
+          equals(Iso11783ElementType.emptyElement),
+        ),
       ),
     );
     test(
-      'from XmlElement with name random string',
+      'from XmlElement with unmatched name string',
       () => expect(
         Iso11783Element.fromXmlElement(
-          XmlElement(XmlName.fromString('')),
-        ).runtimeType,
-        EmptyIso11783Element,
+          XmlElement(XmlName.fromString('ABCD')),
+        ),
+        isA<EmptyIso11783Element>().having(
+          (element) => element.elementType,
+          'Has empty element type',
+          equals(Iso11783ElementType.emptyElement),
+        ),
       ),
     );
   });
-  test(
-    '''Get TypeError from XmlElement with name BSN with no attributes due to null check''',
-    () {
-      Object? error;
-      try {
-        Iso11783Element.fromXmlElement(
-          XmlElement(XmlName.fromString('BSN')),
-        );
-      } catch (e) {
-        error = e;
-      }
-      expect(
-        error,
-        const TypeMatcher<TypeError>(),
-      );
-    },
-  );
 
   group('AllocationStamp', () {
     test(
@@ -77,6 +68,27 @@ void main() {
       },
     );
   });
+
+  group('BaseStation', () {
+    test(
+      '''Get TypeError from XmlElement with name BSN with no attributes due to null check''',
+      () {
+        Object? error;
+        try {
+          Iso11783Element.fromXmlElement(
+            XmlElement(XmlName.fromString('BSN')),
+          );
+        } catch (e) {
+          error = e;
+        }
+        expect(
+          error,
+          isA<TypeError>(),
+        );
+      },
+    );
+  });
+
   group(
     'ColourLegend',
     () => test('empty ranges list', () {
@@ -374,9 +386,10 @@ void main() {
   });
   group('LinkGroup', () {
     test('.fromXmlElement', () {
+      Iso11783Element? linkGroup;
       Object? error;
       try {
-        LinkGroup.fromXmlElement(
+        linkGroup = Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('LGP'),
             [
@@ -392,6 +405,35 @@ void main() {
         error = e;
       }
       expect(error, null);
+      expect(
+        linkGroup,
+        isA<LinkGroup>()
+            .having(
+              (element) => element.id,
+              'Correct id',
+              equals('LGP1'),
+            )
+            .having(
+              (element) => element.type,
+              'Correct type',
+              equals(LinkGroupType.uuids),
+            )
+            .having(
+              (element) => element.manufacturerGLN,
+              'Correct GLN',
+              equals('Some manufacturer GLN'),
+            )
+            .having(
+              (element) => element.namespace,
+              'Correct namespace',
+              equals('A namespace'),
+            )
+            .having(
+              (element) => element.designator,
+              'Correct designator',
+              equals('Some designator'),
+            ),
+      );
     });
   });
 

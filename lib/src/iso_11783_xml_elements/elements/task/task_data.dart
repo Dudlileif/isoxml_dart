@@ -387,7 +387,10 @@ class Iso11783TaskData extends Iso11783Element
       archive.addFile(
         ArchiveFile.string(
           'TASKDATA/TASKDATA.XML',
-          toSingleXmlDocument().toXmlString(pretty: true, indent: '    '),
+          '${toSingleXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          )}\n',
         ),
       );
     } else {
@@ -395,7 +398,10 @@ class Iso11783TaskData extends Iso11783Element
         archive.addFile(
           ArchiveFile.string(
             'TASKDATA/${file.fileName}.XML',
-            file.document.toXmlString(pretty: true, indent: '    '),
+            '${file.document.toXmlString(
+              pretty: true,
+              indent: '    ',
+            )}\n',
           ),
         );
       }
@@ -405,7 +411,10 @@ class Iso11783TaskData extends Iso11783Element
       archive.addFile(
         ArchiveFile.string(
           'TASKDATA/LINKLIST.XML',
-          linkList!.toXmlDocument().toXmlString(pretty: true, indent: '    '),
+          '${linkList!.toXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          )}\n',
         ),
       );
     }
@@ -437,10 +446,10 @@ class Iso11783TaskData extends Iso11783Element
             ..addFile(
               ArchiveFile.string(
                 'TASKDATA/${timeLog.filename}.XML',
-                timeLog.header!.toXmlDocument().toXmlString(
+                '${timeLog.header!.toXmlDocument().toXmlString(
                   pretty: true,
                   indent: '    ',
-                ),
+                )}\n',
               ),
             );
         }
