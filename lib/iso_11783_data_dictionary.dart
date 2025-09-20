@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /// A library for the interfacing with the ISO 11783-11 Data Dictionary
-/// and it's entities.
+/// and its entities.
 library;
 
 export 'src/iso_11783_data_dictionary/device_class.dart';

@@ -6,4 +6,4 @@
 /// ISO 11783 standard, in particular ISO 11783-6.
 library;
 
-export 'src//iso_11783_colour/iso_11783_colour.dart';
+export 'src/iso_11783_colour/iso_11783_colour.dart';

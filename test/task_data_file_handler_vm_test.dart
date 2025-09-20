@@ -2,9 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Allow catching all errors and exceptions
-// ignore_for_file: avoid_catches_without_on_clauses
-
 @TestOn('vm')
 library;
 

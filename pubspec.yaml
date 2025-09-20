@@ -2,7 +2,9 @@ name: isoxml_dart
 description: A Dart library for interacting with ISO 11783-10 XML documents and the ISO 11783-11 Data Directory.
 version: 0.1.0
 repository: https://github.com/dudlileif/isoxml_dart
+documentation: https://dudlileif.github.io/isoxml_dart
 topics: [agriculture, isobus, iso-11783]
+publish_to: "none"
 
 environment:
   sdk: ^3.8.0
