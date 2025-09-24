@@ -12,70 +12,64 @@ part of '../../iso_11783_element.dart';
 /// used on all the records.
 ///
 /// [TimeLogHeader] should only be set as [TimeLog.header].
-@CopyWith()
-class TimeLogHeader {
+class TimeLogHeader extends XmlElement {
   /// Default constructor.
   TimeLogHeader({
-    required this.type,
-    this.start,
-    this.position,
+    required TimeType type,
+    DateTime? start,
+    TimeLogHeaderPosition? position,
     List<TimeLogHeaderDataLogValue>? dataLogValues,
-  }) {
+  }) : super(XmlName(Iso11783ElementType.timeLog.xmlTag)) {
+    this.type = type;
+    this.start = start;
+    this.position = position;
     if (dataLogValues != null) {
-      this.dataLogValues.addAll(dataLogValues);
+      children.addAll(dataLogValues);
     }
   }
 
-  /// Creates a [TimeLogHeader] from [document].
+  /// Creates an [TimeLogHeader] from [document].
   factory TimeLogHeader.fromXmlDocument(XmlDocument document) =>
-      TimeLogHeader.fromXmlElement(document.childElements.first);
+      document.lastChild! as TimeLogHeader;
 
-  /// Creates a [TimeLogHeader] from [element].
-  factory TimeLogHeader.fromXmlElement(XmlElement element) {
-    final position = element.getElement('PTN');
-    final dataLogValues = element.getElements('DLV');
-    final start = element.getAttribute('A');
-    final type = element.getAttribute('D');
-    if (type != '4') {
-      throw ArgumentError.value(type, 'type', 'Should equal "4".');
-    }
-    return TimeLogHeader(
-      position: position != null
-          ? TimeLogHeaderPosition.fromXmlElement(position)
-          : null,
-      dataLogValues: dataLogValues
-          ?.map(TimeLogHeaderDataLogValue.fromXmlElement)
-          .toList(),
-      start: start != null && start.isNotEmpty ? DateTime.parse(start) : null,
-      type: type != null && type.isNotEmpty
-          ? $TimeTypeEnumMap.entries
-                .singleWhere(
-                  (mapEntry) => mapEntry.value == type,
-                  orElse: () => throw ArgumentError(
-                    '''`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : TimeType.effective,
-    );
-  }
+  /// A structured XML document that represents this.
+  XmlDocument toXmlDocument() => XmlDocument([
+    XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
+    this,
+  ]);
 
   /// A template for which [Position] attributes are used in the
   /// log.
-  @annotation.XmlElement(name: 'PTN', includeIfNull: false)
-  final TimeLogHeaderPosition? position;
+  TimeLogHeaderPosition? get position =>
+      getElement(Iso11783ElementType.position.xmlTag) as TimeLogHeaderPosition?;
+  set position(TimeLogHeaderPosition? value) => switch ((
+    value,
+    position,
+  )) {
+    (final TimeLogHeaderPosition value, final TimeLogHeaderPosition existing) =>
+      existing.replace(value as XmlElement),
+    (final TimeLogHeaderPosition value, null) => children.add(value),
+    (null, final TimeLogHeaderPosition existing) => existing.remove(),
+    _ => null,
+  };
 
   /// A template for which [DataLogValue]s' attributes are used in the log.
-  @annotation.XmlElement(name: 'DLV')
-  final List<TimeLogHeaderDataLogValue> dataLogValues = [];
+  List<TimeLogHeaderDataLogValue> get dataLogValues => findElements(
+    Iso11783ElementType.dataLogValue.xmlTag,
+  ).map((e) => e as TimeLogHeaderDataLogValue).toList();
 
   /// The starting time of the records, should be null.
-  @annotation.XmlAttribute(name: 'A')
-  final DateTime? start;
+  DateTime? get start => tryParseDateTime('A');
+  set start(DateTime? value) => setDateTimeNullable('A', value);
 
   /// Should equal [TimeType.effective] for this.
-  @annotation.XmlAttribute(name: 'D')
-  final TimeType type;
+  TimeType get type => TimeType.values.firstWhere(
+    (type) => type.value == parseInt('D'),
+    orElse: () => throw ArgumentError(
+      '''`${getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
+    ),
+  );
+  set type(TimeType value) => setInt('D', value.value);
 
   /// Number of bytes for one record in [TimeLog.records].
   int get byteLength {
@@ -143,38 +137,14 @@ class TimeLogHeader {
 
     return Uint8List.sublistView(bytes, 0, currentOffset);
   }
-
-  /// Get the [XmlElement] representing this.
-  XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) {
-    final element =
-        XmlElement(
-            XmlName.fromString('TIM'),
-            [...namespaces.toXmlAttributes()],
-            [
-              if (position != null) position!.toXmlElement(),
-              ...dataLogValues.map((e) => e.toXmlElement()),
-            ],
-          )
-          ..setAttribute('A', start?.toString() ?? '')
-          ..setAttribute('D', type.value.toString());
-
-    return element;
-  }
-
-  /// Get the [XmlDocument] representing this.
-  XmlDocument toXmlDocument() => XmlDocument([
-    XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
-    toXmlElement(),
-  ]);
 }
 
 /// An element for use in [TimeLogHeader.position] that describes default
 /// attributes and attributes to read from [TimeLog.byteData] for the [Position]
 /// part of the log record.
-@CopyWith()
-class TimeLogHeaderPosition {
+class TimeLogHeaderPosition extends XmlElement {
   /// Default constructor
-  const TimeLogHeaderPosition({
+  TimeLogHeaderPosition({
     this.readNorth = false,
     this.readEast = false,
     this.readUp = false,
@@ -184,65 +154,25 @@ class TimeLogHeaderPosition {
     this.readNumberOfSatellites = false,
     this.readgpsUtcTimeMs = false,
     this.readGpsUtcDate = false,
-    this.north,
-    this.east,
-    this.status,
-    this.up,
-    this.pdop,
-    this.hdop,
-    this.numberOfSatellites,
-    this.gpsUtcTimeMs,
-    this.gpsUtcDate,
-  });
-
-  /// Creates a [TimeLogHeaderPosition] from [element].
-  factory TimeLogHeaderPosition.fromXmlElement(XmlElement element) {
-    final north = element.getAttribute('A');
-    final east = element.getAttribute('B');
-    final up = element.getAttribute('C');
-    final status = element.getAttribute('D');
-    final pdop = element.getAttribute('E');
-    final hdop = element.getAttribute('F');
-    final numberOfSatellites = element.getAttribute('G');
-    final gpsUtcTimeMs = element.getAttribute('H');
-    final gpsUtcDate = element.getAttribute('I');
-    return TimeLogHeaderPosition(
-      north: north != null && north.isNotEmpty ? double.parse(north) : null,
-      readNorth: north?.isEmpty ?? false,
-      east: east != null && east.isNotEmpty ? double.parse(east) : null,
-      readEast: east?.isEmpty ?? false,
-      up: up != null && up.isNotEmpty ? int.parse(up) : null,
-      readUp: up?.isEmpty ?? false,
-      status: status != null && status.isNotEmpty
-          ? $PositionStatusEnumMap.entries
-                .singleWhere(
-                  (positionStatusEnumMapEntry) =>
-                      positionStatusEnumMapEntry.value == status,
-                  orElse: () => throw ArgumentError(
-                    '''`$status` is not one of the supported values: ${$PositionStatusEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      readStatus: status?.isEmpty ?? false,
-      pdop: pdop != null && pdop.isNotEmpty ? double.parse(pdop) : null,
-      readPdop: pdop?.isEmpty ?? false,
-      hdop: hdop != null && hdop.isNotEmpty ? double.parse(hdop) : null,
-      readHdop: hdop?.isEmpty ?? false,
-      numberOfSatellites:
-          numberOfSatellites != null && numberOfSatellites.isNotEmpty
-          ? int.parse(numberOfSatellites)
-          : null,
-      readNumberOfSatellites: numberOfSatellites?.isEmpty ?? false,
-      gpsUtcTimeMs: gpsUtcTimeMs != null && gpsUtcTimeMs.isNotEmpty
-          ? int.parse(gpsUtcTimeMs)
-          : null,
-      readgpsUtcTimeMs: gpsUtcTimeMs?.isEmpty ?? false,
-      gpsUtcDate: gpsUtcDate != null && gpsUtcDate.isNotEmpty
-          ? int.parse(gpsUtcDate)
-          : null,
-      readGpsUtcDate: gpsUtcDate?.isEmpty ?? false,
-    );
+    double? north,
+    double? east,
+    PositionStatus? status,
+    int? up,
+    double? pdop,
+    double? hdop,
+    int? numberOfSatellites,
+    int? gpsUtcTimeMs,
+    int? gpsUtcDate,
+  }) : super(XmlName(Iso11783ElementType.position.xmlTag)) {
+    this.north = north;
+    this.east = east;
+    this.status = status;
+    this.up = up;
+    this.pdop = pdop;
+    this.hdop = hdop;
+    this.numberOfSatellites = numberOfSatellites;
+    this.gpsUtcTimeMs = gpsUtcTimeMs;
+    this.gpsUtcDate = gpsUtcDate;
   }
 
   /// Create a [TimeLogHeaderPosition] with read parameters set to true
@@ -263,31 +193,57 @@ class TimeLogHeaderPosition {
       );
 
   /// [Position.north] value to apply to all records.
-  final double? north;
+  double? get north => tryParseDouble('A');
+  set north(double? value) =>
+      setDoubleNullable('A', value, setNullToEmptyString: readNorth);
 
   /// [Position.east] value to apply to all records.
-  final double? east;
+  double? get east => tryParseDouble('B');
+  set east(double? value) =>
+      setDoubleNullable('B', value, setNullToEmptyString: readEast);
 
   /// [Position.up] value to apply to all records.
-  final int? up;
+  int? get up => tryParseInt('C');
+  set up(int? value) =>
+      setIntNullable('C', value, setNullToEmptyString: readUp);
 
   /// [Position.status] value to apply to all records.
-  final PositionStatus? status;
+  PositionStatus? get status => switch (tryParseInt('D')) {
+    final int value => PositionStatus.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${PositionStatus.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set status(PositionStatus? value) =>
+      setIntNullable('D', value?.value, setNullToEmptyString: readStatus);
 
   /// [Position.pdop] value to apply to all records.
-  final double? pdop;
+  double? get pdop => tryParseDouble('E');
+  set pdop(double? value) =>
+      setDoubleNullable('E', value, setNullToEmptyString: readPdop);
 
   /// [Position.hdop] value to apply to all records.
-  final double? hdop;
+  double? get hdop => tryParseDouble('F');
+  set hdop(double? value) =>
+      setDoubleNullable('F', value, setNullToEmptyString: readHdop);
 
   /// [Position.numberOfSatellites] value to apply to all records.
-  final int? numberOfSatellites;
+  int? get numberOfSatellites => tryParseInt('G');
+  set numberOfSatellites(int? value) =>
+      setIntNullable('G', value, setNullToEmptyString: readNumberOfSatellites);
 
   /// [Position.gpsUtcTimeMs] value to apply to all records.
-  final int? gpsUtcTimeMs;
+  int? get gpsUtcTimeMs => tryParseInt('H');
+  set gpsUtcTimeMs(int? value) =>
+      setIntNullable('H', value, setNullToEmptyString: readgpsUtcTimeMs);
 
   /// [Position.gpsUtcDate] value to apply to all records.
-  final int? gpsUtcDate;
+  int? get gpsUtcDate => tryParseInt('I');
+  set gpsUtcDate(int? value) =>
+      setIntNullable('I', value, setNullToEmptyString: readGpsUtcDate);
 
   /// Whether record [Position.north] should be read from the
   /// [TimeLog.byteData].
@@ -434,128 +390,59 @@ class TimeLogHeaderPosition {
 
     return byteData.buffer.asUint8List(0, currentOffset);
   }
-
-  /// Returns a structured XML element that represents this.
-  XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) {
-    final element = XmlElement(
-      XmlName.fromString('PTN'),
-      [...namespaces.toXmlAttributes()],
-    );
-    if (north != null || readNorth) {
-      element.setAttribute('A', north?.toString() ?? '');
-    }
-    if (east != null || readEast) {
-      element.setAttribute('B', east?.toString() ?? '');
-    }
-    if (up != null || readUp) {
-      element.setAttribute('C', up?.toString() ?? '');
-    }
-    if (status != null || readStatus) {
-      element.setAttribute('D', status?.value.toString() ?? '');
-    }
-    if (pdop != null || readPdop) {
-      element.setAttribute('E', pdop?.toString() ?? '');
-    }
-    if (hdop != null || readHdop) {
-      element.setAttribute('F', hdop?.toString() ?? '');
-    }
-    if (numberOfSatellites != null || readNumberOfSatellites) {
-      element.setAttribute('G', numberOfSatellites?.toString() ?? '');
-    }
-    if (gpsUtcTimeMs != null || readgpsUtcTimeMs) {
-      element.setAttribute('H', gpsUtcTimeMs?.toString() ?? '');
-    }
-    if (gpsUtcDate != null || readGpsUtcDate) {
-      element.setAttribute('I', gpsUtcDate?.toString() ?? '');
-    }
-    return element;
-  }
 }
 
 /// An element for use in [TimeLogHeader.dataLogValues] that describes default
 /// attributes and attributes to read from [TimeLog.byteData] for the n-th
 /// [DataLogValue] part of the log record.
-@CopyWith()
-class TimeLogHeaderDataLogValue {
-  /// Default constructor
-  const TimeLogHeaderDataLogValue({
-    required this.processDataDDI,
-    required this.deviceElementIdRef,
-    this.readProcessDataValue = false,
-    this.processDataValue,
-    this.pgn,
-    this.pgnStartBit,
-    this.pgnStopBit,
-  });
 
-  /// Creates a [TimeLogHeaderDataLogValue] from [element].
-  factory TimeLogHeaderDataLogValue.fromXmlElement(XmlElement element) {
-    final processDataDDI = element.getAttribute('A')!;
-    final processDataValue = element.getAttribute('B');
-    final deviceElementIdRef = element.getAttribute('C')!;
-    final pgn = element.getAttribute('D');
-    final pgnStartBit = element.getAttribute('E');
-    final pgnStopBit = element.getAttribute('F');
-    return TimeLogHeaderDataLogValue(
-      processDataDDI: processDataDDI,
-      processDataValue: processDataValue != null && processDataValue.isNotEmpty
-          ? int.parse(processDataValue)
-          : null,
-      readProcessDataValue: processDataValue?.isEmpty ?? false,
-      deviceElementIdRef: deviceElementIdRef,
-      pgn: pgn != null ? int.parse(pgn) : null,
-      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
-      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
-    );
+class TimeLogHeaderDataLogValue extends XmlElement {
+  /// Default constructor
+  TimeLogHeaderDataLogValue({
+    required String processDataDDI,
+    required String deviceElementIdRef,
+    this.readProcessDataValue = false,
+    int? processDataValue,
+    int? pgn,
+    int? pgnStartBit,
+    int? pgnStopBit,
+  }) : super(XmlName(Iso11783ElementType.dataLogValue.xmlTag)) {
+    this.processDataDDI = processDataDDI;
+    this.deviceElementIdRef = deviceElementIdRef;
+    this.processDataValue = processDataValue;
+    this.pgn = pgn;
+    this.pgnStartBit = pgnStartBit;
+    this.pgnStopBit = pgnStopBit;
   }
 
   /// [DataLogValue.processDataDDI] value to apply to all records.
-  @annotation.XmlAttribute(name: 'A')
-  final String processDataDDI;
+  String get processDataDDI => parseString('A');
+  set processDataDDI(String value) => setString('A', value);
 
   /// [DataLogValue.processDataValue] value to apply to all records.
-  @annotation.XmlAttribute(name: 'B')
-  final int? processDataValue;
+  int? get processDataValue => tryParseInt('B');
+  set processDataValue(int? value) =>
+      setIntNullable('B', value, setNullToEmptyString: readProcessDataValue);
 
   /// [DataLogValue.deviceElementIdRef] value to apply to all records.
-  @annotation.XmlAttribute(name: 'C')
-  final String deviceElementIdRef;
+  String get deviceElementIdRef => parseString('C');
+  set deviceElementIdRef(String value) => setString('C', value);
 
   /// [DataLogValue.pgn] value to apply to all records.
-  @annotation.XmlAttribute(name: 'D')
-  final int? pgn;
+  int? get pgn => tryParseInt('D');
+  set pgn(int? value) => setIntNullable('D', value);
 
   /// [DataLogValue.pgnStartBit] value to apply to all records.
-  @annotation.XmlAttribute(name: 'E')
-  final int? pgnStartBit;
+  int? get pgnStartBit => tryParseInt('E');
+  set pgnStartBit(int? value) => setIntNullable('E', value);
 
   /// [DataLogValue.pgnStopBit] value to apply to all records.
-  @annotation.XmlAttribute(name: 'F')
-  final int? pgnStopBit;
+  int? get pgnStopBit => tryParseInt('F');
+  set pgnStopBit(int? value) => setIntNullable('F', value);
 
   /// Whether record [DataLogValue.processDataValue] should be read from
   /// the [TimeLog.byteData].
   ///
   /// Should usually be true.
   final bool readProcessDataValue;
-
-  /// Returns a structured XML element that represents this.
-  XmlElement toXmlElement({Map<String, String?> namespaces = const {}}) {
-    final element =
-        XmlElement(XmlName.fromString('DLV'), [...namespaces.toXmlAttributes()])
-          ..setAttribute('A', processDataDDI)
-          ..setAttribute('B', processDataValue?.toString() ?? '')
-          ..setAttribute('C', deviceElementIdRef);
-    if (pgn != null) {
-      element.setAttribute('D', pgn!.toString());
-    }
-    if (pgnStartBit != null) {
-      element.setAttribute('E', pgnStartBit!.toString());
-    }
-    if (pgnStopBit != null) {
-      element.setAttribute('F', pgnStopBit!.toString());
-    }
-
-    return element;
-  }
 }

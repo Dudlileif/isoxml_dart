@@ -13,11 +13,8 @@ part of '../iso_11783_element.dart';
 ///
 /// Presented values are always rounded to the number of decimals specified in
 /// the [numberOfDecimals] attribute.
-@CopyWith()
-@annotation.XmlRootElement(name: 'VPN')
-@annotation.XmlSerializable(createMixin: true)
-class ValuePresentation extends Iso11783Element
-    with _$ValuePresentationXmlSerializableMixin, EquatableMixin {
+
+class ValuePresentation extends Iso11783Element {
   /// Default factory for creating a [ValuePresentation] with verified
   /// arguments.
   factory ValuePresentation({
@@ -27,7 +24,6 @@ class ValuePresentation extends Iso11783Element
     required int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkValueInRange(
@@ -69,44 +65,28 @@ class ValuePresentation extends Iso11783Element
       numberOfDecimals: numberOfDecimals,
       unitDesignator: unitDesignator,
       colourLegendIdRef: colourLegendIdRef,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ValuePresentation._({
-    required this.id,
-    required this.offset,
-    required this.scale,
-    required this.numberOfDecimals,
-    this.unitDesignator,
-    this.colourLegendIdRef,
-    super.customAttributes,
+  ValuePresentation._({
+    required String id,
+    required int offset,
+    required double scale,
+    required int numberOfDecimals,
+    String? unitDesignator,
+    String? colourLegendIdRef,
   }) : super(
          elementType: Iso11783ElementType.valuePresentation,
          description: 'ValuePresentation',
-       );
-
-  /// Creates a [ValuePresentation] from [element].
-  factory ValuePresentation.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final offset = element.getAttribute('B')!;
-    final scale = element.getAttribute('C')!;
-    final numberOfDecimals = element.getAttribute('D')!;
-    final unitDesignator = element.getAttribute('E');
-    final colourLegendIdRef = element.getAttribute('F');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return ValuePresentation(
-      id: id,
-      offset: int.parse(offset),
-      scale: double.parse(scale),
-      numberOfDecimals: int.parse(numberOfDecimals),
-      unitDesignator: unitDesignator,
-      colourLegendIdRef: colourLegendIdRef,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.id = id;
+    this.offset = offset;
+    this.scale = scale;
+    this.numberOfDecimals = numberOfDecimals;
+    this.unitDesignator = unitDesignator;
+    this.colourLegendIdRef = colourLegendIdRef;
   }
 
   /// Regular expression matching pattern for the [id] of [ValuePresentation]s.
@@ -119,65 +99,26 @@ class ValuePresentation extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Offset to be applied to the value for presentation.
-  @annotation.XmlAttribute(name: 'B')
-  final int offset;
+  int get offset => parseInt('B');
+  set offset(int value) => setInt('B', value);
 
   /// Scale to be applied to the value for presentation.
-  @annotation.XmlAttribute(name: 'C')
-  final double scale;
+  double get scale => parseDouble('C');
+  set scale(double value) => setDouble('C', value);
 
   /// Number of decimals to be presented after the decimal separator.
-  @annotation.XmlAttribute(name: 'D')
-  final int numberOfDecimals;
+  int get numberOfDecimals => parseInt('D');
+  set numberOfDecimals(int value) => setInt('D', value);
 
   /// Optional unit designator string.
-  @annotation.XmlAttribute(name: 'E')
-  final String? unitDesignator;
+  String? get unitDesignator => tryParseString('E');
+  set unitDesignator(String? value) => setStringNullable('E', value);
 
   /// Reference to a [ColourLegend].
-  @annotation.XmlAttribute(name: 'F')
-  final String? colourLegendIdRef;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ValuePresentationBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ValuePresentationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    offset,
-    scale,
-    numberOfDecimals,
-    unitDesignator,
-    colourLegendIdRef,
-  ];
+  String? get colourLegendIdRef => tryParseString('F');
+  set colourLegendIdRef(String? value) => setStringNullable('F', value);
 }

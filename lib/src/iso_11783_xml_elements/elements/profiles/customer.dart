@@ -11,11 +11,7 @@ part of '../../iso_11783_element.dart';
 /// multiple. To determine which [Farm]s or [Partfield]s belong to a specific
 /// [Customer], the `customerIdRef` values of all [Farm]s or [Partfield]s,
 /// respectively, shall be examined for a match with a particular [id] value.
-@CopyWith()
-@annotation.XmlRootElement(name: 'CTR')
-@annotation.XmlSerializable(createMixin: true)
-class Customer extends Iso11783Element
-    with _$CustomerXmlSerializableMixin, EquatableMixin {
+class Customer extends Iso11783Element with _ProfileMixin {
   /// Default factory for creating a [Customer] with verified
   /// arguments.
   factory Customer({
@@ -32,7 +28,6 @@ class Customer extends Iso11783Element
     String? mobile,
     String? fax,
     String? email,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (lastName.length > 32) {
@@ -107,65 +102,42 @@ class Customer extends Iso11783Element
       mobile: mobile,
       fax: fax,
       email: email,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Customer._({
-    required this.id,
-    required this.lastName,
-    this.firstName,
-    this.street,
-    this.poBox,
-    this.postalCode,
-    this.city,
-    this.state,
-    this.country,
-    this.phone,
-    this.mobile,
-    this.fax,
-    this.email,
-    super.customAttributes,
+  Customer._({
+    required String id,
+    required String lastName,
+    String? firstName,
+    String? street,
+    String? poBox,
+    String? postalCode,
+    String? city,
+    String? state,
+    String? country,
+    String? phone,
+    String? mobile,
+    String? fax,
+    String? email,
   }) : super(
          elementType: Iso11783ElementType.customer,
          description: 'Customer',
-       );
-
-  /// Creates a [Customer] from [element].
-  factory Customer.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final lastName = element.getAttribute('B')!;
-    final firstName = element.getAttribute('C');
-    final street = element.getAttribute('D');
-    final poBox = element.getAttribute('E');
-    final postalCode = element.getAttribute('F');
-    final city = element.getAttribute('G');
-    final state = element.getAttribute('H');
-    final country = element.getAttribute('I');
-    final phone = element.getAttribute('J');
-    final mobile = element.getAttribute('K');
-    final fax = element.getAttribute('L');
-    final email = element.getAttribute('M');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Customer(
-      id: id,
-      lastName: lastName,
-      firstName: firstName,
-      street: street,
-      poBox: poBox,
-      postalCode: postalCode,
-      city: city,
-      state: state,
-      country: country,
-      phone: phone,
-      mobile: mobile,
-      fax: fax,
-      email: email,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.id = id;
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.street = street;
+    this.poBox = poBox;
+    this.postalCode = postalCode;
+    this.city = city;
+    this.state = state;
+    this.country = country;
+    this.phone = phone;
+    this.mobile = mobile;
+    this.fax = fax;
+    this.email = email;
   }
 
   /// Regular expression matching pattern for the [id] of [Customer]s.
@@ -174,104 +146,7 @@ class Customer extends Iso11783Element
   @override
   String get idRefPattern => staticIdRefPattern;
 
-  /// Unique identifier for this customer.
-  ///
-  /// Records generated on MICS have negative IDs.
-  @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
-
-  /// Customer's last name.
-  @annotation.XmlAttribute(name: 'B')
-  final String lastName;
-
-  /// Customer's first name.
-  @annotation.XmlAttribute(name: 'C')
-  final String? firstName;
-
-  /// Street
-  @annotation.XmlAttribute(name: 'D')
-  final String? street;
-
-  /// PO Box
-  @annotation.XmlAttribute(name: 'E')
-  final String? poBox;
-
-  /// Postal code
-  @annotation.XmlAttribute(name: 'F')
-  final String? postalCode;
-
-  /// City
-  @annotation.XmlAttribute(name: 'G')
-  final String? city;
-
-  /// State
-  @annotation.XmlAttribute(name: 'H')
-  final String? state;
-
-  /// Country
-  @annotation.XmlAttribute(name: 'I')
-  final String? country;
-
-  /// Telephone number
-  @annotation.XmlAttribute(name: 'J')
-  final String? phone;
-
-  /// Cellular phone number
-  @annotation.XmlAttribute(name: 'K')
-  final String? mobile;
-
   /// Fax number
-  @annotation.XmlAttribute(name: 'L')
-  final String? fax;
-
-  /// E-mail address
-  @annotation.XmlAttribute(name: 'M')
-  final String? email;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$CustomerBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$CustomerToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    lastName,
-    firstName,
-    street,
-    poBox,
-    postalCode,
-    city,
-    state,
-    country,
-    phone,
-    mobile,
-    fax,
-    email,
-  ];
+  String? get fax => tryParseString('L');
+  set fax(String? value) => setStringNullable('L', value);
 }

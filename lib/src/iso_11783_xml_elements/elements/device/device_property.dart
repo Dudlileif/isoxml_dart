@@ -8,20 +8,16 @@ part of '../../iso_11783_element.dart';
 /// reference and a value for a DDI.
 ///
 /// This element is part of the device description.
-@CopyWith()
-@annotation.XmlRootElement(name: 'DPT')
-@annotation.XmlSerializable(createMixin: true)
-class DeviceProperty extends Iso11783Element
-    with _$DevicePropertyXmlSerializableMixin, EquatableMixin {
+
+class DeviceProperty extends Iso11783Element {
   /// Default factory for creating a [DeviceProperty] with verified
   /// arguments.
   factory DeviceProperty({
     required int objectId,
     required String ddi,
-    required int value,
+    required int propertyValue,
     String? designator,
     int? valuePresentationObjectId,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -34,10 +30,10 @@ class DeviceProperty extends Iso11783Element
       name: 'objectId',
     );
     ArgumentValidation.checkValueInRange(
-      value: value,
+      value: propertyValue,
       min: -2147483648,
       max: 2147483648,
-      name: 'value',
+      name: 'propertyValue',
     );
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
@@ -54,107 +50,52 @@ class DeviceProperty extends Iso11783Element
     return DeviceProperty._(
       objectId: objectId,
       ddi: ddi,
-      value: value,
+      propertyValue: propertyValue,
       designator: designator,
       valuePresentationObjectId: valuePresentationObjectId,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DeviceProperty._({
-    required this.objectId,
-    required this.ddi,
-    required this.value,
-    this.designator,
-    this.valuePresentationObjectId,
-    super.customAttributes,
+  DeviceProperty._({
+    required int objectId,
+    required String ddi,
+    required int propertyValue,
+    String? designator,
+    int? valuePresentationObjectId,
   }) : super(
          elementType: Iso11783ElementType.deviceProperty,
          description: 'DeviceProperty',
-       );
-
-  /// Creates a [DeviceProperty] from [element].
-  factory DeviceProperty.fromXmlElement(XmlElement element) {
-    final objectId = element.getAttribute('A')!;
-    final ddi = element.getAttribute('B')!;
-    final value = element.getAttribute('C')!;
-    final designator = element.getAttribute('D');
-    final valuePresentationObjectId = element.getAttribute('E');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return DeviceProperty(
-      objectId: int.parse(objectId),
-      ddi: ddi,
-      value: int.parse(value),
-      designator: designator,
-      valuePresentationObjectId: valuePresentationObjectId != null
-          ? int.parse(valuePresentationObjectId)
-          : null,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.objectId = objectId;
+    this.ddi = ddi;
+    this.propertyValue = propertyValue;
+    this.designator = designator;
+    this.valuePresentationObjectId = valuePresentationObjectId;
   }
 
   /// Unique number inside a single [Device].
-  @annotation.XmlAttribute(name: 'A')
-  final int objectId;
+  int get objectId => parseInt('A');
+  set objectId(int value) => setInt('A', value);
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
   ///
   /// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)
   /// in the ISO 11783-11 database.
-  @annotation.XmlAttribute(name: 'B')
-  final String ddi;
+  String get ddi => parseString('B');
+  set ddi(String value) => setString('B', value);
 
   /// Property value.
-  @annotation.XmlAttribute(name: 'C')
-  final int value;
+  int get propertyValue => parseInt('C');
+  set propertyValue(int value) => setInt('C', value);
 
   /// Name of the device property, description or comment.
-  @annotation.XmlAttribute(name: 'D')
-  final String? designator;
+  String? get designator => tryParseString('D');
+  set designator(String? value) => setStringNullable('D', value);
 
   /// Object ID of the [ValuePresentation].
-  @annotation.XmlAttribute(name: 'E')
-  final int? valuePresentationObjectId;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DevicePropertyBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DevicePropertyToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    objectId,
-    ddi,
-    value,
-    designator,
-    valuePresentationObjectId,
-  ];
+  int? get valuePresentationObjectId => tryParseInt('E');
+  set valuePresentationObjectId(int? value) => setIntNullable('E', value);
 }

@@ -12,11 +12,8 @@ part of '../../iso_11783_element.dart';
 ///
 /// The [CommentAllocation] can only assign either a [CodedComment] or the
 /// [freeCommentText].
-@CopyWith()
-@annotation.XmlRootElement(name: 'CAN')
-@annotation.XmlSerializable(createMixin: true)
-class CommentAllocation extends Iso11783Element
-    with _$CommentAllocationXmlSerializableMixin {
+
+class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [CommentAllocation] with verified
   /// arguments.
   ///
@@ -30,7 +27,6 @@ class CommentAllocation extends Iso11783Element
     String? codedCommentIdRef,
     String? codedCommentListValueIdRef,
     String? freeCommentText,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (codedCommentIdRef != null) {
       ArgumentValidation.checkId(
@@ -68,104 +64,36 @@ class CommentAllocation extends Iso11783Element
       codedCommentIdRef: codedCommentIdRef,
       codedCommentListValueIdRef: codedCommentListValueIdRef,
       freeCommentText: freeCommentText,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   CommentAllocation._({
-    this.allocationStamp,
-    this.codedCommentIdRef,
-    this.codedCommentListValueIdRef,
-    this.freeCommentText,
-    super.customAttributes,
+    AllocationStamp? allocationStamp,
+    String? codedCommentIdRef,
+    String? codedCommentListValueIdRef,
+    String? freeCommentText,
   }) : super(
          elementType: Iso11783ElementType.commentAllocation,
          description: 'CommentAllocation',
-       );
-
-  /// Creates a [CommentAllocation] from [element].
-  factory CommentAllocation.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final codedCommentIdRef = element.getAttribute('A');
-    final codedCommentListValueIdRef = element.getAttribute('B');
-    final freeCommentText = element.getAttribute('C');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return CommentAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      codedCommentIdRef: codedCommentIdRef,
-      codedCommentListValueIdRef: codedCommentListValueIdRef,
-      freeCommentText: freeCommentText,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.allocationStamp = allocationStamp;
+    this.codedCommentIdRef = codedCommentIdRef;
+    this.codedCommentListValueIdRef = codedCommentListValueIdRef;
+    this.freeCommentText = freeCommentText;
   }
-
-  /// [AllocationStamp] for specifying the position and time of this allocation.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  AllocationStamp? allocationStamp;
 
   /// A reference to the id of the [CodedComment] we allocated.
-  @annotation.XmlAttribute(name: 'A')
-  String? codedCommentIdRef;
+  String? get codedCommentIdRef => tryParseString('A');
+  set codedCommentIdRef(String? value) => setStringNullable('A', value);
 
   /// A reference to the id of the [CodedCommentListValue] we allocated.
-  @annotation.XmlAttribute(name: 'B')
-  String? codedCommentListValueIdRef;
+  String? get codedCommentListValueIdRef => tryParseString('B');
+  set codedCommentListValueIdRef(String? value) =>
+      setStringNullable('B', value);
 
   /// A text comment specified by the operator.
-  @annotation.XmlAttribute(name: 'C')
-  String? freeCommentText;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$CommentAllocationBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$CommentAllocationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  /// The list of properties that will be used to determine whether
-  /// two instances are equal.
-  List<Object?> get props => [
-    allocationStamp,
-    codedCommentIdRef,
-    codedCommentListValueIdRef,
-    freeCommentText,
-  ];
-
-  /// Returns a string for [props].
-  @override
-  String toString() => mapPropsToString(runtimeType, props);
+  String? get freeCommentText => tryParseString('C');
+  set freeCommentText(String? value) => setStringNullable('C', value);
 }

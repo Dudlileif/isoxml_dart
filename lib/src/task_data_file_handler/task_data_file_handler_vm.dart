@@ -71,9 +71,6 @@ class TaskDataFileHandler {
       final taskData = Iso11783TaskData.fromXmlDocument(
         XmlDocument.parse(await taskDataFile.readAsString()),
       );
-      if (taskData == null) {
-        return null;
-      }
       for (final externalFile in taskData.externalFileReferences) {
         final archiveFile = files.firstWhereOrNull(
           (element) => element.path.toUpperCase().endsWith(
@@ -84,7 +81,9 @@ class TaskDataFileHandler {
           final contents = ExternalFileContents.fromXmlDocument(
             XmlDocument.parse(await archiveFile.readAsString()),
           );
-          contents?.contents.forEach(taskData.addTopLevelElement);
+          if (contents != null) {
+            taskData.children.addAll(contents.childElements);
+          }
         }
       }
       Iso11783LinkList? linkList;
@@ -137,7 +136,7 @@ class TaskDataFileHandler {
         }
       }
 
-      return taskData.copyWith.linkList(linkList);
+      return taskData..linkList = linkList;
     }
     return null;
   }

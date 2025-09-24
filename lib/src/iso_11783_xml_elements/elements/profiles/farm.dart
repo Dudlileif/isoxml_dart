@@ -11,11 +11,7 @@ part of '../../iso_11783_element.dart';
 /// [Customer], the [customerIdRef] values of all [Farm]s or [Partfield]s,
 /// respectively, shall be examined for a match with a particular [Customer.id]
 /// value.
-@CopyWith()
-@annotation.XmlRootElement(name: 'FRM')
-@annotation.XmlSerializable(createMixin: true)
-class Farm extends Iso11783Element
-    with _$FarmXmlSerializableMixin, EquatableMixin {
+class Farm extends Iso11783Element {
   /// Default factory for creating a [Farm] with verified
   /// arguments.
   factory Farm({
@@ -28,7 +24,6 @@ class Farm extends Iso11783Element
     String? state,
     String? country,
     String? customerIdRef,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -83,50 +78,31 @@ class Farm extends Iso11783Element
       state: state,
       country: country,
       customerIdRef: customerIdRef,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Farm._({
-    required this.id,
-    required this.designator,
-    this.street,
-    this.poBox,
-    this.postalCode,
-    this.city,
-    this.state,
-    this.country,
-    this.customerIdRef,
-    super.customAttributes,
-  }) : super(elementType: Iso11783ElementType.farm, description: 'Farm');
-
-  /// Creates a [Farm] from [element].
-  factory Farm.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final street = element.getAttribute('C');
-    final poBox = element.getAttribute('D');
-    final postalCode = element.getAttribute('E');
-    final city = element.getAttribute('F');
-    final state = element.getAttribute('G');
-    final country = element.getAttribute('H');
-    final customerIdRef = element.getAttribute('I');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Farm(
-      id: id,
-      designator: designator,
-      street: street,
-      poBox: poBox,
-      postalCode: postalCode,
-      city: city,
-      state: state,
-      country: country,
-      customerIdRef: customerIdRef,
-      customAttributes: customAttributes,
-    );
+  Farm._({
+    required String id,
+    required String designator,
+    String? street,
+    String? poBox,
+    String? postalCode,
+    String? city,
+    String? state,
+    String? country,
+    String? customerIdRef,
+  }) : super(elementType: Iso11783ElementType.farm, description: 'Farm') {
+    this.id = id;
+    this.designator = designator;
+    this.street = street;
+    this.poBox = poBox;
+    this.postalCode = postalCode;
+    this.city = city;
+    this.state = state;
+    this.country = country;
+    this.customerIdRef = customerIdRef;
   }
 
   /// Regular expression matching pattern for the [id] of [Farm]s.
@@ -139,80 +115,38 @@ class Farm extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the farm, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 
   /// Street
-  @annotation.XmlAttribute(name: 'C')
-  final String? street;
+  String? get street => tryParseString('C');
+  set street(String? value) => setStringNullable('C', value);
 
   /// PO Box
-  @annotation.XmlAttribute(name: 'D')
-  final String? poBox;
+  String? get poBox => tryParseString('D');
+  set poBox(String? value) => setStringNullable('D', value);
 
   /// Postal code
-  @annotation.XmlAttribute(name: 'E')
-  final String? postalCode;
+  String? get postalCode => tryParseString('E');
+  set postalCode(String? value) => setStringNullable('E', value);
 
   /// City
-  @annotation.XmlAttribute(name: 'F')
-  final String? city;
+  String? get city => tryParseString('F');
+  set city(String? value) => setStringNullable('F', value);
 
   /// State
-  @annotation.XmlAttribute(name: 'G')
-  final String? state;
+  String? get state => tryParseString('G');
+  set state(String? value) => setStringNullable('G', value);
 
   /// Country
-  @annotation.XmlAttribute(name: 'H')
-  final String? country;
+  String? get country => tryParseString('H');
+  set country(String? value) => setStringNullable('H', value);
 
   /// Reference to a [Customer].
-  @annotation.XmlAttribute(name: 'I')
-  final String? customerIdRef;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$FarmBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$FarmToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-    street,
-    poBox,
-    postalCode,
-    city,
-    state,
-    country,
-    customerIdRef,
-  ];
+  String? get customerIdRef => tryParseString('I');
+  set customerIdRef(String? value) => setStringNullable('I', value);
 }

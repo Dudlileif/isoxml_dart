@@ -11,17 +11,13 @@ part of '../../iso_11783_element.dart';
 /// on the mobile system. Each [CodedComment] can only belong to a single
 /// group. The comments are attached to the group by adding the group's [id]
 /// as their [CodedComment.groupIdRef].
-@CopyWith()
-@annotation.XmlRootElement(name: 'CCG')
-@annotation.XmlSerializable(createMixin: true)
-class CodedCommentGroup extends Iso11783Element
-    with _$CodedCommentGroupXmlSerializableMixin, EquatableMixin {
+
+class CodedCommentGroup extends Iso11783Element {
   /// Default factory for creating a [CodedCommentGroup] with verified
   /// arguments.
   factory CodedCommentGroup({
     required String id,
     required String designator,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -32,32 +28,20 @@ class CodedCommentGroup extends Iso11783Element
     return CodedCommentGroup._(
       id: id,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CodedCommentGroup._({
-    required this.id,
-    required this.designator,
-    super.customAttributes,
+  CodedCommentGroup._({
+    required String id,
+    required String designator,
   }) : super(
          elementType: Iso11783ElementType.codedCommentGroup,
          description: 'CodedCommentGroup',
-       );
-
-  /// Creates a [CodedCommentGroup] from [element].
-  factory CodedCommentGroup.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return CodedCommentGroup(
-      id: id,
-      designator: designator,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.id = id;
+    this.designator = designator;
   }
 
   /// Regular expression matching pattern for the [id] of
@@ -71,45 +55,10 @@ class CodedCommentGroup extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name or description.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$CodedCommentGroupBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$CodedCommentGroupToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-  ];
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 }

@@ -9,18 +9,13 @@ part of '../../iso_11783_element.dart';
 /// To determine which [Product]s belong to a specific [ProductGroup], the
 /// [Product.groupIdRef] values of all [Product]s shall be examined for a match
 /// with a particular [id] value.
-@CopyWith()
-@annotation.XmlRootElement(name: 'PGP')
-@annotation.XmlSerializable(createMixin: true)
-class ProductGroup extends Iso11783Element
-    with _$ProductGroupXmlSerializableMixin, EquatableMixin {
+class ProductGroup extends Iso11783Element {
   /// Default factory for creating a [ProductGroup] with verified
   /// arguments.
   factory ProductGroup({
     required String id,
     required String designator,
     ProductGroupType? type,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -32,45 +27,22 @@ class ProductGroup extends Iso11783Element
       id: id,
       designator: designator,
       type: type,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ProductGroup._({
-    required this.id,
-    required this.designator,
-    this.type,
-    super.customAttributes,
+  ProductGroup._({
+    required String id,
+    required String designator,
+    ProductGroupType? type,
   }) : super(
          elementType: Iso11783ElementType.productGroup,
          description: 'ProductGroup',
-       );
-
-  /// Creates a [ProductGroup] from [element].
-  factory ProductGroup.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final type = element.getAttribute('C');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return ProductGroup(
-      id: id,
-      designator: designator,
-      type: type != null
-          ? $ProductGroupTypeEnumMap.entries
-                .singleWhere(
-                  (productGroupTypeEnumMapEntry) =>
-                      productGroupTypeEnumMapEntry.value == type,
-                  orElse: () => throw ArgumentError(
-                    '''`$type` is not one of the supported values: ${$ProductGroupTypeEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.id = id;
+    this.designator = designator;
+    this.type = type;
   }
 
   /// Regular expression matching pattern for the [id] of [ProductGroup]s.
@@ -83,63 +55,32 @@ class ProductGroup extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the product group, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 
   /// Which type of product group this is.
-  @annotation.XmlAttribute(name: 'C')
-  final ProductGroupType? type;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ProductGroupBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ProductGroupToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-    type,
-  ];
+  ProductGroupType? get type => switch (tryParseInt('C')) {
+    final int value => ProductGroupType.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${ProductGroupType.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set type(ProductGroupType? value) => setIntNullable('C', value?.value);
 }
 
 /// An enumerator for which type a [ProductGroup] is.
-@annotation.XmlEnum()
 enum ProductGroupType {
   /// The default [ProductGroup] type.
-  @annotation.XmlValue('1')
   productGroupDefault(1, 'ProductGroup (default)'),
 
   /// A [ProductGroup] type for [CropType]s only.
-  @annotation.XmlValue('2')
   cropType(2, 'CropType');
 
   const ProductGroupType(this.value, this.description);

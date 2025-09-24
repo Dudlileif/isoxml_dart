@@ -8,10 +8,7 @@ part of '../../iso_11783_element.dart';
 ///
 /// [Partfield]s can only refer to [Polygon]s, [LineString]s and [Point]s that
 /// are not related to [TreatmentZone]s.
-@CopyWith()
-@annotation.XmlRootElement(name: 'PFD')
-@annotation.XmlSerializable(createMixin: true)
-class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
+class Partfield extends Iso11783Element {
   /// Default factory for creating a [Partfield] with verified
   /// arguments.
   factory Partfield({
@@ -28,7 +25,6 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
     String? cropTypeIdRef,
     String? cropVarietyIdRef,
     String? fieldIdRef,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -94,80 +90,50 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
       cropTypeIdRef: cropTypeIdRef,
       cropVarietyIdRef: cropVarietyIdRef,
       fieldIdRef: fieldIdRef,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Partfield._({
-    required this.id,
-    required this.designator,
-    required this.area,
+    required String id,
+    required String designator,
+    required int area,
     List<LineString>? lineStrings,
     List<Polygon>? polygons,
     List<Point>? points,
     List<GuidanceGroup>? guidanceGroups,
-    this.code,
-    this.customerIdRef,
-    this.farmIdRef,
-    this.cropTypeIdRef,
-    this.cropVarietyIdRef,
-    this.fieldIdRef,
-    super.customAttributes,
+    String? code,
+    String? customerIdRef,
+    String? farmIdRef,
+    String? cropTypeIdRef,
+    String? cropVarietyIdRef,
+    String? fieldIdRef,
   }) : super(
          elementType: Iso11783ElementType.partfield,
          description: 'Partfield',
        ) {
+    this.id = id;
+    this.designator = designator;
+    this.area = area;
+    this.code = code;
+    this.customerIdRef = customerIdRef;
+    this.farmIdRef = farmIdRef;
+    this.cropTypeIdRef = cropTypeIdRef;
+    this.cropVarietyIdRef = cropVarietyIdRef;
+    this.fieldIdRef = fieldIdRef;
     if (lineStrings != null) {
-      this.lineStrings.addAll(lineStrings);
+      children.addAll(lineStrings);
     }
     if (polygons != null) {
-      this.polygons.addAll(polygons);
+      children.addAll(polygons);
     }
     if (points != null) {
-      this.points.addAll(points);
+      children.addAll(points);
     }
     if (guidanceGroups != null) {
-      this.guidanceGroups.addAll(guidanceGroups);
+      children.addAll(guidanceGroups);
     }
-  }
-
-  /// Creates a [Partfield] from [element].
-  factory Partfield.fromXmlElement(XmlElement element) {
-    final polygons = element.getElements('PLN');
-    final points = element.getElements('PNT');
-    final lineStrings = element.getElements('LSG');
-    final guidanceGroups = element.getElements('GGP');
-    final id = element.getAttribute('A')!;
-    final code = element.getAttribute('B');
-    final designator = element.getAttribute('C')!;
-    final area = element.getAttribute('D')!;
-    final customerIdRef = element.getAttribute('E');
-    final farmIdRef = element.getAttribute('F');
-    final cropTypeIdRef = element.getAttribute('G');
-    final cropVarietyIdRef = element.getAttribute('H');
-    final fieldIdRef = element.getAttribute('I');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Partfield(
-      polygons: polygons?.map(Polygon.fromXmlElement).toList(),
-      points: points?.map(Point.fromXmlElement).toList(),
-      lineStrings: lineStrings?.map(LineString.fromXmlElement).toList(),
-      guidanceGroups: guidanceGroups
-          ?.map(GuidanceGroup.fromXmlElement)
-          .toList(),
-      id: id,
-      code: code,
-      designator: designator,
-      area: int.parse(area),
-      customerIdRef: customerIdRef,
-      farmIdRef: farmIdRef,
-      cropTypeIdRef: cropTypeIdRef,
-      cropVarietyIdRef: cropVarietyIdRef,
-      fieldIdRef: fieldIdRef,
-      customAttributes: customAttributes,
-    );
   }
 
   /// Regular expression matching pattern for the [id] of [Partfield]s.
@@ -177,125 +143,61 @@ class Partfield extends Iso11783Element with _$PartfieldXmlSerializableMixin {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [Polygon]s that this is made of.
-  @annotation.XmlElement(name: 'PLN')
-  final List<Polygon> polygons = [];
+  List<Polygon> get polygons => findElements(
+    Iso11783ElementType.polygon.xmlTag,
+  ).map((e) => e as Polygon).toList();
 
   /// A list of [Point]s that this is made of.
-  @annotation.XmlElement(name: 'PNT')
-  final List<Point> points = [];
+  List<Point> get points => findElements(
+    Iso11783ElementType.point.xmlTag,
+  ).map((e) => e as Point).toList();
 
   /// A list of [LineString] that this is made of.
-  @annotation.XmlElement(name: 'LSG')
-  final List<LineString> lineStrings = [];
+  List<LineString> get lineStrings => findElements(
+    Iso11783ElementType.lineString.xmlTag,
+  ).map((e) => e as LineString).toList();
 
   /// A list of [GuidanceGroup]s for use in this.
-  @annotation.XmlElement(name: 'GGP')
-  final List<GuidanceGroup> guidanceGroups = [];
+  List<GuidanceGroup> get guidanceGroups => findElements(
+    Iso11783ElementType.guidanceGroup.xmlTag,
+  ).map((e) => e as GuidanceGroup).toList();
 
   /// Unique identifier for this partfield.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Partfield number from the FMIS.
-  @annotation.XmlAttribute(name: 'B')
-  final String? code;
+  String? get code => tryParseString('B');
+  set code(String? value) => setStringNullable('B', value);
 
   /// Name of the partfield, description or comment.
-  @annotation.XmlAttribute(name: 'C')
-  final String designator;
+  String get designator => parseString('C');
+  set designator(String value) => setString('C', value);
 
   /// The size of this in m².
-  @annotation.XmlAttribute(name: 'D')
-  int area;
+  int get area => parseInt('D');
+  set area(int value) => setInt('D', value);
 
   /// Reference to a [Customer].
-  @annotation.XmlAttribute(name: 'E')
-  String? customerIdRef;
+  String? get customerIdRef => tryParseString('E');
+  set customerIdRef(String? value) => setStringNullable('E', value);
 
   /// Reference to a [Farm].
-  @annotation.XmlAttribute(name: 'F')
-  String? farmIdRef;
+  String? get farmIdRef => tryParseString('F');
+  set farmIdRef(String? value) => setStringNullable('F', value);
 
   /// Reference to a [CropType].
-  @annotation.XmlAttribute(name: 'G')
-  String? cropTypeIdRef;
+  String? get cropTypeIdRef => tryParseString('G');
+  set cropTypeIdRef(String? value) => setStringNullable('G', value);
 
   /// Reference to a [CropVariety].
-  @annotation.XmlAttribute(name: 'H')
-  String? cropVarietyIdRef;
+  String? get cropVarietyIdRef => tryParseString('H');
+  set cropVarietyIdRef(String? value) => setStringNullable('H', value);
 
   /// Reference to a parent [Partfield].
-  @annotation.XmlAttribute(name: 'I')
-  String? fieldIdRef;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in polygons.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in guidanceGroups.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$PartfieldBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$PartfieldToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  /// The list of properties that will be used to determine whether
-  /// two instances are equal.
-  List<Object?> get props => [
-    polygons,
-    lineStrings,
-    points,
-    guidanceGroups,
-    id,
-    code,
-    designator,
-    area,
-    customerIdRef,
-    farmIdRef,
-    cropTypeIdRef,
-    cropVarietyIdRef,
-    fieldIdRef,
-  ];
-
-  /// Returns a string for [props].
-  @override
-  String toString() => mapPropsToString(runtimeType, props);
+  String? get fieldIdRef => tryParseString('I');
+  set fieldIdRef(String? value) => setStringNullable('I', value);
 }

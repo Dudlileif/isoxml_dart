@@ -7,11 +7,7 @@ part of '../../iso_11783_element.dart';
 /// An element that is used to group all XML elements of an XML file external to
 /// the main XML data transfer file in order to keep the external file well
 /// formed.
-@CopyWith()
-@annotation.XmlRootElement(name: 'XFC')
-@annotation.XmlSerializable(createMixin: true)
-class ExternalFileContents extends Iso11783Element
-    with _$ExternalFileContentsXmlSerializableMixin, EquatableMixin {
+class ExternalFileContents extends Iso11783Element {
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   ExternalFileContents({
@@ -32,283 +28,156 @@ class ExternalFileContents extends Iso11783Element
     List<Task>? tasks,
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
-    super.customAttributes,
   }) : super(
          elementType: Iso11783ElementType.externalFileContents,
          description: 'ExternalFileContents',
        ) {
     if (attachedFiles != null) {
-      this.attachedFiles.addAll(attachedFiles);
+      children.addAll(attachedFiles);
     }
     if (baseStations != null) {
-      this.baseStations.addAll(baseStations);
+      children.addAll(baseStations);
     }
     if (codedComments != null) {
-      this.codedComments.addAll(codedComments);
+      children.addAll(codedComments);
     }
     if (codedCommentGroups != null) {
-      this.codedCommentGroups.addAll(codedCommentGroups);
+      children.addAll(codedCommentGroups);
     }
     if (colourLegends != null) {
-      this.colourLegends.addAll(colourLegends);
+      children.addAll(colourLegends);
     }
     if (cropTypes != null) {
-      this.cropTypes.addAll(cropTypes);
+      children.addAll(cropTypes);
     }
     if (culturalPractices != null) {
-      this.culturalPractices.addAll(culturalPractices);
+      children.addAll(culturalPractices);
     }
     if (customers != null) {
-      this.customers.addAll(customers);
+      children.addAll(customers);
     }
     if (devices != null) {
-      this.devices.addAll(devices);
+      children.addAll(devices);
     }
     if (farms != null) {
-      this.farms.addAll(farms);
+      children.addAll(farms);
     }
     if (operationTechniques != null) {
-      this.operationTechniques.addAll(operationTechniques);
+      children.addAll(operationTechniques);
     }
     if (partfields != null) {
-      this.partfields.addAll(partfields);
+      children.addAll(partfields);
     }
     if (products != null) {
-      this.products.addAll(products);
+      children.addAll(products);
     }
     if (productGroups != null) {
-      this.productGroups.addAll(productGroups);
+      children.addAll(productGroups);
     }
     if (tasks != null) {
-      this.tasks.addAll(tasks);
+      children.addAll(tasks);
     }
     if (valuePresentations != null) {
-      this.valuePresentations.addAll(valuePresentations);
+      children.addAll(valuePresentations);
     }
     if (workers != null) {
-      this.workers.addAll(workers);
+      children.addAll(workers);
     }
-  }
-
-  /// Creates an [ExternalFileContents] from [element].
-  factory ExternalFileContents.fromXmlElement(XmlElement element) {
-    final attachedFiles = element.getElements('AFE');
-    final baseStations = element.getElements('BSN');
-    final codedComments = element.getElements('CCT');
-    final codedCommentGroups = element.getElements('CCG');
-    final colourLegends = element.getElements('CLD');
-    final cropTypes = element.getElements('CTP');
-    final culturalPractices = element.getElements('CPC');
-    final customers = element.getElements('CTR');
-    final devices = element.getElements('DVC');
-    final farms = element.getElements('FRM');
-    final operationTechniques = element.getElements('OTQ');
-    final partfields = element.getElements('PFD');
-    final products = element.getElements('PDT');
-    final productGroups = element.getElements('PGP');
-    final tasks = element.getElements('TSK');
-    final valuePresentations = element.getElements('VPN');
-    final workers = element.getElements('WKR');
-    final customAttributes = element.attributes;
-
-    return ExternalFileContents(
-      attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
-      baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
-      codedComments: codedComments?.map(CodedComment.fromXmlElement).toList(),
-      codedCommentGroups: codedCommentGroups
-          ?.map(CodedCommentGroup.fromXmlElement)
-          .toList(),
-      colourLegends: colourLegends?.map(ColourLegend.fromXmlElement).toList(),
-      cropTypes: cropTypes?.map(CropType.fromXmlElement).toList(),
-      culturalPractices: culturalPractices
-          ?.map(CulturalPractice.fromXmlElement)
-          .toList(),
-      customers: customers?.map(Customer.fromXmlElement).toList(),
-      devices: devices?.map(Device.fromXmlElement).toList(),
-      farms: farms?.map(Farm.fromXmlElement).toList(),
-      operationTechniques: operationTechniques
-          ?.map(OperationTechnique.fromXmlElement)
-          .toList(),
-      partfields: partfields?.map(Partfield.fromXmlElement).toList(),
-      products: products?.map(Product.fromXmlElement).toList(),
-      productGroups: productGroups?.map(ProductGroup.fromXmlElement).toList(),
-      tasks: tasks?.map(Task.fromXmlElement).toList(),
-      valuePresentations: valuePresentations
-          ?.map(ValuePresentation.fromXmlElement)
-          .toList(),
-      workers: workers?.map(Worker.fromXmlElement).toList(),
-      customAttributes: customAttributes,
-    );
   }
 
   /// Creates an [ExternalFileContents] from [document].
-  static ExternalFileContents? fromXmlDocument(XmlDocument document) {
-    final element = document.getElement(
-      Iso11783ElementType.externalFileContents.xmlTag,
-    );
-    if (element == null) {
-      return null;
-    }
-    return ExternalFileContents.fromXmlElement(element);
-  }
-
-  /// [BaseStation]s stored in the external file.
-  @annotation.XmlElement(name: 'AFE')
-  final List<AttachedFile> attachedFiles = [];
-
-  /// [BaseStation]s stored in the external file.
-  @annotation.XmlElement(name: 'BSN')
-  final List<BaseStation> baseStations = [];
-
-  /// [CodedComment]s stored in the external file.
-  @annotation.XmlElement(name: 'CCT')
-  final List<CodedComment> codedComments = [];
-
-  /// [CodedCommentGroup]s stored in the external file.
-  @annotation.XmlElement(name: 'CCG')
-  final List<CodedCommentGroup> codedCommentGroups = [];
-
-  /// [ColourLegend]s stored in the external file.
-  @annotation.XmlElement(name: 'CLD')
-  final List<ColourLegend> colourLegends = [];
-
-  /// [CropType]s stored in the external file.
-  @annotation.XmlElement(name: 'CTP')
-  final List<CropType> cropTypes = [];
-
-  /// [CulturalPractice]s stored in the external file.
-  @annotation.XmlElement(name: 'CPC')
-  final List<CulturalPractice> culturalPractices = [];
-
-  /// [Customer]s stored in the external file.
-  @annotation.XmlElement(name: 'CTR')
-  final List<Customer> customers = [];
-
-  /// [Device]s stored in the external file.
-  @annotation.XmlElement(name: 'DVC')
-  final List<Device> devices = [];
-
-  /// [Farm]s stored in the external file.
-  @annotation.XmlElement(name: 'FRM')
-  final List<Farm> farms = [];
-
-  /// [OperationTechnique]s stored in the external file.
-  @annotation.XmlElement(name: 'OTQ')
-  final List<OperationTechnique> operationTechniques = [];
-
-  /// [Partfield]s stored in the external file.
-  @annotation.XmlElement(name: 'PFD')
-  final List<Partfield> partfields = [];
-
-  /// [Product]s stored in the external file.
-  @annotation.XmlElement(name: 'PDT')
-  final List<Product> products = [];
-
-  /// [ProductGroup]s stored in the external file.
-  @annotation.XmlElement(name: 'PGP')
-  final List<ProductGroup> productGroups = [];
-
-  /// [Task]s stored in the external file.
-  @annotation.XmlElement(name: 'TSK')
-  final List<Task> tasks = [];
-
-  /// [ValuePresentation]s stored in the external file.
-  @annotation.XmlElement(name: 'VPN')
-  final List<ValuePresentation> valuePresentations = [];
-
-  /// [Worker]s stored in the external file.
-  @annotation.XmlElement(name: 'WKR')
-  final List<Worker> workers = [];
+  static ExternalFileContents? fromXmlDocument(XmlDocument document) =>
+      document.getElement(Iso11783ElementType.externalFileContents.xmlTag)
+          as ExternalFileContents?;
 
   /// A structured XML document that represents this.
-  XmlDocument toXmlDocument() {
-    final builder = XmlBuilder()
-      ..processing('xml', 'version="1.0" encoding="UTF-8"');
-    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
-    return builder.buildDocument();
-  }
+  XmlDocument toXmlDocument() => XmlDocument([
+    XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
+    this,
+  ]);
 
-  /// Iterable with all the children elements of this.
-  Iterable<Iso11783Element> get contents => [
-    for (final list in <List<Iso11783Element>>[
-      attachedFiles,
-      baseStations,
-      codedComments,
-      codedCommentGroups,
-      colourLegends,
-      cropTypes,
-      culturalPractices,
-      customers,
-      devices,
-      farms,
-      operationTechniques,
-      partfields,
-      products,
-      productGroups,
-      tasks,
-      valuePresentations,
-      workers,
-    ])
-      ...list,
-  ];
+  /// [BaseStation]s stored in the external file.
+  List<AttachedFile> get attachedFiles => findElements(
+    Iso11783ElementType.attachedFile.xmlTag,
+  ).map((e) => e as AttachedFile).toList();
 
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in contents.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-  ];
+  /// [BaseStation]s stored in the external file.
+  List<BaseStation> get baseStations => findElements(
+    Iso11783ElementType.baseStation.xmlTag,
+  ).map((e) => e as BaseStation).toList();
 
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ExternalFileContentsBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
+  /// [CodedComment]s stored in the external file.
+  List<CodedComment> get codedComments => findElements(
+    Iso11783ElementType.codedComment.xmlTag,
+  ).map((e) => e as CodedComment).toList();
 
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ExternalFileContentsToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
+  /// [CodedCommentGroup]s stored in the external file.
+  List<CodedCommentGroup> get codedCommentGroups => findElements(
+    Iso11783ElementType.codedCommentGroup.xmlTag,
+  ).map((e) => e as CodedCommentGroup).toList();
 
-  @override
-  List<Object?> get props => [
-    baseStations,
-    codedComments,
-    codedCommentGroups,
-    colourLegends,
-    cropTypes,
-    culturalPractices,
-    customers,
-    devices,
-    farms,
-    operationTechniques,
-    partfields,
-    products,
-    productGroups,
-    tasks,
-    valuePresentations,
-    workers,
-  ];
+  /// [ColourLegend]s stored in the external file.
+  List<ColourLegend> get colourLegends => findElements(
+    Iso11783ElementType.colourLegend.xmlTag,
+  ).map((e) => e as ColourLegend).toList();
+
+  /// [CropType]s stored in the external file.
+  List<CropType> get cropTypes => findElements(
+    Iso11783ElementType.cropType.xmlTag,
+  ).map((e) => e as CropType).toList();
+
+  /// [CulturalPractice]s stored in the external file.
+  List<CulturalPractice> get culturalPractices => findElements(
+    Iso11783ElementType.culturalPractice.xmlTag,
+  ).map((e) => e as CulturalPractice).toList();
+
+  /// [Customer]s stored in the external file.
+  List<Customer> get customers => findElements(
+    Iso11783ElementType.customer.xmlTag,
+  ).map((e) => e as Customer).toList();
+
+  /// [Device]s stored in the external file.
+  List<Device> get devices => findElements(
+    Iso11783ElementType.device.xmlTag,
+  ).map((e) => e as Device).toList();
+
+  /// [Farm]s stored in the external file.
+  List<Farm> get farms => findElements(
+    Iso11783ElementType.farm.xmlTag,
+  ).map((e) => e as Farm).toList();
+
+  /// [OperationTechnique]s stored in the external file.
+  List<OperationTechnique> get operationTechniques => findElements(
+    Iso11783ElementType.operationTechnique.xmlTag,
+  ).map((e) => e as OperationTechnique).toList();
+
+  /// [Partfield]s stored in the external file.
+  List<Partfield> get partfields => findElements(
+    Iso11783ElementType.partfield.xmlTag,
+  ).map((e) => e as Partfield).toList();
+
+  /// [Product]s stored in the external file.
+  List<Product> get products => findElements(
+    Iso11783ElementType.product.xmlTag,
+  ).map((e) => e as Product).toList();
+
+  /// [ProductGroup]s stored in the external file.
+  List<ProductGroup> get productGroups => findElements(
+    Iso11783ElementType.productGroup.xmlTag,
+  ).map((e) => e as ProductGroup).toList();
+
+  /// [Task]s stored in the external file.
+  List<Task> get tasks => findElements(
+    Iso11783ElementType.task.xmlTag,
+  ).map((e) => e as Task).toList();
+
+  /// [ValuePresentation]s stored in the external file.
+  List<ValuePresentation> get valuePresentations => findElements(
+    Iso11783ElementType.valuePresentation.xmlTag,
+  ).map((e) => e as ValuePresentation).toList();
+
+  /// [Worker]s stored in the external file.
+  List<Worker> get workers => findElements(
+    Iso11783ElementType.worker.xmlTag,
+  ).map((e) => e as Worker).toList();
 }

@@ -13,17 +13,12 @@ part of '../../iso_11783_element.dart';
 /// [Iso11783ElementType.tagsThatCanBeExternal]. Inside an external XML file,
 /// only a single type of XML element can be specified per file. There shall be
 /// no recursive use of XFR elements, and no recursive use XFC elements.
-@CopyWith()
-@annotation.XmlRootElement(name: 'XFR')
-@annotation.XmlSerializable(createMixin: true)
-class ExternalFileReference extends Iso11783Element
-    with _$ExternalFileReferenceXmlSerializableMixin, EquatableMixin {
+class ExternalFileReference extends Iso11783Element {
   /// Default factory for creating an [ExternalFileReference] with verified
   /// arguments.
   factory ExternalFileReference({
     required String filename,
     FileType? filetype,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: filename,
@@ -35,42 +30,20 @@ class ExternalFileReference extends Iso11783Element
     return ExternalFileReference._(
       filename: filename,
       filetype: filetype,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ExternalFileReference._({
-    required this.filename,
-    this.filetype,
-    super.customAttributes,
+  ExternalFileReference._({
+    required String filename,
+    FileType? filetype,
   }) : super(
          elementType: Iso11783ElementType.externalFileReference,
          description: 'ExternalFileReference',
-       );
-
-  /// Creates an [ExternalFileReference] from [element].
-  factory ExternalFileReference.fromXmlElement(XmlElement element) {
-    final filename = element.getAttribute('A')!;
-    final filetype = element.getAttribute('B');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return ExternalFileReference(
-      filename: filename,
-      filetype: filetype != null
-          ? $FileTypeEnumMap.entries
-                .singleWhere(
-                  (fileTypeEnumMapEntry) =>
-                      fileTypeEnumMapEntry.value == filetype,
-                  orElse: () => throw ArgumentError(
-                    '''`$filetype` is not one of the supported values: ${$FileTypeEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.filename = filename;
+    this.filetype = filetype;
   }
 
   /// Regular expression matching pattern for the filenames of external files.
@@ -78,66 +51,33 @@ class ExternalFileReference extends Iso11783Element
       '''(AFE|BSN|CCG|CCT|CLD|CPC|CTP|CTR|DVC|FRM|OTQ|PDT|PFD|PGP|TSK|VPN|WKR)[0-9]{5}''';
 
   /// Filename of the external file.
-  @annotation.XmlAttribute(name: 'A')
-  final String filename;
+  String get filename => parseString('A');
+  set filename(String value) => setString('A', value);
 
   /// What type of file the referenced file is.
   ///
   /// Only [FileType.xml] is possible.
-  @annotation.XmlAttribute(name: 'B')
-  final FileType? filetype;
+  FileType? get filetype => switch (tryParseInt('B')) {
+    final int value => FileType.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${FileType.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set filetype(FileType? value) => setIntNullable('B', value?.value);
 
   /// Which type of element this file's content is.
   @override
   Iso11783ElementType get elementType => Iso11783ElementType.values.firstWhere(
     (element) => element.xmlTag == filename.substring(0, 3),
   );
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ExternalFileReferenceBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ExternalFileReferenceToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    filename,
-    filetype,
-  ];
 }
 
 /// An enumerator for which type of file an [ExternalFileReference] refers to.
-@annotation.XmlEnum()
 enum FileType {
   /// An XML document file.
-  @annotation.XmlValue('1')
   xml(1, 'XML');
 
   const FileType(this.value, this.description);

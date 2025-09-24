@@ -9,10 +9,7 @@ part of '../../iso_11783_element.dart';
 /// The Task is the central XML element in the data transfer file. It contains
 /// references to various other XML elements to express allocation of resources
 /// and specification of operations.
-@CopyWith()
-@annotation.XmlRootElement(name: 'TSK')
-@annotation.XmlSerializable(createMixin: true)
-class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
+class Task extends Iso11783Element {
   /// Default factory for creating a [Task] with verified
   /// arguments.
   factory Task({
@@ -39,7 +36,6 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     int? defaultTreatmentZoneCode,
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (designator != null) {
@@ -121,18 +117,17 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
       defaultTreatmentZoneCode: defaultTreatmentZoneCode,
       positionLostTreatmentZoneCode: positionLostTreatmentZoneCode,
       outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Task._({
-    required this.id,
-    required this.status,
+    required String id,
+    required TaskStatus status,
     List<TreatmentZone>? treatmentZones,
     List<Time>? times,
-    this.operationTechniquePractice,
+    OperationTechniquePractice? operationTechniquePractice,
     List<WorkerAllocation>? workerAllocations,
     List<DeviceAllocation>? deviceAllocations,
     List<Connection>? connections,
@@ -140,140 +135,64 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
     List<DataLogTrigger>? dataLogTriggers,
     List<CommentAllocation>? commentAllocations,
     List<TimeLog>? timeLogs,
-    this.grid,
+    Grid? grid,
     List<ControlAssignment>? controlAssignments,
     List<GuidanceAllocation>? guidanceAllocations,
-    this.designator,
-    this.customerIdRef,
-    this.farmIdRef,
-    this.partfieldIdRef,
-    this.responsibleWorkerIdRef,
-    this.defaultTreatmentZoneCode,
-    this.positionLostTreatmentZoneCode,
-    this.outOfFieldTreatmentZoneCode,
-    super.customAttributes,
+    String? designator,
+    String? customerIdRef,
+    String? farmIdRef,
+    String? partfieldIdRef,
+    String? responsibleWorkerIdRef,
+    int? defaultTreatmentZoneCode,
+    int? positionLostTreatmentZoneCode,
+    int? outOfFieldTreatmentZoneCode,
   }) : super(elementType: Iso11783ElementType.task, description: 'Task') {
+    this.id = id;
+    this.status = status;
+    this.operationTechniquePractice = operationTechniquePractice;
+    this.grid = grid;
+    this.designator = designator;
+    this.customerIdRef = customerIdRef;
+    this.farmIdRef = farmIdRef;
+    this.partfieldIdRef = partfieldIdRef;
+    this.responsibleWorkerIdRef = responsibleWorkerIdRef;
+    this.defaultTreatmentZoneCode = defaultTreatmentZoneCode;
+    this.positionLostTreatmentZoneCode = positionLostTreatmentZoneCode;
+    this.outOfFieldTreatmentZoneCode = outOfFieldTreatmentZoneCode;
+
     if (treatmentZones != null) {
-      this.treatmentZones.addAll(treatmentZones);
+      children.addAll(treatmentZones);
     }
     if (times != null) {
-      this.times.addAll(times);
+      children.addAll(times);
     }
     if (workerAllocations != null) {
-      this.workerAllocations.addAll(workerAllocations);
+      children.addAll(workerAllocations);
     }
     if (deviceAllocations != null) {
-      this.deviceAllocations.addAll(deviceAllocations);
+      children.addAll(deviceAllocations);
     }
     if (connections != null) {
-      this.connections.addAll(connections);
+      children.addAll(connections);
     }
     if (productAllocations != null) {
-      this.productAllocations.addAll(productAllocations);
+      children.addAll(productAllocations);
     }
     if (dataLogTriggers != null) {
-      this.dataLogTriggers.addAll(dataLogTriggers);
+      children.addAll(dataLogTriggers);
     }
     if (commentAllocations != null) {
-      this.commentAllocations.addAll(commentAllocations);
+      children.addAll(commentAllocations);
     }
     if (timeLogs != null) {
-      this.timeLogs.addAll(timeLogs);
+      children.addAll(timeLogs);
     }
     if (controlAssignments != null) {
-      this.controlAssignments.addAll(controlAssignments);
+      children.addAll(controlAssignments);
     }
     if (guidanceAllocations != null) {
-      this.guidanceAllocations.addAll(guidanceAllocations);
+      children.addAll(guidanceAllocations);
     }
-  }
-
-  /// Creates a [Task] from [element].
-  factory Task.fromXmlElement(XmlElement element) {
-    final commentAllocations = element.getElements('CAN');
-    final controlAssignments = element.getElements('CAT');
-    final connections = element.getElements('CNN');
-    final deviceAllocations = element.getElements('DAN');
-    final dataLogTriggers = element.getElements('DLT');
-    final grid = element.getElement('GRD');
-    final guidanceAllocations = element.getElements('GAN');
-    final operationTechniquePractice = element.getElement('OTP');
-    final productAllocations = element.getElements('PAN');
-    final times = element.getElements('TIM');
-    final timeLogs = element.getElements('TLG');
-    final treatmentZones = element.getElements('TZN');
-    final workerAllocations = element.getElements('WAN');
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final customerIdRef = element.getAttribute('C');
-    final farmIdRef = element.getAttribute('D');
-    final partfieldIdRef = element.getAttribute('E');
-    final responsibleWorkerIdRef = element.getAttribute('F');
-    final status = element.getAttribute('G');
-    final defaultTreatmentZoneCode = element.getAttribute('H');
-    final positionLostTreatmentZoneCode = element.getAttribute('I');
-    final outOfFieldTreatmentZoneCode = element.getAttribute('J');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Task(
-      commentAllocations: commentAllocations
-          ?.map(CommentAllocation.fromXmlElement)
-          .toList(),
-      controlAssignments: controlAssignments
-          ?.map(ControlAssignment.fromXmlElement)
-          .toList(),
-      connections: connections?.map(Connection.fromXmlElement).toList(),
-      deviceAllocations: deviceAllocations
-          ?.map(DeviceAllocation.fromXmlElement)
-          .toList(),
-      dataLogTriggers: dataLogTriggers
-          ?.map(DataLogTrigger.fromXmlElement)
-          .toList(),
-      grid: grid != null ? Grid.fromXmlElement(grid) : null,
-      guidanceAllocations: guidanceAllocations
-          ?.map(GuidanceAllocation.fromXmlElement)
-          .toList(),
-      operationTechniquePractice: operationTechniquePractice != null
-          ? OperationTechniquePractice.fromXmlElement(
-              operationTechniquePractice,
-            )
-          : null,
-      productAllocations: productAllocations
-          ?.map(ProductAllocation.fromXmlElement)
-          .toList(),
-      times: times?.map(Time.fromXmlElement).toList(),
-      timeLogs: timeLogs?.map(TimeLog.fromXmlElement).toList(),
-      treatmentZones: treatmentZones
-          ?.map(TreatmentZone.fromXmlElement)
-          .toList(),
-      workerAllocations: workerAllocations
-          ?.map(WorkerAllocation.fromXmlElement)
-          .toList(),
-      id: id,
-      designator: designator,
-      customerIdRef: customerIdRef,
-      farmIdRef: farmIdRef,
-      partfieldIdRef: partfieldIdRef,
-      responsibleWorkerIdRef: responsibleWorkerIdRef,
-      status: $TaskStatusEnumMap.entries
-          .singleWhere(
-            (taskStatusEnumMapEntry) => taskStatusEnumMapEntry.value == status,
-            orElse: () => throw ArgumentError(
-              '''`$status` is not one of the supported values: ${$TaskStatusEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      defaultTreatmentZoneCode: defaultTreatmentZoneCode != null
-          ? int.parse(defaultTreatmentZoneCode)
-          : null,
-      positionLostTreatmentZoneCode: positionLostTreatmentZoneCode != null
-          ? int.parse(positionLostTreatmentZoneCode)
-          : null,
-      outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode != null
-          ? int.parse(outOfFieldTreatmentZoneCode)
-          : null,
-      customAttributes: customAttributes,
-    );
   }
 
   /// Regular expression matching pattern for the [id] of [Task]s.
@@ -283,236 +202,156 @@ class Task extends Iso11783Element with _$TaskXmlSerializableMixin {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [CommentAllocation] for this.
-  @annotation.XmlElement(name: 'CAN')
-  final List<CommentAllocation> commentAllocations = [];
+  List<CommentAllocation> get commentAllocations => findElements(
+    Iso11783ElementType.commentAllocation.xmlTag,
+  ).map((e) => e as CommentAllocation).toList();
 
   /// A list of [ControlAssignment]s for this.
-  @annotation.XmlElement(name: 'CAT')
-  final List<ControlAssignment> controlAssignments = [];
+  List<ControlAssignment> get controlAssignments => findElements(
+    Iso11783ElementType.controlAssignment.xmlTag,
+  ).map((e) => e as ControlAssignment).toList();
 
   /// A list of [Connection] for this.
-  @annotation.XmlElement(name: 'CNN')
-  final List<Connection> connections = [];
+  List<Connection> get connections => findElements(
+    Iso11783ElementType.connection.xmlTag,
+  ).map((e) => e as Connection).toList();
 
   /// A list of [DeviceAllocation] for this.
-  @annotation.XmlElement(name: 'DAN')
-  final List<DeviceAllocation> deviceAllocations = [];
+  List<DeviceAllocation> get deviceAllocations => findElements(
+    Iso11783ElementType.deviceAllocation.xmlTag,
+  ).map((e) => e as DeviceAllocation).toList();
 
   /// A list of [DataLogTrigger] for this.
-  @annotation.XmlElement(name: 'DLT')
-  final List<DataLogTrigger> dataLogTriggers = [];
+  List<DataLogTrigger> get dataLogTriggers => findElements(
+    Iso11783ElementType.dataLogTrigger.xmlTag,
+  ).map((e) => e as DataLogTrigger).toList();
 
   /// The [Grid] for this.
-  @annotation.XmlElement(name: 'GRD', includeIfNull: false)
-  Grid? grid;
+  Grid? get grid => getElement(Iso11783ElementType.grid.xmlTag) as Grid?;
+  set grid(Grid? value) => switch ((value, grid)) {
+    (
+      final Grid value,
+      final Grid existing,
+    ) =>
+      existing.replace(value as XmlElement),
+    (final Grid value, null) => children.add(value),
+    (null, final Grid existing) => existing.remove(),
+    _ => null,
+  };
 
   /// A list of [GuidanceAllocation]s for this.
-  @annotation.XmlElement(name: 'GAN')
-  final List<GuidanceAllocation> guidanceAllocations = [];
+  List<GuidanceAllocation> get guidanceAllocations => findElements(
+    Iso11783ElementType.guidanceAllocation.xmlTag,
+  ).map((e) => e as GuidanceAllocation).toList();
 
   /// The [OperationTechniquePractice] for this.
-  @annotation.XmlElement(name: 'OTP', includeIfNull: false)
-  final OperationTechniquePractice? operationTechniquePractice;
+  OperationTechniquePractice? get operationTechniquePractice =>
+      getElement(Iso11783ElementType.operationTechniquePractice.xmlTag)
+          as OperationTechniquePractice?;
+  set operationTechniquePractice(OperationTechniquePractice? value) =>
+      switch ((value, operationTechniquePractice)) {
+        (
+          final OperationTechniquePractice value,
+          final OperationTechniquePractice existing,
+        ) =>
+          existing.replace(value as XmlElement),
+        (final OperationTechniquePractice value, null) => children.add(value),
+        (null, final OperationTechniquePractice existing) => existing.remove(),
+        _ => null,
+      };
 
   /// A list of [ProductAllocation] for this.
-  @annotation.XmlElement(name: 'PAN')
-  final List<ProductAllocation> productAllocations = [];
+  List<ProductAllocation> get productAllocations => findElements(
+    Iso11783ElementType.productAllocation.xmlTag,
+  ).map((e) => e as ProductAllocation).toList();
 
   /// A list of [Time] for this.
-  @annotation.XmlElement(name: 'TIM')
-  final List<Time> times = [];
+  List<Time> get times => findElements(
+    Iso11783ElementType.time.xmlTag,
+  ).map((e) => e as Time).toList();
 
   /// A list of [TimeLog] for this.
-  @annotation.XmlElement(name: 'TLG')
-  final List<TimeLog> timeLogs = [];
+  List<TimeLog> get timeLogs => findElements(
+    Iso11783ElementType.timeLog.xmlTag,
+  ).map((e) => e as TimeLog).toList();
 
   /// A list of [TreatmentZone] for this.
-  @annotation.XmlElement(name: 'TZN')
-  final List<TreatmentZone> treatmentZones = [];
+  List<TreatmentZone> get treatmentZones => findElements(
+    Iso11783ElementType.treatmentZone.xmlTag,
+  ).map((e) => e as TreatmentZone).toList();
 
   /// A list of [WorkerAllocation] for this.
-  @annotation.XmlElement(name: 'WAN')
-  final List<WorkerAllocation> workerAllocations = [];
+  List<WorkerAllocation> get workerAllocations => findElements(
+    Iso11783ElementType.workerAllocation.xmlTag,
+  ).map((e) => e as WorkerAllocation).toList();
 
   /// Unique identifier for this task.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the task, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Reference to a [Customer].
-  @annotation.XmlAttribute(name: 'C')
-  String? customerIdRef;
+  String? get customerIdRef => tryParseString('C');
+  set customerIdRef(String? value) => setStringNullable('C', value);
 
   /// Reference to a [Farm].
-  @annotation.XmlAttribute(name: 'D')
-  String? farmIdRef;
+  String? get farmIdRef => tryParseString('D');
+  set farmIdRef(String? value) => setStringNullable('D', value);
 
   /// Reference to a [Partfield].
-  @annotation.XmlAttribute(name: 'E')
-  String? partfieldIdRef;
+  String? get partfieldIdRef => tryParseString('E');
+  set partfieldIdRef(String? value) => setStringNullable('E', value);
 
   /// Reference to a [Worker].
-  @annotation.XmlAttribute(name: 'F')
-  String? responsibleWorkerIdRef;
+  String? get responsibleWorkerIdRef => tryParseString('F');
+  set responsibleWorkerIdRef(String? value) => setStringNullable('F', value);
 
   /// What the state of this is.
-  @annotation.XmlAttribute(name: 'G')
-  TaskStatus status;
+  TaskStatus get status => TaskStatus.values.firstWhere(
+    (type) => type.value == parseInt('G'),
+    orElse: () => throw ArgumentError(
+      '''`${getAttribute('G')}` is not one of the supported values: ${TaskStatus.values.join(', ')}''',
+    ),
+  );
+  set status(TaskStatus value) => setInt('G', value.value);
 
   /// Default [TreatmentZone.code].
-  @annotation.XmlAttribute(name: 'H')
-  int? defaultTreatmentZoneCode;
+  int? get defaultTreatmentZoneCode => tryParseInt('H');
+  set defaultTreatmentZoneCode(int? value) => setIntNullable('H', value);
 
   /// Position lost [TreatmentZone.code].
-  @annotation.XmlAttribute(name: 'I')
-  int? positionLostTreatmentZoneCode;
+  int? get positionLostTreatmentZoneCode => tryParseInt('I');
+  set positionLostTreatmentZoneCode(int? value) => setIntNullable('I', value);
 
   /// Out of field [TreatmentZone.code].
-  @annotation.XmlAttribute(name: 'J')
-  int? outOfFieldTreatmentZoneCode;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in commentAllocations.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in controlAssignments.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in connections.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in deviceAllocations.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in dataLogTriggers.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    if (grid != null) ...grid!.selfWithRecursiveChildren,
-    ...[
-      for (final a in guidanceAllocations.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    if (operationTechniquePractice != null)
-      ...operationTechniquePractice!.selfWithRecursiveChildren,
-    ...[
-      for (final a in productAllocations.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in times.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in timeLogs.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in treatmentZones.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in workerAllocations.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$TaskBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$TaskToXmlAttributes(this, namespaces: namespaces);
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  /// The list of properties that will be used to determine whether
-  /// two instances are equal.
-  List<Object?> get props => [
-    commentAllocations,
-    controlAssignments,
-    connections,
-    deviceAllocations,
-    dataLogTriggers,
-    grid,
-    guidanceAllocations,
-    operationTechniquePractice,
-    productAllocations,
-    id,
-    designator,
-    customerIdRef,
-    farmIdRef,
-    partfieldIdRef,
-    responsibleWorkerIdRef,
-    status,
-    defaultTreatmentZoneCode,
-    positionLostTreatmentZoneCode,
-    outOfFieldTreatmentZoneCode,
-  ];
-
-  /// Returns a string for [props].
-  @override
-  String toString() => mapPropsToString(runtimeType, props);
+  int? get outOfFieldTreatmentZoneCode => tryParseInt('J');
+  set outOfFieldTreatmentZoneCode(int? value) => setIntNullable('J', value);
 }
 
 /// An enumerator for which state a [Task] has.
-@annotation.XmlEnum()
 enum TaskStatus {
   /// Planned
-  @annotation.XmlValue('1')
   planned(1, 'Planned'),
 
   /// Running
-  @annotation.XmlValue('2')
   running(2, 'Running'),
 
   /// Paused
-  @annotation.XmlValue('3')
   paused(3, 'Paused'),
 
   /// Completed
-  @annotation.XmlValue('4')
   completed(4, 'Completed'),
 
   /// Template
-  @annotation.XmlValue('5')
   template(5, 'Template'),
 
   /// Cancelled
-  @annotation.XmlValue('6')
   cancelled(6, 'Cancelled');
 
   const TaskStatus(this.value, this.description);

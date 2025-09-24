@@ -11,17 +11,13 @@ part of '../../iso_11783_element.dart';
 /// in a [CommentAllocation] when a that [CodedComment] is assigned to a task.
 ///
 /// Example values are "low", "medium" and "high" for crop growth stage codes.
-@CopyWith()
-@annotation.XmlRootElement(name: 'CCL')
-@annotation.XmlSerializable(createMixin: true)
-class CodedCommentListValue extends Iso11783Element
-    with _$CodedCommentListValueXmlSerializableMixin, EquatableMixin {
+
+class CodedCommentListValue extends Iso11783Element {
   /// Default factory for creating a [CodedCommentListValue] with verified
   /// arguments.
   factory CodedCommentListValue({
     required String id,
     required String designator,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -32,32 +28,20 @@ class CodedCommentListValue extends Iso11783Element
     return CodedCommentListValue._(
       id: id,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const CodedCommentListValue._({
-    required this.id,
-    required this.designator,
-    super.customAttributes,
+  CodedCommentListValue._({
+    required String id,
+    required String designator,
   }) : super(
          elementType: Iso11783ElementType.codedCommentListValue,
          description: 'CodedCommentListvalue',
-       );
-
-  /// Creates a [CodedCommentListValue] from [element].
-  factory CodedCommentListValue.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return CodedCommentListValue(
-      id: id,
-      designator: designator,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.id = id;
+    this.designator = designator;
   }
 
   /// Regular expression matching pattern for the [id] of
@@ -71,49 +55,10 @@ class CodedCommentListValue extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name or description.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$CodedCommentListValueBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$CodedCommentListValueToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-  ];
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 }

@@ -41,11 +41,7 @@ part of '../../iso_11783_element.dart';
 /// attributes [pgn], [pgnStartBit] and [pgnStopBit]. When these
 /// attributes are specified, the [ddi] attribute shall be set to `DFFE`
 /// (PGN logvalue).
-@CopyWith()
-@annotation.XmlRootElement(name: 'DLT')
-@annotation.XmlSerializable(createMixin: true)
-class DataLogTrigger extends Iso11783Element
-    with _$DataLogTriggerXmlSerializableMixin, EquatableMixin {
+class DataLogTrigger extends Iso11783Element {
   /// Default factory for creating a [DataLogTrigger] with verified
   /// arguments.
   factory DataLogTrigger({
@@ -61,7 +57,6 @@ class DataLogTrigger extends Iso11783Element
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
@@ -172,70 +167,40 @@ class DataLogTrigger extends Iso11783Element
       pgn: pgn,
       pgnStartBit: pgnStartBit,
       pgnStopBit: pgnStopBit,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DataLogTrigger._({
-    required this.ddi,
-    required this.method,
-    this.distanceInterval,
-    this.timeInterval,
-    this.thresholdMinimum,
-    this.thresholdMaximum,
-    this.thresholdChange,
-    this.deviceElementIdRef,
-    this.valuePresentationIdRef,
-    this.pgn,
-    this.pgnStartBit,
-    this.pgnStopBit,
-    super.customAttributes,
+  DataLogTrigger._({
+    required String ddi,
+    required int method,
+    int? distanceInterval,
+    int? timeInterval,
+    int? thresholdMinimum,
+    int? thresholdMaximum,
+    int? thresholdChange,
+    String? deviceElementIdRef,
+    String? valuePresentationIdRef,
+    int? pgn,
+    int? pgnStartBit,
+    int? pgnStopBit,
   }) : super(
          elementType: Iso11783ElementType.dataLogTrigger,
          description: 'DataLogTrigger',
-       );
-
-  /// Creates a [DataLogTrigger] from [element].
-  factory DataLogTrigger.fromXmlElement(XmlElement element) {
-    final ddi = element.getAttribute('A')!;
-    final method = element.getAttribute('B')!;
-    final distanceInterval = element.getAttribute('C');
-    final timeInterval = element.getAttribute('D');
-    final thresholdMinimum = element.getAttribute('E');
-    final thresholdMaximum = element.getAttribute('F');
-    final thresholdChange = element.getAttribute('G');
-    final deviceElementIdRef = element.getAttribute('H');
-    final valuePresentationIdRef = element.getAttribute('I');
-    final pgn = element.getAttribute('J');
-    final pgnStartBit = element.getAttribute('K');
-    final pgnStopBit = element.getAttribute('L');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return DataLogTrigger(
-      ddi: ddi,
-      method: int.parse(method),
-      distanceInterval: distanceInterval != null
-          ? int.parse(distanceInterval)
-          : null,
-      timeInterval: timeInterval != null ? int.parse(timeInterval) : null,
-      thresholdMinimum: thresholdMinimum != null
-          ? int.parse(thresholdMinimum)
-          : null,
-      thresholdMaximum: thresholdMaximum != null
-          ? int.parse(thresholdMaximum)
-          : null,
-      thresholdChange: thresholdChange != null
-          ? int.parse(thresholdChange)
-          : null,
-      deviceElementIdRef: deviceElementIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      pgn: pgn != null ? int.parse(pgn) : null,
-      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
-      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
-      customAttributes: customAttributes,
-    );
+       ) {
+    this.ddi = ddi;
+    this.method = method;
+    this.distanceInterval = distanceInterval;
+    this.timeInterval = timeInterval;
+    this.thresholdMinimum = thresholdMinimum;
+    this.thresholdMaximum = thresholdMaximum;
+    this.thresholdChange = thresholdChange;
+    this.deviceElementIdRef = deviceElementIdRef;
+    this.valuePresentationIdRef = valuePresentationIdRef;
+    this.pgn = pgn;
+    this.pgnStartBit = pgnStartBit;
+    this.pgnStopBit = pgnStopBit;
   }
 
   /// A unique Data Dictionary Identifier which identifies a
@@ -243,8 +208,8 @@ class DataLogTrigger extends Iso11783Element
   ///
   /// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)
   /// in the ISO 11783-11 database.
-  @annotation.XmlAttribute(name: 'A')
-  final String ddi;
+  String get ddi => parseString('A');
+  set ddi(String value) => setString('A', value);
 
   /// Selection of the log method:
   ///
@@ -253,109 +218,64 @@ class DataLogTrigger extends Iso11783Element
   /// `4 = threshold limits`,
   /// `8 = on change`,
   /// `16 = counter`
-  @annotation.XmlAttribute(name: 'B')
-  final int method;
+  int get method => parseInt('B');
+  set method(int value) => setInt('B', value);
 
   /// Distance interval for data log in millimeters.
   ///
   /// 0 stops measurement.
-  @annotation.XmlAttribute(name: 'C')
-  final int? distanceInterval;
+  int? get distanceInterval => tryParseInt('C');
+  set distanceInterval(int? value) => setIntNullable('C', value);
 
   /// Time interval for data lag in milliseconds.
   ///
   /// 0 stops measurement. 10 msec is minimum time interval.
-  @annotation.XmlAttribute(name: 'D')
-  final int? timeInterval;
+  int? get timeInterval => tryParseInt('D');
+  set timeInterval(int? value) => setIntNullable('D', value);
 
   /// Minimum threshold to activate the data log.
   ///
   /// Threshold limit value is included in the value range to log.
   /// (2^31 -1) stops measurement.
-  @annotation.XmlAttribute(name: 'E')
-  final int? thresholdMinimum;
+  int? get thresholdMinimum => tryParseInt('E');
+  set thresholdMinimum(int? value) => setIntNullable('E', value);
 
   /// Maximum threshold to activate the data log.
   ///
   /// Threshold limit value is included in the value range to log.
   /// (-2^31 +1) stops measurement.
-  @annotation.XmlAttribute(name: 'F')
-  final int? thresholdMaximum;
+  int? get thresholdMaximum => tryParseInt('F');
+  set thresholdMaximum(int? value) => setIntNullable('F', value);
 
   /// Change threshold to activate the data log.
   /// 0 stops measurement, 1 lags each change.
-  @annotation.XmlAttribute(name: 'G')
-  final int? thresholdChange;
+  int? get thresholdChange => tryParseInt('G');
+  set thresholdChange(int? value) => setIntNullable('G', value);
 
   /// ID reference to the [DeviceElement] this log value was supplied by.
-  @annotation.XmlAttribute(name: 'H')
-  final String? deviceElementIdRef;
+  String? get deviceElementIdRef => tryParseString('H');
+  set deviceElementIdRef(String? value) => setStringNullable('H', value);
 
   /// ID reference to the [ValuePresentation] to use with this log.
-  @annotation.XmlAttribute(name: 'I')
-  final String? valuePresentationIdRef;
+  String? get valuePresentationIdRef => tryParseString('I');
+  set valuePresentationIdRef(String? value) => setStringNullable('I', value);
 
   /// Parameter Group Number to log a value from.
-  @annotation.XmlAttribute(name: 'J')
-  final int? pgn;
+  int? get pgn => tryParseInt('J');
+  set pgn(int? value) => setIntNullable('J', value);
 
   /// First bit of the value to log from a Parameter Group Number.
   ///
   /// Bit 0 is the least significant bit of Byte 0 in the Data Field of a CAN
   /// Data Frame. The start bit is included in the value and becomes the least
   /// significant bit.
-  @annotation.XmlAttribute(name: 'K')
-  final int? pgnStartBit;
+  int? get pgnStartBit => tryParseInt('K');
+  set pgnStartBit(int? value) => setIntNullable('K', value);
 
   /// Stop bit of the value to log from a Parameter Group Number.
   ///
   /// The stop bit is included in the value and becomes the most significant
   /// bit.
-  @annotation.XmlAttribute(name: 'L')
-  final int? pgnStopBit;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DataLogTriggerBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DataLogTriggerToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    ddi,
-    method,
-    distanceInterval,
-    timeInterval,
-    thresholdMinimum,
-    thresholdMaximum,
-    thresholdChange,
-    deviceElementIdRef,
-    valuePresentationIdRef,
-    pgn,
-    pgnStartBit,
-    pgnStopBit,
-  ];
+  int? get pgnStopBit => tryParseInt('L');
+  set pgnStopBit(int? value) => setIntNullable('L', value);
 }
