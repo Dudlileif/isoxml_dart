@@ -14,11 +14,8 @@ part of '../../iso_11783_element.dart';
 /// processing. During task processing the task controller modifies the
 /// [clientNAMEValue] attribute to the NAME of the client that was actually used
 /// to perform the task.
-@CopyWith()
-@annotation.XmlRootElement(name: 'DAN')
-@annotation.XmlSerializable(createMixin: true)
-class DeviceAllocation extends Iso11783Element
-    with _$DeviceAllocationXmlSerializableMixin, EquatableMixin {
+
+class DeviceAllocation extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [DeviceAllocation] with verified
   /// arguments.
   factory DeviceAllocation({
@@ -26,7 +23,6 @@ class DeviceAllocation extends Iso11783Element
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       clientNAMEValue,
@@ -55,50 +51,60 @@ class DeviceAllocation extends Iso11783Element
       clientNAMEMask: clientNAMEMask,
       deviceIdRef: deviceIdRef,
       allocationStamp: allocationStamp,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DeviceAllocation._({
-    required this.clientNAMEValue,
-    this.clientNAMEMask,
-    this.deviceIdRef,
-    this.allocationStamp,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.deviceAllocation,
-         description: 'DeviceAllocation',
-       );
-
-  /// Creates a [DeviceAllocation] from [element].
-  factory DeviceAllocation.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final clientNAMEValue = element.getAttribute('A')!;
-    final clientNAMEMask = element.getAttribute('B');
-    final deviceIdRef = element.getAttribute('C');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return DeviceAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      clientNAMEValue: clientNAMEValue,
-      clientNAMEMask: clientNAMEMask,
-      deviceIdRef: deviceIdRef,
-      customAttributes: customAttributes,
-    );
+  DeviceAllocation._({
+    required String clientNAMEValue,
+    String? clientNAMEMask,
+    String? deviceIdRef,
+    AllocationStamp? allocationStamp,
+  }) : super(elementType: _elementType) {
+    this.clientNAMEValue = clientNAMEValue;
+    this.clientNAMEMask = clientNAMEMask;
+    this.deviceIdRef = deviceIdRef;
+    this.allocationStamp = allocationStamp;
   }
 
-  /// [AllocationStamp] for specifying the position and time of this allocation.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  DeviceAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      clientNAMEValue,
+      name: 'clientNAMEValue',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    if (clientNAMEMask != null) {
+      ArgumentValidation.checkHexStringLength(
+        clientNAMEMask!,
+        name: 'clientNAMEMask',
+        minBytes: 8,
+        maxBytes: 8,
+      );
+    }
+    if (deviceIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceIdRef!,
+        idRefPattern: Device.staticIdRefPattern,
+        idName: 'deviceIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceAllocation;
 
   /// NAME of the client from the [Device] the [Task] is planned for or was
   /// processed with.
-  @annotation.XmlAttribute(name: 'A')
-  final String clientNAMEValue;
+  String get clientNAMEValue => parseString('A');
+  set clientNAMEValue(String value) => setString('A', value);
 
   /// Bit-Mask, which is to be used for a logical `AND` operation to
   /// [clientNAMEValue], to allow more then one specific [Device] for the
@@ -106,51 +112,10 @@ class DeviceAllocation extends Iso11783Element
   ///
   /// bit=1 => relevant bit of the [clientNAMEValue].
   /// bit=0 => bit of the [clientNAMEValue] is not relevant.
-  @annotation.XmlAttribute(name: 'B')
-  final String? clientNAMEMask;
+  String? get clientNAMEMask => tryParseString('B');
+  set clientNAMEMask(String? value) => setStringNullable('B', value);
 
   /// Reference to a [Device].
-  @annotation.XmlAttribute(name: 'C')
-  final String? deviceIdRef;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DeviceAllocationBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DeviceAllocationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    allocationStamp,
-    clientNAMEValue,
-    clientNAMEMask,
-    deviceIdRef,
-  ];
+  String? get deviceIdRef => tryParseString('C');
+  set deviceIdRef(String? value) => setStringNullable('C', value);
 }

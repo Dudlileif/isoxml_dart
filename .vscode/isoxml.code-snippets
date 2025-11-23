@@ -15,18 +15,14 @@
     // 	],
     // 	"description": "Log output to console"
     // }
-
     "iso11783 element": {
         "prefix": "ISO11783 Element",
         "body": [
-            "@annotation.XmlRootElement(name: )",
-            "@annotation.XmlSerializable(createMixin: true)",
-            "class $1 extends Iso11783Element with _$$1XmlSerializableMixin {",
+            "class $1 extends Iso11783Element {",
             "factory $1(){return $1._();}",
             "",
-            "const $1._():super(tag: Iso11783Tag., description: '$1');",
+            "const $1._():super(tag: Iso11783Tag., description: '$1'){}",
             "",
-            "factory $1.fromXmlElement(XmlElement element)=>_$$1FromXmlElement(element);",
             "}"
         ],
         "description": "Creates a subclass of the ISO11783Element class, with xml_serializable basics in place."
@@ -44,10 +40,6 @@
             "/// Private constructor that is called after having verified all the arguments",
             "/// in the default factory."
         ]
-    },
-    "from xml element doc": {
-        "prefix": "fromXmlElement doc",
-        "body": ["/// Creates a [$1] from [element]."]
     },
     "ddi doc": {
         "prefix": "DDI doc",
@@ -69,7 +61,9 @@
     },
     "id ref doc": {
         "prefix": "ID ref doc",
-        "body": ["/// Reference to a [$1]."]
+        "body": [
+            "/// Reference to a [$1]."
+        ]
     },
     "id ref pattern doc": {
         "prefix": "ID ref pattern doc",
@@ -79,6 +73,104 @@
     },
     "designator doc": {
         "prefix": "Designator doc",
-        "body": ["/// Name of the $1, description or comment."]
+        "body": [
+            "/// Name of the $1, description or comment."
+        ]
+    },
+    "int attribute": {
+        "prefix": "int attribute setter and getter",
+        "body": [
+            "int get $1 => parseInt('$2');",
+            "set $1(int value) => setInt('$2', value);"
+        ]
+    },
+    "int? attribute": {
+        "prefix": "int? attribute setter and getter",
+        "body": [
+            "int? get $1 => tryParseInt('$2');",
+            "set $1(int? value) => setIntNullable('$2', value);"
+        ]
+    },
+    "datetime attribute": {
+        "prefix": "DateTime attribute setter and getter",
+        "body": [
+            "DateTime get $1 => parseDateTime('$2');",
+            "set $1(DateTime value) => setDateTime('$2', value);"
+        ]
+    },
+    "datetime? attribute": {
+        "prefix": "DateTime? attribute setter and getter",
+        "body": [
+            "DateTime? get $1 => tryParseDateTime('$2');",
+            "set $1(DateTime? value) => setDateTimeNullable('$2', value);"
+        ]
+    },
+    "double attribute": {
+        "prefix": "double attribute setter and getter",
+        "body": [
+            "double get $1 => parseDouble('$2');",
+            "set $1(double value) => setDouble('$2', value);"
+        ]
+    },
+    "double? attribute": {
+        "prefix": "double? attribute setter and getter",
+        "body": [
+            "double? get $1 => tryParseDouble('$2');",
+            "set $1(double? value) => setDoubleNullable('$2', value);"
+        ]
+    },
+    "string attribute": {
+        "prefix": "String attribute setter and getter",
+        "body": [
+            "String get $1 => parseString('$2');",
+            "set $1(String value) => setString('$2', value);"
+        ]
+    },
+    "string? attribute": {
+        "prefix": "String? attribute setter and getter",
+        "body": [
+            "String? get $1 => tryParseString('$2');",
+            "set $1(String? value) => setStringNullable('$2', value);"
+        ]
+    },
+    "enum attribute": {
+        "prefix": "enum attribute setter and getter",
+        "body": [
+            "$3 get $1 => $3.values.singleWhere(",
+            "  (type) => type.value == parseInt('$2'),",
+            "  orElse: () => throw ArgumentError(",
+            "    '''`${getAttribute('$2')}` is not one of the supported values: ${$3.values.join(', ')}''',",
+            "  ),",
+            ");",
+            "set $1($3 value) => setInt('$2', value.value);"
+        ]
+    },
+    "enum? attribute": {
+        "prefix": "enum? attribute setter and getter",
+        "body": [
+            "$3? get $1 => switch(tryParseInt('$2')){",
+            "  final int value => $3.values.singleWhere(",
+            "    (type) => type.value == value,",
+            "    orElse: () => throw ArgumentError(",
+            "      '''`$$value` is not one of the supported values: ${$3.values.join(', ')}''',",
+            "    ),",
+            "  ),",
+            "  _ => null,",
+            "};",
+            "set $1($3? value) => setIntNullable('$2', value?.value);"
+        ]
+    },
+    "._fromXmlElement": {
+        "prefix": "._fromXmlElement factory",
+        "body": [
+            "  $1._fromXmlElement(XmlElement element)",
+            "     : super(elementType: _elementType, xmlElement: element) {",
+            "     _argumentValidaton();",
+            "  }"
+        ]
+    },
+    "_elementType": {
+        "prefix": "_elementType value",
+        "body": "static const Iso11783ElementType _elementType = Iso11783ElementType.$1;"
     }
 }

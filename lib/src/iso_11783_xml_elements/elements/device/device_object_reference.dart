@@ -6,16 +6,11 @@ part of '../../iso_11783_element.dart';
 
 /// An element that describes a reference to a [DeviceProcessData] object or a
 /// [DeviceProperty] object.
-@CopyWith()
-@annotation.XmlRootElement(name: 'DOR')
-@annotation.XmlSerializable(createMixin: true)
-class DeviceObjectReference extends Iso11783Element
-    with _$DeviceObjectReferenceXmlSerializableMixin, EquatableMixin {
+class DeviceObjectReference extends Iso11783Element {
   /// Default factory for creating a [DeviceObjectReference] with verified
   /// arguments.
   factory DeviceObjectReference({
     required int objectId,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: objectId,
@@ -26,69 +21,36 @@ class DeviceObjectReference extends Iso11783Element
 
     return DeviceObjectReference._(
       objectId: objectId,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DeviceObjectReference._({
-    required this.objectId,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.deviceObjectReference,
-         description: 'DeviceObjectReference',
-       );
+  DeviceObjectReference._({
+    required int objectId,
+  }) : super(elementType: _elementType) {
+    this.objectId = objectId;
+  }
 
-  /// Creates a [DeviceObjectReference] from [element].
-  factory DeviceObjectReference.fromXmlElement(XmlElement element) {
-    final objectId = element.getAttribute('A')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  DeviceObjectReference._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return DeviceObjectReference(
-      objectId: int.parse(objectId),
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceObjectReference;
 
   /// Object ID of the [DeviceProcessData] or [DeviceProperty] that this refers
   /// to.
-  @annotation.XmlAttribute(name: 'A')
-  final int objectId;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DeviceObjectReferenceBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DeviceObjectReferenceToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [objectId];
+  int get objectId => parseInt('A');
+  set objectId(int value) => setInt('A', value);
 }

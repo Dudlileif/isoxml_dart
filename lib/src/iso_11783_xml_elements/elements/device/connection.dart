@@ -12,137 +12,109 @@ part of '../../iso_11783_element.dart';
 /// which are connected. The connection specification enables the task
 /// controller to determine the position of [DeviceElement]s of one device
 /// relative to the position of, for instance, the `NavigationReferencePoint` of
-/// another device. The referenced [DeviceElement] in [deviceElementIdRef_0]
+/// another device. The referenced [DeviceElement] in [deviceElementIdRef0]
 /// shall be part of the device referenced
-/// in [deviceIdRef_0] and shall be of the type [DeviceElementType.connector].
-/// The referenced [DeviceElement] in [deviceElementIdRef_1] shall be part of
-/// the device referenced in [deviceIdRef_1] and shall also be of type
+/// in [deviceIdRef0] and shall be of the type [DeviceElementType.connector].
+/// The referenced [DeviceElement] in [deviceElementIdRef1] shall be part of
+/// the device referenced in [deviceIdRef1] and shall also be of type
 /// [DeviceElementType.connector].
 ///
 /// See the ISO 11783-10 standard for info about the `NavigationReferencePoint`.
-@CopyWith()
-@annotation.XmlRootElement(name: 'CNN')
-@annotation.XmlSerializable(createMixin: true)
-class Connection extends Iso11783Element
-    with _$ConnectionXmlSerializableMixin, EquatableMixin {
+class Connection extends Iso11783Element {
   /// Default factory for creating a [Connection] with verified arguments.
   factory Connection({
-    required String deviceIdRef_0,
-    required String deviceElementIdRef_0,
-    required String deviceIdRef_1,
-    required String deviceElementIdRef_1,
-    List<XmlAttribute>? customAttributes,
+    required String deviceIdRef0,
+    required String deviceElementIdRef0,
+    required String deviceIdRef1,
+    required String deviceElementIdRef1,
   }) {
     ArgumentValidation.checkId(
-      id: deviceIdRef_0,
+      id: deviceIdRef0,
       idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef_0',
+      idName: 'deviceIdRef0',
     );
     ArgumentValidation.checkId(
-      id: deviceElementIdRef_0,
+      id: deviceElementIdRef0,
       idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef_0',
+      idName: 'deviceElementIdRef0',
     );
     ArgumentValidation.checkId(
-      id: deviceIdRef_1,
+      id: deviceIdRef1,
       idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef_1',
+      idName: 'deviceIdRef1',
     );
     ArgumentValidation.checkId(
-      id: deviceElementIdRef_1,
+      id: deviceElementIdRef1,
       idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef_1',
+      idName: 'deviceElementIdRef1',
     );
 
     return Connection._(
-      deviceIdRef_0: deviceIdRef_0,
-      deviceElementIdRef_0: deviceElementIdRef_0,
-      deviceIdRef_1: deviceIdRef_1,
-      deviceElementIdRef_1: deviceElementIdRef_1,
-      customAttributes: customAttributes,
+      deviceIdRef0: deviceIdRef0,
+      deviceElementIdRef0: deviceElementIdRef0,
+      deviceIdRef1: deviceIdRef1,
+      deviceElementIdRef1: deviceElementIdRef1,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const Connection._({
-    required this.deviceIdRef_0,
-    required this.deviceElementIdRef_0,
-    required this.deviceIdRef_1,
-    required this.deviceElementIdRef_1,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.connection,
-         description: 'Connection',
-       );
+  Connection._({
+    required String deviceIdRef0,
+    required String deviceElementIdRef0,
+    required String deviceIdRef1,
+    required String deviceElementIdRef1,
+  }) : super(elementType: _elementType) {
+    this.deviceIdRef0 = deviceIdRef0;
+    this.deviceElementIdRef0 = deviceElementIdRef0;
+    this.deviceIdRef1 = deviceIdRef1;
+    this.deviceElementIdRef1 = deviceElementIdRef1;
+  }
 
-  /// Creates a [Connection] from [element].
-  factory Connection.fromXmlElement(XmlElement element) {
-    final deviceIdRef_0 = element.getAttribute('A')!;
-    final deviceElementIdRef_0 = element.getAttribute('B')!;
-    final deviceIdRef_1 = element.getAttribute('C')!;
-    final deviceElementIdRef_1 = element.getAttribute('D')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  Connection._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return Connection(
-      deviceIdRef_0: deviceIdRef_0,
-      deviceElementIdRef_0: deviceElementIdRef_0,
-      deviceIdRef_1: deviceIdRef_1,
-      deviceElementIdRef_1: deviceElementIdRef_1,
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: deviceIdRef0,
+      idRefPattern: Device.staticIdRefPattern,
+      idName: 'deviceIdRef0',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef0,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef0',
+    );
+    ArgumentValidation.checkId(
+      id: deviceIdRef1,
+      idRefPattern: Device.staticIdRefPattern,
+      idName: 'deviceIdRef1',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef1,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef1',
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.connection;
 
   /// An ID reference to the first device.
-  @annotation.XmlAttribute(name: 'A')
-  final String deviceIdRef_0;
+  String get deviceIdRef0 => parseString('A');
+  set deviceIdRef0(String value) => setString('A', value);
 
   /// An ID reference to the first device element.
-  @annotation.XmlAttribute(name: 'B')
-  final String deviceElementIdRef_0;
+  String get deviceElementIdRef0 => parseString('B');
+  set deviceElementIdRef0(String value) => setString('B', value);
 
   /// An ID reference to the second device.
-  @annotation.XmlAttribute(name: 'C')
-  final String deviceIdRef_1;
+  String get deviceIdRef1 => parseString('C');
+  set deviceIdRef1(String value) => setString('C', value);
 
   /// An ID reference to the second device element.
-  @annotation.XmlAttribute(name: 'D')
-  final String deviceElementIdRef_1;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ConnectionBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ConnectionToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    deviceIdRef_0,
-    deviceElementIdRef_0,
-    deviceIdRef_1,
-    deviceElementIdRef_1,
-  ];
+  String get deviceElementIdRef1 => parseString('D');
+  set deviceElementIdRef1(String value) => setString('D', value);
 }

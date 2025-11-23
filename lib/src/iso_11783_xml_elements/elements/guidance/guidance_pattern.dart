@@ -6,11 +6,7 @@ part of '../../iso_11783_element.dart';
 
 /// An element that describes patterns from [LineString]s and a boundary
 /// [Polygon] to use with nagivation guidance (steering).
-@CopyWith()
-@annotation.XmlRootElement(name: 'GPN')
-@annotation.XmlSerializable(createMixin: true)
-class GuidancePattern extends Iso11783Element
-    with _$GuidancePatternXmlSerializableMixin, EquatableMixin {
+class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   /// Default factory for creating a [GuidancePattern] with verified
   /// arguments.
   factory GuidancePattern({
@@ -31,7 +27,6 @@ class GuidancePattern extends Iso11783Element
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (lineStrings.isEmpty) {
       throw ArgumentError.value(
@@ -121,7 +116,6 @@ class GuidancePattern extends Iso11783Element
       originalSRID: originalSRID,
       numberOfSwathsLeft: numberOfSwathsLeft,
       numberOfSwathsRight: numberOfSwathsRight,
-      customAttributes: customAttributes,
     );
   }
 
@@ -129,132 +123,135 @@ class GuidancePattern extends Iso11783Element
   /// in the default factory.
   GuidancePattern._({
     required List<LineString> lineStrings,
-    required this.id,
-    required this.type,
-    this.boundaryPolygon,
-    this.designator,
-    this.options,
-    this.propagationDirection,
-    this.extension,
-    this.heading,
-    this.radius,
-    this.gnssMethod,
-    this.horizontalAccuracy,
-    this.verticalAccuracy,
-    this.baseStationIdRef,
-    this.originalSRID,
-    this.numberOfSwathsLeft,
-    this.numberOfSwathsRight,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.guidancePattern,
-         description: 'GuidancePattern',
-         onlyVersion4AndAbove: true,
-       ) {
+    required String id,
+    required GuidancePatternType type,
+    Polygon? boundaryPolygon,
+    String? designator,
+    GuidancePatternOptions? options,
+    GuidancePatternPropagationDirection? propagationDirection,
+    GuidancePatternExtension? extension,
+    double? heading,
+    int? radius,
+    GuidancePatternGnssMethod? gnssMethod,
+    double? horizontalAccuracy,
+    double? verticalAccuracy,
+    String? baseStationIdRef,
+    String? originalSRID,
+    int? numberOfSwathsLeft,
+    int? numberOfSwathsRight,
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.type = type;
+    this.boundaryPolygon = boundaryPolygon;
+    this.designator = designator;
+    this.options = options;
+    this.propagationDirection = propagationDirection;
+    this.extension = extension;
+    this.heading = heading;
+    this.radius = radius;
+    this.gnssMethod = gnssMethod;
+    this.horizontalAccuracy = horizontalAccuracy;
+    this.verticalAccuracy = verticalAccuracy;
+    this.baseStationIdRef = baseStationIdRef;
+    this.originalSRID = originalSRID;
+    this.numberOfSwathsLeft = numberOfSwathsLeft;
+    this.numberOfSwathsRight = numberOfSwathsRight;
+    this.boundaryPolygon = boundaryPolygon;
     this.lineStrings.addAll(lineStrings);
   }
 
-  /// Creates a [GuidancePattern] from [element].
-  factory GuidancePattern.fromXmlElement(XmlElement element) {
-    final boundaryPolygon = element.getElement('PLN');
-    final lineStrings = element.getElements('LSG')!;
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final type = element.getAttribute('C')!;
-    final options = element.getAttribute('D');
-    final propagationDirection = element.getAttribute('E');
-    final extension = element.getAttribute('F');
-    final heading = element.getAttribute('G');
-    final radius = element.getAttribute('H');
-    final gnssMethod = element.getAttribute('I');
-    final horizontalAccuracy = element.getAttribute('J');
-    final verticalAccuracy = element.getAttribute('K');
-    final baseStationIdRef = element.getAttribute('L');
-    final originalSRID = element.getAttribute('M');
-    final numberOfSwathsLeft = element.getAttribute('N');
-    final numberOfSwathsRight = element.getAttribute('O');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return GuidancePattern(
-      boundaryPolygon: boundaryPolygon != null
-          ? Polygon.fromXmlElement(boundaryPolygon)
-          : null,
-      lineStrings: lineStrings.map(LineString.fromXmlElement).toList(),
-      id: id,
-      designator: designator,
-      type: $GuidancePatternTypeEnumMap.entries
-          .singleWhere(
-            (guidancePatternTypeEnumMapEntry) =>
-                guidancePatternTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$GuidancePatternTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      options: options != null
-          ? $GuidancePatternOptionsEnumMap.entries
-                .singleWhere(
-                  (guidancePatternOptionsEnumMapEntry) =>
-                      guidancePatternOptionsEnumMapEntry.value == options,
-                  orElse: () => throw ArgumentError(
-                    '''`$options` is not one of the supported values: ${$GuidancePatternOptionsEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      propagationDirection: propagationDirection != null
-          ? $GuidancePatternPropagationDirectionEnumMap.entries
-                .singleWhere(
-                  (guidancePatternPropagationDirectionEnumMapEntry) =>
-                      guidancePatternPropagationDirectionEnumMapEntry.value ==
-                      propagationDirection,
-                  orElse: () => throw ArgumentError(
-                    '''`$propagationDirection` is not one of the supported values: ${$GuidancePatternPropagationDirectionEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      extension: extension != null
-          ? $GuidancePatternExtensionEnumMap.entries
-                .singleWhere(
-                  (guidancePatternExtensionEnumMapEntry) =>
-                      guidancePatternExtensionEnumMapEntry.value == extension,
-                  orElse: () => throw ArgumentError(
-                    '''`$extension` is not one of the supported values: ${$GuidancePatternExtensionEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      heading: heading != null ? double.parse(heading) : null,
-      radius: radius != null ? int.parse(radius) : null,
-      gnssMethod: gnssMethod != null
-          ? $GuidancePatternGnssMethodEnumMap.entries
-                .singleWhere(
-                  (guidancePatternGnssMethodEnumMapEntry) =>
-                      guidancePatternGnssMethodEnumMapEntry.value == gnssMethod,
-                  orElse: () => throw ArgumentError(
-                    '''`$gnssMethod` is not one of the supported values: ${$GuidancePatternGnssMethodEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      horizontalAccuracy: horizontalAccuracy != null
-          ? double.parse(horizontalAccuracy)
-          : null,
-      verticalAccuracy: verticalAccuracy != null
-          ? double.parse(verticalAccuracy)
-          : null,
-      baseStationIdRef: baseStationIdRef,
-      originalSRID: originalSRID,
-      numberOfSwathsLeft: numberOfSwathsLeft != null
-          ? int.parse(numberOfSwathsLeft)
-          : null,
-      numberOfSwathsRight: numberOfSwathsRight != null
-          ? int.parse(numberOfSwathsRight)
-          : null,
-      customAttributes: customAttributes,
+  GuidancePattern._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    boundaryPolygon = switch (xmlElement.getElement(
+      Iso11783ElementType.polygon.xmlTag,
+    )) {
+      final XmlElement element => Polygon._fromXmlElement(element),
+      _ => null,
+    };
+    lineStrings.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.lineString.xmlTag)
+          .map(LineString._fromXmlElement)
+          .toList(),
     );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    if (lineStrings.isEmpty) {
+      throw ArgumentError.value(
+        lineStrings,
+        'lineStrings',
+        'Should not be empty',
+      );
+    }
+
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (heading != null) {
+      ArgumentValidation.checkValueInRange(
+        value: heading!,
+        min: 0,
+        max: 360,
+        name: 'heading',
+      );
+    }
+    if (radius != null) {
+      ArgumentValidation.checkValueInRange(
+        value: radius!,
+        min: 0,
+        max: 4294967294,
+        name: 'radius',
+      );
+    }
+    if (horizontalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: horizontalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'horizontalAccuracy',
+      );
+    }
+    if (verticalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: verticalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'verticalAccuracy',
+      );
+    }
+    if (baseStationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: baseStationIdRef!,
+        idRefPattern: BaseStation.staticIdRefPattern,
+        idName: 'baseStationIdRef',
+      );
+    }
+    if (originalSRID != null) {
+      ArgumentValidation.checkStringLength(originalSRID!, name: 'originalSRID');
+    }
+    if (numberOfSwathsLeft != null) {
+      ArgumentValidation.checkValueInRange(
+        value: numberOfSwathsLeft!,
+        min: 0,
+        max: 4294967294,
+        name: 'numberOfSwathsLeft',
+      );
+    }
+    if (numberOfSwathsRight != null) {
+      ArgumentValidation.checkValueInRange(
+        value: numberOfSwathsRight!,
+        min: 0,
+        max: 4294967294,
+        name: 'numberOfSwathsRight',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidancePattern;
 
   /// Regular expression matching pattern for the [id] of [GuidancePattern]s.
   static const staticIdRefPattern = '(GPN|GPN-)[1-9]([0-9])*';
@@ -262,165 +259,138 @@ class GuidancePattern extends Iso11783Element
   @override
   String get idRefPattern => staticIdRefPattern;
 
-  /// Boundary [Polygon] for this.
-  @annotation.XmlElement(name: 'PLN', includeIfNull: false)
-  final Polygon? boundaryPolygon;
-
   /// A list of [LineString]s for this.
   ///
   /// The separation spacing between the paths for each [LineString] pattern
   /// is the [LineString.width] parameter.
-  @annotation.XmlElement(name: 'LSG')
-  final List<LineString> lineStrings = [];
+  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
 
   /// Unique identifier for this guidance pattern.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the guidance pattern, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Which type of guidance pattern this is.
-  @annotation.XmlAttribute(name: 'C')
-  final GuidancePatternType type;
+  GuidancePatternType get type => GuidancePatternType.values.firstWhere(
+    (type) => type.value == parseInt('C'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${GuidancePatternType.values.join(', ')}''',
+    ),
+  );
+  set type(GuidancePatternType value) => setInt('C', value.value);
 
   /// Options if [type] is [GuidancePatternType.pivot].
-  @annotation.XmlAttribute(name: 'D')
-  final GuidancePatternOptions? options;
+  GuidancePatternOptions? get options => switch (tryParseInt('D')) {
+    final int value => GuidancePatternOptions.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${GuidancePatternOptions.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set options(GuidancePatternOptions? value) =>
+      setIntNullable('D', value?.value);
 
   /// Which directions the pattern should propagate in, as seen from point
   /// A to the next point.
-  @annotation.XmlAttribute(name: 'E')
-  final GuidancePatternPropagationDirection? propagationDirection;
+  GuidancePatternPropagationDirection?
+  get propagationDirection => switch (tryParseInt('E')) {
+    final int value => GuidancePatternPropagationDirection.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${GuidancePatternPropagationDirection.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set propagationDirection(GuidancePatternPropagationDirection? value) =>
+      setIntNullable('E', value?.value);
 
   /// In which ends the pattern should extend further than the start/end point.
-  @annotation.XmlAttribute(name: 'F')
-  final GuidancePatternExtension? extension;
+  GuidancePatternExtension? get extension => switch (tryParseInt('F')) {
+    final int value => GuidancePatternExtension.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${GuidancePatternExtension.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set extension(GuidancePatternExtension? value) =>
+      setIntNullable('F', value?.value);
 
   /// Heading/bearing of the pattern.
-  @annotation.XmlAttribute(name: 'G')
-  final double? heading;
+  double? get heading => tryParseDouble('G');
+  set heading(double? value) => setDoubleNullable('G', value);
 
   /// Radius of the pattern in millimeters.
-  @annotation.XmlAttribute(name: 'H')
-  final int? radius;
+  int? get radius => tryParseInt('H');
+  set radius(int? value) => setIntNullable('H', value);
 
   /// Status/quality of the GNSS positioning for this.
-  @annotation.XmlAttribute(name: 'I')
-  final GuidancePatternGnssMethod? gnssMethod;
+  GuidancePatternGnssMethod? get gnssMethod => switch (tryParseInt('I')) {
+    final int value => GuidancePatternGnssMethod.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${GuidancePatternGnssMethod.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set gnssMethod(GuidancePatternGnssMethod? value) =>
+      setIntNullable('I', value?.value);
 
   /// Horizontal accuracy, from 0 to 65 meters.
-  @annotation.XmlAttribute(name: 'J')
-  final double? horizontalAccuracy;
+  double? get horizontalAccuracy => tryParseDouble('J');
+  set horizontalAccuracy(double? value) => setDoubleNullable('J', value);
 
   /// Vertical accuracy, from 0 to 65 meters.
-  @annotation.XmlAttribute(name: 'K')
-  final double? verticalAccuracy;
+  double? get verticalAccuracy => tryParseDouble('K');
+  set verticalAccuracy(double? value) => setDoubleNullable('K', value);
 
   /// Reference to a [BaseStation].
-  @annotation.XmlAttribute(name: 'L')
-  final String? baseStationIdRef;
+  String? get baseStationIdRef => tryParseString('L');
+  set baseStationIdRef(String? value) => setStringNullable('L', value);
 
   /// ID of the original Spatial-Reference system.
   ///
   /// Typically EPSG:4326.
-  @annotation.XmlAttribute(name: 'M')
-  final String? originalSRID;
+  String? get originalSRID => tryParseString('M');
+  set originalSRID(String? value) => setStringNullable('M', value);
 
   /// Number of swaths to the left of the reference pattern, as seen from
   /// point A to the next point.
-  @annotation.XmlAttribute(name: 'N')
-  final int? numberOfSwathsLeft;
+  int? get numberOfSwathsLeft => tryParseInt('N');
+  set numberOfSwathsLeft(int? value) => setIntNullable('N', value);
 
   /// Number of swaths to the right of the reference pattern, as seen from
   /// point A to the next point.
-  @annotation.XmlAttribute(name: 'O')
-  final int? numberOfSwathsRight;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    if (boundaryPolygon != null) ...boundaryPolygon!.selfWithRecursiveChildren,
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$GuidancePatternBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$GuidancePatternToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    boundaryPolygon,
-    lineStrings,
-    id,
-    designator,
-    type,
-    options,
-    propagationDirection,
-    extension,
-    heading,
-    radius,
-    gnssMethod,
-    horizontalAccuracy,
-    verticalAccuracy,
-    baseStationIdRef,
-    originalSRID,
-    numberOfSwathsLeft,
-    numberOfSwathsRight,
-  ];
+  int? get numberOfSwathsRight => tryParseInt('O');
+  set numberOfSwathsRight(int? value) => setIntNullable('O', value);
 }
 
 /// An enumeration for the type of [GuidancePattern].
-@annotation.XmlEnum()
 enum GuidancePatternType {
   /// AB-line, straight from A to B.
-  @annotation.XmlValue('1')
   ab(1, 'AB'),
 
   /// A+ or A*, A with heading/bearing.
-  @annotation.XmlValue('2')
   aPlus(2, 'A+'),
 
   /// Curve, a curve from a start to an end point.
-  @annotation.XmlValue('3')
   curve(3, 'Curve'),
 
   /// Pivot, a circle around a center/pivot point.
-  @annotation.XmlValue('4')
   pivot(4, 'Pivot'),
 
   /// Spiral, a spiral out from a center point.
-  @annotation.XmlValue('5')
   spiral(5, 'Spiral');
 
   const GuidancePatternType(this.value, this.description);
@@ -434,18 +404,14 @@ enum GuidancePatternType {
 
 /// An enumerator with pattern options for a [GuidancePattern] with type
 /// [GuidancePatternType.pivot].
-@annotation.XmlEnum()
 enum GuidancePatternOptions {
   /// Clockwise, for [GuidancePatternType.pivot] only.
-  @annotation.XmlValue('1')
   clockwise(1, 'Clocwise - for pivot'),
 
   /// Counter-clockwise, for [GuidancePatternType.pivot] only.
-  @annotation.XmlValue('2')
   counterClockwise(2, 'Counter-clockwise - for pivot'),
 
   /// Full circle, for [GuidancePatternType.pivot] only.
-  @annotation.XmlValue('3')
   fullCircle(3, 'Full Circle - for pivot');
 
   const GuidancePatternOptions(this.value, this.description);
@@ -459,24 +425,19 @@ enum GuidancePatternOptions {
 
 /// An enumeration for which direction a [GuidancePattern] should propagate,
 /// as seen from the direction from point A to the next point.
-@annotation.XmlEnum()
 enum GuidancePatternPropagationDirection {
   /// In both directions from the reference pattern.
-  @annotation.XmlValue('1')
   both(1, 'Both diretions'),
 
   /// To the left of the reference pattern only, as seen from A to the next
   /// point.
-  @annotation.XmlValue('2')
   leftOnly(2, 'Left direction only'),
 
   /// To the right of the reference pattern only, as seen from A to the next
   /// point.
-  @annotation.XmlValue('3')
   rightOnly(3, 'Right direction only'),
 
   /// No propagation, i.e. only the reference line will be used.
-  @annotation.XmlValue('4')
   noPropagation(4, 'No propagation');
 
   const GuidancePatternPropagationDirection(this.value, this.description);
@@ -490,22 +451,17 @@ enum GuidancePatternPropagationDirection {
 
 /// An enumeration for if the [GuidancePattern] should extend at the
 /// start and end points.
-@annotation.XmlEnum()
 enum GuidancePatternExtension {
   /// Extend from both start (A) and end (B) points.
-  @annotation.XmlValue('1')
   fromBoth(1, 'From both first and last points'),
 
   /// Extend from start point (A) only.
-  @annotation.XmlValue('2')
   fromAOnly(2, 'From first point (A) only'),
 
   /// Extend from end point (B) only.
-  @annotation.XmlValue('3')
   fromBOnly(3, 'From last point (B) only'),
 
   /// No extension from any points.
-  @annotation.XmlValue('4')
   noExtensions(4, 'No extensions');
 
   const GuidancePatternExtension(this.value, this.description);
@@ -518,41 +474,38 @@ enum GuidancePatternExtension {
 }
 
 /// An enumeration for the status/quality of positioning in a [GuidancePattern].
-@annotation.XmlEnum()
 enum GuidancePatternGnssMethod {
   /// 'No GNSS fix
-  @annotation.XmlValue('0')
   noGnssFix(0, 'No GNSS fix'),
-  @annotation.XmlValue('1')
+
   /// GNSS fix
   gnssFix(1, 'GNSS fix'),
-  @annotation.XmlValue('2')
+
   /// Differential GNSS fix
   dgnssFix(2, 'DGNSS fix'),
-  @annotation.XmlValue('3')
+
   /// Precise GNSS
   preciseGnss(3, 'Precise GNSS'),
-  @annotation.XmlValue('4')
+
   /// RTK fixed integer
   rtkFixedInteger(4, 'RTK fixed integer'),
-  @annotation.XmlValue('5')
+
   /// RTK float
   rtkFloat(5, 'RTK float'),
-  @annotation.XmlValue('6')
+
   /// Estimated (Dead Reckoning) mode
   estimatedDRmode(6, 'Estimated (Dead Reckoning) mode'),
-  @annotation.XmlValue('7')
+
   /// Manual input
   manualInput(7, 'Manual input'),
-  @annotation.XmlValue('8')
+
   /// Simulation mode
   simulationMode(8, 'Simulation mode'),
-  @annotation.XmlValue('16')
+
   /// Desktop generated data
   desktopGeneratedData(16, 'Desktop generated data'),
 
   /// Other
-  @annotation.XmlValue('17')
   other(17, 'Other');
 
   const GuidancePatternGnssMethod(this.value, this.description);

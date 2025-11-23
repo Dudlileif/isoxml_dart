@@ -5,8 +5,6 @@
 @TestOn('vm')
 library;
 
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:isoxml_dart/isoxml_dart.dart';
 import 'package:test/test.dart';
@@ -16,9 +14,7 @@ void main() async {
 
   final dictionaryString = await http.read(url);
 
-  final dictionary = Iso11783DataDictionary(
-    utf8.decode(dictionaryString.codeUnits),
-  );
+  final dictionary = Iso11783DataDictionary(dictionaryString);
 
   group('Parse dictionary', () {
     final version = dictionaryString

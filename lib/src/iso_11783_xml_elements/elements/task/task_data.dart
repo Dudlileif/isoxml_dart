@@ -7,11 +7,7 @@ part of '../../iso_11783_element.dart';
 /// An element that describes the `TASKDATA.xml` file, which is the main root
 /// element and contains definitions about the construct of the element
 /// structure, (Version number... ) and the use of primary elements.
-@CopyWith()
-@annotation.XmlRootElement(name: 'ISO11783_TaskData')
-@annotation.XmlSerializable(createMixin: true)
-class Iso11783TaskData extends Iso11783Element
-    with _$Iso11783TaskDataXmlSerializableMixin, EquatableMixin {
+class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
   /// Default factory for creating an [Iso11783TaskData] with verified
   /// arguments.
   factory Iso11783TaskData({
@@ -43,7 +39,6 @@ class Iso11783TaskData extends Iso11783Element
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? language,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkStringLength(
       managementSoftwareManufacturer,
@@ -101,18 +96,23 @@ class Iso11783TaskData extends Iso11783Element
       taskControllerManufacturer: taskControllerManufacturer,
       taskControllerVersion: taskControllerVersion,
       language: language,
-      customAttributes: customAttributes,
     );
+  }
+
+  /// Creates an [Iso11783TaskData] from [document].
+  factory Iso11783TaskData.fromXmlDocument(XmlDocument document) {
+    final element = document.getElement(Iso11783ElementType.taskData.xmlTag)!;
+    return Iso11783TaskData._fromXmlElement(element);
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Iso11783TaskData._({
-    required this.versionMajor,
-    required this.versionMinor,
-    required this.managementSoftwareManufacturer,
-    required this.managementSoftwareVersion,
-    required this.dataTransferOrigin,
+    required VersionMajor versionMajor,
+    required VersionMinor versionMinor,
+    required String managementSoftwareManufacturer,
+    required String managementSoftwareVersion,
+    required DataTransferOrigin dataTransferOrigin,
     List<AttachedFile>? attachedFiles,
     List<BaseStation>? baseStations,
     List<CodedComment>? codedComments,
@@ -133,155 +133,188 @@ class Iso11783TaskData extends Iso11783Element
     List<Worker>? workers,
     List<ExternalFileReference>? externalFileReferences,
     this.linkList,
-    this.taskControllerManufacturer,
-    this.taskControllerVersion,
-    this.language,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.taskData,
-         description: 'ISO 11783 Task Data File',
-       ) {
-    attachedFiles?.forEach(addTopLevelElement);
-    baseStations?.forEach(addTopLevelElement);
-    codedComments?.forEach(addTopLevelElement);
-    codedCommentGroups?.forEach(addTopLevelElement);
-    colourLegends?.forEach(addTopLevelElement);
-    cropTypes?.forEach(addTopLevelElement);
-    culturalPractices?.forEach(addTopLevelElement);
-    customers?.forEach(addTopLevelElement);
-    devices?.forEach(addTopLevelElement);
-    farms?.forEach(addTopLevelElement);
-    operationTechniques?.forEach(addTopLevelElement);
-    partfields?.forEach(addTopLevelElement);
-    products?.forEach(addTopLevelElement);
-    productGroups?.forEach(addTopLevelElement);
-    tasks?.forEach(addTopLevelElement);
-    taskControllerCapabilities?.forEach(addTopLevelElement);
-    valuePresentations?.forEach(addTopLevelElement);
-    workers?.forEach(addTopLevelElement);
-    externalFileReferences?.forEach(addTopLevelElement);
+    String? taskControllerManufacturer,
+    String? taskControllerVersion,
+    String? language,
+  }) : super(elementType: _elementType) {
+    this.versionMajor = versionMajor;
+    this.versionMinor = versionMinor;
+    this.managementSoftwareManufacturer = managementSoftwareManufacturer;
+    this.managementSoftwareVersion = managementSoftwareVersion;
+    this.dataTransferOrigin = dataTransferOrigin;
+    this.taskControllerManufacturer = taskControllerManufacturer;
+    this.taskControllerVersion = taskControllerVersion;
+    this.language = language;
+    this.attachedFiles.addAll(attachedFiles);
+    this.baseStations.addAll(baseStations);
+    this.codedComments.addAll(codedComments);
+    this.codedCommentGroups.addAll(codedCommentGroups);
+    this.colourLegends.addAll(colourLegends);
+    this.cropTypes.addAll(cropTypes);
+    this.culturalPractices.addAll(culturalPractices);
+    this.customers.addAll(customers);
+    this.devices.addAll(devices);
+    this.farms.addAll(farms);
+    this.operationTechniques.addAll(operationTechniques);
+    this.partfields.addAll(partfields);
+    this.products.addAll(products);
+    this.productGroups.addAll(productGroups);
+    this.tasks.addAll(tasks);
+    this.taskControllerCapabilities.addAll(taskControllerCapabilities);
+    this.valuePresentations.addAll(valuePresentations);
+    this.workers.addAll(workers);
+    this.externalFileReferences.addAll(externalFileReferences);
   }
 
-  /// Creates an [Iso11783TaskData] from [element].
-  factory Iso11783TaskData.fromXmlElement(XmlElement element) {
-    final attachedFiles = element.getElements('AFE');
-    final baseStations = element.getElements('BSN');
-    final codedComments = element.getElements('CCT');
-    final codedCommentGroups = element.getElements('CCG');
-    final colourLegends = element.getElements('CLD');
-    final cropTypes = element.getElements('CTP');
-    final culturalPractices = element.getElements('CPC');
-    final customers = element.getElements('CTR');
-    final devices = element.getElements('DVC');
-    final farms = element.getElements('FRM');
-    final operationTechniques = element.getElements('OTQ');
-    final partfields = element.getElements('PFD');
-    final products = element.getElements('PDT');
-    final productGroups = element.getElements('PGP');
-    final tasks = element.getElements('TSK');
-    final taskControllerCapabilities = element.getElements('TCC');
-    final valuePresentations = element.getElements('VPN');
-    final workers = element.getElements('WKR');
-    final externalFileReferences = element.getElements('XFR');
-    final versionMajor = element.getAttribute('VersionMajor')!;
-    final versionMinor = element.getAttribute('VersionMinor')!;
-    final dataTransferOrigin = element.getAttribute('DataTransferOrigin')!;
-    final managementSoftwareManufacturer = element.getAttribute(
-      'ManagementSoftwareManufacturer',
-    )!;
-    final managementSoftwareVersion = element.getAttribute(
-      'ManagementSoftwareVersion',
-    )!;
-    final taskControllerManufacturer = element.getAttribute(
-      'TaskControllerManufacturer',
+  Iso11783TaskData._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    attachedFiles.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.attachedFile.xmlTag)
+          .map(AttachedFile._fromXmlElement)
+          .toList(),
     );
-    final taskControllerVersion = element.getAttribute('TaskControllerVersion');
-    final language = element.getAttribute('lang');
-    final customAttributes = element.attributes
-        .whereNot(
-          (attribute) => [
-            'VersionMajor',
-            'VersionMinor',
-            'DataTransferOrigin',
-            'ManagementSoftwareManufacturer',
-            'ManagementSoftwareVersion',
-            'TaskControllerManufacturer',
-            'TaskControllerVersion',
-            'lang',
-          ].contains(attribute.name.local),
-        )
-        .toList();
-    return Iso11783TaskData(
-      attachedFiles: attachedFiles?.map(AttachedFile.fromXmlElement).toList(),
-      baseStations: baseStations?.map(BaseStation.fromXmlElement).toList(),
-      codedComments: codedComments?.map(CodedComment.fromXmlElement).toList(),
-      codedCommentGroups: codedCommentGroups
-          ?.map(CodedCommentGroup.fromXmlElement)
+    baseStations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.baseStation.xmlTag)
+          .map(BaseStation._fromXmlElement)
           .toList(),
-      colourLegends: colourLegends?.map(ColourLegend.fromXmlElement).toList(),
-      cropTypes: cropTypes?.map(CropType.fromXmlElement).toList(),
-      culturalPractices: culturalPractices
-          ?.map(CulturalPractice.fromXmlElement)
-          .toList(),
-      customers: customers?.map(Customer.fromXmlElement).toList(),
-      devices: devices?.map(Device.fromXmlElement).toList(),
-      farms: farms?.map(Farm.fromXmlElement).toList(),
-      operationTechniques: operationTechniques
-          ?.map(OperationTechnique.fromXmlElement)
-          .toList(),
-      partfields: partfields?.map(Partfield.fromXmlElement).toList(),
-      products: products?.map(Product.fromXmlElement).toList(),
-      productGroups: productGroups?.map(ProductGroup.fromXmlElement).toList(),
-      tasks: tasks?.map(Task.fromXmlElement).toList(),
-      taskControllerCapabilities: taskControllerCapabilities
-          ?.map(TaskControllerCapabilities.fromXmlElement)
-          .toList(),
-      valuePresentations: valuePresentations
-          ?.map(ValuePresentation.fromXmlElement)
-          .toList(),
-      workers: workers?.map(Worker.fromXmlElement).toList(),
-      externalFileReferences: externalFileReferences
-          ?.map(ExternalFileReference.fromXmlElement)
-          .toList(),
-      versionMajor: $VersionMajorEnumMap.entries
-          .singleWhere(
-            (versionMajorEnumMapEntry) =>
-                versionMajorEnumMapEntry.value == versionMajor,
-            orElse: () => throw ArgumentError(
-              '''`$versionMajor` is not one of the supported values: ${$VersionMajorEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      versionMinor: $VersionMinorEnumMap.entries
-          .singleWhere(
-            (versionMinorEnumMapEntry) =>
-                versionMinorEnumMapEntry.value == versionMinor,
-            orElse: () => throw ArgumentError(
-              '''`$versionMinor` is not one of the supported values: ${$VersionMinorEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      dataTransferOrigin: $DataTransferOriginEnumMap.entries
-          .singleWhere(
-            (dataTransferOriginEnumMapEntry) =>
-                dataTransferOriginEnumMapEntry.value == dataTransferOrigin,
-            orElse: () => throw ArgumentError(
-              '''`$dataTransferOrigin` is not one of the supported values: ${$DataTransferOriginEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      managementSoftwareManufacturer: managementSoftwareManufacturer,
-      managementSoftwareVersion: managementSoftwareVersion,
-      taskControllerManufacturer: taskControllerManufacturer,
-      taskControllerVersion: taskControllerVersion,
-      language: language,
-      customAttributes: customAttributes.isNotEmpty ? customAttributes : null,
     );
+    codedComments.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.codedComment.xmlTag)
+          .map(CodedComment._fromXmlElement)
+          .toList(),
+    );
+    codedCommentGroups.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.codedCommentGroup.xmlTag)
+          .map(CodedCommentGroup._fromXmlElement)
+          .toList(),
+    );
+    colourLegends.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.colourLegend.xmlTag)
+          .map(ColourLegend._fromXmlElement)
+          .toList(),
+    );
+    cropTypes.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.cropType.xmlTag)
+          .map(CropType._fromXmlElement)
+          .toList(),
+    );
+    culturalPractices.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.culturalPractice.xmlTag)
+          .map(CulturalPractice._fromXmlElement)
+          .toList(),
+    );
+    customers.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.customer.xmlTag)
+          .map(Customer._fromXmlElement)
+          .toList(),
+    );
+    devices.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.device.xmlTag)
+          .map(Device._fromXmlElement)
+          .toList(),
+    );
+    farms.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.farm.xmlTag)
+          .map(Farm._fromXmlElement)
+          .toList(),
+    );
+    operationTechniques.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.operationTechnique.xmlTag)
+          .map(OperationTechnique._fromXmlElement)
+          .toList(),
+    );
+    partfields.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.partfield.xmlTag)
+          .map(Partfield._fromXmlElement)
+          .toList(),
+    );
+    products.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.product.xmlTag)
+          .map(Product._fromXmlElement)
+          .toList(),
+    );
+    productGroups.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.productGroup.xmlTag)
+          .map(ProductGroup._fromXmlElement)
+          .toList(),
+    );
+    tasks.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.task.xmlTag)
+          .map(Task._fromXmlElement)
+          .toList(),
+    );
+    taskControllerCapabilities.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.taskControllerCapabilities.xmlTag)
+          .map(TaskControllerCapabilities._fromXmlElement)
+          .toList(),
+    );
+    valuePresentations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.valuePresentation.xmlTag)
+          .map(ValuePresentation._fromXmlElement)
+          .toList(),
+    );
+    workers.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.worker.xmlTag)
+          .map(Worker._fromXmlElement)
+          .toList(),
+    );
+    externalFileReferences.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.externalFileReference.xmlTag)
+          .map(ExternalFileReference._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
   }
 
-  /// Creates an [Iso11783TaskData] from [document].
-  static Iso11783TaskData? fromXmlDocument(XmlDocument document) =>
-      Iso11783TaskData.fromXmlElement(document.childElements.first);
+  void _argumentValidator() {
+    ArgumentValidation.checkStringLength(
+      managementSoftwareManufacturer,
+      name: 'managementSoftwareManufacturer',
+    );
+    ArgumentValidation.checkStringLength(
+      managementSoftwareVersion,
+      name: 'managementSoftwareVersion',
+    );
+    if (taskControllerManufacturer != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerManufacturer!,
+        name: 'taskControllerManufacturer',
+      );
+    }
+    if (taskControllerVersion != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerVersion!,
+        name: 'taskControllerVersion',
+      );
+    }
+    if (language != null) {
+      ArgumentValidation.checkStringLength(
+        language!,
+        name: 'language',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.taskData;
 
   /// Creates an [Iso11783TaskData] object from the zip [archive].
   static Future<Iso11783TaskData?> fromZip(Archive archive) async {
@@ -296,9 +329,6 @@ class Iso11783TaskData extends Iso11783Element
         utf8.decoder.convert(taskDataFile.content),
       ),
     );
-    if (taskData == null) {
-      return null;
-    }
 
     for (final externalFile in taskData.externalFileReferences) {
       final archiveFile = archive.files.firstWhereOrNull(
@@ -311,7 +341,9 @@ class Iso11783TaskData extends Iso11783Element
             utf8.decoder.convert(archiveFile.content),
           ),
         );
-        externalContent?.contents.forEach(taskData.addTopLevelElement);
+        if (externalContent != null) {
+          taskData.addExternalFileContents(externalContent);
+        }
       }
     }
 
@@ -365,7 +397,7 @@ class Iso11783TaskData extends Iso11783Element
         }
       }
     }
-    return taskData.copyWith.linkList(linkList);
+    return taskData..linkList = linkList;
   }
 
   /// Creates an [Iso11783TaskData] object from the zip file [bytes].
@@ -387,7 +419,10 @@ class Iso11783TaskData extends Iso11783Element
       archive.addFile(
         ArchiveFile.string(
           'TASKDATA/TASKDATA.XML',
-          toSingleXmlDocument().toXmlString(pretty: true, indent: '    '),
+          '${toSingleXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          )}\n',
         ),
       );
     } else {
@@ -395,7 +430,10 @@ class Iso11783TaskData extends Iso11783Element
         archive.addFile(
           ArchiveFile.string(
             'TASKDATA/${file.fileName}.XML',
-            file.document.toXmlString(pretty: true, indent: '    '),
+            '${file.document.toXmlString(
+              pretty: true,
+              indent: '    ',
+            )}\n',
           ),
         );
       }
@@ -405,7 +443,10 @@ class Iso11783TaskData extends Iso11783Element
       archive.addFile(
         ArchiveFile.string(
           'TASKDATA/LINKLIST.XML',
-          linkList!.toXmlDocument().toXmlString(pretty: true, indent: '    '),
+          '${linkList!.toXmlDocument().toXmlString(
+            pretty: true,
+            indent: '    ',
+          )}\n',
         ),
       );
     }
@@ -437,10 +478,10 @@ class Iso11783TaskData extends Iso11783Element
             ..addFile(
               ArchiveFile.string(
                 'TASKDATA/${timeLog.filename}.XML',
-                timeLog.header!.toXmlDocument().toXmlString(
+                '${timeLog.header!.toXmlDocument().toXmlString(
                   pretty: true,
                   indent: '    ',
-                ),
+                )}\n',
               ),
             );
         }
@@ -458,143 +499,108 @@ class Iso11783TaskData extends Iso11783Element
       ZipEncoder().encode(toZip(externalize: externalize));
 
   /// A list of [AttachedFile]s.
-  @annotation.XmlElement(name: 'AFE')
-  final List<AttachedFile> attachedFiles = [];
+  late final attachedFiles = _XmlSyncedList<AttachedFile>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [BaseStation]s.
-  @annotation.XmlElement(name: 'BSN')
-  final List<BaseStation> baseStations = [];
+  late final baseStations = _XmlSyncedList<BaseStation>(xmlElement: xmlElement);
 
   /// A list of [CodedComment]s.
-  @annotation.XmlElement(name: 'CCT')
-  final List<CodedComment> codedComments = [];
+  late final codedComments = _XmlSyncedList<CodedComment>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [CodedCommentGroup]s.
-  @annotation.XmlElement(name: 'CCG')
-  final List<CodedCommentGroup> codedCommentGroups = [];
+  late final codedCommentGroups = _XmlSyncedList<CodedCommentGroup>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [ColourLegend]s.
-  @annotation.XmlElement(name: 'CLD')
-  final List<ColourLegend> colourLegends = [];
+  late final colourLegends = _XmlSyncedList<ColourLegend>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [CropType]s.
-  @annotation.XmlElement(name: 'CTP')
-  final List<CropType> cropTypes = [];
+  late final cropTypes = _XmlSyncedList<CropType>(xmlElement: xmlElement);
 
   /// A list of [CulturalPractice]s.
-  @annotation.XmlElement(name: 'CPC')
-  final List<CulturalPractice> culturalPractices = [];
+  late final culturalPractices = _XmlSyncedList<CulturalPractice>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Customer]s.
-  @annotation.XmlElement(name: 'CTR')
-  final List<Customer> customers = [];
+  late final customers = _XmlSyncedList<Customer>(xmlElement: xmlElement);
 
   /// A list of [Device]s.
-  @annotation.XmlElement(name: 'DVC')
-  final List<Device> devices = [];
+  late final devices = _XmlSyncedList<Device>(xmlElement: xmlElement);
 
   /// A list of [Farm]s.
-  @annotation.XmlElement(name: 'FRM')
-  final List<Farm> farms = [];
+  late final farms = _XmlSyncedList<Farm>(xmlElement: xmlElement);
 
   /// A list of [OperationTechnique]s.
-  @annotation.XmlElement(name: 'OTQ')
-  final List<OperationTechnique> operationTechniques = [];
+  late final operationTechniques = _XmlSyncedList<OperationTechnique>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Partfield]s.
-  @annotation.XmlElement(name: 'PFD')
-  final List<Partfield> partfields = [];
+  late final partfields = _XmlSyncedList<Partfield>(xmlElement: xmlElement);
 
   /// A list of [Product]s.
-  @annotation.XmlElement(name: 'PDT')
-  final List<Product> products = [];
+  late final products = _XmlSyncedList<Product>(xmlElement: xmlElement);
 
   /// A list of [ProductGroup]s.
-  @annotation.XmlElement(name: 'PGP')
-  final List<ProductGroup> productGroups = [];
+  late final productGroups = _XmlSyncedList<ProductGroup>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Task]s.
-  @annotation.XmlElement(name: 'TSK')
-  final List<Task> tasks = [];
+  late final tasks = _XmlSyncedList<Task>(xmlElement: xmlElement);
 
   /// A list of [TaskControllerCapabilities].
-  @annotation.XmlElement(name: 'TCC')
-  final List<TaskControllerCapabilities> taskControllerCapabilities = [];
+  late final taskControllerCapabilities =
+      _XmlSyncedList<TaskControllerCapabilities>(xmlElement: xmlElement);
 
   /// A list of [ValuePresentation]s.
-  @annotation.XmlElement(name: 'VPN')
-  final List<ValuePresentation> valuePresentations = [];
+  late final valuePresentations = _XmlSyncedList<ValuePresentation>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Worker]s.
-  @annotation.XmlElement(name: 'WKR')
-  final List<Worker> workers = [];
+  late final workers = _XmlSyncedList<Worker>(xmlElement: xmlElement);
 
   /// A list of [ExternalFileReference]s.
-  @annotation.XmlElement(name: 'XFR')
-  final List<ExternalFileReference> externalFileReferences = [];
+  late final externalFileReferences = _XmlSyncedList<ExternalFileReference>(
+    xmlElement: xmlElement,
+  );
 
   /// An [Iso11783LinkList] for linking to external files.
-  final Iso11783LinkList? linkList;
-
-  /// Major version of the standard.
-  @annotation.XmlAttribute(name: 'VersionMajor')
-  final VersionMajor versionMajor;
-
-  /// Minor version of the standard
-  @annotation.XmlAttribute(name: 'VersionMinor')
-  final VersionMinor versionMinor;
-
-  /// Name of the Management Software manufacturer.
-  @annotation.XmlAttribute(name: 'ManagementSoftwareManufacturer')
-  final String managementSoftwareManufacturer;
-
-  /// Version of the Management Software.
-  @annotation.XmlAttribute(name: 'ManagementSoftwareVersion')
-  final String managementSoftwareVersion;
-
-  /// Name of the Task Controller software.
-  @annotation.XmlAttribute(name: 'TaskControllerManufacturer')
-  final String? taskControllerManufacturer;
-
-  /// Version of the Task Controller software.
-  @annotation.XmlAttribute(name: 'TaskControllerVersion')
-  final String? taskControllerVersion;
-
-  /// The creation origin of this.
-  @annotation.XmlAttribute(name: 'DataTransferOrigin')
-  final DataTransferOrigin dataTransferOrigin;
+  Iso11783LinkList? linkList;
 
   /// Preferred language of the software.
-  @annotation.XmlAttribute(name: 'lang')
-  final String? language;
+  String? get language => tryParseString('lang');
+  set language(String? value) => setStringNullable('lang', value);
 
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$Iso11783TaskDataBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$Iso11783TaskDataToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
+  /// Adds the contents from [external] to their respective element list in
+  /// this.
+  void addExternalFileContents(ExternalFileContents external) {
+    attachedFiles.addAll(external.attachedFiles);
+    baseStations.addAll(external.baseStations);
+    codedComments.addAll(external.codedComments);
+    codedCommentGroups.addAll(external.codedCommentGroups);
+    colourLegends.addAll(external.colourLegends);
+    cropTypes.addAll(external.cropTypes);
+    culturalPractices.addAll(external.culturalPractices);
+    customers.addAll(external.customers);
+    devices.addAll(external.devices);
+    farms.addAll(external.farms);
+    operationTechniques.addAll(external.operationTechniques);
+    partfields.addAll(external.partfields);
+    products.addAll(external.products);
+    productGroups.addAll(external.productGroups);
+    tasks.addAll(external.tasks);
+    valuePresentations.addAll(external.valuePresentations);
+    workers.addAll(external.workers);
   }
 
   /// A structured XML document that represents this.
@@ -602,10 +608,10 @@ class Iso11783TaskData extends Iso11783Element
   /// External references are removed as everything is contained in
   /// one document.
   XmlDocument toSingleXmlDocument() {
-    final builder = XmlBuilder()
-      ..processing('xml', 'version="1.0" encoding="UTF-8"');
-    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
-    final document = builder.buildDocument();
+    final document = XmlDocument([
+      XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
+      xmlElement.copy(),
+    ]);
     document.lastChild?.children.retainWhere(
       (node) =>
           node is XmlElement &&
@@ -618,18 +624,17 @@ class Iso11783TaskData extends Iso11783Element
 
   /// A structured XML document that represents this.
   List<({String fileName, XmlDocument document})> toXmlExternalDocuments() {
-    final builder = XmlBuilder()
-      ..processing('xml', 'version="1.0" encoding="UTF-8"');
-
-    builder.element(elementType.xmlTag, nest: () => buildXmlChildren(builder));
-    final mainDocument = builder.buildDocument();
+    final mainDocument = XmlDocument([
+      XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
+      xmlElement.copy(),
+    ]);
 
     final list = <({String fileName, XmlDocument document})>[];
     if (mainDocument.lastChild != null) {
       final occurancesOfType = <Iso11783ElementType, int>{};
       for (final externalFileReference in externalFileReferences) {
         occurancesOfType.update(
-          externalFileReference.elementType,
+          externalFileReference.childrenElementType,
           (value) => value + 1,
           ifAbsent: () => 1,
         );
@@ -637,7 +642,7 @@ class Iso11783TaskData extends Iso11783Element
       final typeDone = <Iso11783ElementType, bool>{};
 
       for (final externalFileReference in externalFileReferences) {
-        final type = externalFileReference.elementType;
+        final type = externalFileReference.childrenElementType;
 
         if (typeDone[type] ?? false) {
           continue;
@@ -649,9 +654,9 @@ class Iso11783TaskData extends Iso11783Element
         // removed.
         if ((occurancesOfType[type] ?? 0) > 1) {
           final externalContent = mainDocument.lastChild!
-              .getElements(type.xmlTag)
-              ?.toList();
-          if (externalContent != null && externalContent.isNotEmpty) {
+              .findElements(type.xmlTag)
+              .toList();
+          if (externalContent.isNotEmpty) {
             // ---00001 , Negative ids
             final documentNegative = XmlDocument(
               [
@@ -728,7 +733,7 @@ class Iso11783TaskData extends Iso11783Element
             );
           }
         } else {
-          final externalContent = mainDocument.lastChild?.getElements(
+          final externalContent = mainDocument.lastChild?.findElements(
             type.xmlTag,
           );
           if (externalContent != null && externalContent.isNotEmpty) {
@@ -762,145 +767,15 @@ class Iso11783TaskData extends Iso11783Element
     return list;
   }
 
-  /// Returns null or a copy of this with the top level [element] added.
-  ///
-  /// A copy is returned if the list for the element type doesn't exist,
-  /// otherwise null is returned and the element is added to the
-  /// already existing list.
-  void addTopLevelElement(Iso11783Element element) {
-    switch (element) {
-      case (final AttachedFile element):
-        attachedFiles.add(element);
-      case (final BaseStation element):
-        baseStations.add(element);
-      case (final CodedComment element):
-        codedComments.add(element);
-      case (final CodedCommentGroup element):
-        codedCommentGroups.add(element);
-      case (final ColourLegend element):
-        colourLegends.add(element);
-      case (final CropType element):
-        cropTypes.add(element);
-      case (final CulturalPractice element):
-        culturalPractices.add(element);
-      case (final Customer element):
-        customers.add(element);
-      case (final Device element):
-        devices.add(element);
-      case (final Farm element):
-        farms.add(element);
-      case (final OperationTechnique element):
-        operationTechniques.add(element);
-      case (final Partfield element):
-        partfields.add(element);
-      case (final Product element):
-        products.add(element);
-      case (final ProductGroup element):
-        productGroups.add(element);
-      case (final Task element):
-        tasks.add(element);
-      case (final TaskControllerCapabilities element):
-        taskControllerCapabilities.add(element);
-      case (final ValuePresentation element):
-        valuePresentations.add(element);
-      case (final Worker element):
-        workers.add(element);
-      case (final ExternalFileReference element):
-        externalFileReferences.add(element);
-      case _:
-        break;
-    }
-  }
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in attachedFiles.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in baseStations.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in codedComments.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in codedCommentGroups.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in colourLegends.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in cropTypes.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in culturalPractices.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in customers.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in devices.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in farms.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in operationTechniques.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in partfields.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in products.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in productGroups.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-    ...[
-      for (final a in tasks.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in taskControllerCapabilities.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in valuePresentations.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-    ...[
-      for (final a in workers.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in externalFileReferences.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-  ];
-
   /// Find all the IDs for the [Iso11783Element]s of [type] in this.
   Iterable<String>? idsOfType(Iso11783ElementType type) =>
       type.canHaveId ? elementsOfType(type).map((e) => e.id).nonNulls : null;
 
   /// Find all the [Iso11783Element]s of [type] in this.
   Iterable<Iso11783Element> elementsOfType(Iso11783ElementType type) =>
-      recursiveChildren!.where((e) => e.elementType == type);
+      xmlElement
+          .findAllElements(type.xmlTag)
+          .map(Iso11783Element.fromXmlElement);
 
   /// Find the next ID for an [Iso11783Element] of [type], if it can have an ID.
   ///
@@ -949,37 +824,4 @@ class Iso11783TaskData extends Iso11783Element
   Iso11783Element? elementById(String id) => elementsOfType(
     Iso11783ElementType.fromXmlTag(id.substring(0, 3)),
   ).firstWhereOrNull((e) => e.id == id);
-
-  @override
-  List<Object?> get props => [
-    attachedFiles,
-    baseStations,
-    codedComments,
-    codedCommentGroups,
-    colourLegends,
-    cropTypes,
-    culturalPractices,
-    customers,
-    devices,
-    farms,
-    operationTechniques,
-    partfields,
-    products,
-    productGroups,
-    tasks,
-    taskControllerCapabilities,
-    valuePresentations,
-    workers,
-    externalFileReferences,
-    linkList,
-    versionMajor,
-    versionMinor,
-    dataTransferOrigin,
-    managementSoftwareManufacturer,
-    managementSoftwareVersion,
-    taskControllerManufacturer,
-    taskControllerVersion,
-    dataTransferOrigin,
-    language,
-  ];
 }

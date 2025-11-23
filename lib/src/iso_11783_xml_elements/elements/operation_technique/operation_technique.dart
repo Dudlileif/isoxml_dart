@@ -6,17 +6,12 @@ part of '../../iso_11783_element.dart';
 
 /// An element that describes operation techniques like `drilling`, `plowing`,
 /// `harvesting`.
-@CopyWith()
-@annotation.XmlRootElement(name: 'OTQ')
-@annotation.XmlSerializable(createMixin: true)
-class OperationTechnique extends Iso11783Element
-    with _$OperationTechniqueXmlSerializableMixin, EquatableMixin {
+class OperationTechnique extends Iso11783Element {
   /// Default factory for creating a [OperationTechnique] with verified
   /// arguments.
   factory OperationTechnique({
     required String id,
     required String designator,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -27,33 +22,34 @@ class OperationTechnique extends Iso11783Element
     return OperationTechnique._(
       id: id,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const OperationTechnique._({
-    required this.id,
-    required this.designator,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.operationTechnique,
-         description: 'OperationTechnique',
-       );
+  OperationTechnique._({
+    required String id,
+    required String designator,
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.designator = designator;
+  }
 
-  /// Creates a [OperationTechnique] from [element].
-  factory OperationTechnique.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  OperationTechnique._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return OperationTechnique(
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
       id: id,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.operationTechnique;
 
   /// Regular expression matching pattern for the [id] of [OperationTechnique]s.
   static const staticIdRefPattern = '(OTQ|OTQ-)[1-9]([0-9])*';
@@ -65,45 +61,10 @@ class OperationTechnique extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the operation technique, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$OperationTechniqueBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$OperationTechniqueToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-  ];
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 }

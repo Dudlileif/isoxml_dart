@@ -16,11 +16,8 @@ part of '../../iso_11783_element.dart';
 /// When the values are logged from a Parameter Group Number (PGN), the
 /// attributes [pgn], [pgnStartBit] and [pgnStopBit] are used and the
 /// [processDataDDI] attribute shall be set to `'DFFE'` (PGN logvalue).
-@CopyWith()
-@annotation.XmlRootElement(name: 'DLV')
-@annotation.XmlSerializable(createMixin: true)
-class DataLogValue extends Iso11783Element
-    with _$DataLogValueXmlSerializableMixin, EquatableMixin {
+
+class DataLogValue extends Iso11783Element {
   /// Default factory for creating a [DataLogValue] with verified
   /// arguments.
   factory DataLogValue({
@@ -30,7 +27,6 @@ class DataLogValue extends Iso11783Element
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       processDataDDI,
@@ -85,117 +81,116 @@ class DataLogValue extends Iso11783Element
       pgn: pgn,
       pgnStartBit: pgnStartBit,
       pgnStopBit: pgnStopBit,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DataLogValue._({
-    required this.processDataDDI,
-    required this.processDataValue,
-    required this.deviceElementIdRef,
-    this.pgn,
-    this.pgnStartBit,
-    this.pgnStopBit,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.dataLogValue,
-         description: 'DataLogValue',
-       );
-
-  /// Creates a [DataLogValue] from [element].
-  factory DataLogValue.fromXmlElement(XmlElement element) {
-    final processDataDDI = element.getAttribute('A')!;
-    final processDataValue = element.getAttribute('B')!;
-    final deviceElementIdRef = element.getAttribute('C')!;
-    final pgn = element.getAttribute('D');
-    final pgnStartBit = element.getAttribute('E');
-    final pgnStopBit = element.getAttribute('F');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return DataLogValue(
-      processDataDDI: processDataDDI,
-      processDataValue: int.parse(processDataValue),
-      deviceElementIdRef: deviceElementIdRef,
-      pgn: pgn != null ? int.parse(pgn) : null,
-      pgnStartBit: pgnStartBit != null ? int.parse(pgnStartBit) : null,
-      pgnStopBit: pgnStopBit != null ? int.parse(pgnStopBit) : null,
-      customAttributes: customAttributes,
-    );
+  DataLogValue._({
+    required String processDataDDI,
+    required int processDataValue,
+    required String deviceElementIdRef,
+    int? pgn,
+    int? pgnStartBit,
+    int? pgnStopBit,
+  }) : super(elementType: _elementType) {
+    this.processDataDDI = processDataDDI;
+    this.processDataValue = processDataValue;
+    this.deviceElementIdRef = deviceElementIdRef;
+    this.pgn = pgn;
+    this.pgnStartBit = pgnStartBit;
+    this.pgnStopBit = pgnStopBit;
   }
+
+  DataLogValue._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      processDataDDI,
+      name: 'processDataDDI',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: processDataValue,
+      min: -2147483648,
+      max: 2147483647,
+      name: 'processDataValue',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef',
+    );
+    if (pgn != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgn!,
+        min: 0,
+        max: 262143,
+        name: 'pgn',
+      );
+      if (processDataDDI != 'DFFE') {
+        throw ArgumentError.value(
+          [processDataDDI, pgn],
+          '[processDataDDI, pgn]',
+          'When pgn is set, processDataDDI MUST be "DFFE"',
+        );
+      }
+    }
+    if (pgnStartBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStartBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStartBit',
+      );
+    }
+    if (pgnStopBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStopBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStopBit',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.dataLogValue;
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
   ///
   /// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)
   /// in the ISO 11783-11 database.
-  @annotation.XmlAttribute(name: 'A')
-  final String processDataDDI;
+  String get processDataDDI => parseString('A');
+  set processDataDDI(String value) => setString('A', value);
 
   /// Value of the process data.
-  @annotation.XmlAttribute(name: 'B')
-  final int processDataValue;
+  int get processDataValue => parseInt('B');
+  set processDataValue(int value) => setInt('B', value);
 
   /// ID reference to the [DeviceElement] this log value was supplied by.
-  @annotation.XmlAttribute(name: 'C')
-  final String deviceElementIdRef;
+  String get deviceElementIdRef => parseString('C');
+  set deviceElementIdRef(String value) => setString('C', value);
 
   /// Parameter Group Number to log a value from.
-  @annotation.XmlAttribute(name: 'D')
-  final int? pgn;
+  int? get pgn => tryParseInt('D');
+  set pgn(int? value) => setIntNullable('D', value);
 
   /// First bit of the value to log from a Parameter Group Number.
   ///
   /// Bit 0 is the least significant bit of Byte 0 in the Data Field of a CAN
   /// Data Frame. The start bit is included in the value and becomes the least
   /// significant bit.
-  @annotation.XmlAttribute(name: 'E')
-  final int? pgnStartBit;
+  int? get pgnStartBit => tryParseInt('E');
+  set pgnStartBit(int? value) => setIntNullable('E', value);
 
   /// Stop bit of the value to log from a Parameter Group Number.
   ///
   /// The stop bit is included in the value and becomes the most significant
   /// bit.
-  @annotation.XmlAttribute(name: 'F')
-  final int? pgnStopBit;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DataLogValueBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DataLogValueToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    processDataDDI,
-    processDataValue,
-    deviceElementIdRef,
-    pgn,
-    pgnStartBit,
-    pgnStopBit,
-  ];
+  int? get pgnStopBit => tryParseInt('F');
+  set pgnStopBit(int? value) => setIntNullable('F', value);
 }

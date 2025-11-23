@@ -11,8 +11,11 @@ import 'package:web/web.dart' as web;
 /// a directory or zip file.
 class TaskDataFileHandler {
   /// Unimplemented on the web platform.
-  static Future<Iso11783TaskData?> loadZip(String path) async =>
-      throw UnimplementedError();
+  static Future<Iso11783TaskData?> loadZip(
+    String path, {
+    bool extract = false,
+    String? extractionPath,
+  }) async => throw UnimplementedError();
 
   /// Unimplemented on the web platform.
   static Future<Iso11783TaskData?> loadDirectory(String path) async =>

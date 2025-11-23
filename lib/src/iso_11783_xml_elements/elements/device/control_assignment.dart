@@ -6,11 +6,7 @@ part of '../../iso_11783_element.dart';
 
 /// An element that binds a setpoint source control function (CF) to a setpoint
 /// user CF.
-@CopyWith()
-@annotation.XmlRootElement(name: 'CAT')
-@annotation.XmlSerializable(createMixin: true)
-class ControlAssignment extends Iso11783Element
-    with _$ControlAssignmentXmlSerializableMixin, EquatableMixin {
+class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [ControlAssignment] with verified
   /// arguments.
   factory ControlAssignment({
@@ -22,7 +18,6 @@ class ControlAssignment extends Iso11783Element
     required int userDeviceElementNumber,
     required String processDataDDI,
     AllocationStamp? allocationStamp,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       sourceClientNAME,
@@ -76,137 +71,118 @@ class ControlAssignment extends Iso11783Element
       userDeviceElementNumber: userDeviceElementNumber,
       processDataDDI: processDataDDI,
       allocationStamp: allocationStamp,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ControlAssignment._({
-    required this.sourceClientNAME,
-    required this.userClientNAME,
-    required this.sourceDeviceStructureLabel,
-    required this.userDeviceStructureLabel,
-    required this.sourceDeviceElementNumber,
-    required this.userDeviceElementNumber,
-    required this.processDataDDI,
-    this.allocationStamp,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.controlAssignment,
-         description: 'ControlAssignment',
-         onlyVersion4AndAbove: true,
-       );
+  ControlAssignment._({
+    required String sourceClientNAME,
+    required String userClientNAME,
+    required String sourceDeviceStructureLabel,
+    required String userDeviceStructureLabel,
+    required int sourceDeviceElementNumber,
+    required int userDeviceElementNumber,
+    required String processDataDDI,
+    AllocationStamp? allocationStamp,
+  }) : super(elementType: _elementType) {
+    this.sourceClientNAME = sourceClientNAME;
+    this.userClientNAME = userClientNAME;
+    this.sourceDeviceStructureLabel = sourceDeviceStructureLabel;
+    this.userDeviceStructureLabel = userDeviceStructureLabel;
+    this.sourceDeviceElementNumber = sourceDeviceElementNumber;
+    this.userDeviceElementNumber = userDeviceElementNumber;
+    this.processDataDDI = processDataDDI;
+    this.allocationStamp = allocationStamp;
+  }
 
-  /// Creates a [ControlAssignment] form [element].
-  factory ControlAssignment.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final sourceClientNAME = element.getAttribute('A')!;
-    final userClientNAME = element.getAttribute('B')!;
-    final sourceDeviceStructureLabel = element.getAttribute('C')!;
-    final userDeviceStructureLabel = element.getAttribute('D')!;
-    final sourceDeviceElementNumber = element.getAttribute('E')!;
-    final userDeviceElementNumber = element.getAttribute('F')!;
-    final processDataDDI = element.getAttribute('G')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  ControlAssignment._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
 
-    return ControlAssignment(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      sourceClientNAME: sourceClientNAME,
-      userClientNAME: userClientNAME,
-      sourceDeviceStructureLabel: sourceDeviceStructureLabel,
-      userDeviceStructureLabel: userDeviceStructureLabel,
-      sourceDeviceElementNumber: int.parse(sourceDeviceElementNumber),
-      userDeviceElementNumber: int.parse(userDeviceElementNumber),
-      processDataDDI: processDataDDI,
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      sourceClientNAME,
+      name: 'sourceClientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkHexStringLength(
+      userClientNAME,
+      name: 'userClientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkId(
+      id: sourceDeviceStructureLabel,
+      idRefPattern: Device.structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'sourceDeviceStructureLabel',
+    );
+    ArgumentValidation.checkId(
+      id: userDeviceStructureLabel,
+      idRefPattern: Device.structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'userDeviceStructureLabel',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: sourceDeviceElementNumber,
+      min: 0,
+      max: 4095,
+      name: 'sourceDeviceElementNumber',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: userDeviceElementNumber,
+      min: 0,
+      max: 4095,
+      name: 'userDeviceElementNumber',
+    );
+    ArgumentValidation.checkHexStringLength(
+      processDataDDI,
+      name: 'processDataDDI',
     );
   }
 
-  /// [AllocationStamp] for specifying the position and time of this assignment.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.controlAssignment;
 
   /// NAME of the control function source.
   ///
   /// See ISO 11783-5 for description of NAME.
-  @annotation.XmlAttribute(name: 'A')
-  final String sourceClientNAME;
+  String get sourceClientNAME => parseString('A');
+  set sourceClientNAME(String value) => setString('A', value);
 
   /// NAME of the control function user.
   ///
   /// See ISO 11783-5 for description of NAME.
-  @annotation.XmlAttribute(name: 'B')
-  final String userClientNAME;
+  String get userClientNAME => parseString('B');
+  set userClientNAME(String value) => setString('B', value);
 
   /// Structure label for the source [Device].
-  @annotation.XmlAttribute(name: 'C')
-  final String sourceDeviceStructureLabel;
+  String get sourceDeviceStructureLabel => parseString('C');
+  set sourceDeviceStructureLabel(String value) => setString('C', value);
 
   /// Structure label for the user [Device].
-  @annotation.XmlAttribute(name: 'D')
-  final String userDeviceStructureLabel;
+  String get userDeviceStructureLabel => parseString('D');
+  set userDeviceStructureLabel(String value) => setString('D', value);
 
   /// [DeviceElement] number for the source [Device].
-  @annotation.XmlAttribute(name: 'E')
-  final int sourceDeviceElementNumber;
+  int get sourceDeviceElementNumber => parseInt('E');
+  set sourceDeviceElementNumber(int value) => setInt('E', value);
 
   /// [DeviceElement] number for the user [Device].
-  @annotation.XmlAttribute(name: 'F')
-  final int userDeviceElementNumber;
+  int get userDeviceElementNumber => parseInt('F');
+  set userDeviceElementNumber(int value) => setInt('F', value);
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
   ///
   /// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)
   /// in the ISO 11783-11 database.
-  @annotation.XmlAttribute(name: 'G')
-  final String processDataDDI;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ControlAssignmentBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ControlAssignmentToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    allocationStamp,
-    sourceClientNAME,
-    userClientNAME,
-    sourceDeviceStructureLabel,
-    userDeviceStructureLabel,
-    sourceDeviceElementNumber,
-    userDeviceElementNumber,
-    processDataDDI,
-  ];
+  String get processDataDDI => parseString('G');
+  set processDataDDI(String value) => setString('G', value);
 }

@@ -9,11 +9,8 @@ part of '../iso_11783_element.dart';
 /// The recording contains start time, whether it has happened or is planned,
 /// and optionally stop time and duration. A position for where the allocation
 /// happened can also be provided.
-@CopyWith()
-@annotation.XmlRootElement(name: 'ASP')
-@annotation.XmlSerializable(createMixin: true)
-class AllocationStamp extends Iso11783Element
-    with _$AllocationStampXmlSerializableMixin, EquatableMixin {
+
+class AllocationStamp extends Iso11783Element {
   /// Default factory for creating an [AllocationStamp] with verified arguments.
   factory AllocationStamp({
     required DateTime start,
@@ -21,7 +18,6 @@ class AllocationStamp extends Iso11783Element
     List<Position>? position,
     DateTime? stop,
     int? duration,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (position != null) {
       if (position.length > 2) {
@@ -47,134 +43,94 @@ class AllocationStamp extends Iso11783Element
       stop: stop,
       duration: duration,
       position: position,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   AllocationStamp._({
-    required this.start,
-    required this.type,
-    this.stop,
-    this.duration,
+    required DateTime start,
+    required AllocationStampType type,
+    DateTime? stop,
+    int? duration,
     List<Position>? position,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.allocationStamp,
-         description: 'AllocationStamp',
-       ) {
-    if (position != null) {
-      this.position.addAll(position);
+  }) : super(elementType: _elementType) {
+    this.start = start;
+    this.stop = stop;
+    this.duration = duration;
+    this.type = type;
+    this.position.addAll(position);
+  }
+
+  AllocationStamp._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    position.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.position.xmlTag,
+          )
+          .map(Position._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (position.length > 2) {
+      throw ArgumentError.value(
+        position,
+        'position',
+        'Too many elements: ${position.length}, max elements: 2',
+      );
+    }
+    if (duration != null) {
+      ArgumentValidation.checkValueInRange(
+        value: duration!,
+        min: 0,
+        max: 4294967294,
+        name: 'duration',
+      );
     }
   }
 
-  /// Creates an [AllocationStamp] from [element].
-  factory AllocationStamp.fromXmlElement(XmlElement element) {
-    final position = element.getElements('PTN');
-    final start = element.getAttribute('A')!;
-    final stop = element.getAttribute('B');
-    final duration = element.getAttribute('C');
-    final type = element.getAttribute('D')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return AllocationStamp(
-      position: position?.map(Position.fromXmlElement).toList(),
-      start: DateTime.parse(start),
-      stop: stop != null ? DateTime.parse(stop) : null,
-      duration: duration != null ? int.parse(duration) : null,
-      type: $AllocationStampTypeEnumMap.entries
-          .singleWhere(
-            (allocationStampTypeEnumMapEntry) =>
-                allocationStampTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$AllocationStampTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      customAttributes: customAttributes,
-    );
-  }
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.allocationStamp;
 
   /// Optional position for where the stamp was planned/effective.
-  @annotation.XmlElement(name: 'PTN')
-  final List<Position> position = [];
+  late final position = _XmlSyncedList<Position>(xmlElement: xmlElement);
 
   /// Start time.
-  @annotation.XmlAttribute(name: 'A')
-  final DateTime start;
+  DateTime get start => parseDateTime('A');
+  set start(DateTime value) => setDateTime('A', value);
 
   /// End time.
-  @annotation.XmlAttribute(name: 'B')
-  final DateTime? stop;
+  DateTime? get stop => tryParseDateTime('B');
+  set stop(DateTime? value) => setDateTimeNullable('B', value);
 
   /// How long the time between [start] and [stop] is in seconds.
-  @annotation.XmlAttribute(name: 'C')
-  final int? duration;
+  int? get duration => tryParseInt('C');
+  set duration(int? value) => setIntNullable('C', value);
 
   /// Whether this is [AllocationStampType.planned] to happen in the future,
   /// or [AllocationStampType.effective] has already happened.
-  @annotation.XmlAttribute(name: 'D')
-  final AllocationStampType type;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in position.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$AllocationStampBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$AllocationStampToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    position,
-    start,
-    stop,
-    duration,
-    type,
-  ];
+  AllocationStampType get type => AllocationStampType.values.firstWhere(
+    (type) => type.value == parseInt('D'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${AllocationStampType.values.join(', ')}''',
+    ),
+  );
+  set type(AllocationStampType value) => setInt('D', value.value);
 }
 
 /// An enumerator for whether the [AllocationStamp] is planned for the future
 /// or is effective, i.e. has already happened.
-@annotation.XmlEnum()
 enum AllocationStampType {
   /// The [AllocationStamp] is planned to happen in the future. Typically
   /// assigned by an FMIS.
-  @annotation.XmlValue('1')
   planned(1, 'Planned'),
 
   /// The [AllocationStamp] is effective, i.e. has already happened.
   /// Typically assigned by an MCIS.
-  @annotation.XmlValue('4')
   effective(4, 'Effective');
 
   const AllocationStampType(this.value, this.description);

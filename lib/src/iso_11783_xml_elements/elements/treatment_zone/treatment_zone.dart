@@ -19,11 +19,7 @@ part of '../../iso_11783_element.dart';
 /// that shall be sent to the working sets when the positioning becomes
 /// unavailable. The  specification of the PositionLostTreatmentZone is
 /// intended for site-specific tasks only.
-@CopyWith()
-@annotation.XmlRootElement(name: 'TZN')
-@annotation.XmlSerializable(createMixin: true)
-class TreatmentZone extends Iso11783Element
-    with _$TreatmentZoneXmlSerializableMixin, EquatableMixin {
+class TreatmentZone extends Iso11783Element {
   /// Default factory for creating a [TreatmentZone] with verified
   /// arguments.
   factory TreatmentZone({
@@ -32,7 +28,6 @@ class TreatmentZone extends Iso11783Element
     List<ProcessDataVariable>? processDataVariables,
     String? designator,
     int? colour,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: code,
@@ -58,123 +53,86 @@ class TreatmentZone extends Iso11783Element
       processDataVariables: processDataVariables,
       designator: designator,
       colour: colour,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   TreatmentZone._({
-    required this.code,
+    required int code,
     List<Polygon>? polygons,
     List<ProcessDataVariable>? processDataVariables,
-    this.designator,
-    this.colour,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.treatmentZone,
-         description: 'TreatmentZone',
-       ) {
-    if (polygons != null) {
-      this.polygons.addAll(polygons);
-    }
-    if (processDataVariables != null) {
-      this.processDataVariables.addAll(processDataVariables);
-    }
+    String? designator,
+    int? colour,
+  }) : super(elementType: _elementType) {
+    this.code = code;
+    this.designator = designator;
+    this.colour = colour;
+    this.polygons.addAll(polygons);
+    this.processDataVariables.addAll(processDataVariables);
   }
 
-  /// Creates a [TreatmentZone] from [element].
-  factory TreatmentZone.fromXmlElement(XmlElement element) {
-    final polygons = element.getElements('PLN');
-    final processDataVariables = element.getElements('PDV');
-    final code = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final colour = element.getAttribute('C');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return TreatmentZone(
-      polygons: polygons?.map(Polygon.fromXmlElement).toList(),
-      processDataVariables: processDataVariables
-          ?.map(ProcessDataVariable.fromXmlElement)
+  TreatmentZone._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    polygons.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.polygon.xmlTag)
+          .map(Polygon._fromXmlElement)
           .toList(),
-      code: int.parse(code),
-      designator: designator,
-      colour: colour != null ? int.parse(colour) : null,
-      customAttributes: customAttributes,
     );
+    processDataVariables.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.processDataVariable.xmlTag)
+          .map(ProcessDataVariable._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: code,
+      min: 0,
+      max: 254,
+      name: 'code',
+    );
+
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.treatmentZone;
 
   /// A list of [Polygon]s for this.
-  @annotation.XmlElement(name: 'PLN')
-  final List<Polygon> polygons = [];
+  late final polygons = _XmlSyncedList<Polygon>(xmlElement: xmlElement);
 
   /// A list of [ProcessDataVariable]s for this.
-  @annotation.XmlElement(name: 'PDV')
-  final List<ProcessDataVariable> processDataVariables = [];
+  late final processDataVariables = _XmlSyncedList<ProcessDataVariable>(
+    xmlElement: xmlElement,
+  );
 
   /// A unique [TreatmentZone] code inside a single [Task].
-  @annotation.XmlAttribute(name: 'A')
-  final int code;
+  int get code => parseInt('A');
+  set code(int value) => setInt('A', value);
 
   /// Name of the treatment zone, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Colour of this.
   ///
   /// See ISO 11783-6 for colour palette, or the implementation in
   /// [Iso11783Colour].
-  @annotation.XmlAttribute(name: 'C')
-  final int? colour;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in polygons.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in processDataVariables.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$TreatmentZoneBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$TreatmentZoneToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    polygons,
-    processDataVariables,
-    code,
-    designator,
-    colour,
-  ];
+  int? get colour => tryParseInt('C');
+  set colour(int? value) => setIntNullable('C', value);
 }

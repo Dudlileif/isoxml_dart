@@ -2,12 +2,15 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:collection/collection.dart';
 import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:meta/meta.dart';
 
 /// An entry in the ISO 11783-11 Data Directory.
 ///
 /// The up-to-date complete database can be found at [isobus.net/isobus](https://www.isobus.net/isobus/).
 /// A browsable and searchable version is at [isobus.net/isobus/dDEntity](https://www.isobus.net/isobus/dDEntity).
+@immutable
 class Iso11783DataDictionaryEntity {
   /// Default factory for creating an [Iso11783DataDictionaryEntity] from
   /// [rawStrings].
@@ -207,4 +210,49 @@ class Iso11783DataDictionaryEntity {
     ].join(', '),
     ')',
   ].join('\n');
+
+  @override
+  int get hashCode => Object.hashAll([
+    rawStrings,
+    id,
+    name,
+    definition,
+    unit,
+    unitDescription,
+    assignedDeviceClasses,
+    bitResolution,
+    canBusRange,
+    comment,
+  ]);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Iso11783DataDictionaryEntity &&
+          const ListEquality<Object?>().equals(
+            [
+              rawStrings,
+              id,
+              name,
+              definition,
+              unit,
+              unitDescription,
+              assignedDeviceClasses,
+              bitResolution,
+              canBusRange,
+              comment,
+            ],
+            [
+              other.rawStrings,
+              other.id,
+              other.name,
+              other.definition,
+              other.unit,
+              other.unitDescription,
+              other.assignedDeviceClasses,
+              other.bitResolution,
+              other.canBusRange,
+              other.comment,
+            ],
+          );
 }

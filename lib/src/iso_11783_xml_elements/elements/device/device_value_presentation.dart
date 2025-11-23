@@ -13,11 +13,7 @@ part of '../../iso_11783_element.dart';
 ///
 /// Presented values are always rounded to the number of decimals specified in
 /// the [numberOfDecimals] attribute.
-@CopyWith()
-@annotation.XmlRootElement(name: 'DVP')
-@annotation.XmlSerializable(createMixin: true)
-class DeviceValuePresentation extends Iso11783Element
-    with _$DeviceValuePresentationXmlSerializableMixin, EquatableMixin {
+class DeviceValuePresentation extends Iso11783Element {
   /// Default factory for creating a [DeviceValuePresentation] with verified
   /// arguments.
   factory DeviceValuePresentation({
@@ -26,7 +22,6 @@ class DeviceValuePresentation extends Iso11783Element
     required double scale,
     required int numberOfDecimals,
     String? unitDesignator,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkValueInRange(
       value: objectId,
@@ -65,102 +60,83 @@ class DeviceValuePresentation extends Iso11783Element
       scale: scale,
       numberOfDecimals: numberOfDecimals,
       unitDesignator: unitDesignator,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const DeviceValuePresentation._({
-    required this.objectId,
-    required this.offset,
-    required this.scale,
-    required this.numberOfDecimals,
-    this.unitDesignator,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.deviceValuePresentation,
-         description: 'DeviceValuePresentation',
-       );
-
-  /// Creates a [DeviceValuePresentation] from [element].
-  factory DeviceValuePresentation.fromXmlElement(XmlElement element) {
-    final objectId = element.getAttribute('A')!;
-    final offset = element.getAttribute('B')!;
-    final scale = element.getAttribute('C')!;
-    final numberOfDecimals = element.getAttribute('D')!;
-    final unitDesignator = element.getAttribute('E');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return DeviceValuePresentation(
-      objectId: int.parse(objectId),
-      offset: int.parse(offset),
-      scale: double.parse(scale),
-      numberOfDecimals: int.parse(numberOfDecimals),
-      unitDesignator: unitDesignator,
-      customAttributes: customAttributes,
-    );
+  DeviceValuePresentation._({
+    required int objectId,
+    required int offset,
+    required double scale,
+    required int numberOfDecimals,
+    String? unitDesignator,
+  }) : super(elementType: _elementType) {
+    this.objectId = objectId;
+    this.offset = offset;
+    this.scale = scale;
+    this.numberOfDecimals = numberOfDecimals;
+    this.unitDesignator = unitDesignator;
   }
+
+  DeviceValuePresentation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: offset,
+      min: -2147483648,
+      max: 2147483648,
+      name: 'offset',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: scale,
+      min: 0.000000001,
+      max: 100000000,
+      name: 'scale',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfDecimals,
+      min: 0,
+      max: 7,
+      name: 'numberOfDecimals',
+    );
+    if (unitDesignator != null) {
+      ArgumentValidation.checkStringLength(
+        unitDesignator!,
+        name: 'unitDesignator',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceValuePresentation;
 
   /// Unique number inside a single [Device].
-  @annotation.XmlAttribute(name: 'A')
-  final int objectId;
+  int get objectId => parseInt('A');
+  set objectId(int value) => setInt('A', value);
 
   /// Offset to be applied to the value for presentation.
-  @annotation.XmlAttribute(name: 'B')
-  final int offset;
+  int get offset => parseInt('B');
+  set offset(int value) => setInt('B', value);
 
   /// Scale to be applied to the value for presentation.
-  @annotation.XmlAttribute(name: 'C')
-  final double scale;
+  double get scale => parseDouble('C');
+  set scale(double value) => setDouble('C', value);
 
   /// Number of decimals to be presented after the decimal separator.
-  @annotation.XmlAttribute(name: 'D')
-  final int numberOfDecimals;
+  int get numberOfDecimals => parseInt('D');
+  set numberOfDecimals(int value) => setInt('D', value);
 
   /// Optional unit designator string.
-  @annotation.XmlAttribute(name: 'E')
-  final String? unitDesignator;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DeviceValuePresentationBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DeviceValuePresentationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    objectId,
-    offset,
-    scale,
-    numberOfDecimals,
-    unitDesignator,
-  ];
+  String? get unitDesignator => tryParseString('E');
+  set unitDesignator(String? value) => setStringNullable('E', value);
 }

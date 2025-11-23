@@ -10,44 +10,6 @@ import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
 void main() {
-  group('Generate EmptyIso11783Element', () {
-    test(
-      'from XmlElement with empty name string',
-      () => expect(
-        Iso11783Element.fromXmlElement(
-          XmlElement(XmlName.fromString('')),
-        ).runtimeType,
-        EmptyIso11783Element,
-      ),
-    );
-    test(
-      'from XmlElement with name random string',
-      () => expect(
-        Iso11783Element.fromXmlElement(
-          XmlElement(XmlName.fromString('')),
-        ).runtimeType,
-        EmptyIso11783Element,
-      ),
-    );
-  });
-  test(
-    '''Get TypeError from XmlElement with name BSN with no attributes due to null check''',
-    () {
-      Object? error;
-      try {
-        Iso11783Element.fromXmlElement(
-          XmlElement(XmlName.fromString('BSN')),
-        );
-      } catch (e) {
-        error = e;
-      }
-      expect(
-        error,
-        const TypeMatcher<TypeError>(),
-      );
-    },
-  );
-
   group('AllocationStamp', () {
     test(
       'too many position children',
@@ -77,6 +39,29 @@ void main() {
       },
     );
   });
+
+  group('BaseStation', () {
+    test(
+      '''Get FormatException from XmlElement with name BSN with no attributes due to null check''',
+      () {
+        Object? error;
+        try {
+          Iso11783Element.fromXmlElement(
+            XmlElement(
+              XmlName.fromString('BSN'),
+            ),
+          );
+        } catch (e) {
+          error = e;
+        }
+        expect(
+          error,
+          isA<FormatException>(),
+        );
+      },
+    );
+  });
+
   group(
     'ColourLegend',
     () => test('empty ranges list', () {
@@ -144,7 +129,7 @@ void main() {
             ],
           );
 
-          Customer.fromXmlElement(element);
+          Iso11783Element.fromXmlElement(element);
         } catch (e) {
           error = e;
         }
@@ -154,25 +139,29 @@ void main() {
   });
 
   group('ExternalFileContents', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
+      late final Iso11783Element element;
       Object? error;
       try {
-        ExternalFileContents.fromXmlElement(XmlElement(XmlName('XFC')));
+        element = Iso11783Element.fromXmlElement(XmlElement(XmlName('XFC')));
       } catch (e) {
         error = e;
       }
       expect(error, null);
+      expect(element, isA<ExternalFileContents>());
     });
-    test('.fromXmlElement with invalid base station child element', () {
+    test('._fromXmlElement with invalid base station child element', () {
       Object? error;
       try {
-        ExternalFileContents.fromXmlElement(
-          XmlElement(XmlName('XFC'), [], [XmlElement(XmlName('BSN'))]),
+        Iso11783Element.fromXmlElement(
+          XmlElement(XmlName('XFC'), [], [
+            XmlElement(XmlName('BSN')),
+          ]),
         );
       } catch (e) {
         error = e;
       }
-      expect(error, const TypeMatcher<TypeError>());
+      expect(error, isA<FormatException>());
     });
 
     test('.document with base station child element', () {
@@ -224,14 +213,19 @@ void main() {
       expect(error, isArgumentError);
     });
     test(
-      '.fromXmlElement',
+      '._fromXmlElement',
       () => expect(
-        ExternalFileReference.fromXmlElement(
-          XmlElement(XmlName('XFR'), [
-            XmlAttribute(XmlName('A'), 'DVC00001'),
-          ]),
-        ).elementType,
-        Iso11783ElementType.device,
+        Iso11783Element.fromXmlElement(
+              XmlElement(XmlName('XFR'), [
+                XmlAttribute(XmlName('A'), 'DVC00001'),
+              ]),
+            )
+            as ExternalFileReference,
+        isA<ExternalFileReference>().having(
+          (e) => e.filename,
+          'Has correct filename',
+          'DVC00001',
+        ),
       ),
     );
   });
@@ -272,7 +266,7 @@ void main() {
             ],
           );
 
-          Farm.fromXmlElement(element);
+          Iso11783Element.fromXmlElement(element);
         } catch (e) {
           error = e;
         }
@@ -295,10 +289,10 @@ void main() {
   );
 
   group('Grid', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        Grid.fromXmlElement(
+        Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName('GRD'),
             [
@@ -353,10 +347,10 @@ void main() {
     });
   });
   group('Link', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        Link.fromXmlElement(
+        Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('LNK'),
             [
@@ -373,10 +367,11 @@ void main() {
     });
   });
   group('LinkGroup', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
+      Iso11783Element? linkGroup;
       Object? error;
       try {
-        LinkGroup.fromXmlElement(
+        linkGroup = Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('LGP'),
             [
@@ -392,37 +387,75 @@ void main() {
         error = e;
       }
       expect(error, null);
+      expect(
+        linkGroup,
+        isA<LinkGroup>()
+            .having(
+              (element) => element.id,
+              'Correct id',
+              equals('LGP1'),
+            )
+            .having(
+              (element) => element.type,
+              'Correct type',
+              equals(LinkGroupType.uuids),
+            )
+            .having(
+              (element) => element.manufacturerGLN,
+              'Correct GLN',
+              equals('Some manufacturer GLN'),
+            )
+            .having(
+              (element) => element.namespace,
+              'Correct namespace',
+              equals('A namespace'),
+            )
+            .having(
+              (element) => element.designator,
+              'Correct designator',
+              equals('Some designator'),
+            ),
+      );
     });
   });
 
   group('Iso11783LinkList', () {
     test(
-      '.fromXmlElement',
+      '._fromXmlElement',
       () => expect(
-        Iso11783LinkList.fromXmlElement(
-          XmlElement(
-            XmlName('ISO11783LinkList'),
-            [
-              XmlAttribute(XmlName.fromString('VersionMajor'), '4'),
-              XmlAttribute(XmlName.fromString('VersionMinor'), '3'),
-              XmlAttribute(
-                XmlName.fromString('ManagementSoftwareManufacturer'),
-                'Some manufacturer',
-              ),
-              XmlAttribute(
-                XmlName.fromString('ManagementSoftwareVersion'),
-                '12.4',
-              ),
-              XmlAttribute(
-                XmlName.fromString('TaskControllerManufacturer'),
-                'Some manufacturer',
-              ),
-              XmlAttribute(XmlName.fromString('TaskControllerVersion'), '0.54'),
-              XmlAttribute(XmlName.fromString('FileVersion'), '1.0'),
-              XmlAttribute(XmlName.fromString('DataTransferOrigin'), '1'),
-            ],
-          ),
-        ).toXmlDocument().toXmlString(pretty: true),
+        (Iso11783Element.fromXmlElement(
+                  XmlElement(
+                    XmlName('ISO11783LinkList'),
+                    [
+                      XmlAttribute(XmlName.fromString('VersionMajor'), '4'),
+                      XmlAttribute(XmlName.fromString('VersionMinor'), '3'),
+                      XmlAttribute(
+                        XmlName.fromString('ManagementSoftwareManufacturer'),
+                        'Some manufacturer',
+                      ),
+                      XmlAttribute(
+                        XmlName.fromString('ManagementSoftwareVersion'),
+                        '12.4',
+                      ),
+                      XmlAttribute(
+                        XmlName.fromString('TaskControllerManufacturer'),
+                        'Some manufacturer',
+                      ),
+                      XmlAttribute(
+                        XmlName.fromString('TaskControllerVersion'),
+                        '0.54',
+                      ),
+                      XmlAttribute(XmlName.fromString('FileVersion'), '1.0'),
+                      XmlAttribute(
+                        XmlName.fromString('DataTransferOrigin'),
+                        '1',
+                      ),
+                    ],
+                  ),
+                )
+                as Iso11783LinkList)
+            .toXmlDocument()
+            .toXmlString(pretty: true),
         XmlDocument([
           XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
           XmlElement(
@@ -453,10 +486,10 @@ void main() {
   });
 
   group('ProcessDataVariable', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        ProcessDataVariable.fromXmlElement(
+        Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('PDV'),
             [
@@ -509,16 +542,18 @@ void main() {
   });
 
   group('TaskControllerCapabilites', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        final tcc = TaskControllerCapabilities.fromXmlElement(
+        final tcc = Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('TCC'),
             [
               XmlAttribute(XmlName.fromString('A'), 'A0008F000F300DDD'),
               XmlAttribute(XmlName.fromString('B'), 'isoxml_dart'),
               XmlAttribute(XmlName.fromString('C'), '4'),
+
+              // Provided capabilites
               XmlAttribute(XmlName.fromString('D'), '63'),
               XmlAttribute(XmlName.fromString('E'), '1'),
               XmlAttribute(XmlName.fromString('F'), '2'),
@@ -526,7 +561,10 @@ void main() {
             ],
           ),
         );
-        expect(tcc.capabilities, ProvidedCapability.values);
+        expect(
+          (tcc as TaskControllerCapabilities).providedCapabilities,
+          63,
+        );
       } catch (e) {
         error = e;
       }
@@ -534,10 +572,10 @@ void main() {
     });
   });
   group('TimeLog', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        TimeLog.fromXmlElement(
+        Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('TLG'),
             [
@@ -555,10 +593,10 @@ void main() {
   });
 
   group('TreatmentZone', () {
-    test('.fromXmlElement', () {
+    test('._fromXmlElement', () {
       Object? error;
       try {
-        TreatmentZone.fromXmlElement(
+        Iso11783Element.fromXmlElement(
           XmlElement(
             XmlName.fromString('TZN'),
             [
@@ -615,7 +653,7 @@ void main() {
             ],
           );
 
-          Worker.fromXmlElement(element);
+          Iso11783Element.fromXmlElement(element);
         } catch (e) {
           error = e;
         }

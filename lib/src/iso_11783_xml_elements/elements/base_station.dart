@@ -7,11 +7,8 @@ part of '../iso_11783_element.dart';
 /// An element for describing the base station of the positioning system.
 ///
 /// Contains positional information for latitude, longitude and height.
-@CopyWith()
-@annotation.XmlRootElement(name: 'BSN')
-@annotation.XmlSerializable(createMixin: true)
-class BaseStation extends Iso11783Element
-    with _$BaseStationXmlSerializableMixin, EquatableMixin {
+
+class BaseStation extends Iso11783Element {
   /// Default factory for creating a [BaseStation] with verified arguments.
   factory BaseStation({
     required String id,
@@ -19,7 +16,6 @@ class BaseStation extends Iso11783Element
     required double north,
     required double east,
     required int up,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -51,43 +47,58 @@ class BaseStation extends Iso11783Element
       north: north,
       east: east,
       up: up,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const BaseStation._({
-    required this.id,
-    required this.designator,
-    required this.north,
-    required this.east,
-    required this.up,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.baseStation,
-         description: 'BaseStation',
-         onlyVersion4AndAbove: true,
-       );
+  BaseStation._({
+    required String id,
+    required String designator,
+    required double north,
+    required double east,
+    required int up,
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.designator = designator;
+    this.north = north;
+    this.east = east;
+    this.up = up;
+  }
 
-  /// Creates a [BaseStation] from [element].
-  factory BaseStation.fromXmlElement(XmlElement element) {
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final north = element.getAttribute('C')!;
-    final east = element.getAttribute('D')!;
-    final up = element.getAttribute('E')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  BaseStation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return BaseStation(
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
       id: id,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
-      north: double.parse(north),
-      east: double.parse(east),
-      up: num.parse(up).round(),
-      customAttributes: customAttributes,
+    );
+    ArgumentValidation.checkValueInRange(
+      value: north,
+      min: -90,
+      max: 90,
+      name: 'north',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: east,
+      min: -180,
+      max: 180,
+      name: 'east',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: up,
+      min: -2147483647,
+      max: 2147483647,
+      name: 'up',
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.baseStation;
 
   /// Regular expression matching pattern for the [id] of [BaseStation]s.
   static const String staticIdRefPattern = '(BSN|BSN-)[1-9]([0-9])*';
@@ -99,60 +110,22 @@ class BaseStation extends Iso11783Element
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the base station, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 
   /// GNSS position north, format: WGS84 latitude
-  @annotation.XmlAttribute(name: 'C')
-  final double north;
+  double get north => parseDouble('C');
+  set north(double value) => setDouble('C', value);
 
   /// GNSS position east, format: WGS84 longitude.
-  @annotation.XmlAttribute(name: 'D')
-  final double east;
+  double get east => parseDouble('D');
+  set east(double value) => setDouble('D', value);
 
   /// GNSS altitude in millimeters (mm) over the WGS84 ellipsoid.
-  @annotation.XmlAttribute(name: 'E')
-  final int up;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$BaseStationBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$BaseStationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    id,
-    designator,
-    north,
-    east,
-    up,
-  ];
+  int get up => parseInt('E');
+  set up(int value) => setInt('E', value);
 }

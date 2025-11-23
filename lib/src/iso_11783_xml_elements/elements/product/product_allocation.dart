@@ -11,11 +11,7 @@ part of '../../iso_11783_element.dart';
 /// different [Product]s to a bin or to another type of [DeviceElement].
 /// The transferred amount can optionally be specified by a combination of the
 /// attributes [quantityDDI] and [quantityValue].
-@CopyWith()
-@annotation.XmlRootElement(name: 'PAN')
-@annotation.XmlSerializable(createMixin: true)
-class ProductAllocation extends Iso11783Element
-    with _$ProductAllocationXmlSerializableMixin, EquatableMixin {
+class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [ProductAllocation] with verified
   /// arguments.
   factory ProductAllocation({
@@ -27,7 +23,6 @@ class ProductAllocation extends Iso11783Element
     String? valuePresentationIdRef,
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: productIdRef,
@@ -71,160 +66,126 @@ class ProductAllocation extends Iso11783Element
       valuePresentationIdRef: valuePresentationIdRef,
       productSubTypeIdRef: productSubTypeIdRef,
       allocationStamp: allocationStamp,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const ProductAllocation._({
-    required this.productIdRef,
-    this.quantityDDI,
-    this.quantityValue,
-    this.transferMode,
-    this.deviceElementIdRef,
-    this.valuePresentationIdRef,
-    this.productSubTypeIdRef,
-    this.allocationStamp,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.productAllocation,
-         description: 'ProductAllocation',
-       );
-
-  /// Creates a [ProductAllocation] from [element].
-  factory ProductAllocation.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final productIdRef = element.getAttribute('A')!;
-    final quantityDDI = element.getAttribute('B');
-    final quantityValue = element.getAttribute('C');
-    final transferMode = element.getAttribute('D');
-    final deviceElementIdRef = element.getAttribute('E');
-    final valuePresentationIdRef = element.getAttribute('F');
-    final productSubTypeIdRef = element.getAttribute('G');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return ProductAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      productIdRef: productIdRef,
-      quantityDDI: quantityDDI,
-      quantityValue: quantityValue != null ? int.parse(quantityValue) : null,
-      transferMode: transferMode != null
-          ? $TransferModeEnumMap.entries
-                .singleWhere(
-                  (transferModeEnumMapEntry) =>
-                      transferModeEnumMapEntry.value == transferMode,
-                  orElse: () => throw ArgumentError(
-                    '''`$transferMode` is not one of the supported values: ${$TransferModeEnumMap.values.join(', ')}''',
-                  ),
-                )
-                .key
-          : null,
-      deviceElementIdRef: deviceElementIdRef,
-      valuePresentationIdRef: valuePresentationIdRef,
-      productSubTypeIdRef: productSubTypeIdRef,
-      customAttributes: customAttributes,
-    );
+  ProductAllocation._({
+    required String productIdRef,
+    String? quantityDDI,
+    int? quantityValue,
+    TransferMode? transferMode,
+    String? deviceElementIdRef,
+    String? valuePresentationIdRef,
+    String? productSubTypeIdRef,
+    AllocationStamp? allocationStamp,
+  }) : super(elementType: _elementType) {
+    this.productIdRef = productIdRef;
+    this.quantityDDI = quantityDDI;
+    this.quantityValue = quantityValue;
+    this.transferMode = transferMode;
+    this.deviceElementIdRef = deviceElementIdRef;
+    this.valuePresentationIdRef = valuePresentationIdRef;
+    this.productSubTypeIdRef = productSubTypeIdRef;
+    this.allocationStamp = allocationStamp;
   }
 
-  /// [AllocationStamp] for the position and time of this allocation.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  ProductAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: productIdRef,
+      idRefPattern: Product.staticIdRefPattern,
+      idName: 'productIdRef',
+    );
+    if (quantityDDI != null) {
+      ArgumentValidation.checkHexStringLength(
+        quantityDDI!,
+        name: 'quantityDDI',
+      );
+    }
+    if (deviceElementIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceElementIdRef!,
+        idRefPattern: DeviceElement.staticIdRefPattern,
+        idName: 'deviceElementIdRef',
+      );
+    }
+    if (valuePresentationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: valuePresentationIdRef!,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
+        idName: 'valuePresentationIdRef',
+      );
+    }
+    if (productSubTypeIdRef != null) {
+      ArgumentValidation.checkId(
+        id: productSubTypeIdRef!,
+        idRefPattern: Product.staticIdRefPattern,
+        idName: 'productSubTypeIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.productAllocation;
 
   /// Reference to a [Product].
-  @annotation.XmlAttribute(name: 'A')
-  final String productIdRef;
+  String get productIdRef => parseString('A');
+  set productIdRef(String value) => setString('A', value);
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].
   ///
   /// The [ProcessDataVariable] is found as a Device Dictionary Entity (DDE)
   /// in the ISO 11783-11 database.
-  @annotation.XmlAttribute(name: 'B')
-  final String? quantityDDI;
+  String? get quantityDDI => tryParseString('B');
+  set quantityDDI(String? value) => setStringNullable('B', value);
 
   /// Value for the quantity of the [Product].
-  @annotation.XmlAttribute(name: 'C')
-  final int? quantityValue;
+  int? get quantityValue => tryParseInt('C');
+  set quantityValue(int? value) => setIntNullable('C', value);
 
   /// Which kind of transfer this allocation is performing.
-  @annotation.XmlAttribute(name: 'D')
-  final TransferMode? transferMode;
+  TransferMode? get transferMode => switch (tryParseInt('D')) {
+    final int value => TransferMode.values.firstWhere(
+      (type) => type.value == value,
+      orElse: () => throw ArgumentError(
+        '''`$value` is not one of the supported values: ${TransferMode.values.join(', ')}''',
+      ),
+    ),
+    _ => null,
+  };
+  set transferMode(TransferMode? value) => setIntNullable('D', value?.value);
 
   /// Reference to a [DeviceElement].
-  @annotation.XmlAttribute(name: 'E')
-  final String? deviceElementIdRef;
+  String? get deviceElementIdRef => tryParseString('E');
+  set deviceElementIdRef(String? value) => setStringNullable('E', value);
 
   /// Reference to a [ValuePresentation].
-  @annotation.XmlAttribute(name: 'F')
-  final String? valuePresentationIdRef;
+  String? get valuePresentationIdRef => tryParseString('F');
+  set valuePresentationIdRef(String? value) => setStringNullable('F', value);
 
   /// Reference to a sub type of[Product].
-  @annotation.XmlAttribute(name: 'G')
-  final String? productSubTypeIdRef;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$ProductAllocationBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$ProductAllocationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    allocationStamp,
-    productIdRef,
-    quantityDDI,
-    quantityValue,
-    transferMode,
-    deviceElementIdRef,
-    valuePresentationIdRef,
-    productSubTypeIdRef,
-  ];
+  String? get productSubTypeIdRef => tryParseString('G');
+  set productSubTypeIdRef(String? value) => setStringNullable('G', value);
 }
 
 /// An enumerator for which kind of transfer the [ProductAllocation] is
 /// performing.
-@annotation.XmlEnum()
 enum TransferMode {
   /// Filling
-  @annotation.XmlValue('1')
   filling(1, 'Filling'),
 
   /// Emptying
-  @annotation.XmlValue('2')
   emptying(2, 'Emptying'),
 
   /// Remainder
-  @annotation.XmlValue('3')
   remainder(3, 'Remainder');
 
   const TransferMode(this.value, this.description);

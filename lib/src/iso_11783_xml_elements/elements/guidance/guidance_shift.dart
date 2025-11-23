@@ -9,11 +9,7 @@ part of '../../iso_11783_element.dart';
 ///
 /// These shifts can be used to move the baseline for creating the waylines,
 /// but keep the same [GuidancePattern] as reference shape.
-@CopyWith()
-@annotation.XmlRootElement(name: 'GST')
-@annotation.XmlSerializable(createMixin: true)
-class GuidanceShift extends Iso11783Element
-    with _$GuidanceShiftXmlSerializableMixin, EquatableMixin {
+class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [GuidanceShift] with verified
   /// arguments.
   factory GuidanceShift({
@@ -23,7 +19,6 @@ class GuidanceShift extends Iso11783Element
     int? eastShift,
     int? northShift,
     int? propagationOffset,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
@@ -70,120 +65,99 @@ class GuidanceShift extends Iso11783Element
       eastShift: eastShift,
       northShift: northShift,
       propagationOffset: propagationOffset,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const GuidanceShift._({
-    this.allocationStamp,
-    this.groupIdRef,
-    this.patternIdRef,
-    this.eastShift,
-    this.northShift,
-    this.propagationOffset,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.guidanceShift,
-         description: 'GuidanceShift',
-         onlyVersion4AndAbove: true,
-       );
-
-  /// Creates a [GuidanceShift] from [element].
-  factory GuidanceShift.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final groupIdRef = element.getAttribute('A');
-    final patternIdRef = element.getAttribute('B');
-    final eastShift = element.getAttribute('C');
-    final northShift = element.getAttribute('D');
-    final propagationOffset = element.getAttribute('E');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return GuidanceShift(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      groupIdRef: groupIdRef,
-      patternIdRef: patternIdRef,
-      eastShift: eastShift != null ? int.parse(eastShift) : null,
-      northShift: northShift != null ? int.parse(northShift) : null,
-      propagationOffset: propagationOffset != null
-          ? int.parse(propagationOffset)
-          : null,
-      customAttributes: customAttributes,
-    );
+  GuidanceShift._({
+    AllocationStamp? allocationStamp,
+    String? groupIdRef,
+    String? patternIdRef,
+    int? eastShift,
+    int? northShift,
+    int? propagationOffset,
+  }) : super(elementType: _elementType) {
+    this.allocationStamp = allocationStamp;
+    this.groupIdRef = groupIdRef;
+    this.patternIdRef = patternIdRef;
+    this.eastShift = eastShift;
+    this.northShift = northShift;
+    this.propagationOffset = propagationOffset;
   }
 
-  /// [AllocationStamp] for position and time of this.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  GuidanceShift._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (groupIdRef != null) {
+      ArgumentValidation.checkId(
+        id: groupIdRef!,
+        idRefPattern: GuidanceGroup.staticIdRefPattern,
+        idName: 'groupIdRef',
+      );
+    }
+    if (patternIdRef != null) {
+      ArgumentValidation.checkId(
+        id: patternIdRef!,
+        idRefPattern: GuidancePattern.staticIdRefPattern,
+        idName: 'patternIdRef',
+      );
+    }
+    if (eastShift != null) {
+      ArgumentValidation.checkValueInRange(
+        value: eastShift!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'eastShift',
+      );
+    }
+    if (northShift != null) {
+      ArgumentValidation.checkValueInRange(
+        value: northShift!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'northShift',
+      );
+    }
+    if (propagationOffset != null) {
+      ArgumentValidation.checkValueInRange(
+        value: propagationOffset!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'propagationOffset',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidanceShift;
 
   /// Reference to a [GuidanceGroup].
-  @annotation.XmlAttribute(name: 'A')
-  final String? groupIdRef;
+  String? get groupIdRef => tryParseString('A');
+  set groupIdRef(String? value) => setStringNullable('A', value);
 
   /// Reference to a [GuidancePattern].
-  @annotation.XmlAttribute(name: 'B')
-  final String? patternIdRef;
+  String? get patternIdRef => tryParseString('B');
+  set patternIdRef(String? value) => setStringNullable('B', value);
 
   /// Offset distance in millimeters in the east direction from point A of the
   /// pattern.
-  @annotation.XmlAttribute(name: 'C')
-  final int? eastShift;
+  int? get eastShift => tryParseInt('C');
+  set eastShift(int? value) => setIntNullable('C', value);
 
   /// Offset distance in millimeters in the north direction from point A of the
   /// pattern.
-  @annotation.XmlAttribute(name: 'D')
-  final int? northShift;
+  int? get northShift => tryParseInt('D');
+  set northShift(int? value) => setIntNullable('D', value);
 
   /// Perpendicular offset millimeters from the direction of the pattern.
   ///
   /// Negative values shifts the pattern to the left and positive values
   /// shifts the pattern to the right.
-  @annotation.XmlAttribute(name: 'E')
-  final int? propagationOffset;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$GuidanceShiftBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$GuidanceShiftToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    allocationStamp,
-    groupIdRef,
-    patternIdRef,
-    eastShift,
-    northShift,
-    propagationOffset,
-  ];
+  int? get propagationOffset => tryParseInt('E');
+  set propagationOffset(int? value) => setIntNullable('E', value);
 }

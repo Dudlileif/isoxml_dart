@@ -8,11 +8,7 @@ part of '../../iso_11783_element.dart';
 /// system.
 ///
 /// Each [Device] shall have at least one [DeviceElement] in [elements].
-@CopyWith()
-@annotation.XmlRootElement(name: 'DVC')
-@annotation.XmlSerializable(createMixin: true)
-class Device extends Iso11783Element
-    with _$DeviceXmlSerializableMixin, EquatableMixin {
+class Device extends Iso11783Element {
   /// Default factory for creating a [Device] with verified
   /// arguments.
   factory Device({
@@ -27,7 +23,6 @@ class Device extends Iso11783Element
     String? designator,
     String? softwareVersion,
     String? serialNumber,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     ArgumentValidation.checkHexStringLength(
@@ -73,72 +68,108 @@ class Device extends Iso11783Element
       properties: properties ?? const [],
       processData: processData ?? const [],
       valuePresentations: valuePresentations ?? const [],
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Device._({
-    required this.id,
-    required this.clientNAME,
-    required this.structureLabel,
-    required this.localizationLabel,
+    required String id,
+    required String clientNAME,
+    required String structureLabel,
+    required String localizationLabel,
     required List<DeviceElement>? elements,
     List<DeviceProperty>? properties,
     List<DeviceProcessData>? processData,
     List<DeviceValuePresentation>? valuePresentations,
-    this.designator,
-    this.softwareVersion,
-    this.serialNumber,
-    super.customAttributes,
-  }) : super(elementType: Iso11783ElementType.device, description: 'Device') {
-    if (elements != null) {
-      this.elements.addAll(elements);
-    }
-    if (properties != null) {
-      this.properties.addAll(properties);
-    }
-    if (processData != null) {
-      this.processData.addAll(processData);
-    }
-    if (valuePresentations != null) {
-      this.valuePresentations.addAll(valuePresentations);
-    }
+    String? designator,
+    String? softwareVersion,
+    String? serialNumber,
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.clientNAME = clientNAME;
+    this.structureLabel = structureLabel;
+    this.localizationLabel = localizationLabel;
+    this.designator = designator;
+    this.softwareVersion = softwareVersion;
+    this.serialNumber = serialNumber;
+    this.elements.addAll(elements);
+    this.properties.addAll(properties);
+    this.processData.addAll(processData);
+    this.valuePresentations.addAll(valuePresentations);
   }
 
-  /// Creates a [Device] from [element].
-  factory Device.fromXmlElement(XmlElement element) {
-    final elements = element.getElements('DET')!;
-    final processData = element.getElements('DPD');
-    final properties = element.getElements('DPT');
-    final valuePresentations = element.getElements('DVP');
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final softwareVersion = element.getAttribute('C');
-    final clientNAME = element.getAttribute('D')!;
-    final serialNumber = element.getAttribute('E');
-    final structureLabel = element.getAttribute('F')!;
-    final localizationLabel = element.getAttribute('G')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Device(
-      elements: elements.map(DeviceElement.fromXmlElement).toList(),
-      processData: processData?.map(DeviceProcessData.fromXmlElement).toList(),
-      properties: properties?.map(DeviceProperty.fromXmlElement).toList(),
-      valuePresentations: valuePresentations
-          ?.map(DeviceValuePresentation.fromXmlElement)
+  Device._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    elements.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceElement.xmlTag,
+          )
+          .map(DeviceElement._fromXmlElement)
           .toList(),
-      id: id,
-      designator: designator,
-      softwareVersion: softwareVersion,
-      clientNAME: clientNAME,
-      serialNumber: serialNumber,
-      structureLabel: structureLabel,
-      localizationLabel: localizationLabel,
-      customAttributes: customAttributes,
     );
+    processData.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceProcessData.xmlTag,
+          )
+          .map(DeviceProcessData._fromXmlElement)
+          .toList(),
+    );
+    properties.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceProperty.xmlTag,
+          )
+          .map(DeviceProperty._fromXmlElement)
+          .toList(),
+    );
+    valuePresentations.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceValuePresentation.xmlTag,
+          )
+          .map(DeviceValuePresentation._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkHexStringLength(
+      clientNAME,
+      name: 'clientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkId(
+      id: structureLabel,
+      idRefPattern: structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'structureLabel',
+    );
+    ArgumentValidation.checkId(
+      id: localizationLabel,
+      idRefPattern: localizationLabelPattern,
+      minLength: 14,
+      idName: 'localizationLabel',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (elements.isEmpty) {
+      throw ArgumentError.value(
+        elements,
+        'elements',
+        'Can not be empty',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.device;
 
   /// Regular expression matching pattern for the [id] of [Device]s.
   static const staticIdRefPattern = '(DVC|DVC-)[1-9]([0-9])*';
@@ -155,117 +186,56 @@ class Device extends Iso11783Element
       '''(F|f){2}((([0-9]|[A-E]|[a-e])([0-9]|[A-F]|[a-f]))|((F|f)([0-9]|[A-E]|[a-e])))*''';
 
   /// A list of the [DeviceElement]s of this.
-  @annotation.XmlElement(name: 'DET')
-  final List<DeviceElement> elements = [];
+  late final elements = _XmlSyncedList<DeviceElement>(xmlElement: xmlElement);
 
   /// A list of the [DeviceProcessData]s of this.
-  @annotation.XmlElement(name: 'DPD')
-  final List<DeviceProcessData> processData = [];
+  late final processData = _XmlSyncedList<DeviceProcessData>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of the [DeviceProperty]s of this.
-  @annotation.XmlElement(name: 'DPT')
-  final List<DeviceProperty> properties = [];
+  late final properties = _XmlSyncedList<DeviceProperty>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of the [DeviceValuePresentation]s of this.
-  @annotation.XmlElement(name: 'DVP')
-  final List<DeviceValuePresentation> valuePresentations = [];
+  late final valuePresentations = _XmlSyncedList<DeviceValuePresentation>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this device.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the device, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Software version of the device.
-  @annotation.XmlAttribute(name: 'C')
-  final String? softwareVersion;
+  String? get softwareVersion => tryParseString('C');
+  set softwareVersion(String? value) => setStringNullable('C', value);
 
   /// Client NAME of the device.
   ///
   /// See ISO 11783-5 for description of NAME.
-  @annotation.XmlAttribute(name: 'D')
-  final String clientNAME;
+  String get clientNAME => parseString('D');
+  set clientNAME(String value) => setString('D', value);
 
   /// Serial number of the device.
-  @annotation.XmlAttribute(name: 'E')
-  final String? serialNumber;
+  String? get serialNumber => tryParseString('E');
+  set serialNumber(String? value) => setStringNullable('E', value);
 
   /// Label of device description structure.
-  @annotation.XmlAttribute(name: 'F')
-  final String structureLabel;
+  String get structureLabel => parseString('F');
+  set structureLabel(String value) => setString('F', value);
 
   /// Label of device description localization.
   ///
   /// Bytes 1 to 6 are defined by the Language Command PGN (see ISO 11783-7).
   /// Byte 7 is reserved and set to `FF`"
-  @annotation.XmlAttribute(name: 'G')
-  final String localizationLabel;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in elements.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in processData.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in properties.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in valuePresentations.map(
-        (e) => e.selfWithRecursiveChildren,
-      ))
-        ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$DeviceBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$DeviceToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    elements,
-    processData,
-    properties,
-    valuePresentations,
-    id,
-    designator,
-    softwareVersion,
-    clientNAME,
-    serialNumber,
-    structureLabel,
-    localizationLabel,
-  ];
+  String get localizationLabel => parseString('G');
+  set localizationLabel(String value) => setString('G', value);
 }

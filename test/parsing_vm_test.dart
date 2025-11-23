@@ -35,7 +35,6 @@ void main() async {
       'Check that first element is Iso11783TaskData',
       () => expect(taskData, isA<Iso11783TaskData>()),
     );
-    taskData!;
 
     final manuallyEnteredData = Iso11783TaskData(
       versionMajor: VersionMajor.four,
@@ -69,7 +68,7 @@ void main() async {
         CodedComment(
           id: 'CCT1',
           designator: 'Emoji comments',
-          scope: CodedCommmentScope.point,
+          scope: CodedCommentScope.point,
           groupIdRef: 'CCG1',
           listValues: [
             CodedCommentListValue(id: 'CCL1', designator: ':)'),
@@ -212,7 +211,7 @@ void main() async {
             (index) => DeviceProperty(
               objectId: [50, 52, 53][index],
               ddi: ['0073', '0086', '0087'][index],
-              value: [1400, 1000, 500][index],
+              propertyValue: [1400, 1000, 500][index],
               designator: [
                 'Maximum Bale Width',
                 'OffsetX',
@@ -603,10 +602,10 @@ void main() async {
           ),
           connections: [
             Connection(
-              deviceIdRef_0: 'DVC-1',
-              deviceElementIdRef_0: 'DET-3',
-              deviceIdRef_1: 'DVC-2',
-              deviceElementIdRef_1: 'DET-6',
+              deviceIdRef0: 'DVC-1',
+              deviceElementIdRef0: 'DET-3',
+              deviceIdRef1: 'DVC-2',
+              deviceElementIdRef1: 'DET-6',
             ),
           ],
           dataLogTriggers: List.generate(
@@ -814,117 +813,211 @@ void main() async {
         expect(taskData.toString(), manuallyEnteredData.toString());
       },
     );
-  });
-  test(
-    'Export document to string, check if equal to input string',
-    () => expect(
-      taskData?.toSingleXmlDocument().toXmlString(
-        pretty: true,
-        indent: '    ',
-        newLine: Platform.isWindows ? '\r\n' : null,
-      ),
-      dataString,
-    ),
-  );
 
-  group('Point', () {
-    test('.filename too long', () {
-      Object? error;
-      try {
-        Point(
-          north: 60,
-          east: 10,
-          type: PointType.other,
-          filename: 'PNT000001',
-        );
-      } catch (e) {
-        error = e;
-      }
-      expect(error, isArgumentError);
-    });
-    test('.filelength outside range', () {
-      Object? error;
-      try {
-        Point(
-          north: 60,
-          east: 10,
-          type: PointType.other,
-          filename: 'PNT00001',
-          fileLength: -1,
-        );
-      } catch (e) {
-        error = e;
-      }
-      expect(error, isArgumentError);
-    });
-
-    test('binary', () {
-      final data = ByteData(100);
-      var offset = 0;
-      data.setUint8(offset, 0x1);
-      offset++;
-
-      data.setInt64(
-        offset,
-        (63.58 * 1e16).round(),
-        Endian.little,
-      );
-      offset += 8;
-
-      data.setInt64(
-        offset,
-        (11.21 * 1e16).round(),
-        Endian.little,
-      );
-      offset += 8;
-
-      data.setInt32(offset, (96 * 1e3).round(), Endian.little);
-      offset += 4;
-
-      data.setUint8(offset, 0x5);
-      offset++;
-
-      data.setInt64(
-        offset,
-        (63.5 * 1e16).round(),
-        Endian.little,
-      );
-      offset += 8;
-
-      data.setInt64(
-        offset,
-        (11.2 * 1e16).round(),
-        Endian.little,
-      );
-      offset += 8;
-
-      data.setInt32(offset, (90 * 1e3).round(), Endian.little);
-      offset += 4;
-      final byteData = data.buffer.asUint8List(0, offset);
-
-      final point = Point(
-        binaryHeaderOptions: const PointBinaryHeaderOptions(
-          readType: true,
-          readNorth: true,
-          readEast: true,
-          readUp: true,
+    test(
+      'Export document to string, check if equal to input string',
+      () => expect(
+        taskData.toSingleXmlDocument().toXmlString(
+          pretty: true,
+          indent: '    ',
+          newLine: Platform.isWindows ? '\r\n' : null,
         ),
-        byteData: byteData,
-        filename: 'PNT00001',
-      );
-      expect(point.binaryPointsBytes, byteData);
-      expect(
-        point,
-        Point.fromXmlElement(
-          XmlElement(XmlName('PNT'), [
-            XmlAttribute(XmlName('A'), ''),
-            XmlAttribute(XmlName('C'), ''),
-            XmlAttribute(XmlName('D'), ''),
-            XmlAttribute(XmlName('E'), ''),
-            XmlAttribute(XmlName('J'), 'PNT00001'),
-          ]),
-        ).copyWith(byteData: byteData),
-      );
+        dataString,
+      ),
+    );
+
+    group('Point', () {
+      test('.filename too long', () {
+        Object? error;
+        try {
+          Point(
+            north: 60,
+            east: 10,
+            type: PointType.other,
+            filename: 'PNT000001',
+          );
+        } catch (e) {
+          error = e;
+        }
+        expect(error, isArgumentError);
+      });
+      test('.filelength outside range', () {
+        Object? error;
+        try {
+          Point(
+            north: 60,
+            east: 10,
+            type: PointType.other,
+            filename: 'PNT00001',
+            fileLength: -1,
+          );
+        } catch (e) {
+          error = e;
+        }
+        expect(error, isArgumentError);
+      });
+
+      test('binary', () {
+        final data = ByteData(100);
+        var offset = 0;
+        data.setUint8(offset, 0x1);
+        offset++;
+
+        data.setInt64(
+          offset,
+          (63.58 * 1e16).round(),
+          Endian.little,
+        );
+        offset += 8;
+
+        data.setInt64(
+          offset,
+          (11.21 * 1e16).round(),
+          Endian.little,
+        );
+        offset += 8;
+
+        data.setInt32(offset, (96 * 1e3).round(), Endian.little);
+        offset += 4;
+
+        data.setUint8(offset, 0x5);
+        offset++;
+
+        data.setInt64(
+          offset,
+          (63.5 * 1e16).round(),
+          Endian.little,
+        );
+        offset += 8;
+
+        data.setInt64(
+          offset,
+          (11.2 * 1e16).round(),
+          Endian.little,
+        );
+        offset += 8;
+
+        data.setInt32(offset, (90 * 1e3).round(), Endian.little);
+        offset += 4;
+        final byteData = data.buffer.asUint8List(0, offset);
+
+        final point = Point(
+          binaryHeaderOptions: const PointBinaryHeaderOptions(
+            readType: true,
+            readNorth: true,
+            readEast: true,
+            readUp: true,
+          ),
+          byteData: byteData,
+          filename: 'PNT00001',
+          fileLength: byteData.lengthInBytes,
+        );
+        expect(
+          point,
+          isA<Point>()
+              .having(
+                (p) => p.binaryPointsBytes,
+                'binaryPointsBytes equals byteData',
+                byteData,
+              )
+              .having((p) => p.byteData, 'correct byteData', byteData)
+              .having((p) => p.filename, 'correct filename', 'PNT00001')
+              .having(
+                (p) => p.fileLength,
+                'correct fileLength',
+                byteData.lengthInBytes,
+              ),
+        );
+        expect(
+          Iso11783Element.fromXmlElement(
+                  XmlElement(XmlName('PNT'), [
+                    XmlAttribute(XmlName('A'), ''),
+                    XmlAttribute(XmlName('C'), ''),
+                    XmlAttribute(XmlName('D'), ''),
+                    XmlAttribute(XmlName('E'), ''),
+                    XmlAttribute(XmlName('J'), 'PNT00001'),
+                    XmlAttribute(XmlName('K'), '${byteData.lengthInBytes}'),
+                  ]),
+                )
+                as Point
+            ..byteData = byteData,
+          isA<Point>()
+              .having(
+                (p) => p.binaryPointsBytes,
+                'binaryPointsBytes equals byteData',
+                byteData,
+              )
+              .having((p) => p.byteData, 'correct byteData', byteData)
+              .having((p) => p.filename, 'correct filename', 'PNT00001')
+              .having(
+                (p) => p.fileLength,
+                'correct fileLength',
+                byteData.lengthInBytes,
+              ),
+        );
+      });
     });
+  });
+
+  group('Zip import and export', () {
+    final exportDirectory = Directory(
+      '${Directory.current.path}/test/data_files/export',
+    )..createSync(recursive: true);
+
+    tearDownAll(() async {
+      exportDirectory.deleteSync(recursive: true);
+    });
+
+    test(
+      'Export zip file',
+      () async {
+        final file = File('${exportDirectory.path}/parsing_zip_export.zip');
+        final saved = await TaskDataFileHandler.saveToZip(
+          taskData: taskData,
+          path: file.path,
+        );
+        expect(saved, true);
+        final savedZipTaskData = await TaskDataFileHandler.loadZip(file.path);
+        final reExportedFile = File(
+          '${exportDirectory.path}/parsing_zip_export_re_exported.zip',
+        );
+        final reExported = await TaskDataFileHandler.saveToZip(
+          taskData: savedZipTaskData!,
+          path: reExportedFile.path,
+        );
+        expect(reExported, true);
+        expect(await file.readAsBytes(), await reExportedFile.readAsBytes());
+      },
+    );
+
+    test(
+      'Export zip file, externalized is true',
+      () async {
+        final file = File(
+          '${exportDirectory.path}/parsing_zip_export_externalized.zip',
+        );
+        final readDataFile = File(
+          '${Directory.current.path}/test/data_files/zip_test.zip',
+        );
+        final taskData = await TaskDataFileHandler.loadZip(readDataFile.path);
+        final saved = await TaskDataFileHandler.saveToZip(
+          taskData: taskData!,
+          path: file.path,
+          externalize: true,
+        );
+        expect(saved, true);
+        final savedZipTaskData = await TaskDataFileHandler.loadZip(file.path);
+        final reExportedFile = File(
+          '${exportDirectory.path}/parsing_zip_export_externalized_re_exported.zip',
+        );
+        final reExported = await TaskDataFileHandler.saveToZip(
+          taskData: savedZipTaskData!,
+          path: reExportedFile.path,
+          externalize: true,
+        );
+        expect(reExported, true);
+        expect(await file.readAsBytes(), await reExportedFile.readAsBytes());
+      },
+    );
   });
 }

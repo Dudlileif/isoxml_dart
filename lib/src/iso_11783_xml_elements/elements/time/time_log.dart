@@ -19,10 +19,7 @@ part of '../../iso_11783_element.dart';
 /// a unique name. Both files shall exist in the same folder as the data
 /// transfer file. The name of the files shall be unique over all [TimeLog]s
 /// referred to by all tasks of a data transfer file.
-@CopyWith()
-@annotation.XmlRootElement(name: 'TLG')
-@annotation.XmlSerializable(createMixin: true)
-class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
+class TimeLog extends Iso11783Element {
   /// Default factory for creating a [TimeLog] with verified
   /// arguments.
   factory TimeLog({
@@ -32,7 +29,6 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
     Uint8List? byteData,
     TimeLogHeader? header,
     List<Time>? records,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: filename,
@@ -54,64 +50,72 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
       type: type,
       header: header,
       records: records,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   TimeLog._({
-    required this.filename,
-    required this.type,
+    required String filename,
     required this.byteData,
-    this.fileLength,
+    int? fileLength,
+    TimeLogType type = TimeLogType.binaryTimeLogFileType1,
     this.header,
     List<Time>? records,
-    super.customAttributes,
-  }) : super(elementType: Iso11783ElementType.timeLog, description: 'TimeLog') {
+  }) : super(elementType: _elementType) {
+    this.filename = filename;
+    this.fileLength = fileLength;
+    this.type = type;
     if (records != null) {
       this.records.addAll(records);
     }
   }
 
-  /// Creates a [TimeLog] from [element].
-  factory TimeLog.fromXmlElement(XmlElement element) {
-    final filename = element.getAttribute('A')!;
-    final fileLength = element.getAttribute('B');
-    final type = element.getAttribute('C')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return TimeLog(
-      filename: filename,
-      fileLength: fileLength != null ? int.parse(fileLength) : null,
-      type: $TimeLogTypeEnumMap.entries
-          .singleWhere(
-            (timeLogTypeEnumMapEntry) => timeLogTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$TimeLogTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      customAttributes: customAttributes,
-    );
+  TimeLog._fromXmlElement(XmlElement element, {Uint8List? byteData})
+    : byteData = byteData ?? Uint8List(0),
+      super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: filename,
+      idRefPattern: fileNamePattern,
+      idName: 'filename',
+    );
+    if (fileLength != null) {
+      ArgumentValidation.checkValueInRange(
+        value: fileLength!,
+        min: 0,
+        max: 4294967294,
+        name: 'fileLength',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.timeLog;
 
   /// Regular expression matching pattern for the [filename] of this.
   static const fileNamePattern = 'TLG[0-9]{5}';
 
   /// Unique name for the [TimeLog] file.
-  @annotation.XmlAttribute(name: 'A')
-  final String filename;
+  String get filename => parseString('A');
+  set filename(String value) => setString('A', value);
 
   /// Byte length of the [TimeLog] file.
-  @annotation.XmlAttribute(name: 'B')
-  int? fileLength;
+  int? get fileLength => tryParseInt('B');
+  set fileLength(int? value) => setIntNullable('B', value);
 
   /// Which type the [TimeLog] file is.
   ///
   /// Only [TimeLogType.binaryTimeLogFileType1] is possible.
-  @annotation.XmlAttribute(name: 'C')
-  final TimeLogType type;
+  TimeLogType get type => TimeLogType.values.firstWhere(
+    (type) => type.value == parseInt('C'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${TimeLogType.values.join(', ')}''',
+    ),
+  );
+  set type(TimeLogType value) => setInt('C', value.value);
 
   /// Byte data from the file at [filename].
   ///
@@ -123,53 +127,6 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
   /// Logged [Time] records for this.
   final List<Time> records = [];
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    for (final a in records.map((e) => e.selfWithRecursiveChildren)) ...a,
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$TimeLogBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$TimeLogToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  /// The list of properties that will be used to determine whether
-  /// two instances are equal.
-  List<Object?> get props => [
-    filename,
-    fileLength,
-    type,
-    byteData,
-  ];
-
-  /// Returns a string for [props].
-  @override
-  String toString() => mapPropsToString(runtimeType, props);
 
   /// Returns [byteData] parsed with [header] to a log of [Time] records.
   List<Time>? parseData() {
@@ -193,60 +150,63 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 
         Position? position;
         if (header!.position != null) {
-          final north = header!.position!.readNorth
+          final north = header!.position!.binaryHeaderOptions.readNorth
               ? 1e-7 * data.getInt32(currentOffset, Endian.little)
               : header!.position!.north ?? 0;
-          if (header!.position!.readNorth) {
+          if (header!.position!.binaryHeaderOptions.readNorth) {
             currentOffset += 4;
           }
-          final east = header!.position!.readEast
+          final east = header!.position!.binaryHeaderOptions.readEast
               ? 1e-7 * data.getInt32(currentOffset, Endian.little)
               : header!.position!.east ?? 0;
-          if (header!.position!.readEast) {
+          if (header!.position!.binaryHeaderOptions.readEast) {
             currentOffset += 4;
           }
-          final up = header!.position!.readUp
+          final up = header!.position!.binaryHeaderOptions.readUp
               ? data.getInt32(currentOffset, Endian.little)
               : header!.position!.up;
-          if (header!.position!.readUp) {
+          if (header!.position!.binaryHeaderOptions.readUp) {
             currentOffset += 4;
           }
-          final status = header!.position!.readStatus
+          final status = header!.position!.binaryHeaderOptions.readStatus
               ? PositionStatus.values.firstWhere(
                   (element) => element.value == data.getUint8(currentOffset),
                 )
               : header!.position!.status ?? PositionStatus.notAvailable;
-          if (header!.position!.readStatus) {
+          if (header!.position!.binaryHeaderOptions.readStatus) {
             currentOffset++;
           }
-          final pdop = header!.position!.readPdop
+          final pdop = header!.position!.binaryHeaderOptions.readPdop
               ? 1e-1 * data.getUint16(currentOffset, Endian.little)
               : header!.position!.pdop;
-          if (header!.position!.readPdop) {
+          if (header!.position!.binaryHeaderOptions.readPdop) {
             currentOffset += 2;
           }
-          final hdop = header!.position!.readHdop
+          final hdop = header!.position!.binaryHeaderOptions.readHdop
               ? 1e-1 * data.getUint16(currentOffset, Endian.little)
               : header!.position!.hdop;
-          if (header!.position!.readHdop) {
+          if (header!.position!.binaryHeaderOptions.readHdop) {
             currentOffset += 2;
           }
-          final numberOfSatellites = header!.position!.readNumberOfSatellites
+          final numberOfSatellites =
+              header!.position!.binaryHeaderOptions.readNumberOfSatellites
               ? data.getUint8(currentOffset)
               : header!.position!.numberOfSatellites;
-          if (header!.position!.readNumberOfSatellites) {
+          if (header!.position!.binaryHeaderOptions.readNumberOfSatellites) {
             currentOffset++;
           }
-          final gpsUtcTimeMs = header!.position!.readgpsUtcTimeMs
+          final gpsUtcTimeMs =
+              header!.position!.binaryHeaderOptions.readGpsUtcTimeMs
               ? data.getUint32(currentOffset, Endian.little)
               : header!.position!.gpsUtcTimeMs;
-          if (header!.position!.readgpsUtcTimeMs) {
+          if (header!.position!.binaryHeaderOptions.readGpsUtcTimeMs) {
             currentOffset += 4;
           }
-          final gpsUtcDate = header!.position!.readGpsUtcDate
+          final gpsUtcDate =
+              header!.position!.binaryHeaderOptions.readGpsUtcDate
               ? data.getUint16(currentOffset, Endian.little)
               : header!.position!.gpsUtcDate;
-          if (header!.position!.readGpsUtcDate) {
+          if (header!.position!.binaryHeaderOptions.readGpsUtcDate) {
             currentOffset += 2;
           }
           position = Position(
@@ -323,10 +283,8 @@ class TimeLog extends Iso11783Element with _$TimeLogXmlSerializableMixin {
 }
 
 /// An enumerator for which type the [TimeLog] file is.
-@annotation.XmlEnum()
 enum TimeLogType {
   /// Binary file format.
-  @annotation.XmlValue('1')
   binaryTimeLogFileType1(1, 'Binary timelog file type 1');
 
   const TimeLogType(this.value, this.description);

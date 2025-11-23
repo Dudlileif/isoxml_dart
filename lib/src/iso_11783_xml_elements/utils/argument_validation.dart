@@ -2,8 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:isoxml_dart/isoxml_dart.dart';
-import 'package:isoxml_dart/src/iso_11783_xml_elements/iso_11783_element.dart';
+part of '../iso_11783_element.dart';
 
 /// A class with static methods for validating arguments when creating
 /// [Iso11783Element]s.

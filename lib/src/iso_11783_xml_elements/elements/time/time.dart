@@ -15,10 +15,7 @@ part of '../../iso_11783_element.dart';
 /// shall be of type [TimeType.effective]. All [Time] elements shall have
 /// [start] or [stop] defined. [duration] shall always contain a positive
 /// value. All time values are to be set in local time.
-@CopyWith()
-@annotation.XmlRootElement(name: 'TIM')
-@annotation.XmlSerializable(createMixin: true)
-class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
+class Time extends Iso11783Element {
   /// Default factory for creating a [Time] with verified
   /// arguments.
   factory Time({
@@ -28,7 +25,6 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (duration != null) {
       ArgumentValidation.checkValueInRange(
@@ -55,166 +51,115 @@ class Time extends Iso11783Element with _$TimeXmlSerializableMixin {
       dataLogValues: dataLogValues,
       stop: stop,
       duration: duration,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Time._({
-    required this.start,
-    required this.type,
+    required DateTime start,
+    required TimeType type,
     List<Position>? positions,
     List<DataLogValue>? dataLogValues,
-    this.stop,
-    this.duration,
-    super.customAttributes,
-  }) : super(elementType: Iso11783ElementType.time, description: 'Time') {
-    if (positions != null) {
-      this.positions.addAll(positions);
-    }
-    if (dataLogValues != null) {
-      this.dataLogValues.addAll(dataLogValues);
-    }
+    DateTime? stop,
+    int? duration,
+  }) : super(elementType: _elementType) {
+    this.start = start;
+    this.type = type;
+    this.stop = stop;
+    this.duration = duration;
+    this.positions.addAll(positions);
+    this.dataLogValues.addAll(dataLogValues);
   }
 
-  /// Creates a [Time] from [element].
-  factory Time.fromXmlElement(XmlElement element) {
-    final positions = element.getElements('PTN');
-    final dataLogValues = element.getElements('DLV');
-    final start = element.getAttribute('A')!;
-    final stop = element.getAttribute('B');
-    final duration = element.getAttribute('C');
-    final type = element.getAttribute('D')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Time(
-      positions: positions?.map(Position.fromXmlElement).toList(),
-      dataLogValues: dataLogValues?.map(DataLogValue.fromXmlElement).toList(),
-      start: DateTime.parse(start),
-      stop: stop != null ? DateTime.parse(stop) : null,
-      duration: duration != null ? int.parse(duration) : null,
-      type: $TimeTypeEnumMap.entries
-          .singleWhere(
-            (timeTypeEnumMapEntry) => timeTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$TimeTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      customAttributes: customAttributes,
+  Time._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    positions.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.position.xmlTag)
+          .map(Position._fromXmlElement)
+          .toList(),
     );
+    dataLogValues.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.dataLogValue.xmlTag)
+          .map(DataLogValue._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    if (duration != null) {
+      ArgumentValidation.checkValueInRange(
+        value: duration!,
+        min: 0,
+        max: 4294967294,
+        name: 'duration',
+      );
+    }
+    if (positions.length > 2) {
+      throw ArgumentError.value(
+        positions,
+        'positions',
+        'Length can not be larger than 2.',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.time;
 
   /// A list of up to 2 [Position]s for this.
-  @annotation.XmlElement(name: 'PTN')
-  final List<Position> positions = [];
+  late final positions = _XmlSyncedList<Position>(xmlElement: xmlElement);
 
   /// A list of [DataLogValue]s that was recorded with this time.
-  @annotation.XmlElement(name: 'DLV')
-  final List<DataLogValue> dataLogValues = [];
+  late final dataLogValues = _XmlSyncedList<DataLogValue>(
+    xmlElement: xmlElement,
+  );
 
   /// Time of start.
-  @annotation.XmlAttribute(name: 'A')
-  final DateTime start;
+  DateTime get start => parseDateTime('A');
+  set start(DateTime value) => setDateTime('A', value);
 
   /// Time of stop.
-  @annotation.XmlAttribute(name: 'B')
-  DateTime? stop;
+  DateTime? get stop => tryParseDateTime('B');
+  set stop(DateTime? value) => setDateTimeNullable('B', value);
 
   /// Time betwen [start] and [stop] in number of seconds.
-  @annotation.XmlAttribute(name: 'C')
-  int? duration;
+  int? get duration => tryParseInt('C');
+  set duration(int? value) => setIntNullable('C', value);
 
   /// Which type this is.
-  @annotation.XmlAttribute(name: 'D')
-  final TimeType type;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in positions.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-    ...[
-      for (final a in dataLogValues.map((e) => e.selfWithRecursiveChildren))
-        ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$TimeBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$TimeToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  /// The list of properties that will be used to determine whether
-  /// two instances are equal.
-  List<Object?> get props => [
-    positions,
-    dataLogValues,
-    start,
-    stop,
-    duration,
-    type,
-  ];
-
-  /// Returns a string for [props].
-  @override
-  String toString() => mapPropsToString(runtimeType, props);
+  TimeType get type => TimeType.values.firstWhere(
+    (type) => type.value == parseInt('D'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
+    ),
+  );
+  set type(TimeType value) => setInt('D', value.value);
 }
 
 /// An enumerator for which type a [Time] element is.
-@annotation.XmlEnum()
 enum TimeType {
   /// Planned
-  @annotation.XmlValue('1')
   planned(1, 'Planned'),
 
   /// Preliminary
-  @annotation.XmlValue('2')
   preliminary(2, 'Preliminary'),
 
   /// Effective
-  @annotation.XmlValue('4')
   effective(4, 'Effective'),
 
   /// Ineffective
-  @annotation.XmlValue('5')
   ineffective(5, 'Ineffective'),
 
   /// Repair
-  @annotation.XmlValue('6')
   repair(6, 'Repair'),
 
   /// Clearing
-  @annotation.XmlValue('7')
   clearing(7, 'Clearing'),
 
   /// Powered down
-  @annotation.XmlValue('8')
   poweredDown(7, 'Powered Down');
 
   const TimeType(this.value, this.description);

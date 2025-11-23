@@ -9,11 +9,7 @@ part of '../../iso_11783_element.dart';
 ///
 /// [TaskControllerCapabilities] elements should only be included if the
 /// source is MICS, and at least one if this is the case.
-@CopyWith()
-@annotation.XmlRootElement(name: 'TCC')
-@annotation.XmlSerializable(createMixin: true)
-class TaskControllerCapabilities extends Iso11783Element
-    with _$TaskControllerCapabilitiesXmlSerializableMixin, EquatableMixin {
+class TaskControllerCapabilities extends Iso11783Element {
   /// Default factory for creating a [TaskControllerCapabilities] with
   /// verified arguments.
   factory TaskControllerCapabilities({
@@ -24,7 +20,6 @@ class TaskControllerCapabilities extends Iso11783Element
     required int numberOfBoomsSectionControl,
     required int numberOfSectionsSectionControl,
     required int numberOfControlChannels,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkHexStringLength(
       functionNAME,
@@ -66,71 +61,89 @@ class TaskControllerCapabilities extends Iso11783Element
       numberOfBoomsSectionControl: numberOfBoomsSectionControl,
       numberOfSectionsSectionControl: numberOfSectionsSectionControl,
       numberOfControlChannels: numberOfControlChannels,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const TaskControllerCapabilities._({
-    required this.functionNAME,
-    required this.designator,
-    required this.versionNumber,
-    required this.providedCapabilities,
-    required this.numberOfBoomsSectionControl,
-    required this.numberOfSectionsSectionControl,
-    required this.numberOfControlChannels,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.taskControllerCapabilities,
-         description: 'TaskControllerCapabilities',
-         onlyVersion4AndAbove: true,
-       );
+  TaskControllerCapabilities._({
+    required String functionNAME,
+    required String designator,
+    required VersionNumber versionNumber,
+    required int providedCapabilities,
+    required int numberOfBoomsSectionControl,
+    required int numberOfSectionsSectionControl,
+    required int numberOfControlChannels,
+  }) : super(elementType: _elementType) {
+    this.functionNAME = functionNAME;
+    this.designator = designator;
+    this.versionNumber = versionNumber;
+    this.providedCapabilities = providedCapabilities;
+    this.numberOfBoomsSectionControl = numberOfBoomsSectionControl;
+    this.numberOfSectionsSectionControl = numberOfSectionsSectionControl;
+    this.numberOfControlChannels = numberOfControlChannels;
+  }
 
-  /// Creates a [TaskControllerCapabilities] from [element].
-  factory TaskControllerCapabilities.fromXmlElement(XmlElement element) {
-    final functionNAME = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final versionNumber = element.getAttribute('C')!;
-    final providedCapabilities = element.getAttribute('D')!;
-    final numberOfBoomsSectionControl = element.getAttribute('E')!;
-    final numberOfSectionsSectionControl = element.getAttribute('F')!;
-    final numberOfControlChannels = element.getAttribute('G')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  TaskControllerCapabilities._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return TaskControllerCapabilities(
-      functionNAME: functionNAME,
-      designator: designator,
-      versionNumber: $VersionNumberEnumMap.entries
-          .singleWhere(
-            (versionNumberEnumMapEntry) =>
-                versionNumberEnumMapEntry.value == versionNumber,
-            orElse: () => throw ArgumentError(
-              '''`$versionNumber` is not one of the supported values: ${$VersionNumberEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      providedCapabilities: int.parse(providedCapabilities),
-      numberOfBoomsSectionControl: int.parse(numberOfBoomsSectionControl),
-      numberOfSectionsSectionControl: int.parse(numberOfSectionsSectionControl),
-      numberOfControlChannels: int.parse(numberOfControlChannels),
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      functionNAME,
+      name: 'functionNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkStringLength(designator, maxLength: 153);
+    ArgumentValidation.checkValueInRange(
+      value: providedCapabilities,
+      min: 0,
+      max: 63,
+      name: 'providedCapabilities',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfBoomsSectionControl,
+      min: 0,
+      max: 254,
+      name: 'numberOfBoomsSectionControl',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfSectionsSectionControl,
+      min: 0,
+      max: 254,
+      name: 'numberOfSectionsSectionControl',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfControlChannels,
+      min: 0,
+      max: 254,
+      name: 'numberOfControlChannels',
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.taskControllerCapabilities;
 
   /// NAME of the function.
   ///
   /// See ISO 11783-5 for description of NAME.
-  @annotation.XmlAttribute(name: 'A')
-  final String functionNAME;
+  String get functionNAME => parseString('A');
+  set functionNAME(String value) => setString('A', value);
 
   /// Name of the task controller product, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 
   /// The version number of this.
-  @annotation.XmlAttribute(name: 'C')
-  final VersionNumber versionNumber;
+  VersionNumber get versionNumber => VersionNumber.values.firstWhere(
+    (type) => type.value == parseInt('C'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${VersionNumber.values.join(', ')}''',
+    ),
+  );
+  set versionNumber(VersionNumber value) => setInt('C', value.value);
 
   /// A value for provided capabilities.
   ///
@@ -141,105 +154,46 @@ class TaskControllerCapabilities extends Iso11783Element
   /// --1---:  8 Supports assignment single-level control
   /// -1----: 16 Supports section control
   /// 1-----: 32 Supports graded application polygon
-  @annotation.XmlAttribute(name: 'D')
-  final int providedCapabilities;
+  int get providedCapabilities => parseInt('D');
+  set providedCapabilities(int value) => setInt('D', value);
 
   /// How many booms this can control.
-  @annotation.XmlAttribute(name: 'E')
-  final int numberOfBoomsSectionControl;
+  int get numberOfBoomsSectionControl => parseInt('E');
+  set numberOfBoomsSectionControl(int value) => setInt('E', value);
 
   /// How many sections this can control.
-  @annotation.XmlAttribute(name: 'F')
-  final int numberOfSectionsSectionControl;
+  int get numberOfSectionsSectionControl => parseInt('F');
+  set numberOfSectionsSectionControl(int value) => setInt('F', value);
 
   /// How many control channels this has.
-  @annotation.XmlAttribute(name: 'G')
-  final int numberOfControlChannels;
-
-  /// [providedCapabilities] mapped to enumeration values from
-  /// [ProvidedCapability].
-  List<ProvidedCapability> get capabilities => ProvidedCapability.values
-      .where(
-        (capability) =>
-            providedCapabilities & capability.bitMask == capability.bitMask,
-      )
-      .toList();
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$TaskControllerCapabilitiesBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$TaskControllerCapabilitiesToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    functionNAME,
-    designator,
-    versionNumber,
-    providedCapabilities,
-    numberOfBoomsSectionControl,
-    numberOfSectionsSectionControl,
-    numberOfControlChannels,
-  ];
+  int get numberOfControlChannels => parseInt('G');
+  set numberOfControlChannels(int value) => setInt('G', value);
 }
 
 /// An enumerator for which version a TaskController is.
-@annotation.XmlEnum()
 enum VersionNumber {
   /// 0, Pre first edition.
-  @annotation.XmlValue('0')
   dis1(0, 'The version of the DIS.1 (first draft international standard)'),
 
   /// 1, First edition
-  @annotation.XmlValue('1')
   fdis1(
     1,
     '''The version of the FDIS.1 (final draft international standard, first edition)''',
   ),
 
   /// 2, Second edition
-  @annotation.XmlValue('2')
   fdis2(
     2,
     '''The version of the FDIS.2 and the first edition published as an international standard''',
   ),
 
   /// 3, Third edition
-  @annotation.XmlValue('3')
   e2dis(
     3,
     '''The version of the second edition published as a draft international standard (E2.DIS)''',
   ),
 
   /// 4, Fourth and current edition
-  @annotation.XmlValue('4')
   e2fdis(
     4,
     '''The version of the second edition published as a final draft international standard (E2.FDIS)''',

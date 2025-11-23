@@ -10,8 +10,11 @@ class TaskDataFileHandler {
   /// Load an [Iso11783TaskData] from the zip file at [path].
   ///
   /// Only implemented on native platforms.
-  static Future<Iso11783TaskData?> loadZip(String path) async =>
-      throw UnimplementedError();
+  static Future<Iso11783TaskData?> loadZip(
+    String path, {
+    bool extract = false,
+    String? extractionPath,
+  }) async => throw UnimplementedError();
 
   /// Load an [Iso11783TaskData] from the directory at [path].
   ///

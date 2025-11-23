@@ -14,18 +14,13 @@ part of '../../iso_11783_element.dart';
 /// (e.g. cultural practice: "fertilization"->
 /// operation techniques: "liquid fertilization","organic fertilization",
 /// "gaseous fertilization").
-@CopyWith()
-@annotation.XmlRootElement(name: 'CPC')
-@annotation.XmlSerializable(createMixin: true)
-class CulturalPractice extends Iso11783Element
-    with _$CulturalPracticeXmlSerializableMixin, EquatableMixin {
+class CulturalPractice extends Iso11783Element {
   /// Default factory for creating a [CulturalPractice] with verified
   /// arguments.
   factory CulturalPractice({
     required String id,
     required String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
@@ -36,42 +31,42 @@ class CulturalPractice extends Iso11783Element
       id: id,
       designator: designator,
       operationTechniqueReferences: operationTechniqueReferences,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   CulturalPractice._({
-    required this.id,
-    required this.designator,
+    required String id,
+    required String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.culturalPractice,
-         description: 'CulturalPractice',
-       ) {
-    if (operationTechniqueReferences != null) {
-      this.operationTechniqueReferences.addAll(operationTechniqueReferences);
-    }
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.designator = designator;
+    this.operationTechniqueReferences.addAll(operationTechniqueReferences);
   }
 
-  /// Creates a [CulturalPractice] from [element].
-  factory CulturalPractice.fromXmlElement(XmlElement element) {
-    final operationTechniqueReferences = element.getElements('OTR');
-    final id = element.getAttribute('A')!;
-    final designator = element.getAttribute('B')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return CulturalPractice(
-      operationTechniqueReferences: operationTechniqueReferences
-          ?.map(OperationTechniqueReference.fromXmlElement)
+  CulturalPractice._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    operationTechniqueReferences.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.operationTechniqueReference.xmlTag)
+          .map(OperationTechniqueReference._fromXmlElement)
           .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
       id: id,
+      idRefPattern: staticIdRefPattern,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.culturalPractice;
 
   /// Regular expression matching pattern for the [id] of [CulturalPractice]s.
   static const staticIdRefPattern = '(CPC|CPC-)[1-9]([0-9])*';
@@ -80,61 +75,17 @@ class CulturalPractice extends Iso11783Element
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of references to the available [OperationTechnique]s for this.
-  @annotation.XmlElement(name: 'OTR')
-  final List<OperationTechniqueReference> operationTechniqueReferences = [];
+  late final operationTechniqueReferences =
+      _XmlSyncedList<OperationTechniqueReference>(xmlElement: xmlElement);
 
   /// Unique identifier for this cultural practice.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
   /// Name of the cultural practice, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String designator;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    for (final a in operationTechniqueReferences.map(
-      (e) => e.selfWithRecursiveChildren,
-    ))
-      ...a,
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$CulturalPracticeBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$CulturalPracticeToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    operationTechniqueReferences,
-    id,
-    designator,
-  ];
+  String get designator => parseString('B');
+  set designator(String value) => setString('B', value);
 }

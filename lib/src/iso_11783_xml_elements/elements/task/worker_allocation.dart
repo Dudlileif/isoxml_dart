@@ -8,17 +8,12 @@ part of '../../iso_11783_element.dart';
 ///
 /// The [AllocationStamp] entry describes the start/stop time of worker
 /// allocations and the changes of the [WorkerAllocation]s inside a [Task].
-@CopyWith()
-@annotation.XmlRootElement(name: 'WAN')
-@annotation.XmlSerializable(createMixin: true)
-class WorkerAllocation extends Iso11783Element
-    with _$WorkerAllocationXmlSerializableMixin, EquatableMixin {
+class WorkerAllocation extends Iso11783Element with _AllocationStampMixin {
   /// Default factory for creating a [WorkerAllocation] with verified
   /// arguments.
   factory WorkerAllocation({
     required String workerIdRef,
     AllocationStamp? allocationStamp,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: workerIdRef,
@@ -28,80 +23,37 @@ class WorkerAllocation extends Iso11783Element
     return WorkerAllocation._(
       workerIdRef: workerIdRef,
       allocationStamp: allocationStamp,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const WorkerAllocation._({
-    required this.workerIdRef,
-    this.allocationStamp,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.workerAllocation,
-         description: 'WorkerAllocation',
-       );
+  WorkerAllocation._({
+    required String workerIdRef,
+    AllocationStamp? allocationStamp,
+  }) : super(elementType: _elementType) {
+    this.workerIdRef = workerIdRef;
+    this.allocationStamp = allocationStamp;
+  }
 
-  /// Creates a [WorkerAllocation] from [element].
-  factory WorkerAllocation.fromXmlElement(XmlElement element) {
-    final allocationStamp = element.getElement('ASP');
-    final workerIdRef = element.getAttribute('A')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  WorkerAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
 
-    return WorkerAllocation(
-      allocationStamp: allocationStamp != null
-          ? AllocationStamp.fromXmlElement(allocationStamp)
-          : null,
-      workerIdRef: workerIdRef,
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: workerIdRef,
+      idRefPattern: Worker.staticIdRefPattern,
+      idName: 'workerIdRef',
     );
   }
 
-  /// [AllocationStamp] for position and time for this.
-  @annotation.XmlElement(name: 'ASP', includeIfNull: false)
-  final AllocationStamp? allocationStamp;
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.workerAllocation;
 
   /// Reference to a [Worker].
-  @annotation.XmlAttribute(name: 'A')
-  final String workerIdRef;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren =>
-      allocationStamp?.selfWithRecursiveChildren;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$WorkerAllocationBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$WorkerAllocationToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    allocationStamp,
-    workerIdRef,
-  ];
+  String get workerIdRef => parseString('A');
+  set workerIdRef(String value) => setString('A', value);
 }

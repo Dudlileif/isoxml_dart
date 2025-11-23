@@ -6,11 +6,7 @@ part of '../../iso_11783_element.dart';
 
 /// An element for grouping and describing [Link]s of the same [type] and with
 /// the same [namespace].
-@CopyWith()
-@annotation.XmlRootElement(name: 'GP')
-@annotation.XmlSerializable(createMixin: true)
-class LinkGroup extends Iso11783Element
-    with _$LinkGroupXmlSerializableMixin, EquatableMixin {
+class LinkGroup extends Iso11783Element {
   /// Default factory for creating a [LinkGroup] with verified
   /// arguments.
   factory LinkGroup({
@@ -20,7 +16,6 @@ class LinkGroup extends Iso11783Element
     String? manufacturerGLN,
     String? namespace,
     String? designator,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
     if (manufacturerGLN != null) {
@@ -57,58 +52,69 @@ class LinkGroup extends Iso11783Element
       manufacturerGLN: manufacturerGLN,
       namespace: namespace,
       designator: designator,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   LinkGroup._({
-    required this.id,
-    required this.type,
+    required String id,
+    required LinkGroupType type,
     List<Link>? links,
-    this.manufacturerGLN,
-    this.namespace,
-    this.designator,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.linkGroup,
-         description: 'LinkGroup',
-         onlyVersion4AndAbove: true,
-       ) {
-    if (links != null) {
-      this.links.addAll(links);
+    String? manufacturerGLN,
+    String? namespace,
+    String? designator,
+  }) : super(elementType: _elementType) {
+    this.id = id;
+    this.type = type;
+    this.manufacturerGLN = manufacturerGLN;
+    this.namespace = namespace;
+    this.designator = designator;
+    this.links.addAll(links);
+  }
+
+  LinkGroup._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    links.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.link.xmlTag)
+          .map(Link._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (manufacturerGLN != null) {
+      ArgumentValidation.checkStringLength(
+        manufacturerGLN!,
+        maxLength: 64,
+        name: 'manufacturerGLN',
+      );
+    }
+    if ((type == LinkGroupType.uniqueResolvableUris ||
+            type == LinkGroupType.informationalResolvableUris) &&
+        namespace == null) {
+      throw ArgumentError.value(
+        namespace,
+        'namespace',
+        "namespace can't be null when type is resolvable.",
+      );
+    }
+    if (namespace != null) {
+      ArgumentValidation.checkStringLength(
+        namespace!,
+        maxLength: 255,
+        name: 'namespace',
+      );
+    }
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
   }
 
-  /// Creates a [LinkGroup] from [element].
-  factory LinkGroup.fromXmlElement(XmlElement element) {
-    final links = element.getElements('LNK');
-    final id = element.getAttribute('A')!;
-    final type = element.getAttribute('B')!;
-    final manufacturerGLN = element.getAttribute('C');
-    final namespace = element.getAttribute('D');
-    final designator = element.getAttribute('E');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return LinkGroup(
-      links: links?.map(Link.fromXmlElement).toList(),
-      id: id,
-      type: $LinkGroupTypeEnumMap.entries
-          .singleWhere(
-            (linkGroupTypeEnumMapEntry) =>
-                linkGroupTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$LinkGroupTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      manufacturerGLN: manufacturerGLN,
-      namespace: namespace,
-      designator: designator,
-      customAttributes: customAttributes,
-    );
-  }
+  static const Iso11783ElementType _elementType = Iso11783ElementType.linkGroup;
 
   /// Regular expression matching pattern for the [id] of [LinkGroup]s.
   static const staticIdRefPattern = '(LGP|LGP-)[1-9]([0-9])*';
@@ -117,104 +123,59 @@ class LinkGroup extends Iso11783Element
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of the [Link]s in this.
-  @annotation.XmlElement(name: 'LNK')
-  final List<Link> links = [];
+  late final links = _XmlSyncedList<Link>(xmlElement: xmlElement);
 
   /// Unique identifier for this link group.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'A')
-  final String id;
+  String get id => parseString('A');
+  set id(String value) => setString('A', value);
 
-  /// What type of identifiers/[Link.value]s are used with the [links].
-  @annotation.XmlAttribute(name: 'B')
-  final LinkGroupType type;
+  /// What type of identifiers/[Link].value are used with the [links].
+  LinkGroupType get type => LinkGroupType.values.firstWhere(
+    (type) => type.value == parseInt('B'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('B')}` is not one of the supported values: ${LinkGroupType.values.join(', ')}''',
+    ),
+  );
+  set type(LinkGroupType value) => setInt('B', value.value);
 
   /// GS1 Global Location Number for the manufacturer.
-  @annotation.XmlAttribute(name: 'C')
-  final String? manufacturerGLN;
+  String? get manufacturerGLN => tryParseString('C');
+  set manufacturerGLN(String? value) => setStringNullable('C', value);
 
   /// Namespace for resolvable [LinkGroupType.uniqueResolvableUris] and
   /// [LinkGroupType.informationalResolvableUris].
   ///
-  /// This is a prefix that should be applied to the [Link.value] of the
+  /// This is a prefix that should be applied to the [Link].value of the
   /// [links].
   ///
   /// If [type] is [LinkGroupType.uniqueResolvableUris] the URI up to and
   /// including the last colon must be included.
-  @annotation.XmlAttribute(name: 'D')
-  final String? namespace;
+  String? get namespace => tryParseString('D');
+  set namespace(String? value) => setStringNullable('D', value);
 
   /// Name of the link group, description or comment.
-  @annotation.XmlAttribute(name: 'E')
-  final String? designator;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    for (final a in links.map((e) => e.selfWithRecursiveChildren)) ...a,
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$LinkGroupBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$LinkGroupToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    links,
-    id,
-    type,
-    manufacturerGLN,
-    namespace,
-    designator,
-  ];
+  String? get designator => tryParseString('E');
+  set designator(String? value) => setStringNullable('E', value);
 }
 
 /// An enumerator for which type of external object key a [LinkGroup] uses.
-@annotation.XmlEnum()
 enum LinkGroupType {
   /// Universally Unique IDentifiers, UUID v4 (random) only.
-  @annotation.XmlValue('1')
   uuids(1, 'UUIDs'),
 
   /// Manufacturer proprietary values. A valid manufacturer GLN is required for
   /// this.
-  @annotation.XmlValue('2')
   manufacturerProprietary(2, 'Manufacturer Proprietary'),
 
   /// Unique resolvable URIs. GS1 codes, the full link value is the
-  /// concatenation of [LinkGroup.namespace] and [Link.value].
-  @annotation.XmlValue('3')
+  /// concatenation of [LinkGroup.namespace] and [Link].value.
   uniqueResolvableUris(3, 'Unique Resolvable URIs'),
 
   /// Information resolvable URIs. Disjoint set of information link, the full
-  /// link value is the concatenation of [LinkGroup.namespace] and [Link.value].
-  @annotation.XmlValue('4')
+  /// link value is the concatenation of [LinkGroup.namespace] and [Link].value.
   informationalResolvableUris(4, 'Informational Resolvable URIs');
 
   const LinkGroupType(this.value, this.description);

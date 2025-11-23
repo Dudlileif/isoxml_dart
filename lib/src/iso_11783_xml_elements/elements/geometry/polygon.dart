@@ -13,11 +13,7 @@ part of '../../iso_11783_element.dart';
 /// positions inside the polygon. This is to enablethe task controller to
 /// display farm-side-generated comments stored in [designator] at certain
 /// positions as informational messages to the operator.
-@CopyWith()
-@annotation.XmlRootElement(name: 'PLN')
-@annotation.XmlSerializable(createMixin: true)
-class Polygon extends Iso11783Element
-    with _$PolygonXmlSerializableMixin, EquatableMixin {
+class Polygon extends Iso11783Element {
   /// Default factory for creating a [Polygon] with verified
   /// arguments.
   factory Polygon({
@@ -27,7 +23,6 @@ class Polygon extends Iso11783Element
     int? area,
     int? colour,
     String? id,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (designator != null) {
       ArgumentValidation.checkStringLength(designator);
@@ -58,54 +53,64 @@ class Polygon extends Iso11783Element
       area: area,
       colour: colour,
       id: id,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Polygon._({
-    required this.type,
+    required PolygonType type,
     required List<LineString> lineStrings,
-    this.designator,
-    this.area,
-    this.colour,
-    this.id,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.polygon,
-         description: 'Polygon',
-       ) {
+    String? designator,
+    int? area,
+    int? colour,
+    String? id,
+  }) : super(elementType: _elementType) {
+    this.type = type;
+    this.designator = designator;
+    this.area = area;
+    this.colour = colour;
+    this.id = id;
     this.lineStrings.addAll(lineStrings);
   }
 
-  /// Creates a [Polygon] from [element].
-  factory Polygon.fromXmlElement(XmlElement element) {
-    final lineStrings = element.getElements('LSG')!;
-    final type = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final area = element.getAttribute('C');
-    final colour = element.getAttribute('D');
-    final id = element.getAttribute('E');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return Polygon(
-      lineStrings: lineStrings.map(LineString.fromXmlElement).toList(),
-      type: $PolygonTypeEnumMap.entries
-          .singleWhere(
-            (polygonTypeEnumMapEntry) => polygonTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$PolygonTypeEnumMap.values.join(', ')}''',
-            ),
-          )
-          .key,
-      designator: designator,
-      area: area != null ? int.parse(area) : null,
-      colour: colour != null ? int.parse(colour) : null,
-      id: id,
-      customAttributes: customAttributes,
+  Polygon._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    lineStrings.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.lineString.xmlTag)
+          .map(LineString._fromXmlElement)
+          .toList(),
     );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (area != null) {
+      ArgumentValidation.checkValueInRange(
+        value: area!,
+        min: 0,
+        max: 4294967294,
+        name: 'area',
+      );
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+    if (id != null) {
+      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.polygon;
 
   /// Regular expression matching pattern for the [id] of [Polygon]s.
   static const staticIdRefPattern = '(PLN|PLN-)[1-9]([0-9])*';
@@ -114,131 +119,76 @@ class Polygon extends Iso11783Element
   String get idRefPattern => staticIdRefPattern;
 
   /// The line strins that makes up this polygon.
-  @annotation.XmlElement(name: 'LSG')
-  final List<LineString> lineStrings = [];
+  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
 
   /// Which type of polygon this is.
-  @annotation.XmlAttribute(name: 'A')
-  final PolygonType type;
+  PolygonType get type => PolygonType.values.firstWhere(
+    (type) => type.value == parseInt('A'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${PolygonType.values.join(', ')}''',
+    ),
+  );
+  set type(PolygonType value) => setInt('A', value.value);
 
   /// Name of the polygon, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Area of the polygon in m².
-  @annotation.XmlAttribute(name: 'C')
-  final int? area;
+  int? get area => tryParseInt('C');
+  set area(int? value) => setIntNullable('C', value);
 
   /// Colour of this.
   ///
   /// See ISO 11783-6 for colour palette, or the implementation in
   /// [Iso11783Colour].
-  @annotation.XmlAttribute(name: 'D')
-  final int? colour;
+  int? get colour => tryParseInt('D');
+  set colour(int? value) => setIntNullable('D', value);
 
   /// Unique identifier for this polygon.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'E')
-  final String? id;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in lineStrings.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$PolygonBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$PolygonToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    lineStrings,
-    type,
-    designator,
-    area,
-    colour,
-    id,
-  ];
+  String? get id => tryParseString('E');
+  set id(String? value) => setStringNullable('E', value);
 }
 
 /// An enumerator for which type a [Polygon] is.
-@annotation.XmlEnum()
 enum PolygonType {
   /// Boundary of a [Partfield].
-  @annotation.XmlValue('1')
   partfieldBoundary(1, 'Partfield Boundary'),
 
   /// [TreatmentZone]
-  @annotation.XmlValue('2')
   treatmentZone(2, 'Treatment Zone'),
 
   /// Water surface
-  @annotation.XmlValue('3')
   waterSurface(3, 'Water Surface'),
 
   /// Building
-  @annotation.XmlValue('4')
   building(4, 'Building'),
 
   /// Road
-  @annotation.XmlValue('5')
   road(5, 'Road'),
 
   /// An obstacle to avoid.
-  @annotation.XmlValue('6')
   obstacle(6, 'Obstacle'),
 
   /// Flag
-  @annotation.XmlValue('7')
   flag(7, 'Flag'),
 
   /// Other
-  @annotation.XmlValue('8')
   other(8, 'Other'),
 
   /// Mainfield
-  @annotation.XmlValue('9')
   mainfield(9, 'Mainfield'),
 
   /// Headland
-  @annotation.XmlValue('10')
   headland(10, 'Headland'),
 
   /// Buffer zone
-  @annotation.XmlValue('11')
   bufferZone(11, 'Buffer Zone'),
 
   /// Windbreak
-  @annotation.XmlValue('12')
   windbreak(12, 'Windbreak');
 
   const PolygonType(this.value, this.description);

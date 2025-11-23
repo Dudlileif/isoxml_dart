@@ -5,16 +5,11 @@
 part of '../../iso_11783_element.dart';
 
 /// An element that contains a refernce to a single [OperationTechnique].
-@CopyWith()
-@annotation.XmlRootElement(name: 'OTR')
-@annotation.XmlSerializable(createMixin: true)
-class OperationTechniqueReference extends Iso11783Element
-    with _$OperationTechniqueReferenceXmlSerializableMixin, EquatableMixin {
+class OperationTechniqueReference extends Iso11783Element {
   /// Default factory for creating a [OperationTechniqueReference] with
   /// verified arguments.
   factory OperationTechniqueReference({
     required String operationTechniqueIdRef,
-    List<XmlAttribute>? customAttributes,
   }) {
     ArgumentValidation.checkId(
       id: operationTechniqueIdRef,
@@ -24,68 +19,34 @@ class OperationTechniqueReference extends Iso11783Element
 
     return OperationTechniqueReference._(
       operationTechniqueIdRef: operationTechniqueIdRef,
-      customAttributes: customAttributes,
     );
   }
 
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
-  const OperationTechniqueReference._({
-    required this.operationTechniqueIdRef,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.operationTechniqueReference,
-         description: 'OperationTechniqueReference',
-       );
+  OperationTechniqueReference._({
+    required String operationTechniqueIdRef,
+  }) : super(elementType: _elementType) {
+    this.operationTechniqueIdRef = operationTechniqueIdRef;
+  }
 
-  /// Creates a [OperationTechniqueReference] from [element].
-  factory OperationTechniqueReference.fromXmlElement(XmlElement element) {
-    final operationTechniqueIdRef = element.getAttribute('A')!;
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
+  OperationTechniqueReference._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
 
-    return OperationTechniqueReference(
-      operationTechniqueIdRef: operationTechniqueIdRef,
-      customAttributes: customAttributes,
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: operationTechniqueIdRef,
+      idRefPattern: OperationTechnique.staticIdRefPattern,
+      idName: 'operationTechniqueIdRef',
     );
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.operationTechniqueReference;
 
   /// Reference to a [OperationTechnique].
-  @annotation.XmlAttribute(name: 'A')
-  final String operationTechniqueIdRef;
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$OperationTechniqueReferenceBuildXmlChildren(
-      this,
-      builder,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$OperationTechniqueReferenceToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [operationTechniqueIdRef];
+  String get operationTechniqueIdRef => parseString('A');
+  set operationTechniqueIdRef(String value) => setString('A', value);
 }

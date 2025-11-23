@@ -10,11 +10,7 @@ part of '../../iso_11783_element.dart';
 /// comment to all positions of the linestring. This is to enable the task
 /// controller to display farm-side-generated comments stored in the
 /// [designator] at certain positions as informational messages to the operator.
-@CopyWith()
-@annotation.XmlRootElement(name: 'LSG')
-@annotation.XmlSerializable(createMixin: true)
-class LineString extends Iso11783Element
-    with _$LineStringXmlSerializableMixin, EquatableMixin {
+class LineString extends Iso11783Element {
   /// Default factory for creating a [LineString] with verified
   /// arguments.
   factory LineString({
@@ -25,7 +21,6 @@ class LineString extends Iso11783Element
     int? length,
     int? colour,
     String? id,
-    List<XmlAttribute>? customAttributes,
   }) {
     if (points.isEmpty) {
       throw ArgumentError.value(points, 'points', 'Should not be empty');
@@ -69,7 +64,6 @@ class LineString extends Iso11783Element
       length: length,
       colour: colour,
       id: id,
-      customAttributes: customAttributes,
     );
   }
 
@@ -77,50 +71,73 @@ class LineString extends Iso11783Element
   /// in the default factory.
   LineString._({
     required List<Point> points,
-    required this.type,
-    this.designator,
-    this.width,
-    this.length,
-    this.colour,
-    this.id,
-    super.customAttributes,
-  }) : super(
-         elementType: Iso11783ElementType.lineString,
-         description: 'LineString',
-       ) {
+    required LineStringType type,
+    String? designator,
+    int? width,
+    int? length,
+    int? colour,
+    String? id,
+  }) : super(elementType: _elementType) {
+    this.type = type;
+    this.designator = designator;
+    this.width = width;
+    this.length = length;
+    this.colour = colour;
+    this.id = id;
     this.points.addAll(points);
   }
 
-  /// Creates a [LineString] from [element].
-  factory LineString.fromXmlElement(XmlElement element) {
-    final points = element.getElements('PNT')!;
-    final type = element.getAttribute('A')!;
-    final designator = element.getAttribute('B');
-    final width = element.getAttribute('C');
-    final length = element.getAttribute('D');
-    final colour = element.getAttribute('E');
-    final id = element.getAttribute('F');
-    final customAttributes = element.attributes.nonSingleAlphabeticNames;
-
-    return LineString(
-      points: points.map(Point.fromXmlElement).toList(),
-      type: $LineStringTypeEnumMap.entries
-          .singleWhere(
-            (lineStringTypeEnumMapEntry) =>
-                lineStringTypeEnumMapEntry.value == type,
-            orElse: () => throw ArgumentError(
-              '''`$type` is not one of the supported values: ${$LineStringTypeEnumMap.values.join(', ')}''',
-            ),
+  LineString._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    points.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.point.xmlTag,
           )
-          .key,
-      designator: designator,
-      width: width != null ? int.parse(width) : null,
-      length: length != null ? int.parse(length) : null,
-      colour: colour != null ? int.parse(colour) : null,
-      id: id,
-      customAttributes: customAttributes,
+          .map(Point._fromXmlElement)
+          .toList(),
     );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    if (points.isEmpty) {
+      throw ArgumentError.value(points, 'points', 'Should not be empty');
+    }
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (width != null) {
+      ArgumentValidation.checkValueInRange(
+        value: width!,
+        min: 0,
+        max: 4294967294,
+        name: 'wdith',
+      );
+    }
+    if (length != null) {
+      ArgumentValidation.checkValueInRange(
+        value: length!,
+        min: 0,
+        max: 4294967294,
+        name: 'length',
+      );
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+    if (id != null) {
+      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.lineString;
 
   /// Regular expression matching pattern for the [id] of [LineString]s.
   static const staticIdRefPattern = '(LSG|LSG-)[1-9]([0-9])*';
@@ -128,126 +145,73 @@ class LineString extends Iso11783Element
   @override
   String get idRefPattern => staticIdRefPattern;
 
-  /// The positions along this.
-  @annotation.XmlElement(name: 'PNT')
-  final List<Point> points = [];
+  /// The position points along this.
+  late final points = _XmlSyncedList<Point>(xmlElement: xmlElement);
 
   /// Which type of line string this is.
-  @annotation.XmlAttribute(name: 'A')
-  final LineStringType type;
+  LineStringType get type => LineStringType.values.firstWhere(
+    (type) => type.value == parseInt('A'),
+    orElse: () => throw ArgumentError(
+      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${LineStringType.values.join(', ')}''',
+    ),
+  );
+  set type(LineStringType value) => setInt('A', value.value);
 
   /// Name of this, description or comment.
-  @annotation.XmlAttribute(name: 'B')
-  final String? designator;
+  String? get designator => tryParseString('B');
+  set designator(String? value) => setStringNullable('B', value);
 
   /// Width of this in millimeters, typically used as the spacing for separating
   /// adjacent path in [GuidancePattern]s.
-  @annotation.XmlAttribute(name: 'C')
-  final int? width;
+  int? get width => tryParseInt('C');
+  set width(int? value) => setIntNullable('C', value);
 
   /// Length of this in millimeters.
-  @annotation.XmlAttribute(name: 'D')
-  final int? length;
+  int? get length => tryParseInt('D');
+  set length(int? value) => setIntNullable('D', value);
 
   /// Colour of this.
   ///
   /// See ISO 11783-6 for colour palette, or the implementation in
   /// [Iso11783Colour].
-  @annotation.XmlAttribute(name: 'E')
-  final int? colour;
+  int? get colour => tryParseInt('E');
+  set colour(int? value) => setIntNullable('E', value);
 
   /// Unique identifier for this line string.
   ///
   /// Records generated on MICS have negative IDs.
   @override
-  @annotation.XmlAttribute(name: 'F')
-  final String? id;
-
-  @override
-  Iterable<Iso11783Element>? get recursiveChildren => [
-    ...[
-      for (final a in points.map((e) => e.selfWithRecursiveChildren)) ...a,
-    ],
-  ];
-
-  /// Builds the XML children of this on the [builder].
-  @override
-  void buildXmlChildren(
-    XmlBuilder builder, {
-    Map<String, String> namespaces = const {},
-  }) {
-    _$LineStringBuildXmlChildren(this, builder, namespaces: namespaces);
-    if (customAttributes != null && customAttributes!.isNotEmpty) {
-      for (final attribute in customAttributes!) {
-        builder.attribute(attribute.name.local, attribute.value);
-      }
-    }
-  }
-
-  /// Returns a list of the XML attributes of this.
-  @override
-  List<XmlAttribute> toXmlAttributes({
-    Map<String, String?> namespaces = const {},
-  }) {
-    final attributes = _$LineStringToXmlAttributes(
-      this,
-      namespaces: namespaces,
-    );
-    if (customAttributes != null) {
-      attributes.addAll(customAttributes!);
-    }
-    return attributes;
-  }
-
-  @override
-  List<Object?> get props => [
-    points,
-    type,
-    designator,
-    width,
-    length,
-    colour,
-    id,
-  ];
+  String? get id => tryParseString('F');
+  set id(String? value) => setStringNullable('F', value);
 }
 
 /// An enumerator for which type a [LineString] is.
-@annotation.XmlEnum()
 enum LineStringType {
   /// The exterior of a [Polygon].
-  @annotation.XmlValue('1')
   polygonExterior(1, 'Polygon Exterior'),
 
   /// An interior of a [Polygon].
-  @annotation.XmlValue('2')
   polygonInterior(2, 'Polygon Interior'),
 
   /// A tramline in a field.
-  @annotation.XmlValue('3')
   tramline(3, 'Tramline'),
 
   /// A sampling route.
-  @annotation.XmlValue('4')
   samplingRoute(4, 'Sampling Route'),
 
   /// A guidance pattern.
-  @annotation.XmlValue('5')
   guidancePattern(5, 'Guidance Pattern'),
 
   /// A drainage indication line.
-  @annotation.XmlValue('6')
   drainage(6, 'Drainage'),
 
   /// A fence.
-  @annotation.XmlValue('7')
   fence(7, 'Fence'),
 
   /// A flag to show comments on positions.
-  @annotation.XmlValue('8')
   flag(8, 'Flag'),
 
   /// An obstacle to avoid.
-  @annotation.XmlValue('9')
   obstacle(9, 'Obstacle');
 
   const LineStringType(this.value, this.description);
