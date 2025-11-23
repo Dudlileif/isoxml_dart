@@ -16,7 +16,6 @@
 * ~~Implement Point binary file~~
 * Improve tests
 * Add example(s)
-* Evaluate if code generation should be removed (it can be more likely to break with updates or make future proofing difficult).
 
 ## Dependencies
 
@@ -24,14 +23,10 @@
 | ------- | ----------- |
 | [archive](https://pub.dev/packages/archive) | Encode and decode ZIP files. |
 | [collection](https://pub.dev/packages/collection) | Handy extension methods on iterables. |
-| [copy_with_extension](https://pub.dev/packages/copy_with_extension) | Annotations for generating copyWith methods with `copy_with_extension_gen`. |
 | [equatable](https://pub.dev/packages/equatable) | Reduce biolerplate for overriding `==` and `hashCode`. |
+| [web](https://pub.dev/packages/web) | Helps with handling JS and WASM compatibility on the web platform. |
 | [xml](https://pub.dev/packages/xml) | Makes importing, parsing and exporting XML documents a breeze. |
-| [xml_annotation](https://pub.dev/packages/xml_annotation) | Annotations for generating objects with `xml_serializable`. |
 | Dev packages| |
-| [build_runner](https://pub.dev/packages/build_runner) | Used to generate files for `xml_serializable` and `copy_with_extension`. |
-| [copy_with_extension_gen](https://pub.dev/packages/copy_with_extension_gen) | Used to generate copyWith methods. |
 | [http](https://pub.dev/packages/http) | Download data dictionary file for testing. |
 | [test](https://pub.dev/packages/test) | Unit testing. |
 | [very_good_analysis](https://pub.dev/packages/very_good_analysis) | Nice set of lint rules. |
-| [xml_serializable](https://pub.dev/packages/xml_serializable) | Make objects serializable to and from XML with the help of code generation. |
