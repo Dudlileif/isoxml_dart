@@ -6,8 +6,8 @@ part of '../../iso_11783_element.dart';
 
 /// An element that is included in a [TreatmentZone].
 ///
-/// It contains the [ddi] accompanied by its [value] and optional references
-/// [productIdRef] and [deviceElementIdRef] for [Product] and
+/// It contains the [ddi] accompanied by its value [variableValue] and optional
+/// references [productIdRef] and [deviceElementIdRef] for [Product] and
 /// [DeviceElement] information to be used in this [TreatmentZone].
 /// A [ProcessDataVariable] can contain another [ProcessDataVariable]s to
 /// describe the planned allocation of multiple [Product]s to a single
@@ -99,10 +99,7 @@ class ProcessDataVariable extends Iso11783Element {
     String? valuePresentationIdRef,
     int? actualCulturalPracticeValue,
     int? elementTypeInstanceValue,
-  }) : super(
-         elementType: Iso11783ElementType.processDataVariable,
-         description: 'ProcessDataVariable',
-       ) {
+  }) : super(elementType: _elementType) {
     this.ddi = ddi;
     this.variableValue = variableValue;
     this.productIdRef = productIdRef;
@@ -110,15 +107,77 @@ class ProcessDataVariable extends Iso11783Element {
     this.valuePresentationIdRef = valuePresentationIdRef;
     this.actualCulturalPracticeValue = actualCulturalPracticeValue;
     this.elementTypeInstanceValue = elementTypeInstanceValue;
-    if (processDataVariables != null) {
-      children.addAll(processDataVariables);
+    this.processDataVariables.addAll(processDataVariables);
+  }
+
+  ProcessDataVariable._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    processDataVariables.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.processDataVariable.xmlTag)
+          .map(ProcessDataVariable._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      ddi,
+      name: 'ddi',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: variableValue,
+      min: -2147483648,
+      max: 2147483647,
+      name: 'variableValue',
+    );
+    if (productIdRef != null) {
+      ArgumentValidation.checkId(
+        id: productIdRef!,
+        idRefPattern: Product.staticIdRefPattern,
+        idName: 'productIdRef',
+      );
+    }
+    if (deviceElementIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceElementIdRef!,
+        idRefPattern: DeviceElement.staticIdRefPattern,
+        idName: 'deviceElementIdRef',
+      );
+    }
+    if (valuePresentationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: valuePresentationIdRef!,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
+        idName: 'valuePresentationIdRef',
+      );
+    }
+    if (actualCulturalPracticeValue != null) {
+      ArgumentValidation.checkValueInRange(
+        value: actualCulturalPracticeValue!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'actualCulturalPracticeValue',
+      );
+    }
+    if (elementTypeInstanceValue != null) {
+      ArgumentValidation.checkValueInRange(
+        value: elementTypeInstanceValue!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'elementTypeInstanceValue',
+      );
     }
   }
 
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.processDataVariable;
+
   /// A list of child [ProcessDataVariable]s.
-  List<ProcessDataVariable> get processDataVariables => findElements(
-    Iso11783ElementType.processDataVariable.xmlTag,
-  ).map((e) => e as ProcessDataVariable).toList();
+  late final processDataVariables = _XmlSyncedList<ProcessDataVariable>(
+    xmlElement: xmlElement,
+  );
 
   /// A unique Data Dictionary Identifier which identifies this.
   ///

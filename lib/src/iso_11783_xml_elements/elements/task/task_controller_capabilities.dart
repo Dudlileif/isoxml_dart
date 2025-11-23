@@ -74,11 +74,7 @@ class TaskControllerCapabilities extends Iso11783Element {
     required int numberOfBoomsSectionControl,
     required int numberOfSectionsSectionControl,
     required int numberOfControlChannels,
-  }) : super(
-         elementType: Iso11783ElementType.taskControllerCapabilities,
-         description: 'TaskControllerCapabilities',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.functionNAME = functionNAME;
     this.designator = designator;
     this.versionNumber = versionNumber;
@@ -87,6 +83,48 @@ class TaskControllerCapabilities extends Iso11783Element {
     this.numberOfSectionsSectionControl = numberOfSectionsSectionControl;
     this.numberOfControlChannels = numberOfControlChannels;
   }
+
+  TaskControllerCapabilities._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      functionNAME,
+      name: 'functionNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkStringLength(designator, maxLength: 153);
+    ArgumentValidation.checkValueInRange(
+      value: providedCapabilities,
+      min: 0,
+      max: 63,
+      name: 'providedCapabilities',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfBoomsSectionControl,
+      min: 0,
+      max: 254,
+      name: 'numberOfBoomsSectionControl',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfSectionsSectionControl,
+      min: 0,
+      max: 254,
+      name: 'numberOfSectionsSectionControl',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfControlChannels,
+      min: 0,
+      max: 254,
+      name: 'numberOfControlChannels',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.taskControllerCapabilities;
 
   /// NAME of the function.
   ///
@@ -102,7 +140,7 @@ class TaskControllerCapabilities extends Iso11783Element {
   VersionNumber get versionNumber => VersionNumber.values.firstWhere(
     (type) => type.value == parseInt('C'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('C')}` is not one of the supported values: ${VersionNumber.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${VersionNumber.values.join(', ')}''',
     ),
   );
   set versionNumber(VersionNumber value) => setInt('C', value.value);

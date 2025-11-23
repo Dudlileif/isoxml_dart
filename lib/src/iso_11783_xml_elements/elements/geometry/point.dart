@@ -139,9 +139,9 @@ class Point extends Iso11783Element {
     String? filename,
     int? fileLength,
     this.binaryHeaderOptions,
-    this.byteData,
+    Uint8List? byteData,
     List<Point>? binaryPoints,
-  }) : super(elementType: Iso11783ElementType.point, description: 'Point') {
+  }) : super(elementType: _elementType) {
     this.type = type;
     this.north = north;
     this.east = east;
@@ -153,13 +153,106 @@ class Point extends Iso11783Element {
     this.verticalAccuracy = verticalAccuracy;
     this.filename = filename;
     this.fileLength = fileLength;
+    this.byteData = byteData;
     if (binaryPoints != null) {
       this.binaryPoints.addAll(binaryPoints);
     }
-    if (byteData != null && (binaryPoints == null || binaryPoints.isEmpty)) {
-      parseData();
+  }
+
+  Point._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    binaryHeaderOptions = PointBinaryHeaderOptions(
+      readType: tryParseString('A') == '',
+      readNorth: tryParseString('C') == '',
+      readEast: tryParseString('D') == '',
+      readUp: tryParseString('E') == '',
+      readColour: tryParseString('F') == '',
+      readHorizontalAccuracy: tryParseString('H') == '',
+      readVerticalAccuracy: tryParseString('I') == '',
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (filename == null && (north == null || east == null || type == null)) {
+      throw ArgumentError(
+        'north, east and type must not be null if filename is null',
+      );
+    }
+    if (north != null) {
+      ArgumentValidation.checkValueInRange(
+        value: north!,
+        min: -90,
+        max: 90,
+        name: 'north',
+      );
+    }
+    if (east != null) {
+      ArgumentValidation.checkValueInRange(
+        value: east!,
+        min: -180,
+        max: 180,
+        name: 'east',
+      );
+    }
+    if (up != null) {
+      ArgumentValidation.checkValueInRange(
+        value: up!,
+        min: -2147483647,
+        max: 2147483647,
+        name: 'up',
+      );
+    }
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+    if (id != null) {
+      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+    }
+    if (horizontalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: horizontalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'horizontalAccuracy',
+      );
+    }
+    if (verticalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: verticalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'verticalAccuracy',
+      );
+    }
+    if (filename != null) {
+      ArgumentValidation.checkId(
+        id: filename!,
+        idRefPattern: filenamePattern,
+        idName: 'filename',
+        minLength: 8,
+        maxLength: 8,
+      );
+    }
+    if (fileLength != null) {
+      ArgumentValidation.checkValueInRange(
+        value: fileLength!,
+        min: 0,
+        max: 4294967294,
+        name: 'fileLength',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.point;
 
   /// Regular expression matching pattern for the [id] of [Point]s.
   static const staticIdRefPattern = '(PNT|PNT-)[1-9]([0-9])*';
@@ -236,12 +329,19 @@ class Point extends Iso11783Element {
   /// precision.
   ///
   /// Only supported with version 4 of the standard.
-  final PointBinaryHeaderOptions? binaryHeaderOptions;
+  PointBinaryHeaderOptions? binaryHeaderOptions;
 
   /// Bytes of the binary file, if there is one.
   ///
   /// Only supported with version 4 of the standard.
-  Uint8List? byteData;
+  Uint8List? get byteData => _byteData;
+
+  set byteData(Uint8List? value) {
+    _byteData = value;
+    parseData();
+  }
+
+  Uint8List? _byteData;
 
   /// Parsed [Point]s from the [byteData].
   ///
@@ -324,8 +424,7 @@ enum PointType {
   final String description;
 }
 
-// TODO: check binary handling
-
+@immutable
 /// A header that describes how [Point]s should be read from a binary file.
 class PointBinaryHeaderOptions {
   /// A header that describes how [Point]s should be read from a binary file.
@@ -359,4 +458,40 @@ class PointBinaryHeaderOptions {
 
   /// Whether [Point.verticalAccuracy] should be read from the binary data.
   final bool readVerticalAccuracy;
+
+  @override
+  int get hashCode => Object.hashAll([
+    readType,
+    readNorth,
+    readEast,
+    readUp,
+    readColour,
+    readHorizontalAccuracy,
+    readVerticalAccuracy,
+  ]);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PointBinaryHeaderOptions &&
+          const ListEquality<bool>().equals(
+            [
+              readType,
+              readNorth,
+              readEast,
+              readUp,
+              readColour,
+              readHorizontalAccuracy,
+              readVerticalAccuracy,
+            ],
+            [
+              other.readType,
+              other.readNorth,
+              other.readEast,
+              other.readUp,
+              other.readColour,
+              other.readHorizontalAccuracy,
+              other.readVerticalAccuracy,
+            ],
+          );
 }

@@ -6,7 +6,6 @@
 // ignore_for_file: avoid_catches_without_on_clauses
 
 import 'package:isoxml_dart/isoxml_dart.dart';
-import 'package:isoxml_dart/src/iso_11783_xml_elements/argument_validation.dart';
 import 'package:test/test.dart';
 
 void main() {

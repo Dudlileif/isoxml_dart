@@ -77,11 +77,7 @@ class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
     int? eastShift,
     int? northShift,
     int? propagationOffset,
-  }) : super(
-         elementType: Iso11783ElementType.guidanceShift,
-         description: 'GuidanceShift',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.allocationStamp = allocationStamp;
     this.groupIdRef = groupIdRef;
     this.patternIdRef = patternIdRef;
@@ -89,6 +85,56 @@ class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
     this.northShift = northShift;
     this.propagationOffset = propagationOffset;
   }
+
+  GuidanceShift._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (groupIdRef != null) {
+      ArgumentValidation.checkId(
+        id: groupIdRef!,
+        idRefPattern: GuidanceGroup.staticIdRefPattern,
+        idName: 'groupIdRef',
+      );
+    }
+    if (patternIdRef != null) {
+      ArgumentValidation.checkId(
+        id: patternIdRef!,
+        idRefPattern: GuidancePattern.staticIdRefPattern,
+        idName: 'patternIdRef',
+      );
+    }
+    if (eastShift != null) {
+      ArgumentValidation.checkValueInRange(
+        value: eastShift!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'eastShift',
+      );
+    }
+    if (northShift != null) {
+      ArgumentValidation.checkValueInRange(
+        value: northShift!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'northShift',
+      );
+    }
+    if (propagationOffset != null) {
+      ArgumentValidation.checkValueInRange(
+        value: propagationOffset!,
+        min: -2147483648,
+        max: 2147483647,
+        name: 'propagationOffset',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidanceShift;
 
   /// Reference to a [GuidanceGroup].
   String? get groupIdRef => tryParseString('A');

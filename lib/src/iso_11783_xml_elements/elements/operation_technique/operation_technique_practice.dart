@@ -36,13 +36,33 @@ class OperationTechniquePractice extends Iso11783Element {
   OperationTechniquePractice._({
     required String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.operationTechniquePractice,
-         description: 'OperationTechniquePractice',
-       ) {
+  }) : super(elementType: _elementType) {
     this.culturalPracticeIdRef = culturalPracticeIdRef;
     this.operationTechniqueIdRef = operationTechniqueIdRef;
   }
+
+  OperationTechniquePractice._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: culturalPracticeIdRef,
+      idRefPattern: CulturalPractice.staticIdRefPattern,
+      idName: 'culturalPracticeIdRef',
+    );
+    if (operationTechniqueIdRef != null) {
+      ArgumentValidation.checkId(
+        id: operationTechniqueIdRef!,
+        idRefPattern: OperationTechnique.staticIdRefPattern,
+        idName: 'operationTechniqueIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.operationTechniquePractice;
 
   /// Reference to a [CulturalPractice].
   String get culturalPracticeIdRef => parseString('A');

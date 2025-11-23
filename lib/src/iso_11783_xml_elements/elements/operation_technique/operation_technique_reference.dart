@@ -26,12 +26,25 @@ class OperationTechniqueReference extends Iso11783Element {
   /// in the default factory.
   OperationTechniqueReference._({
     required String operationTechniqueIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.operationTechniqueReference,
-         description: 'OperationTechniqueReference',
-       ) {
+  }) : super(elementType: _elementType) {
     this.operationTechniqueIdRef = operationTechniqueIdRef;
   }
+
+  OperationTechniqueReference._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: operationTechniqueIdRef,
+      idRefPattern: OperationTechnique.staticIdRefPattern,
+      idName: 'operationTechniqueIdRef',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.operationTechniqueReference;
 
   /// Reference to a [OperationTechnique].
   String get operationTechniqueIdRef => parseString('A');

@@ -36,14 +36,32 @@ class ProductRelation extends Iso11783Element {
   ProductRelation._({
     required String productIdRef,
     required int quantityValue,
-  }) : super(
-         elementType: Iso11783ElementType.productRelation,
-         description: 'ProductRelation',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.productIdRef = productIdRef;
     this.quantityValue = quantityValue;
   }
+
+  ProductRelation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: productIdRef,
+      idRefPattern: Product.staticIdRefPattern,
+      idName: 'productIdRef',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: quantityValue,
+      min: 0,
+      max: 2147483647,
+      name: 'quantityValue',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.productRelation;
 
   /// Reference to a [Product].
   String get productIdRef => parseString('A');

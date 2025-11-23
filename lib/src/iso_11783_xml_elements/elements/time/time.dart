@@ -63,28 +63,59 @@ class Time extends Iso11783Element {
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
-  }) : super(elementType: Iso11783ElementType.time, description: 'Time') {
+  }) : super(elementType: _elementType) {
     this.start = start;
     this.type = type;
     this.stop = stop;
     this.duration = duration;
-    if (positions != null) {
-      children.addAll(positions);
+    this.positions.addAll(positions);
+    this.dataLogValues.addAll(dataLogValues);
+  }
+
+  Time._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    positions.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.position.xmlTag)
+          .map(Position._fromXmlElement)
+          .toList(),
+    );
+    dataLogValues.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.dataLogValue.xmlTag)
+          .map(DataLogValue._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (duration != null) {
+      ArgumentValidation.checkValueInRange(
+        value: duration!,
+        min: 0,
+        max: 4294967294,
+        name: 'duration',
+      );
     }
-    if (dataLogValues != null) {
-      children.addAll(dataLogValues);
+    if (positions.length > 2) {
+      throw ArgumentError.value(
+        positions,
+        'positions',
+        'Length can not be larger than 2.',
+      );
     }
   }
 
+  static const Iso11783ElementType _elementType = Iso11783ElementType.time;
+
   /// A list of up to 2 [Position]s for this.
-  List<Position> get positions => findElements(
-    Iso11783ElementType.position.xmlTag,
-  ).map((e) => e as Position).toList();
+  late final positions = _XmlSyncedList<Position>(xmlElement: xmlElement);
 
   /// A list of [DataLogValue]s that was recorded with this time.
-  List<DataLogValue> get dataLogValues => findElements(
-    Iso11783ElementType.dataLogValue.xmlTag,
-  ).map((e) => e as DataLogValue).toList();
+  late final dataLogValues = _XmlSyncedList<DataLogValue>(
+    xmlElement: xmlElement,
+  );
 
   /// Time of start.
   DateTime get start => parseDateTime('A');
@@ -102,7 +133,7 @@ class Time extends Iso11783Element {
   TimeType get type => TimeType.values.firstWhere(
     (type) => type.value == parseInt('D'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
     ),
   );
   set type(TimeType value) => setInt('D', value.value);

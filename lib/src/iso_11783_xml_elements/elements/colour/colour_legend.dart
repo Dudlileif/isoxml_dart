@@ -46,13 +46,44 @@ class ColourLegend extends Iso11783Element {
     required String id,
     int? defaultColour,
   }) : super(
-         elementType: Iso11783ElementType.colourLegend,
-         description: 'ColourLegend',
+         elementType: _elementType,
        ) {
     this.id = id;
     this.defaultColour = defaultColour;
-    children.addAll(ranges);
+    this.ranges.addAll(ranges);
   }
+
+  ColourLegend._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    ranges.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.colourRange.xmlTag,
+          )
+          .map(ColourRange._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (ranges.isEmpty) {
+      throw ArgumentError.value(ranges, 'ranges', "List can't be empty");
+    }
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+
+    if (defaultColour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: defaultColour!,
+        min: 0,
+        max: 254,
+        name: 'defaultColour',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.colourLegend;
 
   /// Regular expression matching pattern for the [id] of [ColourLegend]s.
   static const staticIdRefPattern = '(CLD|CLD-)[1-9]([0-9])*';
@@ -61,9 +92,7 @@ class ColourLegend extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [ColourRange]s that are used with this.
-  List<ColourRange> get ranges => findElements(
-    Iso11783ElementType.colourRange.xmlTag,
-  ).map((e) => e as ColourRange).toList();
+  late final ranges = _XmlSyncedList<ColourRange>(xmlElement: xmlElement);
 
   /// Unique identifier for this colour legend.
   ///

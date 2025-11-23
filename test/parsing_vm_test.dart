@@ -23,7 +23,7 @@ void main() async {
 
   final doc = XmlDocument.parse(dataString);
   final mapped = doc.childElements.map(Iso11783Element.fromXmlElement).toList();
-  final taskData = Iso11783TaskData.fromXmlDocument(doc)!;
+  final taskData = Iso11783TaskData.fromXmlDocument(doc);
 
   group('Verify parsed document', () {
     test(
@@ -68,7 +68,7 @@ void main() async {
         CodedComment(
           id: 'CCT1',
           designator: 'Emoji comments',
-          scope: CodedCommmentScope.point,
+          scope: CodedCommentScope.point,
           groupIdRef: 'CCG1',
           listValues: [
             CodedCommentListValue(id: 'CCL1', designator: ':)'),
@@ -211,7 +211,7 @@ void main() async {
             (index) => DeviceProperty(
               objectId: [50, 52, 53][index],
               ddi: ['0073', '0086', '0087'][index],
-              value: [1400, 1000, 500][index],
+              propertyValue: [1400, 1000, 500][index],
               designator: [
                 'Maximum Bale Width',
                 'OffsetX',
@@ -602,10 +602,10 @@ void main() async {
           ),
           connections: [
             Connection(
-              deviceIdRef_0: 'DVC-1',
-              deviceElementIdRef_0: 'DET-3',
-              deviceIdRef_1: 'DVC-2',
-              deviceElementIdRef_1: 'DET-6',
+              deviceIdRef0: 'DVC-1',
+              deviceElementIdRef0: 'DET-3',
+              deviceIdRef1: 'DVC-2',
+              deviceElementIdRef1: 'DET-6',
             ),
           ],
           dataLogTriggers: List.generate(
@@ -910,19 +910,50 @@ void main() async {
           ),
           byteData: byteData,
           filename: 'PNT00001',
+          fileLength: byteData.lengthInBytes,
         );
-        expect(point.binaryPointsBytes, byteData);
         expect(
           point,
-          Point.fromXmlElement(
-            XmlElement(XmlName('PNT'), [
-              XmlAttribute(XmlName('A'), ''),
-              XmlAttribute(XmlName('C'), ''),
-              XmlAttribute(XmlName('D'), ''),
-              XmlAttribute(XmlName('E'), ''),
-              XmlAttribute(XmlName('J'), 'PNT00001'),
-            ]),
-          ).copyWith(byteData: byteData),
+          isA<Point>()
+              .having(
+                (p) => p.binaryPointsBytes,
+                'binaryPointsBytes equals byteData',
+                byteData,
+              )
+              .having((p) => p.byteData, 'correct byteData', byteData)
+              .having((p) => p.filename, 'correct filename', 'PNT00001')
+              .having(
+                (p) => p.fileLength,
+                'correct fileLength',
+                byteData.lengthInBytes,
+              ),
+        );
+        expect(
+          Iso11783Element.fromXmlElement(
+                  XmlElement(XmlName('PNT'), [
+                    XmlAttribute(XmlName('A'), ''),
+                    XmlAttribute(XmlName('C'), ''),
+                    XmlAttribute(XmlName('D'), ''),
+                    XmlAttribute(XmlName('E'), ''),
+                    XmlAttribute(XmlName('J'), 'PNT00001'),
+                    XmlAttribute(XmlName('K'), '${byteData.lengthInBytes}'),
+                  ]),
+                )
+                as Point
+            ..byteData = byteData,
+          isA<Point>()
+              .having(
+                (p) => p.binaryPointsBytes,
+                'binaryPointsBytes equals byteData',
+                byteData,
+              )
+              .having((p) => p.byteData, 'correct byteData', byteData)
+              .having((p) => p.filename, 'correct filename', 'PNT00001')
+              .having(
+                (p) => p.fileLength,
+                'correct fileLength',
+                byteData.lengthInBytes,
+              ),
         );
       });
     });
@@ -946,6 +977,16 @@ void main() async {
           path: file.path,
         );
         expect(saved, true);
+        final savedZipTaskData = await TaskDataFileHandler.loadZip(file.path);
+        final reExportedFile = File(
+          '${exportDirectory.path}/parsing_zip_export_re_exported.zip',
+        );
+        final reExported = await TaskDataFileHandler.saveToZip(
+          taskData: savedZipTaskData!,
+          path: reExportedFile.path,
+        );
+        expect(reExported, true);
+        expect(await file.readAsBytes(), await reExportedFile.readAsBytes());
       },
     );
 
@@ -965,6 +1006,17 @@ void main() async {
           externalize: true,
         );
         expect(saved, true);
+        final savedZipTaskData = await TaskDataFileHandler.loadZip(file.path);
+        final reExportedFile = File(
+          '${exportDirectory.path}/parsing_zip_export_externalized_re_exported.zip',
+        );
+        final reExported = await TaskDataFileHandler.saveToZip(
+          taskData: savedZipTaskData!,
+          path: reExportedFile.path,
+          externalize: true,
+        );
+        expect(reExported, true);
+        expect(await file.readAsBytes(), await reExportedFile.readAsBytes());
       },
     );
   });

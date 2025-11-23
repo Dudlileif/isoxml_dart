@@ -71,16 +71,54 @@ class DeviceValuePresentation extends Iso11783Element {
     required double scale,
     required int numberOfDecimals,
     String? unitDesignator,
-  }) : super(
-         elementType: Iso11783ElementType.deviceValuePresentation,
-         description: 'DeviceValuePresentation',
-       ) {
+  }) : super(elementType: _elementType) {
     this.objectId = objectId;
     this.offset = offset;
     this.scale = scale;
     this.numberOfDecimals = numberOfDecimals;
     this.unitDesignator = unitDesignator;
   }
+
+  DeviceValuePresentation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: offset,
+      min: -2147483648,
+      max: 2147483648,
+      name: 'offset',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: scale,
+      min: 0.000000001,
+      max: 100000000,
+      name: 'scale',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfDecimals,
+      min: 0,
+      max: 7,
+      name: 'numberOfDecimals',
+    );
+    if (unitDesignator != null) {
+      ArgumentValidation.checkStringLength(
+        unitDesignator!,
+        name: 'unitDesignator',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceValuePresentation;
 
   /// Unique number inside a single [Device].
   int get objectId => parseInt('A');

@@ -109,10 +109,7 @@ class Partfield extends Iso11783Element {
     String? cropTypeIdRef,
     String? cropVarietyIdRef,
     String? fieldIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.partfield,
-         description: 'Partfield',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.area = area;
@@ -122,19 +119,102 @@ class Partfield extends Iso11783Element {
     this.cropTypeIdRef = cropTypeIdRef;
     this.cropVarietyIdRef = cropVarietyIdRef;
     this.fieldIdRef = fieldIdRef;
-    if (lineStrings != null) {
-      children.addAll(lineStrings);
+    this.polygons.addAll(polygons);
+    this.points.addAll(points);
+    this.lineStrings.addAll(lineStrings);
+    this.guidanceGroups.addAll(guidanceGroups);
+  }
+
+  Partfield._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    polygons.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.polygon.xmlTag,
+          )
+          .map(Polygon._fromXmlElement)
+          .toList(),
+    );
+    points.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.point.xmlTag,
+          )
+          .map(Point._fromXmlElement)
+          .toList(),
+    );
+    lineStrings.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.lineString.xmlTag,
+          )
+          .map(LineString._fromXmlElement)
+          .toList(),
+    );
+    guidanceGroups.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.guidanceGroup.xmlTag,
+          )
+          .map(GuidanceGroup._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+    ArgumentValidation.checkValueInRange(
+      value: area,
+      min: 0,
+      max: 4294967294,
+      name: 'area',
+    );
+    if (code != null) {
+      ArgumentValidation.checkStringLength(code!, name: 'code');
     }
-    if (polygons != null) {
-      children.addAll(polygons);
+    if (customerIdRef != null) {
+      ArgumentValidation.checkId(
+        id: customerIdRef!,
+        idRefPattern: Customer.staticIdRefPattern,
+        idName: 'customerIdRef',
+      );
     }
-    if (points != null) {
-      children.addAll(points);
+    if (farmIdRef != null) {
+      ArgumentValidation.checkId(
+        id: farmIdRef!,
+        idRefPattern: Farm.staticIdRefPattern,
+        idName: 'farmIdRef',
+      );
     }
-    if (guidanceGroups != null) {
-      children.addAll(guidanceGroups);
+    if (cropTypeIdRef != null) {
+      ArgumentValidation.checkId(
+        id: cropTypeIdRef!,
+        idRefPattern: CropType.staticIdRefPattern,
+        idName: 'cropTypeIdRef',
+      );
+    }
+    if (cropVarietyIdRef != null) {
+      ArgumentValidation.checkId(
+        id: cropVarietyIdRef!,
+        idRefPattern: CropVariety.staticIdRefPattern,
+        idName: 'cropVarietyIdRef',
+      );
+    }
+    if (fieldIdRef != null) {
+      ArgumentValidation.checkId(
+        id: fieldIdRef!,
+        idRefPattern: staticIdRefPattern,
+        idName: 'fieldIdRef',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.partfield;
 
   /// Regular expression matching pattern for the [id] of [Partfield]s.
   static const staticIdRefPattern = '(PFD|PFD-)[0-9]([0-9])*';
@@ -143,24 +223,18 @@ class Partfield extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [Polygon]s that this is made of.
-  List<Polygon> get polygons => findElements(
-    Iso11783ElementType.polygon.xmlTag,
-  ).map((e) => e as Polygon).toList();
+  late final polygons = _XmlSyncedList<Polygon>(xmlElement: xmlElement);
 
   /// A list of [Point]s that this is made of.
-  List<Point> get points => findElements(
-    Iso11783ElementType.point.xmlTag,
-  ).map((e) => e as Point).toList();
+  late final points = _XmlSyncedList<Point>(xmlElement: xmlElement);
 
   /// A list of [LineString] that this is made of.
-  List<LineString> get lineStrings => findElements(
-    Iso11783ElementType.lineString.xmlTag,
-  ).map((e) => e as LineString).toList();
+  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
 
   /// A list of [GuidanceGroup]s for use in this.
-  List<GuidanceGroup> get guidanceGroups => findElements(
-    Iso11783ElementType.guidanceGroup.xmlTag,
-  ).map((e) => e as GuidanceGroup).toList();
+  late final guidanceGroups = _XmlSyncedList<GuidanceGroup>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this partfield.
   ///

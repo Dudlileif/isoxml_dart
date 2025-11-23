@@ -28,12 +28,26 @@ class DeviceObjectReference extends Iso11783Element {
   /// in the default factory.
   DeviceObjectReference._({
     required int objectId,
-  }) : super(
-         elementType: Iso11783ElementType.deviceObjectReference,
-         description: 'DeviceObjectReference',
-       ) {
+  }) : super(elementType: _elementType) {
     this.objectId = objectId;
   }
+
+  DeviceObjectReference._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceObjectReference;
 
   /// Object ID of the [DeviceProcessData] or [DeviceProperty] that this refers
   /// to.

@@ -31,13 +31,27 @@ class WorkerAllocation extends Iso11783Element with _AllocationStampMixin {
   WorkerAllocation._({
     required String workerIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(
-         elementType: Iso11783ElementType.workerAllocation,
-         description: 'WorkerAllocation',
-       ) {
+  }) : super(elementType: _elementType) {
     this.workerIdRef = workerIdRef;
     this.allocationStamp = allocationStamp;
   }
+
+  WorkerAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: workerIdRef,
+      idRefPattern: Worker.staticIdRefPattern,
+      idName: 'workerIdRef',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.workerAllocation;
 
   /// Reference to a [Worker].
   String get workerIdRef => parseString('A');

@@ -139,11 +139,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
-  }) : super(
-         elementType: Iso11783ElementType.guidancePattern,
-         description: 'GuidancePattern',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.type = type;
     this.boundaryPolygon = boundaryPolygon;
@@ -160,8 +156,102 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     this.originalSRID = originalSRID;
     this.numberOfSwathsLeft = numberOfSwathsLeft;
     this.numberOfSwathsRight = numberOfSwathsRight;
-    children.addAll(lineStrings);
+    this.boundaryPolygon = boundaryPolygon;
+    this.lineStrings.addAll(lineStrings);
   }
+
+  GuidancePattern._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    boundaryPolygon = switch (xmlElement.getElement(
+      Iso11783ElementType.polygon.xmlTag,
+    )) {
+      final XmlElement element => Polygon._fromXmlElement(element),
+      _ => null,
+    };
+    lineStrings.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.lineString.xmlTag)
+          .map(LineString._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (lineStrings.isEmpty) {
+      throw ArgumentError.value(
+        lineStrings,
+        'lineStrings',
+        'Should not be empty',
+      );
+    }
+
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (heading != null) {
+      ArgumentValidation.checkValueInRange(
+        value: heading!,
+        min: 0,
+        max: 360,
+        name: 'heading',
+      );
+    }
+    if (radius != null) {
+      ArgumentValidation.checkValueInRange(
+        value: radius!,
+        min: 0,
+        max: 4294967294,
+        name: 'radius',
+      );
+    }
+    if (horizontalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: horizontalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'horizontalAccuracy',
+      );
+    }
+    if (verticalAccuracy != null) {
+      ArgumentValidation.checkValueInRange(
+        value: verticalAccuracy!,
+        min: 0,
+        max: 65,
+        name: 'verticalAccuracy',
+      );
+    }
+    if (baseStationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: baseStationIdRef!,
+        idRefPattern: BaseStation.staticIdRefPattern,
+        idName: 'baseStationIdRef',
+      );
+    }
+    if (originalSRID != null) {
+      ArgumentValidation.checkStringLength(originalSRID!, name: 'originalSRID');
+    }
+    if (numberOfSwathsLeft != null) {
+      ArgumentValidation.checkValueInRange(
+        value: numberOfSwathsLeft!,
+        min: 0,
+        max: 4294967294,
+        name: 'numberOfSwathsLeft',
+      );
+    }
+    if (numberOfSwathsRight != null) {
+      ArgumentValidation.checkValueInRange(
+        value: numberOfSwathsRight!,
+        min: 0,
+        max: 4294967294,
+        name: 'numberOfSwathsRight',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidancePattern;
 
   /// Regular expression matching pattern for the [id] of [GuidancePattern]s.
   static const staticIdRefPattern = '(GPN|GPN-)[1-9]([0-9])*';
@@ -173,9 +263,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   ///
   /// The separation spacing between the paths for each [LineString] pattern
   /// is the [LineString.width] parameter.
-  List<LineString> get lineStrings => findElements(
-    Iso11783ElementType.lineString.xmlTag,
-  ).map((e) => e as LineString).toList();
+  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
 
   /// Unique identifier for this guidance pattern.
   ///
@@ -192,7 +280,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   GuidancePatternType get type => GuidancePatternType.values.firstWhere(
     (type) => type.value == parseInt('C'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('C')}` is not one of the supported values: ${GuidancePatternType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${GuidancePatternType.values.join(', ')}''',
     ),
   );
   set type(GuidancePatternType value) => setInt('C', value.value);

@@ -17,20 +17,21 @@ import 'package:xml/xml.dart';
 
 void main() {
   final doc = XmlDocument.parse(docString);
-  final mapped = doc.childElements.map(Iso11783Element.fromXmlElement).toList();
   final taskData = Iso11783TaskData.fromXmlDocument(doc);
 
   group('Verify parsed document', () {
     test(
       'Check that all elements are parsed',
-      () => expect(mapped.length, doc.childElements.length),
+      () => expect(
+        taskData.toSingleXmlDocument().childElements.length,
+        doc.childElements.length,
+      ),
     );
 
     test(
       'Check that first element is Iso11783TaskData',
       () => expect(taskData, isA<Iso11783TaskData>()),
     );
-    taskData!;
     test(
       'Check task data attributes',
       () => expect(
@@ -155,7 +156,7 @@ void main() {
           (
             'CCT1',
             'Emoji comments',
-            CodedCommmentScope.point,
+            CodedCommentScope.point,
             'CCG1',
             ('CCL1', 'CCL2', 'CCL3'),
             (':)', ':(', ':D'),
@@ -460,7 +461,7 @@ void main() {
                     (
                       property.objectId,
                       property.ddi,
-                      property.value,
+                      property.propertyValue,
                       property.designator,
                       property.valuePresentationObjectId,
                     ),
@@ -1716,7 +1717,7 @@ void main() {
   test(
     'Export document to string, check if equal to input string',
     () => expect(
-      taskData?.toSingleXmlDocument().toXmlString(
+      taskData.toSingleXmlDocument().toXmlString(
         pretty: true,
         indent: '    ',
       ),
@@ -1808,19 +1809,50 @@ void main() {
         ),
         byteData: byteData,
         filename: 'PNT00001',
+        fileLength: byteData.lengthInBytes,
       );
-      expect(point.binaryPointsBytes, byteData);
       expect(
         point,
-        Point.fromXmlElement(
-          XmlElement(XmlName('PNT'), [
-            XmlAttribute(XmlName('A'), ''),
-            XmlAttribute(XmlName('C'), ''),
-            XmlAttribute(XmlName('D'), ''),
-            XmlAttribute(XmlName('E'), ''),
-            XmlAttribute(XmlName('J'), 'PNT00001'),
-          ]),
-        ).copyWith(byteData: byteData),
+        isA<Point>()
+            .having(
+              (p) => p.binaryPointsBytes,
+              'binaryPointsBytes equals byteData',
+              byteData,
+            )
+            .having((p) => p.byteData, 'correct byteData', byteData)
+            .having((p) => p.filename, 'correct filename', 'PNT00001')
+            .having(
+              (p) => p.fileLength,
+              'correct fileLength',
+              byteData.lengthInBytes,
+            ),
+      );
+      expect(
+        Iso11783Element.fromXmlElement(
+                XmlElement(XmlName('PNT'), [
+                  XmlAttribute(XmlName('A'), ''),
+                  XmlAttribute(XmlName('C'), ''),
+                  XmlAttribute(XmlName('D'), ''),
+                  XmlAttribute(XmlName('E'), ''),
+                  XmlAttribute(XmlName('J'), 'PNT00001'),
+                  XmlAttribute(XmlName('K'), '${byteData.lengthInBytes}'),
+                ]),
+              )
+              as Point
+          ..byteData = byteData,
+        isA<Point>()
+            .having(
+              (p) => p.binaryPointsBytes,
+              'binaryPointsBytes equals byteData',
+              byteData,
+            )
+            .having((p) => p.byteData, 'correct byteData', byteData)
+            .having((p) => p.filename, 'correct filename', 'PNT00001')
+            .having(
+              (p) => p.fileLength,
+              'correct fileLength',
+              byteData.lengthInBytes,
+            ),
       );
     });
   });

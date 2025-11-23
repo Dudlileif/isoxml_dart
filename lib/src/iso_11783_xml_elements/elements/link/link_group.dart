@@ -64,20 +64,57 @@ class LinkGroup extends Iso11783Element {
     String? manufacturerGLN,
     String? namespace,
     String? designator,
-  }) : super(
-         elementType: Iso11783ElementType.linkGroup,
-         description: 'LinkGroup',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.type = type;
     this.manufacturerGLN = manufacturerGLN;
     this.namespace = namespace;
     this.designator = designator;
-    if (links != null) {
-      children.addAll(links);
+    this.links.addAll(links);
+  }
+
+  LinkGroup._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    links.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.link.xmlTag)
+          .map(Link._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (manufacturerGLN != null) {
+      ArgumentValidation.checkStringLength(
+        manufacturerGLN!,
+        maxLength: 64,
+        name: 'manufacturerGLN',
+      );
+    }
+    if ((type == LinkGroupType.uniqueResolvableUris ||
+            type == LinkGroupType.informationalResolvableUris) &&
+        namespace == null) {
+      throw ArgumentError.value(
+        namespace,
+        'namespace',
+        "namespace can't be null when type is resolvable.",
+      );
+    }
+    if (namespace != null) {
+      ArgumentValidation.checkStringLength(
+        namespace!,
+        maxLength: 255,
+        name: 'namespace',
+      );
+    }
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.linkGroup;
 
   /// Regular expression matching pattern for the [id] of [LinkGroup]s.
   static const staticIdRefPattern = '(LGP|LGP-)[1-9]([0-9])*';
@@ -86,9 +123,7 @@ class LinkGroup extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of the [Link]s in this.
-  List<Link> get links => findElements(
-    Iso11783ElementType.link.xmlTag,
-  ).map((e) => e as Link).toList();
+  late final links = _XmlSyncedList<Link>(xmlElement: xmlElement);
 
   /// Unique identifier for this link group.
   ///
@@ -97,11 +132,11 @@ class LinkGroup extends Iso11783Element {
   String get id => parseString('A');
   set id(String value) => setString('A', value);
 
-  /// What type of identifiers/[Link.value]s are used with the [links].
+  /// What type of identifiers/[Link].value are used with the [links].
   LinkGroupType get type => LinkGroupType.values.firstWhere(
     (type) => type.value == parseInt('B'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('B')}` is not one of the supported values: ${LinkGroupType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('B')}` is not one of the supported values: ${LinkGroupType.values.join(', ')}''',
     ),
   );
   set type(LinkGroupType value) => setInt('B', value.value);
@@ -113,7 +148,7 @@ class LinkGroup extends Iso11783Element {
   /// Namespace for resolvable [LinkGroupType.uniqueResolvableUris] and
   /// [LinkGroupType.informationalResolvableUris].
   ///
-  /// This is a prefix that should be applied to the [Link.value] of the
+  /// This is a prefix that should be applied to the [Link].value of the
   /// [links].
   ///
   /// If [type] is [LinkGroupType.uniqueResolvableUris] the URI up to and
@@ -136,11 +171,11 @@ enum LinkGroupType {
   manufacturerProprietary(2, 'Manufacturer Proprietary'),
 
   /// Unique resolvable URIs. GS1 codes, the full link value is the
-  /// concatenation of [LinkGroup.namespace] and [Link.value].
+  /// concatenation of [LinkGroup.namespace] and [Link].value.
   uniqueResolvableUris(3, 'Unique Resolvable URIs'),
 
   /// Information resolvable URIs. Disjoint set of information link, the full
-  /// link value is the concatenation of [LinkGroup.namespace] and [Link.value].
+  /// link value is the concatenation of [LinkGroup.namespace] and [Link].value.
   informationalResolvableUris(4, 'Informational Resolvable URIs');
 
   const LinkGroupType(this.value, this.description);

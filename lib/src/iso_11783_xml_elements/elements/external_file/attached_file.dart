@@ -63,11 +63,7 @@ class AttachedFile extends Iso11783Element {
     required int fileType,
     String? fileVersion,
     int? fileLength,
-  }) : super(
-         elementType: Iso11783ElementType.attachedFile,
-         description: 'AttachedFile',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.filenameWithExtension = filenameWithExtension;
     this.preserve = preserve;
     this.manufacturerGLN = manufacturerGLN;
@@ -75,6 +71,41 @@ class AttachedFile extends Iso11783Element {
     this.fileVersion = fileVersion;
     this.fileLength = fileLength;
   }
+
+  AttachedFile._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: filenameWithExtension,
+      idRefPattern: extensionPattern,
+      idName: 'filenameWithExtension',
+      minLength: 12,
+      maxLength: 12,
+    );
+    ArgumentValidation.checkValueInRange(
+      value: fileType,
+      min: 1,
+      max: 254,
+      name: 'fileType',
+    );
+    if (fileVersion != null) {
+      ArgumentValidation.checkStringLength(fileVersion!, name: 'fileVersion');
+    }
+    if (fileLength != null) {
+      ArgumentValidation.checkValueInRange(
+        value: fileLength!,
+        min: 0,
+        max: 4294967294,
+        name: 'fileLength',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.attachedFile;
 
   /// Regular expression matching pattern for the [filenameWithExtension].
   static const extensionPattern = '([0-9]|[A-Z]){8}.([0-9]|[A-Z]){3}';
@@ -87,7 +118,7 @@ class AttachedFile extends Iso11783Element {
   Preserve get preserve => Preserve.values.firstWhere(
     (type) => type.value == parseInt('B'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('B')}` is not one of the supported values: ${Preserve.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('B')}` is not one of the supported values: ${Preserve.values.join(', ')}''',
     ),
   );
   set preserve(Preserve value) => setInt('B', value.value);

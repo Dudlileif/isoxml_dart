@@ -38,13 +38,28 @@ class ExternalFileReference extends Iso11783Element {
   ExternalFileReference._({
     required String filename,
     FileType? filetype,
-  }) : super(
-         elementType: Iso11783ElementType.externalFileReference,
-         description: 'ExternalFileReference',
-       ) {
+  }) : super(elementType: _elementType) {
     this.filename = filename;
     this.filetype = filetype;
   }
+
+  ExternalFileReference._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: filename,
+      idRefPattern: filenamePattern,
+      idName: 'filename',
+      minLength: 8,
+      maxLength: 8,
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.externalFileReference;
 
   /// Regular expression matching pattern for the filenames of external files.
   static const filenamePattern =
@@ -69,10 +84,10 @@ class ExternalFileReference extends Iso11783Element {
   set filetype(FileType? value) => setIntNullable('B', value?.value);
 
   /// Which type of element this file's content is.
-  @override
-  Iso11783ElementType get elementType => Iso11783ElementType.values.firstWhere(
-    (element) => element.xmlTag == filename.substring(0, 3),
-  );
+  Iso11783ElementType get childrenElementType =>
+      Iso11783ElementType.values.firstWhere(
+        (element) => element.xmlTag == filename.substring(0, 3),
+      );
 }
 
 /// An enumerator for which type of file an [ExternalFileReference] refers to.

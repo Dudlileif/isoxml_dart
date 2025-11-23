@@ -2,13 +2,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:xml/xml.dart';
+part of '../iso_11783_element.dart';
 
-/// A helper extension to ease reading and setting of attributes on XmlElements.
-extension ParsingHelpers on XmlElement {
+extension _ParsingExtension on _XmlElementBase {
   /// Parse a [DateTime] from attribute [attributeName].
   DateTime parseDateTime(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => DateTime.parse(string),
         final value => throw FormatException(
           'Attribute $attributeName could not be parsed as DateTime: $value',
@@ -17,7 +16,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Parse a [double]from attribute [attributeName].
   double parseDouble(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => double.parse(string),
         final value => throw FormatException(
           'Attribute $attributeName could not be parsed as double: $value',
@@ -26,7 +25,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Parse an [int] from attribute [attributeName].
   int parseInt(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => int.parse(string),
         final value => throw FormatException(
           'Attribute $attributeName could not be parsed as int: $value',
@@ -35,7 +34,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Parse a [String] from attribute [attributeName].
   String parseString(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => string,
         final value => throw FormatException(
           'Attribute $attributeName could not be parsed as string: $value',
@@ -44,36 +43,39 @@ extension ParsingHelpers on XmlElement {
 
   /// Parse a nullable [DateTime] from attribute [attributeName].
   DateTime? tryParseDateTime(String attributeName, {String? namespace}) {
-    return switch (getAttribute(attributeName, namespace: namespace)) {
-      final String string => DateTime.parse(string),
+    return switch (xmlElement.getAttribute(
+      attributeName,
+      namespace: namespace,
+    )) {
+      final String string => DateTime.tryParse(string),
       final _ => null,
     };
   }
 
   /// Parse a nullable [double] from attribute [attributeName].
   double? tryParseDouble(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => double.tryParse(string),
         _ => null,
       };
 
   /// Parse a nullable [int] from attribute [attributeName].
   int? tryParseInt(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => int.tryParse(string),
         _ => null,
       };
 
   /// Parse a nullable [String] from attribute [attributeName].
   String? tryParseString(String attributeName, {String? namespace}) =>
-      switch (getAttribute(attributeName, namespace: namespace)) {
+      switch (xmlElement.getAttribute(attributeName, namespace: namespace)) {
         final String string => string,
         _ => null,
       };
 
   /// Set a [DateTime] value to attribute [attributeName].
   void setDateTime(String attributeName, DateTime value, {String? namespace}) =>
-      setAttribute(
+      xmlElement.setAttribute(
         attributeName,
         value.toIso8601String(),
         namespace: namespace,
@@ -85,7 +87,7 @@ extension ParsingHelpers on XmlElement {
     DateTime? value, {
     String? namespace,
     bool setNullToEmptyString = false,
-  }) => setAttribute(
+  }) => xmlElement.setAttribute(
     attributeName,
     value == null && setNullToEmptyString ? '' : value?.toIso8601String(),
     namespace: namespace,
@@ -93,7 +95,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Set a [double] value to attribute [attributeName].
   void setDouble(String attributeName, double value, {String? namespace}) =>
-      setAttribute(attributeName, '$value', namespace: namespace);
+      xmlElement.setAttribute(attributeName, '$value', namespace: namespace);
 
   /// Set a nullable [String] value to attribute [attributeName].
   void setDoubleNullable(
@@ -101,7 +103,7 @@ extension ParsingHelpers on XmlElement {
     double? value, {
     String? namespace,
     bool setNullToEmptyString = false,
-  }) => setAttribute(
+  }) => xmlElement.setAttribute(
     attributeName,
     value == null && setNullToEmptyString ? '' : value?.toString(),
     namespace: namespace,
@@ -109,7 +111,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Set an [int] value to attribute [attributeName].
   void setInt(String attributeName, int value, {String? namespace}) =>
-      setAttribute(attributeName, '$value', namespace: namespace);
+      xmlElement.setAttribute(attributeName, '$value', namespace: namespace);
 
   /// Set a nullable [int] value to attribute [attributeName].
   void setIntNullable(
@@ -117,7 +119,7 @@ extension ParsingHelpers on XmlElement {
     int? value, {
     String? namespace,
     bool setNullToEmptyString = false,
-  }) => setAttribute(
+  }) => xmlElement.setAttribute(
     attributeName,
     value == null && setNullToEmptyString ? '' : value?.toString(),
     namespace: namespace,
@@ -125,7 +127,7 @@ extension ParsingHelpers on XmlElement {
 
   /// Set a [String] value to attribute [attributeName].
   void setString(String attributeName, String value, {String? namespace}) =>
-      setAttribute(attributeName, value, namespace: namespace);
+      xmlElement.setAttribute(attributeName, value, namespace: namespace);
 
   /// Set a nullable [String] value to attribute [attributeName].
   void setStringNullable(
@@ -133,7 +135,7 @@ extension ParsingHelpers on XmlElement {
     String? value, {
     String? namespace,
     bool setNullToEmptyString = false,
-  }) => setAttribute(
+  }) => xmlElement.setAttribute(
     attributeName,
     value == null && setNullToEmptyString ? '' : value,
     namespace: namespace,

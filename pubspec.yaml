@@ -12,6 +12,7 @@ environment:
 dependencies:
   archive: ^4.0.7
   collection: ^1.19.0
+  meta: ^1.17.0
   web: ^1.1.1
   xml: ^6.6.1
 

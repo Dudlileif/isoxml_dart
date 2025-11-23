@@ -30,13 +30,26 @@ class OperationTechnique extends Iso11783Element {
   OperationTechnique._({
     required String id,
     required String designator,
-  }) : super(
-         elementType: Iso11783ElementType.operationTechnique,
-         description: 'OperationTechnique',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
   }
+
+  OperationTechnique._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.operationTechnique;
 
   /// Regular expression matching pattern for the [id] of [OperationTechnique]s.
   static const staticIdRefPattern = '(OTQ|OTQ-)[1-9]([0-9])*';

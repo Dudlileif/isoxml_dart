@@ -146,11 +146,9 @@ class Task extends Iso11783Element {
     int? defaultTreatmentZoneCode,
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
-  }) : super(elementType: Iso11783ElementType.task, description: 'Task') {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.status = status;
-    this.operationTechniquePractice = operationTechniquePractice;
-    this.grid = grid;
     this.designator = designator;
     this.customerIdRef = customerIdRef;
     this.farmIdRef = farmIdRef;
@@ -159,41 +157,166 @@ class Task extends Iso11783Element {
     this.defaultTreatmentZoneCode = defaultTreatmentZoneCode;
     this.positionLostTreatmentZoneCode = positionLostTreatmentZoneCode;
     this.outOfFieldTreatmentZoneCode = outOfFieldTreatmentZoneCode;
+    this.controlAssignments.addAll(controlAssignments);
+    this.connections.addAll(connections);
+    this.commentAllocations.addAll(commentAllocations);
+    this.dataLogTriggers.addAll(dataLogTriggers);
+    this.deviceAllocations.addAll(deviceAllocations);
+    this.grid = grid;
+    this.guidanceAllocations.addAll(guidanceAllocations);
+    this.operationTechniquePractice = operationTechniquePractice;
+    this.productAllocations.addAll(productAllocations);
+    this.times.addAll(times);
+    this.timeLogs.addAll(timeLogs);
+    this.treatmentZones.addAll(treatmentZones);
+    this.workerAllocations.addAll(workerAllocations);
+  }
 
-    if (treatmentZones != null) {
-      children.addAll(treatmentZones);
+  Task._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    commentAllocations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.commentAllocation.xmlTag)
+          .map(CommentAllocation._fromXmlElement)
+          .toList(),
+    );
+    controlAssignments.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.controlAssignment.xmlTag)
+          .map(ControlAssignment._fromXmlElement)
+          .toList(),
+    );
+    connections.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.connection.xmlTag)
+          .map(Connection._fromXmlElement)
+          .toList(),
+    );
+    deviceAllocations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.deviceAllocation.xmlTag)
+          .map(DeviceAllocation._fromXmlElement)
+          .toList(),
+    );
+    dataLogTriggers.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.dataLogTrigger.xmlTag)
+          .map(DataLogTrigger._fromXmlElement)
+          .toList(),
+    );
+    final treatmentZones = xmlElement
+        .findElements(Iso11783ElementType.treatmentZone.xmlTag)
+        .map(TreatmentZone._fromXmlElement)
+        .toList();
+    grid = switch (xmlElement.getElement(Iso11783ElementType.grid.xmlTag)) {
+      final XmlElement element => Grid._fromXmlElement(
+        element,
+        treatmentZones: treatmentZones,
+      ),
+      _ => null,
+    };
+    guidanceAllocations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.guidanceAllocation.xmlTag)
+          .map(GuidanceAllocation._fromXmlElement)
+          .toList(),
+    );
+    operationTechniquePractice = switch (xmlElement.getElement(
+      Iso11783ElementType.operationTechniquePractice.xmlTag,
+    )) {
+      final XmlElement element => OperationTechniquePractice._fromXmlElement(
+        element,
+      ),
+      _ => null,
+    };
+    productAllocations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.productAllocation.xmlTag)
+          .map(ProductAllocation._fromXmlElement)
+          .toList(),
+    );
+    times.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.time.xmlTag)
+          .map(Time._fromXmlElement)
+          .toList(),
+    );
+    timeLogs.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.timeLog.xmlTag)
+          .map(TimeLog._fromXmlElement)
+          .toList(),
+    );
+    this.treatmentZones.addAll(treatmentZones);
+    workerAllocations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.workerAllocation.xmlTag)
+          .map(WorkerAllocation._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
-    if (times != null) {
-      children.addAll(times);
+    if (customerIdRef != null) {
+      ArgumentValidation.checkId(
+        id: customerIdRef!,
+        idRefPattern: Customer.staticIdRefPattern,
+        idName: 'customerIdRef',
+      );
     }
-    if (workerAllocations != null) {
-      children.addAll(workerAllocations);
+    if (farmIdRef != null) {
+      ArgumentValidation.checkId(
+        id: farmIdRef!,
+        idRefPattern: Farm.staticIdRefPattern,
+        idName: 'farmIdRef',
+      );
     }
-    if (deviceAllocations != null) {
-      children.addAll(deviceAllocations);
+    if (partfieldIdRef != null) {
+      ArgumentValidation.checkId(
+        id: partfieldIdRef!,
+        idRefPattern: Partfield.staticIdRefPattern,
+        idName: 'partfieldIdRef',
+      );
     }
-    if (connections != null) {
-      children.addAll(connections);
+    if (responsibleWorkerIdRef != null) {
+      ArgumentValidation.checkId(
+        id: responsibleWorkerIdRef!,
+        idRefPattern: Worker.staticIdRefPattern,
+        idName: 'responsibleWorkerIdRef',
+      );
     }
-    if (productAllocations != null) {
-      children.addAll(productAllocations);
+    if (defaultTreatmentZoneCode != null) {
+      ArgumentValidation.checkValueInRange(
+        value: defaultTreatmentZoneCode!,
+        min: 0,
+        max: 254,
+        name: 'defaultTreatmentZoneCode',
+      );
     }
-    if (dataLogTriggers != null) {
-      children.addAll(dataLogTriggers);
+    if (positionLostTreatmentZoneCode != null) {
+      ArgumentValidation.checkValueInRange(
+        value: positionLostTreatmentZoneCode!,
+        min: 0,
+        max: 254,
+        name: 'positionLostTreatmentZoneCode',
+      );
     }
-    if (commentAllocations != null) {
-      children.addAll(commentAllocations);
-    }
-    if (timeLogs != null) {
-      children.addAll(timeLogs);
-    }
-    if (controlAssignments != null) {
-      children.addAll(controlAssignments);
-    }
-    if (guidanceAllocations != null) {
-      children.addAll(guidanceAllocations);
+    if (outOfFieldTreatmentZoneCode != null) {
+      ArgumentValidation.checkValueInRange(
+        value: outOfFieldTreatmentZoneCode!,
+        min: 0,
+        max: 254,
+        name: 'outOfFieldTreatmentZoneCode',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.task;
 
   /// Regular expression matching pattern for the [id] of [Task]s.
   static const staticIdRefPattern = '(TSK|TSK-)[1-9]([0-9])*';
@@ -202,88 +325,106 @@ class Task extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [CommentAllocation] for this.
-  List<CommentAllocation> get commentAllocations => findElements(
-    Iso11783ElementType.commentAllocation.xmlTag,
-  ).map((e) => e as CommentAllocation).toList();
+  late final commentAllocations = _XmlSyncedList<CommentAllocation>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [ControlAssignment]s for this.
-  List<ControlAssignment> get controlAssignments => findElements(
-    Iso11783ElementType.controlAssignment.xmlTag,
-  ).map((e) => e as ControlAssignment).toList();
+  late final controlAssignments = _XmlSyncedList<ControlAssignment>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Connection] for this.
-  List<Connection> get connections => findElements(
-    Iso11783ElementType.connection.xmlTag,
-  ).map((e) => e as Connection).toList();
+  late final connections = _XmlSyncedList<Connection>(xmlElement: xmlElement);
 
   /// A list of [DeviceAllocation] for this.
-  List<DeviceAllocation> get deviceAllocations => findElements(
-    Iso11783ElementType.deviceAllocation.xmlTag,
-  ).map((e) => e as DeviceAllocation).toList();
+  late final deviceAllocations = _XmlSyncedList<DeviceAllocation>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [DataLogTrigger] for this.
-  List<DataLogTrigger> get dataLogTriggers => findElements(
-    Iso11783ElementType.dataLogTrigger.xmlTag,
-  ).map((e) => e as DataLogTrigger).toList();
+  late final dataLogTriggers = _XmlSyncedList<DataLogTrigger>(
+    xmlElement: xmlElement,
+  );
 
   /// The [Grid] for this.
-  Grid? get grid => getElement(Iso11783ElementType.grid.xmlTag) as Grid?;
-  set grid(Grid? value) => switch ((value, grid)) {
-    (
-      final Grid value,
-      final Grid existing,
-    ) =>
-      existing.replace(value as XmlElement),
-    (final Grid value, null) => children.add(value),
-    (null, final Grid existing) => existing.remove(),
-    _ => null,
-  };
+  Grid? get grid => _grid;
+
+  set grid(Grid? value) {
+    switch ((value, grid)) {
+      case (
+        Grid(xmlElement: final element),
+        Grid(xmlElement: final existing),
+      ):
+        if (element.hasParent) {
+          element.remove();
+        }
+        existing.replace(element);
+      case (Grid(xmlElement: final gridElement), null):
+        if (gridElement.hasParent) {
+          gridElement.remove();
+        }
+        xmlElement.children.add(gridElement);
+      case (null, final Grid existing):
+        existing.xmlElement.remove();
+    }
+    _grid = value;
+  }
+
+  Grid? _grid;
 
   /// A list of [GuidanceAllocation]s for this.
-  List<GuidanceAllocation> get guidanceAllocations => findElements(
-    Iso11783ElementType.guidanceAllocation.xmlTag,
-  ).map((e) => e as GuidanceAllocation).toList();
+  late final guidanceAllocations = _XmlSyncedList<GuidanceAllocation>(
+    xmlElement: xmlElement,
+  );
 
   /// The [OperationTechniquePractice] for this.
   OperationTechniquePractice? get operationTechniquePractice =>
-      getElement(Iso11783ElementType.operationTechniquePractice.xmlTag)
-          as OperationTechniquePractice?;
-  set operationTechniquePractice(OperationTechniquePractice? value) =>
-      switch ((value, operationTechniquePractice)) {
-        (
-          final OperationTechniquePractice value,
-          final OperationTechniquePractice existing,
-        ) =>
-          existing.replace(value as XmlElement),
-        (final OperationTechniquePractice value, null) => children.add(value),
-        (null, final OperationTechniquePractice existing) => existing.remove(),
-        _ => null,
-      };
+      _operationTechniquePractice;
+
+  set operationTechniquePractice(OperationTechniquePractice? value) {
+    switch ((value, operationTechniquePractice)) {
+      case (
+        OperationTechniquePractice(xmlElement: final element),
+        OperationTechniquePractice(xmlElement: final existing),
+      ):
+        if (element.hasParent) {
+          element.remove();
+        }
+        existing.replace(element);
+      case (OperationTechniquePractice(xmlElement: final element), null):
+        if (element.hasParent) {
+          element.remove();
+        }
+        xmlElement.children.add(element);
+      case (null, OperationTechniquePractice(xmlElement: final existing)):
+        existing.remove();
+    }
+    _operationTechniquePractice = value;
+  }
+
+  OperationTechniquePractice? _operationTechniquePractice;
 
   /// A list of [ProductAllocation] for this.
-  List<ProductAllocation> get productAllocations => findElements(
-    Iso11783ElementType.productAllocation.xmlTag,
-  ).map((e) => e as ProductAllocation).toList();
+  late final productAllocations = _XmlSyncedList<ProductAllocation>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Time] for this.
-  List<Time> get times => findElements(
-    Iso11783ElementType.time.xmlTag,
-  ).map((e) => e as Time).toList();
+  late final times = _XmlSyncedList<Time>(xmlElement: xmlElement);
 
   /// A list of [TimeLog] for this.
-  List<TimeLog> get timeLogs => findElements(
-    Iso11783ElementType.timeLog.xmlTag,
-  ).map((e) => e as TimeLog).toList();
+  late final timeLogs = _XmlSyncedList<TimeLog>(xmlElement: xmlElement);
 
   /// A list of [TreatmentZone] for this.
-  List<TreatmentZone> get treatmentZones => findElements(
-    Iso11783ElementType.treatmentZone.xmlTag,
-  ).map((e) => e as TreatmentZone).toList();
+  late final treatmentZones = _XmlSyncedList<TreatmentZone>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [WorkerAllocation] for this.
-  List<WorkerAllocation> get workerAllocations => findElements(
-    Iso11783ElementType.workerAllocation.xmlTag,
-  ).map((e) => e as WorkerAllocation).toList();
+  late final workerAllocations = _XmlSyncedList<WorkerAllocation>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this task.
   ///
@@ -316,7 +457,7 @@ class Task extends Iso11783Element {
   TaskStatus get status => TaskStatus.values.firstWhere(
     (type) => type.value == parseInt('G'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('G')}` is not one of the supported values: ${TaskStatus.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('G')}` is not one of the supported values: ${TaskStatus.values.join(', ')}''',
     ),
   );
   set status(TaskStatus value) => setInt('G', value.value);

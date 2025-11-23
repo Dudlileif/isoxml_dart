@@ -85,11 +85,7 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
     required int userDeviceElementNumber,
     required String processDataDDI,
     AllocationStamp? allocationStamp,
-  }) : super(
-         elementType: Iso11783ElementType.controlAssignment,
-         description: 'ControlAssignment',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.sourceClientNAME = sourceClientNAME;
     this.userClientNAME = userClientNAME;
     this.sourceDeviceStructureLabel = sourceDeviceStructureLabel;
@@ -99,6 +95,60 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
     this.processDataDDI = processDataDDI;
     this.allocationStamp = allocationStamp;
   }
+
+  ControlAssignment._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      sourceClientNAME,
+      name: 'sourceClientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkHexStringLength(
+      userClientNAME,
+      name: 'userClientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkId(
+      id: sourceDeviceStructureLabel,
+      idRefPattern: Device.structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'sourceDeviceStructureLabel',
+    );
+    ArgumentValidation.checkId(
+      id: userDeviceStructureLabel,
+      idRefPattern: Device.structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'userDeviceStructureLabel',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: sourceDeviceElementNumber,
+      min: 0,
+      max: 4095,
+      name: 'sourceDeviceElementNumber',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: userDeviceElementNumber,
+      min: 0,
+      max: 4095,
+      name: 'userDeviceElementNumber',
+    );
+    ArgumentValidation.checkHexStringLength(
+      processDataDDI,
+      name: 'processDataDDI',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.controlAssignment;
 
   /// NAME of the control function source.
   ///

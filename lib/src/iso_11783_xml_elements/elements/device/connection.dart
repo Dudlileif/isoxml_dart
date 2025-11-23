@@ -64,15 +64,43 @@ class Connection extends Iso11783Element {
     required String deviceElementIdRef0,
     required String deviceIdRef1,
     required String deviceElementIdRef1,
-  }) : super(
-         elementType: Iso11783ElementType.connection,
-         description: 'Connection',
-       ) {
+  }) : super(elementType: _elementType) {
     this.deviceIdRef0 = deviceIdRef0;
     this.deviceElementIdRef0 = deviceElementIdRef0;
     this.deviceIdRef1 = deviceIdRef1;
     this.deviceElementIdRef1 = deviceElementIdRef1;
   }
+
+  Connection._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: deviceIdRef0,
+      idRefPattern: Device.staticIdRefPattern,
+      idName: 'deviceIdRef0',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef0,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef0',
+    );
+    ArgumentValidation.checkId(
+      id: deviceIdRef1,
+      idRefPattern: Device.staticIdRefPattern,
+      idName: 'deviceIdRef1',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef1,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef1',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.connection;
 
   /// An ID reference to the first device.
   String get deviceIdRef0 => parseString('A');

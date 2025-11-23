@@ -80,10 +80,7 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
     String? valuePresentationIdRef,
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(
-         elementType: Iso11783ElementType.productAllocation,
-         description: 'ProductAllocation',
-       ) {
+  }) : super(elementType: _elementType) {
     this.productIdRef = productIdRef;
     this.quantityDDI = quantityDDI;
     this.quantityValue = quantityValue;
@@ -93,6 +90,50 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
     this.productSubTypeIdRef = productSubTypeIdRef;
     this.allocationStamp = allocationStamp;
   }
+
+  ProductAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: productIdRef,
+      idRefPattern: Product.staticIdRefPattern,
+      idName: 'productIdRef',
+    );
+    if (quantityDDI != null) {
+      ArgumentValidation.checkHexStringLength(
+        quantityDDI!,
+        name: 'quantityDDI',
+      );
+    }
+    if (deviceElementIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceElementIdRef!,
+        idRefPattern: DeviceElement.staticIdRefPattern,
+        idName: 'deviceElementIdRef',
+      );
+    }
+    if (valuePresentationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: valuePresentationIdRef!,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
+        idName: 'valuePresentationIdRef',
+      );
+    }
+    if (productSubTypeIdRef != null) {
+      ArgumentValidation.checkId(
+        id: productSubTypeIdRef!,
+        idRefPattern: Product.staticIdRefPattern,
+        idName: 'productSubTypeIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.productAllocation;
 
   /// Reference to a [Product].
   String get productIdRef => parseString('A');

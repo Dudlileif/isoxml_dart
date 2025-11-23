@@ -74,10 +74,7 @@ class DeviceProcessData extends Iso11783Element {
     required int triggerMethods,
     String? designator,
     int? presentationObjectId,
-  }) : super(
-         elementType: Iso11783ElementType.deviceProcessData,
-         description: 'DeviceProcessData',
-       ) {
+  }) : super(elementType: _elementType) {
     this.objectId = objectId;
     this.ddi = ddi;
     this.property = property;
@@ -85,6 +82,50 @@ class DeviceProcessData extends Iso11783Element {
     this.designator = designator;
     this.presentationObjectId = presentationObjectId;
   }
+
+  DeviceProcessData._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      ddi,
+      name: 'ddi',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: property,
+      min: 0,
+      max: 7,
+      name: 'property',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: triggerMethods,
+      min: 0,
+      max: 31,
+      name: 'triggerMethods',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (presentationObjectId != null) {
+      ArgumentValidation.checkValueInRange(
+        value: presentationObjectId!,
+        min: 1,
+        max: 65534,
+        name: 'presentationObjectId',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceProcessData;
 
   /// Unique number inside a single [Device].
   int get objectId => parseInt('A');

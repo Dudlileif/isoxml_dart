@@ -9,7 +9,7 @@ mixin _DocumentMixin implements Iso11783Element {
   VersionMajor get versionMajor => VersionMajor.values.firstWhere(
     (type) => type.value == parseInt('VersionMajor'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('VersionMajor')}` is not one of the supported values: ${VersionMajor.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('VersionMajor')}` is not one of the supported values: ${VersionMajor.values.join(', ')}''',
     ),
   );
   set versionMajor(VersionMajor value) => setInt('VersionMajor', value.value);
@@ -18,7 +18,7 @@ mixin _DocumentMixin implements Iso11783Element {
   VersionMinor get versionMinor => VersionMinor.values.firstWhere(
     (type) => type.value == parseInt('VersionMinor'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('VersionMinor')}` is not one of the supported values: ${VersionMinor.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('VersionMinor')}` is not one of the supported values: ${VersionMinor.values.join(', ')}''',
     ),
   );
   set versionMinor(VersionMinor value) => setInt('VersionMinor', value.value);
@@ -51,7 +51,7 @@ mixin _DocumentMixin implements Iso11783Element {
   get dataTransferOrigin => DataTransferOrigin.values.firstWhere(
     (type) => type.value == parseInt('DataTransferOrigin'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('DataTransferOrigin')}` is not one of the supported values: ${DataTransferOrigin.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('DataTransferOrigin')}` is not one of the supported values: ${DataTransferOrigin.values.join(', ')}''',
     ),
   );
   set dataTransferOrigin(DataTransferOrigin value) =>

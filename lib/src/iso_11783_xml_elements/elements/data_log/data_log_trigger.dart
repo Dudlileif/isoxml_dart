@@ -185,10 +185,7 @@ class DataLogTrigger extends Iso11783Element {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-  }) : super(
-         elementType: Iso11783ElementType.dataLogTrigger,
-         description: 'DataLogTrigger',
-       ) {
+  }) : super(elementType: _elementType) {
     this.ddi = ddi;
     this.method = method;
     this.distanceInterval = distanceInterval;
@@ -202,6 +199,112 @@ class DataLogTrigger extends Iso11783Element {
     this.pgnStartBit = pgnStartBit;
     this.pgnStopBit = pgnStopBit;
   }
+
+  DataLogTrigger._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      ddi,
+      name: 'ddi',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: method,
+      min: 1,
+      max: 31,
+      name: 'method',
+    );
+    if (distanceInterval != null) {
+      ArgumentValidation.checkValueInRange(
+        value: distanceInterval!,
+        min: 0,
+        max: 1000000,
+        name: 'distanceInterval',
+      );
+    }
+    if (timeInterval != null) {
+      ArgumentValidation.checkValueInRange(
+        value: timeInterval!,
+        min: 0,
+        max: 60000,
+        name: 'timeInterval',
+      );
+    }
+    if (thresholdMinimum != null) {
+      ArgumentValidation.checkValueInRange(
+        value: thresholdMinimum!,
+        min: -2147483647,
+        max: 2147483647,
+        name: 'thresholdMinimum',
+      );
+    }
+    if (thresholdMaximum != null) {
+      ArgumentValidation.checkValueInRange(
+        value: thresholdMaximum!,
+        min: -2147483647,
+        max: 2147483647,
+        name: 'thresholdMaximum',
+      );
+    }
+    if (thresholdChange != null) {
+      ArgumentValidation.checkValueInRange(
+        value: thresholdChange!,
+        min: -2147483647,
+        max: 2147483647,
+        name: 'thresholdChange',
+      );
+    }
+    if (deviceElementIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceElementIdRef!,
+        idRefPattern: DeviceElement.staticIdRefPattern,
+        idName: 'deviceElementIdRef',
+      );
+    }
+    if (valuePresentationIdRef != null) {
+      ArgumentValidation.checkId(
+        id: valuePresentationIdRef!,
+        idRefPattern: ValuePresentation.staticIdRefPattern,
+        idName: 'valuePresentationIdRef',
+      );
+    }
+    if (pgn != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgn!,
+        min: 0,
+        max: 262143,
+        name: 'pgn',
+      );
+      if (ddi != 'DFFE') {
+        throw ArgumentError.value(
+          [ddi, pgn],
+          '[ddi, pgn]',
+          'When pgn is set, ddi MUST be "DFFE"',
+        );
+      }
+    }
+    if (pgnStartBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStartBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStartBit',
+      );
+    }
+    if (pgnStopBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStopBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStopBit',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.dataLogTrigger;
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].

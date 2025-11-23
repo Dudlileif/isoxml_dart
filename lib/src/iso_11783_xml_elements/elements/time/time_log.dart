@@ -62,7 +62,7 @@ class TimeLog extends Iso11783Element {
     TimeLogType type = TimeLogType.binaryTimeLogFileType1,
     this.header,
     List<Time>? records,
-  }) : super(elementType: Iso11783ElementType.timeLog, description: 'TimeLog') {
+  }) : super(elementType: _elementType) {
     this.filename = filename;
     this.fileLength = fileLength;
     this.type = type;
@@ -70,6 +70,30 @@ class TimeLog extends Iso11783Element {
       this.records.addAll(records);
     }
   }
+
+  TimeLog._fromXmlElement(XmlElement element, {Uint8List? byteData})
+    : byteData = byteData ?? Uint8List(0),
+      super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: filename,
+      idRefPattern: fileNamePattern,
+      idName: 'filename',
+    );
+    if (fileLength != null) {
+      ArgumentValidation.checkValueInRange(
+        value: fileLength!,
+        min: 0,
+        max: 4294967294,
+        name: 'fileLength',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.timeLog;
 
   /// Regular expression matching pattern for the [filename] of this.
   static const fileNamePattern = 'TLG[0-9]{5}';
@@ -88,7 +112,7 @@ class TimeLog extends Iso11783Element {
   TimeLogType get type => TimeLogType.values.firstWhere(
     (type) => type.value == parseInt('C'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('C')}` is not one of the supported values: ${TimeLogType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${TimeLogType.values.join(', ')}''',
     ),
   );
   set type(TimeLogType value) => setInt('C', value.value);
@@ -126,60 +150,63 @@ class TimeLog extends Iso11783Element {
 
         Position? position;
         if (header!.position != null) {
-          final north = header!.position!.readNorth
+          final north = header!.position!.binaryHeaderOptions.readNorth
               ? 1e-7 * data.getInt32(currentOffset, Endian.little)
               : header!.position!.north ?? 0;
-          if (header!.position!.readNorth) {
+          if (header!.position!.binaryHeaderOptions.readNorth) {
             currentOffset += 4;
           }
-          final east = header!.position!.readEast
+          final east = header!.position!.binaryHeaderOptions.readEast
               ? 1e-7 * data.getInt32(currentOffset, Endian.little)
               : header!.position!.east ?? 0;
-          if (header!.position!.readEast) {
+          if (header!.position!.binaryHeaderOptions.readEast) {
             currentOffset += 4;
           }
-          final up = header!.position!.readUp
+          final up = header!.position!.binaryHeaderOptions.readUp
               ? data.getInt32(currentOffset, Endian.little)
               : header!.position!.up;
-          if (header!.position!.readUp) {
+          if (header!.position!.binaryHeaderOptions.readUp) {
             currentOffset += 4;
           }
-          final status = header!.position!.readStatus
+          final status = header!.position!.binaryHeaderOptions.readStatus
               ? PositionStatus.values.firstWhere(
                   (element) => element.value == data.getUint8(currentOffset),
                 )
               : header!.position!.status ?? PositionStatus.notAvailable;
-          if (header!.position!.readStatus) {
+          if (header!.position!.binaryHeaderOptions.readStatus) {
             currentOffset++;
           }
-          final pdop = header!.position!.readPdop
+          final pdop = header!.position!.binaryHeaderOptions.readPdop
               ? 1e-1 * data.getUint16(currentOffset, Endian.little)
               : header!.position!.pdop;
-          if (header!.position!.readPdop) {
+          if (header!.position!.binaryHeaderOptions.readPdop) {
             currentOffset += 2;
           }
-          final hdop = header!.position!.readHdop
+          final hdop = header!.position!.binaryHeaderOptions.readHdop
               ? 1e-1 * data.getUint16(currentOffset, Endian.little)
               : header!.position!.hdop;
-          if (header!.position!.readHdop) {
+          if (header!.position!.binaryHeaderOptions.readHdop) {
             currentOffset += 2;
           }
-          final numberOfSatellites = header!.position!.readNumberOfSatellites
+          final numberOfSatellites =
+              header!.position!.binaryHeaderOptions.readNumberOfSatellites
               ? data.getUint8(currentOffset)
               : header!.position!.numberOfSatellites;
-          if (header!.position!.readNumberOfSatellites) {
+          if (header!.position!.binaryHeaderOptions.readNumberOfSatellites) {
             currentOffset++;
           }
-          final gpsUtcTimeMs = header!.position!.readgpsUtcTimeMs
+          final gpsUtcTimeMs =
+              header!.position!.binaryHeaderOptions.readGpsUtcTimeMs
               ? data.getUint32(currentOffset, Endian.little)
               : header!.position!.gpsUtcTimeMs;
-          if (header!.position!.readgpsUtcTimeMs) {
+          if (header!.position!.binaryHeaderOptions.readGpsUtcTimeMs) {
             currentOffset += 4;
           }
-          final gpsUtcDate = header!.position!.readGpsUtcDate
+          final gpsUtcDate =
+              header!.position!.binaryHeaderOptions.readGpsUtcDate
               ? data.getUint16(currentOffset, Endian.little)
               : header!.position!.gpsUtcDate;
-          if (header!.position!.readGpsUtcDate) {
+          if (header!.position!.binaryHeaderOptions.readGpsUtcDate) {
             currentOffset += 2;
           }
           position = Position(

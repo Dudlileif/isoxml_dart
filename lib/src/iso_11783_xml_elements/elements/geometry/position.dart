@@ -110,10 +110,7 @@ class Position extends Iso11783Element {
     int? numberOfSatellites,
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
-  }) : super(
-         elementType: Iso11783ElementType.position,
-         description: 'Position',
-       ) {
+  }) : super(elementType: _elementType) {
     this.north = north;
     this.east = east;
     this.status = status;
@@ -124,6 +121,76 @@ class Position extends Iso11783Element {
     this.gpsUtcTimeMs = gpsUtcTimeMs;
     this.gpsUtcDate = gpsUtcDate;
   }
+
+  Position._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: north,
+      min: -90,
+      max: 90,
+      name: 'north',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: east,
+      min: -180,
+      max: 180,
+      name: 'east',
+    );
+    if (up != null) {
+      ArgumentValidation.checkValueInRange(
+        value: up!,
+        min: -2147483647,
+        max: 2147483647,
+        name: 'up',
+      );
+    }
+    if (pdop != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pdop!,
+        min: 0,
+        max: 99.9,
+        name: 'pdop',
+      );
+    }
+    if (hdop != null) {
+      ArgumentValidation.checkValueInRange(
+        value: hdop!,
+        min: 0,
+        max: 99.9,
+        name: 'hdop',
+      );
+    }
+    if (numberOfSatellites != null) {
+      ArgumentValidation.checkValueInRange(
+        value: numberOfSatellites!,
+        min: 0,
+        max: 254,
+        name: 'numberOfSatellites',
+      );
+    }
+    if (gpsUtcTimeMs != null) {
+      ArgumentValidation.checkValueInRange(
+        value: gpsUtcTimeMs!,
+        min: 0,
+        max: 4294967294,
+        name: 'gpsUtcTimeMs',
+      );
+    }
+    if (gpsUtcDate != null) {
+      ArgumentValidation.checkValueInRange(
+        value: gpsUtcDate!,
+        min: 0,
+        max: 65534,
+        name: 'gpsUtcDate',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.position;
 
   /// GNSS position north, format: WGS84 latitude
   double get north => parseDouble('A');
@@ -141,7 +208,7 @@ class Position extends Iso11783Element {
   PositionStatus get status => PositionStatus.values.firstWhere(
     (type) => type.value == parseInt('D'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('D')}` is not one of the supported values: ${PositionStatus.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${PositionStatus.values.join(', ')}''',
     ),
   );
   set status(PositionStatus value) => setInt('D', value.value);

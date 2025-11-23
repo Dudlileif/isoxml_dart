@@ -45,17 +45,41 @@ class CropType extends Iso11783Element {
     required String designator,
     List<CropVariety>? varieties,
     String? productGroupIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.cropType,
-         description: 'CropType',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.productGroupIdRef = productGroupIdRef;
-    if (varieties != null) {
-      children.addAll(varieties);
+    this.varieties.addAll(varieties);
+  }
+
+  CropType._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    varieties.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.cropVariety.xmlTag)
+          .map(CropVariety._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+
+    if (productGroupIdRef != null) {
+      ArgumentValidation.checkId(
+        id: productGroupIdRef!,
+        idRefPattern: ProductGroup.staticIdRefPattern,
+        idName: 'productGroupIdRef',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.cropType;
 
   /// Regular expression matching pattern for the [id] of [CropType]s.
   static const staticIdRefPattern = '(CTP|CTP-)[1-9]([0-9])*';
@@ -64,9 +88,7 @@ class CropType extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of different varieties of this crop.
-  List<CropVariety> get varieties => findElements(
-    Iso11783ElementType.cropType.xmlTag,
-  ).map((e) => e as CropVariety).toList();
+  late final varieties = _XmlSyncedList<CropVariety>(xmlElement: xmlElement);
 
   /// Unique identifier for this crop type.
   ///

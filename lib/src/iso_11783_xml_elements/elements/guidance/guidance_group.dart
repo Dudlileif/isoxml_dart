@@ -37,18 +37,40 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
     List<GuidancePattern>? patterns,
     Polygon? boundaryPolygon,
     String? designator,
-  }) : super(
-         elementType: Iso11783ElementType.guidanceGroup,
-         description: 'GuidanceGroup',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.boundaryPolygon = boundaryPolygon;
     this.designator = designator;
-    if (patterns != null) {
-      children.addAll(patterns);
+    this.patterns.addAll(patterns);
+    this.boundaryPolygon = boundaryPolygon;
+  }
+
+  GuidanceGroup._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    patterns.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.guidancePattern.xmlTag)
+          .map(GuidancePattern._fromXmlElement)
+          .toList(),
+    );
+    boundaryPolygon = switch (xmlElement.getElement(
+      Iso11783ElementType.polygon.xmlTag,
+    )) {
+      final XmlElement element => Polygon._fromXmlElement(element),
+      _ => null,
+    };
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidanceGroup;
 
   /// Regular expression matching pattern for the [id] of [GuidanceGroup]s.
   static const staticIdRefPattern = '(GGP|GGP-)[1-9]([0-9])*';
@@ -57,9 +79,7 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [GuidancePattern]s for this.
-  List<GuidancePattern> get patterns => findElements(
-    Iso11783ElementType.guidancePattern.xmlTag,
-  ).map((e) => e as GuidancePattern).toList();
+  late final patterns = _XmlSyncedList<GuidancePattern>(xmlElement: xmlElement);
 
   /// Unique identifier for this guidance group.
   ///

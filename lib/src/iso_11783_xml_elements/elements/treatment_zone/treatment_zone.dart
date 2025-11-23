@@ -64,30 +64,62 @@ class TreatmentZone extends Iso11783Element {
     List<ProcessDataVariable>? processDataVariables,
     String? designator,
     int? colour,
-  }) : super(
-         elementType: Iso11783ElementType.treatmentZone,
-         description: 'TreatmentZone',
-       ) {
+  }) : super(elementType: _elementType) {
     this.code = code;
     this.designator = designator;
     this.colour = colour;
-    if (polygons != null) {
-      children.addAll(polygons);
+    this.polygons.addAll(polygons);
+    this.processDataVariables.addAll(processDataVariables);
+  }
+
+  TreatmentZone._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    polygons.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.polygon.xmlTag)
+          .map(Polygon._fromXmlElement)
+          .toList(),
+    );
+    processDataVariables.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.processDataVariable.xmlTag)
+          .map(ProcessDataVariable._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: code,
+      min: 0,
+      max: 254,
+      name: 'code',
+    );
+
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
-    if (processDataVariables != null) {
-      children.addAll(processDataVariables);
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
     }
   }
 
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.treatmentZone;
+
   /// A list of [Polygon]s for this.
-  List<Polygon> get polygons => findElements(
-    Iso11783ElementType.polygon.xmlTag,
-  ).map((e) => e as Polygon).toList();
+  late final polygons = _XmlSyncedList<Polygon>(xmlElement: xmlElement);
 
   /// A list of [ProcessDataVariable]s for this.
-  List<ProcessDataVariable> get processDataVariables => findElements(
-    Iso11783ElementType.processDataVariable.xmlTag,
-  ).map((e) => e as ProcessDataVariable).toList();
+  late final processDataVariables = _XmlSyncedList<ProcessDataVariable>(
+    xmlElement: xmlElement,
+  );
 
   /// A unique [TreatmentZone] code inside a single [Task].
   int get code => parseInt('A');

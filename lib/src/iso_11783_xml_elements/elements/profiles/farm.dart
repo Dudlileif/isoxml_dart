@@ -93,7 +93,7 @@ class Farm extends Iso11783Element {
     String? state,
     String? country,
     String? customerIdRef,
-  }) : super(elementType: Iso11783ElementType.farm, description: 'Farm') {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.street = street;
@@ -104,6 +104,58 @@ class Farm extends Iso11783Element {
     this.country = country;
     this.customerIdRef = customerIdRef;
   }
+
+  Farm._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+    if (street != null) {
+      if (street!.length > 32) {
+        throw ArgumentError.value(street, 'street', 'Length > 32');
+      }
+    }
+    if (poBox != null) {
+      if (poBox!.length > 32) {
+        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
+      }
+    }
+    if (postalCode != null) {
+      if (postalCode!.length > 10) {
+        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
+      }
+    }
+    if (city != null) {
+      if (city!.length > 32) {
+        throw ArgumentError.value(city, 'city', 'Length > 32');
+      }
+    }
+    if (state != null) {
+      if (state!.length > 32) {
+        throw ArgumentError.value(state, 'state', 'Length > 32');
+      }
+    }
+    if (country != null) {
+      if (country!.length > 32) {
+        throw ArgumentError.value(country, 'country', 'Length > 32');
+      }
+    }
+    if (customerIdRef != null) {
+      ArgumentValidation.checkId(
+        id: customerIdRef!,
+        idRefPattern: Customer.staticIdRefPattern,
+        idName: 'customerIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.farm;
 
   /// Regular expression matching pattern for the [id] of [Farm]s.
   static const staticIdRefPattern = '(FRM|FRM-)[1-9]([0-9])*';

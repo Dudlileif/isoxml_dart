@@ -44,15 +44,34 @@ class Link extends Iso11783Element {
     required String objectIdRef,
     required String linkValue,
     String? designator,
-  }) : super(
-         elementType: Iso11783ElementType.link,
-         description: 'Link',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.objectIdRef = objectIdRef;
     this.linkValue = linkValue;
     this.designator = designator;
   }
+
+  Link._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(
+      id: objectIdRef,
+      idRefPattern: objectIdRefPattern,
+      idName: 'objectIdRef',
+    );
+    ArgumentValidation.checkStringLength(
+      linkValue,
+      maxLength: 255,
+      name: 'linkValue',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.link;
 
   /// Regular expression matching pattern for the [objectIdRef].
   static const objectIdRefPattern =

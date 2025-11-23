@@ -99,6 +99,12 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
     );
   }
 
+  /// Creates an [Iso11783TaskData] from [document].
+  factory Iso11783TaskData.fromXmlDocument(XmlDocument document) {
+    final element = document.getElement(Iso11783ElementType.taskData.xmlTag)!;
+    return Iso11783TaskData._fromXmlElement(element);
+  }
+
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Iso11783TaskData._({
@@ -126,51 +132,189 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
     List<ExternalFileReference>? externalFileReferences,
-    Iso11783LinkList? linkList,
+    this.linkList,
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? language,
-  }) : super(
-         elementType: Iso11783ElementType.taskData,
-         description: 'ISO 11783 Task Data File',
-       ) {
+  }) : super(elementType: _elementType) {
     this.versionMajor = versionMajor;
     this.versionMinor = versionMinor;
     this.managementSoftwareManufacturer = managementSoftwareManufacturer;
     this.managementSoftwareVersion = managementSoftwareVersion;
     this.dataTransferOrigin = dataTransferOrigin;
-    this.linkList = linkList;
     this.taskControllerManufacturer = taskControllerManufacturer;
     this.taskControllerVersion = taskControllerVersion;
     this.language = language;
-    children.addAll([
-      ...?attachedFiles,
-      ...?baseStations,
-      ...?codedComments,
-      ...?codedCommentGroups,
-      ...?colourLegends,
-      ...?cropTypes,
-      ...?culturalPractices,
-      ...?customers,
-      ...?devices,
-      ...?farms,
-      ...?operationTechniques,
-      ...?partfields,
-      ...?products,
-      ...?productGroups,
-      ...?tasks,
-      ...?taskControllerCapabilities,
-      ...?valuePresentations,
-      ...?workers,
-      ...?externalFileReferences,
-    ]);
+    this.attachedFiles.addAll(attachedFiles);
+    this.baseStations.addAll(baseStations);
+    this.codedComments.addAll(codedComments);
+    this.codedCommentGroups.addAll(codedCommentGroups);
+    this.colourLegends.addAll(colourLegends);
+    this.cropTypes.addAll(cropTypes);
+    this.culturalPractices.addAll(culturalPractices);
+    this.customers.addAll(customers);
+    this.devices.addAll(devices);
+    this.farms.addAll(farms);
+    this.operationTechniques.addAll(operationTechniques);
+    this.partfields.addAll(partfields);
+    this.products.addAll(products);
+    this.productGroups.addAll(productGroups);
+    this.tasks.addAll(tasks);
+    this.taskControllerCapabilities.addAll(taskControllerCapabilities);
+    this.valuePresentations.addAll(valuePresentations);
+    this.workers.addAll(workers);
+    this.externalFileReferences.addAll(externalFileReferences);
   }
 
-  /// Creates an [Iso11783TaskData] from [document].
-  factory Iso11783TaskData.fromXmlDocument(XmlDocument document) {
-    final element = document.getElement(Iso11783ElementType.taskData.xmlTag)!;
-    return element as Iso11783TaskData;
+  Iso11783TaskData._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    attachedFiles.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.attachedFile.xmlTag)
+          .map(AttachedFile._fromXmlElement)
+          .toList(),
+    );
+    baseStations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.baseStation.xmlTag)
+          .map(BaseStation._fromXmlElement)
+          .toList(),
+    );
+    codedComments.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.codedComment.xmlTag)
+          .map(CodedComment._fromXmlElement)
+          .toList(),
+    );
+    codedCommentGroups.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.codedCommentGroup.xmlTag)
+          .map(CodedCommentGroup._fromXmlElement)
+          .toList(),
+    );
+    colourLegends.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.colourLegend.xmlTag)
+          .map(ColourLegend._fromXmlElement)
+          .toList(),
+    );
+    cropTypes.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.cropType.xmlTag)
+          .map(CropType._fromXmlElement)
+          .toList(),
+    );
+    culturalPractices.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.culturalPractice.xmlTag)
+          .map(CulturalPractice._fromXmlElement)
+          .toList(),
+    );
+    customers.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.customer.xmlTag)
+          .map(Customer._fromXmlElement)
+          .toList(),
+    );
+    devices.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.device.xmlTag)
+          .map(Device._fromXmlElement)
+          .toList(),
+    );
+    farms.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.farm.xmlTag)
+          .map(Farm._fromXmlElement)
+          .toList(),
+    );
+    operationTechniques.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.operationTechnique.xmlTag)
+          .map(OperationTechnique._fromXmlElement)
+          .toList(),
+    );
+    partfields.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.partfield.xmlTag)
+          .map(Partfield._fromXmlElement)
+          .toList(),
+    );
+    products.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.product.xmlTag)
+          .map(Product._fromXmlElement)
+          .toList(),
+    );
+    productGroups.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.productGroup.xmlTag)
+          .map(ProductGroup._fromXmlElement)
+          .toList(),
+    );
+    tasks.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.task.xmlTag)
+          .map(Task._fromXmlElement)
+          .toList(),
+    );
+    taskControllerCapabilities.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.taskControllerCapabilities.xmlTag)
+          .map(TaskControllerCapabilities._fromXmlElement)
+          .toList(),
+    );
+    valuePresentations.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.valuePresentation.xmlTag)
+          .map(ValuePresentation._fromXmlElement)
+          .toList(),
+    );
+    workers.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.worker.xmlTag)
+          .map(Worker._fromXmlElement)
+          .toList(),
+    );
+    externalFileReferences.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.externalFileReference.xmlTag)
+          .map(ExternalFileReference._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
   }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkStringLength(
+      managementSoftwareManufacturer,
+      name: 'managementSoftwareManufacturer',
+    );
+    ArgumentValidation.checkStringLength(
+      managementSoftwareVersion,
+      name: 'managementSoftwareVersion',
+    );
+    if (taskControllerManufacturer != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerManufacturer!,
+        name: 'taskControllerManufacturer',
+      );
+    }
+    if (taskControllerVersion != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerVersion!,
+        name: 'taskControllerVersion',
+      );
+    }
+    if (language != null) {
+      ArgumentValidation.checkStringLength(
+        language!,
+        name: 'language',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.taskData;
 
   /// Creates an [Iso11783TaskData] object from the zip [archive].
   static Future<Iso11783TaskData?> fromZip(Archive archive) async {
@@ -198,7 +342,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
           ),
         );
         if (externalContent != null) {
-          taskData.children.addAll(externalContent.childElements);
+          taskData.addExternalFileContents(externalContent);
         }
       }
     }
@@ -355,116 +499,109 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
       ZipEncoder().encode(toZip(externalize: externalize));
 
   /// A list of [AttachedFile]s.
-  List<AttachedFile> get attachedFiles => findElements(
-    Iso11783ElementType.attachedFile.xmlTag,
-  ).map((e) => e as AttachedFile).toList();
+  late final attachedFiles = _XmlSyncedList<AttachedFile>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [BaseStation]s.
-  List<BaseStation> get baseStations => findElements(
-    Iso11783ElementType.baseStation.xmlTag,
-  ).map((e) => e as BaseStation).toList();
+  late final baseStations = _XmlSyncedList<BaseStation>(xmlElement: xmlElement);
 
   /// A list of [CodedComment]s.
-  List<CodedComment> get codedComments => findElements(
-    Iso11783ElementType.codedComment.xmlTag,
-  ).map((e) => e as CodedComment).toList();
+  late final codedComments = _XmlSyncedList<CodedComment>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [CodedCommentGroup]s.
-  List<CodedCommentGroup> get codedCommentGroups => findElements(
-    Iso11783ElementType.codedCommentGroup.xmlTag,
-  ).map((e) => e as CodedCommentGroup).toList();
+  late final codedCommentGroups = _XmlSyncedList<CodedCommentGroup>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [ColourLegend]s.
-  List<ColourLegend> get colourLegends => findElements(
-    Iso11783ElementType.colourLegend.xmlTag,
-  ).map((e) => e as ColourLegend).toList();
+  late final colourLegends = _XmlSyncedList<ColourLegend>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [CropType]s.
-  List<CropType> get cropTypes => findElements(
-    Iso11783ElementType.cropType.xmlTag,
-  ).map((e) => e as CropType).toList();
+  late final cropTypes = _XmlSyncedList<CropType>(xmlElement: xmlElement);
 
   /// A list of [CulturalPractice]s.
-  List<CulturalPractice> get culturalPractices => findElements(
-    Iso11783ElementType.culturalPractice.xmlTag,
-  ).map((e) => e as CulturalPractice).toList();
+  late final culturalPractices = _XmlSyncedList<CulturalPractice>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Customer]s.
-  List<Customer> get customers => findElements(
-    Iso11783ElementType.customer.xmlTag,
-  ).map((e) => e as Customer).toList();
+  late final customers = _XmlSyncedList<Customer>(xmlElement: xmlElement);
 
   /// A list of [Device]s.
-  List<Device> get devices => findElements(
-    Iso11783ElementType.device.xmlTag,
-  ).map((e) => e as Device).toList();
+  late final devices = _XmlSyncedList<Device>(xmlElement: xmlElement);
 
   /// A list of [Farm]s.
-  List<Farm> get farms => findElements(
-    Iso11783ElementType.farm.xmlTag,
-  ).map((e) => e as Farm).toList();
+  late final farms = _XmlSyncedList<Farm>(xmlElement: xmlElement);
 
   /// A list of [OperationTechnique]s.
-  List<OperationTechnique> get operationTechniques => findElements(
-    Iso11783ElementType.operationTechnique.xmlTag,
-  ).map((e) => e as OperationTechnique).toList();
+  late final operationTechniques = _XmlSyncedList<OperationTechnique>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Partfield]s.
-  List<Partfield> get partfields => findElements(
-    Iso11783ElementType.partfield.xmlTag,
-  ).map((e) => e as Partfield).toList();
+  late final partfields = _XmlSyncedList<Partfield>(xmlElement: xmlElement);
 
   /// A list of [Product]s.
-  List<Product> get products => findElements(
-    Iso11783ElementType.product.xmlTag,
-  ).map((e) => e as Product).toList();
+  late final products = _XmlSyncedList<Product>(xmlElement: xmlElement);
 
   /// A list of [ProductGroup]s.
-  List<ProductGroup> get productGroups => findElements(
-    Iso11783ElementType.productGroup.xmlTag,
-  ).map((e) => e as ProductGroup).toList();
+  late final productGroups = _XmlSyncedList<ProductGroup>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Task]s.
-  List<Task> get tasks => findElements(
-    Iso11783ElementType.task.xmlTag,
-  ).map((e) => e as Task).toList();
+  late final tasks = _XmlSyncedList<Task>(xmlElement: xmlElement);
 
   /// A list of [TaskControllerCapabilities].
-  List<TaskControllerCapabilities> get taskControllerCapabilities =>
-      findElements(
-        Iso11783ElementType.taskControllerCapabilities.xmlTag,
-      ).map((e) => e as TaskControllerCapabilities).toList();
+  late final taskControllerCapabilities =
+      _XmlSyncedList<TaskControllerCapabilities>(xmlElement: xmlElement);
 
   /// A list of [ValuePresentation]s.
-  List<ValuePresentation> get valuePresentations => findElements(
-    Iso11783ElementType.valuePresentation.xmlTag,
-  ).map((e) => e as ValuePresentation).toList();
+  late final valuePresentations = _XmlSyncedList<ValuePresentation>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [Worker]s.
-  List<Worker> get workers => findElements(
-    Iso11783ElementType.worker.xmlTag,
-  ).map((e) => e as Worker).toList();
+  late final workers = _XmlSyncedList<Worker>(xmlElement: xmlElement);
 
   /// A list of [ExternalFileReference]s.
-  List<ExternalFileReference> get externalFileReferences => findElements(
-    Iso11783ElementType.externalFileReference.xmlTag,
-  ).map((e) => e as ExternalFileReference).toList();
+  late final externalFileReferences = _XmlSyncedList<ExternalFileReference>(
+    xmlElement: xmlElement,
+  );
 
   /// An [Iso11783LinkList] for linking to external files.
-
-  Iso11783LinkList? get linkList =>
-      getElement(Iso11783ElementType.linkList.xmlTag) as Iso11783LinkList?;
-  set linkList(Iso11783LinkList? value) => switch ((value, linkList)) {
-    (final Iso11783LinkList value, final Iso11783LinkList existing) =>
-      existing.replace(value as XmlElement),
-    (final Iso11783LinkList value, null) => children.add(value),
-    (null, final Iso11783LinkList existing) => existing.remove(),
-    _ => null,
-  };
+  Iso11783LinkList? linkList;
 
   /// Preferred language of the software.
   String? get language => tryParseString('lang');
   set language(String? value) => setStringNullable('lang', value);
+
+  /// Adds the contents from [external] to their respective element list in
+  /// this.
+  void addExternalFileContents(ExternalFileContents external) {
+    attachedFiles.addAll(external.attachedFiles);
+    baseStations.addAll(external.baseStations);
+    codedComments.addAll(external.codedComments);
+    codedCommentGroups.addAll(external.codedCommentGroups);
+    colourLegends.addAll(external.colourLegends);
+    cropTypes.addAll(external.cropTypes);
+    culturalPractices.addAll(external.culturalPractices);
+    customers.addAll(external.customers);
+    devices.addAll(external.devices);
+    farms.addAll(external.farms);
+    operationTechniques.addAll(external.operationTechniques);
+    partfields.addAll(external.partfields);
+    products.addAll(external.products);
+    productGroups.addAll(external.productGroups);
+    tasks.addAll(external.tasks);
+    valuePresentations.addAll(external.valuePresentations);
+    workers.addAll(external.workers);
+  }
 
   /// A structured XML document that represents this.
   ///
@@ -473,7 +610,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
   XmlDocument toSingleXmlDocument() {
     final document = XmlDocument([
       XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
-      this,
+      xmlElement.copy(),
     ]);
     document.lastChild?.children.retainWhere(
       (node) =>
@@ -489,7 +626,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
   List<({String fileName, XmlDocument document})> toXmlExternalDocuments() {
     final mainDocument = XmlDocument([
       XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
-      this,
+      xmlElement.copy(),
     ]);
 
     final list = <({String fileName, XmlDocument document})>[];
@@ -497,7 +634,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
       final occurancesOfType = <Iso11783ElementType, int>{};
       for (final externalFileReference in externalFileReferences) {
         occurancesOfType.update(
-          externalFileReference.elementType,
+          externalFileReference.childrenElementType,
           (value) => value + 1,
           ifAbsent: () => 1,
         );
@@ -505,7 +642,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
       final typeDone = <Iso11783ElementType, bool>{};
 
       for (final externalFileReference in externalFileReferences) {
-        final type = externalFileReference.elementType;
+        final type = externalFileReference.childrenElementType;
 
         if (typeDone[type] ?? false) {
           continue;
@@ -636,7 +773,9 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
 
   /// Find all the [Iso11783Element]s of [type] in this.
   Iterable<Iso11783Element> elementsOfType(Iso11783ElementType type) =>
-      findAllElements(type.xmlTag).map((e) => e as Iso11783Element);
+      xmlElement
+          .findAllElements(type.xmlTag)
+          .map(Iso11783Element.fromXmlElement);
 
   /// Find the next ID for an [Iso11783Element] of [type], if it can have an ID.
   ///

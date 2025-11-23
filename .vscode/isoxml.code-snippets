@@ -159,5 +159,18 @@
             "};",
             "set $1($3? value) => setIntNullable('$2', value?.value);"
         ]
+    },
+    "._fromXmlElement": {
+        "prefix": "._fromXmlElement factory",
+        "body": [
+            "  $1._fromXmlElement(XmlElement element)",
+            "     : super(elementType: _elementType, xmlElement: element) {",
+            "     _argumentValidaton();",
+            "  }"
+        ]
+    },
+    "_elementType": {
+        "prefix": "_elementType value",
+        "body": "static const Iso11783ElementType _elementType = Iso11783ElementType.$1;"
     }
 }

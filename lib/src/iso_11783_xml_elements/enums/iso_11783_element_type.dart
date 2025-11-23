@@ -1,7 +1,8 @@
 // Copyright 2024 Gaute Hagen. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-import 'package:isoxml_dart/isoxml_dart.dart';
+
+part of '../iso_11783_element.dart';
 
 /// An enumerator for all ISO 11783-10 XML element types.
 enum Iso11783ElementType {
@@ -9,10 +10,10 @@ enum Iso11783ElementType {
   allocationStamp('ASP'),
 
   /// See [AttachedFile]
-  attachedFile('AFE'),
+  attachedFile('AFE', onlyVersion4AndAbove: true),
 
   /// See [BaseStation]
-  baseStation('BSN', canHaveId: true),
+  baseStation('BSN', canHaveId: true, onlyVersion4AndAbove: true),
 
   /// See [CodedComment]
   codedComment('CCT', canHaveId: true),
@@ -36,7 +37,7 @@ enum Iso11783ElementType {
   connection('CNN'),
 
   /// See [ControlAssignment]
-  controlAssignment('CAT'),
+  controlAssignment('CAT', onlyVersion4AndAbove: true),
 
   /// See [CropType]
   cropType('CTP', canHaveId: true),
@@ -90,28 +91,28 @@ enum Iso11783ElementType {
   grid('GRD'),
 
   /// See [GuidanceAllocation]
-  guidanceAllocation('GAN'),
+  guidanceAllocation('GAN', onlyVersion4AndAbove: true),
 
   /// See [GuidanceGroup]
-  guidanceGroup('GGP', canHaveId: true),
+  guidanceGroup('GGP', canHaveId: true, onlyVersion4AndAbove: true),
 
   /// See [GuidancePattern]
-  guidancePattern('GPN', canHaveId: true),
+  guidancePattern('GPN', canHaveId: true, onlyVersion4AndAbove: true),
 
   /// See [GuidanceShift]
-  guidanceShift('GST'),
+  guidanceShift('GST', onlyVersion4AndAbove: true),
 
   /// See [LineString]
   lineString('LSG', canHaveId: true),
 
   /// See [Link]
-  link('LNK'),
+  link('LNK', onlyVersion4AndAbove: true),
 
   /// See [LinkGroup]
-  linkGroup('LGP', canHaveId: true),
+  linkGroup('LGP', canHaveId: true, onlyVersion4AndAbove: true),
 
   /// See [Iso11783LinkList]
-  linkList('ISO11783LinkList'),
+  linkList('ISO11783LinkList', onlyVersion4AndAbove: true),
 
   /// See [OperationTechnique]
   operationTechnique('OTQ', canHaveId: true),
@@ -147,13 +148,13 @@ enum Iso11783ElementType {
   productGroup('PGP', canHaveId: true),
 
   /// See [ProductRelation]
-  productRelation('PRN'),
+  productRelation('PRN', onlyVersion4AndAbove: true),
 
   /// See [Task]
   task('TSK', canHaveId: true),
 
   /// See [TaskControllerCapabilities]
-  taskControllerCapabilities('TCC'),
+  taskControllerCapabilities('TCC', onlyVersion4AndAbove: true),
 
   /// See [Iso11783TaskData]
   taskData('ISO11783_TaskData'),
@@ -174,9 +175,16 @@ enum Iso11783ElementType {
   worker('WKR', canHaveId: true),
 
   /// See [WorkerAllocation]
-  workerAllocation('WAN');
+  workerAllocation('WAN'),
 
-  const Iso11783ElementType(this.xmlTag, {this.canHaveId = false});
+  /// See [UnknownIso11783Element]
+  unknown('');
+
+  const Iso11783ElementType(
+    this.xmlTag, {
+    this.canHaveId = false,
+    this.onlyVersion4AndAbove = false,
+  });
 
   /// The XML element name for the element type.
   final String xmlTag;
@@ -184,14 +192,20 @@ enum Iso11783ElementType {
   /// Whether this element type can have IDs for the elements.
   final bool canHaveId;
 
+  /// Whether this element type is only supported in version 4 and above.
+  final bool onlyVersion4AndAbove;
+
   /// Finds the [Iso11783ElementType] element which matches the [xmlTag] to
   /// this.
   static Iso11783ElementType fromXmlTag(String xmlTag) => values.firstWhere(
     (element) => element.xmlTag == xmlTag,
   );
 
-  /// Redirects to [xmlTag]. Gives the XML element name for the element type.
-  String get name => xmlTag;
+  /// The enum name of this with capitalized first letter.
+  String get capitalizedName => name.replaceFirst(
+    name.substring(0, 1),
+    name.substring(0, 1).toUpperCase(),
+  );
 
   /// A list of the element types that can be stored in external files.
   static const List<Iso11783ElementType> tagsThatCanBeExternal = [

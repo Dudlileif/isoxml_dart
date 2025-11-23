@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-part 'version.g.dart';
+part of '../iso_11783_element.dart';
 
 /// An enumerator for the supported ISO 11783-10 XML major versions.
 enum VersionMajor {

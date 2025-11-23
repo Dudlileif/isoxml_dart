@@ -93,10 +93,7 @@ class DataLogValue extends Iso11783Element {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-  }) : super(
-         elementType: Iso11783ElementType.dataLogValue,
-         description: 'DataLogValue',
-       ) {
+  }) : super(elementType: _elementType) {
     this.processDataDDI = processDataDDI;
     this.processDataValue = processDataValue;
     this.deviceElementIdRef = deviceElementIdRef;
@@ -104,6 +101,63 @@ class DataLogValue extends Iso11783Element {
     this.pgnStartBit = pgnStartBit;
     this.pgnStopBit = pgnStopBit;
   }
+
+  DataLogValue._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      processDataDDI,
+      name: 'processDataDDI',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: processDataValue,
+      min: -2147483648,
+      max: 2147483647,
+      name: 'processDataValue',
+    );
+    ArgumentValidation.checkId(
+      id: deviceElementIdRef,
+      idRefPattern: DeviceElement.staticIdRefPattern,
+      idName: 'deviceElementIdRef',
+    );
+    if (pgn != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgn!,
+        min: 0,
+        max: 262143,
+        name: 'pgn',
+      );
+      if (processDataDDI != 'DFFE') {
+        throw ArgumentError.value(
+          [processDataDDI, pgn],
+          '[processDataDDI, pgn]',
+          'When pgn is set, processDataDDI MUST be "DFFE"',
+        );
+      }
+    }
+    if (pgnStartBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStartBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStartBit',
+      );
+    }
+    if (pgnStopBit != null) {
+      ArgumentValidation.checkValueInRange(
+        value: pgnStopBit!,
+        min: 0,
+        max: 63,
+        name: 'pgnStopBit',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.dataLogValue;
 
   /// A unique Data Dictionary Identifier which identifies a
   /// [ProcessDataVariable].

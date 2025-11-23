@@ -121,10 +121,7 @@ class Customer extends Iso11783Element with _ProfileMixin {
     String? mobile,
     String? fax,
     String? email,
-  }) : super(
-         elementType: Iso11783ElementType.customer,
-         description: 'Customer',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;
@@ -139,6 +136,75 @@ class Customer extends Iso11783Element with _ProfileMixin {
     this.fax = fax;
     this.email = email;
   }
+
+  Customer._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    if (lastName.length > 32) {
+      throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
+    }
+    if (firstName != null) {
+      if (firstName!.length > 32) {
+        throw ArgumentError.value(firstName, 'firstName', 'Length > 32');
+      }
+    }
+    if (street != null) {
+      if (street!.length > 32) {
+        throw ArgumentError.value(street, 'street', 'Length > 32');
+      }
+    }
+    if (poBox != null) {
+      if (poBox!.length > 32) {
+        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
+      }
+    }
+    if (postalCode != null) {
+      if (postalCode!.length > 10) {
+        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
+      }
+    }
+    if (city != null) {
+      if (city!.length > 32) {
+        throw ArgumentError.value(city, 'city', 'Length > 32');
+      }
+    }
+    if (state != null) {
+      if (state!.length > 32) {
+        throw ArgumentError.value(state, 'state', 'Length > 32');
+      }
+    }
+    if (country != null) {
+      if (country!.length > 32) {
+        throw ArgumentError.value(country, 'country', 'Length > 32');
+      }
+    }
+    if (phone != null) {
+      if (phone!.length > 20) {
+        throw ArgumentError.value(phone, 'phone', 'Length > 20');
+      }
+    }
+    if (mobile != null) {
+      if (mobile!.length > 32) {
+        throw ArgumentError.value(mobile, 'mobile', 'Length > 32');
+      }
+    }
+    if (fax != null) {
+      if (fax!.length > 20) {
+        throw ArgumentError.value(fax, 'fax', 'Length > 20');
+      }
+    }
+    if (email != null) {
+      if (email!.length > 64) {
+        throw ArgumentError.value(email, 'email', 'Length > 64');
+      }
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.customer;
 
   /// Regular expression matching pattern for the [id] of [Customer]s.
   static const staticIdRefPattern = '(CTR|CTR-)[1-9]([0-9])*';

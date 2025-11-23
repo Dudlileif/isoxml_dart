@@ -85,7 +85,7 @@ class Device extends Iso11783Element {
     String? designator,
     String? softwareVersion,
     String? serialNumber,
-  }) : super(elementType: Iso11783ElementType.device, description: 'Device') {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.clientNAME = clientNAME;
     this.structureLabel = structureLabel;
@@ -93,19 +93,83 @@ class Device extends Iso11783Element {
     this.designator = designator;
     this.softwareVersion = softwareVersion;
     this.serialNumber = serialNumber;
-    if (elements != null) {
-      children.addAll(elements);
+    this.elements.addAll(elements);
+    this.properties.addAll(properties);
+    this.processData.addAll(processData);
+    this.valuePresentations.addAll(valuePresentations);
+  }
+
+  Device._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    elements.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceElement.xmlTag,
+          )
+          .map(DeviceElement._fromXmlElement)
+          .toList(),
+    );
+    processData.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceProcessData.xmlTag,
+          )
+          .map(DeviceProcessData._fromXmlElement)
+          .toList(),
+    );
+    properties.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceProperty.xmlTag,
+          )
+          .map(DeviceProperty._fromXmlElement)
+          .toList(),
+    );
+    valuePresentations.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceValuePresentation.xmlTag,
+          )
+          .map(DeviceValuePresentation._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkHexStringLength(
+      clientNAME,
+      name: 'clientNAME',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    ArgumentValidation.checkId(
+      id: structureLabel,
+      idRefPattern: structureLabelPattern,
+      minLength: 14,
+      maxLength: 78,
+      idName: 'structureLabel',
+    );
+    ArgumentValidation.checkId(
+      id: localizationLabel,
+      idRefPattern: localizationLabelPattern,
+      minLength: 14,
+      idName: 'localizationLabel',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
-    if (properties != null) {
-      children.addAll(properties);
-    }
-    if (processData != null) {
-      children.addAll(processData);
-    }
-    if (valuePresentations != null) {
-      children.addAll(valuePresentations);
+    if (elements.isEmpty) {
+      throw ArgumentError.value(
+        elements,
+        'elements',
+        'Can not be empty',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.device;
 
   /// Regular expression matching pattern for the [id] of [Device]s.
   static const staticIdRefPattern = '(DVC|DVC-)[1-9]([0-9])*';
@@ -122,24 +186,22 @@ class Device extends Iso11783Element {
       '''(F|f){2}((([0-9]|[A-E]|[a-e])([0-9]|[A-F]|[a-f]))|((F|f)([0-9]|[A-E]|[a-e])))*''';
 
   /// A list of the [DeviceElement]s of this.
-  List<DeviceElement> get elements => findElements(
-    Iso11783ElementType.deviceElement.xmlTag,
-  ).map((e) => e as DeviceElement).toList();
+  late final elements = _XmlSyncedList<DeviceElement>(xmlElement: xmlElement);
 
   /// A list of the [DeviceProcessData]s of this.
-  List<DeviceProcessData> get processData => findElements(
-    Iso11783ElementType.deviceProcessData.xmlTag,
-  ).map((e) => e as DeviceProcessData).toList();
+  late final processData = _XmlSyncedList<DeviceProcessData>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of the [DeviceProperty]s of this.
-  List<DeviceProperty> get properties => findElements(
-    Iso11783ElementType.deviceProperty.xmlTag,
-  ).map((e) => e as DeviceProperty).toList();
+  late final properties = _XmlSyncedList<DeviceProperty>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of the [DeviceValuePresentation]s of this.
-  List<DeviceValuePresentation> get valuePresentations => findElements(
-    Iso11783ElementType.deviceValuePresentation.xmlTag,
-  ).map((e) => e as DeviceValuePresentation).toList();
+  late final valuePresentations = _XmlSyncedList<DeviceValuePresentation>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this device.
   ///

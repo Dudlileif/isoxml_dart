@@ -65,17 +65,52 @@ class Polygon extends Iso11783Element {
     int? area,
     int? colour,
     String? id,
-  }) : super(
-         elementType: Iso11783ElementType.polygon,
-         description: 'Polygon',
-       ) {
+  }) : super(elementType: _elementType) {
     this.type = type;
     this.designator = designator;
     this.area = area;
     this.colour = colour;
     this.id = id;
-    children.addAll(lineStrings);
+    this.lineStrings.addAll(lineStrings);
   }
+
+  Polygon._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    lineStrings.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.lineString.xmlTag)
+          .map(LineString._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (area != null) {
+      ArgumentValidation.checkValueInRange(
+        value: area!,
+        min: 0,
+        max: 4294967294,
+        name: 'area',
+      );
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+    if (id != null) {
+      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.polygon;
 
   /// Regular expression matching pattern for the [id] of [Polygon]s.
   static const staticIdRefPattern = '(PLN|PLN-)[1-9]([0-9])*';
@@ -84,15 +119,13 @@ class Polygon extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// The line strins that makes up this polygon.
-  List<LineString> get lineStrings => findElements(
-    Iso11783ElementType.lineString.xmlTag,
-  ).map((e) => e as LineString).toList();
+  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
 
   /// Which type of polygon this is.
   PolygonType get type => PolygonType.values.firstWhere(
     (type) => type.value == parseInt('A'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('A')}` is not one of the supported values: ${PolygonType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${PolygonType.values.join(', ')}''',
     ),
   );
   set type(PolygonType value) => setInt('A', value.value);

@@ -36,13 +36,26 @@ class CodedCommentGroup extends Iso11783Element {
   CodedCommentGroup._({
     required String id,
     required String designator,
-  }) : super(
-         elementType: Iso11783ElementType.codedCommentGroup,
-         description: 'CodedCommentGroup',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
   }
+
+  CodedCommentGroup._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.codedCommentGroup;
 
   /// Regular expression matching pattern for the [id] of
   /// [CodedCommentGroup]s.

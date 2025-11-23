@@ -64,16 +64,51 @@ class DeviceProperty extends Iso11783Element {
     required int propertyValue,
     String? designator,
     int? valuePresentationObjectId,
-  }) : super(
-         elementType: Iso11783ElementType.deviceProperty,
-         description: 'DeviceProperty',
-       ) {
+  }) : super(elementType: _elementType) {
     this.objectId = objectId;
     this.ddi = ddi;
     this.propertyValue = propertyValue;
     this.designator = designator;
     this.valuePresentationObjectId = valuePresentationObjectId;
   }
+
+  DeviceProperty._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      ddi,
+      name: 'ddi',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: propertyValue,
+      min: -2147483648,
+      max: 2147483648,
+      name: 'propertyValue',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (valuePresentationObjectId != null) {
+      ArgumentValidation.checkValueInRange(
+        value: valuePresentationObjectId!,
+        min: 1,
+        max: 65534,
+        name: 'valuePresentationObjectId',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceProperty;
 
   /// Unique number inside a single [Device].
   int get objectId => parseInt('A');

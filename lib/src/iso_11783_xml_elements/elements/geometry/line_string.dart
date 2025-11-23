@@ -77,18 +77,67 @@ class LineString extends Iso11783Element {
     int? length,
     int? colour,
     String? id,
-  }) : super(
-         elementType: Iso11783ElementType.lineString,
-         description: 'LineString',
-       ) {
+  }) : super(elementType: _elementType) {
     this.type = type;
     this.designator = designator;
     this.width = width;
     this.length = length;
     this.colour = colour;
     this.id = id;
-    children.addAll(points);
+    this.points.addAll(points);
   }
+
+  LineString._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    points.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.point.xmlTag,
+          )
+          .map(Point._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (points.isEmpty) {
+      throw ArgumentError.value(points, 'points', 'Should not be empty');
+    }
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
+    }
+    if (width != null) {
+      ArgumentValidation.checkValueInRange(
+        value: width!,
+        min: 0,
+        max: 4294967294,
+        name: 'wdith',
+      );
+    }
+    if (length != null) {
+      ArgumentValidation.checkValueInRange(
+        value: length!,
+        min: 0,
+        max: 4294967294,
+        name: 'length',
+      );
+    }
+    if (colour != null) {
+      ArgumentValidation.checkValueInRange(
+        value: colour!,
+        min: 0,
+        max: 254,
+        name: 'colour',
+      );
+    }
+    if (id != null) {
+      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.lineString;
 
   /// Regular expression matching pattern for the [id] of [LineString]s.
   static const staticIdRefPattern = '(LSG|LSG-)[1-9]([0-9])*';
@@ -97,15 +146,13 @@ class LineString extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// The position points along this.
-  List<Point> get points => findElements(
-    Iso11783ElementType.point.xmlTag,
-  ).map((e) => e as Point).toList();
+  late final points = _XmlSyncedList<Point>(xmlElement: xmlElement);
 
   /// Which type of line string this is.
   LineStringType get type => LineStringType.values.firstWhere(
     (type) => type.value == parseInt('A'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('A')}` is not one of the supported values: ${LineStringType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${LineStringType.values.join(', ')}''',
     ),
   );
   set type(LineStringType value) => setInt('A', value.value);

@@ -164,7 +164,7 @@ class Grid extends Iso11783Element {
     this.treatmentZoneCodeGrid,
     this.numberOfProcessDataVariables,
     this.processDataValueGrid,
-  }) : super(elementType: Iso11783ElementType.grid, description: 'Grid') {
+  }) : super(elementType: _elementType) {
     this.minimumNorthPosition = minimumNorthPosition;
     this.minimumEastPosition = minimumEastPosition;
     this.cellNorthSize = cellNorthSize;
@@ -176,6 +176,97 @@ class Grid extends Iso11783Element {
     this.fileLength = fileLength;
     this.treatmentZoneCode = treatmentZoneCode;
   }
+
+  Grid._fromXmlElement(
+    XmlElement element, {
+    Uint8List? byteData,
+    List<TreatmentZone>? treatmentZones,
+  }) : byteData = byteData ?? Uint8List(0),
+       super(elementType: _elementType, xmlElement: element) {
+    numberOfProcessDataVariables = switch (type) {
+      GridType.two =>
+        numberOfProcessDataVariables ??
+            switch (treatmentZones) {
+              [...] =>
+                treatmentZones
+                    .firstWhereOrNull((tzn) => tzn.code == treatmentZoneCode)
+                    ?.processDataVariables
+                    .length,
+              _ => null,
+            },
+      _ => null,
+    };
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: minimumNorthPosition,
+      min: -90,
+      max: 90,
+      name: 'minimumNorthPosition',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: minimumEastPosition,
+      min: -180,
+      max: 180,
+      name: 'minimumEastPosition',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: cellNorthSize,
+      min: 0,
+      max: 1,
+      name: 'cellNorthSize',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: cellEastSize,
+      min: 0,
+      max: 1,
+      name: 'cellEastSize',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: maximumColumn,
+      min: 0,
+      max: 4294967295,
+      name: 'maximumColumn',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: maximumRow,
+      min: 0,
+      max: 4294967295,
+      name: 'maximumRow',
+    );
+    ArgumentValidation.checkId(
+      id: fileName,
+      idRefPattern: fileNamePattern,
+      idName: 'fileName',
+    );
+    if (treatmentZoneCode != null) {
+      ArgumentValidation.checkValueInRange(
+        value: treatmentZoneCode!,
+        min: 0,
+        max: 254,
+        name: 'treatmentZoneCode',
+      );
+    }
+    if (type == GridType.two) {
+      if (treatmentZoneCode == null) {
+        throw ArgumentError.value(
+          treatmentZoneCode,
+          'treatmentZoneCode',
+          "Can't be null when `type==GridType.two`",
+        );
+      } else if (numberOfProcessDataVariables == null) {
+        throw ArgumentError.value(
+          numberOfProcessDataVariables,
+          'numberOfProcessDataVariables',
+          "Can't be null when `type==GridType.two`",
+        );
+      }
+    }
+  }
+
+  static const Iso11783ElementType _elementType = Iso11783ElementType.grid;
 
   /// Regular expression pattern for the filename of the binary
   /// `GRD-----.bin` file, excluding the `.bin` part
@@ -214,12 +305,14 @@ class Grid extends Iso11783Element {
   set fileLength(int? value) => setIntNullable('H', value);
 
   /// Which type of values the grid contains.
-  GridType get type => GridType.values.firstWhere(
-    (type) => type.value == parseInt('I'),
-    orElse: () => throw ArgumentError(
-      '''`${getAttribute('I')}` is not one of the supported values: ${GridType.values.join(', ')}''',
+  GridType get type => switch (parseInt('I')) {
+    1 => GridType.one,
+    2 => GridType.two,
+    _ => throw ArgumentError(
+      '''`${xmlElement.getAttribute('I')}` is not one of the supported values: ${GridType.values.join(', ')}''',
     ),
-  );
+  };
+
   set type(GridType value) => setInt('I', value.value);
 
   /// [TreatmentZone] code when using [type] is [GridType.two].
@@ -244,7 +337,7 @@ class Grid extends Iso11783Element {
   /// Value is only set if [type]==[GridType.two] and [treatmentZoneCode]!=null.
   int? numberOfProcessDataVariables;
 
-  /// Parsed list of [ProcessDataVariable.value]s for the
+  /// Parsed list of [ProcessDataVariable].value for the
   /// [ProcessDataVariable]s in the [TreatmentZone] corresponding with
   /// [TreatmentZone.code]==[treatmentZoneCode].
   ///

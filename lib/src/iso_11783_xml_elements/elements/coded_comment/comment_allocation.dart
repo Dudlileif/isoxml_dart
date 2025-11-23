@@ -75,14 +75,55 @@ class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
     String? codedCommentListValueIdRef,
     String? freeCommentText,
   }) : super(
-         elementType: Iso11783ElementType.commentAllocation,
-         description: 'CommentAllocation',
+         elementType: _elementType,
        ) {
     this.allocationStamp = allocationStamp;
     this.codedCommentIdRef = codedCommentIdRef;
     this.codedCommentListValueIdRef = codedCommentListValueIdRef;
     this.freeCommentText = freeCommentText;
   }
+
+  CommentAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (codedCommentIdRef != null) {
+      ArgumentValidation.checkId(
+        id: codedCommentIdRef!,
+        idRefPattern: CodedComment.staticIdRefPattern,
+        idName: 'codedCommentIdRef',
+      );
+      if (freeCommentText != null) {
+        throw ArgumentError.value(
+          [codedCommentIdRef, freeCommentText],
+          '[codedCommentIdRef, freeCommentText]',
+          'Only one of these can have a value set.',
+        );
+      }
+    }
+    if (codedCommentListValueIdRef != null) {
+      ArgumentValidation.checkId(
+        id: codedCommentListValueIdRef!,
+        idRefPattern: CodedCommentListValue.staticIdRefPattern,
+        idName: 'codedCommentListValueIdRef',
+      );
+    }
+    if (freeCommentText != null) {
+      if (freeCommentText!.length > 32) {
+        throw ArgumentError.value(
+          freeCommentText,
+          'freeCommentText',
+          'Too long: ${freeCommentText!.length}, max: 32',
+        );
+      }
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.commentAllocation;
 
   /// A reference to the id of the [CodedComment] we allocated.
   String? get codedCommentIdRef => tryParseString('A');

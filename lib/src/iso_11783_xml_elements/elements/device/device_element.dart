@@ -50,7 +50,7 @@ class DeviceElement extends Iso11783Element {
       type: type,
       number: number,
       parentObjectId: parentObjectId,
-      objectReferences: objectReferences ?? const [],
+      objectReferences: objectReferences,
       designator: designator,
     );
   }
@@ -65,20 +65,56 @@ class DeviceElement extends Iso11783Element {
     required int parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     String? designator,
-  }) : super(
-         elementType: Iso11783ElementType.deviceElement,
-         description: 'DeviceElement',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.objectId = objectId;
     this.type = type;
     this.number = number;
     this.parentObjectId = parentObjectId;
     this.designator = designator;
-    if (objectReferences != null) {
-      children.addAll(objectReferences);
+    this.objectReferences.addAll(objectReferences);
+  }
+
+  DeviceElement._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    objectReferences.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.deviceObjectReference.xmlTag,
+          )
+          .map(DeviceObjectReference._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkValueInRange(
+      value: objectId,
+      min: 1,
+      max: 65534,
+      name: 'objectId',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: number,
+      min: 0,
+      max: 4095,
+      name: 'number',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: parentObjectId,
+      min: 0,
+      max: 65534,
+      name: 'parentObjectId',
+    );
+    if (designator != null) {
+      ArgumentValidation.checkStringLength(designator!);
     }
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceElement;
 
   /// Regular expression matching pattern for the [id] of [DeviceElement]s.
   static const staticIdRefPattern = '(DET|DET-)[1-9]([0-9])*';
@@ -88,9 +124,9 @@ class DeviceElement extends Iso11783Element {
 
   /// A list of [DeviceObjectReference]s that describes references to
   /// [DeviceProcessData] or [DeviceProperty] elements.
-  List<DeviceObjectReference> get objectReferences => findElements(
-    Iso11783ElementType.deviceObjectReference.xmlTag,
-  ).map((e) => e as DeviceObjectReference).toList();
+  late final objectReferences = _XmlSyncedList<DeviceObjectReference>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this device element.
   ///
@@ -107,7 +143,7 @@ class DeviceElement extends Iso11783Element {
   DeviceElementType get type => DeviceElementType.values.firstWhere(
     (type) => type.value == parseInt('C'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('C')}` is not one of the supported values: ${DeviceElementType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${DeviceElementType.values.join(', ')}''',
     ),
   );
   set type(DeviceElementType value) => setInt('C', value.value);

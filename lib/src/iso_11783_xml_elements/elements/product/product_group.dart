@@ -36,14 +36,27 @@ class ProductGroup extends Iso11783Element {
     required String id,
     required String designator,
     ProductGroupType? type,
-  }) : super(
-         elementType: Iso11783ElementType.productGroup,
-         description: 'ProductGroup',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.type = type;
   }
+
+  ProductGroup._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.productGroup;
 
   /// Regular expression matching pattern for the [id] of [ProductGroup]s.
   static const staticIdRefPattern = '(PGP|PGP-)[1-9]([0-9])*';

@@ -61,6 +61,12 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
     );
   }
 
+  /// Creates an [Iso11783LinkList] from [document].
+  factory Iso11783LinkList.fromXmlDocument(XmlDocument document) {
+    final element = document.getElement(Iso11783ElementType.linkList.xmlTag)!;
+    return Iso11783LinkList._fromXmlElement(element);
+  }
+
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   Iso11783LinkList._({
@@ -73,11 +79,7 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? fileVersion,
-  }) : super(
-         elementType: Iso11783ElementType.linkList,
-         description: 'ISO 11783 Link List File',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.versionMajor = versionMajor;
     this.versionMinor = versionMinor;
     this.managementSoftwareManufacturer = managementSoftwareManufacturer;
@@ -86,26 +88,59 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
     this.taskControllerManufacturer = taskControllerManufacturer;
     this.taskControllerVersion = taskControllerVersion;
     this.fileVersion = fileVersion;
-    if (linkGroups != null) {
-      children.addAll(linkGroups);
+    this.linkGroups.addAll(linkGroups);
+  }
+
+  Iso11783LinkList._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    linkGroups.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.linkGroup.xmlTag)
+          .map(LinkGroup._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkStringLength(
+      managementSoftwareManufacturer,
+      name: 'managementSoftwareManufacturer',
+    );
+    ArgumentValidation.checkStringLength(
+      managementSoftwareVersion,
+      name: 'managementSoftwareVersion',
+    );
+    if (taskControllerManufacturer != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerManufacturer!,
+        name: 'taskControllerManufacturer',
+      );
+    }
+    if (taskControllerVersion != null) {
+      ArgumentValidation.checkStringLength(
+        taskControllerVersion!,
+        name: 'taskControllerVersion',
+      );
+    }
+    if (fileVersion != null) {
+      ArgumentValidation.checkStringLength(
+        fileVersion!,
+        name: 'fileVersion',
+      );
     }
   }
 
-  /// Creates an [Iso11783LinkList] from [document].
-  factory Iso11783LinkList.fromXmlDocument(XmlDocument document) =>
-      document.getElement(Iso11783ElementType.linkList.xmlTag)!
-          as Iso11783LinkList;
+  static const Iso11783ElementType _elementType = Iso11783ElementType.linkList;
 
   /// A structured XML document that represents this.
   XmlDocument toXmlDocument() => XmlDocument([
     XmlProcessing('xml', 'version="1.0" encoding="UTF-8"'),
-    this,
+    xmlElement.copy(),
   ]);
 
   /// A list of [LinkGroup]s of this.
-  List<LinkGroup> get linkGroups => findElements(
-    Iso11783ElementType.linkGroup.xmlTag,
-  ).map((e) => e as LinkGroup).toList();
+  late final linkGroups = _XmlSyncedList<LinkGroup>(xmlElement: xmlElement);
 
   /// Version of the `LINKLIST.xml` file
   String? get fileVersion => tryParseString('FileVersion');

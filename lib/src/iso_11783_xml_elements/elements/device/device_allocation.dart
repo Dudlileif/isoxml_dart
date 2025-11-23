@@ -61,15 +61,45 @@ class DeviceAllocation extends Iso11783Element with _AllocationStampMixin {
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(
-         elementType: Iso11783ElementType.deviceAllocation,
-         description: 'DeviceAllocation',
-       ) {
+  }) : super(elementType: _elementType) {
     this.clientNAMEValue = clientNAMEValue;
     this.clientNAMEMask = clientNAMEMask;
     this.deviceIdRef = deviceIdRef;
     this.allocationStamp = allocationStamp;
   }
+
+  DeviceAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _parseAllocationStamp();
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkHexStringLength(
+      clientNAMEValue,
+      name: 'clientNAMEValue',
+      minBytes: 8,
+      maxBytes: 8,
+    );
+    if (clientNAMEMask != null) {
+      ArgumentValidation.checkHexStringLength(
+        clientNAMEMask!,
+        name: 'clientNAMEMask',
+        minBytes: 8,
+        maxBytes: 8,
+      );
+    }
+    if (deviceIdRef != null) {
+      ArgumentValidation.checkId(
+        id: deviceIdRef!,
+        idRefPattern: Device.staticIdRefPattern,
+        idName: 'deviceIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.deviceAllocation;
 
   /// NAME of the client from the [Device] the [Task] is planned for or was
   /// processed with.

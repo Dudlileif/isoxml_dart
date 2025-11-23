@@ -82,7 +82,7 @@ class TaskDataFileHandler {
             XmlDocument.parse(await archiveFile.readAsString()),
           );
           if (contents != null) {
-            taskData.children.addAll(contents.childElements);
+            taskData.addExternalFileContents(contents);
           }
         }
       }

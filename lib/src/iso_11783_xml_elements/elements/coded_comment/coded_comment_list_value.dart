@@ -37,12 +37,27 @@ class CodedCommentListValue extends Iso11783Element {
     required String id,
     required String designator,
   }) : super(
-         elementType: Iso11783ElementType.codedCommentListValue,
-         description: 'CodedCommentListvalue',
+         elementType: _elementType,
        ) {
     this.id = id;
     this.designator = designator;
   }
+
+  CodedCommentListValue._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.codedCommentListValue;
 
   /// Regular expression matching pattern for the [id] of
   /// [CodedCommentListValue]s.

@@ -54,23 +54,50 @@ class AllocationStamp extends Iso11783Element {
     DateTime? stop,
     int? duration,
     List<Position>? position,
-  }) : super(
-         elementType: Iso11783ElementType.allocationStamp,
-         description: 'AllocationStamp',
-       ) {
+  }) : super(elementType: _elementType) {
     this.start = start;
     this.stop = stop;
     this.duration = duration;
     this.type = type;
-    if (position != null) {
-      children.addAll(position);
+    this.position.addAll(position);
+  }
+
+  AllocationStamp._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    position.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.position.xmlTag,
+          )
+          .map(Position._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (position.length > 2) {
+      throw ArgumentError.value(
+        position,
+        'position',
+        'Too many elements: ${position.length}, max elements: 2',
+      );
+    }
+    if (duration != null) {
+      ArgumentValidation.checkValueInRange(
+        value: duration!,
+        min: 0,
+        max: 4294967294,
+        name: 'duration',
+      );
     }
   }
 
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.allocationStamp;
+
   /// Optional position for where the stamp was planned/effective.
-  List<Position> get position => findElements(
-    Iso11783ElementType.position.xmlTag,
-  ).map((e) => e as Position).toList();
+  late final position = _XmlSyncedList<Position>(xmlElement: xmlElement);
 
   /// Start time.
   DateTime get start => parseDateTime('A');
@@ -89,7 +116,7 @@ class AllocationStamp extends Iso11783Element {
   AllocationStampType get type => AllocationStampType.values.firstWhere(
     (type) => type.value == parseInt('D'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('D')}` is not one of the supported values: ${AllocationStampType.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${AllocationStampType.values.join(', ')}''',
     ),
   );
   set type(AllocationStampType value) => setInt('D', value.value);

@@ -50,13 +50,41 @@ class ColourRange extends Iso11783Element {
     required int maximumValue,
     required int colour,
   }) : super(
-         elementType: Iso11783ElementType.colourRange,
-         description: 'ColourRange',
+         elementType: _elementType,
        ) {
     this.minimumValue = minimumValue;
     this.maximumValue = maximumValue;
     this.colour = colour;
   }
+
+  ColourRange._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkValueInRange(
+      value: minimumValue,
+      min: -2147483647,
+      max: 2147483647,
+      name: 'minimumValue',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: maximumValue,
+      min: -2147483647,
+      max: 2147483647,
+      name: 'maximumValue',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: colour,
+      min: 0,
+      max: 254,
+      name: 'colour',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.colourRange;
 
   /// Minimum value in the range.
   int get minimumValue => parseInt('A');

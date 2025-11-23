@@ -43,27 +43,54 @@ class GuidanceAllocation extends Iso11783Element {
     required List<AllocationStamp> allocationStamps,
     required String groupIdRef,
     List<GuidanceShift>? shifts,
-  }) : super(
-         elementType: Iso11783ElementType.guidanceAllocation,
-         description: 'GuidanceAllocation',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.groupIdRef = groupIdRef;
-    children.addAll(allocationStamps);
-    if (shifts != null) {
-      children.addAll(shifts);
-    }
+    this.allocationStamps.addAll(allocationStamps);
+    this.shifts.addAll(shifts);
   }
 
+  GuidanceAllocation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    allocationStamps.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.allocationStamp.xmlTag)
+          .map(AllocationStamp._fromXmlElement)
+          .toList(),
+    );
+    shifts.addAll(
+      xmlElement
+          .findElements(Iso11783ElementType.guidanceShift.xmlTag)
+          .map(GuidanceShift._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    if (allocationStamps.isEmpty) {
+      throw ArgumentError.value(
+        allocationStamps,
+        'allocationStamps',
+        'Should not be empty',
+      );
+    }
+    ArgumentValidation.checkId(
+      id: groupIdRef,
+      idRefPattern: GuidanceGroup.staticIdRefPattern,
+      idName: 'groupIdRef',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.guidanceAllocation;
+
   /// A list of [AllocationStamp]s for this.
-  List<AllocationStamp> get allocationStamps => findElements(
-    Iso11783ElementType.allocationStamp.xmlTag,
-  ).map((e) => e as AllocationStamp).toList();
+  late final allocationStamps = _XmlSyncedList<AllocationStamp>(
+    xmlElement: xmlElement,
+  );
 
   /// A list of [GuidanceShift]s for this.
-  List<GuidanceShift> get shifts => findElements(
-    Iso11783ElementType.guidanceShift.xmlTag,
-  ).map((e) => e as GuidanceShift).toList();
+  late final shifts = _XmlSyncedList<GuidanceShift>(xmlElement: xmlElement);
 
   /// Reference to a [GuidanceGroup].
   String get groupIdRef => parseString('A');

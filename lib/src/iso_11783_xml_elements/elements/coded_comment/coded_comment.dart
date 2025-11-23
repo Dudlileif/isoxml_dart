@@ -50,17 +50,46 @@ class CodedComment extends Iso11783Element {
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
   }) : super(
-         elementType: Iso11783ElementType.codedComment,
-         description: 'CodedComment',
+         elementType: _elementType,
        ) {
     this.id = id;
     this.designator = designator;
     this.scope = scope;
     this.groupIdRef = groupIdRef;
-    if (listValues != null) {
-      children.addAll(listValues);
+    this.listValues.addAll(listValues);
+  }
+
+  CodedComment._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    listValues.addAll(
+      xmlElement
+          .findElements(
+            Iso11783ElementType.codedCommentListValue.xmlTag,
+          )
+          .map(CodedCommentListValue._fromXmlElement)
+          .toList(),
+    );
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+
+    if (groupIdRef != null) {
+      ArgumentValidation.checkId(
+        id: groupIdRef!,
+        idRefPattern: CodedCommentGroup.staticIdRefPattern,
+        idName: 'groupIdRef',
+      );
     }
   }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.codedComment;
 
   /// Regular expression matching pattern for the [id] of [CodedComment]s.
   static const String staticIdRefPattern = '(CCT|CCT-)[1-9]([0-9])*';
@@ -69,9 +98,9 @@ class CodedComment extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// List of [CodedCommentListValue]s for this comment.
-  List<CodedCommentListValue> get listValues => findElements(
-    Iso11783ElementType.codedCommentListValue.xmlTag,
-  ).map((e) => e as CodedCommentListValue).toList();
+  late final listValues = _XmlSyncedList<CodedCommentListValue>(
+    xmlElement: xmlElement,
+  );
 
   /// Unique identifier for this comment.
   ///
@@ -88,7 +117,7 @@ class CodedComment extends Iso11783Element {
   CodedCommentScope get scope => CodedCommentScope.values.firstWhere(
     (type) => type.value == parseInt('C'),
     orElse: () => throw ArgumentError(
-      '''`${getAttribute('C')}` is not one of the supported values: ${CodedCommentScope.values.join(', ')}''',
+      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${CodedCommentScope.values.join(', ')}''',
     ),
   );
   set scope(CodedCommentScope value) => setInt('C', value.value);

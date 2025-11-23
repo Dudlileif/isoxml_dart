@@ -41,14 +41,34 @@ class CropVariety extends Iso11783Element {
     required String id,
     required String designator,
     String? productIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.cropVariety,
-         description: 'CropVariety',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.productIdRef = productIdRef;
   }
+
+  CropVariety._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+    if (productIdRef != null) {
+      ArgumentValidation.checkId(
+        id: productIdRef!,
+        idRefPattern: Product.staticIdRefPattern,
+        idName: 'productIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.cropVariety;
 
   /// Regular expression matching pattern for the [id] of [CropVariety]s.
   static const staticIdRefPattern = '(CVT|CVT-)[1-9]([0-9])*';

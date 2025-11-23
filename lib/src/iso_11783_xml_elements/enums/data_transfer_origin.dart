@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-part 'data_transfer_origin.g.dart';
+part of '../iso_11783_element.dart';
 
 /// An enumerator for the creation origin of XML task data files.
 enum DataTransferOrigin {

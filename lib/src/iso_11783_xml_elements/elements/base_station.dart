@@ -58,17 +58,47 @@ class BaseStation extends Iso11783Element {
     required double north,
     required double east,
     required int up,
-  }) : super(
-         elementType: Iso11783ElementType.baseStation,
-         description: 'BaseStation',
-         onlyVersion4AndAbove: true,
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.north = north;
     this.east = east;
     this.up = up;
   }
+
+  BaseStation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkIdAndDesignator(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      designator: designator,
+    );
+    ArgumentValidation.checkValueInRange(
+      value: north,
+      min: -90,
+      max: 90,
+      name: 'north',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: east,
+      min: -180,
+      max: 180,
+      name: 'east',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: up,
+      min: -2147483647,
+      max: 2147483647,
+      name: 'up',
+    );
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.baseStation;
 
   /// Regular expression matching pattern for the [id] of [BaseStation]s.
   static const String staticIdRefPattern = '(BSN|BSN-)[1-9]([0-9])*';
@@ -85,7 +115,7 @@ class BaseStation extends Iso11783Element {
 
   /// Name of the base station, description or comment.
   String get designator => parseString('B');
-  set designator(String value) => setString('A', value);
+  set designator(String value) => setString('B', value);
 
   /// GNSS position north, format: WGS84 latitude
   double get north => parseDouble('C');

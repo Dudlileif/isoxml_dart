@@ -77,10 +77,7 @@ class ValuePresentation extends Iso11783Element {
     required int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
-  }) : super(
-         elementType: Iso11783ElementType.valuePresentation,
-         description: 'ValuePresentation',
-       ) {
+  }) : super(elementType: _elementType) {
     this.id = id;
     this.offset = offset;
     this.scale = scale;
@@ -88,6 +85,49 @@ class ValuePresentation extends Iso11783Element {
     this.unitDesignator = unitDesignator;
     this.colourLegendIdRef = colourLegendIdRef;
   }
+
+  ValuePresentation._fromXmlElement(XmlElement element)
+    : super(elementType: _elementType, xmlElement: element) {
+    _argumentValidator();
+  }
+
+  void _argumentValidator() {
+    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkValueInRange(
+      value: offset,
+      min: -2147483648,
+      max: 2147483647,
+      name: 'offset',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: scale,
+      min: 0.000000001,
+      max: 100000000,
+      name: 'scale',
+    );
+    ArgumentValidation.checkValueInRange(
+      value: numberOfDecimals,
+      min: 0,
+      max: 7,
+      name: 'numberOfDecimals',
+    );
+    if (unitDesignator != null) {
+      ArgumentValidation.checkStringLength(
+        unitDesignator!,
+        name: 'unitDesignator',
+      );
+    }
+    if (colourLegendIdRef != null) {
+      ArgumentValidation.checkId(
+        id: colourLegendIdRef!,
+        idRefPattern: ColourLegend.staticIdRefPattern,
+        idName: 'colourLegendIdRef',
+      );
+    }
+  }
+
+  static const Iso11783ElementType _elementType =
+      Iso11783ElementType.valuePresentation;
 
   /// Regular expression matching pattern for the [id] of [ValuePresentation]s.
   static const staticIdRefPattern = '(VPN|VPN-)[1-9]([0-9])*';
