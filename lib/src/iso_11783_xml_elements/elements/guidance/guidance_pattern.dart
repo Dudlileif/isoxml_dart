@@ -4,13 +4,13 @@
 
 part of '../../iso_11783_element.dart';
 
-/// An element that describes patterns from [LineString]s and a boundary
+/// An element that describes a pattern from [LineString] and a boundary
 /// [Polygon] to use with nagivation guidance (steering).
 class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   /// Default factory for creating a [GuidancePattern] with verified
   /// arguments.
   factory GuidancePattern({
-    required List<LineString> lineStrings,
+    required LineString lineString,
     required String id,
     required GuidancePatternType type,
     Polygon? boundaryPolygon,
@@ -29,7 +29,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     int? numberOfSwathsRight,
   }) {
     _argumentValidator(
-      lineStrings: lineStrings,
+      lineString: lineString,
       id: id,
       type: type,
       boundaryPolygon: boundaryPolygon,
@@ -49,7 +49,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     );
 
     return GuidancePattern._(
-      lineStrings: lineStrings,
+      lineString: lineString,
       id: id,
       type: type,
       boundaryPolygon: boundaryPolygon,
@@ -72,7 +72,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   /// Private constructor that is called after having verified all the arguments
   /// in the default factory.
   GuidancePattern._({
-    required List<LineString> lineStrings,
+    required LineString lineString,
     required String id,
     required GuidancePatternType type,
     Polygon? boundaryPolygon,
@@ -89,10 +89,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
-  }) : super._(elementType: _elementType) {
+  }) : _lineString = lineString,
+       super._(elementType: _elementType) {
     this.id = id;
     this.type = type;
-    this.boundaryPolygon = boundaryPolygon;
     this.designator = designator;
     this.options = options;
     this.propagationDirection = propagationDirection;
@@ -107,25 +107,25 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     this.numberOfSwathsLeft = numberOfSwathsLeft;
     this.numberOfSwathsRight = numberOfSwathsRight;
     this.boundaryPolygon = boundaryPolygon;
-    this.lineStrings.addAll(lineStrings);
+    this.lineString = lineString;
   }
 
   GuidancePattern._fromXmlElement(XmlElement element)
-    : super._(elementType: _elementType, xmlElement: element) {
+    : _lineString = LineString._fromXmlElement(
+        element.getElement(Iso11783ElementType.lineString.xmlTag)!,
+      ),
+      super._(elementType: _elementType, xmlElement: element) {
     boundaryPolygon = switch (xmlElement.getElement(
       Iso11783ElementType.polygon.xmlTag,
     )) {
       final XmlElement element => Polygon._fromXmlElement(element),
       _ => null,
     };
-    lineStrings.addAll(
-      xmlElement
-          .findElements(Iso11783ElementType.lineString.xmlTag)
-          .map(LineString._fromXmlElement)
-          .toList(),
+    lineString = LineString._fromXmlElement(
+      element.getElement(Iso11783ElementType.lineString.xmlTag)!,
     );
     _argumentValidator(
-      lineStrings: lineStrings,
+      lineString: lineString,
       id: id,
       type: type,
       boundaryPolygon: boundaryPolygon,
@@ -146,7 +146,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   }
 
   static void _argumentValidator({
-    required List<LineString> lineStrings,
+    required LineString lineString,
     required String id,
     required GuidancePatternType type,
     required Polygon? boundaryPolygon,
@@ -164,14 +164,6 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     required int? numberOfSwathsLeft,
     required int? numberOfSwathsRight,
   }) {
-    if (lineStrings.isEmpty) {
-      throw ArgumentError.value(
-        lineStrings,
-        'GuidancePattern.lineStrings',
-        'Should not be empty',
-      );
-    }
-
     ArgumentValidation.checkId(
       id: id,
       idRefPattern: staticIdRefPattern,
@@ -255,14 +247,32 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   @override
   String get idRefPattern => staticIdRefPattern;
 
-  /// A list of [LineString]s for this.
+  /// The [LineString] for this.
   ///
   /// The separation spacing between the paths for each [LineString] pattern
   /// is the [LineString.width] parameter.
-  late final lineStrings = _XmlSyncedList<LineString>(
-    xmlElement: xmlElement,
-    xmlTag: LineString._elementType.xmlTag,
-  );
+  /// [AllocationStamp] for specifying the position and time of this allocation.
+  LineString get lineString => _lineString;
+
+  set lineString(LineString value) {
+    switch ((value, _lineString)) {
+      case (
+        LineString(xmlElement: final element),
+        LineString(xmlElement: final existing),
+      ):
+        if (element.hasParent) {
+          element.remove();
+        }
+        if (existing.hasParent) {
+          existing.replace(element);
+        } else {
+          xmlElement.children.add(element);
+        }
+    }
+    _lineString = value;
+  }
+
+  LineString _lineString;
 
   /// Unique identifier for this guidance pattern.
   ///

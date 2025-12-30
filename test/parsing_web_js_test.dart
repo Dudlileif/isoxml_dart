@@ -896,8 +896,7 @@ void main() {
                     },
                   );
 
-                  final guidanceOuterLineString =
-                      guidancePattern.lineStrings.first;
+                  final guidanceOuterLineString = guidancePattern.lineString;
                   test(
                     'Check guidance outer linestring attributes',
                     () => expect(

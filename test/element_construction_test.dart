@@ -3793,15 +3793,14 @@ void main() {
           ),
           patterns: [
             GuidancePattern(
-              lineStrings: [
-                LineString(
-                  points: [
-                    Point(north: 60.1, east: 10.1, type: PointType.flag),
-                    Point(north: 60.9, east: 10.1, type: PointType.flag),
-                  ],
-                  type: LineStringType.guidancePattern,
-                ),
-              ],
+              lineString: LineString(
+                points: [
+                  Point(north: 60.1, east: 10.1, type: PointType.flag),
+                  Point(north: 60.9, east: 10.1, type: PointType.flag),
+                ],
+                type: LineStringType.guidancePattern,
+              ),
+
               id: 'GPN1',
               type: GuidancePatternType.ab,
             ),
@@ -3931,54 +3930,53 @@ void main() {
                       'GPN1',
                     )
                     .having(
-                      (pattern) => pattern.lineStrings,
+                      (pattern) => pattern.lineString,
                       'Correct `lineStrings`',
-                      [
-                        isA<LineString>()
-                            .having(
-                              (lineString) => lineString.type,
-                              'Correct `type`',
-                              LineStringType.guidancePattern,
-                            )
-                            .having(
-                              (lineString) => lineString.points,
-                              'Correct `points`',
-                              [
-                                isA<Point>()
-                                    .having(
-                                      (point) => point.type,
-                                      'Correct `type`',
-                                      PointType.flag,
-                                    )
-                                    .having(
-                                      (point) => point.north,
-                                      'Correct `north`',
-                                      60.1,
-                                    )
-                                    .having(
-                                      (point) => point.east,
-                                      'Correct `east`',
-                                      10.1,
-                                    ),
-                                isA<Point>()
-                                    .having(
-                                      (point) => point.type,
-                                      'Correct `type`',
-                                      PointType.flag,
-                                    )
-                                    .having(
-                                      (point) => point.north,
-                                      'Correct `north`',
-                                      60.9,
-                                    )
-                                    .having(
-                                      (point) => point.east,
-                                      'Correct `east`',
-                                      10.1,
-                                    ),
-                              ],
-                            ),
-                      ],
+
+                      isA<LineString>()
+                          .having(
+                            (lineString) => lineString.type,
+                            'Correct `type`',
+                            LineStringType.guidancePattern,
+                          )
+                          .having(
+                            (lineString) => lineString.points,
+                            'Correct `points`',
+                            [
+                              isA<Point>()
+                                  .having(
+                                    (point) => point.type,
+                                    'Correct `type`',
+                                    PointType.flag,
+                                  )
+                                  .having(
+                                    (point) => point.north,
+                                    'Correct `north`',
+                                    60.1,
+                                  )
+                                  .having(
+                                    (point) => point.east,
+                                    'Correct `east`',
+                                    10.1,
+                                  ),
+                              isA<Point>()
+                                  .having(
+                                    (point) => point.type,
+                                    'Correct `type`',
+                                    PointType.flag,
+                                  )
+                                  .having(
+                                    (point) => point.north,
+                                    'Correct `north`',
+                                    60.9,
+                                  )
+                                  .having(
+                                    (point) => point.east,
+                                    'Correct `east`',
+                                    10.1,
+                                  ),
+                            ],
+                          ),
                     ),
               ],
             ),
@@ -3990,15 +3988,13 @@ void main() {
     test('Correct values are set and read from the underlying XML element', () {
       expect(
         GuidancePattern(
-          lineStrings: [
-            LineString(
-              points: [
-                Point(north: 60.1, east: 10.1, type: PointType.flag),
-                Point(north: 60.9, east: 10.1, type: PointType.flag),
-              ],
-              type: LineStringType.guidancePattern,
-            ),
-          ],
+          lineString: LineString(
+            points: [
+              Point(north: 60.1, east: 10.1, type: PointType.flag),
+              Point(north: 60.9, east: 10.1, type: PointType.flag),
+            ],
+            type: LineStringType.guidancePattern,
+          ),
           id: 'GPN1',
           designator: 'Test string',
           type: GuidancePatternType.ab,
@@ -4099,54 +4095,52 @@ void main() {
               GuidancePattern.staticIdRefPattern,
             )
             .having(
-              (pattern) => pattern.lineStrings,
-              'Correct `lineStrings`',
-              [
-                isA<LineString>()
-                    .having(
-                      (lineString) => lineString.type,
-                      'Correct `type`',
-                      LineStringType.guidancePattern,
-                    )
-                    .having(
-                      (lineString) => lineString.points,
-                      'Correct `points`',
-                      [
-                        isA<Point>()
-                            .having(
-                              (point) => point.type,
-                              'Correct `type`',
-                              PointType.flag,
-                            )
-                            .having(
-                              (point) => point.north,
-                              'Correct `north`',
-                              60.1,
-                            )
-                            .having(
-                              (point) => point.east,
-                              'Correct `east`',
-                              10.1,
-                            ),
-                        isA<Point>()
-                            .having(
-                              (point) => point.type,
-                              'Correct `type`',
-                              PointType.flag,
-                            )
-                            .having(
-                              (point) => point.north,
-                              'Correct `north`',
-                              60.9,
-                            )
-                            .having(
-                              (point) => point.east,
-                              'Correct `east`',
-                              10.1,
-                            ),
-                      ],
-                    ),
-              ],
+              (pattern) => pattern.lineString,
+              'Correct `lineString`',
+              isA<LineString>()
+                  .having(
+                    (lineString) => lineString.type,
+                    'Correct `type`',
+                    LineStringType.guidancePattern,
+                  )
+                  .having(
+                    (lineString) => lineString.points,
+                    'Correct `points`',
+                    [
+                      isA<Point>()
+                          .having(
+                            (point) => point.type,
+                            'Correct `type`',
+                            PointType.flag,
+                          )
+                          .having(
+                            (point) => point.north,
+                            'Correct `north`',
+                            60.1,
+                          )
+                          .having(
+                            (point) => point.east,
+                            'Correct `east`',
+                            10.1,
+                          ),
+                      isA<Point>()
+                          .having(
+                            (point) => point.type,
+                            'Correct `type`',
+                            PointType.flag,
+                          )
+                          .having(
+                            (point) => point.north,
+                            'Correct `north`',
+                            60.9,
+                          )
+                          .having(
+                            (point) => point.east,
+                            'Correct `east`',
+                            10.1,
+                          ),
+                    ],
+                  ),
             )
             .having(
               (element) => element.boundaryPolygon,
@@ -4240,23 +4234,6 @@ void main() {
                     ],
                   ),
             ),
-      );
-    });
-
-    test('Empty `lineStrings` throws ArgumentError', () {
-      expect(
-        () => GuidancePattern(
-          lineStrings: const [],
-          id: 'GPN1',
-          type: GuidancePatternType.ab,
-        ),
-        throwsA(
-          isA<ArgumentError>().having(
-            (error) => error.name,
-            'Correct error',
-            'GuidancePattern.lineStrings',
-          ),
-        ),
       );
     });
 
@@ -4459,17 +4436,80 @@ void main() {
       );
     });
 
+    test('`lineString` setter', () {
+      final element = GuidancePattern(
+        lineString: LineString(
+          points: [
+            Point(north: 60, east: 10, type: PointType.flag),
+            Point(north: 60, east: 11, type: PointType.flag),
+          ],
+          type: LineStringType.guidancePattern,
+          id: 'LSG1',
+        ),
+        id: 'GPN1',
+        type: GuidancePatternType.ab,
+      );
+
+      expect(
+        element.lineString,
+        isA<LineString>().having(
+          (lineString) => lineString.id,
+          'Correct `id`',
+          'LSG1',
+        ),
+      );
+      expect(
+        element.xmlElement.childElements
+            .where(
+              (xmlElement) =>
+                  xmlElement.name.local ==
+                  Iso11783ElementType.lineString.xmlTag,
+            )
+            .length,
+        1,
+      );
+
+      final newLineString = LineString(
+        points: [
+          Point(north: 60, east: 10, type: PointType.flag),
+          Point(north: 60, east: 11, type: PointType.flag),
+        ],
+        type: LineStringType.guidancePattern,
+        id: 'LSG2',
+      );
+      // Tests removal of parent.
+      XmlElement.tag('ABC').children.add(newLineString.xmlElement);
+
+      element.lineString = newLineString;
+      expect(
+        element.lineString,
+        isA<LineString>().having(
+          (lineString) => lineString.id,
+          'Correct `id`',
+          'LSG2',
+        ),
+      );
+      expect(
+        element.xmlElement.childElements
+            .where(
+              (xmlElement) =>
+                  xmlElement.name.local ==
+                  Iso11783ElementType.lineString.xmlTag,
+            )
+            .length,
+        1,
+      );
+    });
+
     test('`boundaryPolygon` setter', () {
       final element = GuidancePattern(
-        lineStrings: [
-          LineString(
-            points: [
-              Point(north: 60, east: 10, type: PointType.flag),
-              Point(north: 60, east: 11, type: PointType.flag),
-            ],
-            type: LineStringType.guidancePattern,
-          ),
-        ],
+        lineString: LineString(
+          points: [
+            Point(north: 60, east: 10, type: PointType.flag),
+            Point(north: 60, east: 11, type: PointType.flag),
+          ],
+          type: LineStringType.guidancePattern,
+        ),
         id: 'GPN1',
         type: GuidancePatternType.ab,
       );

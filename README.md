@@ -23,7 +23,7 @@
 | ------- | ----------- |
 | [archive](https://pub.dev/packages/archive) | Encode and decode ZIP files. |
 | [collection](https://pub.dev/packages/collection) | Handy extension methods on iterables. |
-| [equatable](https://pub.dev/packages/equatable) | Reduce biolerplate for overriding `==` and `hashCode`. |
+| [meta](https://pub.dev/packages/meta) | Annotations for immutable classes. |
 | [web](https://pub.dev/packages/web) | Helps with handling JS and WASM compatibility on the web platform. |
 | [xml](https://pub.dev/packages/xml) | Makes importing, parsing and exporting XML documents a breeze. |
 | Dev packages | |
