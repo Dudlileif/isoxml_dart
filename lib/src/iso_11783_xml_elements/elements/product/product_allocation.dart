@@ -24,38 +24,16 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
   }) {
-    ArgumentValidation.checkId(
-      id: productIdRef,
-      idRefPattern: Product.staticIdRefPattern,
-      idName: 'productIdRef',
+    _argumentValidator(
+      productIdRef: productIdRef,
+      quantityDDI: quantityDDI,
+      quantityValue: quantityValue,
+      transferMode: transferMode,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      productSubTypeIdRef: productSubTypeIdRef,
+      allocationStamp: allocationStamp,
     );
-    if (quantityDDI != null) {
-      ArgumentValidation.checkHexStringLength(
-        quantityDDI,
-        name: 'quantityDDI',
-      );
-    }
-    if (deviceElementIdRef != null) {
-      ArgumentValidation.checkId(
-        id: deviceElementIdRef,
-        idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
-      );
-    }
-    if (valuePresentationIdRef != null) {
-      ArgumentValidation.checkId(
-        id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
-      );
-    }
-    if (productSubTypeIdRef != null) {
-      ArgumentValidation.checkId(
-        id: productSubTypeIdRef,
-        idRefPattern: Product.staticIdRefPattern,
-        idName: 'productSubTypeIdRef',
-      );
-    }
 
     return ProductAllocation._(
       productIdRef: productIdRef,
@@ -80,7 +58,7 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
     String? valuePresentationIdRef,
     String? productSubTypeIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.productIdRef = productIdRef;
     this.quantityDDI = quantityDDI;
     this.quantityValue = quantityValue;
@@ -92,42 +70,60 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
   }
 
   ProductAllocation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      productIdRef: productIdRef,
+      quantityDDI: quantityDDI,
+      quantityValue: quantityValue,
+      transferMode: transferMode,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      productSubTypeIdRef: productSubTypeIdRef,
+      allocationStamp: allocationStamp,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String productIdRef,
+    required String? quantityDDI,
+    required int? quantityValue,
+    required TransferMode? transferMode,
+    required String? deviceElementIdRef,
+    required String? valuePresentationIdRef,
+    required String? productSubTypeIdRef,
+    required AllocationStamp? allocationStamp,
+  }) {
     ArgumentValidation.checkId(
       id: productIdRef,
       idRefPattern: Product.staticIdRefPattern,
-      idName: 'productIdRef',
+      name: 'ProductAllocation.productIdRef',
     );
     if (quantityDDI != null) {
       ArgumentValidation.checkHexStringLength(
-        quantityDDI!,
-        name: 'quantityDDI',
+        quantityDDI,
+        name: 'ProductAllocation.quantityDDI',
       );
     }
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
-        id: deviceElementIdRef!,
+        id: deviceElementIdRef,
         idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
+        name: 'ProductAllocation.deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
-        id: valuePresentationIdRef!,
+        id: valuePresentationIdRef,
         idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
+        name: 'ProductAllocation.valuePresentationIdRef',
       );
     }
     if (productSubTypeIdRef != null) {
       ArgumentValidation.checkId(
-        id: productSubTypeIdRef!,
+        id: productSubTypeIdRef,
         idRefPattern: Product.staticIdRefPattern,
-        idName: 'productSubTypeIdRef',
+        name: 'ProductAllocation.productSubTypeIdRef',
       );
     }
   }
@@ -155,8 +151,10 @@ class ProductAllocation extends Iso11783Element with _AllocationStampMixin {
   TransferMode? get transferMode => switch (tryParseInt('D')) {
     final int value => TransferMode.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${TransferMode.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('D'),
+        'ProductAllocation.transferMode',
+        '''is not one of the supported values: ${TransferMode.values.join(', ')}''',
       ),
     ),
     _ => null,

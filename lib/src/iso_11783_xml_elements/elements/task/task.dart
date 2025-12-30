@@ -37,62 +37,32 @@ class Task extends Iso11783Element {
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (customerIdRef != null) {
-      ArgumentValidation.checkId(
-        id: customerIdRef,
-        idRefPattern: Customer.staticIdRefPattern,
-        idName: 'customerIdRef',
-      );
-    }
-    if (farmIdRef != null) {
-      ArgumentValidation.checkId(
-        id: farmIdRef,
-        idRefPattern: Farm.staticIdRefPattern,
-        idName: 'farmIdRef',
-      );
-    }
-    if (partfieldIdRef != null) {
-      ArgumentValidation.checkId(
-        id: partfieldIdRef,
-        idRefPattern: Partfield.staticIdRefPattern,
-        idName: 'partfieldIdRef',
-      );
-    }
-    if (responsibleWorkerIdRef != null) {
-      ArgumentValidation.checkId(
-        id: responsibleWorkerIdRef,
-        idRefPattern: Worker.staticIdRefPattern,
-        idName: 'responsibleWorkerIdRef',
-      );
-    }
-    if (defaultTreatmentZoneCode != null) {
-      ArgumentValidation.checkValueInRange(
-        value: defaultTreatmentZoneCode,
-        min: 0,
-        max: 254,
-        name: 'defaultTreatmentZoneCode',
-      );
-    }
-    if (positionLostTreatmentZoneCode != null) {
-      ArgumentValidation.checkValueInRange(
-        value: positionLostTreatmentZoneCode,
-        min: 0,
-        max: 254,
-        name: 'positionLostTreatmentZoneCode',
-      );
-    }
-    if (outOfFieldTreatmentZoneCode != null) {
-      ArgumentValidation.checkValueInRange(
-        value: outOfFieldTreatmentZoneCode,
-        min: 0,
-        max: 254,
-        name: 'outOfFieldTreatmentZoneCode',
-      );
-    }
+    _argumentValidator(
+      id: id,
+      status: status,
+      treatmentZones: treatmentZones,
+      times: times,
+      operationTechniquePractice: operationTechniquePractice,
+      workerAllocations: workerAllocations,
+      deviceAllocations: deviceAllocations,
+      connections: connections,
+      productAllocations: productAllocations,
+      dataLogTriggers: dataLogTriggers,
+      commentAllocations: commentAllocations,
+      timeLogs: timeLogs,
+      grid: grid,
+      controlAssignments: controlAssignments,
+      guidanceAllocations: guidanceAllocations,
+      designator: designator,
+      customerIdRef: customerIdRef,
+      farmIdRef: farmIdRef,
+      partfieldIdRef: partfieldIdRef,
+      responsibleWorkerIdRef: responsibleWorkerIdRef,
+      defaultTreatmentZoneCode: defaultTreatmentZoneCode,
+      positionLostTreatmentZoneCode: positionLostTreatmentZoneCode,
+      outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode,
+    );
+
     return Task._(
       id: id,
       status: status,
@@ -146,7 +116,7 @@ class Task extends Iso11783Element {
     int? defaultTreatmentZoneCode,
     int? positionLostTreatmentZoneCode,
     int? outOfFieldTreatmentZoneCode,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.status = status;
     this.designator = designator;
@@ -173,7 +143,7 @@ class Task extends Iso11783Element {
   }
 
   Task._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     commentAllocations.addAll(
       xmlElement
           .findElements(Iso11783ElementType.commentAllocation.xmlTag)
@@ -254,64 +224,116 @@ class Task extends Iso11783Element {
           .map(WorkerAllocation._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      status: status,
+      treatmentZones: treatmentZones,
+      times: times,
+      operationTechniquePractice: operationTechniquePractice,
+      workerAllocations: workerAllocations,
+      deviceAllocations: deviceAllocations,
+      connections: connections,
+      productAllocations: productAllocations,
+      dataLogTriggers: dataLogTriggers,
+      commentAllocations: commentAllocations,
+      timeLogs: timeLogs,
+      grid: grid,
+      controlAssignments: controlAssignments,
+      guidanceAllocations: guidanceAllocations,
+      designator: designator,
+      customerIdRef: customerIdRef,
+      farmIdRef: farmIdRef,
+      partfieldIdRef: partfieldIdRef,
+      responsibleWorkerIdRef: responsibleWorkerIdRef,
+      defaultTreatmentZoneCode: defaultTreatmentZoneCode,
+      positionLostTreatmentZoneCode: positionLostTreatmentZoneCode,
+      outOfFieldTreatmentZoneCode: outOfFieldTreatmentZoneCode,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required TaskStatus status,
+    required List<TreatmentZone>? treatmentZones,
+    required List<Time>? times,
+    required OperationTechniquePractice? operationTechniquePractice,
+    required List<WorkerAllocation>? workerAllocations,
+    required List<DeviceAllocation>? deviceAllocations,
+    required List<Connection>? connections,
+    required List<ProductAllocation>? productAllocations,
+    required List<DataLogTrigger>? dataLogTriggers,
+    required List<CommentAllocation>? commentAllocations,
+    required List<TimeLog>? timeLogs,
+    required Grid? grid,
+    required List<ControlAssignment>? controlAssignments,
+    required List<GuidanceAllocation>? guidanceAllocations,
+    required String? designator,
+    required String? customerIdRef,
+    required String? farmIdRef,
+    required String? partfieldIdRef,
+    required String? responsibleWorkerIdRef,
+    required int? defaultTreatmentZoneCode,
+    required int? positionLostTreatmentZoneCode,
+    required int? outOfFieldTreatmentZoneCode,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'Task.id',
+    );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(designator, name: 'Task.designator');
     }
     if (customerIdRef != null) {
       ArgumentValidation.checkId(
-        id: customerIdRef!,
+        id: customerIdRef,
         idRefPattern: Customer.staticIdRefPattern,
-        idName: 'customerIdRef',
+        name: 'Task.customerIdRef',
       );
     }
     if (farmIdRef != null) {
       ArgumentValidation.checkId(
-        id: farmIdRef!,
+        id: farmIdRef,
         idRefPattern: Farm.staticIdRefPattern,
-        idName: 'farmIdRef',
+        name: 'Task.farmIdRef',
       );
     }
     if (partfieldIdRef != null) {
       ArgumentValidation.checkId(
-        id: partfieldIdRef!,
+        id: partfieldIdRef,
         idRefPattern: Partfield.staticIdRefPattern,
-        idName: 'partfieldIdRef',
+        name: 'Task.partfieldIdRef',
       );
     }
     if (responsibleWorkerIdRef != null) {
       ArgumentValidation.checkId(
-        id: responsibleWorkerIdRef!,
+        id: responsibleWorkerIdRef,
         idRefPattern: Worker.staticIdRefPattern,
-        idName: 'responsibleWorkerIdRef',
+        name: 'Task.responsibleWorkerIdRef',
       );
     }
     if (defaultTreatmentZoneCode != null) {
       ArgumentValidation.checkValueInRange(
-        value: defaultTreatmentZoneCode!,
+        value: defaultTreatmentZoneCode,
         min: 0,
         max: 254,
-        name: 'defaultTreatmentZoneCode',
+        name: 'Task.defaultTreatmentZoneCode',
       );
     }
     if (positionLostTreatmentZoneCode != null) {
       ArgumentValidation.checkValueInRange(
-        value: positionLostTreatmentZoneCode!,
+        value: positionLostTreatmentZoneCode,
         min: 0,
         max: 254,
-        name: 'positionLostTreatmentZoneCode',
+        name: 'Task.positionLostTreatmentZoneCode',
       );
     }
     if (outOfFieldTreatmentZoneCode != null) {
       ArgumentValidation.checkValueInRange(
-        value: outOfFieldTreatmentZoneCode!,
+        value: outOfFieldTreatmentZoneCode,
         min: 0,
         max: 254,
-        name: 'outOfFieldTreatmentZoneCode',
+        name: 'Task.outOfFieldTreatmentZoneCode',
       );
     }
   }
@@ -327,24 +349,31 @@ class Task extends Iso11783Element {
   /// A list of [CommentAllocation] for this.
   late final commentAllocations = _XmlSyncedList<CommentAllocation>(
     xmlElement: xmlElement,
+    xmlTag: CommentAllocation._elementType.xmlTag,
   );
 
   /// A list of [ControlAssignment]s for this.
   late final controlAssignments = _XmlSyncedList<ControlAssignment>(
     xmlElement: xmlElement,
+    xmlTag: ControlAssignment._elementType.xmlTag,
   );
 
   /// A list of [Connection] for this.
-  late final connections = _XmlSyncedList<Connection>(xmlElement: xmlElement);
+  late final connections = _XmlSyncedList<Connection>(
+    xmlElement: xmlElement,
+    xmlTag: Connection._elementType.xmlTag,
+  );
 
   /// A list of [DeviceAllocation] for this.
   late final deviceAllocations = _XmlSyncedList<DeviceAllocation>(
     xmlElement: xmlElement,
+    xmlTag: DeviceAllocation._elementType.xmlTag,
   );
 
   /// A list of [DataLogTrigger] for this.
   late final dataLogTriggers = _XmlSyncedList<DataLogTrigger>(
     xmlElement: xmlElement,
+    xmlTag: DataLogTrigger._elementType.xmlTag,
   );
 
   /// The [Grid] for this.
@@ -376,6 +405,7 @@ class Task extends Iso11783Element {
   /// A list of [GuidanceAllocation]s for this.
   late final guidanceAllocations = _XmlSyncedList<GuidanceAllocation>(
     xmlElement: xmlElement,
+    xmlTag: GuidanceAllocation._elementType.xmlTag,
   );
 
   /// The [OperationTechniquePractice] for this.
@@ -408,22 +438,31 @@ class Task extends Iso11783Element {
   /// A list of [ProductAllocation] for this.
   late final productAllocations = _XmlSyncedList<ProductAllocation>(
     xmlElement: xmlElement,
+    xmlTag: ProductAllocation._elementType.xmlTag,
   );
 
   /// A list of [Time] for this.
-  late final times = _XmlSyncedList<Time>(xmlElement: xmlElement);
+  late final times = _XmlSyncedList<Time>(
+    xmlElement: xmlElement,
+    xmlTag: Time._elementType.xmlTag,
+  );
 
   /// A list of [TimeLog] for this.
-  late final timeLogs = _XmlSyncedList<TimeLog>(xmlElement: xmlElement);
+  late final timeLogs = _XmlSyncedList<TimeLog>(
+    xmlElement: xmlElement,
+    xmlTag: TimeLog._elementType.xmlTag,
+  );
 
   /// A list of [TreatmentZone] for this.
   late final treatmentZones = _XmlSyncedList<TreatmentZone>(
     xmlElement: xmlElement,
+    xmlTag: TreatmentZone._elementType.xmlTag,
   );
 
   /// A list of [WorkerAllocation] for this.
   late final workerAllocations = _XmlSyncedList<WorkerAllocation>(
     xmlElement: xmlElement,
+    xmlTag: WorkerAllocation._elementType.xmlTag,
   );
 
   /// Unique identifier for this task.
@@ -456,8 +495,10 @@ class Task extends Iso11783Element {
   /// What the state of this is.
   TaskStatus get status => TaskStatus.values.firstWhere(
     (type) => type.value == parseInt('G'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('G')}` is not one of the supported values: ${TaskStatus.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('G'),
+      'Task.status',
+      '''is not one of the supported values: ${TaskStatus.values.join(', ')}''',
     ),
   );
   set status(TaskStatus value) => setInt('G', value.value);

@@ -17,28 +17,12 @@ class BaseStation extends Iso11783Element {
     required double east,
     required int up,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
-    );
-    ArgumentValidation.checkValueInRange(
-      value: north,
-      min: -90,
-      max: 90,
-      name: 'north',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: east,
-      min: -180,
-      max: 180,
-      name: 'east',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: up,
-      min: -2147483647,
-      max: 2147483647,
-      name: 'up',
+      north: north,
+      east: east,
+      up: up,
     );
 
     return BaseStation._(
@@ -58,7 +42,7 @@ class BaseStation extends Iso11783Element {
     required double north,
     required double east,
     required int up,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.north = north;
@@ -67,33 +51,47 @@ class BaseStation extends Iso11783Element {
   }
 
   BaseStation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      north: north,
+      east: east,
+      up: up,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required double north,
+    required double east,
+    required int up,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'BaseStation.id',
+      designatorName: 'BaseStation.designator',
     );
     ArgumentValidation.checkValueInRange(
       value: north,
       min: -90,
       max: 90,
-      name: 'north',
+      name: 'BaseStation.north',
     );
     ArgumentValidation.checkValueInRange(
       value: east,
       min: -180,
       max: 180,
-      name: 'east',
+      name: 'BaseStation.east',
     );
     ArgumentValidation.checkValueInRange(
       value: up,
       min: -2147483647,
       max: 2147483647,
-      name: 'up',
+      name: 'BaseStation.up',
     );
   }
 

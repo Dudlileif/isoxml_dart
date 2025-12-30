@@ -11,11 +11,7 @@ class OperationTechniqueReference extends Iso11783Element {
   factory OperationTechniqueReference({
     required String operationTechniqueIdRef,
   }) {
-    ArgumentValidation.checkId(
-      id: operationTechniqueIdRef,
-      idRefPattern: OperationTechnique.staticIdRefPattern,
-      idName: 'operationTechniqueIdRef',
-    );
+    _argumentValidator(operationTechniqueIdRef: operationTechniqueIdRef);
 
     return OperationTechniqueReference._(
       operationTechniqueIdRef: operationTechniqueIdRef,
@@ -26,20 +22,20 @@ class OperationTechniqueReference extends Iso11783Element {
   /// in the default factory.
   OperationTechniqueReference._({
     required String operationTechniqueIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.operationTechniqueIdRef = operationTechniqueIdRef;
   }
 
   OperationTechniqueReference._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(operationTechniqueIdRef: operationTechniqueIdRef);
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({required String operationTechniqueIdRef}) {
     ArgumentValidation.checkId(
       id: operationTechniqueIdRef,
       idRefPattern: OperationTechnique.staticIdRefPattern,
-      idName: 'operationTechniqueIdRef',
+      name: 'OperationTechniqueReference.operationTechniqueIdRef',
     );
   }
 

@@ -25,48 +25,17 @@ class Farm extends Iso11783Element {
     String? country,
     String? customerIdRef,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      customerIdRef: customerIdRef,
     );
-    if (street != null) {
-      if (street.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
-    }
-    if (poBox != null) {
-      if (poBox.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
-    }
-    if (postalCode != null) {
-      if (postalCode.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
-    }
-    if (city != null) {
-      if (city.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
-    }
-    if (state != null) {
-      if (state.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
-    }
-    if (country != null) {
-      if (country.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
-    }
-    if (customerIdRef != null) {
-      ArgumentValidation.checkId(
-        id: customerIdRef,
-        idRefPattern: Customer.staticIdRefPattern,
-        idName: 'customerIdRef',
-      );
-    }
 
     return Farm._(
       id: id,
@@ -93,7 +62,7 @@ class Farm extends Iso11783Element {
     String? state,
     String? country,
     String? customerIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.street = street;
@@ -106,51 +75,65 @@ class Farm extends Iso11783Element {
   }
 
   Farm._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      customerIdRef: customerIdRef,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required String? street,
+    required String? poBox,
+    required String? postalCode,
+    required String? city,
+    required String? state,
+    required String? country,
+    required String? customerIdRef,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'Farm.id',
+      designatorName: 'Farm.designator',
     );
     if (street != null) {
-      if (street!.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(street, name: 'Farm.street');
     }
     if (poBox != null) {
-      if (poBox!.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(poBox, name: 'Farm.poBox');
     }
     if (postalCode != null) {
-      if (postalCode!.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
+      ArgumentValidation.checkStringLength(
+        postalCode,
+        name: 'Farm.postalCode',
+        maxLength: 10,
+      );
     }
     if (city != null) {
-      if (city!.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(city, name: 'Farm.city');
     }
     if (state != null) {
-      if (state!.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(state, name: 'Farm.state');
     }
     if (country != null) {
-      if (country!.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(country, name: 'Farm.country');
     }
     if (customerIdRef != null) {
       ArgumentValidation.checkId(
-        id: customerIdRef!,
+        id: customerIdRef,
         idRefPattern: Customer.staticIdRefPattern,
-        idName: 'customerIdRef',
+        name: 'Farm.customerIdRef',
       );
     }
   }

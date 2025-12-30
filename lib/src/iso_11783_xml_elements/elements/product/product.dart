@@ -7,9 +7,9 @@ part of '../../iso_11783_element.dart';
 /// An element that describes a single product. A [Product] can be related to a
 /// [ProductGroup].
 ///
-/// To determine which products
-/// belong to a specific [ProductGroup], the [groupIdRef] values of all products
-/// shall be examined for a match with a particular [ProductGroup.id] value.
+/// To determine which products belong to a specific [ProductGroup], the
+/// [groupIdRef] values of all products shall be examined for a match with a
+/// particular [ProductGroup.id] value.
 /// Products refer both to products being used in a task (i.e. crop protection
 /// chemicals) and products being produced by a task (agricultural products).
 class Product extends Iso11783Element {
@@ -18,7 +18,7 @@ class Product extends Iso11783Element {
   factory Product({
     required String id,
     required String designator,
-    List<ProductRelation>? relations,
+    List<ProductRelation> relations = const [],
     String? groupIdRef,
     String? valuePresentationIdRef,
     String? quantityDDI,
@@ -28,80 +28,19 @@ class Product extends Iso11783Element {
     int? densityMassPerCount,
     int? densityVolumePerCount,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      relations: relations,
+      groupIdRef: groupIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      quantityDDI: quantityDDI,
+      type: type,
+      mixtureRecipeQuantity: mixtureRecipeQuantity,
+      densityMassPerVolume: densityMassPerVolume,
+      densityMassPerCount: densityMassPerCount,
+      densityVolumePerCount: densityVolumePerCount,
     );
-    if (groupIdRef != null) {
-      ArgumentValidation.checkId(
-        id: groupIdRef,
-        idRefPattern: ProductGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
-      );
-    }
-    if (valuePresentationIdRef != null) {
-      ArgumentValidation.checkId(
-        id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
-      );
-    }
-    if (quantityDDI != null) {
-      ArgumentValidation.checkHexStringLength(
-        quantityDDI,
-        name: 'quantityDDI',
-      );
-    }
-    if (mixtureRecipeQuantity != null) {
-      ArgumentValidation.checkValueInRange(
-        value: mixtureRecipeQuantity,
-        min: 0,
-        max: 2147483647,
-        name: 'mixtureRecipeQuantity',
-      );
-    }
-    if (densityMassPerVolume != null) {
-      ArgumentValidation.checkValueInRange(
-        value: densityMassPerVolume,
-        min: 0,
-        max: 2147483647,
-        name: 'densityMassPerVolume',
-      );
-    }
-    if (densityMassPerCount != null) {
-      ArgumentValidation.checkValueInRange(
-        value: densityMassPerCount,
-        min: 0,
-        max: 2147483647,
-        name: 'densityMassPerCount',
-      );
-    }
-    if (densityVolumePerCount != null) {
-      ArgumentValidation.checkValueInRange(
-        value: densityVolumePerCount,
-        min: 0,
-        max: 2147483647,
-        name: 'densityVolumePerCount',
-      );
-    }
-    if (type == ProductType.single) {
-      if (relations != null) {
-        throw ArgumentError.value(
-          relations,
-          'relations',
-          'should be null when type == ProductType.single',
-        );
-      }
-    } else if (type != null) {
-      if (relations == null) {
-        throw ArgumentError.value(
-          relations,
-          'relations',
-          'should not be null when type != ProductType.single',
-        );
-      }
-    }
 
     return Product._(
       id: id,
@@ -132,7 +71,7 @@ class Product extends Iso11783Element {
     int? densityMassPerVolume,
     int? densityMassPerCount,
     int? densityVolumePerCount,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.groupIdRef = groupIdRef;
@@ -147,79 +86,105 @@ class Product extends Iso11783Element {
   }
 
   Product._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     relations.addAll(
       xmlElement
           .findElements(Iso11783ElementType.productRelation.xmlTag)
           .map(ProductRelation._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      relations: relations,
+      groupIdRef: groupIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      quantityDDI: quantityDDI,
+      type: type,
+      mixtureRecipeQuantity: mixtureRecipeQuantity,
+      densityMassPerVolume: densityMassPerVolume,
+      densityMassPerCount: densityMassPerCount,
+      densityVolumePerCount: densityVolumePerCount,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required List<ProductRelation> relations,
+    required String? groupIdRef,
+    required String? valuePresentationIdRef,
+    required String? quantityDDI,
+    required ProductType? type,
+    required int? mixtureRecipeQuantity,
+    required int? densityMassPerVolume,
+    required int? densityMassPerCount,
+    required int? densityVolumePerCount,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'Product.id',
+      designatorName: 'Product.designator',
     );
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
-        id: groupIdRef!,
+        id: groupIdRef,
         idRefPattern: ProductGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
+        name: 'Product.groupIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
-        id: valuePresentationIdRef!,
+        id: valuePresentationIdRef,
         idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
+        name: 'Product.valuePresentationIdRef',
       );
     }
     if (quantityDDI != null) {
       ArgumentValidation.checkHexStringLength(
-        quantityDDI!,
-        name: 'quantityDDI',
+        quantityDDI,
+        name: 'Product.quantityDDI',
       );
     }
     if (mixtureRecipeQuantity != null) {
       ArgumentValidation.checkValueInRange(
-        value: mixtureRecipeQuantity!,
+        value: mixtureRecipeQuantity,
         min: 0,
         max: 2147483647,
-        name: 'mixtureRecipeQuantity',
+        name: 'Product.mixtureRecipeQuantity',
       );
     }
     if (densityMassPerVolume != null) {
       ArgumentValidation.checkValueInRange(
-        value: densityMassPerVolume!,
+        value: densityMassPerVolume,
         min: 0,
         max: 2147483647,
-        name: 'densityMassPerVolume',
+        name: 'Product.densityMassPerVolume',
       );
     }
     if (densityMassPerCount != null) {
       ArgumentValidation.checkValueInRange(
-        value: densityMassPerCount!,
+        value: densityMassPerCount,
         min: 0,
         max: 2147483647,
-        name: 'densityMassPerCount',
+        name: 'Product.densityMassPerCount',
       );
     }
     if (densityVolumePerCount != null) {
       ArgumentValidation.checkValueInRange(
-        value: densityVolumePerCount!,
+        value: densityVolumePerCount,
         min: 0,
         max: 2147483647,
-        name: 'densityVolumePerCount',
+        name: 'Product.densityVolumePerCount',
       );
     }
     if (type == ProductType.single) {
       if (relations.isNotEmpty) {
         throw ArgumentError.value(
           relations,
-          'relations',
+          'Product.relations',
           'should be empty when type == ProductType.single',
         );
       }
@@ -227,7 +192,7 @@ class Product extends Iso11783Element {
       if (relations.isEmpty) {
         throw ArgumentError.value(
           relations,
-          'relations',
+          'Product.relations',
           'should not be empty when type != ProductType.single',
         );
       }
@@ -246,6 +211,7 @@ class Product extends Iso11783Element {
   /// mixture, if there are any.
   late final relations = _XmlSyncedList<ProductRelation>(
     xmlElement: xmlElement,
+    xmlTag: ProductRelation._elementType.xmlTag,
   );
 
   /// Unique identifier for this product.
@@ -279,8 +245,10 @@ class Product extends Iso11783Element {
   ProductType? get type => switch (tryParseInt('F')) {
     final int value => ProductType.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${ProductType.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('F'),
+        'Product.type',
+        '''is not one of the supported values: ${ProductType.values.join(', ')}''',
       ),
     ),
     _ => null,

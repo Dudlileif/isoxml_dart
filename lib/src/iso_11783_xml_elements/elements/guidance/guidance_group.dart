@@ -17,10 +17,12 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
     Polygon? boundaryPolygon,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
+    _argumentValidator(
+      id: id,
+      patterns: patterns,
+      boundaryPolygon: boundaryPolygon,
+      designator: designator,
+    );
 
     return GuidanceGroup._(
       id: id,
@@ -37,7 +39,7 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
     List<GuidancePattern>? patterns,
     Polygon? boundaryPolygon,
     String? designator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.boundaryPolygon = boundaryPolygon;
     this.designator = designator;
@@ -46,7 +48,7 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
   }
 
   GuidanceGroup._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     patterns.addAll(
       xmlElement
           .findElements(Iso11783ElementType.guidancePattern.xmlTag)
@@ -59,13 +61,30 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
       final XmlElement element => Polygon._fromXmlElement(element),
       _ => null,
     };
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      patterns: patterns,
+      boundaryPolygon: boundaryPolygon,
+      designator: designator,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required List<GuidancePattern>? patterns,
+    required Polygon? boundaryPolygon,
+    required String? designator,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'GuidanceGroup.id',
+    );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'GuidanceGroup.designator',
+      );
     }
   }
 
@@ -79,7 +98,10 @@ class GuidanceGroup extends Iso11783Element with _BoundaryPolygonMixin {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [GuidancePattern]s for this.
-  late final patterns = _XmlSyncedList<GuidancePattern>(xmlElement: xmlElement);
+  late final patterns = _XmlSyncedList<GuidancePattern>(
+    xmlElement: xmlElement,
+    xmlTag: GuidancePattern._elementType.xmlTag,
+  );
 
   /// Unique identifier for this guidance group.
   ///

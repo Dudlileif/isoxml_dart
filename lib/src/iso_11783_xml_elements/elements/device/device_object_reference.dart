@@ -12,12 +12,7 @@ class DeviceObjectReference extends Iso11783Element {
   factory DeviceObjectReference({
     required int objectId,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: objectId,
-      min: 1,
-      max: 65534,
-      name: 'objectId',
-    );
+    _argumentValidator(objectId: objectId);
 
     return DeviceObjectReference._(
       objectId: objectId,
@@ -28,21 +23,21 @@ class DeviceObjectReference extends Iso11783Element {
   /// in the default factory.
   DeviceObjectReference._({
     required int objectId,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.objectId = objectId;
   }
 
   DeviceObjectReference._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(objectId: objectId);
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({required int objectId}) {
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
       max: 65534,
-      name: 'objectId',
+      name: 'DeviceObjectReference.objectId',
     );
   }
 

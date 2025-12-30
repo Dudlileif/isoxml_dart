@@ -19,13 +19,19 @@ class TimeLogHeader extends _XmlElementBase {
     DateTime? start,
     TimeLogHeaderPosition? position,
     List<TimeLogHeaderDataLogValue>? dataLogValues,
-  }) {
+  }) : super(xmlTag: _elementType.xmlTag) {
+    _argumentValidator(
+      type: type,
+      start: start,
+      position: position,
+      dataLogValues: dataLogValues,
+    );
     xmlElement = XmlElement.tag(_elementType.xmlTag);
     this.type = type;
     this.start = start;
     this.position = position;
     if (dataLogValues != null) {
-      xmlElement.children.addAll(dataLogValues.map((e) => e.xmlElement));
+      this.dataLogValues.addAll(dataLogValues);
     }
   }
 
@@ -33,7 +39,8 @@ class TimeLogHeader extends _XmlElementBase {
     : assert(
         element.name.local == _elementType.xmlTag,
         '''XML tag ${element.name.local} does not matche expected tag ${_elementType.xmlTag}''',
-      ) {
+      ),
+      super(xmlTag: _elementType.xmlTag) {
     xmlElement = element;
     position = switch (xmlElement.getElement(
       Iso11783ElementType.position.xmlTag,
@@ -46,14 +53,26 @@ class TimeLogHeader extends _XmlElementBase {
     dataLogValues.addAll(
       xmlElement
           .findElements(Iso11783ElementType.dataLogValue.xmlTag)
-          .map(TimeLogHeaderDataLogValue._fromXmlElement)
-          .toList(),
+          .map(TimeLogHeaderDataLogValue._fromXmlElement),
+    );
+    _argumentValidator(
+      type: type,
+      start: start,
+      position: position,
+      dataLogValues: dataLogValues,
     );
   }
 
   /// Creates an [TimeLogHeader] from [document].
   factory TimeLogHeader.fromXmlDocument(XmlDocument document) =>
       TimeLogHeader._fromXmlElement(document.lastElementChild!);
+
+  static void _argumentValidator({
+    required TimeType type,
+    required DateTime? start,
+    required TimeLogHeaderPosition? position,
+    required List<TimeLogHeaderDataLogValue>? dataLogValues,
+  }) {}
 
   static const Iso11783ElementType _elementType = Iso11783ElementType.time;
 
@@ -97,6 +116,7 @@ class TimeLogHeader extends _XmlElementBase {
   /// A template for which [DataLogValue]s' attributes are used in the log.
   late final dataLogValues = _XmlSyncedList<TimeLogHeaderDataLogValue>(
     xmlElement: xmlElement,
+    xmlTag: DataLogValue._elementType.xmlTag,
   );
 
   /// The starting time of the records, should be null.
@@ -106,8 +126,10 @@ class TimeLogHeader extends _XmlElementBase {
   /// Should equal [TimeType.effective] for this.
   TimeType get type => TimeType.values.firstWhere(
     (type) => type.value == parseInt('D'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('D'),
+      'TimeLogHeader.type',
+      'is not one of the supported values: ${TimeType.values.join(', ')}',
     ),
   );
   set type(TimeType value) => setInt('D', value.value);
@@ -196,8 +218,20 @@ class TimeLogHeaderPosition extends _XmlElementBase {
     int? numberOfSatellites,
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
-  }) {
+  }) : super(xmlTag: _elementType.xmlTag) {
     xmlElement = XmlElement.tag(_elementType.xmlTag);
+    _argumentValidator(
+      binaryHeaderOptions: binaryHeaderOptions,
+      north: north,
+      east: east,
+      status: status,
+      up: up,
+      pdop: pdop,
+      hdop: hdop,
+      numberOfSatellites: numberOfSatellites,
+      gpsUtcTimeMs: gpsUtcTimeMs,
+      gpsUtcDate: gpsUtcDate,
+    );
     this.north = north;
     this.east = east;
     this.status = status;
@@ -233,7 +267,8 @@ class TimeLogHeaderPosition extends _XmlElementBase {
     : assert(
         element.name.local == _elementType.xmlTag,
         '''XML tag ${element.name.local} does not matche expected tag ${_elementType.xmlTag}''',
-      ) {
+      ),
+      super(xmlTag: _elementType.xmlTag) {
     xmlElement = element;
     binaryHeaderOptions = PositionBinaryHeaderOptions(
       readNorth: tryParseString('A') == '',
@@ -246,7 +281,32 @@ class TimeLogHeaderPosition extends _XmlElementBase {
       readGpsUtcTimeMs: tryParseString('H') == '',
       readGpsUtcDate: tryParseString('I') == '',
     );
+    _argumentValidator(
+      binaryHeaderOptions: binaryHeaderOptions,
+      north: north,
+      east: east,
+      status: status,
+      up: up,
+      pdop: pdop,
+      hdop: hdop,
+      numberOfSatellites: numberOfSatellites,
+      gpsUtcTimeMs: gpsUtcTimeMs,
+      gpsUtcDate: gpsUtcDate,
+    );
   }
+
+  static void _argumentValidator({
+    required PositionBinaryHeaderOptions binaryHeaderOptions,
+    required double? north,
+    required double? east,
+    required PositionStatus? status,
+    required int? up,
+    required double? pdop,
+    required double? hdop,
+    required int? numberOfSatellites,
+    required int? gpsUtcTimeMs,
+    required int? gpsUtcDate,
+  }) {}
 
   static const Iso11783ElementType _elementType = Iso11783ElementType.position;
 
@@ -278,8 +338,10 @@ class TimeLogHeaderPosition extends _XmlElementBase {
   PositionStatus? get status => switch (tryParseInt('D')) {
     final int value => PositionStatus.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${PositionStatus.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('D'),
+        'TimeLogHeaderPosition.status',
+        '''is not one of the supported values: ${PositionStatus.values.join(', ')}''',
       ),
     ),
     _ => null,
@@ -440,7 +502,6 @@ class TimeLogHeaderPosition extends _XmlElementBase {
 /// An element for use in [TimeLogHeader.dataLogValues] that describes default
 /// attributes and attributes to read from [TimeLog.byteData] for the n-th
 /// [DataLogValue] part of the log record.
-
 class TimeLogHeaderDataLogValue extends _XmlElementBase {
   /// Default constructor
   TimeLogHeaderDataLogValue({
@@ -451,8 +512,17 @@ class TimeLogHeaderDataLogValue extends _XmlElementBase {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-  }) {
+  }) : super(xmlTag: _elementType.xmlTag) {
     xmlElement = XmlElement.tag(_elementType.xmlTag);
+    _argumentValidator(
+      processDataDDI: processDataDDI,
+      deviceElementIdRef: deviceElementIdRef,
+      readProcessDataValue: readProcessDataValue,
+      processDataValue: processDataValue,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
+    );
     this.processDataDDI = processDataDDI;
     this.deviceElementIdRef = deviceElementIdRef;
     this.processDataValue = processDataValue;
@@ -466,9 +536,29 @@ class TimeLogHeaderDataLogValue extends _XmlElementBase {
       assert(
         element.name.local == _elementType.xmlTag,
         '''XML tag ${element.name.local} does not matche expected tag ${_elementType.xmlTag}''',
-      ) {
+      ),
+      super(xmlTag: _elementType.xmlTag) {
     xmlElement = element;
+    _argumentValidator(
+      processDataDDI: processDataDDI,
+      deviceElementIdRef: deviceElementIdRef,
+      readProcessDataValue: readProcessDataValue,
+      processDataValue: processDataValue,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
+    );
   }
+
+  static void _argumentValidator({
+    required String processDataDDI,
+    required String deviceElementIdRef,
+    required bool readProcessDataValue,
+    required int? processDataValue,
+    required int? pgn,
+    required int? pgnStartBit,
+    required int? pgnStopBit,
+  }) {}
 
   static const Iso11783ElementType _elementType =
       Iso11783ElementType.dataLogValue;

@@ -28,76 +28,26 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
   }) {
-    if (lineStrings.isEmpty) {
-      throw ArgumentError.value(
-        lineStrings,
-        'lineStrings',
-        'Should not be empty',
-      );
-    }
+    _argumentValidator(
+      lineStrings: lineStrings,
+      id: id,
+      type: type,
+      boundaryPolygon: boundaryPolygon,
+      designator: designator,
+      options: options,
+      propagationDirection: propagationDirection,
+      extension: extension,
+      heading: heading,
+      radius: radius,
+      gnssMethod: gnssMethod,
+      horizontalAccuracy: horizontalAccuracy,
+      verticalAccuracy: verticalAccuracy,
+      baseStationIdRef: baseStationIdRef,
+      originalSRID: originalSRID,
+      numberOfSwathsLeft: numberOfSwathsLeft,
+      numberOfSwathsRight: numberOfSwathsRight,
+    );
 
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (heading != null) {
-      ArgumentValidation.checkValueInRange(
-        value: heading,
-        min: 0,
-        max: 360,
-        name: 'heading',
-      );
-    }
-    if (radius != null) {
-      ArgumentValidation.checkValueInRange(
-        value: radius,
-        min: 0,
-        max: 4294967294,
-        name: 'radius',
-      );
-    }
-    if (horizontalAccuracy != null) {
-      ArgumentValidation.checkValueInRange(
-        value: horizontalAccuracy,
-        min: 0,
-        max: 65,
-        name: 'horizontalAccuracy',
-      );
-    }
-    if (verticalAccuracy != null) {
-      ArgumentValidation.checkValueInRange(
-        value: verticalAccuracy,
-        min: 0,
-        max: 65,
-        name: 'verticalAccuracy',
-      );
-    }
-    if (baseStationIdRef != null) {
-      ArgumentValidation.checkId(
-        id: baseStationIdRef,
-        idRefPattern: BaseStation.staticIdRefPattern,
-        idName: 'baseStationIdRef',
-      );
-    }
-    if (originalSRID != null) {
-      ArgumentValidation.checkStringLength(originalSRID, name: 'originalSRID');
-    }
-    if (numberOfSwathsLeft != null) {
-      ArgumentValidation.checkValueInRange(
-        value: numberOfSwathsLeft,
-        min: 0,
-        max: 4294967294,
-        name: 'numberOfSwathsLeft',
-      );
-    }
-    if (numberOfSwathsRight != null) {
-      ArgumentValidation.checkValueInRange(
-        value: numberOfSwathsRight,
-        min: 0,
-        max: 4294967294,
-        name: 'numberOfSwathsRight',
-      );
-    }
     return GuidancePattern._(
       lineStrings: lineStrings,
       id: id,
@@ -139,7 +89,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
     String? originalSRID,
     int? numberOfSwathsLeft,
     int? numberOfSwathsRight,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.type = type;
     this.boundaryPolygon = boundaryPolygon;
@@ -161,7 +111,7 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   }
 
   GuidancePattern._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     boundaryPolygon = switch (xmlElement.getElement(
       Iso11783ElementType.polygon.xmlTag,
     )) {
@@ -174,78 +124,124 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
           .map(LineString._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      lineStrings: lineStrings,
+      id: id,
+      type: type,
+      boundaryPolygon: boundaryPolygon,
+      designator: designator,
+      options: options,
+      propagationDirection: propagationDirection,
+      extension: extension,
+      heading: heading,
+      radius: radius,
+      gnssMethod: gnssMethod,
+      horizontalAccuracy: horizontalAccuracy,
+      verticalAccuracy: verticalAccuracy,
+      baseStationIdRef: baseStationIdRef,
+      originalSRID: originalSRID,
+      numberOfSwathsLeft: numberOfSwathsLeft,
+      numberOfSwathsRight: numberOfSwathsRight,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required List<LineString> lineStrings,
+    required String id,
+    required GuidancePatternType type,
+    required Polygon? boundaryPolygon,
+    required String? designator,
+    required GuidancePatternOptions? options,
+    required GuidancePatternPropagationDirection? propagationDirection,
+    required GuidancePatternExtension? extension,
+    required double? heading,
+    required int? radius,
+    required GuidancePatternGnssMethod? gnssMethod,
+    required double? horizontalAccuracy,
+    required double? verticalAccuracy,
+    required String? baseStationIdRef,
+    required String? originalSRID,
+    required int? numberOfSwathsLeft,
+    required int? numberOfSwathsRight,
+  }) {
     if (lineStrings.isEmpty) {
       throw ArgumentError.value(
         lineStrings,
-        'lineStrings',
+        'GuidancePattern.lineStrings',
         'Should not be empty',
       );
     }
 
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'GuidancePattern.id',
+    );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'GuidancePattern.designator',
+      );
     }
     if (heading != null) {
       ArgumentValidation.checkValueInRange(
-        value: heading!,
+        value: heading,
         min: 0,
         max: 360,
-        name: 'heading',
+        name: 'GuidancePattern.heading',
       );
     }
     if (radius != null) {
       ArgumentValidation.checkValueInRange(
-        value: radius!,
+        value: radius,
         min: 0,
         max: 4294967294,
-        name: 'radius',
+        name: 'GuidancePattern.radius',
       );
     }
     if (horizontalAccuracy != null) {
       ArgumentValidation.checkValueInRange(
-        value: horizontalAccuracy!,
+        value: horizontalAccuracy,
         min: 0,
         max: 65,
-        name: 'horizontalAccuracy',
+        name: 'GuidancePattern.horizontalAccuracy',
       );
     }
     if (verticalAccuracy != null) {
       ArgumentValidation.checkValueInRange(
-        value: verticalAccuracy!,
+        value: verticalAccuracy,
         min: 0,
         max: 65,
-        name: 'verticalAccuracy',
+        name: 'GuidancePattern.verticalAccuracy',
       );
     }
     if (baseStationIdRef != null) {
       ArgumentValidation.checkId(
-        id: baseStationIdRef!,
+        id: baseStationIdRef,
         idRefPattern: BaseStation.staticIdRefPattern,
-        idName: 'baseStationIdRef',
+        name: 'GuidancePattern.baseStationIdRef',
       );
     }
     if (originalSRID != null) {
-      ArgumentValidation.checkStringLength(originalSRID!, name: 'originalSRID');
+      ArgumentValidation.checkStringLength(
+        originalSRID,
+        name: 'GuidancePattern.originalSRID',
+      );
     }
     if (numberOfSwathsLeft != null) {
       ArgumentValidation.checkValueInRange(
-        value: numberOfSwathsLeft!,
+        value: numberOfSwathsLeft,
         min: 0,
         max: 4294967294,
-        name: 'numberOfSwathsLeft',
+        name: 'GuidancePattern.numberOfSwathsLeft',
       );
     }
     if (numberOfSwathsRight != null) {
       ArgumentValidation.checkValueInRange(
-        value: numberOfSwathsRight!,
+        value: numberOfSwathsRight,
         min: 0,
         max: 4294967294,
-        name: 'numberOfSwathsRight',
+        name: 'GuidancePattern.numberOfSwathsRight',
       );
     }
   }
@@ -263,7 +259,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   ///
   /// The separation spacing between the paths for each [LineString] pattern
   /// is the [LineString.width] parameter.
-  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
+  late final lineStrings = _XmlSyncedList<LineString>(
+    xmlElement: xmlElement,
+    xmlTag: LineString._elementType.xmlTag,
+  );
 
   /// Unique identifier for this guidance pattern.
   ///
@@ -279,8 +278,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   /// Which type of guidance pattern this is.
   GuidancePatternType get type => GuidancePatternType.values.firstWhere(
     (type) => type.value == parseInt('C'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${GuidancePatternType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('C'),
+      'GuidancePattern.type',
+      '''is not one of the supported values: ${GuidancePatternType.values.join(', ')}''',
     ),
   );
   set type(GuidancePatternType value) => setInt('C', value.value);
@@ -289,8 +290,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   GuidancePatternOptions? get options => switch (tryParseInt('D')) {
     final int value => GuidancePatternOptions.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${GuidancePatternOptions.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('D'),
+        'GuidancePattern.options',
+        '''is not one of the supported values: ${GuidancePatternOptions.values.join(', ')}''',
       ),
     ),
     _ => null,
@@ -304,8 +307,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   get propagationDirection => switch (tryParseInt('E')) {
     final int value => GuidancePatternPropagationDirection.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${GuidancePatternPropagationDirection.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('E'),
+        'GuidancePattern.propagationDirection',
+        '''is not one of the supported values: ${GuidancePatternPropagationDirection.values.join(', ')}''',
       ),
     ),
     _ => null,
@@ -317,8 +322,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   GuidancePatternExtension? get extension => switch (tryParseInt('F')) {
     final int value => GuidancePatternExtension.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${GuidancePatternExtension.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('F'),
+        'GuidancePattern.extension',
+        '''is not one of the supported values: ${GuidancePatternExtension.values.join(', ')}''',
       ),
     ),
     _ => null,
@@ -338,8 +345,10 @@ class GuidancePattern extends Iso11783Element with _BoundaryPolygonMixin {
   GuidancePatternGnssMethod? get gnssMethod => switch (tryParseInt('I')) {
     final int value => GuidancePatternGnssMethod.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${GuidancePatternGnssMethod.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('I'),
+        'GuidancePattern.gnssMethod',
+        '''is not one of the supported values: ${GuidancePatternGnssMethod.values.join(', ')}''',
       ),
     ),
     _ => null,

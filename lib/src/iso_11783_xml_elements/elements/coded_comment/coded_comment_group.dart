@@ -19,11 +19,7 @@ class CodedCommentGroup extends Iso11783Element {
     required String id,
     required String designator,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
-      id: id,
-      idRefPattern: staticIdRefPattern,
-      designator: designator,
-    );
+    _argumentValidator(id: id, designator: designator);
 
     return CodedCommentGroup._(
       id: id,
@@ -36,21 +32,26 @@ class CodedCommentGroup extends Iso11783Element {
   CodedCommentGroup._({
     required String id,
     required String designator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
   }
 
   CodedCommentGroup._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(id: id, designator: designator);
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'CodedCommentGroup.id',
+      designatorName: 'CodedCommentDesignator.designator',
     );
   }
 

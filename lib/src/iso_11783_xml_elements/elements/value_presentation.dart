@@ -25,38 +25,14 @@ class ValuePresentation extends Iso11783Element {
     String? unitDesignator,
     String? colourLegendIdRef,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    ArgumentValidation.checkValueInRange(
-      value: offset,
-      min: -2147483648,
-      max: 2147483647,
-      name: 'offset',
+    _argumentValidator(
+      id: id,
+      offset: offset,
+      scale: scale,
+      numberOfDecimals: numberOfDecimals,
+      unitDesignator: unitDesignator,
+      colourLegendIdRef: colourLegendIdRef,
     );
-    ArgumentValidation.checkValueInRange(
-      value: scale,
-      min: 0.000000001,
-      max: 100000000,
-      name: 'scale',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: numberOfDecimals,
-      min: 0,
-      max: 7,
-      name: 'numberOfDecimals',
-    );
-    if (unitDesignator != null) {
-      ArgumentValidation.checkStringLength(
-        unitDesignator,
-        name: 'unitDesignator',
-      );
-    }
-    if (colourLegendIdRef != null) {
-      ArgumentValidation.checkId(
-        id: colourLegendIdRef,
-        idRefPattern: ColourLegend.staticIdRefPattern,
-        idName: 'colourLegendIdRef',
-      );
-    }
 
     return ValuePresentation._(
       id: id,
@@ -77,7 +53,7 @@ class ValuePresentation extends Iso11783Element {
     required int numberOfDecimals,
     String? unitDesignator,
     String? colourLegendIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.offset = offset;
     this.scale = scale;
@@ -87,41 +63,59 @@ class ValuePresentation extends Iso11783Element {
   }
 
   ValuePresentation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      offset: offset,
+      scale: scale,
+      numberOfDecimals: numberOfDecimals,
+      unitDesignator: unitDesignator,
+      colourLegendIdRef: colourLegendIdRef,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required int offset,
+    required double scale,
+    required int numberOfDecimals,
+    required String? unitDesignator,
+    required String? colourLegendIdRef,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'ValuePresentation.id',
+    );
     ArgumentValidation.checkValueInRange(
       value: offset,
       min: -2147483648,
       max: 2147483647,
-      name: 'offset',
+      name: 'ValuePresentation.offset',
     );
     ArgumentValidation.checkValueInRange(
       value: scale,
       min: 0.000000001,
       max: 100000000,
-      name: 'scale',
+      name: 'ValuePresentation.scale',
     );
     ArgumentValidation.checkValueInRange(
       value: numberOfDecimals,
       min: 0,
       max: 7,
-      name: 'numberOfDecimals',
+      name: 'ValuePresentation.numberOfDecimals',
     );
     if (unitDesignator != null) {
       ArgumentValidation.checkStringLength(
-        unitDesignator!,
-        name: 'unitDesignator',
+        unitDesignator,
+        name: 'ValuePresentation.unitDesignator',
       );
     }
     if (colourLegendIdRef != null) {
       ArgumentValidation.checkId(
-        id: colourLegendIdRef!,
+        id: colourLegendIdRef,
         idRefPattern: ColourLegend.staticIdRefPattern,
-        idName: 'colourLegendIdRef',
+        name: 'ValuePresentation.colourLegendIdRef',
       );
     }
   }

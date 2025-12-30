@@ -22,39 +22,15 @@ class LineString extends Iso11783Element {
     int? colour,
     String? id,
   }) {
-    if (points.isEmpty) {
-      throw ArgumentError.value(points, 'points', 'Should not be empty');
-    }
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (width != null) {
-      ArgumentValidation.checkValueInRange(
-        value: width,
-        min: 0,
-        max: 4294967294,
-        name: 'wdith',
-      );
-    }
-    if (length != null) {
-      ArgumentValidation.checkValueInRange(
-        value: length,
-        min: 0,
-        max: 4294967294,
-        name: 'length',
-      );
-    }
-    if (colour != null) {
-      ArgumentValidation.checkValueInRange(
-        value: colour,
-        min: 0,
-        max: 254,
-        name: 'colour',
-      );
-    }
-    if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    }
+    _argumentValidator(
+      points: points,
+      type: type,
+      designator: designator,
+      width: width,
+      length: length,
+      colour: colour,
+      id: id,
+    );
 
     return LineString._(
       points: points,
@@ -77,7 +53,7 @@ class LineString extends Iso11783Element {
     int? length,
     int? colour,
     String? id,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.type = type;
     this.designator = designator;
     this.width = width;
@@ -88,51 +64,77 @@ class LineString extends Iso11783Element {
   }
 
   LineString._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    points.addAll(
-      xmlElement
-          .findElements(
-            Iso11783ElementType.point.xmlTag,
-          )
-          .map(Point._fromXmlElement)
-          .toList(),
+    : super._(elementType: _elementType, xmlElement: element) {
+    final test = xmlElement
+        .findElements(
+          Iso11783ElementType.point.xmlTag,
+        )
+        .map(Point._fromXmlElement)
+        .toList();
+    points.addAll(test);
+    _argumentValidator(
+      points: points,
+      type: type,
+      designator: designator,
+      width: width,
+      length: length,
+      colour: colour,
+      id: id,
     );
-    _argumentValidator();
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required List<Point> points,
+    required LineStringType type,
+    required String? designator,
+    required int? width,
+    required int? length,
+    required int? colour,
+    required String? id,
+  }) {
     if (points.isEmpty) {
-      throw ArgumentError.value(points, 'points', 'Should not be empty');
+      throw ArgumentError.value(
+        points,
+        'LineString.points',
+        'Should not be empty',
+      );
     }
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'LineString.designator',
+      );
     }
     if (width != null) {
       ArgumentValidation.checkValueInRange(
-        value: width!,
+        value: width,
         min: 0,
         max: 4294967294,
-        name: 'wdith',
+        name: 'LineString.width',
       );
     }
     if (length != null) {
       ArgumentValidation.checkValueInRange(
-        value: length!,
+        value: length,
         min: 0,
         max: 4294967294,
-        name: 'length',
+        name: 'LineString.length',
       );
     }
     if (colour != null) {
       ArgumentValidation.checkValueInRange(
-        value: colour!,
+        value: colour,
         min: 0,
         max: 254,
-        name: 'colour',
+        name: 'LineString.colour',
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+      ArgumentValidation.checkId(
+        id: id,
+        idRefPattern: staticIdRefPattern,
+        name: 'LineString.id',
+      );
     }
   }
 
@@ -146,13 +148,18 @@ class LineString extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// The position points along this.
-  late final points = _XmlSyncedList<Point>(xmlElement: xmlElement);
+  late final points = _XmlSyncedList<Point>(
+    xmlElement: xmlElement,
+    xmlTag: Point._elementType.xmlTag,
+  );
 
   /// Which type of line string this is.
   LineStringType get type => LineStringType.values.firstWhere(
     (type) => type.value == parseInt('A'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${LineStringType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('A'),
+      'LineString.type',
+      'is not one of the supported values: ${LineStringType.values.join(', ')}',
     ),
   );
   set type(LineStringType value) => setInt('A', value.value);

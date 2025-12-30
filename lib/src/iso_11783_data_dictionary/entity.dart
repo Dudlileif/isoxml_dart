@@ -213,13 +213,13 @@ class Iso11783DataDictionaryEntity {
 
   @override
   int get hashCode => Object.hashAll([
-    rawStrings,
+    const ListEquality<String>().hash(rawStrings),
     id,
     name,
     definition,
     unit,
     unitDescription,
-    assignedDeviceClasses,
+    const ListEquality<DeviceClass>().hash(assignedDeviceClasses),
     bitResolution,
     canBusRange,
     comment,
@@ -231,25 +231,25 @@ class Iso11783DataDictionaryEntity {
       other is Iso11783DataDictionaryEntity &&
           const ListEquality<Object?>().equals(
             [
-              rawStrings,
+              ...rawStrings,
               id,
               name,
               definition,
               unit,
               unitDescription,
-              assignedDeviceClasses,
+              ...assignedDeviceClasses,
               bitResolution,
               canBusRange,
               comment,
             ],
             [
-              other.rawStrings,
+              ...other.rawStrings,
               other.id,
               other.name,
               other.definition,
               other.unit,
               other.unitDescription,
-              other.assignedDeviceClasses,
+              ...other.assignedDeviceClasses,
               other.bitResolution,
               other.canBusRange,
               other.comment,

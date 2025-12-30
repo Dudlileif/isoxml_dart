@@ -16,19 +16,12 @@ class CropType extends Iso11783Element {
     List<CropVariety>? varieties,
     String? productGroupIdRef,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      varieties: varieties,
+      productGroupIdRef: productGroupIdRef,
     );
-
-    if (productGroupIdRef != null) {
-      ArgumentValidation.checkId(
-        id: productGroupIdRef,
-        idRefPattern: ProductGroup.staticIdRefPattern,
-        idName: 'productGroupIdRef',
-      );
-    }
 
     return CropType._(
       id: id,
@@ -45,7 +38,7 @@ class CropType extends Iso11783Element {
     required String designator,
     List<CropVariety>? varieties,
     String? productGroupIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.productGroupIdRef = productGroupIdRef;
@@ -53,28 +46,40 @@ class CropType extends Iso11783Element {
   }
 
   CropType._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     varieties.addAll(
       xmlElement
           .findElements(Iso11783ElementType.cropVariety.xmlTag)
           .map(CropVariety._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      varieties: varieties,
+      productGroupIdRef: productGroupIdRef,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required List<CropVariety>? varieties,
+    required String? productGroupIdRef,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'CropType.id',
+      designatorName: 'CropType.designator',
     );
 
     if (productGroupIdRef != null) {
       ArgumentValidation.checkId(
-        id: productGroupIdRef!,
+        id: productGroupIdRef,
         idRefPattern: ProductGroup.staticIdRefPattern,
-        idName: 'productGroupIdRef',
+        name: 'CropType.productGroupIdRef',
       );
     }
   }
@@ -88,7 +93,10 @@ class CropType extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of different varieties of this crop.
-  late final varieties = _XmlSyncedList<CropVariety>(xmlElement: xmlElement);
+  late final varieties = _XmlSyncedList<CropVariety>(
+    xmlElement: xmlElement,
+    xmlTag: CropVariety._elementType.xmlTag,
+  );
 
   /// Unique identifier for this crop type.
   ///

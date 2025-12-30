@@ -23,7 +23,8 @@ class TaskDataFileHandler {
   }) async {
     if (extract && extractionPath == null) {
       throw ArgumentError.value(
-        [extractionPath, 'extractionPath'],
+        extractionPath,
+        'extractionPath',
         'Can not be null if extract=true.',
       );
     }

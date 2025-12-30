@@ -21,28 +21,15 @@ class DeviceElement extends Iso11783Element {
     List<DeviceObjectReference>? objectReferences,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    ArgumentValidation.checkValueInRange(
-      value: objectId,
-      min: 1,
-      max: 65534,
-      name: 'objectId',
+    _argumentValidator(
+      id: id,
+      objectId: objectId,
+      type: type,
+      number: number,
+      parentObjectId: parentObjectId,
+      objectReferences: objectReferences,
+      designator: designator,
     );
-    ArgumentValidation.checkValueInRange(
-      value: number,
-      min: 0,
-      max: 4095,
-      name: 'number',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: parentObjectId,
-      min: 0,
-      max: 65534,
-      name: 'parentObjectId',
-    );
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
 
     return DeviceElement._(
       id: id,
@@ -65,7 +52,7 @@ class DeviceElement extends Iso11783Element {
     required int parentObjectId,
     List<DeviceObjectReference>? objectReferences,
     String? designator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.objectId = objectId;
     this.type = type;
@@ -76,7 +63,7 @@ class DeviceElement extends Iso11783Element {
   }
 
   DeviceElement._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     objectReferences.addAll(
       xmlElement
           .findElements(
@@ -85,31 +72,54 @@ class DeviceElement extends Iso11783Element {
           .map(DeviceObjectReference._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      objectId: objectId,
+      type: type,
+      number: number,
+      parentObjectId: parentObjectId,
+      objectReferences: objectReferences,
+      designator: designator,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required int objectId,
+    required DeviceElementType type,
+    required int number,
+    required int parentObjectId,
+    required List<DeviceObjectReference>? objectReferences,
+    required String? designator,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'DeviceElement.id',
+    );
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
       max: 65534,
-      name: 'objectId',
+      name: 'DeviceElement.objectId',
     );
     ArgumentValidation.checkValueInRange(
       value: number,
       min: 0,
       max: 4095,
-      name: 'number',
+      name: 'DeviceElement.number',
     );
     ArgumentValidation.checkValueInRange(
       value: parentObjectId,
       min: 0,
       max: 65534,
-      name: 'parentObjectId',
+      name: 'DeviceElement.parentObjectId',
     );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'DeviceElement.designator',
+      );
     }
   }
 
@@ -126,6 +136,7 @@ class DeviceElement extends Iso11783Element {
   /// [DeviceProcessData] or [DeviceProperty] elements.
   late final objectReferences = _XmlSyncedList<DeviceObjectReference>(
     xmlElement: xmlElement,
+    xmlTag: DeviceObjectReference._elementType.xmlTag,
   );
 
   /// Unique identifier for this device element.
@@ -142,8 +153,10 @@ class DeviceElement extends Iso11783Element {
   /// Which type of element this is.
   DeviceElementType get type => DeviceElementType.values.firstWhere(
     (type) => type.value == parseInt('C'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${DeviceElementType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('C'),
+      'DeviceElement.type',
+      '''is not one of the supported values: ${DeviceElementType.values.join(', ')}''',
     ),
   );
   set type(DeviceElementType value) => setInt('C', value.value);

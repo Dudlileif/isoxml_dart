@@ -16,18 +16,12 @@ class CropVariety extends Iso11783Element {
     required String designator,
     String? productIdRef,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      productIdRef: productIdRef,
     );
-    if (productIdRef != null) {
-      ArgumentValidation.checkId(
-        id: productIdRef,
-        idRefPattern: Product.staticIdRefPattern,
-        idName: 'productIdRef',
-      );
-    }
+
     return CropVariety._(
       id: id,
       designator: designator,
@@ -41,28 +35,38 @@ class CropVariety extends Iso11783Element {
     required String id,
     required String designator,
     String? productIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.productIdRef = productIdRef;
   }
 
   CropVariety._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      productIdRef: productIdRef,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required String? productIdRef,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'CropVariety.id',
+      designatorName: 'CropVariety.designator',
     );
     if (productIdRef != null) {
       ArgumentValidation.checkId(
-        id: productIdRef!,
+        id: productIdRef,
         idRefPattern: Product.staticIdRefPattern,
-        idName: 'productIdRef',
+        name: 'CropVariety.productIdRef',
       );
     }
   }

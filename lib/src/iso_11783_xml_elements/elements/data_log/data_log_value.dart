@@ -28,52 +28,15 @@ class DataLogValue extends Iso11783Element {
     int? pgnStartBit,
     int? pgnStopBit,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      processDataDDI,
-      name: 'processDataDDI',
+    _argumentValidator(
+      processDataDDI: processDataDDI,
+      processDataValue: processDataValue,
+      deviceElementIdRef: deviceElementIdRef,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
     );
-    ArgumentValidation.checkValueInRange(
-      value: processDataValue,
-      min: -2147483648,
-      max: 2147483647,
-      name: 'processDataValue',
-    );
-    ArgumentValidation.checkId(
-      id: deviceElementIdRef,
-      idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef',
-    );
-    if (pgn != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgn,
-        min: 0,
-        max: 262143,
-        name: 'pgn',
-      );
-      if (processDataDDI != 'DFFE') {
-        throw ArgumentError.value(
-          [processDataDDI, pgn],
-          '[processDataDDI, pgn]',
-          'When pgn is set, processDataDDI MUST be "DFFE"',
-        );
-      }
-    }
-    if (pgnStartBit != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgnStartBit,
-        min: 0,
-        max: 63,
-        name: 'pgnStartBit',
-      );
-    }
-    if (pgnStopBit != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgnStopBit,
-        min: 0,
-        max: 63,
-        name: 'pgnStopBit',
-      );
-    }
+
     return DataLogValue._(
       processDataDDI: processDataDDI,
       processDataValue: processDataValue,
@@ -93,7 +56,7 @@ class DataLogValue extends Iso11783Element {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.processDataDDI = processDataDDI;
     this.processDataValue = processDataValue;
     this.deviceElementIdRef = deviceElementIdRef;
@@ -103,32 +66,46 @@ class DataLogValue extends Iso11783Element {
   }
 
   DataLogValue._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      processDataDDI: processDataDDI,
+      processDataValue: processDataValue,
+      deviceElementIdRef: deviceElementIdRef,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String processDataDDI,
+    required int processDataValue,
+    required String deviceElementIdRef,
+    required int? pgn,
+    required int? pgnStartBit,
+    required int? pgnStopBit,
+  }) {
     ArgumentValidation.checkHexStringLength(
       processDataDDI,
-      name: 'processDataDDI',
+      name: 'DataLogValue.processDataDDI',
     );
     ArgumentValidation.checkValueInRange(
       value: processDataValue,
       min: -2147483648,
       max: 2147483647,
-      name: 'processDataValue',
+      name: 'DataLogValue.processDataValue',
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef,
       idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef',
+      name: 'DataLogValue.deviceElementIdRef',
     );
     if (pgn != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgn!,
+        value: pgn,
         min: 0,
         max: 262143,
-        name: 'pgn',
+        name: 'DataLogValue.pgn',
       );
       if (processDataDDI != 'DFFE') {
         throw ArgumentError.value(
@@ -140,18 +117,18 @@ class DataLogValue extends Iso11783Element {
     }
     if (pgnStartBit != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgnStartBit!,
+        value: pgnStartBit,
         min: 0,
         max: 63,
-        name: 'pgnStartBit',
+        name: 'DataLogValue.pgnStartBit',
       );
     }
     if (pgnStopBit != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgnStopBit!,
+        value: pgnStopBit,
         min: 0,
         max: 63,
-        name: 'pgnStopBit',
+        name: 'DataLogValue.pgnStopBit',
       );
     }
   }

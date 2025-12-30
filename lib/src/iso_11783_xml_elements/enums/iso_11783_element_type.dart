@@ -199,6 +199,7 @@ enum Iso11783ElementType {
   /// this.
   static Iso11783ElementType fromXmlTag(String xmlTag) => values.firstWhere(
     (element) => element.xmlTag == xmlTag,
+    orElse: () => unknown,
   );
 
   /// The enum name of this with capitalized first letter.

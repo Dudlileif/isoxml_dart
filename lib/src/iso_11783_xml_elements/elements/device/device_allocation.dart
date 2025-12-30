@@ -24,27 +24,12 @@ class DeviceAllocation extends Iso11783Element with _AllocationStampMixin {
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      clientNAMEValue,
-      name: 'clientNAMEValue',
-      minBytes: 8,
-      maxBytes: 8,
+    _argumentValidator(
+      clientNAMEValue: clientNAMEValue,
+      clientNAMEMask: clientNAMEMask,
+      deviceIdRef: deviceIdRef,
+      allocationStamp: allocationStamp,
     );
-    if (clientNAMEMask != null) {
-      ArgumentValidation.checkHexStringLength(
-        clientNAMEMask,
-        name: 'clientNAMEMask',
-        minBytes: 8,
-        maxBytes: 8,
-      );
-    }
-    if (deviceIdRef != null) {
-      ArgumentValidation.checkId(
-        id: deviceIdRef,
-        idRefPattern: Device.staticIdRefPattern,
-        idName: 'deviceIdRef',
-      );
-    }
 
     return DeviceAllocation._(
       clientNAMEValue: clientNAMEValue,
@@ -61,7 +46,7 @@ class DeviceAllocation extends Iso11783Element with _AllocationStampMixin {
     String? clientNAMEMask,
     String? deviceIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.clientNAMEValue = clientNAMEValue;
     this.clientNAMEMask = clientNAMEMask;
     this.deviceIdRef = deviceIdRef;
@@ -69,31 +54,41 @@ class DeviceAllocation extends Iso11783Element with _AllocationStampMixin {
   }
 
   DeviceAllocation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      clientNAMEValue: clientNAMEValue,
+      clientNAMEMask: clientNAMEMask,
+      deviceIdRef: deviceIdRef,
+      allocationStamp: allocationStamp,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String clientNAMEValue,
+    required String? clientNAMEMask,
+    required String? deviceIdRef,
+    required AllocationStamp? allocationStamp,
+  }) {
     ArgumentValidation.checkHexStringLength(
       clientNAMEValue,
-      name: 'clientNAMEValue',
+      name: 'DeviceAllocation.clientNAMEValue',
       minBytes: 8,
       maxBytes: 8,
     );
     if (clientNAMEMask != null) {
       ArgumentValidation.checkHexStringLength(
-        clientNAMEMask!,
-        name: 'clientNAMEMask',
+        clientNAMEMask,
+        name: 'DeviceAllocation.clientNAMEMask',
         minBytes: 8,
         maxBytes: 8,
       );
     }
     if (deviceIdRef != null) {
       ArgumentValidation.checkId(
-        id: deviceIdRef!,
+        id: deviceIdRef,
         idRefPattern: Device.staticIdRefPattern,
-        idName: 'deviceIdRef',
+        name: 'DeviceAllocation.deviceIdRef',
       );
     }
   }

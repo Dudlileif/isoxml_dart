@@ -24,37 +24,19 @@ class Device extends Iso11783Element {
     String? softwareVersion,
     String? serialNumber,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    ArgumentValidation.checkHexStringLength(
-      clientNAME,
-      name: 'clientNAME',
-      minBytes: 8,
-      maxBytes: 8,
+    _argumentValidator(
+      id: id,
+      clientNAME: clientNAME,
+      structureLabel: structureLabel,
+      localizationLabel: localizationLabel,
+      elements: elements,
+      properties: properties,
+      processData: processData,
+      valuePresentations: valuePresentations,
+      designator: designator,
+      softwareVersion: softwareVersion,
+      serialNumber: serialNumber,
     );
-    ArgumentValidation.checkId(
-      id: structureLabel,
-      idRefPattern: structureLabelPattern,
-      minLength: 14,
-      maxLength: 78,
-      idName: 'structureLabel',
-    );
-    ArgumentValidation.checkId(
-      id: localizationLabel,
-      idRefPattern: localizationLabelPattern,
-      minLength: 14,
-      idName: 'localizationLabel',
-    );
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-
-    if (elements!.isEmpty) {
-      throw ArgumentError.value(
-        elements,
-        'elements',
-        'Can not be empty',
-      );
-    }
 
     return Device._(
       id: id,
@@ -85,7 +67,7 @@ class Device extends Iso11783Element {
     String? designator,
     String? softwareVersion,
     String? serialNumber,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.clientNAME = clientNAME;
     this.structureLabel = structureLabel;
@@ -100,7 +82,7 @@ class Device extends Iso11783Element {
   }
 
   Device._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     elements.addAll(
       xmlElement
           .findElements(
@@ -133,14 +115,42 @@ class Device extends Iso11783Element {
           .map(DeviceValuePresentation._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      clientNAME: clientNAME,
+      structureLabel: structureLabel,
+      localizationLabel: localizationLabel,
+      elements: elements,
+      properties: properties,
+      processData: processData,
+      valuePresentations: valuePresentations,
+      designator: designator,
+      softwareVersion: softwareVersion,
+      serialNumber: serialNumber,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required String clientNAME,
+    required String structureLabel,
+    required String localizationLabel,
+    required List<DeviceElement>? elements,
+    required List<DeviceProperty>? properties,
+    required List<DeviceProcessData>? processData,
+    required List<DeviceValuePresentation>? valuePresentations,
+    required String? designator,
+    required String? softwareVersion,
+    required String? serialNumber,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'Device.id',
+    );
     ArgumentValidation.checkHexStringLength(
       clientNAME,
-      name: 'clientNAME',
+      name: 'Device.clientNAME',
       minBytes: 8,
       maxBytes: 8,
     );
@@ -149,21 +159,24 @@ class Device extends Iso11783Element {
       idRefPattern: structureLabelPattern,
       minLength: 14,
       maxLength: 78,
-      idName: 'structureLabel',
+      name: 'Device.structureLabel',
     );
     ArgumentValidation.checkId(
       id: localizationLabel,
       idRefPattern: localizationLabelPattern,
       minLength: 14,
-      idName: 'localizationLabel',
+      name: 'Device.localizationLabel',
     );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'Device.designator',
+      );
     }
-    if (elements.isEmpty) {
+    if (elements == null || elements.isEmpty) {
       throw ArgumentError.value(
         elements,
-        'elements',
+        'Device.elements',
         'Can not be empty',
       );
     }
@@ -186,21 +199,27 @@ class Device extends Iso11783Element {
       '''(F|f){2}((([0-9]|[A-E]|[a-e])([0-9]|[A-F]|[a-f]))|((F|f)([0-9]|[A-E]|[a-e])))*''';
 
   /// A list of the [DeviceElement]s of this.
-  late final elements = _XmlSyncedList<DeviceElement>(xmlElement: xmlElement);
+  late final elements = _XmlSyncedList<DeviceElement>(
+    xmlElement: xmlElement,
+    xmlTag: DeviceElement._elementType.xmlTag,
+  );
 
   /// A list of the [DeviceProcessData]s of this.
   late final processData = _XmlSyncedList<DeviceProcessData>(
     xmlElement: xmlElement,
+    xmlTag: DeviceProcessData._elementType.xmlTag,
   );
 
   /// A list of the [DeviceProperty]s of this.
   late final properties = _XmlSyncedList<DeviceProperty>(
     xmlElement: xmlElement,
+    xmlTag: DeviceProperty._elementType.xmlTag,
   );
 
   /// A list of the [DeviceValuePresentation]s of this.
   late final valuePresentations = _XmlSyncedList<DeviceValuePresentation>(
     xmlElement: xmlElement,
+    xmlTag: DeviceValuePresentation._elementType.xmlTag,
   );
 
   /// Unique identifier for this device.

@@ -15,11 +15,11 @@ class WorkerAllocation extends Iso11783Element with _AllocationStampMixin {
     required String workerIdRef,
     AllocationStamp? allocationStamp,
   }) {
-    ArgumentValidation.checkId(
-      id: workerIdRef,
-      idRefPattern: Worker.staticIdRefPattern,
-      idName: 'workerIdRef',
+    _argumentValidator(
+      workerIdRef: workerIdRef,
+      allocationStamp: allocationStamp,
     );
+
     return WorkerAllocation._(
       workerIdRef: workerIdRef,
       allocationStamp: allocationStamp,
@@ -31,22 +31,28 @@ class WorkerAllocation extends Iso11783Element with _AllocationStampMixin {
   WorkerAllocation._({
     required String workerIdRef,
     AllocationStamp? allocationStamp,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.workerIdRef = workerIdRef;
     this.allocationStamp = allocationStamp;
   }
 
   WorkerAllocation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      workerIdRef: workerIdRef,
+      allocationStamp: allocationStamp,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String workerIdRef,
+    required AllocationStamp? allocationStamp,
+  }) {
     ArgumentValidation.checkId(
       id: workerIdRef,
       idRefPattern: Worker.staticIdRefPattern,
-      idName: 'workerIdRef',
+      name: 'WorkerAllocation.workerIdRef',
     );
   }
 

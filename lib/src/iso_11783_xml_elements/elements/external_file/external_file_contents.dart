@@ -28,7 +28,7 @@ class ExternalFileContents extends Iso11783Element {
     List<Task>? tasks,
     List<ValuePresentation>? valuePresentations,
     List<Worker>? workers,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.attachedFiles.addAll(attachedFiles);
     this.baseStations.addAll(baseStations);
     this.codedComments.addAll(codedComments);
@@ -49,7 +49,7 @@ class ExternalFileContents extends Iso11783Element {
   }
 
   ExternalFileContents._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     attachedFiles.addAll(
       xmlElement
           .findElements(
@@ -209,67 +209,102 @@ class ExternalFileContents extends Iso11783Element {
   /// [BaseStation]s stored in the external file.
   late final attachedFiles = _XmlSyncedList<AttachedFile>(
     xmlElement: xmlElement,
+    xmlTag: AttachedFile._elementType.xmlTag,
   );
 
   /// [BaseStation]s stored in the external file.
-  late final baseStations = _XmlSyncedList<BaseStation>(xmlElement: xmlElement);
+  late final baseStations = _XmlSyncedList<BaseStation>(
+    xmlElement: xmlElement,
+    xmlTag: BaseStation._elementType.xmlTag,
+  );
 
   /// [CodedComment]s stored in the external file.
   late final codedComments = _XmlSyncedList<CodedComment>(
     xmlElement: xmlElement,
+    xmlTag: CodedComment._elementType.xmlTag,
   );
 
   /// [CodedCommentGroup]s stored in the external file.
   late final codedCommentGroups = _XmlSyncedList<CodedCommentGroup>(
     xmlElement: xmlElement,
+    xmlTag: CodedCommentGroup._elementType.xmlTag,
   );
 
   /// [ColourLegend]s stored in the external file.
   late final colourLegends = _XmlSyncedList<ColourLegend>(
     xmlElement: xmlElement,
+    xmlTag: ColourLegend._elementType.xmlTag,
   );
 
   /// [CropType]s stored in the external file.
-  late final cropTypes = _XmlSyncedList<CropType>(xmlElement: xmlElement);
+  late final cropTypes = _XmlSyncedList<CropType>(
+    xmlElement: xmlElement,
+    xmlTag: CropType._elementType.xmlTag,
+  );
 
   /// [CulturalPractice]s stored in the external file.
   late final culturalPractices = _XmlSyncedList<CulturalPractice>(
     xmlElement: xmlElement,
+    xmlTag: CulturalPractice._elementType.xmlTag,
   );
 
   /// [Customer]s stored in the external file.
-  late final customers = _XmlSyncedList<Customer>(xmlElement: xmlElement);
+  late final customers = _XmlSyncedList<Customer>(
+    xmlElement: xmlElement,
+    xmlTag: Customer._elementType.xmlTag,
+  );
 
   /// [Device]s stored in the external file.
-  late final devices = _XmlSyncedList<Device>(xmlElement: xmlElement);
+  late final devices = _XmlSyncedList<Device>(
+    xmlElement: xmlElement,
+    xmlTag: Device._elementType.xmlTag,
+  );
 
   /// [Farm]s stored in the external file.
-  late final farms = _XmlSyncedList<Farm>(xmlElement: xmlElement);
+  late final farms = _XmlSyncedList<Farm>(
+    xmlElement: xmlElement,
+    xmlTag: Farm._elementType.xmlTag,
+  );
 
   /// [OperationTechnique]s stored in the external file.
   late final operationTechniques = _XmlSyncedList<OperationTechnique>(
     xmlElement: xmlElement,
+    xmlTag: OperationTechnique._elementType.xmlTag,
   );
 
   /// [Partfield]s stored in the external file.
-  late final partfields = _XmlSyncedList<Partfield>(xmlElement: xmlElement);
+  late final partfields = _XmlSyncedList<Partfield>(
+    xmlElement: xmlElement,
+    xmlTag: Partfield._elementType.xmlTag,
+  );
 
   /// [Product]s stored in the external file.
-  late final products = _XmlSyncedList<Product>(xmlElement: xmlElement);
+  late final products = _XmlSyncedList<Product>(
+    xmlElement: xmlElement,
+    xmlTag: Product._elementType.xmlTag,
+  );
 
   /// [ProductGroup]s stored in the external file.
   late final productGroups = _XmlSyncedList<ProductGroup>(
     xmlElement: xmlElement,
+    xmlTag: ProductGroup._elementType.xmlTag,
   );
 
   /// [Task]s stored in the external file.
-  late final tasks = _XmlSyncedList<Task>(xmlElement: xmlElement);
+  late final tasks = _XmlSyncedList<Task>(
+    xmlElement: xmlElement,
+    xmlTag: Task._elementType.xmlTag,
+  );
 
   /// [ValuePresentation]s stored in the external file.
   late final valuePresentations = _XmlSyncedList<ValuePresentation>(
     xmlElement: xmlElement,
+    xmlTag: ValuePresentation._elementType.xmlTag,
   );
 
   /// [Worker]s stored in the external file.
-  late final workers = _XmlSyncedList<Worker>(xmlElement: xmlElement);
+  late final workers = _XmlSyncedList<Worker>(
+    xmlElement: xmlElement,
+    xmlTag: Worker._elementType.xmlTag,
+  );
 }

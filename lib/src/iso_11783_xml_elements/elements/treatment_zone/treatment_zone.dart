@@ -17,7 +17,7 @@ part of '../../iso_11783_element.dart';
 /// Non-site-specific tasks are [Task]s without any [Polygon]s or [Grid]
 /// defined. The PositionLostTreatmentZone contains the [ProcessDataVariable]s
 /// that shall be sent to the working sets when the positioning becomes
-/// unavailable. The  specification of the PositionLostTreatmentZone is
+/// unavailable. The specification of the PositionLostTreatmentZone is
 /// intended for site-specific tasks only.
 class TreatmentZone extends Iso11783Element {
   /// Default factory for creating a [TreatmentZone] with verified
@@ -29,24 +29,14 @@ class TreatmentZone extends Iso11783Element {
     String? designator,
     int? colour,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: code,
-      min: 0,
-      max: 254,
-      name: 'code',
+    _argumentValidator(
+      code: code,
+      polygons: polygons,
+      processDataVariables: processDataVariables,
+      designator: designator,
+      colour: colour,
     );
 
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (colour != null) {
-      ArgumentValidation.checkValueInRange(
-        value: colour,
-        min: 0,
-        max: 254,
-        name: 'colour',
-      );
-    }
     return TreatmentZone._(
       code: code,
       polygons: polygons,
@@ -64,7 +54,7 @@ class TreatmentZone extends Iso11783Element {
     List<ProcessDataVariable>? processDataVariables,
     String? designator,
     int? colour,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.code = code;
     this.designator = designator;
     this.colour = colour;
@@ -73,7 +63,7 @@ class TreatmentZone extends Iso11783Element {
   }
 
   TreatmentZone._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     polygons.addAll(
       xmlElement
           .findElements(Iso11783ElementType.polygon.xmlTag)
@@ -86,26 +76,41 @@ class TreatmentZone extends Iso11783Element {
           .map(ProcessDataVariable._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      code: code,
+      polygons: polygons,
+      processDataVariables: processDataVariables,
+      designator: designator,
+      colour: colour,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required int code,
+    required List<Polygon>? polygons,
+    required List<ProcessDataVariable>? processDataVariables,
+    required String? designator,
+    required int? colour,
+  }) {
     ArgumentValidation.checkValueInRange(
       value: code,
       min: 0,
       max: 254,
-      name: 'code',
+      name: 'TreatmentZone.code',
     );
 
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'TreatmentZone.designator',
+      );
     }
     if (colour != null) {
       ArgumentValidation.checkValueInRange(
-        value: colour!,
+        value: colour,
         min: 0,
         max: 254,
-        name: 'colour',
+        name: 'TreatmentZone.colour',
       );
     }
   }
@@ -114,11 +119,15 @@ class TreatmentZone extends Iso11783Element {
       Iso11783ElementType.treatmentZone;
 
   /// A list of [Polygon]s for this.
-  late final polygons = _XmlSyncedList<Polygon>(xmlElement: xmlElement);
+  late final polygons = _XmlSyncedList<Polygon>(
+    xmlElement: xmlElement,
+    xmlTag: Polygon._elementType.xmlTag,
+  );
 
   /// A list of [ProcessDataVariable]s for this.
   late final processDataVariables = _XmlSyncedList<ProcessDataVariable>(
     xmlElement: xmlElement,
+    xmlTag: ProcessDataVariable._elementType.xmlTag,
   );
 
   /// A unique [TreatmentZone] code inside a single [Task].

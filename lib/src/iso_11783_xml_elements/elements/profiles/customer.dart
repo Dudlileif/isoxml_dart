@@ -29,65 +29,22 @@ class Customer extends Iso11783Element with _ProfileMixin {
     String? fax,
     String? email,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (lastName.length > 32) {
-      throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
-    }
-    if (firstName != null) {
-      if (firstName.length > 32) {
-        throw ArgumentError.value(firstName, 'firstName', 'Length > 32');
-      }
-    }
-    if (street != null) {
-      if (street.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
-    }
-    if (poBox != null) {
-      if (poBox.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
-    }
-    if (postalCode != null) {
-      if (postalCode.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
-    }
-    if (city != null) {
-      if (city.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
-    }
-    if (state != null) {
-      if (state.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
-    }
-    if (country != null) {
-      if (country.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
-    }
-    if (phone != null) {
-      if (phone.length > 20) {
-        throw ArgumentError.value(phone, 'phone', 'Length > 20');
-      }
-    }
-    if (mobile != null) {
-      if (mobile.length > 32) {
-        throw ArgumentError.value(mobile, 'mobile', 'Length > 32');
-      }
-    }
-    if (fax != null) {
-      if (fax.length > 20) {
-        throw ArgumentError.value(fax, 'fax', 'Length > 20');
-      }
-    }
-    if (email != null) {
-      if (email.length > 64) {
-        throw ArgumentError.value(email, 'email', 'Length > 64');
-      }
-    }
+    _argumentValidator(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      fax: fax,
+      email: email,
+    );
+
     return Customer._(
       id: id,
       lastName: lastName,
@@ -121,7 +78,7 @@ class Customer extends Iso11783Element with _ProfileMixin {
     String? mobile,
     String? fax,
     String? email,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;
@@ -138,69 +95,100 @@ class Customer extends Iso11783Element with _ProfileMixin {
   }
 
   Customer._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      fax: fax,
+      email: email,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (lastName.length > 32) {
-      throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
-    }
+  static void _argumentValidator({
+    required String id,
+    required String lastName,
+    required String? firstName,
+    required String? street,
+    required String? poBox,
+    required String? postalCode,
+    required String? city,
+    required String? state,
+    required String? country,
+    required String? phone,
+    required String? mobile,
+    required String? fax,
+    required String? email,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'Customer.id',
+    );
+    ArgumentValidation.checkStringLength(lastName, name: 'Customer.lastName');
+
     if (firstName != null) {
-      if (firstName!.length > 32) {
-        throw ArgumentError.value(firstName, 'firstName', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(
+        firstName,
+        name: 'Customer.firstName',
+      );
     }
     if (street != null) {
-      if (street!.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(street, name: 'Customer.street');
     }
     if (poBox != null) {
-      if (poBox!.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(poBox, name: 'Customer.poBox');
     }
     if (postalCode != null) {
-      if (postalCode!.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
+      ArgumentValidation.checkStringLength(
+        postalCode,
+        name: 'Customer.postalCode',
+        maxLength: 10,
+      );
     }
     if (city != null) {
-      if (city!.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(city, name: 'Customer.city');
     }
     if (state != null) {
-      if (state!.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(
+        state,
+        name: 'Customer.state',
+      );
     }
     if (country != null) {
-      if (country!.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(country, name: 'Customer.country');
     }
     if (phone != null) {
-      if (phone!.length > 20) {
-        throw ArgumentError.value(phone, 'phone', 'Length > 20');
-      }
+      ArgumentValidation.checkStringLength(
+        phone,
+        name: 'Customer.phone',
+        maxLength: 20,
+      );
     }
     if (mobile != null) {
-      if (mobile!.length > 32) {
-        throw ArgumentError.value(mobile, 'mobile', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(mobile, name: 'Customer.mobile');
     }
     if (fax != null) {
-      if (fax!.length > 20) {
-        throw ArgumentError.value(fax, 'fax', 'Length > 20');
-      }
+      ArgumentValidation.checkStringLength(
+        fax,
+        name: 'Customer.fax',
+        maxLength: 20,
+      );
     }
     if (email != null) {
-      if (email!.length > 64) {
-        throw ArgumentError.value(email, 'email', 'Length > 64');
-      }
+      ArgumentValidation.checkStringLength(
+        email,
+        name: 'Customer.email',
+        maxLength: 64,
+      );
     }
   }
 

@@ -28,69 +28,21 @@ class Worker extends Iso11783Element with _ProfileMixin {
     String? licenseNumber,
     String? email,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (lastName.length > 32) {
-      throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
-    }
-    if (firstName != null) {
-      if (firstName.length > 32) {
-        throw ArgumentError.value(firstName, 'firstName', 'Length > 32');
-      }
-    }
-    if (street != null) {
-      if (street.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
-    }
-    if (poBox != null) {
-      if (poBox.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
-    }
-    if (postalCode != null) {
-      if (postalCode.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
-    }
-    if (city != null) {
-      if (city.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
-    }
-    if (state != null) {
-      if (state.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
-    }
-    if (country != null) {
-      if (country.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
-    }
-    if (phone != null) {
-      if (phone.length > 20) {
-        throw ArgumentError.value(phone, 'phone', 'Length > 20');
-      }
-    }
-    if (mobile != null) {
-      if (mobile.length > 32) {
-        throw ArgumentError.value(mobile, 'mobile', 'Length > 32');
-      }
-    }
-    if (licenseNumber != null) {
-      if (licenseNumber.length > 32) {
-        throw ArgumentError.value(
-          licenseNumber,
-          'licenseNumber',
-          'Length > 32',
-        );
-      }
-    }
-    if (email != null) {
-      if (email.length > 64) {
-        throw ArgumentError.value(email, 'email', 'Length > 64');
-      }
-    }
+    _argumentValidator(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      licenseNumber: licenseNumber,
+      email: email,
+    );
 
     return Worker._(
       id: id,
@@ -125,7 +77,7 @@ class Worker extends Iso11783Element with _ProfileMixin {
     String? mobile,
     String? licenseNumber,
     String? email,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.lastName = lastName;
     this.firstName = firstName;
@@ -142,73 +94,94 @@ class Worker extends Iso11783Element with _ProfileMixin {
   }
 
   Worker._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      lastName: lastName,
+      firstName: firstName,
+      street: street,
+      poBox: poBox,
+      postalCode: postalCode,
+      city: city,
+      state: state,
+      country: country,
+      phone: phone,
+      mobile: mobile,
+      licenseNumber: licenseNumber,
+      email: email,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required String lastName,
+    required String? firstName,
+    required String? street,
+    required String? poBox,
+    required String? postalCode,
+    required String? city,
+    required String? state,
+    required String? country,
+    required String? phone,
+    required String? mobile,
+    required String? licenseNumber,
+    required String? email,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'Worker.id',
+    );
     if (lastName.length > 32) {
-      throw ArgumentError.value(lastName, 'lastName', 'Length > 32');
+      ArgumentValidation.checkStringLength(lastName, name: 'Worker.lastName');
     }
     if (firstName != null) {
-      if (firstName!.length > 32) {
-        throw ArgumentError.value(firstName, 'firstName', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(firstName, name: 'Worker.firstName');
     }
     if (street != null) {
-      if (street!.length > 32) {
-        throw ArgumentError.value(street, 'street', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(street, name: 'Worker.street');
     }
     if (poBox != null) {
-      if (poBox!.length > 32) {
-        throw ArgumentError.value(poBox, 'poBox', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(poBox, name: 'Worker.poBox');
     }
     if (postalCode != null) {
-      if (postalCode!.length > 10) {
-        throw ArgumentError.value(postalCode, 'postalCode', 'Length > 10');
-      }
+      ArgumentValidation.checkStringLength(
+        postalCode,
+        name: 'Worker.postalCode',
+        maxLength: 10,
+      );
     }
     if (city != null) {
-      if (city!.length > 32) {
-        throw ArgumentError.value(city, 'city', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(city, name: 'Worker.city');
     }
     if (state != null) {
-      if (state!.length > 32) {
-        throw ArgumentError.value(state, 'state', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(state, name: 'Worker.state');
     }
     if (country != null) {
-      if (country!.length > 32) {
-        throw ArgumentError.value(country, 'country', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(country, name: 'Worker.country');
     }
     if (phone != null) {
-      if (phone!.length > 20) {
-        throw ArgumentError.value(phone, 'phone', 'Length > 20');
-      }
+      ArgumentValidation.checkStringLength(
+        phone,
+        name: 'Worker.phone',
+        maxLength: 20,
+      );
     }
     if (mobile != null) {
-      if (mobile!.length > 32) {
-        throw ArgumentError.value(mobile, 'mobile', 'Length > 32');
-      }
+      ArgumentValidation.checkStringLength(mobile, name: 'Worker.mobile');
     }
     if (licenseNumber != null) {
-      if (licenseNumber!.length > 32) {
-        throw ArgumentError.value(
-          licenseNumber,
-          'licenseNumber',
-          'Length > 32',
-        );
-      }
+      ArgumentValidation.checkStringLength(
+        licenseNumber,
+        name: 'Worker.licenseNumber',
+      );
     }
     if (email != null) {
-      if (email!.length > 64) {
-        throw ArgumentError.value(email, 'email', 'Length > 64');
-      }
+      ArgumentValidation.checkStringLength(
+        email,
+        name: 'Worker.email',
+        maxLength: 64,
+      );
     }
   }
 

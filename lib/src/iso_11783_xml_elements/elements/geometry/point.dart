@@ -29,82 +29,22 @@ class Point extends Iso11783Element {
     Uint8List? byteData,
     List<Point>? binaryPoints,
   }) {
-    if (filename == null && (north == null || east == null || type == null)) {
-      throw ArgumentError(
-        'north, east and type must not be null if filename is null',
-      );
-    }
-    if (north != null) {
-      ArgumentValidation.checkValueInRange(
-        value: north,
-        min: -90,
-        max: 90,
-        name: 'north',
-      );
-    }
-    if (east != null) {
-      ArgumentValidation.checkValueInRange(
-        value: east,
-        min: -180,
-        max: 180,
-        name: 'east',
-      );
-    }
-    if (up != null) {
-      ArgumentValidation.checkValueInRange(
-        value: up,
-        min: -2147483647,
-        max: 2147483647,
-        name: 'up',
-      );
-    }
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (colour != null) {
-      ArgumentValidation.checkValueInRange(
-        value: colour,
-        min: 0,
-        max: 254,
-        name: 'colour',
-      );
-    }
-    if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    }
-    if (horizontalAccuracy != null) {
-      ArgumentValidation.checkValueInRange(
-        value: horizontalAccuracy,
-        min: 0,
-        max: 65,
-        name: 'horizontalAccuracy',
-      );
-    }
-    if (verticalAccuracy != null) {
-      ArgumentValidation.checkValueInRange(
-        value: verticalAccuracy,
-        min: 0,
-        max: 65,
-        name: 'verticalAccuracy',
-      );
-    }
-    if (filename != null) {
-      ArgumentValidation.checkId(
-        id: filename,
-        idRefPattern: filenamePattern,
-        idName: 'filename',
-        minLength: 8,
-        maxLength: 8,
-      );
-    }
-    if (fileLength != null) {
-      ArgumentValidation.checkValueInRange(
-        value: fileLength,
-        min: 0,
-        max: 4294967294,
-        name: 'fileLength',
-      );
-    }
+    _argumentValidator(
+      type: type,
+      north: north,
+      east: east,
+      up: up,
+      designator: designator,
+      colour: colour,
+      id: id,
+      horizontalAccuracy: horizontalAccuracy,
+      verticalAccuracy: verticalAccuracy,
+      filename: filename,
+      fileLength: fileLength,
+      binaryHeaderOptions: binaryHeaderOptions,
+      byteData: byteData,
+      binaryPoints: binaryPoints,
+    );
 
     return Point._(
       type: type,
@@ -141,7 +81,7 @@ class Point extends Iso11783Element {
     this.binaryHeaderOptions,
     Uint8List? byteData,
     List<Point>? binaryPoints,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.type = type;
     this.north = north;
     this.east = east;
@@ -160,7 +100,7 @@ class Point extends Iso11783Element {
   }
 
   Point._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     binaryHeaderOptions = PointBinaryHeaderOptions(
       readType: tryParseString('A') == '',
       readNorth: tryParseString('C') == '',
@@ -170,10 +110,40 @@ class Point extends Iso11783Element {
       readHorizontalAccuracy: tryParseString('H') == '',
       readVerticalAccuracy: tryParseString('I') == '',
     );
-    _argumentValidator();
+    _argumentValidator(
+      type: type,
+      north: north,
+      east: east,
+      up: up,
+      designator: designator,
+      colour: colour,
+      id: id,
+      horizontalAccuracy: horizontalAccuracy,
+      verticalAccuracy: verticalAccuracy,
+      filename: filename,
+      fileLength: fileLength,
+      binaryHeaderOptions: binaryHeaderOptions,
+      byteData: byteData,
+      binaryPoints: binaryPoints,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required PointType? type,
+    required double? north,
+    required double? east,
+    required int? up,
+    required String? designator,
+    required int? colour,
+    required String? id,
+    required double? horizontalAccuracy,
+    required double? verticalAccuracy,
+    required String? filename,
+    required int? fileLength,
+    required PointBinaryHeaderOptions? binaryHeaderOptions,
+    required Uint8List? byteData,
+    required List<Point>? binaryPoints,
+  }) {
     if (filename == null && (north == null || east == null || type == null)) {
       throw ArgumentError(
         'north, east and type must not be null if filename is null',
@@ -181,73 +151,80 @@ class Point extends Iso11783Element {
     }
     if (north != null) {
       ArgumentValidation.checkValueInRange(
-        value: north!,
+        value: north,
         min: -90,
         max: 90,
-        name: 'north',
+        name: 'Point.north',
       );
     }
     if (east != null) {
       ArgumentValidation.checkValueInRange(
-        value: east!,
+        value: east,
         min: -180,
         max: 180,
-        name: 'east',
+        name: 'Point.east',
       );
     }
     if (up != null) {
       ArgumentValidation.checkValueInRange(
-        value: up!,
+        value: up,
         min: -2147483647,
         max: 2147483647,
-        name: 'up',
+        name: 'Point.up',
       );
     }
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'Point.designator',
+      );
     }
     if (colour != null) {
       ArgumentValidation.checkValueInRange(
-        value: colour!,
+        value: colour,
         min: 0,
         max: 254,
-        name: 'colour',
+        name: 'Point.colour',
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+      ArgumentValidation.checkId(
+        id: id,
+        idRefPattern: staticIdRefPattern,
+        name: 'Point.id',
+      );
     }
     if (horizontalAccuracy != null) {
       ArgumentValidation.checkValueInRange(
-        value: horizontalAccuracy!,
+        value: horizontalAccuracy,
         min: 0,
         max: 65,
-        name: 'horizontalAccuracy',
+        name: 'Point.horizontalAccuracy',
       );
     }
     if (verticalAccuracy != null) {
       ArgumentValidation.checkValueInRange(
-        value: verticalAccuracy!,
+        value: verticalAccuracy,
         min: 0,
         max: 65,
-        name: 'verticalAccuracy',
+        name: 'Point.verticalAccuracy',
       );
     }
     if (filename != null) {
       ArgumentValidation.checkId(
-        id: filename!,
+        id: filename,
         idRefPattern: filenamePattern,
-        idName: 'filename',
+        name: 'Point.filename',
         minLength: 8,
         maxLength: 8,
       );
     }
     if (fileLength != null) {
       ArgumentValidation.checkValueInRange(
-        value: fileLength!,
+        value: fileLength,
         min: 0,
         max: 4294967294,
-        name: 'fileLength',
+        name: 'Point.fileLength',
       );
     }
   }
@@ -267,8 +244,10 @@ class Point extends Iso11783Element {
   PointType? get type => switch (tryParseInt('A')) {
     final int value => PointType.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${PointType.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('A'),
+        'Point.type',
+        'is not one of the supported values: ${PointType.values.join(', ')}',
       ),
     ),
     _ => null,

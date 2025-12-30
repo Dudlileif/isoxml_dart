@@ -29,13 +29,27 @@ void main() async {
         version,
       ),
     );
+    test(
+      'Check equality',
+      () {
+        final secondDictionary = Iso11783DataDictionary(dictionaryString);
+        expect(secondDictionary.hashCode, dictionary.hashCode);
+        expect(
+          secondDictionary,
+          dictionary,
+        );
+      },
+    );
+
     final length = 'DD Entity: '.allMatches(dictionaryString).length - 1;
     test(
       'Check number of entities: $length',
-      () => expect(
-        dictionary.entities.length,
-        length,
-      ),
+      () {
+        expect(
+          dictionary.entities.length,
+          length,
+        );
+      },
     );
     group(
       'Check entity with DDI="000F"=15',

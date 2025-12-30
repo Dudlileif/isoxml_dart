@@ -9,6 +9,7 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:collection/collection.dart';
 import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:isoxml_dart/src/iso_11783_xml_elements/utils/argument_validation.dart';
 import 'package:meta/meta.dart';
 import 'package:xml/xml.dart';
 
@@ -82,7 +83,6 @@ part 'mixins/allocation_stamp_mixin.dart';
 part 'mixins/boundary_polygon_mixin.dart';
 part 'mixins/document_mixin.dart';
 part 'mixins/profile_mixin.dart';
-part 'utils/argument_validation.dart';
 part 'utils/xml_element_base.dart';
 part 'utils/xml_synced_list.dart';
 
@@ -95,15 +95,18 @@ part 'utils/xml_synced_list.dart';
 /// these have the [Iso11783ElementType.onlyVersion4AndAbove] parameter set to
 /// true, which can be used to filter them out if exporting to an older version.
 sealed class Iso11783Element extends _XmlElementBase {
-  Iso11783Element({
+  Iso11783Element._({
     required this.elementType,
     XmlElement? xmlElement,
     String? description,
-  }) : description = description ?? elementType.capitalizedName {
+  }) : description = description ?? elementType.capitalizedName,
+       super(xmlTag: elementType.xmlTag) {
     this.xmlElement = xmlElement ?? XmlElement.tag(elementType.xmlTag);
+
     assert(
-      this.xmlElement.name.local == elementType.xmlTag,
-      '''XML tag ${this.xmlElement.name.local} does not matche expected tag ${elementType.xmlTag}''',
+      elementType == Iso11783ElementType.unknown ||
+          this.xmlElement.name.local == elementType.xmlTag,
+      '''XML tag ${this.xmlElement.name.local} does not match expected tag ${elementType.xmlTag}''',
     );
   }
 
@@ -228,9 +231,9 @@ sealed class Iso11783Element extends _XmlElementBase {
 
 /// An unknown XML element found within the ISO 11783 XML structure.
 class UnknownIso11783Element extends Iso11783Element {
-  /// Unknown ISO 11783 XMl element, which will be preserved
-  UnknownIso11783Element(XmlElement element)
-    : super(
+  /// An unknown XML [element] found within the ISO 11783 XML structure.
+  UnknownIso11783Element._(XmlElement element)
+    : super._(
         xmlElement: element,
         elementType: _elementType,
         description:
@@ -238,7 +241,7 @@ class UnknownIso11783Element extends Iso11783Element {
       );
 
   factory UnknownIso11783Element._fromXmlElement(XmlElement element) =>
-      UnknownIso11783Element(element);
+      UnknownIso11783Element._(element);
 
   static const Iso11783ElementType _elementType = Iso11783ElementType.unknown;
 }

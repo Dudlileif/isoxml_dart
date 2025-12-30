@@ -56,6 +56,26 @@ void main() async {
     );
 
     test(
+      'Import zip file with grid and extract on load',
+      () async {
+        final zipData = await TaskDataFileHandler.loadZip(
+          '$basePath/grid/type_2.zip',
+        );
+        final folderData = await TaskDataFileHandler.loadDirectory(
+          '$basePath/grid/type_2',
+        );
+        expect(
+          zipData,
+          isA<Iso11783TaskData>().having(
+            (data) => data.toBytes(),
+            'Equals folder loaded data',
+            folderData!.toBytes(),
+          ),
+        );
+      },
+    );
+
+    test(
       'Export zip file',
       () async {
         final file = File('${exportDirectory.path}/parsing_zip_export.zip');
@@ -85,5 +105,54 @@ void main() async {
         expect(saved, true);
       },
     );
+
+    test(
+      'Extract enabled with missing extractionPath throws ArgumentError',
+      () {
+        expect(
+          () => TaskDataFileHandler.loadZip('', extract: true),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'extractionPath',
+            ),
+          ),
+        );
+      },
+    );
+
+    test('saveToFolder', () async {
+      final saved = await TaskDataFileHandler.saveToFolder(
+        taskData: taskData,
+        path: '${exportDirectory.path}/saveToFolder',
+      );
+      expect(saved, isTrue);
+    });
+
+    test('saveToFolder externalized', () async {
+      final directory = Directory(
+        '${exportDirectory.path}/saveToFolderExternalized/TASKDATA',
+      );
+      await directory.create(recursive: true);
+
+      final saved = await TaskDataFileHandler.saveToFolder(
+        taskData: taskData,
+        path: '${exportDirectory.path}/saveToFolderExternalized',
+        externalize: true,
+      );
+      expect(saved, isTrue);
+    });
+
+    test('saveToFolder with grid', () async {
+      final taskData = await TaskDataFileHandler.loadDirectory(
+        '${Directory.current.path}/test/data_files/grid/type_1',
+      );
+      final saved = await TaskDataFileHandler.saveToFolder(
+        taskData: taskData!,
+        path: '${exportDirectory.path}/saveToFolderWithGrid',
+      );
+      expect(saved, isTrue);
+    });
   });
 }

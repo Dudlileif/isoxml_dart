@@ -20,13 +20,8 @@ class ExternalFileReference extends Iso11783Element {
     required String filename,
     FileType? filetype,
   }) {
-    ArgumentValidation.checkId(
-      id: filename,
-      idRefPattern: filenamePattern,
-      idName: 'filename',
-      minLength: 8,
-      maxLength: 8,
-    );
+    _argumentValidator(filename: filename, filetype: filetype);
+
     return ExternalFileReference._(
       filename: filename,
       filetype: filetype,
@@ -38,21 +33,24 @@ class ExternalFileReference extends Iso11783Element {
   ExternalFileReference._({
     required String filename,
     FileType? filetype,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.filename = filename;
     this.filetype = filetype;
   }
 
   ExternalFileReference._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(filename: filename, filetype: filetype);
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String filename,
+    required FileType? filetype,
+  }) {
     ArgumentValidation.checkId(
       id: filename,
       idRefPattern: filenamePattern,
-      idName: 'filename',
+      name: 'ExternalFileReference.filename',
       minLength: 8,
       maxLength: 8,
     );
@@ -75,8 +73,10 @@ class ExternalFileReference extends Iso11783Element {
   FileType? get filetype => switch (tryParseInt('B')) {
     final int value => FileType.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${FileType.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        value,
+        'ExternalFileReference.fileType',
+        'is not one of the supported values: ${FileType.values.join(', ')}',
       ),
     ),
     _ => null,
