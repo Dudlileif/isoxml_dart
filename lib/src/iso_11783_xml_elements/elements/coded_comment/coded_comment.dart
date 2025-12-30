@@ -19,19 +19,13 @@ class CodedComment extends Iso11783Element {
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      scope: scope,
+      listValues: listValues,
+      groupIdRef: groupIdRef,
     );
-
-    if (groupIdRef != null) {
-      ArgumentValidation.checkId(
-        id: groupIdRef,
-        idRefPattern: CodedCommentGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
-      );
-    }
     return CodedComment._(
       id: id,
       designator: designator,
@@ -49,9 +43,7 @@ class CodedComment extends Iso11783Element {
     required CodedCommentScope scope,
     List<CodedCommentListValue>? listValues,
     String? groupIdRef,
-  }) : super(
-         elementType: _elementType,
-       ) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.scope = scope;
@@ -60,7 +52,7 @@ class CodedComment extends Iso11783Element {
   }
 
   CodedComment._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     listValues.addAll(
       xmlElement
           .findElements(
@@ -69,21 +61,35 @@ class CodedComment extends Iso11783Element {
           .map(CodedCommentListValue._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      scope: scope,
+      listValues: listValues,
+      groupIdRef: groupIdRef,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required CodedCommentScope scope,
+    List<CodedCommentListValue>? listValues,
+    String? groupIdRef,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'CodedComment.id',
+      designatorName: 'CodedComment.designator',
     );
 
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
-        id: groupIdRef!,
+        id: groupIdRef,
         idRefPattern: CodedCommentGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
+        name: 'CodedComment.groupIdRef',
       );
     }
   }
@@ -100,6 +106,7 @@ class CodedComment extends Iso11783Element {
   /// List of [CodedCommentListValue]s for this comment.
   late final listValues = _XmlSyncedList<CodedCommentListValue>(
     xmlElement: xmlElement,
+    xmlTag: CodedCommentListValue._elementType.xmlTag,
   );
 
   /// Unique identifier for this comment.
@@ -116,8 +123,10 @@ class CodedComment extends Iso11783Element {
   /// Where this comment should be used/applies.
   CodedCommentScope get scope => CodedCommentScope.values.firstWhere(
     (type) => type.value == parseInt('C'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${CodedCommentScope.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('C'),
+      'CodedComment.type',
+      '''is not one of the supported values: ${CodedCommentScope.values.join(', ')}''',
     ),
   );
   set scope(CodedCommentScope value) => setInt('C', value.value);

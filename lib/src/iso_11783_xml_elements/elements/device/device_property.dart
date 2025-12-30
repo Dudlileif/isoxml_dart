@@ -19,33 +19,13 @@ class DeviceProperty extends Iso11783Element {
     String? designator,
     int? valuePresentationObjectId,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      ddi,
-      name: 'ddi',
+    _argumentValidator(
+      objectId: objectId,
+      ddi: ddi,
+      propertyValue: propertyValue,
+      designator: designator,
+      valuePresentationObjectId: valuePresentationObjectId,
     );
-    ArgumentValidation.checkValueInRange(
-      value: objectId,
-      min: 1,
-      max: 65534,
-      name: 'objectId',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: propertyValue,
-      min: -2147483648,
-      max: 2147483648,
-      name: 'propertyValue',
-    );
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (valuePresentationObjectId != null) {
-      ArgumentValidation.checkValueInRange(
-        value: valuePresentationObjectId,
-        min: 1,
-        max: 65534,
-        name: 'valuePresentationObjectId',
-      );
-    }
 
     return DeviceProperty._(
       objectId: objectId,
@@ -64,7 +44,7 @@ class DeviceProperty extends Iso11783Element {
     required int propertyValue,
     String? designator,
     int? valuePresentationObjectId,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.objectId = objectId;
     this.ddi = ddi;
     this.propertyValue = propertyValue;
@@ -73,36 +53,51 @@ class DeviceProperty extends Iso11783Element {
   }
 
   DeviceProperty._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      objectId: objectId,
+      ddi: ddi,
+      propertyValue: propertyValue,
+      designator: designator,
+      valuePresentationObjectId: valuePresentationObjectId,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required int objectId,
+    required String ddi,
+    required int propertyValue,
+    required String? designator,
+    required int? valuePresentationObjectId,
+  }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
-      name: 'ddi',
+      name: 'DeviceProperty.ddi',
     );
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
       max: 65534,
-      name: 'objectId',
+      name: 'DeviceProperty.objectId',
     );
     ArgumentValidation.checkValueInRange(
       value: propertyValue,
       min: -2147483648,
       max: 2147483648,
-      name: 'propertyValue',
+      name: 'DeviceProperty.propertyValue',
     );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'DeviceProperty.designator',
+      );
     }
     if (valuePresentationObjectId != null) {
       ArgumentValidation.checkValueInRange(
-        value: valuePresentationObjectId!,
+        value: valuePresentationObjectId,
         min: 1,
         max: 65534,
-        name: 'valuePresentationObjectId',
+        name: 'DeviceProperty.valuePresentationObjectId',
       );
     }
   }

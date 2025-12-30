@@ -13,18 +13,11 @@ class OperationTechniquePractice extends Iso11783Element {
     required String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
   }) {
-    ArgumentValidation.checkId(
-      id: culturalPracticeIdRef,
-      idRefPattern: CulturalPractice.staticIdRefPattern,
-      idName: 'culturalPracticeIdRef',
+    _argumentValidator(
+      culturalPracticeIdRef: culturalPracticeIdRef,
+      operationTechniqueIdRef: operationTechniqueIdRef,
     );
-    if (operationTechniqueIdRef != null) {
-      ArgumentValidation.checkId(
-        id: operationTechniqueIdRef,
-        idRefPattern: OperationTechnique.staticIdRefPattern,
-        idName: 'operationTechniqueIdRef',
-      );
-    }
+
     return OperationTechniquePractice._(
       culturalPracticeIdRef: culturalPracticeIdRef,
       operationTechniqueIdRef: operationTechniqueIdRef,
@@ -36,27 +29,33 @@ class OperationTechniquePractice extends Iso11783Element {
   OperationTechniquePractice._({
     required String culturalPracticeIdRef,
     String? operationTechniqueIdRef,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.culturalPracticeIdRef = culturalPracticeIdRef;
     this.operationTechniqueIdRef = operationTechniqueIdRef;
   }
 
   OperationTechniquePractice._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      culturalPracticeIdRef: culturalPracticeIdRef,
+      operationTechniqueIdRef: operationTechniqueIdRef,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String culturalPracticeIdRef,
+    required String? operationTechniqueIdRef,
+  }) {
     ArgumentValidation.checkId(
       id: culturalPracticeIdRef,
       idRefPattern: CulturalPractice.staticIdRefPattern,
-      idName: 'culturalPracticeIdRef',
+      name: 'OperationTechniquePractice.culturalPracticeIdRef',
     );
     if (operationTechniqueIdRef != null) {
       ArgumentValidation.checkId(
-        id: operationTechniqueIdRef!,
+        id: operationTechniqueIdRef,
         idRefPattern: OperationTechnique.staticIdRefPattern,
-        idName: 'operationTechniqueIdRef',
+        name: 'OperationTechniquePractice.operationTechniqueIdRef',
       );
     }
   }

@@ -6,6 +6,7 @@
 // ignore_for_file: avoid_catches_without_on_clauses
 
 import 'package:isoxml_dart/isoxml_dart.dart';
+import 'package:isoxml_dart/src/iso_11783_xml_elements/utils/argument_validation.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -19,6 +20,7 @@ void main() {
             ArgumentValidation.checkId(
               id: 'BSN1',
               idRefPattern: BaseStation.staticIdRefPattern,
+              name: 'BaseStation.id',
             );
           } catch (e) {
             error = e;
@@ -29,98 +31,88 @@ void main() {
           );
         },
       );
-      test(
-        'with invalid base station id, wrong tag',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkId(
-              id: 'BS0001',
-              idRefPattern: BaseStation.staticIdRefPattern,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
-      test(
-        'with invalid base station id, leading zeros',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkId(
-              id: 'BSN00001',
-              idRefPattern: BaseStation.staticIdRefPattern,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
-      test(
-        'with wrong maxLength',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkId(
-              id: 'BSN10',
-              idRefPattern: BaseStation.staticIdRefPattern,
-              maxLength: 4,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
-      test(
-        'with wrong id ref pattern',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkId(
-              id: 'BSN10',
-              idRefPattern: Partfield.staticIdRefPattern,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('with invalid base station id, wrong tag', () {
+        expect(
+          () => ArgumentValidation.checkId(
+            id: 'BS0001',
+            idRefPattern: BaseStation.staticIdRefPattern,
+            name: 'BaseStation.id',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'BaseStation.id',
+            ),
+          ),
+        );
+      });
+      test('with invalid base station id, leading zeros', () {
+        expect(
+          () => ArgumentValidation.checkId(
+            id: 'BSN00001',
+            idRefPattern: BaseStation.staticIdRefPattern,
+            name: 'BaseStation.id',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'BaseStation.id',
+            ),
+          ),
+        );
+      });
+      test('with wrong maxLength', () {
+        expect(
+          () => ArgumentValidation.checkId(
+            id: 'BSN10',
+            idRefPattern: BaseStation.staticIdRefPattern,
+            maxLength: 4,
+            name: 'BaseStation.id',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'BaseStation.id',
+            ),
+          ),
+        );
+      });
+      test('with wrong id ref pattern', () {
+        expect(
+          () => ArgumentValidation.checkId(
+            id: 'BSN10',
+            idRefPattern: Partfield.staticIdRefPattern,
+            name: 'BaseStation.id',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'BaseStation.id',
+            ),
+          ),
+        );
+      });
     });
     group('.checkStringLength', () {
-      test(
-        'with too long string',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkStringLength(
-              'Test string which is 39 characters long',
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('with too long string', () {
+        expect(
+          () => ArgumentValidation.checkStringLength(
+            'Test string which is 39 characters long',
+            name: 'Name',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'Name',
+            ),
+          ),
+        );
+      });
       test(
         'with exact length string',
         () {
@@ -128,6 +120,7 @@ void main() {
           try {
             ArgumentValidation.checkStringLength(
               'Test string which is 39 characters long',
+              name: 'Name',
               maxLength: 39,
             );
           } catch (e) {
@@ -150,6 +143,8 @@ void main() {
               id: 'PFD100',
               designator: 'Some field in the world',
               idRefPattern: Partfield.staticIdRefPattern,
+              idName: 'Partfield.id',
+              designatorName: 'Partfield.designator',
             );
           } catch (e) {
             error = e;
@@ -160,25 +155,24 @@ void main() {
           );
         },
       );
-      test(
-        'wrong id ref pattern',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkIdAndDesignator(
-              id: 'PFD100',
-              designator: 'Some field in the world',
-              idRefPattern: Product.staticIdRefPattern,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('wrong id ref pattern', () {
+        expect(
+          () => ArgumentValidation.checkIdAndDesignator(
+            id: 'PFD100',
+            designator: 'Some field in the world',
+            idRefPattern: Product.staticIdRefPattern,
+            idName: 'Partfield.id',
+            designatorName: 'Partfield.designator',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'Partfield.id',
+            ),
+          ),
+        );
+      });
     });
     group('.checkValueInRange', () {
       test(
@@ -201,46 +195,40 @@ void main() {
           );
         },
       );
-      test(
-        'under minimum',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkValueInRange(
-              value: 123,
-              min: 150,
-              max: 200,
-              name: 'test',
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
-      test(
-        'over maximum',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkValueInRange(
-              value: 223,
-              min: 100,
-              max: 200,
-              name: 'test',
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('under minimum', () {
+        expect(
+          () => ArgumentValidation.checkValueInRange(
+            value: 123,
+            min: 150,
+            max: 200,
+            name: 'test',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'test',
+            ),
+          ),
+        );
+      });
+      test('over maximum', () {
+        expect(
+          () => ArgumentValidation.checkValueInRange(
+            value: 223,
+            min: 100,
+            max: 200,
+            name: 'test',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'test',
+            ),
+          ),
+        );
+      });
       test(
         'hex passing',
         () {
@@ -262,27 +250,24 @@ void main() {
           );
         },
       );
-      test(
-        'hex outside range',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkValueInRange(
-              value: 123,
-              min: 150,
-              max: 200,
-              name: 'test',
-              hex: true,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('hex outside range', () {
+        expect(
+          () => ArgumentValidation.checkValueInRange(
+            value: 123,
+            min: 150,
+            max: 200,
+            name: 'test',
+            hex: true,
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'test',
+            ),
+          ),
+        );
+      });
     });
     group('.checkHexStringLength', () {
       test(
@@ -303,59 +288,47 @@ void main() {
           );
         },
       );
-      test(
-        'too short',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkHexStringLength(
-              '0DE',
-              name: 'test',
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
-      test(
-        'too long',
-        () {
-          Object? error;
-          try {
-            ArgumentValidation.checkHexStringLength(
-              '0DEA6',
-              name: 'test',
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isArgumentError,
-          );
-        },
-      );
+      test('too short', () {
+        expect(
+          () => ArgumentValidation.checkHexStringLength(
+            '0DE',
+            name: 'test',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'test',
+            ),
+          ),
+        );
+      });
+      test('too long', () {
+        expect(
+          () => ArgumentValidation.checkHexStringLength(
+            '0DEA6',
+            name: 'test',
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'test',
+            ),
+          ),
+        );
+      });
       test(
         'maxBytes < minBytes throws FormatException',
         () {
-          Object? error;
-          try {
-            ArgumentValidation.checkHexStringLength(
+          expect(
+            () => ArgumentValidation.checkHexStringLength(
               '11F2',
               name: 'test',
               maxBytes: 3,
               minBytes: 4,
-            );
-          } catch (e) {
-            error = e;
-          }
-          expect(
-            error,
-            isFormatException,
+            ),
+            throwsFormatException,
           );
         },
       );

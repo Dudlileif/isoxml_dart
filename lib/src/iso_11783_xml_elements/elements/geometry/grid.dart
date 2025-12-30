@@ -37,70 +37,23 @@ class Grid extends Iso11783Element {
     int? numberOfProcessDataVariables,
     List<List<List<int>>>? processDataValueGrid,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: minimumNorthPosition,
-      min: -90,
-      max: 90,
-      name: 'minimumNorthPosition',
+    _argumentValidator(
+      minimumNorthPosition: minimumNorthPosition,
+      minimumEastPosition: minimumEastPosition,
+      cellNorthSize: cellNorthSize,
+      cellEastSize: cellEastSize,
+      maximumColumn: maximumColumn,
+      maximumRow: maximumRow,
+      fileName: fileName,
+      type: type,
+      byteData: byteData,
+      fileLength: fileLength,
+      treatmentZoneCode: treatmentZoneCode,
+      treatmentZoneCodeGrid: treatmentZoneCodeGrid,
+      numberOfProcessDataVariables: numberOfProcessDataVariables,
+      processDataValueGrid: processDataValueGrid,
     );
-    ArgumentValidation.checkValueInRange(
-      value: minimumEastPosition,
-      min: -180,
-      max: 180,
-      name: 'minimumEastPosition',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: cellNorthSize,
-      min: 0,
-      max: 1,
-      name: 'cellNorthSize',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: cellEastSize,
-      min: 0,
-      max: 1,
-      name: 'cellEastSize',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: maximumColumn,
-      min: 0,
-      max: 4294967295,
-      name: 'maximumColumn',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: maximumRow,
-      min: 0,
-      max: 4294967295,
-      name: 'maximumRow',
-    );
-    ArgumentValidation.checkId(
-      id: fileName,
-      idRefPattern: fileNamePattern,
-      idName: 'fileName',
-    );
-    if (treatmentZoneCode != null) {
-      ArgumentValidation.checkValueInRange(
-        value: treatmentZoneCode,
-        min: 0,
-        max: 254,
-        name: 'treatmentZoneCode',
-      );
-    }
-    if (type == GridType.two && byteData != null) {
-      if (treatmentZoneCode == null) {
-        throw ArgumentError.value(
-          treatmentZoneCode,
-          'treatmentZoneCode',
-          "Can't be null when `type==GridType.two`",
-        );
-      } else if (numberOfProcessDataVariables == null) {
-        throw ArgumentError.value(
-          numberOfProcessDataVariables,
-          'numberOfProcessDataVariables',
-          "Can't be null when `type==GridType.two`",
-        );
-      }
-    }
+
     var parsedTreatmentZoneCodes = treatmentZoneCodeGrid;
     var parsedProcessDataValueGrid = processDataValueGrid;
     if (byteData != null) {
@@ -164,7 +117,7 @@ class Grid extends Iso11783Element {
     this.treatmentZoneCodeGrid,
     this.numberOfProcessDataVariables,
     this.processDataValueGrid,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.minimumNorthPosition = minimumNorthPosition;
     this.minimumEastPosition = minimumEastPosition;
     this.cellNorthSize = cellNorthSize;
@@ -182,7 +135,7 @@ class Grid extends Iso11783Element {
     Uint8List? byteData,
     List<TreatmentZone>? treatmentZones,
   }) : byteData = byteData ?? Uint8List(0),
-       super(elementType: _elementType, xmlElement: element) {
+       super._(elementType: _elementType, xmlElement: element) {
     numberOfProcessDataVariables = switch (type) {
       GridType.two =>
         numberOfProcessDataVariables ??
@@ -196,70 +149,101 @@ class Grid extends Iso11783Element {
             },
       _ => null,
     };
-    _argumentValidator();
+
+    _argumentValidator(
+      minimumNorthPosition: minimumNorthPosition,
+      minimumEastPosition: minimumEastPosition,
+      cellNorthSize: cellNorthSize,
+      cellEastSize: cellEastSize,
+      maximumColumn: maximumColumn,
+      maximumRow: maximumRow,
+      fileName: fileName,
+      type: type,
+      byteData: byteData,
+      fileLength: fileLength,
+      treatmentZoneCode: treatmentZoneCode,
+      treatmentZoneCodeGrid: treatmentZoneCodeGrid,
+      numberOfProcessDataVariables: numberOfProcessDataVariables,
+      processDataValueGrid: processDataValueGrid,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required double minimumNorthPosition,
+    required double minimumEastPosition,
+    required double cellNorthSize,
+    required double cellEastSize,
+    required int maximumColumn,
+    required int maximumRow,
+    required String fileName,
+    required GridType type,
+    required Uint8List? byteData,
+    required int? fileLength,
+    required int? treatmentZoneCode,
+    required List<List<int>>? treatmentZoneCodeGrid,
+    required int? numberOfProcessDataVariables,
+    required List<List<List<int>>>? processDataValueGrid,
+  }) {
     ArgumentValidation.checkValueInRange(
       value: minimumNorthPosition,
       min: -90,
       max: 90,
-      name: 'minimumNorthPosition',
+      name: 'Grid.minimumNorthPosition',
     );
     ArgumentValidation.checkValueInRange(
       value: minimumEastPosition,
       min: -180,
       max: 180,
-      name: 'minimumEastPosition',
+      name: 'Grid.minimumEastPosition',
     );
     ArgumentValidation.checkValueInRange(
       value: cellNorthSize,
       min: 0,
       max: 1,
-      name: 'cellNorthSize',
+      name: 'Grid.cellNorthSize',
     );
     ArgumentValidation.checkValueInRange(
       value: cellEastSize,
       min: 0,
       max: 1,
-      name: 'cellEastSize',
+      name: 'Grid.cellEastSize',
     );
     ArgumentValidation.checkValueInRange(
       value: maximumColumn,
       min: 0,
       max: 4294967295,
-      name: 'maximumColumn',
+      name: 'Grid.maximumColumn',
     );
     ArgumentValidation.checkValueInRange(
       value: maximumRow,
       min: 0,
       max: 4294967295,
-      name: 'maximumRow',
+      name: 'Grid.maximumRow',
     );
     ArgumentValidation.checkId(
       id: fileName,
       idRefPattern: fileNamePattern,
-      idName: 'fileName',
+      name: 'Grid.fileName',
     );
     if (treatmentZoneCode != null) {
       ArgumentValidation.checkValueInRange(
-        value: treatmentZoneCode!,
+        value: treatmentZoneCode,
         min: 0,
         max: 254,
-        name: 'treatmentZoneCode',
+        name: 'Grid.treatmentZoneCode',
       );
     }
     if (type == GridType.two) {
       if (treatmentZoneCode == null) {
         throw ArgumentError.value(
           treatmentZoneCode,
-          'treatmentZoneCode',
+          'Grid.treatmentZoneCode',
           "Can't be null when `type==GridType.two`",
         );
       } else if (numberOfProcessDataVariables == null) {
         throw ArgumentError.value(
           numberOfProcessDataVariables,
-          'numberOfProcessDataVariables',
+          'Grid.numberOfProcessDataVariables',
           "Can't be null when `type==GridType.two`",
         );
       }
@@ -308,8 +292,10 @@ class Grid extends Iso11783Element {
   GridType get type => switch (parseInt('I')) {
     1 => GridType.one,
     2 => GridType.two,
-    _ => throw ArgumentError(
-      '''`${xmlElement.getAttribute('I')}` is not one of the supported values: ${GridType.values.join(', ')}''',
+    _ => throw ArgumentError.value(
+      xmlElement.getAttribute('I'),
+      'Grid.type',
+      'is not one of the supported values: ${GridType.values.join(', ')}',
     ),
   };
 

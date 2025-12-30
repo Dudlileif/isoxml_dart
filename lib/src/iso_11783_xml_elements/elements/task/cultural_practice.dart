@@ -22,10 +22,10 @@ class CulturalPractice extends Iso11783Element {
     required String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      operationTechniqueReferences: operationTechniqueReferences,
     );
     return CulturalPractice._(
       id: id,
@@ -40,28 +40,38 @@ class CulturalPractice extends Iso11783Element {
     required String id,
     required String designator,
     List<OperationTechniqueReference>? operationTechniqueReferences,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.operationTechniqueReferences.addAll(operationTechniqueReferences);
   }
 
   CulturalPractice._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     operationTechniqueReferences.addAll(
       xmlElement
           .findElements(Iso11783ElementType.operationTechniqueReference.xmlTag)
           .map(OperationTechniqueReference._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      operationTechniqueReferences: operationTechniqueReferences,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required List<OperationTechniqueReference>? operationTechniqueReferences,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'CulturalPractice.id',
+      designatorName: 'CulturalPractice.designator',
     );
   }
 
@@ -76,7 +86,10 @@ class CulturalPractice extends Iso11783Element {
 
   /// A list of references to the available [OperationTechnique]s for this.
   late final operationTechniqueReferences =
-      _XmlSyncedList<OperationTechniqueReference>(xmlElement: xmlElement);
+      _XmlSyncedList<OperationTechniqueReference>(
+        xmlElement: xmlElement,
+        xmlTag: OperationTechniqueReference._elementType.xmlTag,
+      );
 
   /// Unique identifier for this cultural practice.
   ///

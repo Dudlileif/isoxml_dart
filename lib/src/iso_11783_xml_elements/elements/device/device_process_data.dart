@@ -21,39 +21,14 @@ class DeviceProcessData extends Iso11783Element {
     String? designator,
     int? presentationObjectId,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      ddi,
-      name: 'ddi',
+    _argumentValidator(
+      objectId: objectId,
+      ddi: ddi,
+      property: property,
+      triggerMethods: triggerMethods,
+      designator: designator,
+      presentationObjectId: presentationObjectId,
     );
-    ArgumentValidation.checkValueInRange(
-      value: objectId,
-      min: 1,
-      max: 65534,
-      name: 'objectId',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: property,
-      min: 0,
-      max: 7,
-      name: 'property',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: triggerMethods,
-      min: 0,
-      max: 31,
-      name: 'triggerMethods',
-    );
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (presentationObjectId != null) {
-      ArgumentValidation.checkValueInRange(
-        value: presentationObjectId,
-        min: 1,
-        max: 65534,
-        name: 'presentationObjectId',
-      );
-    }
 
     return DeviceProcessData._(
       objectId: objectId,
@@ -74,7 +49,7 @@ class DeviceProcessData extends Iso11783Element {
     required int triggerMethods,
     String? designator,
     int? presentationObjectId,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.objectId = objectId;
     this.ddi = ddi;
     this.property = property;
@@ -84,42 +59,59 @@ class DeviceProcessData extends Iso11783Element {
   }
 
   DeviceProcessData._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      objectId: objectId,
+      ddi: ddi,
+      property: property,
+      triggerMethods: triggerMethods,
+      designator: designator,
+      presentationObjectId: presentationObjectId,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required int objectId,
+    required String ddi,
+    required int property,
+    required int triggerMethods,
+    required String? designator,
+    required int? presentationObjectId,
+  }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
-      name: 'ddi',
+      name: 'DeviceProcessData.ddi',
     );
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
       max: 65534,
-      name: 'objectId',
+      name: 'DeviceProcessData.objectId',
     );
     ArgumentValidation.checkValueInRange(
       value: property,
       min: 0,
       max: 7,
-      name: 'property',
+      name: 'DeviceProcessData.property',
     );
     ArgumentValidation.checkValueInRange(
       value: triggerMethods,
       min: 0,
       max: 31,
-      name: 'triggerMethods',
+      name: 'DeviceProcessData.triggerMethods',
     );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'DeviceProcessData.designator',
+      );
     }
     if (presentationObjectId != null) {
       ArgumentValidation.checkValueInRange(
-        value: presentationObjectId!,
+        value: presentationObjectId,
         min: 1,
         max: 65534,
-        name: 'presentationObjectId',
+        name: 'DeviceProcessData.presentationObjectId',
       );
     }
   }
@@ -147,11 +139,14 @@ class DeviceProcessData extends Iso11783Element {
   set property(int value) => setInt('C', value);
 
   /// Bit combination to specify supported trigger methods:
-  /// `1 = time interval`,
-  /// `2 = distance interval`,
-  /// `4 = threshold limits`,
-  /// `8 = on change`,
-  /// `16 = counter`
+  ///
+  /// ```()
+  /// ----x  1 = time interval,
+  /// ---x-  2 = distance interval,
+  /// --x--  4 = threshold limits,
+  /// -x---  8 = on change,
+  /// x---- 16 = counter
+  /// ```
   int get triggerMethods => parseInt('D');
   set triggerMethods(int value) => setInt('D', value);
 

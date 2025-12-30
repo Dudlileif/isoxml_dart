@@ -19,47 +19,15 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
     required String processDataDDI,
     AllocationStamp? allocationStamp,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      sourceClientNAME,
-      name: 'sourceClientNAME',
-      minBytes: 8,
-      maxBytes: 8,
-    );
-    ArgumentValidation.checkHexStringLength(
-      userClientNAME,
-      name: 'userClientNAME',
-      minBytes: 8,
-      maxBytes: 8,
-    );
-    ArgumentValidation.checkId(
-      id: sourceDeviceStructureLabel,
-      idRefPattern: Device.structureLabelPattern,
-      minLength: 14,
-      maxLength: 78,
-      idName: 'sourceDeviceStructureLabel',
-    );
-    ArgumentValidation.checkId(
-      id: userDeviceStructureLabel,
-      idRefPattern: Device.structureLabelPattern,
-      minLength: 14,
-      maxLength: 78,
-      idName: 'userDeviceStructureLabel',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: sourceDeviceElementNumber,
-      min: 0,
-      max: 4095,
-      name: 'sourceDeviceElementNumber',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: userDeviceElementNumber,
-      min: 0,
-      max: 4095,
-      name: 'userDeviceElementNumber',
-    );
-    ArgumentValidation.checkHexStringLength(
-      processDataDDI,
-      name: 'processDataDDI',
+    _argumentValidator(
+      sourceClientNAME: sourceClientNAME,
+      userClientNAME: userClientNAME,
+      sourceDeviceStructureLabel: sourceDeviceStructureLabel,
+      userDeviceStructureLabel: userDeviceStructureLabel,
+      sourceDeviceElementNumber: sourceDeviceElementNumber,
+      userDeviceElementNumber: userDeviceElementNumber,
+      processDataDDI: processDataDDI,
+      allocationStamp: allocationStamp,
     );
 
     return ControlAssignment._(
@@ -85,7 +53,7 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
     required int userDeviceElementNumber,
     required String processDataDDI,
     AllocationStamp? allocationStamp,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.sourceClientNAME = sourceClientNAME;
     this.userClientNAME = userClientNAME;
     this.sourceDeviceStructureLabel = sourceDeviceStructureLabel;
@@ -97,21 +65,39 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
   }
 
   ControlAssignment._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      sourceClientNAME: sourceClientNAME,
+      userClientNAME: userClientNAME,
+      sourceDeviceStructureLabel: sourceDeviceStructureLabel,
+      userDeviceStructureLabel: userDeviceStructureLabel,
+      sourceDeviceElementNumber: sourceDeviceElementNumber,
+      userDeviceElementNumber: userDeviceElementNumber,
+      processDataDDI: processDataDDI,
+      allocationStamp: allocationStamp,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String sourceClientNAME,
+    required String userClientNAME,
+    required String sourceDeviceStructureLabel,
+    required String userDeviceStructureLabel,
+    required int sourceDeviceElementNumber,
+    required int userDeviceElementNumber,
+    required String processDataDDI,
+    required AllocationStamp? allocationStamp,
+  }) {
     ArgumentValidation.checkHexStringLength(
       sourceClientNAME,
-      name: 'sourceClientNAME',
+      name: 'ControlAssignment.sourceClientNAME',
       minBytes: 8,
       maxBytes: 8,
     );
     ArgumentValidation.checkHexStringLength(
       userClientNAME,
-      name: 'userClientNAME',
+      name: 'ControlAssignment.userClientNAME',
       minBytes: 8,
       maxBytes: 8,
     );
@@ -120,30 +106,30 @@ class ControlAssignment extends Iso11783Element with _AllocationStampMixin {
       idRefPattern: Device.structureLabelPattern,
       minLength: 14,
       maxLength: 78,
-      idName: 'sourceDeviceStructureLabel',
+      name: 'ControlAssignment.sourceDeviceStructureLabel',
     );
     ArgumentValidation.checkId(
       id: userDeviceStructureLabel,
       idRefPattern: Device.structureLabelPattern,
       minLength: 14,
       maxLength: 78,
-      idName: 'userDeviceStructureLabel',
+      name: 'ControlAssignment.userDeviceStructureLabel',
     );
     ArgumentValidation.checkValueInRange(
       value: sourceDeviceElementNumber,
       min: 0,
       max: 4095,
-      name: 'sourceDeviceElementNumber',
+      name: 'ControlAssignment.sourceDeviceElementNumber',
     );
     ArgumentValidation.checkValueInRange(
       value: userDeviceElementNumber,
       min: 0,
       max: 4095,
-      name: 'userDeviceElementNumber',
+      name: 'ControlAssignment.userDeviceElementNumber',
     );
     ArgumentValidation.checkHexStringLength(
       processDataDDI,
-      name: 'processDataDDI',
+      name: 'ControlAssignment.processDataDDI',
     );
   }
 

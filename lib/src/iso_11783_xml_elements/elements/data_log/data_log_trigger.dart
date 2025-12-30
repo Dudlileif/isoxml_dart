@@ -40,7 +40,7 @@ part of '../../iso_11783_element.dart';
 /// Values from Parameter Group Numbers can be logged by specification of the
 /// attributes [pgn], [pgnStartBit] and [pgnStopBit]. When these
 /// attributes are specified, the [ddi] attribute shall be set to `DFFE`
-/// (PGN logvalue).
+/// (PGN logvalue, 57342 in the dictionary).
 class DataLogTrigger extends Iso11783Element {
   /// Default factory for creating a [DataLogTrigger] with verified
   /// arguments.
@@ -58,101 +58,20 @@ class DataLogTrigger extends Iso11783Element {
     int? pgnStartBit,
     int? pgnStopBit,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      ddi,
-      name: 'ddi',
+    _argumentValidator(
+      ddi: ddi,
+      method: method,
+      distanceInterval: distanceInterval,
+      timeInterval: timeInterval,
+      thresholdMinimum: thresholdMinimum,
+      thresholdMaximum: thresholdMaximum,
+      thresholdChange: thresholdChange,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
     );
-    ArgumentValidation.checkValueInRange(
-      value: method,
-      min: 1,
-      max: 31,
-      name: 'method',
-    );
-    if (distanceInterval != null) {
-      ArgumentValidation.checkValueInRange(
-        value: distanceInterval,
-        min: 0,
-        max: 1000000,
-        name: 'distanceInterval',
-      );
-    }
-    if (timeInterval != null) {
-      ArgumentValidation.checkValueInRange(
-        value: timeInterval,
-        min: 0,
-        max: 60000,
-        name: 'timeInterval',
-      );
-    }
-    if (thresholdMinimum != null) {
-      ArgumentValidation.checkValueInRange(
-        value: thresholdMinimum,
-        min: -2147483647,
-        max: 2147483647,
-        name: 'thresholdMinimum',
-      );
-    }
-    if (thresholdMaximum != null) {
-      ArgumentValidation.checkValueInRange(
-        value: thresholdMaximum,
-        min: -2147483647,
-        max: 2147483647,
-        name: 'thresholdMaximum',
-      );
-    }
-    if (thresholdChange != null) {
-      ArgumentValidation.checkValueInRange(
-        value: thresholdChange,
-        min: -2147483647,
-        max: 2147483647,
-        name: 'thresholdChange',
-      );
-    }
-    if (deviceElementIdRef != null) {
-      ArgumentValidation.checkId(
-        id: deviceElementIdRef,
-        idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
-      );
-    }
-    if (valuePresentationIdRef != null) {
-      ArgumentValidation.checkId(
-        id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
-      );
-    }
-    if (pgn != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgn,
-        min: 0,
-        max: 262143,
-        name: 'pgn',
-      );
-      if (ddi != 'DFFE') {
-        throw ArgumentError.value(
-          [ddi, pgn],
-          '[ddi, pgn]',
-          'When pgn is set, ddi MUST be "DFFE"',
-        );
-      }
-    }
-    if (pgnStartBit != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgnStartBit,
-        min: 0,
-        max: 63,
-        name: 'pgnStartBit',
-      );
-    }
-    if (pgnStopBit != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pgnStopBit,
-        min: 0,
-        max: 63,
-        name: 'pgnStopBit',
-      );
-    }
 
     return DataLogTrigger._(
       ddi: ddi,
@@ -185,7 +104,7 @@ class DataLogTrigger extends Iso11783Element {
     int? pgn,
     int? pgnStartBit,
     int? pgnStopBit,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.ddi = ddi;
     this.method = method;
     this.distanceInterval = distanceInterval;
@@ -201,81 +120,107 @@ class DataLogTrigger extends Iso11783Element {
   }
 
   DataLogTrigger._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      ddi: ddi,
+      method: method,
+      distanceInterval: distanceInterval,
+      timeInterval: timeInterval,
+      thresholdMinimum: thresholdMinimum,
+      thresholdMaximum: thresholdMaximum,
+      thresholdChange: thresholdChange,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      pgn: pgn,
+      pgnStartBit: pgnStartBit,
+      pgnStopBit: pgnStopBit,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String ddi,
+    required int method,
+    required int? distanceInterval,
+    required int? timeInterval,
+    required int? thresholdMinimum,
+    required int? thresholdMaximum,
+    required int? thresholdChange,
+    required String? deviceElementIdRef,
+    required String? valuePresentationIdRef,
+    required int? pgn,
+    required int? pgnStartBit,
+    required int? pgnStopBit,
+  }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
-      name: 'ddi',
+      name: 'DataLogTrigger.ddi',
     );
     ArgumentValidation.checkValueInRange(
       value: method,
       min: 1,
       max: 31,
-      name: 'method',
+      name: 'DataLogTrigger.method',
     );
     if (distanceInterval != null) {
       ArgumentValidation.checkValueInRange(
-        value: distanceInterval!,
+        value: distanceInterval,
         min: 0,
         max: 1000000,
-        name: 'distanceInterval',
+        name: 'DataLogTrigger.distanceInterval',
       );
     }
     if (timeInterval != null) {
       ArgumentValidation.checkValueInRange(
-        value: timeInterval!,
+        value: timeInterval,
         min: 0,
         max: 60000,
-        name: 'timeInterval',
+        name: 'DataLogTrigger.timeInterval',
       );
     }
     if (thresholdMinimum != null) {
       ArgumentValidation.checkValueInRange(
-        value: thresholdMinimum!,
+        value: thresholdMinimum,
         min: -2147483647,
         max: 2147483647,
-        name: 'thresholdMinimum',
+        name: 'DataLogTrigger.thresholdMinimum',
       );
     }
     if (thresholdMaximum != null) {
       ArgumentValidation.checkValueInRange(
-        value: thresholdMaximum!,
+        value: thresholdMaximum,
         min: -2147483647,
         max: 2147483647,
-        name: 'thresholdMaximum',
+        name: 'DataLogTrigger.thresholdMaximum',
       );
     }
     if (thresholdChange != null) {
       ArgumentValidation.checkValueInRange(
-        value: thresholdChange!,
+        value: thresholdChange,
         min: -2147483647,
         max: 2147483647,
-        name: 'thresholdChange',
+        name: 'DataLogTrigger.thresholdChange',
       );
     }
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
-        id: deviceElementIdRef!,
+        id: deviceElementIdRef,
         idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
+        name: 'DataLogTrigger.deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
-        id: valuePresentationIdRef!,
+        id: valuePresentationIdRef,
         idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
+        name: 'DataLogTrigger.valuePresentationIdRef',
       );
     }
     if (pgn != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgn!,
+        value: pgn,
         min: 0,
         max: 262143,
-        name: 'pgn',
+        name: 'DataLogTrigger.pgn',
       );
       if (ddi != 'DFFE') {
         throw ArgumentError.value(
@@ -287,18 +232,18 @@ class DataLogTrigger extends Iso11783Element {
     }
     if (pgnStartBit != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgnStartBit!,
+        value: pgnStartBit,
         min: 0,
         max: 63,
-        name: 'pgnStartBit',
+        name: 'DataLogTrigger.pgnStartBit',
       );
     }
     if (pgnStopBit != null) {
       ArgumentValidation.checkValueInRange(
-        value: pgnStopBit!,
+        value: pgnStopBit,
         min: 0,
         max: 63,
-        name: 'pgnStopBit',
+        name: 'DataLogTrigger.pgnStopBit',
       );
     }
   }
@@ -330,7 +275,7 @@ class DataLogTrigger extends Iso11783Element {
   int? get distanceInterval => tryParseInt('C');
   set distanceInterval(int? value) => setIntNullable('C', value);
 
-  /// Time interval for data lag in milliseconds.
+  /// Time interval for data log in milliseconds.
   ///
   /// 0 stops measurement. 10 msec is minimum time interval.
   int? get timeInterval => tryParseInt('D');
@@ -351,7 +296,7 @@ class DataLogTrigger extends Iso11783Element {
   set thresholdMaximum(int? value) => setIntNullable('F', value);
 
   /// Change threshold to activate the data log.
-  /// 0 stops measurement, 1 lags each change.
+  /// 0 stops measurement, 1 logs each change.
   int? get thresholdChange => tryParseInt('G');
   set thresholdChange(int? value) => setIntNullable('G', value);
 

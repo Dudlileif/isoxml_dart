@@ -18,19 +18,12 @@ class Link extends Iso11783Element {
     required String linkValue,
     String? designator,
   }) {
-    ArgumentValidation.checkId(
-      id: objectIdRef,
-      idRefPattern: objectIdRefPattern,
-      idName: 'objectIdRef',
+    _argumentValidator(
+      objectIdRef: objectIdRef,
+      linkValue: linkValue,
+      designator: designator,
     );
-    ArgumentValidation.checkStringLength(
-      linkValue,
-      maxLength: 255,
-      name: 'linkValue',
-    );
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
+
     return Link._(
       objectIdRef: objectIdRef,
       linkValue: linkValue,
@@ -44,30 +37,41 @@ class Link extends Iso11783Element {
     required String objectIdRef,
     required String linkValue,
     String? designator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.objectIdRef = objectIdRef;
     this.linkValue = linkValue;
     this.designator = designator;
   }
 
   Link._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      objectIdRef: objectIdRef,
+      linkValue: linkValue,
+      designator: designator,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String objectIdRef,
+    required String linkValue,
+    required String? designator,
+  }) {
     ArgumentValidation.checkId(
       id: objectIdRef,
       idRefPattern: objectIdRefPattern,
-      idName: 'objectIdRef',
+      name: 'Link.objectIdRef',
     );
     ArgumentValidation.checkStringLength(
       linkValue,
       maxLength: 255,
-      name: 'linkValue',
+      name: 'Link.linkValue',
     );
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'Link.designator',
+      );
     }
   }
 

@@ -28,27 +28,12 @@ class Connection extends Iso11783Element {
     required String deviceIdRef1,
     required String deviceElementIdRef1,
   }) {
-    ArgumentValidation.checkId(
-      id: deviceIdRef0,
-      idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef0',
+    _argumentValidator(
+      deviceIdRef0: deviceIdRef0,
+      deviceElementIdRef0: deviceElementIdRef0,
+      deviceIdRef1: deviceIdRef1,
+      deviceElementIdRef1: deviceElementIdRef1,
     );
-    ArgumentValidation.checkId(
-      id: deviceElementIdRef0,
-      idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef0',
-    );
-    ArgumentValidation.checkId(
-      id: deviceIdRef1,
-      idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef1',
-    );
-    ArgumentValidation.checkId(
-      id: deviceElementIdRef1,
-      idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef1',
-    );
-
     return Connection._(
       deviceIdRef0: deviceIdRef0,
       deviceElementIdRef0: deviceElementIdRef0,
@@ -64,7 +49,7 @@ class Connection extends Iso11783Element {
     required String deviceElementIdRef0,
     required String deviceIdRef1,
     required String deviceElementIdRef1,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.deviceIdRef0 = deviceIdRef0;
     this.deviceElementIdRef0 = deviceElementIdRef0;
     this.deviceIdRef1 = deviceIdRef1;
@@ -72,30 +57,40 @@ class Connection extends Iso11783Element {
   }
 
   Connection._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      deviceIdRef0: deviceIdRef0,
+      deviceElementIdRef0: deviceElementIdRef0,
+      deviceIdRef1: deviceIdRef1,
+      deviceElementIdRef1: deviceElementIdRef1,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String deviceIdRef0,
+    required String deviceElementIdRef0,
+    required String deviceIdRef1,
+    required String deviceElementIdRef1,
+  }) {
     ArgumentValidation.checkId(
       id: deviceIdRef0,
       idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef0',
+      name: 'Connection.deviceIdRef0',
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef0,
       idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef0',
+      name: 'Connection.deviceElementIdRef0',
     );
     ArgumentValidation.checkId(
       id: deviceIdRef1,
       idRefPattern: Device.staticIdRefPattern,
-      idName: 'deviceIdRef1',
+      name: 'Connection.deviceIdRef1',
     );
     ArgumentValidation.checkId(
       id: deviceElementIdRef1,
       idRefPattern: DeviceElement.staticIdRefPattern,
-      idName: 'deviceElementIdRef1',
+      name: 'Connection.deviceElementIdRef1',
     );
   }
 

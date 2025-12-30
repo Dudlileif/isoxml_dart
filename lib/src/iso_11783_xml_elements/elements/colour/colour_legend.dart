@@ -18,19 +18,7 @@ class ColourLegend extends Iso11783Element {
     required String id,
     int? defaultColour,
   }) {
-    if (ranges.isEmpty) {
-      throw ArgumentError.value(ranges, 'ranges', "List can't be empty");
-    }
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-
-    if (defaultColour != null) {
-      ArgumentValidation.checkValueInRange(
-        value: defaultColour,
-        min: 0,
-        max: 254,
-        name: 'defaultColour',
-      );
-    }
+    _argumentValidator(ranges: ranges, id: id, defaultColour: defaultColour);
 
     return ColourLegend._(
       ranges: ranges,
@@ -45,16 +33,14 @@ class ColourLegend extends Iso11783Element {
     required List<ColourRange> ranges,
     required String id,
     int? defaultColour,
-  }) : super(
-         elementType: _elementType,
-       ) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.defaultColour = defaultColour;
     this.ranges.addAll(ranges);
   }
 
   ColourLegend._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     ranges.addAll(
       xmlElement
           .findElements(
@@ -63,21 +49,33 @@ class ColourLegend extends Iso11783Element {
           .map(ColourRange._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(ranges: ranges, id: id, defaultColour: defaultColour);
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required List<ColourRange> ranges,
+    required String id,
+    required int? defaultColour,
+  }) {
     if (ranges.isEmpty) {
-      throw ArgumentError.value(ranges, 'ranges', "List can't be empty");
+      throw ArgumentError.value(
+        ranges,
+        'ColourLegend.ranges',
+        "List can't be empty",
+      );
     }
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'ColourLegend.id',
+    );
 
     if (defaultColour != null) {
       ArgumentValidation.checkValueInRange(
-        value: defaultColour!,
+        value: defaultColour,
         min: 0,
         max: 254,
-        name: 'defaultColour',
+        name: 'ColourLegend.defaultColour',
       );
     }
   }
@@ -92,7 +90,10 @@ class ColourLegend extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of [ColourRange]s that are used with this.
-  late final ranges = _XmlSyncedList<ColourRange>(xmlElement: xmlElement);
+  late final ranges = _XmlSyncedList<ColourRange>(
+    xmlElement: xmlElement,
+    xmlTag: ColourRange._elementType.xmlTag,
+  );
 
   /// Unique identifier for this colour legend.
   ///

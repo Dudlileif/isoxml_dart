@@ -30,19 +30,15 @@ class TimeLog extends Iso11783Element {
     TimeLogHeader? header,
     List<Time>? records,
   }) {
-    ArgumentValidation.checkId(
-      id: filename,
-      idRefPattern: fileNamePattern,
-      idName: 'filename',
+    _argumentValidator(
+      filename: filename,
+      fileLength: fileLength,
+      type: type,
+      byteData: byteData,
+      header: header,
+      records: records,
     );
-    if (fileLength != null) {
-      ArgumentValidation.checkValueInRange(
-        value: fileLength,
-        min: 0,
-        max: 4294967294,
-        name: 'fileLength',
-      );
-    }
+
     return TimeLog._(
       filename: filename,
       fileLength: fileLength,
@@ -62,7 +58,7 @@ class TimeLog extends Iso11783Element {
     TimeLogType type = TimeLogType.binaryTimeLogFileType1,
     this.header,
     List<Time>? records,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.filename = filename;
     this.fileLength = fileLength;
     this.type = type;
@@ -73,22 +69,36 @@ class TimeLog extends Iso11783Element {
 
   TimeLog._fromXmlElement(XmlElement element, {Uint8List? byteData})
     : byteData = byteData ?? Uint8List(0),
-      super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+      super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      filename: filename,
+      fileLength: fileLength,
+      type: type,
+      byteData: byteData,
+      header: header,
+      records: records,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String filename,
+    required int? fileLength,
+    required TimeLogType type,
+    required Uint8List? byteData,
+    required TimeLogHeader? header,
+    required List<Time>? records,
+  }) {
     ArgumentValidation.checkId(
       id: filename,
       idRefPattern: fileNamePattern,
-      idName: 'filename',
+      name: 'TimeLog.filename',
     );
     if (fileLength != null) {
       ArgumentValidation.checkValueInRange(
-        value: fileLength!,
+        value: fileLength,
         min: 0,
         max: 4294967294,
-        name: 'fileLength',
+        name: 'TimeLog.fileLength',
       );
     }
   }
@@ -111,8 +121,10 @@ class TimeLog extends Iso11783Element {
   /// Only [TimeLogType.binaryTimeLogFileType1] is possible.
   TimeLogType get type => TimeLogType.values.firstWhere(
     (type) => type.value == parseInt('C'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${TimeLogType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('C'),
+      'TimeLog.type',
+      'is not one of the supported values: ${TimeLogType.values.join(', ')}',
     ),
   );
   set type(TimeLogType value) => setInt('C', value.value);
@@ -222,12 +234,12 @@ class TimeLog extends Iso11783Element {
           );
         }
 
-        final numDLVs = data.getUint8(currentOffset);
+        final countDLVs = data.getUint8(currentOffset);
         currentOffset++;
         List<DataLogValue>? dataLogValues;
-        if (numDLVs > 0) {
+        if (countDLVs > 0) {
           dataLogValues = [];
-          for (var i = 0; i < numDLVs; i++) {
+          for (var i = 0; i < countDLVs; i++) {
             final dlvN = data.getUint8(currentOffset);
             currentOffset++;
 
@@ -251,7 +263,7 @@ class TimeLog extends Iso11783Element {
         records.add(
           Time(
             start: time,
-            positions: position != null ? [position] : null,
+            positions: position != null ? [position] : const [],
             dataLogValues: dataLogValues,
             type: header!.type,
           ),

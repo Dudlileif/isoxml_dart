@@ -20,44 +20,15 @@ class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
     int? northShift,
     int? propagationOffset,
   }) {
-    if (groupIdRef != null) {
-      ArgumentValidation.checkId(
-        id: groupIdRef,
-        idRefPattern: GuidanceGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
-      );
-    }
-    if (patternIdRef != null) {
-      ArgumentValidation.checkId(
-        id: patternIdRef,
-        idRefPattern: GuidancePattern.staticIdRefPattern,
-        idName: 'patternIdRef',
-      );
-    }
-    if (eastShift != null) {
-      ArgumentValidation.checkValueInRange(
-        value: eastShift,
-        min: -2147483648,
-        max: 2147483647,
-        name: 'eastShift',
-      );
-    }
-    if (northShift != null) {
-      ArgumentValidation.checkValueInRange(
-        value: northShift,
-        min: -2147483648,
-        max: 2147483647,
-        name: 'northShift',
-      );
-    }
-    if (propagationOffset != null) {
-      ArgumentValidation.checkValueInRange(
-        value: propagationOffset,
-        min: -2147483648,
-        max: 2147483647,
-        name: 'propagationOffset',
-      );
-    }
+    _argumentValidator(
+      allocationStamp: allocationStamp,
+      groupIdRef: groupIdRef,
+      patternIdRef: patternIdRef,
+      eastShift: eastShift,
+      northShift: northShift,
+      propagationOffset: propagationOffset,
+    );
+
     return GuidanceShift._(
       allocationStamp: allocationStamp,
       groupIdRef: groupIdRef,
@@ -77,7 +48,7 @@ class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
     int? eastShift,
     int? northShift,
     int? propagationOffset,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.allocationStamp = allocationStamp;
     this.groupIdRef = groupIdRef;
     this.patternIdRef = patternIdRef;
@@ -87,48 +58,62 @@ class GuidanceShift extends Iso11783Element with _AllocationStampMixin {
   }
 
   GuidanceShift._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      allocationStamp: allocationStamp,
+      groupIdRef: groupIdRef,
+      patternIdRef: patternIdRef,
+      eastShift: eastShift,
+      northShift: northShift,
+      propagationOffset: propagationOffset,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required AllocationStamp? allocationStamp,
+    required String? groupIdRef,
+    required String? patternIdRef,
+    required int? eastShift,
+    required int? northShift,
+    required int? propagationOffset,
+  }) {
     if (groupIdRef != null) {
       ArgumentValidation.checkId(
-        id: groupIdRef!,
+        id: groupIdRef,
         idRefPattern: GuidanceGroup.staticIdRefPattern,
-        idName: 'groupIdRef',
+        name: 'GuidanceShift.groupIdRef',
       );
     }
     if (patternIdRef != null) {
       ArgumentValidation.checkId(
-        id: patternIdRef!,
+        id: patternIdRef,
         idRefPattern: GuidancePattern.staticIdRefPattern,
-        idName: 'patternIdRef',
+        name: 'GuidanceShift.patternIdRef',
       );
     }
     if (eastShift != null) {
       ArgumentValidation.checkValueInRange(
-        value: eastShift!,
+        value: eastShift,
         min: -2147483648,
         max: 2147483647,
-        name: 'eastShift',
+        name: 'GuidanceShift.eastShift',
       );
     }
     if (northShift != null) {
       ArgumentValidation.checkValueInRange(
-        value: northShift!,
+        value: northShift,
         min: -2147483648,
         max: 2147483647,
-        name: 'northShift',
+        name: 'GuidanceShift.northShift',
       );
     }
     if (propagationOffset != null) {
       ArgumentValidation.checkValueInRange(
-        value: propagationOffset!,
+        value: propagationOffset,
         min: -2147483648,
         max: 2147483647,
-        name: 'propagationOffset',
+        name: 'GuidanceShift.propagationOffset',
       );
     }
   }

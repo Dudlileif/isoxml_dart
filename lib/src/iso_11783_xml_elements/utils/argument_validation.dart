@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-part of '../iso_11783_element.dart';
+import 'package:isoxml_dart/iso_11783_xml_elements.dart';
 
 /// A class with static methods for validating arguments when creating
 /// [Iso11783Element]s.
@@ -20,8 +20,8 @@ class ArgumentValidation {
     required String id,
     required String idRefPattern,
     required String designator,
-    String idName = 'id',
-    String designatorName = 'designator',
+    required String idName,
+    required String designatorName,
     int idMinLength = 4,
     int idMaxLength = 14,
     int designatorMaxLength = 32,
@@ -34,7 +34,7 @@ class ArgumentValidation {
     checkId(
       id: id,
       idRefPattern: idRefPattern,
-      idName: idName,
+      name: idName,
       minLength: idMinLength,
       maxLength: idMaxLength,
     );
@@ -46,8 +46,8 @@ class ArgumentValidation {
   /// equal to `designator`.
   static void checkStringLength(
     String string, {
+    required String name,
     int maxLength = 32,
-    String name = 'designator',
   }) {
     if (string.length > maxLength) {
       throw ArgumentError.value(
@@ -66,9 +66,9 @@ class ArgumentValidation {
   static void checkId({
     required String id,
     required String idRefPattern,
+    required String name,
     int minLength = 4,
     int maxLength = 14,
-    String idName = 'id',
   }) {
     if (id.length >= minLength && id.length <= maxLength) {
       final match = RegExp(idRefPattern).matchAsPrefix(id);
@@ -77,14 +77,14 @@ class ArgumentValidation {
       } else {
         throw ArgumentError.value(
           id,
-          idName,
+          name,
           '''Doesn't match pattern: $idRefPattern''',
         );
       }
     } else {
       throw ArgumentError.value(
         id,
-        idName,
+        name,
         'Length < $minLength or Length > $maxLength',
       );
     }

@@ -4,6 +4,8 @@
 
 part of '../iso_11783_element.dart';
 
+/// An extension on the [_XmlElementBase] class with convenience
+/// methods for parsing various values from the xml element attributes.
 extension _ParsingExtension on _XmlElementBase {
   /// Parse a [DateTime] from attribute [attributeName].
   DateTime parseDateTime(String attributeName, {String? namespace}) =>

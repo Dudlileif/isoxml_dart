@@ -9,22 +9,23 @@ class _XmlSyncedList<E extends _XmlElementBase> extends DelegatingList<E> {
   ///  Optional initial [values] can also be set.
   _XmlSyncedList({
     required XmlElement xmlElement,
+    required String xmlTag,
     Iterable<E>? values,
   }) : _xmlElement = xmlElement,
+       _xmlTag = xmlTag,
        super([...?values]) {
     addAll(values);
   }
 
   final XmlElement _xmlElement;
-
-  @override
-  void operator []=(int index, E value) {
-    super[index] = value;
-    value.xmlElement.replace(value.xmlElement);
-  }
+  final String _xmlTag;
 
   @override
   void add(E value) {
+    assert(
+      value._xmlTag == _xmlTag,
+      'value must have correct XML tag `$_xmlTag`: ${value._xmlTag}',
+    );
     super.add(value);
     final xmlElement = value.xmlElement;
     if (xmlElement.hasParent) {
@@ -35,10 +36,19 @@ class _XmlSyncedList<E extends _XmlElementBase> extends DelegatingList<E> {
 
   @override
   void addAll(Iterable<E>? iterable) {
-    if (iterable case <E>[...]) {
-      super.addAll(iterable);
+    final items = switch (iterable) {
+      <E>[...] => iterable,
+      final Iterable<E> iterable => iterable.toList(),
+      _ => null,
+    };
+    if (items case <E>[...]) {
+      super.addAll(items);
       _xmlElement.children.addAll(
-        iterable.map((e) {
+        items.map((e) {
+          assert(
+            e._xmlTag == _xmlTag,
+            'value must have correct XML tag `$_xmlTag`: ${e._xmlTag}',
+          );
           final xmlElement = e.xmlElement;
           if (xmlElement.hasParent) {
             xmlElement.remove();
@@ -51,13 +61,19 @@ class _XmlSyncedList<E extends _XmlElementBase> extends DelegatingList<E> {
 
   @override
   bool remove(Object? value) {
-    _xmlElement.children.remove(value);
+    assert(value is E, 'value must be of correct type');
+    (value! as _XmlElementBase).xmlElement.remove();
     return super.remove(value);
   }
 
   @override
   void clear() {
     super.clear();
-    _xmlElement.children.removeWhere((e) => e is E);
+    _xmlElement.children.removeWhere(
+      (e) => switch (e) {
+        XmlElement(name: XmlName(:final local)) when local == _xmlTag => true,
+        _ => false,
+      },
+    );
   }
 }

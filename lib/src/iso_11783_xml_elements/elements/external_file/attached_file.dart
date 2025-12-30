@@ -19,30 +19,14 @@ class AttachedFile extends Iso11783Element {
     String? fileVersion,
     int? fileLength,
   }) {
-    ArgumentValidation.checkId(
-      id: filenameWithExtension,
-      idRefPattern: extensionPattern,
-      idName: 'filenameWithExtension',
-      minLength: 12,
-      maxLength: 12,
+    _argumentValidator(
+      filenameWithExtension: filenameWithExtension,
+      preserve: preserve,
+      manufacturerGLN: manufacturerGLN,
+      fileType: fileType,
+      fileVersion: fileVersion,
+      fileLength: fileLength,
     );
-    ArgumentValidation.checkValueInRange(
-      value: fileType,
-      min: 1,
-      max: 254,
-      name: 'fileType',
-    );
-    if (fileVersion != null) {
-      ArgumentValidation.checkStringLength(fileVersion, name: 'fileVersion');
-    }
-    if (fileLength != null) {
-      ArgumentValidation.checkValueInRange(
-        value: fileLength,
-        min: 0,
-        max: 4294967294,
-        name: 'fileLength',
-      );
-    }
 
     return AttachedFile._(
       filenameWithExtension: filenameWithExtension,
@@ -63,7 +47,7 @@ class AttachedFile extends Iso11783Element {
     required int fileType,
     String? fileVersion,
     int? fileLength,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.filenameWithExtension = filenameWithExtension;
     this.preserve = preserve;
     this.manufacturerGLN = manufacturerGLN;
@@ -73,15 +57,29 @@ class AttachedFile extends Iso11783Element {
   }
 
   AttachedFile._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      filenameWithExtension: filenameWithExtension,
+      preserve: preserve,
+      manufacturerGLN: manufacturerGLN,
+      fileType: fileType,
+      fileVersion: fileVersion,
+      fileLength: fileLength,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String filenameWithExtension,
+    required Preserve preserve,
+    required String manufacturerGLN,
+    required int fileType,
+    required String? fileVersion,
+    required int? fileLength,
+  }) {
     ArgumentValidation.checkId(
       id: filenameWithExtension,
       idRefPattern: extensionPattern,
-      idName: 'filenameWithExtension',
+      name: 'AttachedFile.filenameWithExtension',
       minLength: 12,
       maxLength: 12,
     );
@@ -89,17 +87,20 @@ class AttachedFile extends Iso11783Element {
       value: fileType,
       min: 1,
       max: 254,
-      name: 'fileType',
+      name: 'AttachedFile.fileType',
     );
     if (fileVersion != null) {
-      ArgumentValidation.checkStringLength(fileVersion!, name: 'fileVersion');
+      ArgumentValidation.checkStringLength(
+        fileVersion,
+        name: 'AttachedFile.fileVersion',
+      );
     }
     if (fileLength != null) {
       ArgumentValidation.checkValueInRange(
-        value: fileLength!,
+        value: fileLength,
         min: 0,
         max: 4294967294,
-        name: 'fileLength',
+        name: 'AttachedFile.fileLength',
       );
     }
   }
@@ -117,8 +118,10 @@ class AttachedFile extends Iso11783Element {
   /// Whether the file should be preserved or not.
   Preserve get preserve => Preserve.values.firstWhere(
     (type) => type.value == parseInt('B'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('B')}` is not one of the supported values: ${Preserve.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('B'),
+      'AttachedFile.preserve',
+      'is not one of the supported values: ${Preserve.values.join(', ')}',
     ),
   );
   set preserve(Preserve value) => setInt('B', value.value);

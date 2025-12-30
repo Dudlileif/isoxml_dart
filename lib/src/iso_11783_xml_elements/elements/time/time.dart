@@ -21,28 +21,19 @@ class Time extends Iso11783Element {
   factory Time({
     required DateTime start,
     required TimeType type,
-    List<Position>? positions,
+    List<Position> positions = const [],
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
   }) {
-    if (duration != null) {
-      ArgumentValidation.checkValueInRange(
-        value: duration,
-        min: 0,
-        max: 4294967294,
-        name: 'duration',
-      );
-    }
-    if (positions != null) {
-      if (positions.length > 2) {
-        throw ArgumentError.value(
-          positions,
-          'positions',
-          'Length can not be larger than 2.',
-        );
-      }
-    }
+    _argumentValidator(
+      start: start,
+      type: type,
+      positions: positions,
+      dataLogValues: dataLogValues,
+      stop: stop,
+      duration: duration,
+    );
 
     return Time._(
       start: start,
@@ -63,7 +54,7 @@ class Time extends Iso11783Element {
     List<DataLogValue>? dataLogValues,
     DateTime? stop,
     int? duration,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.start = start;
     this.type = type;
     this.stop = stop;
@@ -73,7 +64,7 @@ class Time extends Iso11783Element {
   }
 
   Time._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     positions.addAll(
       xmlElement
           .findElements(Iso11783ElementType.position.xmlTag)
@@ -86,22 +77,36 @@ class Time extends Iso11783Element {
           .map(DataLogValue._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      start: start,
+      type: type,
+      positions: positions,
+      dataLogValues: dataLogValues,
+      stop: stop,
+      duration: duration,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required DateTime start,
+    required TimeType type,
+    required List<Position> positions,
+    required List<DataLogValue>? dataLogValues,
+    required DateTime? stop,
+    required int? duration,
+  }) {
     if (duration != null) {
       ArgumentValidation.checkValueInRange(
-        value: duration!,
+        value: duration,
         min: 0,
         max: 4294967294,
-        name: 'duration',
+        name: 'Time.duration',
       );
     }
     if (positions.length > 2) {
       throw ArgumentError.value(
         positions,
-        'positions',
+        'Time.positions',
         'Length can not be larger than 2.',
       );
     }
@@ -110,11 +115,15 @@ class Time extends Iso11783Element {
   static const Iso11783ElementType _elementType = Iso11783ElementType.time;
 
   /// A list of up to 2 [Position]s for this.
-  late final positions = _XmlSyncedList<Position>(xmlElement: xmlElement);
+  late final positions = _XmlSyncedList<Position>(
+    xmlElement: xmlElement,
+    xmlTag: Position._elementType.xmlTag,
+  );
 
   /// A list of [DataLogValue]s that was recorded with this time.
   late final dataLogValues = _XmlSyncedList<DataLogValue>(
     xmlElement: xmlElement,
+    xmlTag: DataLogValue._elementType.xmlTag,
   );
 
   /// Time of start.
@@ -132,8 +141,10 @@ class Time extends Iso11783Element {
   /// Which type this is.
   TimeType get type => TimeType.values.firstWhere(
     (type) => type.value == parseInt('D'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${TimeType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('D'),
+      'Time.type',
+      'is not one of the supported values: ${TimeType.values.join(', ')}',
     ),
   );
   set type(TimeType value) => setInt('D', value.value);

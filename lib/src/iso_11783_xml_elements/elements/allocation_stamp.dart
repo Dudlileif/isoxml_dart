@@ -19,23 +19,13 @@ class AllocationStamp extends Iso11783Element {
     DateTime? stop,
     int? duration,
   }) {
-    if (position != null) {
-      if (position.length > 2) {
-        throw ArgumentError.value(
-          position,
-          'position',
-          'Too many elements: ${position.length}, max elements: 2',
-        );
-      }
-    }
-    if (duration != null) {
-      ArgumentValidation.checkValueInRange(
-        value: duration,
-        min: 0,
-        max: 4294967294,
-        name: 'duration',
-      );
-    }
+    _argumentValidator(
+      start: start,
+      type: type,
+      stop: stop,
+      duration: duration,
+      position: position ?? const [],
+    );
 
     return AllocationStamp._(
       start: start,
@@ -54,7 +44,7 @@ class AllocationStamp extends Iso11783Element {
     DateTime? stop,
     int? duration,
     List<Position>? position,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.start = start;
     this.stop = stop;
     this.duration = duration;
@@ -63,7 +53,7 @@ class AllocationStamp extends Iso11783Element {
   }
 
   AllocationStamp._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     position.addAll(
       xmlElement
           .findElements(
@@ -72,23 +62,35 @@ class AllocationStamp extends Iso11783Element {
           .map(Position._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      start: start,
+      type: type,
+      stop: stop,
+      duration: duration,
+      position: position,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required DateTime start,
+    required AllocationStampType type,
+    DateTime? stop,
+    int? duration,
+    List<Position> position = const [],
+  }) {
     if (position.length > 2) {
       throw ArgumentError.value(
         position,
-        'position',
+        'AllocationStamp.position',
         'Too many elements: ${position.length}, max elements: 2',
       );
     }
     if (duration != null) {
       ArgumentValidation.checkValueInRange(
-        value: duration!,
+        value: duration,
         min: 0,
         max: 4294967294,
-        name: 'duration',
+        name: 'AllocationStamp.duration',
       );
     }
   }
@@ -97,7 +99,10 @@ class AllocationStamp extends Iso11783Element {
       Iso11783ElementType.allocationStamp;
 
   /// Optional position for where the stamp was planned/effective.
-  late final position = _XmlSyncedList<Position>(xmlElement: xmlElement);
+  late final position = _XmlSyncedList<Position>(
+    xmlElement: xmlElement,
+    xmlTag: Position._elementType.xmlTag,
+  );
 
   /// Start time.
   DateTime get start => parseDateTime('A');
@@ -115,8 +120,10 @@ class AllocationStamp extends Iso11783Element {
   /// or [AllocationStampType.effective] has already happened.
   AllocationStampType get type => AllocationStampType.values.firstWhere(
     (type) => type.value == parseInt('D'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${AllocationStampType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('D'),
+      'AllocationStamp.type',
+      '''is not one of the supported values: ${AllocationStampType.values.join(', ')}''',
     ),
   );
   set type(AllocationStampType value) => setInt('D', value.value);

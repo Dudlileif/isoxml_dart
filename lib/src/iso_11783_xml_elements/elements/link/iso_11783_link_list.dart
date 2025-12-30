@@ -21,32 +21,17 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
     String? taskControllerVersion,
     String? fileVersion,
   }) {
-    ArgumentValidation.checkStringLength(
-      managementSoftwareManufacturer,
-      name: 'managementSoftwareManufacturer',
+    _argumentValidator(
+      versionMajor: versionMajor,
+      versionMinor: versionMinor,
+      managementSoftwareManufacturer: managementSoftwareManufacturer,
+      managementSoftwareVersion: managementSoftwareVersion,
+      dataTransferOrigin: dataTransferOrigin,
+      linkGroups: linkGroups,
+      taskControllerManufacturer: taskControllerManufacturer,
+      taskControllerVersion: taskControllerVersion,
+      fileVersion: fileVersion,
     );
-    ArgumentValidation.checkStringLength(
-      managementSoftwareVersion,
-      name: 'managementSoftwareVersion',
-    );
-    if (taskControllerManufacturer != null) {
-      ArgumentValidation.checkStringLength(
-        taskControllerManufacturer,
-        name: 'taskControllerManufacturer',
-      );
-    }
-    if (taskControllerVersion != null) {
-      ArgumentValidation.checkStringLength(
-        taskControllerVersion,
-        name: 'taskControllerVersion',
-      );
-    }
-    if (fileVersion != null) {
-      ArgumentValidation.checkStringLength(
-        fileVersion,
-        name: 'fileVersion',
-      );
-    }
 
     return Iso11783LinkList._(
       versionMajor: versionMajor,
@@ -79,7 +64,7 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? fileVersion,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.versionMajor = versionMajor;
     this.versionMinor = versionMinor;
     this.managementSoftwareManufacturer = managementSoftwareManufacturer;
@@ -92,41 +77,61 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
   }
 
   Iso11783LinkList._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     linkGroups.addAll(
       xmlElement
           .findElements(Iso11783ElementType.linkGroup.xmlTag)
           .map(LinkGroup._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      versionMajor: versionMajor,
+      versionMinor: versionMinor,
+      managementSoftwareManufacturer: managementSoftwareManufacturer,
+      managementSoftwareVersion: managementSoftwareVersion,
+      dataTransferOrigin: dataTransferOrigin,
+      linkGroups: linkGroups,
+      taskControllerManufacturer: taskControllerManufacturer,
+      taskControllerVersion: taskControllerVersion,
+      fileVersion: fileVersion,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required VersionMajor versionMajor,
+    required VersionMinor versionMinor,
+    required String managementSoftwareManufacturer,
+    required String managementSoftwareVersion,
+    required DataTransferOrigin dataTransferOrigin,
+    required List<LinkGroup>? linkGroups,
+    required String? taskControllerManufacturer,
+    required String? taskControllerVersion,
+    required String? fileVersion,
+  }) {
     ArgumentValidation.checkStringLength(
       managementSoftwareManufacturer,
-      name: 'managementSoftwareManufacturer',
+      name: 'Iso11783LinkList.managementSoftwareManufacturer',
     );
     ArgumentValidation.checkStringLength(
       managementSoftwareVersion,
-      name: 'managementSoftwareVersion',
+      name: 'Iso11783LinkList.managementSoftwareVersion',
     );
     if (taskControllerManufacturer != null) {
       ArgumentValidation.checkStringLength(
-        taskControllerManufacturer!,
-        name: 'taskControllerManufacturer',
+        taskControllerManufacturer,
+        name: 'Iso11783LinkList.taskControllerManufacturer',
       );
     }
     if (taskControllerVersion != null) {
       ArgumentValidation.checkStringLength(
-        taskControllerVersion!,
-        name: 'taskControllerVersion',
+        taskControllerVersion,
+        name: 'Iso11783LinkList.taskControllerVersion',
       );
     }
     if (fileVersion != null) {
       ArgumentValidation.checkStringLength(
-        fileVersion!,
-        name: 'fileVersion',
+        fileVersion,
+        name: 'Iso11783LinkList.fileVersion',
       );
     }
   }
@@ -140,7 +145,10 @@ class Iso11783LinkList extends Iso11783Element with _DocumentMixin {
   ]);
 
   /// A list of [LinkGroup]s of this.
-  late final linkGroups = _XmlSyncedList<LinkGroup>(xmlElement: xmlElement);
+  late final linkGroups = _XmlSyncedList<LinkGroup>(
+    xmlElement: xmlElement,
+    xmlTag: LinkGroup._elementType.xmlTag,
+  );
 
   /// Version of the `LINKLIST.xml` file
   String? get fileVersion => tryParseString('FileVersion');

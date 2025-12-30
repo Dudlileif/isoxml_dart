@@ -23,36 +23,13 @@ class DeviceValuePresentation extends Iso11783Element {
     required int numberOfDecimals,
     String? unitDesignator,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: objectId,
-      min: 1,
-      max: 65534,
-      name: 'objectId',
+    _argumentValidator(
+      objectId: objectId,
+      offset: offset,
+      scale: scale,
+      numberOfDecimals: numberOfDecimals,
+      unitDesignator: unitDesignator,
     );
-    ArgumentValidation.checkValueInRange(
-      value: offset,
-      min: -2147483648,
-      max: 2147483648,
-      name: 'offset',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: scale,
-      min: 0.000000001,
-      max: 100000000,
-      name: 'scale',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: numberOfDecimals,
-      min: 0,
-      max: 7,
-      name: 'numberOfDecimals',
-    );
-    if (unitDesignator != null) {
-      ArgumentValidation.checkStringLength(
-        unitDesignator,
-        name: 'unitDesignator',
-      );
-    }
 
     return DeviceValuePresentation._(
       objectId: objectId,
@@ -71,7 +48,7 @@ class DeviceValuePresentation extends Iso11783Element {
     required double scale,
     required int numberOfDecimals,
     String? unitDesignator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.objectId = objectId;
     this.offset = offset;
     this.scale = scale;
@@ -80,39 +57,51 @@ class DeviceValuePresentation extends Iso11783Element {
   }
 
   DeviceValuePresentation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      objectId: objectId,
+      offset: offset,
+      scale: scale,
+      numberOfDecimals: numberOfDecimals,
+      unitDesignator: unitDesignator,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required int objectId,
+    required int offset,
+    required double scale,
+    required int numberOfDecimals,
+    required String? unitDesignator,
+  }) {
     ArgumentValidation.checkValueInRange(
       value: objectId,
       min: 1,
       max: 65534,
-      name: 'objectId',
+      name: 'DeviceValuePresentation.objectId',
     );
     ArgumentValidation.checkValueInRange(
       value: offset,
       min: -2147483648,
       max: 2147483648,
-      name: 'offset',
+      name: 'DeviceValuePresentation.offset',
     );
     ArgumentValidation.checkValueInRange(
       value: scale,
       min: 0.000000001,
       max: 100000000,
-      name: 'scale',
+      name: 'DeviceValuePresentation.scale',
     );
     ArgumentValidation.checkValueInRange(
       value: numberOfDecimals,
       min: 0,
       max: 7,
-      name: 'numberOfDecimals',
+      name: 'DeviceValuePresentation.numberOfDecimals',
     );
     if (unitDesignator != null) {
       ArgumentValidation.checkStringLength(
-        unitDesignator!,
-        name: 'unitDesignator',
+        unitDesignator,
+        name: 'DeviceValuePresentation.unitDesignator',
       );
     }
   }

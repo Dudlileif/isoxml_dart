@@ -3,7 +3,6 @@
 // license that can be found in the LICENSE file.
 
 // Allow catching all errors and exceptions
-// ignore_for_file: avoid_catches_without_on_clauses
 
 @TestOn('vm')
 library;
@@ -522,17 +521,19 @@ void main() async {
           mixtureRecipeQuantity: [800, 1000, 1800][index],
           densityMassPerVolume: 100,
           densityMassPerCount: 1234,
-          relations: [
-            null,
-            null,
-            [
-              ProductRelation(
-                productIdRef: 'PDT1',
-                quantityValue: 800,
-              ),
-              ProductRelation(productIdRef: 'PDT2', quantityValue: 1000),
-            ],
-          ][index],
+          relations:
+              [
+                null,
+                null,
+                [
+                  ProductRelation(
+                    productIdRef: 'PDT1',
+                    quantityValue: 800,
+                  ),
+                  ProductRelation(productIdRef: 'PDT2', quantityValue: 1000),
+                ],
+              ][index] ??
+              [],
         ),
       ),
       productGroups: [
@@ -828,33 +829,39 @@ void main() async {
 
     group('Point', () {
       test('.filename too long', () {
-        Object? error;
-        try {
-          Point(
+        expect(
+          () => Point(
             north: 60,
             east: 10,
             type: PointType.other,
             filename: 'PNT000001',
-          );
-        } catch (e) {
-          error = e;
-        }
-        expect(error, isArgumentError);
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'Point.filename',
+            ),
+          ),
+        );
       });
       test('.filelength outside range', () {
-        Object? error;
-        try {
-          Point(
+        expect(
+          () => Point(
             north: 60,
             east: 10,
             type: PointType.other,
             filename: 'PNT00001',
             fileLength: -1,
-          );
-        } catch (e) {
-          error = e;
-        }
-        expect(error, isArgumentError);
+          ),
+          throwsA(
+            isA<ArgumentError>().having(
+              (error) => error.name,
+              'Correct error',
+              'Point.fileLength',
+            ),
+          ),
+        );
       });
 
       test('binary', () {

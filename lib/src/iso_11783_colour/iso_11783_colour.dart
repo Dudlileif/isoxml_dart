@@ -44,7 +44,7 @@ class Iso11783Colour {
   ///
   /// If [alpha] is not null, then the value will be prepended so that
   /// the returned value will follow 0xAARRGGBB. Default is 0xFF.
-  /// If [alpha] is null, the returned value will follow 0xRRGGBB.
+  /// If [withAlpha] is false the returned value will follow 0xRRGGBB.
   int fromIndex(int index, {bool withAlpha = true, int alpha = 0xFF}) {
     assert(
       index >= 0 && index <= 255,

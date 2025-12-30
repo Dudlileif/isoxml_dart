@@ -28,53 +28,16 @@ class ProcessDataVariable extends Iso11783Element {
     int? actualCulturalPracticeValue,
     int? elementTypeInstanceValue,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      ddi,
-      name: 'ddi',
+    _argumentValidator(
+      ddi: ddi,
+      variableValue: variableValue,
+      processDataVariables: processDataVariables,
+      productIdRef: productIdRef,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      actualCulturalPracticeValue: actualCulturalPracticeValue,
+      elementTypeInstanceValue: elementTypeInstanceValue,
     );
-    ArgumentValidation.checkValueInRange(
-      value: variableValue,
-      min: -2147483648,
-      max: 2147483647,
-      name: 'variableValue',
-    );
-    if (productIdRef != null) {
-      ArgumentValidation.checkId(
-        id: productIdRef,
-        idRefPattern: Product.staticIdRefPattern,
-        idName: 'productIdRef',
-      );
-    }
-    if (deviceElementIdRef != null) {
-      ArgumentValidation.checkId(
-        id: deviceElementIdRef,
-        idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
-      );
-    }
-    if (valuePresentationIdRef != null) {
-      ArgumentValidation.checkId(
-        id: valuePresentationIdRef,
-        idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
-      );
-    }
-    if (actualCulturalPracticeValue != null) {
-      ArgumentValidation.checkValueInRange(
-        value: actualCulturalPracticeValue,
-        min: -2147483648,
-        max: 2147483647,
-        name: 'actualCulturalPracticeValue',
-      );
-    }
-    if (elementTypeInstanceValue != null) {
-      ArgumentValidation.checkValueInRange(
-        value: elementTypeInstanceValue,
-        min: -2147483648,
-        max: 2147483647,
-        name: 'elementTypeInstanceValue',
-      );
-    }
 
     return ProcessDataVariable._(
       ddi: ddi,
@@ -99,7 +62,7 @@ class ProcessDataVariable extends Iso11783Element {
     String? valuePresentationIdRef,
     int? actualCulturalPracticeValue,
     int? elementTypeInstanceValue,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.ddi = ddi;
     this.variableValue = variableValue;
     this.productIdRef = productIdRef;
@@ -111,62 +74,80 @@ class ProcessDataVariable extends Iso11783Element {
   }
 
   ProcessDataVariable._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     processDataVariables.addAll(
       xmlElement
           .findElements(Iso11783ElementType.processDataVariable.xmlTag)
           .map(ProcessDataVariable._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      ddi: ddi,
+      variableValue: variableValue,
+      processDataVariables: processDataVariables,
+      productIdRef: productIdRef,
+      deviceElementIdRef: deviceElementIdRef,
+      valuePresentationIdRef: valuePresentationIdRef,
+      actualCulturalPracticeValue: actualCulturalPracticeValue,
+      elementTypeInstanceValue: elementTypeInstanceValue,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String ddi,
+    required int variableValue,
+    required List<ProcessDataVariable>? processDataVariables,
+    required String? productIdRef,
+    required String? deviceElementIdRef,
+    required String? valuePresentationIdRef,
+    required int? actualCulturalPracticeValue,
+    required int? elementTypeInstanceValue,
+  }) {
     ArgumentValidation.checkHexStringLength(
       ddi,
-      name: 'ddi',
+      name: 'ProcessDataVariable.ddi',
     );
     ArgumentValidation.checkValueInRange(
       value: variableValue,
       min: -2147483648,
       max: 2147483647,
-      name: 'variableValue',
+      name: 'ProcessDataVariable.variableValue',
     );
     if (productIdRef != null) {
       ArgumentValidation.checkId(
-        id: productIdRef!,
+        id: productIdRef,
         idRefPattern: Product.staticIdRefPattern,
-        idName: 'productIdRef',
+        name: 'ProcessDataVariable.productIdRef',
       );
     }
     if (deviceElementIdRef != null) {
       ArgumentValidation.checkId(
-        id: deviceElementIdRef!,
+        id: deviceElementIdRef,
         idRefPattern: DeviceElement.staticIdRefPattern,
-        idName: 'deviceElementIdRef',
+        name: 'ProcessDataVariable.deviceElementIdRef',
       );
     }
     if (valuePresentationIdRef != null) {
       ArgumentValidation.checkId(
-        id: valuePresentationIdRef!,
+        id: valuePresentationIdRef,
         idRefPattern: ValuePresentation.staticIdRefPattern,
-        idName: 'valuePresentationIdRef',
+        name: 'ProcessDataVariable.valuePresentationIdRef',
       );
     }
     if (actualCulturalPracticeValue != null) {
       ArgumentValidation.checkValueInRange(
-        value: actualCulturalPracticeValue!,
+        value: actualCulturalPracticeValue,
         min: -2147483648,
         max: 2147483647,
-        name: 'actualCulturalPracticeValue',
+        name: 'ProcessDataVariable.actualCulturalPracticeValue',
       );
     }
     if (elementTypeInstanceValue != null) {
       ArgumentValidation.checkValueInRange(
-        value: elementTypeInstanceValue!,
+        value: elementTypeInstanceValue,
         min: -2147483648,
         max: 2147483647,
-        name: 'elementTypeInstanceValue',
+        name: 'ProcessDataVariable.elementTypeInstanceValue',
       );
     }
   }
@@ -177,6 +158,7 @@ class ProcessDataVariable extends Iso11783Element {
   /// A list of child [ProcessDataVariable]s.
   late final processDataVariables = _XmlSyncedList<ProcessDataVariable>(
     xmlElement: xmlElement,
+    xmlTag: ProcessDataVariable._elementType.xmlTag,
   );
 
   /// A unique Data Dictionary Identifier which identifies this.

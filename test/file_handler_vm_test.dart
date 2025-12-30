@@ -40,7 +40,7 @@ void main() async {
   );
   final grid1 = taskDataWithGrid1?.tasks.first.grid;
 
-  final taskDataWithGrid2 = await TaskDataFileHandler.loadDirectory(
+  final taskDataWithGrid2 = await Iso11783TaskData.fromDirectory(
     '${Directory.current.path}/test/data_files/grid/type_2',
   );
   final grid2 = taskDataWithGrid2?.tasks.first.grid;

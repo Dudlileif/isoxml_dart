@@ -14,7 +14,7 @@
 * Add a registry within TaskData to ensure no duplicates (ids) ~~and access to all ids/elements from anywhere.~~
 * Add capabilty to TimeLog to write/append to binary file when items are added.
 * ~~Implement Point binary file~~
-* Improve tests
+* Further improve tests
 * Add example(s)
 
 ## Dependencies
@@ -26,7 +26,7 @@
 | [equatable](https://pub.dev/packages/equatable) | Reduce biolerplate for overriding `==` and `hashCode`. |
 | [web](https://pub.dev/packages/web) | Helps with handling JS and WASM compatibility on the web platform. |
 | [xml](https://pub.dev/packages/xml) | Makes importing, parsing and exporting XML documents a breeze. |
-| Dev packages| |
+| Dev packages | |
 | [http](https://pub.dev/packages/http) | Download data dictionary file for testing. |
 | [test](https://pub.dev/packages/test) | Unit testing. |
 | [very_good_analysis](https://pub.dev/packages/very_good_analysis) | Nice set of lint rules. |

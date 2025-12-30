@@ -9,6 +9,10 @@ part of '../iso_11783_element.dart';
 /// should use [_XmlSyncedList]s to automatically keep the [xmlElement] updated
 /// with the correct children of this.
 abstract class _XmlElementBase {
+  _XmlElementBase({required String xmlTag}) : _xmlTag = xmlTag;
+
   /// The underlying XML element that this represents.
   late final XmlElement xmlElement;
+
+  final String _xmlTag;
 }

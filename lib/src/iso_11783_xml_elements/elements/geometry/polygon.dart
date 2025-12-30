@@ -24,28 +24,15 @@ class Polygon extends Iso11783Element {
     int? colour,
     String? id,
   }) {
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
-    if (area != null) {
-      ArgumentValidation.checkValueInRange(
-        value: area,
-        min: 0,
-        max: 4294967294,
-        name: 'area',
-      );
-    }
-    if (colour != null) {
-      ArgumentValidation.checkValueInRange(
-        value: colour,
-        min: 0,
-        max: 254,
-        name: 'colour',
-      );
-    }
-    if (id != null) {
-      ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    }
+    _argumentValidator(
+      type: type,
+      lineStrings: lineStrings,
+      designator: designator,
+      area: area,
+      colour: colour,
+      id: id,
+    );
+
     return Polygon._(
       type: type,
       lineStrings: lineStrings,
@@ -65,7 +52,7 @@ class Polygon extends Iso11783Element {
     int? area,
     int? colour,
     String? id,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.type = type;
     this.designator = designator;
     this.area = area;
@@ -75,38 +62,59 @@ class Polygon extends Iso11783Element {
   }
 
   Polygon._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     lineStrings.addAll(
       xmlElement
           .findElements(Iso11783ElementType.lineString.xmlTag)
           .map(LineString._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      type: type,
+      lineStrings: lineStrings,
+      designator: designator,
+      area: area,
+      colour: colour,
+      id: id,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required PolygonType type,
+    required List<LineString> lineStrings,
+    required String? designator,
+    required int? area,
+    required int? colour,
+    required String? id,
+  }) {
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'Polygon.designator',
+      );
     }
     if (area != null) {
       ArgumentValidation.checkValueInRange(
-        value: area!,
+        value: area,
         min: 0,
         max: 4294967294,
-        name: 'area',
+        name: 'Polygon.area',
       );
     }
     if (colour != null) {
       ArgumentValidation.checkValueInRange(
-        value: colour!,
+        value: colour,
         min: 0,
         max: 254,
-        name: 'colour',
+        name: 'Polygon.colour',
       );
     }
     if (id != null) {
-      ArgumentValidation.checkId(id: id!, idRefPattern: staticIdRefPattern);
+      ArgumentValidation.checkId(
+        id: id,
+        idRefPattern: staticIdRefPattern,
+        name: 'Polygon.id',
+      );
     }
   }
 
@@ -119,13 +127,18 @@ class Polygon extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// The line strins that makes up this polygon.
-  late final lineStrings = _XmlSyncedList<LineString>(xmlElement: xmlElement);
+  late final lineStrings = _XmlSyncedList<LineString>(
+    xmlElement: xmlElement,
+    xmlTag: LineString._elementType.xmlTag,
+  );
 
   /// Which type of polygon this is.
   PolygonType get type => PolygonType.values.firstWhere(
     (type) => type.value == parseInt('A'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('A')}` is not one of the supported values: ${PolygonType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('A'),
+      'Polygon.type',
+      'is not one of the supported values: ${PolygonType.values.join(', ')}',
     ),
   );
   set type(PolygonType value) => setInt('A', value.value);

@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:isoxml_dart/iso_11783_xml_elements.dart';
-import 'package:isoxml_dart/src/lossy_web_int64.dart';
+import 'package:isoxml_dart/src/iso_11783_xml_elements/utils/lossy_web_int64.dart';
 
 /// Extension for parsing [binaryPoints] from [byteData] and in reverse
 /// exporting the byte data of the same points.

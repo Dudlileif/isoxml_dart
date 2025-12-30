@@ -18,18 +18,12 @@ class GuidanceAllocation extends Iso11783Element {
     required String groupIdRef,
     List<GuidanceShift>? shifts,
   }) {
-    if (allocationStamps.isEmpty) {
-      throw ArgumentError.value(
-        allocationStamps,
-        'allocationStamps',
-        'Should not be empty',
-      );
-    }
-    ArgumentValidation.checkId(
-      id: groupIdRef,
-      idRefPattern: GuidanceGroup.staticIdRefPattern,
-      idName: 'groupIdRef',
+    _argumentValidator(
+      allocationStamps: allocationStamps,
+      groupIdRef: groupIdRef,
+      shifts: shifts,
     );
+
     return GuidanceAllocation._(
       allocationStamps: allocationStamps,
       shifts: shifts,
@@ -43,14 +37,14 @@ class GuidanceAllocation extends Iso11783Element {
     required List<AllocationStamp> allocationStamps,
     required String groupIdRef,
     List<GuidanceShift>? shifts,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.groupIdRef = groupIdRef;
     this.allocationStamps.addAll(allocationStamps);
     this.shifts.addAll(shifts);
   }
 
   GuidanceAllocation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     allocationStamps.addAll(
       xmlElement
           .findElements(Iso11783ElementType.allocationStamp.xmlTag)
@@ -63,21 +57,29 @@ class GuidanceAllocation extends Iso11783Element {
           .map(GuidanceShift._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      allocationStamps: allocationStamps,
+      groupIdRef: groupIdRef,
+      shifts: shifts,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required List<AllocationStamp> allocationStamps,
+    required String groupIdRef,
+    required List<GuidanceShift>? shifts,
+  }) {
     if (allocationStamps.isEmpty) {
       throw ArgumentError.value(
         allocationStamps,
-        'allocationStamps',
+        'GuidanceAllocation.allocationStamps',
         'Should not be empty',
       );
     }
     ArgumentValidation.checkId(
       id: groupIdRef,
       idRefPattern: GuidanceGroup.staticIdRefPattern,
-      idName: 'groupIdRef',
+      name: 'GuidanceAllocation.groupIdRef',
     );
   }
 
@@ -87,10 +89,14 @@ class GuidanceAllocation extends Iso11783Element {
   /// A list of [AllocationStamp]s for this.
   late final allocationStamps = _XmlSyncedList<AllocationStamp>(
     xmlElement: xmlElement,
+    xmlTag: AllocationStamp._elementType.xmlTag,
   );
 
   /// A list of [GuidanceShift]s for this.
-  late final shifts = _XmlSyncedList<GuidanceShift>(xmlElement: xmlElement);
+  late final shifts = _XmlSyncedList<GuidanceShift>(
+    xmlElement: xmlElement,
+    xmlTag: GuidanceShift._elementType.xmlTag,
+  );
 
   /// Reference to a [GuidanceGroup].
   String get groupIdRef => parseString('A');

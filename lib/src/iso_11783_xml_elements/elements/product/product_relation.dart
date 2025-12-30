@@ -13,16 +13,9 @@ class ProductRelation extends Iso11783Element {
     required String productIdRef,
     required int quantityValue,
   }) {
-    ArgumentValidation.checkId(
-      id: productIdRef,
-      idRefPattern: Product.staticIdRefPattern,
-      idName: 'productIdRef',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: quantityValue,
-      min: 0,
-      max: 2147483647,
-      name: 'quantityValue',
+    _argumentValidator(
+      productIdRef: productIdRef,
+      quantityValue: quantityValue,
     );
 
     return ProductRelation._(
@@ -36,27 +29,33 @@ class ProductRelation extends Iso11783Element {
   ProductRelation._({
     required String productIdRef,
     required int quantityValue,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.productIdRef = productIdRef;
     this.quantityValue = quantityValue;
   }
 
   ProductRelation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      productIdRef: productIdRef,
+      quantityValue: quantityValue,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String productIdRef,
+    required int quantityValue,
+  }) {
     ArgumentValidation.checkId(
       id: productIdRef,
       idRefPattern: Product.staticIdRefPattern,
-      idName: 'productIdRef',
+      name: 'ProductRelation.productIdRef',
     );
     ArgumentValidation.checkValueInRange(
       value: quantityValue,
       min: 0,
       max: 2147483647,
-      name: 'quantityValue',
+      name: 'ProductRelation.quantityValue',
     );
   }
 

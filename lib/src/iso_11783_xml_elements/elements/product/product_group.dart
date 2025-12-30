@@ -17,10 +17,10 @@ class ProductGroup extends Iso11783Element {
     required String designator,
     ProductGroupType? type,
   }) {
-    ArgumentValidation.checkIdAndDesignator(
+    _argumentValidator(
       id: id,
-      idRefPattern: staticIdRefPattern,
       designator: designator,
+      type: type,
     );
 
     return ProductGroup._(
@@ -36,22 +36,32 @@ class ProductGroup extends Iso11783Element {
     required String id,
     required String designator,
     ProductGroupType? type,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.designator = designator;
     this.type = type;
   }
 
   ProductGroup._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      id: id,
+      designator: designator,
+      type: type,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String id,
+    required String designator,
+    required ProductGroupType? type,
+  }) {
     ArgumentValidation.checkIdAndDesignator(
       id: id,
       idRefPattern: staticIdRefPattern,
       designator: designator,
+      idName: 'ProductGroup.id',
+      designatorName: 'ProductGroup.designator',
     );
   }
 
@@ -79,8 +89,10 @@ class ProductGroup extends Iso11783Element {
   ProductGroupType? get type => switch (tryParseInt('C')) {
     final int value => ProductGroupType.values.firstWhere(
       (type) => type.value == value,
-      orElse: () => throw ArgumentError(
-        '''`$value` is not one of the supported values: ${ProductGroupType.values.join(', ')}''',
+      orElse: () => throw ArgumentError.value(
+        xmlElement.getAttribute('C'),
+        'ProductGroup.type',
+        '''is not one of the supported values: ${ProductGroupType.values.join(', ')}''',
       ),
     ),
     _ => null,

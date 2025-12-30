@@ -17,23 +17,10 @@ class ColourRange extends Iso11783Element {
     required int maximumValue,
     required int colour,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: minimumValue,
-      min: -2147483647,
-      max: 2147483647,
-      name: 'minimumValue',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: maximumValue,
-      min: -2147483647,
-      max: 2147483647,
-      name: 'maximumValue',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: colour,
-      min: 0,
-      max: 254,
-      name: 'colour',
+    _argumentValidator(
+      minimumValue: minimumValue,
+      maximumValue: maximumValue,
+      colour: colour,
     );
 
     return ColourRange._(
@@ -49,37 +36,43 @@ class ColourRange extends Iso11783Element {
     required int minimumValue,
     required int maximumValue,
     required int colour,
-  }) : super(
-         elementType: _elementType,
-       ) {
+  }) : super._(elementType: _elementType) {
     this.minimumValue = minimumValue;
     this.maximumValue = maximumValue;
     this.colour = colour;
   }
 
   ColourRange._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      minimumValue: minimumValue,
+      maximumValue: maximumValue,
+      colour: colour,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required int minimumValue,
+    required int maximumValue,
+    required int colour,
+  }) {
     ArgumentValidation.checkValueInRange(
       value: minimumValue,
       min: -2147483647,
       max: 2147483647,
-      name: 'minimumValue',
+      name: 'ColourRange.minimumValue',
     );
     ArgumentValidation.checkValueInRange(
       value: maximumValue,
       min: -2147483647,
       max: 2147483647,
-      name: 'maximumValue',
+      name: 'ColourRange.maximumValue',
     );
     ArgumentValidation.checkValueInRange(
       value: colour,
       min: 0,
       max: 254,
-      name: 'colour',
+      name: 'ColourRange.colour',
     );
   }
 

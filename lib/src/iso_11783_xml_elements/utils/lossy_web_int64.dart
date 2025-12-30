@@ -30,14 +30,12 @@ extension LossyWebInt64 on ByteData {
   ]) {
     var low = switch (endian) {
       Endian.little => getInt32(byteOffset, endian),
-      Endian.big => getInt32(byteOffset + 4, endian),
-      _ => 0,
+      Endian.big || _ => getInt32(byteOffset + 4, endian),
     };
     if (low < 0) low += _twoPow32;
     final high = switch (endian) {
       Endian.little => getInt32(byteOffset + 4, endian),
-      Endian.big => getInt32(byteOffset, endian),
-      _ => 0,
+      Endian.big || _ => getInt32(byteOffset, endian),
     };
 
     return (low + high * _twoPow32).toDouble();

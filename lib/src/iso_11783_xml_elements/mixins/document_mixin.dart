@@ -8,8 +8,10 @@ mixin _DocumentMixin implements Iso11783Element {
   /// Major version of the standard.
   VersionMajor get versionMajor => VersionMajor.values.firstWhere(
     (type) => type.value == parseInt('VersionMajor'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('VersionMajor')}` is not one of the supported values: ${VersionMajor.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('VersionMajor'),
+      '$runtimeType.versionMajor',
+      'is not one of the supported values: ${VersionMajor.values.join(', ')}',
     ),
   );
   set versionMajor(VersionMajor value) => setInt('VersionMajor', value.value);
@@ -17,8 +19,10 @@ mixin _DocumentMixin implements Iso11783Element {
   /// Minor version of the standard.
   VersionMinor get versionMinor => VersionMinor.values.firstWhere(
     (type) => type.value == parseInt('VersionMinor'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('VersionMinor')}` is not one of the supported values: ${VersionMinor.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('VersionMinor'),
+      '$runtimeType.versionMinor',
+      'is not one of the supported values: ${VersionMinor.values.join(', ')}',
     ),
   );
   set versionMinor(VersionMinor value) => setInt('VersionMinor', value.value);
@@ -50,8 +54,10 @@ mixin _DocumentMixin implements Iso11783Element {
   DataTransferOrigin
   get dataTransferOrigin => DataTransferOrigin.values.firstWhere(
     (type) => type.value == parseInt('DataTransferOrigin'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('DataTransferOrigin')}` is not one of the supported values: ${DataTransferOrigin.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('DataTransferOrigin'),
+      '$runtimeType.dataTransferOrigin',
+      '''is not one of the supported values: ${DataTransferOrigin.values.join(', ')}''',
     ),
   );
   set dataTransferOrigin(DataTransferOrigin value) =>

@@ -21,36 +21,14 @@ class TaskControllerCapabilities extends Iso11783Element {
     required int numberOfSectionsSectionControl,
     required int numberOfControlChannels,
   }) {
-    ArgumentValidation.checkHexStringLength(
-      functionNAME,
-      name: 'functionNAME',
-      minBytes: 8,
-      maxBytes: 8,
-    );
-    ArgumentValidation.checkStringLength(designator, maxLength: 153);
-    ArgumentValidation.checkValueInRange(
-      value: providedCapabilities,
-      min: 0,
-      max: 63,
-      name: 'providedCapabilities',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: numberOfBoomsSectionControl,
-      min: 0,
-      max: 254,
-      name: 'numberOfBoomsSectionControl',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: numberOfSectionsSectionControl,
-      min: 0,
-      max: 254,
-      name: 'numberOfSectionsSectionControl',
-    );
-    ArgumentValidation.checkValueInRange(
-      value: numberOfControlChannels,
-      min: 0,
-      max: 254,
-      name: 'numberOfControlChannels',
+    _argumentValidator(
+      functionNAME: functionNAME,
+      designator: designator,
+      versionNumber: versionNumber,
+      providedCapabilities: providedCapabilities,
+      numberOfBoomsSectionControl: numberOfBoomsSectionControl,
+      numberOfSectionsSectionControl: numberOfSectionsSectionControl,
+      numberOfControlChannels: numberOfControlChannels,
     );
 
     return TaskControllerCapabilities._(
@@ -74,7 +52,7 @@ class TaskControllerCapabilities extends Iso11783Element {
     required int numberOfBoomsSectionControl,
     required int numberOfSectionsSectionControl,
     required int numberOfControlChannels,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.functionNAME = functionNAME;
     this.designator = designator;
     this.versionNumber = versionNumber;
@@ -85,41 +63,61 @@ class TaskControllerCapabilities extends Iso11783Element {
   }
 
   TaskControllerCapabilities._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      functionNAME: functionNAME,
+      designator: designator,
+      versionNumber: versionNumber,
+      providedCapabilities: providedCapabilities,
+      numberOfBoomsSectionControl: numberOfBoomsSectionControl,
+      numberOfSectionsSectionControl: numberOfSectionsSectionControl,
+      numberOfControlChannels: numberOfControlChannels,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required String functionNAME,
+    required String designator,
+    required VersionNumber versionNumber,
+    required int providedCapabilities,
+    required int numberOfBoomsSectionControl,
+    required int numberOfSectionsSectionControl,
+    required int numberOfControlChannels,
+  }) {
     ArgumentValidation.checkHexStringLength(
       functionNAME,
-      name: 'functionNAME',
+      name: 'TaskControllerCapabilities.functionNAME',
       minBytes: 8,
       maxBytes: 8,
     );
-    ArgumentValidation.checkStringLength(designator, maxLength: 153);
+    ArgumentValidation.checkStringLength(
+      designator,
+      maxLength: 153,
+      name: 'TaskControllerCapabilities.designator',
+    );
     ArgumentValidation.checkValueInRange(
       value: providedCapabilities,
       min: 0,
       max: 63,
-      name: 'providedCapabilities',
+      name: 'TaskControllerCapabilities.providedCapabilities',
     );
     ArgumentValidation.checkValueInRange(
       value: numberOfBoomsSectionControl,
       min: 0,
       max: 254,
-      name: 'numberOfBoomsSectionControl',
+      name: 'TaskControllerCapabilities.numberOfBoomsSectionControl',
     );
     ArgumentValidation.checkValueInRange(
       value: numberOfSectionsSectionControl,
       min: 0,
       max: 254,
-      name: 'numberOfSectionsSectionControl',
+      name: 'TaskControllerCapabilities.numberOfSectionsSectionControl',
     );
     ArgumentValidation.checkValueInRange(
       value: numberOfControlChannels,
       min: 0,
       max: 254,
-      name: 'numberOfControlChannels',
+      name: 'TaskControllerCapabilities.numberOfControlChannels',
     );
   }
 
@@ -139,8 +137,10 @@ class TaskControllerCapabilities extends Iso11783Element {
   /// The version number of this.
   VersionNumber get versionNumber => VersionNumber.values.firstWhere(
     (type) => type.value == parseInt('C'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('C')}` is not one of the supported values: ${VersionNumber.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('C'),
+      'TaskControllerCapabilities.versionNumber',
+      '''is not one of the supported values: ${VersionNumber.values.join(', ')}''',
     ),
   );
   set versionNumber(VersionNumber value) => setInt('C', value.value);

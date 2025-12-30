@@ -28,36 +28,12 @@ class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
     String? codedCommentListValueIdRef,
     String? freeCommentText,
   }) {
-    if (codedCommentIdRef != null) {
-      ArgumentValidation.checkId(
-        id: codedCommentIdRef,
-        idRefPattern: CodedComment.staticIdRefPattern,
-        idName: 'codedCommentIdRef',
-      );
-      if (freeCommentText != null) {
-        throw ArgumentError.value(
-          [codedCommentIdRef, freeCommentText],
-          '[codedCommentIdRef, freeCommentText]',
-          'Only one of these can have a value set.',
-        );
-      }
-    }
-    if (codedCommentListValueIdRef != null) {
-      ArgumentValidation.checkId(
-        id: codedCommentListValueIdRef,
-        idRefPattern: CodedCommentListValue.staticIdRefPattern,
-        idName: 'codedCommentListValueIdRef',
-      );
-    }
-    if (freeCommentText != null) {
-      if (freeCommentText.length > 32) {
-        throw ArgumentError.value(
-          freeCommentText,
-          'freeCommentText',
-          'Too long: ${freeCommentText.length}, max: 32',
-        );
-      }
-    }
+    _argumentValidator(
+      allocationStamp: allocationStamp,
+      codedCommentIdRef: codedCommentIdRef,
+      codedCommentListValueIdRef: codedCommentListValueIdRef,
+      freeCommentText: freeCommentText,
+    );
 
     return CommentAllocation._(
       allocationStamp: allocationStamp,
@@ -74,9 +50,7 @@ class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
     String? codedCommentIdRef,
     String? codedCommentListValueIdRef,
     String? freeCommentText,
-  }) : super(
-         elementType: _elementType,
-       ) {
+  }) : super._(elementType: _elementType) {
     this.allocationStamp = allocationStamp;
     this.codedCommentIdRef = codedCommentIdRef;
     this.codedCommentListValueIdRef = codedCommentListValueIdRef;
@@ -84,17 +58,27 @@ class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
   }
 
   CommentAllocation._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     _parseAllocationStamp();
-    _argumentValidator();
+    _argumentValidator(
+      allocationStamp: allocationStamp,
+      codedCommentIdRef: codedCommentIdRef,
+      codedCommentListValueIdRef: codedCommentListValueIdRef,
+      freeCommentText: freeCommentText,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required AllocationStamp? allocationStamp,
+    required String? codedCommentIdRef,
+    required String? codedCommentListValueIdRef,
+    required String? freeCommentText,
+  }) {
     if (codedCommentIdRef != null) {
       ArgumentValidation.checkId(
-        id: codedCommentIdRef!,
+        id: codedCommentIdRef,
         idRefPattern: CodedComment.staticIdRefPattern,
-        idName: 'codedCommentIdRef',
+        name: 'CommentAllocation.codedCommentIdRef',
       );
       if (freeCommentText != null) {
         throw ArgumentError.value(
@@ -106,17 +90,17 @@ class CommentAllocation extends Iso11783Element with _AllocationStampMixin {
     }
     if (codedCommentListValueIdRef != null) {
       ArgumentValidation.checkId(
-        id: codedCommentListValueIdRef!,
+        id: codedCommentListValueIdRef,
         idRefPattern: CodedCommentListValue.staticIdRefPattern,
-        idName: 'codedCommentListValueIdRef',
+        name: 'CommentAllocation.codedCommentListValueIdRef',
       );
     }
     if (freeCommentText != null) {
-      if (freeCommentText!.length > 32) {
+      if (freeCommentText.length > 32) {
         throw ArgumentError.value(
           freeCommentText,
-          'freeCommentText',
-          'Too long: ${freeCommentText!.length}, max: 32',
+          'CommentAllocation.freeCommentText',
+          'Too long: ${freeCommentText.length}, max: 32',
         );
       }
     }

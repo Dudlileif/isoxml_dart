@@ -17,33 +17,14 @@ class LinkGroup extends Iso11783Element {
     String? namespace,
     String? designator,
   }) {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
-    if (manufacturerGLN != null) {
-      ArgumentValidation.checkStringLength(
-        manufacturerGLN,
-        maxLength: 64,
-        name: 'manufacturerGLN',
-      );
-    }
-    if ((type == LinkGroupType.uniqueResolvableUris ||
-            type == LinkGroupType.informationalResolvableUris) &&
-        namespace == null) {
-      throw ArgumentError.value(
-        namespace,
-        'namespace',
-        "namespace can't be null when type is resolvable.",
-      );
-    }
-    if (namespace != null) {
-      ArgumentValidation.checkStringLength(
-        namespace,
-        maxLength: 255,
-        name: 'namespace',
-      );
-    }
-    if (designator != null) {
-      ArgumentValidation.checkStringLength(designator);
-    }
+    _argumentValidator(
+      id: id,
+      type: type,
+      links: links,
+      manufacturerGLN: manufacturerGLN,
+      namespace: namespace,
+      designator: designator,
+    );
 
     return LinkGroup._(
       id: id,
@@ -64,7 +45,7 @@ class LinkGroup extends Iso11783Element {
     String? manufacturerGLN,
     String? namespace,
     String? designator,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.id = id;
     this.type = type;
     this.manufacturerGLN = manufacturerGLN;
@@ -74,23 +55,41 @@ class LinkGroup extends Iso11783Element {
   }
 
   LinkGroup._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     links.addAll(
       xmlElement
           .findElements(Iso11783ElementType.link.xmlTag)
           .map(Link._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      id: id,
+      type: type,
+      links: links,
+      manufacturerGLN: manufacturerGLN,
+      namespace: namespace,
+      designator: designator,
+    );
   }
 
-  void _argumentValidator() {
-    ArgumentValidation.checkId(id: id, idRefPattern: staticIdRefPattern);
+  static void _argumentValidator({
+    required String id,
+    required LinkGroupType type,
+    required List<Link>? links,
+    required String? manufacturerGLN,
+    required String? namespace,
+    required String? designator,
+  }) {
+    ArgumentValidation.checkId(
+      id: id,
+      idRefPattern: staticIdRefPattern,
+      name: 'LinkGroup.id',
+    );
     if (manufacturerGLN != null) {
       ArgumentValidation.checkStringLength(
-        manufacturerGLN!,
+        manufacturerGLN,
         maxLength: 64,
-        name: 'manufacturerGLN',
+        name: 'LinkGroup.manufacturerGLN',
       );
     }
     if ((type == LinkGroupType.uniqueResolvableUris ||
@@ -98,19 +97,22 @@ class LinkGroup extends Iso11783Element {
         namespace == null) {
       throw ArgumentError.value(
         namespace,
-        'namespace',
+        'LinkGroup.namespace',
         "namespace can't be null when type is resolvable.",
       );
     }
     if (namespace != null) {
       ArgumentValidation.checkStringLength(
-        namespace!,
+        namespace,
         maxLength: 255,
-        name: 'namespace',
+        name: 'LinkGroup.namespace',
       );
     }
     if (designator != null) {
-      ArgumentValidation.checkStringLength(designator!);
+      ArgumentValidation.checkStringLength(
+        designator,
+        name: 'LinkGroup.designator',
+      );
     }
   }
 
@@ -123,7 +125,10 @@ class LinkGroup extends Iso11783Element {
   String get idRefPattern => staticIdRefPattern;
 
   /// A list of the [Link]s in this.
-  late final links = _XmlSyncedList<Link>(xmlElement: xmlElement);
+  late final links = _XmlSyncedList<Link>(
+    xmlElement: xmlElement,
+    xmlTag: Link._elementType.xmlTag,
+  );
 
   /// Unique identifier for this link group.
   ///
@@ -132,11 +137,13 @@ class LinkGroup extends Iso11783Element {
   String get id => parseString('A');
   set id(String value) => setString('A', value);
 
-  /// What type of identifiers/[Link].value are used with the [links].
+  /// What type of identifiers/[Link].value are used wiyth the [links].
   LinkGroupType get type => LinkGroupType.values.firstWhere(
     (type) => type.value == parseInt('B'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('B')}` is not one of the supported values: ${LinkGroupType.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('B'),
+      'LinkGroup.type',
+      '''is not one of the supported values: ${LinkGroupType.values.join(', ')}''',
     ),
   );
   set type(LinkGroupType value) => setInt('B', value.value);

@@ -24,66 +24,17 @@ class Position extends Iso11783Element {
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
   }) {
-    ArgumentValidation.checkValueInRange(
-      value: north,
-      min: -90,
-      max: 90,
-      name: 'north',
+    _argumentValidator(
+      north: north,
+      east: east,
+      status: status,
+      up: up,
+      pdop: pdop,
+      hdop: hdop,
+      numberOfSatellites: numberOfSatellites,
+      gpsUtcTimeMs: gpsUtcTimeMs,
+      gpsUtcDate: gpsUtcDate,
     );
-    ArgumentValidation.checkValueInRange(
-      value: east,
-      min: -180,
-      max: 180,
-      name: 'east',
-    );
-    if (up != null) {
-      ArgumentValidation.checkValueInRange(
-        value: up,
-        min: -2147483647,
-        max: 2147483647,
-        name: 'up',
-      );
-    }
-    if (pdop != null) {
-      ArgumentValidation.checkValueInRange(
-        value: pdop,
-        min: 0,
-        max: 99.9,
-        name: 'pdop',
-      );
-    }
-    if (hdop != null) {
-      ArgumentValidation.checkValueInRange(
-        value: hdop,
-        min: 0,
-        max: 99.9,
-        name: 'hdop',
-      );
-    }
-    if (numberOfSatellites != null) {
-      ArgumentValidation.checkValueInRange(
-        value: numberOfSatellites,
-        min: 0,
-        max: 254,
-        name: 'numberOfSatellites',
-      );
-    }
-    if (gpsUtcTimeMs != null) {
-      ArgumentValidation.checkValueInRange(
-        value: gpsUtcTimeMs,
-        min: 0,
-        max: 4294967294,
-        name: 'gpsUtcTimeMs',
-      );
-    }
-    if (gpsUtcDate != null) {
-      ArgumentValidation.checkValueInRange(
-        value: gpsUtcDate,
-        min: 0,
-        max: 65534,
-        name: 'gpsUtcDate',
-      );
-    }
 
     return Position._(
       north: north,
@@ -110,7 +61,7 @@ class Position extends Iso11783Element {
     int? numberOfSatellites,
     int? gpsUtcTimeMs,
     int? gpsUtcDate,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.north = north;
     this.east = east;
     this.status = status;
@@ -123,69 +74,89 @@ class Position extends Iso11783Element {
   }
 
   Position._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
-    _argumentValidator();
+    : super._(elementType: _elementType, xmlElement: element) {
+    _argumentValidator(
+      north: north,
+      east: east,
+      status: status,
+      up: up,
+      pdop: pdop,
+      hdop: hdop,
+      numberOfSatellites: numberOfSatellites,
+      gpsUtcTimeMs: gpsUtcTimeMs,
+      gpsUtcDate: gpsUtcDate,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required double north,
+    required double east,
+    required PositionStatus status,
+    required int? up,
+    required double? pdop,
+    required double? hdop,
+    required int? numberOfSatellites,
+    required int? gpsUtcTimeMs,
+    required int? gpsUtcDate,
+  }) {
     ArgumentValidation.checkValueInRange(
       value: north,
       min: -90,
       max: 90,
-      name: 'north',
+      name: 'Position.north',
     );
     ArgumentValidation.checkValueInRange(
       value: east,
       min: -180,
       max: 180,
-      name: 'east',
+      name: 'Position.east',
     );
     if (up != null) {
       ArgumentValidation.checkValueInRange(
-        value: up!,
+        value: up,
         min: -2147483647,
         max: 2147483647,
-        name: 'up',
+        name: 'Position.up',
       );
     }
     if (pdop != null) {
       ArgumentValidation.checkValueInRange(
-        value: pdop!,
+        value: pdop,
         min: 0,
         max: 99.9,
-        name: 'pdop',
+        name: 'Position.pdop',
       );
     }
     if (hdop != null) {
       ArgumentValidation.checkValueInRange(
-        value: hdop!,
+        value: hdop,
         min: 0,
         max: 99.9,
-        name: 'hdop',
+        name: 'Position.hdop',
       );
     }
     if (numberOfSatellites != null) {
       ArgumentValidation.checkValueInRange(
-        value: numberOfSatellites!,
+        value: numberOfSatellites,
         min: 0,
         max: 254,
-        name: 'numberOfSatellites',
+        name: 'Position.numberOfSatellites',
       );
     }
     if (gpsUtcTimeMs != null) {
       ArgumentValidation.checkValueInRange(
-        value: gpsUtcTimeMs!,
+        value: gpsUtcTimeMs,
         min: 0,
         max: 4294967294,
-        name: 'gpsUtcTimeMs',
+        name: 'Position.gpsUtcTimeMs',
       );
     }
     if (gpsUtcDate != null) {
       ArgumentValidation.checkValueInRange(
-        value: gpsUtcDate!,
+        value: gpsUtcDate,
         min: 0,
         max: 65534,
-        name: 'gpsUtcDate',
+        name: 'Position.gpsUtcDate',
       );
     }
   }
@@ -207,8 +178,10 @@ class Position extends Iso11783Element {
   /// GNSS position status/quality.
   PositionStatus get status => PositionStatus.values.firstWhere(
     (type) => type.value == parseInt('D'),
-    orElse: () => throw ArgumentError(
-      '''`${xmlElement.getAttribute('D')}` is not one of the supported values: ${PositionStatus.values.join(', ')}''',
+    orElse: () => throw ArgumentError.value(
+      xmlElement.getAttribute('D'),
+      'Position.status',
+      '''is not one of the supported values: ${PositionStatus.values.join(', ')}''',
     ),
   );
   set status(PositionStatus value) => setInt('D', value.value);

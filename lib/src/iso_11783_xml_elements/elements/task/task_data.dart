@@ -40,32 +40,36 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
     String? taskControllerVersion,
     String? language,
   }) {
-    ArgumentValidation.checkStringLength(
-      managementSoftwareManufacturer,
-      name: 'managementSoftwareManufacturer',
+    _argumentValidator(
+      versionMajor: versionMajor,
+      versionMinor: versionMinor,
+      managementSoftwareManufacturer: managementSoftwareManufacturer,
+      managementSoftwareVersion: managementSoftwareVersion,
+      dataTransferOrigin: dataTransferOrigin,
+      attachedFiles: attachedFiles,
+      baseStations: baseStations,
+      codedComments: codedComments,
+      codedCommentGroups: codedCommentGroups,
+      colourLegends: colourLegends,
+      cropTypes: cropTypes,
+      culturalPractices: culturalPractices,
+      customers: customers,
+      devices: devices,
+      farms: farms,
+      operationTechniques: operationTechniques,
+      partfields: partfields,
+      products: products,
+      productGroups: productGroups,
+      tasks: tasks,
+      taskControllerCapabilities: taskControllerCapabilities,
+      valuePresentations: valuePresentations,
+      workers: workers,
+      externalFileReferences: externalFileReferences,
+      linkList: linkList,
+      taskControllerManufacturer: taskControllerManufacturer,
+      taskControllerVersion: taskControllerVersion,
+      language: language,
     );
-    ArgumentValidation.checkStringLength(
-      managementSoftwareVersion,
-      name: 'managementSoftwareVersion',
-    );
-    if (taskControllerManufacturer != null) {
-      ArgumentValidation.checkStringLength(
-        taskControllerManufacturer,
-        name: 'taskControllerManufacturer',
-      );
-    }
-    if (taskControllerVersion != null) {
-      ArgumentValidation.checkStringLength(
-        taskControllerVersion,
-        name: 'taskControllerVersion',
-      );
-    }
-    if (language != null) {
-      ArgumentValidation.checkStringLength(
-        language,
-        name: 'language',
-      );
-    }
 
     return Iso11783TaskData._(
       versionMajor: versionMajor,
@@ -136,7 +140,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
     String? taskControllerManufacturer,
     String? taskControllerVersion,
     String? language,
-  }) : super(elementType: _elementType) {
+  }) : super._(elementType: _elementType) {
     this.versionMajor = versionMajor;
     this.versionMinor = versionMinor;
     this.managementSoftwareManufacturer = managementSoftwareManufacturer;
@@ -167,7 +171,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
   }
 
   Iso11783TaskData._fromXmlElement(XmlElement element)
-    : super(elementType: _elementType, xmlElement: element) {
+    : super._(elementType: _elementType, xmlElement: element) {
     attachedFiles.addAll(
       xmlElement
           .findElements(Iso11783ElementType.attachedFile.xmlTag)
@@ -282,34 +286,92 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
           .map(ExternalFileReference._fromXmlElement)
           .toList(),
     );
-    _argumentValidator();
+    _argumentValidator(
+      versionMajor: versionMajor,
+      versionMinor: versionMinor,
+      managementSoftwareManufacturer: managementSoftwareManufacturer,
+      managementSoftwareVersion: managementSoftwareVersion,
+      dataTransferOrigin: dataTransferOrigin,
+      attachedFiles: attachedFiles,
+      baseStations: baseStations,
+      codedComments: codedComments,
+      codedCommentGroups: codedCommentGroups,
+      colourLegends: colourLegends,
+      cropTypes: cropTypes,
+      culturalPractices: culturalPractices,
+      customers: customers,
+      devices: devices,
+      farms: farms,
+      operationTechniques: operationTechniques,
+      partfields: partfields,
+      products: products,
+      productGroups: productGroups,
+      tasks: tasks,
+      taskControllerCapabilities: taskControllerCapabilities,
+      valuePresentations: valuePresentations,
+      workers: workers,
+      externalFileReferences: externalFileReferences,
+      linkList: linkList,
+      taskControllerManufacturer: taskControllerManufacturer,
+      taskControllerVersion: taskControllerVersion,
+      language: language,
+    );
   }
 
-  void _argumentValidator() {
+  static void _argumentValidator({
+    required VersionMajor versionMajor,
+    required VersionMinor versionMinor,
+    required String managementSoftwareManufacturer,
+    required String managementSoftwareVersion,
+    required DataTransferOrigin dataTransferOrigin,
+    required List<AttachedFile>? attachedFiles,
+    required List<BaseStation>? baseStations,
+    required List<CodedComment>? codedComments,
+    required List<CodedCommentGroup>? codedCommentGroups,
+    required List<ColourLegend>? colourLegends,
+    required List<CropType>? cropTypes,
+    required List<CulturalPractice>? culturalPractices,
+    required List<Customer>? customers,
+    required List<Device>? devices,
+    required List<Farm>? farms,
+    required List<OperationTechnique>? operationTechniques,
+    required List<Partfield>? partfields,
+    required List<Product>? products,
+    required List<ProductGroup>? productGroups,
+    required List<Task>? tasks,
+    required List<TaskControllerCapabilities>? taskControllerCapabilities,
+    required List<ValuePresentation>? valuePresentations,
+    required List<Worker>? workers,
+    required List<ExternalFileReference>? externalFileReferences,
+    required Iso11783LinkList? linkList,
+    required String? taskControllerManufacturer,
+    required String? taskControllerVersion,
+    required String? language,
+  }) {
     ArgumentValidation.checkStringLength(
       managementSoftwareManufacturer,
-      name: 'managementSoftwareManufacturer',
+      name: 'Iso11783TaskData.managementSoftwareManufacturer',
     );
     ArgumentValidation.checkStringLength(
       managementSoftwareVersion,
-      name: 'managementSoftwareVersion',
+      name: 'Iso11783TaskData.managementSoftwareVersion',
     );
     if (taskControllerManufacturer != null) {
       ArgumentValidation.checkStringLength(
-        taskControllerManufacturer!,
-        name: 'taskControllerManufacturer',
+        taskControllerManufacturer,
+        name: 'Iso11783TaskData.taskControllerManufacturer',
       );
     }
     if (taskControllerVersion != null) {
       ArgumentValidation.checkStringLength(
-        taskControllerVersion!,
-        name: 'taskControllerVersion',
+        taskControllerVersion,
+        name: 'Iso11783TaskData.taskControllerVersion',
       );
     }
     if (language != null) {
       ArgumentValidation.checkStringLength(
-        language!,
-        name: 'language',
+        language,
+        name: 'Iso11783TaskData.language',
       );
     }
   }
@@ -501,77 +563,116 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
   /// A list of [AttachedFile]s.
   late final attachedFiles = _XmlSyncedList<AttachedFile>(
     xmlElement: xmlElement,
+    xmlTag: AttachedFile._elementType.xmlTag,
   );
 
   /// A list of [BaseStation]s.
-  late final baseStations = _XmlSyncedList<BaseStation>(xmlElement: xmlElement);
+  late final baseStations = _XmlSyncedList<BaseStation>(
+    xmlElement: xmlElement,
+    xmlTag: BaseStation._elementType.xmlTag,
+  );
 
   /// A list of [CodedComment]s.
   late final codedComments = _XmlSyncedList<CodedComment>(
     xmlElement: xmlElement,
+    xmlTag: CodedComment._elementType.xmlTag,
   );
 
   /// A list of [CodedCommentGroup]s.
   late final codedCommentGroups = _XmlSyncedList<CodedCommentGroup>(
     xmlElement: xmlElement,
+    xmlTag: CodedCommentGroup._elementType.xmlTag,
   );
 
   /// A list of [ColourLegend]s.
   late final colourLegends = _XmlSyncedList<ColourLegend>(
     xmlElement: xmlElement,
+    xmlTag: ColourLegend._elementType.xmlTag,
   );
 
   /// A list of [CropType]s.
-  late final cropTypes = _XmlSyncedList<CropType>(xmlElement: xmlElement);
+  late final cropTypes = _XmlSyncedList<CropType>(
+    xmlElement: xmlElement,
+    xmlTag: CropType._elementType.xmlTag,
+  );
 
   /// A list of [CulturalPractice]s.
   late final culturalPractices = _XmlSyncedList<CulturalPractice>(
     xmlElement: xmlElement,
+    xmlTag: CulturalPractice._elementType.xmlTag,
   );
 
   /// A list of [Customer]s.
-  late final customers = _XmlSyncedList<Customer>(xmlElement: xmlElement);
+  late final customers = _XmlSyncedList<Customer>(
+    xmlElement: xmlElement,
+    xmlTag: Customer._elementType.xmlTag,
+  );
 
   /// A list of [Device]s.
-  late final devices = _XmlSyncedList<Device>(xmlElement: xmlElement);
+  late final devices = _XmlSyncedList<Device>(
+    xmlElement: xmlElement,
+    xmlTag: Device._elementType.xmlTag,
+  );
 
   /// A list of [Farm]s.
-  late final farms = _XmlSyncedList<Farm>(xmlElement: xmlElement);
+  late final farms = _XmlSyncedList<Farm>(
+    xmlElement: xmlElement,
+    xmlTag: Farm._elementType.xmlTag,
+  );
 
   /// A list of [OperationTechnique]s.
   late final operationTechniques = _XmlSyncedList<OperationTechnique>(
     xmlElement: xmlElement,
+    xmlTag: OperationTechnique._elementType.xmlTag,
   );
 
   /// A list of [Partfield]s.
-  late final partfields = _XmlSyncedList<Partfield>(xmlElement: xmlElement);
+  late final partfields = _XmlSyncedList<Partfield>(
+    xmlElement: xmlElement,
+    xmlTag: Partfield._elementType.xmlTag,
+  );
 
   /// A list of [Product]s.
-  late final products = _XmlSyncedList<Product>(xmlElement: xmlElement);
+  late final products = _XmlSyncedList<Product>(
+    xmlElement: xmlElement,
+    xmlTag: Product._elementType.xmlTag,
+  );
 
   /// A list of [ProductGroup]s.
   late final productGroups = _XmlSyncedList<ProductGroup>(
     xmlElement: xmlElement,
+    xmlTag: ProductGroup._elementType.xmlTag,
   );
 
   /// A list of [Task]s.
-  late final tasks = _XmlSyncedList<Task>(xmlElement: xmlElement);
+  late final tasks = _XmlSyncedList<Task>(
+    xmlElement: xmlElement,
+    xmlTag: Task._elementType.xmlTag,
+  );
 
   /// A list of [TaskControllerCapabilities].
   late final taskControllerCapabilities =
-      _XmlSyncedList<TaskControllerCapabilities>(xmlElement: xmlElement);
+      _XmlSyncedList<TaskControllerCapabilities>(
+        xmlElement: xmlElement,
+        xmlTag: TaskControllerCapabilities._elementType.xmlTag,
+      );
 
   /// A list of [ValuePresentation]s.
   late final valuePresentations = _XmlSyncedList<ValuePresentation>(
     xmlElement: xmlElement,
+    xmlTag: ValuePresentation._elementType.xmlTag,
   );
 
   /// A list of [Worker]s.
-  late final workers = _XmlSyncedList<Worker>(xmlElement: xmlElement);
+  late final workers = _XmlSyncedList<Worker>(
+    xmlElement: xmlElement,
+    xmlTag: Worker._elementType.xmlTag,
+  );
 
   /// A list of [ExternalFileReference]s.
   late final externalFileReferences = _XmlSyncedList<ExternalFileReference>(
     xmlElement: xmlElement,
+    xmlTag: ExternalFileReference._elementType.xmlTag,
   );
 
   /// An [Iso11783LinkList] for linking to external files.
