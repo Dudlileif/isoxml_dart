@@ -47,7 +47,7 @@ class TaskDataFileHandler {
   /// Exports the [taskData] to a zip file and downloads it.
   /// If [externalize] is true, the [taskData] will split up the main XML
   /// file to one for each type in [Iso11783ElementType.tagsThatCanBeExternal].
-  static Future<bool> saveToFolder({
+  static Future<bool> saveToDirectory({
     required Iso11783TaskData taskData,
     required String path,
     bool externalize = false,

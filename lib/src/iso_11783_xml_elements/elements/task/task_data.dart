@@ -488,6 +488,7 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
         ),
       );
     } else {
+      createExternalFileReferences();
       for (final file in toXmlExternalDocuments()) {
         archive.addFile(
           ArchiveFile.string(
@@ -702,6 +703,65 @@ class Iso11783TaskData extends Iso11783Element with _DocumentMixin {
     tasks.addAll(external.tasks);
     valuePresentations.addAll(external.valuePresentations);
     workers.addAll(external.workers);
+  }
+
+  /// Fills [externalFileReferences] with elements from all the tags that can
+  /// be externalized.
+  void createExternalFileReferences() {
+    void createRefs({required Iterable<String> ids, required String typeId}) {
+      if (ids.isEmpty) {
+        return;
+      }
+      if (externalFileReferences.none(
+            (existing) => existing.filename == '${typeId}00001',
+          ) &&
+          ids.any(
+            (id) => id.contains('-'),
+          )) {
+        externalFileReferences.add(
+          ExternalFileReference(
+            filename: '${typeId}00001',
+          ),
+        );
+      }
+      if (externalFileReferences.none(
+            (existing) => existing.filename == '${typeId}00000',
+          ) &&
+          ids.any(
+            (id) => !id.contains('-'),
+          )) {
+        externalFileReferences.add(
+          ExternalFileReference(
+            filename: '${typeId}00000',
+          ),
+        );
+      }
+    }
+
+    for (final elements in [
+      attachedFiles,
+      baseStations,
+      codedComments,
+      codedCommentGroups,
+      colourLegends,
+      cropTypes,
+      culturalPractices,
+      customers,
+      devices,
+      farms,
+      operationTechniques,
+      partfields,
+      products,
+      productGroups,
+      tasks,
+      valuePresentations,
+      workers,
+    ]) {
+      createRefs(
+        typeId: elements._xmlTag,
+        ids: elements.map((element) => element.id).nonNulls,
+      );
+    }
   }
 
   /// A structured XML document that represents this.

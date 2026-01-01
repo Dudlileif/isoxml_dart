@@ -162,7 +162,7 @@ class TaskDataFileHandler {
   /// Saves the [taskData] to the directory at [path].
   /// If [externalize] is true, the [taskData] will split up the main XML
   /// file to one for each type in [Iso11783ElementType.tagsThatCanBeExternal].
-  static Future<bool> saveToFolder({
+  static Future<bool> saveToDirectory({
     required Iso11783TaskData taskData,
     required String path,
     bool externalize = false,
@@ -187,6 +187,7 @@ class TaskDataFileHandler {
           )}\n',
         );
       } else {
+        taskData.createExternalFileReferences();
         for (final file in taskData.toXmlExternalDocuments()) {
           final externalFile = File('$path/TASKDATA/${file.fileName}.XML');
           await externalFile.create(recursive: true);

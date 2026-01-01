@@ -6810,6 +6810,46 @@ void main() {
             ]),
       );
     });
+
+    test('.createExternalFileReferences', () {
+      final taskData = Iso11783TaskData(
+        versionMajor: VersionMajor.four,
+        versionMinor: VersionMinor.three,
+        managementSoftwareManufacturer: 'Manufacturer',
+        managementSoftwareVersion: '1.0',
+        dataTransferOrigin: DataTransferOrigin.fmis,
+        customers: [
+          Customer(id: 'CTR-1', lastName: 'Negative'),
+          Customer(id: 'CTR1', lastName: 'Positive'),
+        ],
+      );
+      expect(taskData.externalFileReferences.isEmpty, true);
+      taskData.createExternalFileReferences();
+      expect(taskData.externalFileReferences, [
+        isA<ExternalFileReference>()
+            .having(
+              (element) => element.childrenElementType,
+              'Correct `childrenElementType`',
+              Iso11783ElementType.customer,
+            )
+            .having(
+              (element) => element.filename,
+              'Correct `filename`',
+              'CTR00001',
+            ),
+        isA<ExternalFileReference>()
+            .having(
+              (element) => element.childrenElementType,
+              'Correct `childrenElementType`',
+              Iso11783ElementType.customer,
+            )
+            .having(
+              (element) => element.filename,
+              'Correct `filename`',
+              'CTR00000',
+            ),
+      ]);
+    });
   });
 
   group('Task', () {

@@ -122,35 +122,35 @@ void main() async {
       },
     );
 
-    test('saveToFolder', () async {
-      final saved = await TaskDataFileHandler.saveToFolder(
+    test('saveToDirectory', () async {
+      final saved = await TaskDataFileHandler.saveToDirectory(
         taskData: taskData,
-        path: '${exportDirectory.path}/saveToFolder',
+        path: '${exportDirectory.path}/saveToDirectory',
       );
       expect(saved, isTrue);
     });
 
-    test('saveToFolder externalized', () async {
+    test('saveToDirectory externalized', () async {
       final directory = Directory(
-        '${exportDirectory.path}/saveToFolderExternalized/TASKDATA',
+        '${exportDirectory.path}/saveToDirectoryExternalized/TASKDATA',
       );
       await directory.create(recursive: true);
 
-      final saved = await TaskDataFileHandler.saveToFolder(
+      final saved = await TaskDataFileHandler.saveToDirectory(
         taskData: taskData,
-        path: '${exportDirectory.path}/saveToFolderExternalized',
+        path: '${exportDirectory.path}/saveToDirectoryExternalized',
         externalize: true,
       );
       expect(saved, isTrue);
     });
 
-    test('saveToFolder with grid', () async {
+    test('saveToDirectory with grid', () async {
       final taskData = await TaskDataFileHandler.loadDirectory(
         '${Directory.current.path}/test/data_files/grid/type_1',
       );
-      final saved = await TaskDataFileHandler.saveToFolder(
+      final saved = await TaskDataFileHandler.saveToDirectory(
         taskData: taskData!,
-        path: '${exportDirectory.path}/saveToFolderWithGrid',
+        path: '${exportDirectory.path}/saveToDirectoryWithGrid',
       );
       expect(saved, isTrue);
     });

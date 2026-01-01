@@ -38,7 +38,7 @@ class TaskDataFileHandler {
   /// file to one for each type in [Iso11783ElementType.tagsThatCanBeExternal].
   ///
   /// On web it will fall back to [saveToZip].
-  static Future<bool> saveToFolder({
+  static Future<bool> saveToDirectory({
     required Iso11783TaskData taskData,
     required String path,
     bool externalize = false,
